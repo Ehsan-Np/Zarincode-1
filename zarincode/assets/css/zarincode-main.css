@@ -1,0 +1,1341 @@
+/**
+ * Zarincode Main Design System Stylesheet
+ * Fusion of Crextio (Sunshine Yellow #FDD05B + Bento Glass/Dark UI) & Webinex Agency/Store Capabilities
+ * Author: Ehsan NaderiPanah | https://zarincode.com | 09024561001
+ */
+
+:root {
+    --color-yellow: #FDD05B;
+    --color-accent: #FDD05B;
+    --color-accent-hover: #FCC22D;
+    --color-accent-soft: rgba(253, 208, 91, 0.22);
+    --color-accent-contrast: #2A2C31;
+    --zc-dark: #2A2C31;
+    --zc-darker: #1E2025;
+    --zc-bg-from: #F8F6F0;
+    --zc-bg-to: #FFF5D1;
+    --zc-surface: rgba(255, 255, 255, 0.78);
+    --zc-surface-solid: #FFFFFF;
+    --zc-surface-border: rgba(255, 255, 255, 0.92);
+    --zc-text-main: #1F2937;
+    --zc-text-secondary: #4B5563;
+    --zc-text-muted: #6B7280;
+    --zc-border-subtle: rgba(42, 44, 49, 0.08);
+    --zc-shadow-sm: 0 4px 20px rgba(42, 44, 49, 0.04);
+    --zc-shadow-md: 0 12px 36px rgba(42, 44, 49, 0.08);
+    --zc-shadow-lg: 0 24px 60px rgba(42, 44, 49, 0.13);
+    --zc-radius-2xl: 2rem;      /* 32px - Crextio Signature Bento Card Radius */
+    --zc-radius-xl: 1.5rem;     /* 24px */
+    --zc-radius-lg: 1rem;       /* 16px */
+    --zc-radius-pill: 9999px;
+    --zc-font-family: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --zc-container-width: 1440px;
+}
+
+html.dark {
+    color-scheme: dark;
+    --zc-bg-from: #15171C;
+    --zc-bg-to: #1F1B14;
+    --zc-surface: rgba(36, 38, 44, 0.78);
+    --zc-surface-solid: #24262C;
+    --zc-surface-border: rgba(255, 255, 255, 0.09);
+    --zc-text-main: #F3F4F6;
+    --zc-text-secondary: #D1D5DB;
+    --zc-text-muted: #9CA3AF;
+    --zc-border-subtle: rgba(255, 255, 255, 0.09);
+    --zc-shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.28);
+    --zc-shadow-md: 0 12px 36px rgba(0, 0, 0, 0.42);
+    --zc-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--zc-font-family);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--zc-font-family);
+    color: var(--zc-text-main);
+    background: linear-gradient(135deg, var(--zc-bg-from) 0%, var(--zc-bg-to) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.75;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.22s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ── Layout Container ── */
+.zc-container {
+    width: 100%;
+    max-width: var(--zc-container-width);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .zc-container {
+        padding-inline: 2rem;
+    }
+}
+
+/* ── Crextio Signature Surfaces ── */
+.zc-glass-panel {
+    background: var(--zc-surface);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--zc-surface-border);
+    border-radius: var(--zc-radius-2xl);
+    box-shadow: var(--zc-shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.zc-glass-panel:hover {
+    box-shadow: var(--zc-shadow-md);
+}
+
+.zc-white-card {
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-surface-border);
+    border-radius: var(--zc-radius-2xl);
+    box-shadow: var(--zc-shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.zc-white-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--zc-shadow-md);
+}
+
+.zc-dark-card {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+    border-radius: var(--zc-radius-2xl);
+    box-shadow: var(--zc-shadow-md);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+html.dark .zc-dark-card {
+    background: #1B1D22;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.zc-dark-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--zc-radius-2xl) var(--zc-radius-2xl) 0 0;
+    pointer-events: none;
+}
+
+.zc-yellow-card {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-radius: var(--zc-radius-2xl);
+    box-shadow: 0 14px 34px rgba(253, 208, 91, 0.35);
+}
+
+.progress-dashed {
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 6px,
+        rgba(42, 44, 49, 0.09) 6px,
+        rgba(42, 44, 49, 0.09) 12px
+    );
+}
+
+html.dark .progress-dashed {
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 6px,
+        rgba(255, 255, 255, 0.1) 6px,
+        rgba(255, 255, 255, 0.1) 12px
+    );
+}
+
+/* ── Buttons & Pills (Crextio Style) ── */
+.zc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.65rem;
+    border-radius: var(--zc-radius-pill);
+    font-family: var(--zc-font-family);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+}
+
+.zc-btn-yellow {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    box-shadow: 0 8px 24px rgba(253, 208, 91, 0.4);
+}
+
+.zc-btn-yellow:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(253, 208, 91, 0.55);
+}
+
+.zc-btn-dark {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(42, 44, 49, 0.2);
+}
+
+.zc-btn-dark:hover {
+    background: #3B3E47;
+    transform: translateY(-2px);
+}
+
+.zc-btn-glass {
+    background: var(--zc-surface-solid);
+    color: var(--zc-text-main);
+    border-color: var(--zc-border-subtle);
+    box-shadow: var(--zc-shadow-sm);
+}
+
+.zc-btn-glass:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+    transform: translateY(-2px);
+}
+
+/* ── Section Header Badges (Webinex + Crextio Fusion) ── */
+.zc-section-head {
+    margin-bottom: 2.75rem;
+}
+
+.zc-section-head.text-center {
+    text-align: center;
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.zc-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: var(--zc-radius-pill);
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 4px 12px rgba(253, 208, 91, 0.35);
+}
+
+.zc-badge-dark {
+    background: var(--zc-dark);
+    color: var(--color-accent);
+}
+
+.zc-section-title {
+    font-size: clamp(1.65rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 0.85rem 0;
+    color: var(--zc-text-main);
+}
+
+.zc-section-title .zc-highlight {
+    background: linear-gradient(180deg, transparent 58%, var(--color-accent) 58%);
+    padding-inline: 0.3rem;
+    border-radius: 4px;
+}
+
+.zc-section-desc {
+    color: var(--zc-text-secondary);
+    font-size: 1.02rem;
+    margin: 0;
+}
+
+/* ── Top Header & Pill Navigation (Crextio Topnav Style) ── */
+.zc-topbar {
+    background: var(--zc-dark);
+    color: #E5E7EB;
+    font-size: 0.82rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.zc-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.zc-topbar-items {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.zc-topbar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.zc-topbar-item i {
+    color: var(--color-accent);
+}
+
+.zc-header-wrap {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 0;
+}
+
+.zc-header-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 1rem;
+    background: var(--zc-surface);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--zc-surface-border);
+    border-radius: var(--zc-radius-pill);
+    box-shadow: var(--zc-shadow-md);
+}
+
+.zc-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.85rem 0.35rem 0.45rem;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-border-subtle);
+    border-radius: var(--zc-radius-pill);
+}
+
+.zc-brand-logo-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--zc-dark);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.zc-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.zc-brand-name {
+    font-weight: 800;
+    font-size: 1.08rem;
+    color: var(--zc-text-main);
+}
+
+.zc-brand-sub {
+    font-size: 0.7rem;
+    color: var(--zc-text-muted);
+    font-weight: 500;
+}
+
+.zc-nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--zc-surface-solid);
+    padding: 0.35rem;
+    border-radius: var(--zc-radius-pill);
+    border: 1px solid var(--zc-border-subtle);
+    list-style: none;
+    margin: 0;
+}
+
+.zc-nav-pill > li {
+    position: relative;
+}
+
+.zc-nav-pill > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.05rem;
+    border-radius: var(--zc-radius-pill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--zc-text-secondary);
+}
+
+.zc-nav-pill > li.current-menu-item > a,
+.zc-nav-pill > li > a.is-active,
+.zc-nav-pill > li > a:hover {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+}
+
+.zc-nav-pill > li.has-megamenu:hover > .zc-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.zc-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    min-width: 280px;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-surface-border);
+    border-radius: 1.5rem;
+    padding: 0.85rem;
+    box-shadow: var(--zc-shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    z-index: 120;
+    list-style: none;
+}
+
+.zc-dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.9rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--zc-text-main);
+}
+
+.zc-dropdown-menu li a:hover {
+    background: var(--color-accent-soft);
+    color: var(--zc-text-main);
+}
+
+.zc- dropdown-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.65rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zc-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.zc-icon-btn {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 50%;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-border-subtle);
+    color: var(--zc-text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.zc-icon-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-color: var(--color-accent);
+}
+
+.zc-cart-count {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font-size: 0.7rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--zc-surface-solid);
+}
+
+@media (max-width: 1120px) {
+    .zc-nav-pill {
+        display: none;
+    }
+}
+
+/* ── Hero Section (Webinex Agency Headline + Crextio Sunshine Bento Dashboard) ── */
+.zc-hero-section {
+    padding: 2.5rem 0 4rem;
+}
+
+.zc-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+    .zc-hero-grid {
+        grid-template-columns: 7fr 5fr;
+    }
+}
+
+.zc-hero-main-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.zc-hero-title {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.3;
+    margin: 0.5rem 0 1.25rem;
+    color: var(--zc-text-main);
+}
+
+.zc-hero-inline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--zc-dark);
+    color: var(--color-accent);
+    padding: 0.15rem 0.95rem;
+    border-radius: var(--zc-radius-pill);
+    font-size: 0.85em;
+    vertical-align: middle;
+    box-shadow: 0 8px 20px rgba(42, 44, 49, 0.18);
+}
+
+.zc-hero-trust-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.zc-trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--zc-radius-pill);
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-border-subtle);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.zc-trust-pill i {
+    color: #10B981;
+}
+
+/* Crextio Segmented Progress Bar inside Hero Dashboard */
+.zc-crextio-progress-wrap {
+    margin: 1.25rem 0;
+}
+
+.zc-crextio-progress-labels {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--zc-text-muted);
+    margin-bottom: 0.45rem;
+}
+
+.zc-crextio-progress-bars {
+    display: flex;
+    gap: 0.35rem;
+    height: 2.4rem;
+    width: 100%;
+}
+
+.zc-prog-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 0.65rem;
+    transition: width 0.4s ease;
+}
+
+.zc-prog-seg.seg-yellow {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border-start-start-radius: 999px;
+    border-end-start-radius: 999px;
+}
+
+.zc-prog-seg.seg-dark {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+}
+
+.zc-prog-seg.seg-striped {
+    border: 1px solid var(--zc-border-subtle);
+    color: var(--zc-text-main);
+}
+
+.zc-prog-seg.seg-end {
+    background: rgba(42, 44, 49, 0.14);
+    color: var(--zc-text-main);
+    border-start-end-radius: 999px;
+    border-end-end-radius: 999px;
+}
+
+/* ── Partners / Tech Marquee ── */
+.zc-marquee-section {
+    padding: 1.5rem 0 3.5rem;
+}
+
+.zc-marquee-track-wrap {
+    overflow: hidden;
+    padding: 1.25rem;
+    border-radius: var(--zc-radius-2xl);
+}
+
+.zc-marquee-track {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.zc-partner-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem 1.35rem;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-border-subtle);
+    border-radius: var(--zc-radius-pill);
+    font-weight: 700;
+    font-size: 0.92rem;
+    box-shadow: var(--zc-shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.zc-partner-pill:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    background: var(--color-accent-soft);
+}
+
+/* ── 6 Services Bento Grid (Webinex Services + Crextio Bento Style) ── */
+.zc-services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .zc-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .zc-services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.zc-service-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    position: relative;
+}
+
+.zc-service-card.is-featured {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+}
+
+.zc-service-card.is-featured .zc-service-desc {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.zc-service-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.zc-service-icon {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 1.2rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    box-shadow: 0 8px 20px rgba(253, 208, 91, 0.35);
+}
+
+.zc-service-num {
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--zc-radius-pill);
+    background: rgba(42, 44, 49, 0.07);
+    letter-spacing: 0.05em;
+}
+
+.zc-service-card.is-featured .zc-service-num {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-accent);
+}
+
+.zc-service-title {
+    font-size: 1.28rem;
+    font-weight: 800;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.zc-service-desc {
+    font-size: 0.94rem;
+    color: var(--zc-text-secondary);
+    margin: 0;
+}
+
+.zc-service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--zc-border-subtle);
+}
+
+.zc-service-card.is-featured .zc-service-footer {
+    border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Ready-Made Digital Products Marketplace (WooCommerce + Elementor) ── */
+.zc-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: var(--zc-surface-solid);
+    padding: 0.4rem;
+    border-radius: var(--zc-radius-pill);
+    border: 1px solid var(--zc-border-subtle);
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.zc-filter-tab {
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--zc-radius-pill);
+    border: none;
+    background: transparent;
+    font-family: var(--zc-font-family);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--zc-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.zc-filter-tab.is-active,
+.zc-filter-tab:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    box-shadow: 0 4px 14px rgba(253, 208, 91, 0.4);
+}
+
+.zc-products-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .zc-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .zc-products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.zc-product-card {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.zc-product-thumb {
+    position: relative;
+    border-radius: 1.35rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #2A2C31 0%, #18191D 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    color: #FFFFFF;
+}
+
+.zc-product-badges {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.zc-prod-badge {
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--zc-radius-pill);
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+.zc-prod-ver {
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--zc-radius-pill);
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+    backdrop-filter: blur(6px);
+}
+
+.zc-product-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.zc-meta-tag {
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--zc-radius-pill);
+    background: rgba(42, 44, 49, 0.06);
+    color: var(--zc-text-secondary);
+}
+
+html.dark .zc-meta-tag {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.zc-product-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--zc-border-subtle);
+}
+
+.zc-price-amount {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--zc-text-main);
+}
+
+.zc-price-unit {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--zc-text-muted);
+}
+
+/* ── Portfolio / Projects Grid (Webinex Structure + Crextio Aesthetic) ── */
+.zc-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .zc-portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .zc-portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.zc-project-card {
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.zc-project-visual {
+    border-radius: 1.4rem;
+    padding: 1.75rem 1.5rem;
+    background: linear-gradient(135deg, #2A2C31 0%, #1F2026 100%);
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.zc-project-info-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--zc-text-secondary);
+}
+
+.zc-project-info-pills span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.7rem;
+    background: rgba(42, 44, 49, 0.06);
+    border-radius: var(--zc-radius-pill);
+    font-weight: 600;
+}
+
+html.dark .zc-project-info-pills span {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Pricing Plans (Webinex Pricing + Crextio Sunshine Featured Card) ── */
+.zc-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.75rem;
+    align-items: stretch;
+}
+
+@media (min-width: 992px) {
+    .zc-pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.zc-pricing-card {
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.zc-pricing-card.is-popular {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+    border: 2px solid var(--color-accent);
+    transform: translateY(-6px);
+}
+
+.zc-popular-ribbon {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--zc-radius-pill);
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.zc-pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.zc-pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.92rem;
+}
+
+.zc-pricing-features li i {
+    color: var(--color-accent);
+    background: var(--zc-dark);
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.zc-pricing-card.is-popular .zc-pricing-features li i {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+}
+
+/* ── Steps Timeline (4 Project Steps) ── */
+.zc-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .zc-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .zc-steps-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.zc-step-card {
+    padding: 1.85rem;
+    position: relative;
+}
+
+.zc-step-number {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font-weight: 900;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+    box-shadow: 0 6px 16px rgba(253, 208, 91, 0.4);
+}
+
+/* ── Legal & Compliance Pages Suite Styling ── */
+.zc-legal-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem 0 4rem;
+}
+
+@media (min-width: 1024px) {
+    .zc-legal-layout {
+        grid-template-columns: 320px 1fr;
+        align-items: start;
+    }
+}
+
+.zc-legal-sidebar {
+    position: sticky;
+    top: 6.5rem;
+    padding: 1.5rem;
+}
+
+.zc-legal-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.zc-legal-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+    border-radius: 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--zc-text-secondary);
+}
+
+.zc-legal-nav a:hover,
+.zc-legal-nav a.is-active {
+    background: var(--zc-dark);
+    color: var(--color-accent);
+}
+
+.zc-legal-content {
+    padding: 2.5rem;
+}
+
+.zc-legal-clause {
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-border-subtle);
+    margin-bottom: 1.25rem;
+}
+
+.zc-legal-clause h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 1.15rem;
+    color: var(--zc-text-main);
+}
+
+.zc-legal-clause h3 i {
+    color: var(--color-accent-contrast);
+    background: var(--color-accent);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* ── Footer (Crextio Bento Dark Footer) ── */
+.zc-footer {
+    margin-top: 4rem;
+    padding-bottom: 2.5rem;
+}
+
+.zc-footer-bento {
+    background: var(--zc-dark);
+    color: #E5E7EB;
+    border-radius: var(--zc-radius-2xl);
+    padding: 3rem 2.25rem 2rem;
+    box-shadow: var(--zc-shadow-lg);
+}
+
+.zc-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+    .zc-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .zc-footer-grid {
+        grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    }
+}
+
+.zc-footer-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.zc-footer-title::before {
+    content: '';
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+.zc-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.zc-footer-links a {
+    color: #9CA3AF;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.zc-footer-links a:hover {
+    color: var(--color-accent);
+    transform: translateX(-4px);
+}
+
+/* ── Consultation Modal & Quick Search Modal ── */
+.zc-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 17, 23, 0.65);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.zc-modal-backdrop.is-open {
+    display: flex;
+}
+
+.zc-modal-dialog {
+    width: 100%;
+    max-width: 580px;
+    background: var(--zc-surface-solid);
+    border: 1px solid var(--zc-surface-border);
+    border-radius: var(--zc-radius-2xl);
+    padding: 2rem;
+    box-shadow: var(--zc-shadow-lg);
+    position: relative;
+}
+
+.zc-form-group {
+    margin-bottom: 1rem;
+}
+
+.zc-form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.zc-form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--zc-border-subtle);
+    background: var(--zc-surface);
+    color: var(--zc-text-main);
+    font-family: var(--zc-font-family);
+    font-size: 0.92rem;
+}
+
+.zc-form-control:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+/* ── FAQ Accordion ── */
+.zc-faq-item {
+    border: 1px solid var(--zc-border-subtle);
+    background: var(--zc-surface-solid);
+    border-radius: 1.25rem;
+    margin-bottom: 0.85rem;
+    overflow: hidden;
+}
+
+.zc-faq-btn {
+    width: 100%;
+    padding: 1.15rem 1.35rem;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--zc-font-family);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--zc-text-main);
+    cursor: pointer;
+    text-align: right;
+}
+
+.zc-faq-body {
+    padding: 0 1.35rem 1.2rem;
+    color: var(--zc-text-secondary);
+    font-size: 0.92rem;
+    display: none;
+}
+
+.zc-faq-item.is-open .zc-faq-body {
+    display: block;
+}
+
+.zc-faq-item.is-open {
+    border-color: var(--color-accent);
+}

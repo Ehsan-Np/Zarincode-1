@@ -1,0 +1,21 @@
+/*
+Theme Name: Zarincode
+Description: استایل راست‌چین بومی (RTL) قالب وردپرس زرین کد (Zarincode) - توسعه یافته توسط احسان نادری پناه (Zarincode.com)
+*/
+
+html[dir="rtl"] body,
+body.rtl {
+    direction: rtl;
+    unicode-bidi: embed;
+    text-align: right;
+    font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+}
+
+/* بلوک‌های انگلیسی مانند صفحه DMCA و کدهای فنی در حالت چپ‌چین نمایش داده می‌شوند */
+.zc-ltr-block,
+.zc-dmca-wrapper,
+pre,
+code {
+    direction: ltr;
+    text-align: left;
+}

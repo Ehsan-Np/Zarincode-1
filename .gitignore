@@ -1,0 +1,6 @@
+.arena/
+.cache/
+.local/
+.npm/
+.ssh/
+node_modules/
