@@ -1019,6 +1019,9 @@ class Demo_Seeder {
      * SEED EVERYTHING IN ONE CALL
      */
     public static function seed_all(): void {
+        if ( class_exists( '\Zarincode\Core\PostTypes\CPT_Manager' ) ) {
+            \Zarincode\Core\PostTypes\CPT_Manager::instance()->register_cpts_and_taxonomies();
+        }
         self::seed_redux_options();
         self::seed_header_footer_templates();
         self::seed_services_cpt();
@@ -1027,7 +1030,7 @@ class Demo_Seeder {
         self::seed_elementor_pages();
         self::seed_blog_posts();
         self::seed_navigation_menus();
-        flush_rewrite_rules();
+        flush_rewrite_rules( false );
     }
 
     /**

@@ -78,7 +78,7 @@ while ( have_posts() ) :
                         </span>
                     </div>
 
-                    <h1 style="font-size:clamp(1.45rem,2.6vw,2.1rem);font-weight:900;margin:0 0 1rem;line-height:1.45;color:var(--zc-text-primary);">
+                    <h1 style="font-size:clamp(1.3rem,1.95vw,1.65rem);font-weight:900;margin:0 0 1.15rem;line-height:1.5;color:var(--zc-text-primary);">
                         <?php echo esc_html( $title ); ?>
                     </h1>
 
@@ -89,7 +89,7 @@ while ( have_posts() ) :
                                 <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(253,208,91,0.15);color:var(--color-accent);padding:0.35rem 0.9rem;border-radius:999px;font-size:0.78rem;font-weight:800;margin-bottom:0.85rem;">
                                     <i class="fa-solid fa-code"></i> ZARINCODE OFFICIAL COMMERCIAL RELEASE • <?php echo esc_html( $version ); ?>
                                 </div>
-                                <h2 style="font-size:1.25rem;font-weight:900;color:#fff;margin:0 0 0.65rem;line-height:1.5;">
+                                <h2 style="font-size:1.12rem;font-weight:900;color:#fff;margin:0 0 0.65rem;line-height:1.55;">
                                     معماری استاندارد شیءگرا (OOP)، سرعت فوق‌العاده و سورس‌کد ۱۰۰٪ باز
                                 </h2>
                                 <p style="color:#D1D5DB;font-size:0.9rem;line-height:1.85;margin:0 0 1.25rem;">
@@ -151,18 +151,18 @@ while ( have_posts() ) :
 
                 <!-- Product Details Tabs (Overview, Tech Specs, Changelog, FAQ & Guarantee) -->
                 <div class="zc-glass-panel" style="padding:2.25rem;">
-                    <div class="zc-prod-tabs-nav" style="display:flex;flex-wrap:wrap;gap:0.6rem;border-bottom:2px solid var(--zc-border-subtle);padding-bottom:1.1rem;margin-bottom:1.75rem;">
-                        <button type="button" class="zc-btn zc-btn-yellow zc-prod-tab-btn is-active" data-prod-tab="tab-overview" style="padding:0.6rem 1.35rem;font-size:0.86rem;">
-                            <i class="fa-solid fa-file-lines"></i> معرفی و امکانات تخصصی
+                    <div class="zc-prod-tabs-nav" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;border-bottom:2px solid var(--zc-border-subtle);padding-bottom:1.1rem;margin-bottom:1.75rem;">
+                        <button type="button" class="zc-btn zc-btn-yellow zc-prod-tab-btn is-active" data-prod-tab="tab-overview" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                            <i class="fa-solid fa-file-lines"></i> معرفی و امکانات
                         </button>
-                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-specs" style="padding:0.6rem 1.35rem;font-size:0.86rem;">
-                            <i class="fa-solid fa-sliders"></i> مشخصات فنی و پیش‌نیازها
+                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-specs" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                            <i class="fa-solid fa-sliders"></i> مشخصات فنی
                         </button>
-                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-changelog" style="padding:0.6rem 1.35rem;font-size:0.86rem;">
-                            <i class="fa-solid fa-code-commit"></i> لیست تغییرات (Changelog)
+                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-changelog" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                            <i class="fa-solid fa-code-commit"></i> لیست تغییرات
                         </button>
-                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-faq" style="padding:0.6rem 1.35rem;font-size:0.86rem;">
-                            <i class="fa-solid fa-shield-halved"></i> گارانتی و سوالات متداول
+                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-faq" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                            <i class="fa-solid fa-shield-halved"></i> گارانتی و سوالات
                         </button>
                     </div>
 
@@ -337,7 +337,7 @@ while ( have_posts() ) :
                     <div style="display:flex;flex-direction:column;gap:0.75rem;">
                         <?php if ( function_exists( 'WC' ) ) : ?>
                             <a href="<?php echo esc_url( $add_to_cart_url ); ?>" class="zc-btn zc-btn-yellow" style="width:100%;padding:0.95rem;font-size:0.95rem;">
-                                <i class="fa-solid fa-cart-Check"></i> افزودن به سبد خرید و دانلود آنی
+                                <i class="fa-solid fa-cart-shopping"></i> افزودن به سبد خرید و دانلود آنی
                             </a>
                         <?php endif; ?>
                         <button type="button" class="zc-btn <?php echo function_exists( 'WC' ) ? 'zc-btn-glass' : 'zc-btn-yellow'; ?>" style="width:100%;padding:0.85rem;font-size:0.9rem;<?php echo function_exists( 'WC' ) ? 'background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);' : ''; ?>" data-zc-modal-open="zc-consult-modal">

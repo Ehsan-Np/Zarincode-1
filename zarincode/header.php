@@ -49,12 +49,12 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
     <div class="zc-container zc-topbar-inner">
         <div class="zc-topbar-items">
             <?php if ( ! empty( $topbar_badge ) ) : ?>
-                <span class="zc-topbar-item" style="background:var(--color-accent);color:var(--color-accent-contrast);padding:2px 10px;border-radius:999px;font-weight:800;">
+                <span class="zc-topbar-item zc-hide-sm" style="background:var(--color-accent);color:var(--color-accent-contrast);padding:2px 10px;border-radius:999px;font-weight:800;">
                     <?php echo esc_html( $topbar_badge ); ?>
                 </span>
             <?php endif; ?>
             <?php if ( $show_dev ) : ?>
-                <span class="zc-topbar-item">
+                <span class="zc-topbar-item zc-hide-sm">
                     <i class="fa-solid fa-code"></i>
                     <span>توسعه‌دهنده و مدیر فنی: <strong><?php echo esc_html( $dev_name ); ?></strong></span>
                 </span>

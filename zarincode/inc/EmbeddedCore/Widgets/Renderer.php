@@ -115,15 +115,15 @@ class Renderer {
                             </div>
 
                             <!-- Action Buttons -->
-                            <div style="display:flex;flex-wrap:wrap;gap:0.9rem;margin-bottom:2rem;">
-                                <button type="button" class="zc-btn zc-btn-yellow" data-zc-modal-open="zc-consult-modal">
+                            <div class="zc-hero-cta-row" style="display:flex;flex-wrap:wrap;gap:0.55rem;margin-bottom:2rem;">
+                                <button type="button" class="zc-btn zc-btn-yellow" style="padding:0.68rem 1.05rem;font-size:0.82rem;" data-zc-modal-open="zc-consult-modal">
                                     <i class="fa-solid fa-headset"></i> درخواست مشاوره رایگان
                                 </button>
-                                <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="zc-btn zc-btn-dark">
-                                    <i class="fa-solid fa-layer-group"></i> مشاهده خدمات زرین کد
+                                <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="zc-btn zc-btn-dark" style="padding:0.68rem 1.05rem;font-size:0.82rem;">
+                                    <i class="fa-solid fa-layer-group"></i> مشاهده خدمات ما
                                 </a>
-                                <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="zc-btn zc-btn-glass">
-                                    <i class="fa-solid fa-store"></i> فروشگاه سورس و افزونه آماده
+                                <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="zc-btn zc-btn-glass" style="padding:0.68rem 1.05rem;font-size:0.82rem;">
+                                    <i class="fa-solid fa-store"></i> فروشگاه محصولات آماده
                                 </a>
                             </div>
                         </div>
@@ -183,14 +183,14 @@ class Renderer {
                                     </span>
                                 </div>
                                 <!-- 7-Day Activity Bars -->
-                                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0.45rem;align-items:end;height:46px;padding-top:0.35rem;">
-                                    <div style="text-align:center;"><div style="height:24px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ش</small></div>
-                                    <div style="text-align:center;"><div style="height:34px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ی</small></div>
-                                    <div style="text-align:center;"><div style="height:30px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">د</small></div>
-                                    <div style="text-align:center;"><div style="height:38px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.63rem;color:var(--color-accent);font-weight:800;">س</small></div>
-                                    <div style="text-align:center;"><div style="height:36px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">چ</small></div>
-                                    <div style="text-align:center;"><div style="height:42px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.63rem;color:var(--color-accent);font-weight:800;">پ</small></div>
-                                    <div style="text-align:center;"><div style="height:28px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ج</small></div>
+                                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0.45rem;align-items:end;height:54px;padding-top:0.35rem;">
+                                    <div style="text-align:center;"><div style="width:14px;height:22px;margin:0 auto 4px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ش</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:32px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ی</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:28px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">د</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:38px;margin:0 auto 4px;background:var(--color-accent);border-radius:999px;box-shadow:0 4px 10px rgba(253,208,91,0.35);"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">س</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:34px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">چ</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:42px;margin:0 auto 4px;background:var(--color-accent);border-radius:999px;box-shadow:0 4px 10px rgba(253,208,91,0.35);"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">پ</small></div>
+                                    <div style="text-align:center;"><div style="width:14px;height:26px;margin:0 auto 4px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ج</small></div>
                                 </div>
                             </div>
 
@@ -623,7 +623,7 @@ class Renderer {
             [
                 'slug'     => 'tech-marketplace-design',
                 'cat'      => 'ecommerce web',
-                'cat_lbl'  => '* فروشگاهی و مارکت‌پلیس *',
+                'cat_lbl'  => 'فروشگاهی و مارکت‌پلیس',
                 'title'    => 'طراحی و کدنویسی مارکت‌پلیس تکنولوژی و دیجیتال پلاس',
                 'agency'   => 'زرین کد',
                 'date'     => 'فروردین ۱۴۰۵',
@@ -634,7 +634,7 @@ class Renderer {
             [
                 'slug'     => 'crextio-cloud-hrm-software',
                 'cat'      => 'software',
-                'cat_lbl'  => '* نرم‌افزار اختصاصی *',
+                'cat_lbl'  => 'نرم‌افزار اختصاصی',
                 'title'    => 'توسعه سامانه ابری مدیریت منابع انسانی و حقوق (مشابه Crextio)',
                 'agency'   => 'زرین کد',
                 'date'     => 'اردیبهشت ۱۴۰۵',
@@ -645,7 +645,7 @@ class Renderer {
             [
                 'slug'     => 'tebgostar-medical-seo',
                 'cat'      => 'seo',
-                'cat_lbl'  => '* سئو سایت و شبکه‌های اجتماعی *',
+                'cat_lbl'  => 'سئو سایت و شبکه‌های اجتماعی',
                 'title'    => 'سئو جامع و رشد اکسپلور برند تجهیزات پزشکی طب‌گستر',
                 'agency'   => 'زرین کد',
                 'date'     => 'خرداد ۱۴۰۵',
@@ -656,7 +656,7 @@ class Renderer {
             [
                 'slug'     => 'cloud-hosting-portal-design',
                 'cat'      => 'web',
-                'cat_lbl'  => '* شرکتی و استارتاپی *',
+                'cat_lbl'  => 'شرکتی و استارتاپی',
                 'title'    => 'طراحی سایت پلتفرم فروش هاست ابری و سرور اختصاصی',
                 'agency'   => 'زرین کد',
                 'date'     => 'تیر ۱۴۰۵',
@@ -667,7 +667,7 @@ class Renderer {
             [
                 'slug'     => 'stylemode-fashion-ecommerce',
                 'cat'      => 'ecommerce web',
-                'cat_lbl'  => '* فروشگاهی مد و پوشاک *',
+                'cat_lbl'  => 'فروشگاهی مد و پوشاک',
                 'title'    => 'طراحی فروشگاه اینترنتی استایل‌مد با سیستم ست‌ساز هوشمند',
                 'agency'   => 'زرین کد',
                 'date'     => 'مرداد ۱۴۰۵',
@@ -678,7 +678,7 @@ class Renderer {
             [
                 'slug'     => 'fintech-magazine-content-seo',
                 'cat'      => 'content seo',
-                'cat_lbl'  => '* تولید محتوا و مجله‌ای *',
+                'cat_lbl'  => 'تولید محتوا و مجله‌ای',
                 'title'    => 'طراحی پرتال خبری، مجله دیجیتال و استراتژی محتوای فین‌تک',
                 'agency'   => 'زرین کد',
                 'date'     => 'شهریور ۱۴۰۵',
@@ -710,30 +710,32 @@ class Renderer {
                     <?php foreach ( $projects as $prj ) :
                         $prj_url = home_url( '/project/' . $prj['slug'] . '/' );
                         ?>
-                        <div class="zc-white-card zc-project-card" data-category="<?php echo esc_attr( $prj['cat'] ); ?>">
-                            <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-project-visual" style="display:block;text-decoration:none;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <span class="zc-prod-badge"><?php echo esc_html( $prj['cat_lbl'] ); ?></span>
-                                    <span class="zc-prod-ver"><i class="fa-solid fa-chart-simple"></i> <?php echo esc_html( $prj['metrics'] ); ?></span>
-                                </div>
-                                <div style="margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-                                    <h3 style="font-size:1.06rem;font-weight:800;margin:0;color:#FFFFFF;line-height:1.55;">
-                                        <?php echo esc_html( $prj['title'] ); ?>
-                                    </h3>
-                                    <div style="width:3rem;height:3rem;border-radius:0.9rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem;">
-                                        <i class="<?php echo esc_attr( $prj['icon'] ); ?>"></i>
+                        <div class="zc-white-card zc-project-card" data-category="<?php echo esc_attr( $prj['cat'] ); ?>" style="justify-content:space-between;">
+                            <div style="display:flex;flex-direction:column;gap:0.9rem;">
+                                <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-project-visual" style="display:flex;text-decoration:none;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+                                        <span class="zc-prod-badge" style="white-space:nowrap;font-size:0.7rem;"><?php echo esc_html( $prj['cat_lbl'] ); ?></span>
+                                        <span class="zc-prod-ver" style="white-space:nowrap;font-size:0.68rem;"><i class="fa-solid fa-chart-simple"></i> <?php echo esc_html( $prj['metrics'] ); ?></span>
                                     </div>
+                                    <div style="margin-top:1.35rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+                                        <h3 style="font-size:1.04rem;font-weight:800;margin:0;color:#FFFFFF;line-height:1.55;">
+                                            <?php echo esc_html( $prj['title'] ); ?>
+                                        </h3>
+                                        <div style="width:2.85rem;height:2.85rem;border-radius:0.85rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem;">
+                                            <i class="<?php echo esc_attr( $prj['icon'] ); ?>"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="zc-project-info-pills">
+                                    <span><i class="fa-solid fa-building" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['agency'] ); ?></span>
+                                    <span><i class="fa-regular fa-calendar" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['date'] ); ?></span>
+                                    <span><i class="fa-regular fa-clock" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['duration'] ); ?></span>
                                 </div>
-                            </a>
-                            <div class="zc-project-info-pills">
-                                <span><i class="fa-solid fa-building" style="color:var(--color-accent);"></i> مجری: <?php echo esc_html( $prj['agency'] ); ?></span>
-                                <span><i class="fa-regular fa-calendar" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['date'] ); ?></span>
-                                <span><i class="fa-regular fa-clock" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['duration'] ); ?></span>
                             </div>
                             <div class="zc-service-footer" style="padding-top:0.75rem;">
-                                <span style="font-size:0.8rem;color:var(--zc-text-muted);font-weight:600;">تضمین کیفیت و پشتیبانی فعال</span>
-                                <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-btn zc-btn-glass" style="padding:0.4rem 1rem;font-size:0.8rem;">
-                                    مشاهده و بررسی پروژه <i class="fa-solid fa-arrow-left"></i>
+                                <span style="font-size:0.78rem;color:var(--zc-text-muted);font-weight:600;">تضمین کیفیت و پشتیبانی فعال</span>
+                                <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-btn zc-btn-glass" style="padding:0.4rem 0.95rem;font-size:0.78rem;">
+                                    مشاهده پروژه <i class="fa-solid fa-arrow-left"></i>
                                 </a>
                             </div>
                         </div>
@@ -751,9 +753,10 @@ class Renderer {
     public static function render_why_us_stats( array $settings = [] ): string {
         $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.jpg';
         $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
+        $hide_photos = ! empty( $settings['hide_photos'] );
         ob_start();
         ?>
-        <section style="padding:3rem 0 4rem;">
+        <section style="padding:2rem 0 3.5rem;">
             <div class="zc-container">
                 <div class="zc-glass-panel" style="padding:2.75rem;">
                     <div class="zc-hero-grid" style="align-items:center;">
@@ -766,21 +769,23 @@ class Renderer {
                                 ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌وکار شما در دنیای دیجیتالیم. تمرکز ما در <strong>زرین کد (با مدیریت احسان نادری پناه)</strong> نه فقط بر زیبایی ظاهری، بلکه بر معماری کدنویسی تمیز، امنیت، سرعت لود، سئوی تکنیکال و نرخ تبدیل واقعی فروش است. از طراحی سایت و نرم‌افزار اختصاصی تا سئو شبکه‌های اجتماعی و ارائه سورس‌کدهای آماده، همه‌چیز در خدمت موفقیت شماست!
                             </p>
 
+                            <?php if ( ! $hide_photos ) : ?>
                             <!-- Real Luxury Studio Image Strip -->
-                            <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:0.85rem;margin-bottom:1.4rem;" class="zc-why-studio-photos">
-                                <div style="position:relative;border-radius:1.15rem;overflow:hidden;height:165px;border:1px solid var(--zc-border-subtle);">
+                            <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:0.9rem;margin-bottom:1.5rem;" class="zc-why-studio-photos">
+                                <div style="position:relative;border-radius:1.2rem;overflow:hidden;height:195px;border:1px solid var(--zc-border-subtle);">
                                     <img src="<?php echo esc_url( $office_img ); ?>" alt="استودیو مهندسی نرم‌افزار و طراحی وب زرین کد" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.85) 0%,transparent 60%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
-                                        <span style="color:#fff;font-size:0.78rem;font-weight:800;"><i class="fa-solid fa-building-shield" style="color:var(--color-accent);margin-left:0.3rem;"></i> استودیو مهندسی نرم‌افزار و وب زرین کد</span>
+                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.88) 0%,transparent 55%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
+                                        <span style="color:#fff;font-size:0.76rem;font-weight:800;"><i class="fa-solid fa-building-shield" style="color:var(--color-accent);margin-left:0.3rem;"></i> استودیو مهندسی نرم‌افزار و وب زرین کد</span>
                                     </div>
                                 </div>
-                                <div style="position:relative;border-radius:1.15rem;overflow:hidden;height:165px;border:1px solid var(--zc-border-subtle);">
-                                    <img src="<?php echo esc_url( $consult_img ); ?>" alt="احسان نادری پناه - مشاوره تخصصی طراحی سایت و سئو" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
-                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.85) 0%,transparent 60%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
-                                        <span style="color:#fff;font-size:0.78rem;font-weight:800;"><i class="fa-solid fa-user-check" style="color:var(--color-accent);margin-left:0.3rem;"></i> نظارت مستقیم احسان نادری پناه</span>
+                                <div style="position:relative;border-radius:1.2rem;overflow:hidden;height:195px;border:1px solid var(--zc-border-subtle);">
+                                    <img src="<?php echo esc_url( $consult_img ); ?>" alt="احسان نادری پناه - مشاوره تخصصی طراحی سایت و سئو" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;">
+                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.88) 0%,transparent 52%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
+                                        <span style="color:#fff;font-size:0.76rem;font-weight:800;"><i class="fa-solid fa-user-check" style="color:var(--color-accent);margin-left:0.3rem;"></i> نظارت مستقیم احسان نادری پناه</span>
                                     </div>
                                 </div>
                             </div>
+                            <?php endif; ?>
 
                             <div style="display:flex;flex-wrap:wrap;gap:0.9rem;">
                                 <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" class="zc-btn zc-btn-yellow">

@@ -19,22 +19,24 @@ if ( is_singular( 'product' ) ) {
 get_header();
 ?>
 
-<main id="primary" class="zc-container" style="padding-top:2.5rem;padding-bottom:4rem;" role="main">
-    <!-- Store Hero Header -->
-    <div class="zc-dark-card" style="padding:2.75rem;margin-bottom:2.5rem;">
-        <div style="display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;">
-            <div>
-                <span class="zc-badge-pill"><i class="fa-solid fa-code-branch"></i> ZARINCODE DIGITAL MARKETPLACE</span>
-                <h1 style="font-size:clamp(1.75rem,3vw,2.6rem);font-weight:900;margin:0.4rem 0 0.85rem;color:#FFFFFF;">
-                    <?php echo esc_html( zarincode_get_option( 'shop_hero_title', 'فروشگاه اختصاصی قالب وردپرس، افزونه و سورس‌کدهای آماده نرم‌افزار' ) ); ?>
-                </h1>
-                <p style="color:#D1D5DB;font-size:1rem;max-width:860px;margin:0 0 1.5rem;">
-                    تمامی محصولات این فروشگاه به صورت ۱۰۰٪ اختصاصی توسط <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> کدنویسی و بهینه‌سازی شده‌اند و دارای <strong>ضمانت بازگشت وجه، آپدیت دائمی، کدهای تمیز و استاندارد ژاکت و تم‌فارست و پشتیبانی مستقیم (09024561001)</strong> هستند.
-                </p>
-                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-                    <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-bolt" style="color:var(--color-accent);"></i> دانلود آنی بلافاصله پس از خرید</span>
-                    <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-shield-halved" style="color:var(--color-accent);"></i> ۶ ماه گارانتی و پشتیبانی فنی رایگان</span>
-                    <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-code" style="color:var(--color-accent);"></i> سورس‌کد باز و کاملاً مستندسازی شده</span>
+<main id="primary" style="padding-top:2rem;padding-bottom:2rem;" role="main">
+    <div class="zc-container">
+        <!-- Store Hero Header -->
+        <div class="zc-dark-card" style="padding:2.5rem 2.75rem;margin-bottom:0.5rem;">
+            <div style="display:grid;grid-template-columns:1fr;gap:1.25rem;align-items:center;">
+                <div>
+                    <span class="zc-badge-pill"><i class="fa-solid fa-code-branch"></i> ZARINCODE DIGITAL MARKETPLACE</span>
+                    <h1 style="font-size:clamp(1.6rem,2.6vw,2.25rem);font-weight:900;margin:0.4rem 0 0.75rem;color:#FFFFFF;line-height:1.4;">
+                        <?php echo esc_html( zarincode_get_option( 'shop_hero_title', 'فروشگاه اختصاصی قالب وردپرس، افزونه و سورس‌کدهای آماده نرم‌افزار' ) ); ?>
+                    </h1>
+                    <p style="color:#D1D5DB;font-size:0.98rem;max-width:920px;margin:0 0 1.35rem;line-height:1.9;">
+                        تمامی محصولات این فروشگاه به صورت ۱۰۰٪ اختصاصی توسط <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> کدنویسی و بهینه‌سازی شده‌اند و دارای <strong>ضمانت بازگشت وجه، آپدیت دائمی، کدهای تمیز و استاندارد ژاکت و تم‌فارست و پشتیبانی مستقیم (09024561001)</strong> هستند.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                        <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-bolt" style="color:var(--color-accent);"></i> دانلود آنی بلافاصله پس از خرید</span>
+                        <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-shield-halved" style="color:var(--color-accent);"></i> ۶ ماه گارانتی و پشتیبانی فنی رایگان</span>
+                        <span class="zc-trust-pill" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);"><i class="fa-solid fa-code" style="color:var(--color-accent);"></i> سورس‌کد باز و کاملاً مستندسازی شده</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,7 +46,9 @@ get_header();
     if ( class_exists( '\Zarincode\Core\Widgets\Renderer' ) ) {
         echo \Zarincode\Core\Widgets\Renderer::render_products_marketplace( [ 'count' => 8, 'show_filters' => true ] );
     } else {
+        echo '<div class="zc-container">';
         woocommerce_content();
+        echo '</div>';
     }
     ?>
 </main>

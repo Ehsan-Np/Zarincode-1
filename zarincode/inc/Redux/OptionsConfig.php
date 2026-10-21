@@ -1046,16 +1046,15 @@ class OptionsConfig {
         if ( zarincode_get_option( 'enable_floating_contact', true ) ) :
             $label = zarincode_get_option( 'floating_contact_label', 'مشاوره فوری: 09024561001' );
             ?>
-            <div class="zc-floating-quick-contact" style="position:fixed;bottom:22px;right:22px;z-index:9980;display:flex;align-items:center;gap:8px;">
-                <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn zc-btn-yellow" style="padding:10px 18px;border-radius:999px;font-size:13px;box-shadow:0 12px 28px rgba(42,44,49,0.22);border:2px solid #2A2C31;">
-                    <i class="fa-solid fa-phone-volume"></i>
-                    <span><?php echo esc_html( $label ); ?></span>
-                </a>
+            <div class="zc-floating-quick-contact" style="position:fixed;bottom:22px;right:22px;z-index:9980;display:flex;flex-direction:column;align-items:center;gap:10px;">
                 <?php if ( zarincode_get_option( 'enable_back_to_top', true ) ) : ?>
-                    <button type="button" id="zc-back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="بازگشت به بالای صفحه" style="width:42px;height:42px;border-radius:50%;background:#2A2C31;color:#FDD05B;border:2px solid #FDD05B;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.2);">
+                    <button type="button" id="zc-back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="بازگشت به بالای صفحه" style="width:42px;height:42px;border-radius:50%;background:#2A2C31;color:#FDD05B;border:2px solid rgba(253,208,91,0.65);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.22);transition:transform 0.2s ease;">
                         <i class="fa-solid fa-arrow-up"></i>
                     </button>
                 <?php endif; ?>
+                <a href="tel:<?php echo esc_attr( $phone ); ?>" title="<?php echo esc_attr( $label ); ?>" aria-label="<?php echo esc_attr( $label ); ?>" class="zc-floating-phone-btn" style="width:46px;height:46px;border-radius:50%;background:var(--color-accent);color:#2A2C31;border:2px solid #2A2C31;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 10px 24px rgba(42,44,49,0.25);text-decoration:none;transition:transform 0.2s ease;">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </a>
             </div>
         <?php endif;
 
