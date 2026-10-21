@@ -232,8 +232,10 @@
 
         // Crextio Hero Live Timer Simulation
         const timerEl = document.getElementById('zc-live-timer');
-        if (timerEl) {
-            let seconds = 9300; // 02:35:00
+        const editorMode = document.body.classList.contains('elementor-editor-active') || (window.elementorFrontend && window.elementorFrontend.isEditMode());
+        const initial = timerEl && timerEl.textContent.trim().match(/^(\d{1,3}):(\d{2}):(\d{2})$/);
+        if (timerEl && !editorMode && initial) {
+            let seconds = Number(initial[1]) * 3600 + Number(initial[2]) * 60 + Number(initial[3]);
             setInterval(function () {
                 seconds++;
                 const h = String(Math.floor(seconds / 3600)).padStart(2, '0');

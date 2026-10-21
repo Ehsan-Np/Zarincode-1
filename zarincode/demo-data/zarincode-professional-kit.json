@@ -1,0 +1,97 @@
+{
+  "version": "0.4",
+  "title": "زرین کد — کیت ابزارهای حرفه‌ای (اختیاری)",
+  "type": "page",
+  "content": [
+    {
+      "id": "c270000",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270000",
+          "elType": "widget",
+          "widgetType": "zarincode_service_spotlight",
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "id": "c270001",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270001",
+          "elType": "widget",
+          "widgetType": "zarincode_project_roadmap",
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "id": "c270002",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270002",
+          "elType": "widget",
+          "widgetType": "zarincode_seo_audit",
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "id": "c270003",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270003",
+          "elType": "widget",
+          "widgetType": "zarincode_before_after",
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "id": "c270004",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270004",
+          "elType": "widget",
+          "widgetType": "zarincode_team_experts",
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "id": "c270005",
+      "elType": "container",
+      "settings": {
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "e270005",
+          "elType": "widget",
+          "widgetType": "zarincode_service_matrix",
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,7 @@ require_once __DIR__.'/Editable_Renderer.php';
 require_once __DIR__.'/Repeater_Identity.php';
 require_once __DIR__.'/Original_Design.php';
 require_once __DIR__.'/Original_Pages.php';
+require_once __DIR__.'/Inline_Editing.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
     abstract protected function kind(): string;
@@ -35,6 +36,15 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     protected function get_init_settings() {
         return Repeater_Identity::settings(parent::get_init_settings(),$this->get_controls(),$this->get_name().'.'.$this->get_id());
     }
+    public function inline_attributes(string $key,string $toolbar='none'): array {
+        $this->remove_render_attribute($key);
+        $this->add_inline_editing_attributes($key,$toolbar);
+        return $this->get_render_attributes($key);
+    }
+    public function start_controls_section($id,array $args=[]) {
+        if($id!=='main_content' && strpos($id,'original_text_')!==0) $args['condition']=array_merge($args['condition']??[],['design_mode'=>'custom']);
+        parent::start_controls_section($id,$args);
+    }
     private function field($id,$label,$type=C::TEXT,$default='',$extra=[]): void {
         $this->add_control($id,array_merge(['label'=>$label,'type'=>$type,'default'=>$default,'dynamic'=>['active'=>in_array($type,[C::TEXT,C::TEXTAREA,C::WYSIWYG,C::MEDIA,C::URL],true)]],$extra));
     }
@@ -47,6 +57,8 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
             $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
             $this->field('page_content','محتوای کامل صفحه (جایگزین الگو)',C::WYSIWYG,'',['description'=>'برای شخصی‌سازی کامل متن حقوقی، محتوای خود را اینجا وارد کنید. متن الگو صرفاً نمونه است و باید بازبینی حقوقی شود.']);
         }
+        $this->end_controls_section();
+        $this->start_controls_section('custom_main',['label'=>'محتوای چیدمان سفارشی']);
         $this->field('badge','نشان بالای عنوان',C::TEXT,in_array($kind,['hero','promo'],true)?'ZARINCODE STUDIO':'');
         $this->field('badge_icon','آیکون نشان',C::ICONS,['value'=>'fas fa-star','library'=>'fa-solid']);
         $this->field('title','عنوان',C::TEXT,Widget_Schema::definitions()[$kind][3]);
@@ -205,14 +217,33 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->field('image_fit','نحوه قرارگیری تصویر',C::SELECT,'cover',['options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن','fill'=>'کشیده','none'=>'اصلی'],'selectors'=>['{{WRAPPER}} .zc-edit-image'=>'object-fit: {{VALUE}};']]);
         $this->add_responsive_control('icon_size',['label'=>'اندازه آیکون','type'=>C::SLIDER,'range'=>['px'=>['min'=>8,'max'=>200]],'selectors'=>['{{WRAPPER}} .zc-edit-icon'=>'font-size: {{SIZE}}{{UNIT}};','{{WRAPPER}} .zc-edit-icon svg'=>'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};']]);
         $this->end_controls_section();
+        $this->original_controls();
+    }
+    private function original_controls(): void {
+        $r=new Repeater();
+        $r->add_control('path',['type'=>C::HIDDEN]);
+        $r->add_control('baseline',['type'=>C::HIDDEN]);
+        $r->add_control('label',['type'=>C::HIDDEN]);
+        $r->add_control('text',['label'=>'متن (ویرایش مستقیم با کلیک در پیش‌نمایش نیز فعال است)','type'=>C::WYSIWYG]);
+        $sections=$this->kind()==='page_section'?Widget_Schema::sections():['default'=>'متن‌های طراحی اصلی'];
+        foreach($sections as $key=>$label){
+            $control=$key==='default'?'original_texts':'original_texts_'.str_replace('-','_',$key);
+            $condition=['design_mode'=>'original'];if($key!=='default')$condition['section_key']=$key;
+            $this->start_controls_section('original_text_'.$key,['label'=>$label.' — ویرایش متن','condition'=>$condition]);
+            $this->add_control($control,['label'=>'متن‌ها، عنوان‌ها، نشان‌ها و دکمه‌ها','type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>Inline_Editing::original_defaults($this->kind(),$key==='default'?'about-page':$key),'title_field'=>'{{{ label }}}','item_actions'=>['add'=>false,'remove'=>false,'duplicate'=>false,'sort'=>false],'prevent_empty'=>false]);
+            $this->end_controls_section();
+        }
     }
     protected function render(): void {
         $settings=$this->get_settings_for_display();
         if(($settings['design_mode']??'original')==='custom') {
-            echo Editable_Renderer::render($this->kind(),$settings,$this->get_id());
+            $settings['__kind']=$this->kind();
+            echo Inline_Editing::custom(Editable_Renderer::render($this->kind(),$settings,$this->get_id()),$settings,$this);
         } else {
             // Pass explicit saved content only: new generic defaults must not replace original demo copy.
-            echo Renderer::original($this->kind(),$this->get_data('settings')?:[]);
+            $html=Renderer::original($this->kind(),$this->get_data('settings')?:[]);
+            $key=$this->kind()==='page_section'?'original_texts_'.str_replace('-','_',$settings['section_key']??'about-page'):'original_texts';
+            echo Inline_Editing::original($html,$settings,$this,$key);
         }
     }
 }

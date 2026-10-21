@@ -2,11 +2,13 @@
 /**
  * Plugin Name: Zarincode Core (هسته و ویجت‌های المنتوری قالب زرین کد)
  * Plugin URI:  https://zarincode.com
- * Description: افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۱۴ ویجت ۱۰۰٪ قابل سفارشی‌سازی المنتور، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA).
- * Version:     2.6.1
+ * Description: افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۰ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA).
+ * Version:     2.7.0
  * Author:      Ehsan NaderiPanah (احسان نادری پناه)
  * Author URI:  https://zarincode.com
  * Text Domain: zarincode-core
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Domain Path: /languages
  * Requires PHP: 8.0
  */
@@ -15,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-defined( 'ZARINCODE_CORE_VERSION' ) || define( 'ZARINCODE_CORE_VERSION', '2.6.1' );
+defined( 'ZARINCODE_CORE_VERSION' ) || define( 'ZARINCODE_CORE_VERSION', '2.7.0' );
 defined( 'ZARINCODE_CORE_PATH' ) || define( 'ZARINCODE_CORE_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'ZARINCODE_CORE_URL' ) || define( 'ZARINCODE_CORE_URL', plugin_dir_url( __FILE__ ) );
 
