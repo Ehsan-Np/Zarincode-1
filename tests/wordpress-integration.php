@@ -11,7 +11,7 @@ foreach($names as $kind){
     if(!isset($types[$name])) continue;
     $widget=$types[$name];$controls=$widget->get_controls();
     foreach(['title','description','image','items','primary_link','card_typography_font_family','columns','section_padding','icon_size','layout'] as $control) zc_check($widget->get_controls($control)!==null,$name.' control '.$control);
-    $instance=\Elementor\Plugin::instance()->elements_manager->create_element_instance(['id'=>'test'.str_replace('_','',$kind),'elType'=>'widget','widgetType'=>$name,'settings'=>['title'=>'CUSTOM TITLE <script>x</script>','description'=>'<p>CUSTOM DESCRIPTION</p>','source'=>'manual','items'=>[['_id'=>'record1','title'=>'CUSTOM RECORD','description'=>'<p>RECORD TEXT</p>','visible'=>'yes','link'=>['url'=>'https://example.org/custom','is_external'=>true],'icon'=>['value'=>'fas fa-heart','library'=>'fa-solid'],'button_text'=>'CUSTOM BUTTON']]]]);
+    $instance=\Elementor\Plugin::instance()->elements_manager->create_element_instance(['id'=>'test'.str_replace('_','',$kind),'elType'=>'widget','widgetType'=>$name,'settings'=>['design_mode'=>'custom','title'=>'CUSTOM TITLE <script>x</script>','description'=>'<p>CUSTOM DESCRIPTION</p>','source'=>'manual','items'=>[['_id'=>'record1','title'=>'CUSTOM RECORD','description'=>'<p>RECORD TEXT</p>','visible'=>'yes','link'=>['url'=>'https://example.org/custom','is_external'=>true],'icon'=>['value'=>'fas fa-heart','library'=>'fa-solid'],'button_text'=>'CUSTOM BUTTON']]]]);
     if(!$instance){zc_check(false,$name.' instantiated');continue;}
     ob_start();$instance->render_content();$html=ob_get_clean();
     zc_check(strpos($html,'CUSTOM TITLE')!==false,$name.' custom heading rendered');

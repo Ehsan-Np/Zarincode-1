@@ -395,11 +395,11 @@ class Demo_Seeder {
                 'title' => 'هدر اصلی المنتوری زرین کد (Crextio Sunshine Pill Header)',
                 'type'  => 'header',
                 'tree'  => [ self::make_elementor_section( 'zarincode_header', [
-                    'title'          => 'زریــن کـد',
+                    'brand_title'    => 'زریــن کـد',
                     'brand_subtitle' => 'Zarincode Studio',
                     'dev_name'       => 'احسان نادری پناه',
                     'phone'          => '09024561001',
-                    'primary_text'   => 'درخواست مشاوره',
+                    'cta_text'       => 'درخواست مشاوره',
                 ] ) ],
                 'sc'    => '[zarincode_widget type="header"]',
             ],
@@ -408,7 +408,7 @@ class Demo_Seeder {
                 'title' => 'فوتر بنتو دارک المنتوری زرین کد (Crextio Dark Bento Footer)',
                 'type'  => 'footer',
                 'tree'  => [ self::make_elementor_section( 'zarincode_footer', [
-                    'title'       => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟',
+                    'cta_heading' => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟',
                     'phone'       => '09024561001',
                     'dev_name'    => 'احسان نادری پناه (Ehsan NaderiPanah)',
                 ] ) ],
@@ -733,8 +733,6 @@ class Demo_Seeder {
             $cpt_mgr = \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();
             if ( is_callable( [ $cpt_mgr, 'register_post_types_and_taxonomies' ] ) ) {
                 $cpt_mgr->register_post_types_and_taxonomies();
-            } elseif ( is_callable( [ $cpt_mgr, 'register_cpts_and_taxonomies' ] ) ) {
-                $cpt_mgr->register_cpts_and_taxonomies();
             }
         }
 
@@ -745,7 +743,7 @@ class Demo_Seeder {
                 'price'       => '2490000',
                 'price_fa'    => '۲,۴۹۰,۰۰۰',
                 'old_price'   => '۳,۹۰۰,۰۰۰',
-                'ver'         => 'v2.6.0',
+                'ver'         => 'v2.5.0',
                 'cat_badge'   => 'قالب وردپرس',
                 'sales'       => '+۴۲۰ فروش موفق',
                 'icon'        => 'fa-brands fa-wordpress',
@@ -1076,8 +1074,6 @@ class Demo_Seeder {
      */
     public static function seed_redux_options(): void {
         $defaults = [
-            'header_source' => 'elementor_hf',
-            'footer_source' => 'elementor_hf',
             'brand_name'             => 'زرین کد',
             'brand_en_name'          => 'Zarincode',
             'developer_name'         => 'احسان نادری پناه (Ehsan NaderiPanah)',
@@ -1105,8 +1101,6 @@ class Demo_Seeder {
             $cpt_mgr = \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();
             if ( is_callable( [ $cpt_mgr, 'register_post_types_and_taxonomies' ] ) ) {
                 $cpt_mgr->register_post_types_and_taxonomies();
-            } elseif ( is_callable( [ $cpt_mgr, 'register_cpts_and_taxonomies' ] ) ) {
-                $cpt_mgr->register_cpts_and_taxonomies();
             }
         }
         self::seed_redux_options();

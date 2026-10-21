@@ -65,6 +65,7 @@ class OptionsConfig {
                 'redux' => 'el el-home',
                 'desc'  => 'مدیریت نام برند، مشخصات توسعه‌دهنده، لوگو، ابعاد کانتینر، پریلودر و تنظیمات پایه قالب زرین کد.',
                 'fields' => [
+                    [ 'id' => 'demo_design', 'type' => 'select', 'title' => 'طراحی دمو', 'options' => [ 'original' => 'طراحی اصلی و قبلی زرین کد (پیش‌فرض)', 'custom' => 'هدر و فوتر سفارشی المنتور' ], 'default' => 'original' ],
                     [ 'id' => 'brand_name',            'type' => 'text',   'title' => 'نام برند فارسی', 'subtitle' => 'نمایش در هدر، فوتر و عنوان‌های اصلی', 'default' => 'زرین کد' ],
                     [ 'id' => 'brand_en_name',         'type' => 'text',   'title' => 'نام برند انگلیسی / زیرعنوان لوگو', 'default' => 'Zarincode Studio' ],
                     [ 'id' => 'brand_slogan',          'type' => 'text',   'title' => 'شعار رسمی برند', 'default' => 'آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده' ],

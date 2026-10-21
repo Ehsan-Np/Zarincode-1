@@ -11,6 +11,9 @@ use Elementor\Group_Control_Box_Shadow;
 defined('ABSPATH') || exit;
 require_once __DIR__.'/Widget_Schema.php';
 require_once __DIR__.'/Editable_Renderer.php';
+require_once __DIR__.'/Repeater_Identity.php';
+require_once __DIR__.'/Original_Design.php';
+require_once __DIR__.'/Original_Pages.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
     abstract protected function kind(): string;
@@ -21,12 +24,24 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     public function get_script_depends(): array { return ['zarincode-editable-widgets']; }
     public function get_categories(): array { return ['zarincode-elements']; }
     public function get_keywords(): array { return ['zarincode','زرین کد','bento']; }
+    /** Normalize defaults before Elementor builds style_fields for {{CURRENT_ITEM}}. */
+    public function add_control($id,array $args,$options=[]) {
+        if(($args['type']??'')===C::REPEATER && isset($args['default']) && is_array($args['default'])) {
+            $args['default']=Repeater_Identity::rows($args['default'],$this->get_name().'.'.$id,$args['fields']??[]);
+        }
+        return parent::add_control($id,$args,$options);
+    }
+    /** Also cover saved/imported rows from 2.6.0, before CSS generation (not just render). */
+    protected function get_init_settings() {
+        return Repeater_Identity::settings(parent::get_init_settings(),$this->get_controls(),$this->get_name().'.'.$this->get_id());
+    }
     private function field($id,$label,$type=C::TEXT,$default='',$extra=[]): void {
         $this->add_control($id,array_merge(['label'=>$label,'type'=>$type,'default'=>$default,'dynamic'=>['active'=>in_array($type,[C::TEXT,C::TEXTAREA,C::WYSIWYG,C::MEDIA,C::URL],true)]],$extra));
     }
     protected function register_controls(): void {
         $kind=$this->kind();
         $this->start_controls_section('main_content',['label'=>'محتوا و هویت بخش']);
+        $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'طراحی اصلی بدون تغییر نمایش داده می‌شود. برای استفاده از موتور کارت‌ها و استایل‌های جدید، چیدمان سفارشی را انتخاب کنید.']);
         if ($kind==='page_section') {
             $this->field('page_cards_source','منبع کارت‌های صفحه',C::SELECT,'auto',['options'=>['auto'=>'خودکار مطابق نوع صفحه','manual'=>'کارت‌های دستی زیر']]);
             $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
@@ -192,7 +207,13 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->end_controls_section();
     }
     protected function render(): void {
-        echo Editable_Renderer::render($this->kind(),$this->get_settings_for_display(),$this->get_id());
+        $settings=$this->get_settings_for_display();
+        if(($settings['design_mode']??'original')==='custom') {
+            echo Editable_Renderer::render($this->kind(),$settings,$this->get_id());
+        } else {
+            // Pass explicit saved content only: new generic defaults must not replace original demo copy.
+            echo Renderer::original($this->kind(),$this->get_data('settings')?:[]);
+        }
     }
 }
 

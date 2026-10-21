@@ -26,6 +26,7 @@ class Elementor_Loader {
     }
 
     private function __construct() {
+        add_action( 'admin_init', [ $this, 'refresh_generated_css' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ], 5 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_assets' ] );
         add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_assets' ] );
@@ -33,12 +34,20 @@ class Elementor_Loader {
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
     }
 
+    public function refresh_generated_css(): void {
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='2.6.1') return;
+        if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
+            \Elementor\Plugin::instance()->files_manager->clear_cache();
+            update_option('zarincode_css_identity_release','2.6.1',false);
+        }
+    }
+
     public function register_assets(): void {
         $base = strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( get_template_directory() ) . '/' ) === 0
             ? get_template_directory_uri() . '/inc/EmbeddedCore/Widgets/assets/'
             : plugin_dir_url( __FILE__ ) . 'assets/';
-        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '2.6.0' );
-        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', [], '2.6.0', true );
+        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '2.6.1' );
+        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', [], '2.6.1', true );
     }
 
     public function register_category( $elements_manager ): void {

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '2.6.0' );
+define( 'ZARINCODE_VERSION', '2.6.1' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -140,6 +140,7 @@ add_action( 'admin_head', function () {
 
 /** Render the active Elementor header/footer template; empty output keeps a safe fallback. */
 function zarincode_builder_part( string $type ): string {
+    if ( 'original' === zarincode_get_option( 'demo_design', 'original' ) ) { return ''; }
     if ( ! in_array( $type, [ 'header', 'footer' ], true ) || 'elementor_hf' !== zarincode_get_option( $type . '_source', 'elementor_hf' ) || ! class_exists( '\Elementor\Plugin' ) ) { return ''; }
     static $rendering = false;
     if ( $rendering ) { return ''; }
