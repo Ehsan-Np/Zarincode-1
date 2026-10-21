@@ -16,10 +16,9 @@ final class Editable_Renderer {
         if(!is_array($link)) $link=['url'=>$link];
         $attrs=' href="'.self::url($link).'"';
         if(!empty($link['is_external'])) $attrs.=' target="_blank"';
-        $rel=[];
-        if(!empty($link['is_external'])) $rel[]='noopener noreferrer';
-        if(!empty($link['nofollow'])) $rel[]='nofollow';
-        if($rel) $attrs.=' rel="'.esc_attr(implode(' ',$rel)).'"';
+        $rel=[];if(!empty($link['is_external']))$rel[]='noopener noreferrer';if(!empty($link['nofollow']))$rel[]='nofollow';
+        if($rel)$attrs.=' rel="'.esc_attr(implode(' ',$rel)).'"';
+        foreach(\Elementor\Utils::parse_custom_attributes($link['custom_attributes']??'') as $key=>$value)if(!in_array(strtolower($key),['href','class','style','id','target','rel'],true)&&stripos($key,'on')!==0)$attrs.=' '.esc_attr($key).'="'.esc_attr($value).'"';
         return $attrs;
     }
     private static function button($text,$link,$icon=[],$class='primary'): string {
@@ -53,9 +52,11 @@ final class Editable_Renderer {
                 $product=wc_get_product($post->ID);
                 if(!$product || !$product->is_visible()) continue;
                 $item['price_html']=$product->get_price_html();
+                $item['price_amount']=wc_get_price_to_display($product);$item['price_currency']=get_woocommerce_currency_symbol();
                 $item['demo_link']=['url'=>get_post_meta($post->ID,'_zc_prod_demo_url',true),'is_external'=>true];
                 $item['demo_text']=$s['demo_label']??'';
             }
+            $item['category_slug']=!is_wp_error($terms)&&$terms?$terms[0]->slug:'';
             $items[]=$item;
         }
         return $items;

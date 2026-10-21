@@ -312,7 +312,7 @@ html.dark .progress-dashed {
     gap: 0.45rem;
 }
 
-.zc-topbar-item i {
+.zc-topbar-item :is(i,svg) {
     color: var(--color-accent);
 }
 
@@ -417,7 +417,7 @@ html.dark .progress-dashed {
     white-space: nowrap;
 }
 
-.zc-nav-pill > li > a > i:first-child {
+.zc-nav-pill > li > a > :is(i,svg):first-child {
     font-size: 0.78rem;
     opacity: 0.85;
 }
@@ -435,8 +435,8 @@ html.dark .progress-dashed {
     color: #FFFFFF;
 }
 
-.zc-nav-pill > li.current-menu-item > a > i:first-child,
-.zc-nav-pill > li > a:hover > i:first-child {
+.zc-nav-pill > li.current-menu-item > a > :is(i,svg):first-child,
+.zc-nav-pill > li > a:hover > :is(i,svg):first-child {
     color: var(--color-accent);
     opacity: 1;
 }
@@ -653,8 +653,8 @@ html.dark .zc-mobile-sub-row > a {
     background: rgba(255, 255, 255, 0.05);
 }
 
-.zc-mobile-nav-list > li > a i:first-child,
-.zc-mobile-sub-row > a i:first-child {
+.zc-mobile-nav-list > li > a :is(i,svg):first-child,
+.zc-mobile-sub-row > a :is(i,svg):first-child {
     color: var(--color-accent-contrast);
     background: var(--color-accent);
     width: 1.75rem;
@@ -792,7 +792,7 @@ html.dark .zc-mobile-sub-row > a {
     font-weight: 600;
 }
 
-.zc-trust-pill i {
+.zc-trust-pill :is(i,svg) {
     color: #10B981;
 }
 
@@ -1242,7 +1242,7 @@ html.dark .zc-project-info-pills span {
     font-size: 0.92rem;
 }
 
-.zc-pricing-features li i {
+.zc-pricing-features li :is(i,svg) {
     color: var(--color-accent);
     background: var(--zc-dark);
     width: 1.45rem;
@@ -1255,7 +1255,7 @@ html.dark .zc-project-info-pills span {
     flex-shrink: 0;
 }
 
-.zc-pricing-card.is-popular .zc-pricing-features li i {
+.zc-pricing-card.is-popular .zc-pricing-features li :is(i,svg) {
     background: var(--color-accent);
     color: var(--color-accent-contrast);
 }
@@ -1367,7 +1367,7 @@ html.dark .zc-project-info-pills span {
     color: var(--zc-text-main);
 }
 
-.zc-legal-clause h3 i {
+.zc-legal-clause h3 :is(i,svg) {
     color: var(--color-accent-contrast);
     background: var(--color-accent);
     width: 2rem;

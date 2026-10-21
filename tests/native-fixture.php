@@ -1,0 +1,6 @@
+<?php
+use Zarincode\Runtime260\Widgets\Native_Design as N;
+$existing=get_page_by_path('zc-native-fixture');$id=wp_insert_post(['ID'=>$existing?$existing->ID:0,'post_title'=>'Native Zarincode Lab','post_name'=>'zc-native-fixture','post_type'=>'page','post_status'=>'publish']);
+$m=N::model('hero');$part='';foreach($m['parts'] as $key=>$p)if(strpos($key,'hero_title_text')!==false){$part=$key;break;}
+$els=[];foreach(['hero','services','products','products','pricing','page_section'] as $i=>$kind){$settings=$kind==='page_section'?['section_key'=>'warranty']:[];$wid=$kind.$i;if($kind==='hero')$settings[N::id($m,'styles')]=[['_id'=>'styleproof','target'=>$part,'item'=>0,'normal_color'=>'#123456','font_typography'=>'custom','font_font_size'=>['size'=>39,'unit'=>'px'],'font_font_size_mobile'=>['size'=>24,'unit'=>'px']]];$els[]=['id'=>$wid,'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$settings];}
+update_post_meta($id,'_elementor_data',wp_slash(wp_json_encode([['id'=>'natcontainer','elType'=>'container','settings'=>['content_width'=>'full'],'elements'=>$els]])));update_post_meta($id,'_elementor_edit_mode','builder');update_post_meta($id,'_elementor_template_type','wp-page');delete_post_meta($id,'_elementor_element_cache');Elementor\Core\Files\CSS\Post::create($id)->update();echo $id.' '.$part."\n";

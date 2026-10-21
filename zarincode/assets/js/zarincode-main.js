@@ -56,7 +56,7 @@
         applyTheme(currentPreset, currentMode);
 
         // Header Dark/Light mode toggle button
-        document.querySelectorAll('[data-zc-toggle-dark]').forEach(function (btn) {
+        legacyNodes('[data-zc-toggle-dark]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 currentMode = currentMode === 'dark' ? 'light' : 'dark';
                 try { localStorage.setItem(MODE_KEY, currentMode); } catch (e) {}
@@ -66,7 +66,7 @@
         });
 
         // Filter Tabs (Products, Portfolio, Pricing)
-        document.querySelectorAll('[data-zc-tabs]').forEach(function (tabContainer) {
+        legacyNodes('[data-zc-tabs]').forEach(function (tabContainer) {
             const targetSelector = tabContainer.getAttribute('data-zc-tabs');
             const buttons = tabContainer.querySelectorAll('[data-filter]');
             buttons.forEach(function (btn) {
@@ -91,7 +91,7 @@
         });
 
         // Pricing Group Tabs (Switch entire pricing panels)
-        document.querySelectorAll('[data-zc-pricing-tabs]').forEach(function (nav) {
+        legacyNodes('[data-zc-pricing-tabs]').forEach(function (nav) {
             const buttons = nav.querySelectorAll('[data-pricing-target]');
             buttons.forEach(function (btn) {
                 btn.addEventListener('click', function () {
@@ -107,7 +107,7 @@
         });
 
         // FAQ Accordions (.zc-faq-btn & .zc-faq-trigger)
-        document.querySelectorAll('.zc-faq-btn, .zc-faq-trigger').forEach(function (btn) {
+        legacyNodes('.zc-faq-btn, .zc-faq-trigger').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const item = btn.closest('.zc-faq-item');
                 if (!item) return;
@@ -129,7 +129,7 @@
         });
 
         // Consultation & Search Modals
-        document.querySelectorAll('[data-zc-modal-open]').forEach(function (trigger) {
+        legacyNodes('[data-zc-modal-open]').forEach(function (trigger) {
             trigger.addEventListener('click', function (e) {
                 e.preventDefault();
                 const id = trigger.getAttribute('data-zc-modal-open');
@@ -138,21 +138,21 @@
             });
         });
 
-        document.querySelectorAll('[data-zc-modal-close]').forEach(function (closeBtn) {
+        legacyNodes('[data-zc-modal-close]').forEach(function (closeBtn) {
             closeBtn.addEventListener('click', function () {
                 const modal = closeBtn.closest('.zc-modal-backdrop');
                 if (modal) modal.classList.remove('is-open');
             });
         });
 
-        document.querySelectorAll('.zc-modal-backdrop').forEach(function (backdrop) {
+        legacyNodes('.zc-modal-backdrop').forEach(function (backdrop) {
             backdrop.addEventListener('click', function (e) {
                 if (e.target === backdrop) backdrop.classList.remove('is-open');
             });
         });
 
         // Mobile Navigation Drawer Open / Close / Submenu Accordion
-        document.querySelectorAll('[data-zc-drawer-open]').forEach(function (btn) {
+        legacyNodes('[data-zc-drawer-open]').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 const id = btn.getAttribute('data-zc-drawer-open');
@@ -165,7 +165,7 @@
             });
         });
 
-        document.querySelectorAll('[data-zc-drawer-close]').forEach(function (btn) {
+        legacyNodes('[data-zc-drawer-close]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const drawer = btn.closest('.zc-mobile-drawer-backdrop') || document.getElementById('zc-mobile-drawer');
                 if (drawer) {
@@ -176,7 +176,7 @@
             });
         });
 
-        document.querySelectorAll('.zc-mobile-drawer-backdrop').forEach(function (backdrop) {
+        legacyNodes('.zc-mobile-drawer-backdrop').forEach(function (backdrop) {
             backdrop.addEventListener('click', function (e) {
                 if (e.target === backdrop) {
                     backdrop.classList.remove('is-open');
@@ -186,7 +186,7 @@
             });
         });
 
-        document.querySelectorAll('[data-zc-mobile-sub-toggle]').forEach(function (subBtn) {
+        legacyNodes('[data-zc-mobile-sub-toggle]').forEach(function (subBtn) {
             subBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 const parentLi = subBtn.closest('.zc-mobile-has-sub');
@@ -208,8 +208,8 @@
                 }
             }
             if (e.key === 'Escape') {
-                document.querySelectorAll('.zc-modal-backdrop.is-open').forEach(m => m.classList.remove('is-open'));
-                document.querySelectorAll('.zc-mobile-drawer-backdrop.is-open').forEach(d => {
+                legacyNodes('.zc-modal-backdrop.is-open').forEach(m => m.classList.remove('is-open'));
+                legacyNodes('.zc-mobile-drawer-backdrop.is-open').forEach(d => {
                     d.classList.remove('is-open');
                     d.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
@@ -218,7 +218,7 @@
         });
 
         // Consultation Form Submission Toast
-        document.querySelectorAll('.zc-Ajax-form').forEach(function (form) {
+        legacyNodes('.zc-Ajax-form').forEach(function (form) {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const msgBox = form.querySelector('.zc-form-feedback');
@@ -248,6 +248,8 @@
         // Build Floating Crextio Switcher
         buildCrextioSwitcher();
     });
+
+    function legacyNodes(selector) { return Array.from(document.querySelectorAll(selector)).filter(el => !el.closest('.zc-native-layout')); }
 
     function updateSwitcherUI() {
         const panel = document.getElementById('zc-ccs-panel');

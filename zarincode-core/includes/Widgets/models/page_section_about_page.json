@@ -1,0 +1,2860 @@
+{
+    "name": "page_section_about_page",
+    "kind": "page_section",
+    "section": "about-page",
+    "fields": {
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "GET TO KNOW ZARINCODE BETTER",
+            "label": "متن: GET TO KNOW ZARINCODE BETTER"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER"
+        },
+        "section_title_text_1": {
+            "type": "text",
+            "default": "درباره آژانس و استودیو مهندسی",
+            "label": "متن: درباره آژانس و استودیو مهندسی",
+            "purpose": "title"
+        },
+        "highlight_text_1": {
+            "type": "text",
+            "default": "زرین کد",
+            "label": "متن: زرین کد",
+            "purpose": "title"
+        },
+        "highlight_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد"
+        },
+        "section_title_1_tag": {
+            "type": "select",
+            "default": "h1",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "section_title_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: درباره آژانس و استودیو مهندسی زرین کد"
+        },
+        "description_1_body": {
+            "type": "wysiwyg",
+            "default": "\n                                استودیو نرم‌افزاری و دیجیتال مارکتینگ <strong>زرین کد (Zarincode.com)</strong> به مدیریت و راهبری فنی <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> با هدف ارتقای استانداردهای طراحی وب، برنامه‌نویسی نرم‌افزار، سئو داده‌محور و تولید محصولات آماده وردپرسی و نرم‌افزاری شکل گرفته است.\n                            ",
+            "label": "توضیحات: استودیو نرم‌افزاری و دیجیتال مارکتینگ زرین کد (Zarincode.com) به ",
+            "purpose": "description"
+        },
+        "description_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: استودیو نرم‌افزاری و دیجیتال مارکتینگ زرین کد (Zarincode.com) به "
+        },
+        "description_2_body": {
+            "type": "wysiwyg",
+            "default": "\n                                ما معتقدیم یک وب‌سایت یا نرم‌افزار موفق، نقطه‌ی تلاقی <strong>کدنویسی تمیز و شیءگرا (PHP/JS)</strong>، <strong>رابط کاربری چشم‌نواز (به سبک Crextio)</strong> و <strong>استراتژی سئو و محتوای هدفمند</strong> است.\n                            ",
+            "label": "توضیحات: ما معتقدیم یک وب‌سایت یا نرم‌افزار موفق، نقطه‌ی تلاقی کدنویسی تمی",
+            "purpose": "description"
+        },
+        "description_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ما معتقدیم یک وب‌سایت یا نرم‌افزار موفق، نقطه‌ی تلاقی کدنویسی تمی"
+        },
+        "hero_trust_list_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: کدنویسی منطبق با استانداردهای ژاکت و تم‌فارست رضایت ۹۹.۸٪ از ۴۲۰+"
+        },
+        "image_1_image": {
+            "type": "media",
+            "default": {
+                "url": "{{THEME}}/assets/images/zarincode-luxury-office.jpg",
+                "id": 0
+            },
+            "label": "تصویر: image"
+        },
+        "image_1_alt": {
+            "type": "text",
+            "default": "دفتر و استودیو مهندسی نرم‌افزار زرین کد",
+            "label": "متن جایگزین تصویر"
+        },
+        "image_1_size": {
+            "type": "select",
+            "default": "full",
+            "label": "اندازه تصویر",
+            "options": {
+                "thumbnail": "بندانگشتی",
+                "medium": "متوسط",
+                "large": "بزرگ",
+                "full": "کامل"
+            }
+        },
+        "image_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: image"
+        },
+        "div_text_1": {
+            "type": "text",
+            "default": "ZARINCODE SOFTWARE & DESIGN STUDIO",
+            "label": "متن: ZARINCODE SOFTWARE & DESIGN STUDIO"
+        },
+        "div_7_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE SOFTWARE & DESIGN STUDIO"
+        },
+        "div_text_2": {
+            "type": "text",
+            "default": "محیط مهندسی و توسعه محصولات دیجیتال زرین کد",
+            "label": "متن: محیط مهندسی و توسعه محصولات دیجیتال زرین کد"
+        },
+        "div_8_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: محیط مهندسی و توسعه محصولات دیجیتال زرین کد"
+        },
+        "div_6_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی"
+        },
+        "badge_pill_text_2": {
+            "type": "text",
+            "default": "ISO / Zhaket / ThemeForest",
+            "label": "متن: ISO / Zhaket / ThemeForest"
+        },
+        "badge_pill_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ISO / Zhaket / ThemeForest"
+        },
+        "div_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی"
+        },
+        "div_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی"
+        },
+        "div_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک"
+        },
+        "image_2_image": {
+            "type": "media",
+            "default": {
+                "url": "{{THEME}}/assets/images/ehsan-about-founder.jpg",
+                "id": 0
+            },
+            "label": "تصویر: image"
+        },
+        "image_2_alt": {
+            "type": "text",
+            "default": "احسان نادری پناه - موسس و مدیر فنی زرین کد",
+            "label": "متن جایگزین تصویر"
+        },
+        "image_2_size": {
+            "type": "select",
+            "default": "full",
+            "label": "اندازه تصویر",
+            "options": {
+                "thumbnail": "بندانگشتی",
+                "medium": "متوسط",
+                "large": "بزرگ",
+                "full": "کامل"
+            }
+        },
+        "image_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: image"
+        },
+        "icon_1_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-crown",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: FOUNDER & ARCHITECT"
+        },
+        "icon_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "badge_pill_text_3": {
+            "type": "text",
+            "default": "FOUNDER & ARCHITECT",
+            "label": "متن: FOUNDER & ARCHITECT"
+        },
+        "badge_pill_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: FOUNDER & ARCHITECT"
+        },
+        "div_10_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: FOUNDER & ARCHITECT"
+        },
+        "image_3_image": {
+            "type": "media",
+            "default": {
+                "url": "{{THEME}}/assets/images/ehsan-portrait.png",
+                "id": 0
+            },
+            "label": "تصویر: image"
+        },
+        "image_3_alt": {
+            "type": "text",
+            "default": "احسان نادری پناه",
+            "label": "متن جایگزین تصویر"
+        },
+        "image_3_size": {
+            "type": "select",
+            "default": "full",
+            "label": "اندازه تصویر",
+            "options": {
+                "thumbnail": "بندانگشتی",
+                "medium": "متوسط",
+                "large": "بزرگ",
+                "full": "کامل"
+            }
+        },
+        "image_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: image"
+        },
+        "heading_text_1": {
+            "type": "text",
+            "default": "احسان نادری پناه",
+            "label": "متن: احسان نادری پناه",
+            "purpose": "title"
+        },
+        "heading_1_tag": {
+            "type": "select",
+            "default": "h3",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "heading_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: احسان نادری پناه"
+        },
+        "div_text_3": {
+            "type": "text",
+            "default": "Ehsan NaderiPanah — Full-Stack Architect",
+            "label": "متن: Ehsan NaderiPanah — Full-Stack Architect"
+        },
+        "div_14_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Ehsan NaderiPanah — Full-Stack Architect"
+        },
+        "div_13_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect"
+        },
+        "div_12_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect"
+        },
+        "span_text_1": {
+            "type": "text",
+            "default": "● Verified",
+            "label": "متن: ● Verified"
+        },
+        "span_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ● Verified"
+        },
+        "div_11_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect ● Verif"
+        },
+        "div_9_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: FOUNDER & ARCHITECT احسان نادری پناه Ehsan NaderiPanah — Full-Sta"
+        },
+        "description_3_body": {
+            "type": "wysiwyg",
+            "default": "\n                                متخصص معماری قالب‌ها و افزونه‌های حرفه‌ای وردپرس (Elementor &amp; Redux Framework)، توسعه‌دهنده فول‌استک نرم‌افزارهای تحت وب و استراتژیست ارشد سئو سایت و شبکه‌های اجتماعی.\n                            ",
+            "label": "توضیحات: متخصص معماری قالب‌ها و افزونه‌های حرفه‌ای وردپرس (Elementor & Red",
+            "purpose": "description"
+        },
+        "description_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: متخصص معماری قالب‌ها و افزونه‌های حرفه‌ای وردپرس (Elementor & Red"
+        },
+        "icon_2_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-phone",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: شماره تماس مستقیم: 09024561001"
+        },
+        "icon_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "div_text_4": {
+            "type": "text",
+            "default": "شماره تماس مستقیم:",
+            "label": "متن: شماره تماس مستقیم:"
+        },
+        "strong_text_1": {
+            "type": "text",
+            "default": "09024561001",
+            "label": "متن: 09024561001"
+        },
+        "strong_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 09024561001"
+        },
+        "div_16_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس مستقیم: 09024561001"
+        },
+        "icon_3_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-globe",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: وب‌سایت رسمی: Zarincode.com"
+        },
+        "icon_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "div_text_5": {
+            "type": "text",
+            "default": "وب‌سایت رسمی:",
+            "label": "متن: وب‌سایت رسمی:"
+        },
+        "strong_text_2": {
+            "type": "text",
+            "default": "Zarincode.com",
+            "label": "متن: Zarincode.com"
+        },
+        "strong_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Zarincode.com"
+        },
+        "div_17_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: وب‌سایت رسمی: Zarincode.com"
+        },
+        "icon_4_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fab fa-github",
+                "library": "fa-brands"
+            },
+            "label": "آیکون: مخزن گیت‌هاب: github.com/Ehsan-Np"
+        },
+        "icon_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "div_text_6": {
+            "type": "text",
+            "default": "مخزن گیت‌هاب:",
+            "label": "متن: مخزن گیت‌هاب:"
+        },
+        "strong_text_3": {
+            "type": "text",
+            "default": "github.com/Ehsan-Np",
+            "label": "متن: github.com/Ehsan-Np"
+        },
+        "strong_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: github.com/Ehsan-Np"
+        },
+        "div_18_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: مخزن گیت‌هاب: github.com/Ehsan-Np"
+        },
+        "div_15_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس مستقیم: 09024561001 وب‌سایت رسمی: Zarincode.com مخزن گ"
+        },
+        "dark_card_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: FOUNDER & ARCHITECT احسان نادری پناه Ehsan NaderiPanah — Full-Sta"
+        },
+        "hero_grid_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک"
+        },
+        "div_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک"
+        },
+        "badge_pill_text_4": {
+            "type": "text",
+            "default": "? WHY ZARINCODE",
+            "label": "متن: ? WHY ZARINCODE"
+        },
+        "badge_pill_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE"
+        },
+        "section_title_text_2": {
+            "type": "text",
+            "default": "چرا",
+            "label": "متن: چرا",
+            "purpose": "title"
+        },
+        "hero_inline_pill_text_1": {
+            "type": "text",
+            "default": "زرین کد",
+            "label": "متن: زرین کد",
+            "purpose": "title"
+        },
+        "hero_inline_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد"
+        },
+        "section_title_text_3": {
+            "type": "text",
+            "default": "؟ چه چیزی ما را متمایز می‌کند؟",
+            "label": "متن: ؟ چه چیزی ما را متمایز می‌کند؟",
+            "purpose": "title"
+        },
+        "section_title_2_tag": {
+            "type": "select",
+            "default": "h2",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "section_title_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟"
+        },
+        "description_4_body": {
+            "type": "wysiwyg",
+            "default": "\n                                ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌وکار شما در دنیای دیجیتالیم. تمرکز ما در <strong>زرین کد (با مدیریت احسان نادری پناه)</strong> نه فقط بر زیبایی ظاهری، بلکه بر معماری کدنویسی تمیز، امنیت، سرعت لود، سئوی تکنیکال و نرخ تبدیل واقعی فروش است. از طراحی سایت و نرم‌افزار اختصاصی تا سئو شبکه‌های اجتماعی و ارائه سورس‌کدهای آماده، همه‌چیز در خدمت موفقیت شماست!\n                            ",
+            "label": "توضیحات: ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌",
+            "purpose": "description"
+        },
+        "description_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌"
+        },
+        "btn_yellow_1_href": {
+            "type": "url",
+            "default": {
+                "url": "{{HOME}}/about-us/",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: درباره استودیو زرین کد",
+            "purpose": "link"
+        },
+        "icon_5_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-award",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: درباره استودیو زرین کد"
+        },
+        "icon_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "btn_yellow_text_1": {
+            "type": "text",
+            "default": "درباره استودیو زرین کد",
+            "label": "متن: درباره استودیو زرین کد"
+        },
+        "btn_yellow_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: درباره استودیو زرین کد"
+        },
+        "btn_dark_1_action": {
+            "type": "select",
+            "default": "modal",
+            "label": "عملکرد دکمه",
+            "options": {
+                "url": "پیوند",
+                "modal": "باز کردن پنجره",
+                "drawer": "باز کردن منوی کشویی",
+                "none": "بدون عملکرد"
+            }
+        },
+        "btn_dark_1_target": {
+            "type": "text",
+            "default": "zc-consult-modal",
+            "label": "شناسه پنجره یا منوی مقصد"
+        },
+        "btn_dark_1_href": {
+            "type": "url",
+            "default": {
+                "url": ""
+            },
+            "label": "پیوند دکمه"
+        },
+        "icon_6_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-phone-volume",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: تماس مستقیم: 09024561001"
+        },
+        "icon_6_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "btn_dark_text_1": {
+            "type": "text",
+            "default": "تماس مستقیم: 09024561001",
+            "label": "متن: تماس مستقیم: 09024561001"
+        },
+        "btn_dark_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: تماس مستقیم: 09024561001"
+        },
+        "div_21_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: درباره استودیو زرین کد تماس مستقیم: 09024561001"
+        },
+        "div_20_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا"
+        },
+        "why_bento_grid_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 01 کدنویسی استاندارد جهانی معماری شیءگرا PHP، استانداردهای ژاکت و"
+        },
+        "hero_grid_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا"
+        },
+        "div_19_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا"
+        },
+        "container_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا"
+        },
+        "section_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا"
+        },
+        "div_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک"
+        }
+    },
+    "repeaters": {
+        "hero_trust_list_items_1": {
+            "label": "آیتم‌ها: کدنویسی منطبق با استانداردهای ژاکت و تم‌فارست",
+            "fields": {
+                "icon_1_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-bolt",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: تحویل سریع و پشتیبانی مستقیم: 09024561001",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "trust_pill_text_1": {
+                    "type": "text",
+                    "default": "تحویل سریع و پشتیبانی مستقیم: 09024561001",
+                    "label": "متن: تحویل سریع و پشتیبانی مستقیم: 09024561001",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "trust_pill_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: تحویل سریع و پشتیبانی مستقیم: 09024561001",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "89cb3223",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-certificate",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "trust_pill_text_1": "کدنویسی منطبق با استانداردهای ژاکت و تم‌فارست",
+                    "trust_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "a675c982",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-face-smile",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "trust_pill_text_1": "رضایت ۹۹.۸٪ از ۴۲۰+ کارفرما و خریدار",
+                    "trust_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "e7abf489",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-bolt",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "trust_pill_text_1": "تحویل سریع و پشتیبانی مستقیم: 09024561001",
+                    "trust_pill_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "span",
+                    "attrs": {
+                        "class": "zc-trust-pill"
+                    },
+                    "part": "hero_trust_list_items_1_trust_pill_1",
+                    "children": [
+                        {
+                            "tag": "i",
+                            "attrs": [],
+                            "part": "hero_trust_list_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "text": "trust_pill_text_1",
+                            "part": "hero_trust_list_items_1_trust_pill_text_1",
+                            "before": " ",
+                            "after": "",
+                            "plain": false
+                        }
+                    ],
+                    "visible": "trust_pill_1_visible"
+                },
+                "v2": {
+                    "tag": "span",
+                    "attrs": {
+                        "class": "zc-trust-pill"
+                    },
+                    "part": "hero_trust_list_items_1_trust_pill_1",
+                    "children": [
+                        {
+                            "tag": "i",
+                            "attrs": [],
+                            "part": "hero_trust_list_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "text": "trust_pill_text_1",
+                            "part": "hero_trust_list_items_1_trust_pill_text_1",
+                            "before": " ",
+                            "after": "",
+                            "plain": false
+                        }
+                    ],
+                    "visible": "trust_pill_1_visible"
+                },
+                "v3": {
+                    "tag": "span",
+                    "attrs": {
+                        "class": "zc-trust-pill"
+                    },
+                    "part": "hero_trust_list_items_1_trust_pill_1",
+                    "children": [
+                        {
+                            "tag": "i",
+                            "attrs": [],
+                            "part": "hero_trust_list_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "text": "trust_pill_text_1",
+                            "part": "hero_trust_list_items_1_trust_pill_text_1",
+                            "before": " ",
+                            "after": "",
+                            "plain": false
+                        }
+                    ],
+                    "visible": "trust_pill_1_visible"
+                }
+            }
+        },
+        "why_bento_grid_items_1": {
+            "label": "آیتم‌ها: 01 کدنویسی استاندارد جهانی معماری شیءگرا PHP، استانداردهای ژاکت و",
+            "fields": {
+                "badge_pill_text_1": {
+                    "type": "text",
+                    "default": "04",
+                    "label": "متن: 04",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "badge_pill_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: 04",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_text_1": {
+                    "type": "text",
+                    "default": "۹۹.۸٪ رضایت مشتریان",
+                    "label": "متن: ۹۹.۸٪ رضایت مشتریان",
+                    "purpose": "title",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_1_tag": {
+                    "type": "select",
+                    "default": "h4",
+                    "label": "تگ عنوان",
+                    "options": {
+                        "h1": "H1",
+                        "h2": "H2",
+                        "h3": "H3",
+                        "h4": "H4",
+                        "h5": "H5",
+                        "h6": "H6",
+                        "div": "DIV"
+                    },
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ۹۹.۸٪ رضایت مشتریان",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "description_1_body": {
+                    "type": "wysiwyg",
+                    "default": "بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق",
+                    "label": "توضیحات: بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق",
+                    "purpose": "description",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "description_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "div_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: 03 ضمانت رسمی در قرارداد گارانتی ۱۰۰٪ بازگشت وجه، تحویل به‌موقع و",
+                    "variants": [
+                        "v1",
+                        "v3"
+                    ]
+                },
+                "dark_card_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: 02 تسلط بر سئو و الگوریتم‌ها سئو تکنیکال گوگل + سئو شبکه‌های اجتم",
+                    "variants": [
+                        "v2"
+                    ]
+                },
+                "yellow_card_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: 04 ۹۹.۸٪ رضایت مشتریان بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه ",
+                    "variants": [
+                        "v4"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "ea239c34",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "badge_pill_text_1": "01",
+                    "badge_pill_1_visible": "yes",
+                    "heading_text_1": "کدنویسی استاندارد جهانی",
+                    "heading_1_tag": "h4",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "معماری شیءگرا PHP، استانداردهای ژاکت و تم‌فارست و سرعت لود زیر ۱ ثانیه",
+                    "description_1_visible": "yes",
+                    "div_1_visible": "yes"
+                },
+                {
+                    "_id": "b57aef18",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "badge_pill_text_1": "02",
+                    "badge_pill_1_visible": "yes",
+                    "heading_text_1": "تسلط بر سئو و الگوریتم‌ها",
+                    "heading_1_tag": "h4",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "سئو تکنیکال گوگل + سئو شبکه‌های اجتماعی (اینستاگرام و لینکدین)",
+                    "description_1_visible": "yes",
+                    "dark_card_1_visible": "yes"
+                },
+                {
+                    "_id": "07e4f342",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "badge_pill_text_1": "03",
+                    "badge_pill_1_visible": "yes",
+                    "heading_text_1": "ضمانت رسمی در قرارداد",
+                    "heading_1_tag": "h4",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "گارانتی ۱۰۰٪ بازگشت وجه، تحویل به‌موقع و ۱ سال پشتیبانی فنی رایگان",
+                    "description_1_visible": "yes",
+                    "div_1_visible": "yes"
+                },
+                {
+                    "_id": "02211ba9",
+                    "_variant": "v4",
+                    "_enabled": "yes",
+                    "badge_pill_text_1": "04",
+                    "badge_pill_1_visible": "yes",
+                    "heading_text_1": "۹۹.۸٪ رضایت مشتریان",
+                    "heading_1_tag": "h4",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق",
+                    "description_1_visible": "yes",
+                    "yellow_card_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-white-card",
+                        "style": "padding:1.35rem;"
+                    },
+                    "part": "why_bento_grid_items_1_div_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": {
+                                "class": "zc-badge-pill",
+                                "style": "margin-bottom:0.5rem;"
+                            },
+                            "part": "why_bento_grid_items_1_badge_pill_1",
+                            "children": [
+                                {
+                                    "text": "badge_pill_text_1",
+                                    "part": "why_bento_grid_items_1_badge_pill_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "badge_pill_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "h4",
+                            "attrs": {
+                                "style": "margin:0 0 0.35rem;font-weight:800;"
+                            },
+                            "part": "why_bento_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "why_bento_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.82rem;color:var(--zc-text-secondary);"
+                            },
+                            "part": "why_bento_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "div_1_visible"
+                },
+                "v2": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-dark-card",
+                        "style": "padding:1.35rem;"
+                    },
+                    "part": "why_bento_grid_items_1_dark_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": {
+                                "class": "zc-badge-pill",
+                                "style": "margin-bottom:0.5rem;"
+                            },
+                            "part": "why_bento_grid_items_1_badge_pill_1",
+                            "children": [
+                                {
+                                    "text": "badge_pill_text_1",
+                                    "part": "why_bento_grid_items_1_badge_pill_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "badge_pill_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "h4",
+                            "attrs": {
+                                "style": "margin:0 0 0.35rem;font-weight:800;color:#fff;"
+                            },
+                            "part": "why_bento_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "why_bento_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.82rem;color:#D1D5DB;"
+                            },
+                            "part": "why_bento_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "dark_card_1_visible"
+                },
+                "v3": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-white-card",
+                        "style": "padding:1.35rem;"
+                    },
+                    "part": "why_bento_grid_items_1_div_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": {
+                                "class": "zc-badge-pill",
+                                "style": "margin-bottom:0.5rem;"
+                            },
+                            "part": "why_bento_grid_items_1_badge_pill_1",
+                            "children": [
+                                {
+                                    "text": "badge_pill_text_1",
+                                    "part": "why_bento_grid_items_1_badge_pill_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "badge_pill_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "h4",
+                            "attrs": {
+                                "style": "margin:0 0 0.35rem;font-weight:800;"
+                            },
+                            "part": "why_bento_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "why_bento_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.82rem;color:var(--zc-text-secondary);"
+                            },
+                            "part": "why_bento_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "div_1_visible"
+                },
+                "v4": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-yellow-card",
+                        "style": "padding:1.35rem;"
+                    },
+                    "part": "why_bento_grid_items_1_yellow_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": {
+                                "class": "zc-badge-pill zc-badge-dark",
+                                "style": "margin-bottom:0.5rem;"
+                            },
+                            "part": "why_bento_grid_items_1_badge_pill_1",
+                            "children": [
+                                {
+                                    "text": "badge_pill_text_1",
+                                    "part": "why_bento_grid_items_1_badge_pill_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "badge_pill_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "h4",
+                            "attrs": {
+                                "style": "margin:0 0 0.35rem;font-weight:900;"
+                            },
+                            "part": "why_bento_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "why_bento_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.82rem;font-weight:600;"
+                            },
+                            "part": "why_bento_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "yellow_card_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_div_1": {
+            "label": "بخش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک",
+            "type": "box"
+        },
+        "_container_1": {
+            "label": "بخش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک",
+            "type": "box"
+        },
+        "_div_2": {
+            "label": "بخش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک",
+            "type": "box"
+        },
+        "_hero_grid_1": {
+            "label": "بخش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک",
+            "type": "box"
+        },
+        "_div_3": {
+            "label": "بخش: GET TO KNOW ZARINCODE BETTER درباره آژانس و استودیو مهندسی زرین ک",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: GET TO KNOW ZARINCODE BETTER",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: GET TO KNOW ZARINCODE BETTER",
+            "type": "text"
+        },
+        "_section_title_1": {
+            "label": "بخش: درباره آژانس و استودیو مهندسی زرین کد",
+            "type": "box"
+        },
+        "_section_title_text_1": {
+            "label": "متن: درباره آژانس و استودیو مهندسی",
+            "type": "text"
+        },
+        "_highlight_1": {
+            "label": "جزء: زرین کد",
+            "type": "text"
+        },
+        "_highlight_text_1": {
+            "label": "متن: زرین کد",
+            "type": "text"
+        },
+        "_description_1": {
+            "label": "بخش: استودیو نرم‌افزاری و دیجیتال مارکتینگ زرین کد (Zarincode.com) به ",
+            "type": "box"
+        },
+        "_description_2": {
+            "label": "بخش: ما معتقدیم یک وب‌سایت یا نرم‌افزار موفق، نقطه‌ی تلاقی کدنویسی تمی",
+            "type": "box"
+        },
+        "_hero_trust_list_1": {
+            "label": "بخش: کدنویسی منطبق با استانداردهای ژاکت و تم‌فارست رضایت ۹۹.۸٪ از ۴۲۰+",
+            "type": "box"
+        },
+        "hero_trust_list_items_1_trust_pill_1": {
+            "label": "بخش: تحویل سریع و پشتیبانی مستقیم: 09024561001",
+            "type": "box"
+        },
+        "hero_trust_list_items_1_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "hero_trust_list_items_1_trust_pill_text_1": {
+            "label": "متن: تحویل سریع و پشتیبانی مستقیم: 09024561001",
+            "type": "text"
+        },
+        "_div_4": {
+            "label": "بخش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی",
+            "type": "box"
+        },
+        "_image_1": {
+            "label": "جزء: image",
+            "type": "img"
+        },
+        "_div_5": {
+            "label": "بخش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی",
+            "type": "box"
+        },
+        "_div_6": {
+            "label": "بخش: ZARINCODE SOFTWARE & DESIGN STUDIO محیط مهندسی و توسعه محصولات دی",
+            "type": "box"
+        },
+        "_div_7": {
+            "label": "جزء: ZARINCODE SOFTWARE & DESIGN STUDIO",
+            "type": "text"
+        },
+        "_div_text_1": {
+            "label": "متن: ZARINCODE SOFTWARE & DESIGN STUDIO",
+            "type": "text"
+        },
+        "_div_8": {
+            "label": "جزء: محیط مهندسی و توسعه محصولات دیجیتال زرین کد",
+            "type": "text"
+        },
+        "_div_text_2": {
+            "label": "متن: محیط مهندسی و توسعه محصولات دیجیتال زرین کد",
+            "type": "text"
+        },
+        "_badge_pill_2": {
+            "label": "جزء: ISO / Zhaket / ThemeForest",
+            "type": "text"
+        },
+        "_badge_pill_text_2": {
+            "label": "متن: ISO / Zhaket / ThemeForest",
+            "type": "text"
+        },
+        "_dark_card_1": {
+            "label": "بخش: FOUNDER & ARCHITECT احسان نادری پناه Ehsan NaderiPanah — Full-Sta",
+            "type": "box"
+        },
+        "_div_9": {
+            "label": "بخش: FOUNDER & ARCHITECT احسان نادری پناه Ehsan NaderiPanah — Full-Sta",
+            "type": "box"
+        },
+        "_image_2": {
+            "label": "جزء: image",
+            "type": "img"
+        },
+        "_div_10": {
+            "label": "بخش: FOUNDER & ARCHITECT",
+            "type": "box"
+        },
+        "_badge_pill_3": {
+            "label": "بخش: FOUNDER & ARCHITECT",
+            "type": "box"
+        },
+        "_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_badge_pill_text_3": {
+            "label": "متن: FOUNDER & ARCHITECT",
+            "type": "text"
+        },
+        "_div_11": {
+            "label": "بخش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect ● Verif",
+            "type": "box"
+        },
+        "_div_12": {
+            "label": "بخش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect",
+            "type": "box"
+        },
+        "_image_3": {
+            "label": "جزء: image",
+            "type": "img"
+        },
+        "_div_13": {
+            "label": "بخش: احسان نادری پناه Ehsan NaderiPanah — Full-Stack Architect",
+            "type": "box"
+        },
+        "_heading_1": {
+            "label": "جزء: احسان نادری پناه",
+            "type": "text"
+        },
+        "_heading_text_1": {
+            "label": "متن: احسان نادری پناه",
+            "type": "text"
+        },
+        "_div_14": {
+            "label": "جزء: Ehsan NaderiPanah — Full-Stack Architect",
+            "type": "text"
+        },
+        "_div_text_3": {
+            "label": "متن: Ehsan NaderiPanah — Full-Stack Architect",
+            "type": "text"
+        },
+        "_span_1": {
+            "label": "جزء: ● Verified",
+            "type": "text"
+        },
+        "_span_text_1": {
+            "label": "متن: ● Verified",
+            "type": "text"
+        },
+        "_description_3": {
+            "label": "جزء: متخصص معماری قالب‌ها و افزونه‌های حرفه‌ای وردپرس (Elementor & Red",
+            "type": "text"
+        },
+        "_div_15": {
+            "label": "بخش: شماره تماس مستقیم: 09024561001 وب‌سایت رسمی: Zarincode.com مخزن گ",
+            "type": "box"
+        },
+        "_div_16": {
+            "label": "بخش: شماره تماس مستقیم: 09024561001",
+            "type": "box"
+        },
+        "_icon_2": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_div_text_4": {
+            "label": "متن: شماره تماس مستقیم:",
+            "type": "text"
+        },
+        "_strong_1": {
+            "label": "جزء: 09024561001",
+            "type": "text"
+        },
+        "_strong_text_1": {
+            "label": "متن: 09024561001",
+            "type": "text"
+        },
+        "_div_17": {
+            "label": "بخش: وب‌سایت رسمی: Zarincode.com",
+            "type": "box"
+        },
+        "_icon_3": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_div_text_5": {
+            "label": "متن: وب‌سایت رسمی:",
+            "type": "text"
+        },
+        "_strong_2": {
+            "label": "جزء: Zarincode.com",
+            "type": "text"
+        },
+        "_strong_text_2": {
+            "label": "متن: Zarincode.com",
+            "type": "text"
+        },
+        "_div_18": {
+            "label": "بخش: مخزن گیت‌هاب: github.com/Ehsan-Np",
+            "type": "box"
+        },
+        "_icon_4": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_div_text_6": {
+            "label": "متن: مخزن گیت‌هاب:",
+            "type": "text"
+        },
+        "_strong_3": {
+            "label": "جزء: github.com/Ehsan-Np",
+            "type": "text"
+        },
+        "_strong_text_3": {
+            "label": "متن: github.com/Ehsan-Np",
+            "type": "text"
+        },
+        "_section_1": {
+            "label": "بخش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا",
+            "type": "box"
+        },
+        "_container_2": {
+            "label": "بخش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا",
+            "type": "box"
+        },
+        "_div_19": {
+            "label": "بخش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا",
+            "type": "box"
+        },
+        "_hero_grid_2": {
+            "label": "بخش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا",
+            "type": "box"
+        },
+        "_div_20": {
+            "label": "بخش: ? WHY ZARINCODE چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟ ما فرا",
+            "type": "box"
+        },
+        "_badge_pill_4": {
+            "label": "جزء: ? WHY ZARINCODE",
+            "type": "text"
+        },
+        "_badge_pill_text_4": {
+            "label": "متن: ? WHY ZARINCODE",
+            "type": "text"
+        },
+        "_section_title_2": {
+            "label": "بخش: چرا زرین کد ؟ چه چیزی ما را متمایز می‌کند؟",
+            "type": "box"
+        },
+        "_section_title_text_2": {
+            "label": "متن: چرا",
+            "type": "text"
+        },
+        "_hero_inline_pill_1": {
+            "label": "جزء: زرین کد",
+            "type": "text"
+        },
+        "_hero_inline_pill_text_1": {
+            "label": "متن: زرین کد",
+            "type": "text"
+        },
+        "_section_title_text_3": {
+            "label": "متن: ؟ چه چیزی ما را متمایز می‌کند؟",
+            "type": "text"
+        },
+        "_description_4": {
+            "label": "بخش: ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌",
+            "type": "box"
+        },
+        "_div_21": {
+            "label": "بخش: درباره استودیو زرین کد تماس مستقیم: 09024561001",
+            "type": "box"
+        },
+        "_btn_yellow_1": {
+            "label": "بخش: درباره استودیو زرین کد",
+            "type": "box"
+        },
+        "_icon_5": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_btn_yellow_text_1": {
+            "label": "متن: درباره استودیو زرین کد",
+            "type": "text"
+        },
+        "_btn_dark_1": {
+            "label": "بخش: تماس مستقیم: 09024561001",
+            "type": "box"
+        },
+        "_icon_6": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_btn_dark_text_1": {
+            "label": "متن: تماس مستقیم: 09024561001",
+            "type": "text"
+        },
+        "_why_bento_grid_1": {
+            "label": "بخش: 01 کدنویسی استاندارد جهانی معماری شیءگرا PHP، استانداردهای ژاکت و",
+            "type": "box"
+        },
+        "why_bento_grid_items_1_div_1": {
+            "label": "بخش: 03 ضمانت رسمی در قرارداد گارانتی ۱۰۰٪ بازگشت وجه، تحویل به‌موقع و",
+            "type": "box"
+        },
+        "why_bento_grid_items_1_badge_pill_1": {
+            "label": "جزء: 04",
+            "type": "text"
+        },
+        "why_bento_grid_items_1_badge_pill_text_1": {
+            "label": "متن: 04",
+            "type": "text"
+        },
+        "why_bento_grid_items_1_heading_1": {
+            "label": "جزء: ۹۹.۸٪ رضایت مشتریان",
+            "type": "text"
+        },
+        "why_bento_grid_items_1_heading_text_1": {
+            "label": "متن: ۹۹.۸٪ رضایت مشتریان",
+            "type": "text"
+        },
+        "why_bento_grid_items_1_description_1": {
+            "label": "جزء: بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق",
+            "type": "text"
+        },
+        "why_bento_grid_items_1_dark_card_1": {
+            "label": "بخش: 02 تسلط بر سئو و الگوریتم‌ها سئو تکنیکال گوگل + سئو شبکه‌های اجتم",
+            "type": "box"
+        },
+        "why_bento_grid_items_1_yellow_card_1": {
+            "label": "بخش: 04 ۹۹.۸٪ رضایت مشتریان بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه ",
+            "type": "box"
+        }
+    },
+    "legacy": {
+        "/div/div/div/div/div/div[1]/span": {
+            "baseline": "3e427a12ec07819b7f0dee49fa56e0afa30f89a428114b8d89faa99b2097da5a",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/h1/text()": {
+            "baseline": "45330bedb559b23caf170b693da55f2649a691eca6d59ab50813e6bcdd0f9213",
+            "target": [
+                "",
+                "section_title_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/h1/span/text()": {
+            "baseline": "02749544fdc47de4d5a8968f6736303b695c2e99d249969a097b1342923c5fad",
+            "target": [
+                "",
+                "highlight_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[1]/span[1]/text()": {
+            "baseline": "295d7869afab34b52ad8c1ec9166acd53456a443424d2666983c196cf434703e",
+            "target": [
+                "hero_trust_list_items_1",
+                "trust_pill_text_1",
+                0
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[1]/span[2]/text()": {
+            "baseline": "4ab281bf69afd230a635a034ff5fd19696d3f4e8b90712d0d78777546b6dbc99",
+            "target": [
+                "hero_trust_list_items_1",
+                "trust_pill_text_1",
+                1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[1]/span[3]/text()": {
+            "baseline": "472222d4794a6563b2ec71f4c6a5450961d69894dcf41ffd898d10d756ea8e7d",
+            "target": [
+                "hero_trust_list_items_1",
+                "trust_pill_text_1",
+                2
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[2]/div/div/div[1]": {
+            "baseline": "9190b825d7284e5ee48aa68dc82204afe3e8eeea011e7e63c1b8f6b7c1a4288e",
+            "target": [
+                "",
+                "div_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[2]/div/div/div[2]": {
+            "baseline": "ccd82e9e5c57a31b1e79ff510f22ba3c0f6ba16b75d5948b1e30272465808f68",
+            "target": [
+                "",
+                "div_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[1]/div[2]/div/span": {
+            "baseline": "a19431facc3d31fe1760be86fe1c74c5bfef177e41761f2bbfbcb170786858a4",
+            "target": [
+                "",
+                "badge_pill_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[1]/div[1]/span/text()": {
+            "baseline": "a90a52bde5ac0d5456484bd254499b0fdee860a7ad428847247f3cda025b6359",
+            "target": [
+                "",
+                "badge_pill_text_3",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[1]/div[2]/div/div/h3": {
+            "baseline": "cdcde3a2d45506be0031d40d7d257fd84b275c88ced637c633d16f450d719ac4",
+            "target": [
+                "",
+                "heading_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[1]/div[2]/div/div/div": {
+            "baseline": "e720a013aa0b36ecd58213260169650ccfa07eff9c8fc16581898913cfa9a38b",
+            "target": [
+                "",
+                "div_text_3",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[1]/div[2]/span": {
+            "baseline": "71ebea29aec1464a84f843220e37c2cc009d9331491a648942cfab8adea658d0",
+            "target": [
+                "",
+                "span_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/p": {
+            "baseline": "0080d7f0458b85a725f286eb2dcfd1dd233578ca6ba764fc1c9f2a21e4843b0f",
+            "target": [
+                "",
+                "description_3_body",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[1]/text()": {
+            "baseline": "7eaf0c6c9857f1f391b675f0bba3128abc0790d503c8a2d335eb04a8d415f245",
+            "target": [
+                "",
+                "div_text_4",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[1]/strong/text()": {
+            "baseline": "ae7dbaf63c6628f5266f14a1fd17d9fff9880acf78ab1a48d27400dc9f345b43",
+            "target": [
+                "",
+                "strong_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[2]/text()": {
+            "baseline": "fcc4b42c888e6174c36582acae52e3dade5ffb089895707c779447a7b2e086dc",
+            "target": [
+                "",
+                "div_text_5",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[2]/strong/text()": {
+            "baseline": "f2810bfbda9814ea9ab3dd88f0315b2820a540e545da51bf34eb43f6d682a099",
+            "target": [
+                "",
+                "strong_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[3]/text()": {
+            "baseline": "a6d39242607218e2f00a007e71c30fecdb1198db92874dc6f6570fba68326697",
+            "target": [
+                "",
+                "div_text_6",
+                -1
+            ]
+        },
+        "/div/div/div/div/div/div[2]/div[2]/div[3]/strong/text()": {
+            "baseline": "e3ae1dff2debcb75b655bc8be217458273695d5558f52a7ac817d0174b2714ab",
+            "target": [
+                "",
+                "strong_text_3",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/span": {
+            "baseline": "08dd90ac13b6f67a7e49fe115b5ebcc606f8f264e87741885e1757ee7cc1adc8",
+            "target": [
+                "",
+                "badge_pill_text_4",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/h2/text()[1]": {
+            "baseline": "b887a520878dd0a74b24b0472d86ec352bc5c2e8afe5eb098e12d186e56e50ae",
+            "target": [
+                "",
+                "section_title_text_2",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/h2/span/text()": {
+            "baseline": "02749544fdc47de4d5a8968f6736303b695c2e99d249969a097b1342923c5fad",
+            "target": [
+                "",
+                "hero_inline_pill_text_1",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/h2/text()[2]": {
+            "baseline": "6dcc24786d95a3578090ab85c9281362539db9481adbeb6cd1737e8e5f08d309",
+            "target": [
+                "",
+                "section_title_text_3",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/div/a/text()[2]": {
+            "baseline": "8cb506f5270ed18f290f5a16adba7d868c0c7f917a66c2fabb5b179f2caabd50",
+            "target": [
+                "",
+                "btn_yellow_text_1",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[1]/div/button/text()[2]": {
+            "baseline": "616ffebead905f9639b1db231ca1af763789bbf47570be8e313eb40fef372049",
+            "target": [
+                "",
+                "btn_dark_text_1",
+                -1
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[1]/span": {
+            "baseline": "938db8c9f82c8cb58d3f3ef4fd250036a48d26a712753d2fde5abd03a85cabf4",
+            "target": [
+                "why_bento_grid_items_1",
+                "badge_pill_text_1",
+                0
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[1]/h4": {
+            "baseline": "3b42ccc98cb83af9e2e1177777694050eb448ab5919487b40396cba70d0fabb8",
+            "target": [
+                "why_bento_grid_items_1",
+                "heading_text_1",
+                0
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[1]/p": {
+            "baseline": "c2458ba98cbccabc6112daf8bd20ec99b849622d7702b51ebf7770d37dab904d",
+            "target": [
+                "why_bento_grid_items_1",
+                "description_1_body",
+                0
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[2]/span": {
+            "baseline": "a953f09a1b6b6725b81956e9ad0b1eb49e3ad40004c04307ef8af6246a054116",
+            "target": [
+                "why_bento_grid_items_1",
+                "badge_pill_text_1",
+                1
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[2]/h4": {
+            "baseline": "af4cdc9accfc7fe8d251b5a782190619d0b444e9854fca329e1f1d6281b56260",
+            "target": [
+                "why_bento_grid_items_1",
+                "heading_text_1",
+                1
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[2]/p": {
+            "baseline": "5640664b647300a1702c18de22f7836c59b2d5298ae6348ee3c144aaa8f143d4",
+            "target": [
+                "why_bento_grid_items_1",
+                "description_1_body",
+                1
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[3]/span": {
+            "baseline": "0b8efa5a3bf104413a725c6ff0459a6be12b1fd33314cbb138745baf39504ae5",
+            "target": [
+                "why_bento_grid_items_1",
+                "badge_pill_text_1",
+                2
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[3]/h4": {
+            "baseline": "b6e2dd5040494a38894ac784a9c98cfe70e9f468f572403ee4e52f081d2ff376",
+            "target": [
+                "why_bento_grid_items_1",
+                "heading_text_1",
+                2
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[3]/p": {
+            "baseline": "4c30bb9d0ded70e6d0db01d0c44a18709e5ab9b2ac77d36ce090174954e9da9d",
+            "target": [
+                "why_bento_grid_items_1",
+                "description_1_body",
+                2
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[4]/span": {
+            "baseline": "6cd5b6e51936a442b973660c21553dd22bd72ddc8751132a943475288113b4c0",
+            "target": [
+                "why_bento_grid_items_1",
+                "badge_pill_text_1",
+                3
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[4]/h4": {
+            "baseline": "14b613688b1b56ab9e85f23de143341d1e0d88bc888b231578529f62b1e2a18d",
+            "target": [
+                "why_bento_grid_items_1",
+                "heading_text_1",
+                3
+            ]
+        },
+        "/div/div/section/div/div/div/div[2]/div[4]/p": {
+            "baseline": "7ee795f7e230493c6e8958bd4b918e731dbf5518c0cb7c44d6a95f141c447726",
+            "target": [
+                "why_bento_grid_items_1",
+                "description_1_body",
+                3
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "div",
+            "attrs": {
+                "style": "padding-top:2rem;padding-bottom:2rem;"
+            },
+            "part": "_div_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-container"
+                    },
+                    "part": "_container_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-glass-panel",
+                                "style": "padding:2.75rem;margin-bottom:0.5rem;"
+                            },
+                            "part": "_div_2",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-hero-grid",
+                                        "style": "align-items:center;"
+                                    },
+                                    "part": "_hero_grid_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": [],
+                                            "part": "_div_3",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "span",
+                                                    "attrs": {
+                                                        "class": "zc-badge-pill"
+                                                    },
+                                                    "part": "_badge_pill_1",
+                                                    "children": [
+                                                        {
+                                                            "text": "badge_pill_text_1",
+                                                            "part": "_badge_pill_text_1",
+                                                            "before": "",
+                                                            "after": "",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "badge_pill_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "h1",
+                                                    "attrs": {
+                                                        "class": "zc-section-title"
+                                                    },
+                                                    "part": "_section_title_1",
+                                                    "children": [
+                                                        {
+                                                            "text": "section_title_text_1",
+                                                            "part": "_section_title_text_1",
+                                                            "before": "",
+                                                            "after": " ",
+                                                            "plain": false
+                                                        },
+                                                        {
+                                                            "tag": "span",
+                                                            "attrs": {
+                                                                "class": "zc-highlight"
+                                                            },
+                                                            "part": "_highlight_1",
+                                                            "children": [
+                                                                {
+                                                                    "text": "highlight_text_1",
+                                                                    "part": "_highlight_text_1",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "highlight_1_visible"
+                                                        }
+                                                    ],
+                                                    "heading_tag": "section_title_1_tag",
+                                                    "visible": "section_title_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "p",
+                                                    "attrs": {
+                                                        "style": "color:var(--zc-text-secondary);line-height:1.95;font-size:1rem;"
+                                                    },
+                                                    "part": "_description_1",
+                                                    "rich": "description_1_body",
+                                                    "visible": "description_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "p",
+                                                    "attrs": {
+                                                        "style": "color:var(--zc-text-secondary);line-height:1.95;font-size:1rem;"
+                                                    },
+                                                    "part": "_description_2",
+                                                    "rich": "description_2_body",
+                                                    "visible": "description_2_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "class": "zc-hero-trust-list"
+                                                    },
+                                                    "part": "_hero_trust_list_1",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "repeat": "hero_trust_list_items_1"
+                                                        }
+                                                    ],
+                                                    "visible": "hero_trust_list_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n\n                            "
+                                                },
+                                                {
+                                                    "literal": "<!-- Studio Architecture Banner Inside About -->"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "style": "margin-top:1.75rem;position:relative;border-radius:1.35rem;overflow:hidden;height:225px;border:1px solid var(--zc-border-subtle);box-shadow:var(--zc-shadow-card);"
+                                                    },
+                                                    "part": "_div_4",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "img",
+                                                            "attrs": {
+                                                                "style": "width:100%;height:100%;object-fit:cover;display:block;"
+                                                            },
+                                                            "part": "_image_1",
+                                                            "image": "image_1_image",
+                                                            "alt": "image_1_alt",
+                                                            "size": "image_1_size",
+                                                            "visible": "image_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.88) 0%,transparent 65%);display:flex;align-items:flex-end;justify-content:space-between;padding:1.15rem 1.35rem;"
+                                                            },
+                                                            "part": "_div_5",
+                                                            "children": [
+                                                                {
+                                                                    "literal": "\n                                    "
+                                                                },
+                                                                {
+                                                                    "tag": "div",
+                                                                    "attrs": [],
+                                                                    "part": "_div_6",
+                                                                    "children": [
+                                                                        {
+                                                                            "literal": "\n                                        "
+                                                                        },
+                                                                        {
+                                                                            "tag": "div",
+                                                                            "attrs": {
+                                                                                "style": "color:var(--color-accent);font-size:0.75rem;font-weight:800;"
+                                                                            },
+                                                                            "part": "_div_7",
+                                                                            "children": [
+                                                                                {
+                                                                                    "text": "div_text_1",
+                                                                                    "part": "_div_text_1",
+                                                                                    "before": "",
+                                                                                    "after": "",
+                                                                                    "plain": false
+                                                                                }
+                                                                            ],
+                                                                            "visible": "div_7_visible"
+                                                                        },
+                                                                        {
+                                                                            "literal": "\n                                        "
+                                                                        },
+                                                                        {
+                                                                            "tag": "div",
+                                                                            "attrs": {
+                                                                                "style": "color:#fff;font-size:0.95rem;font-weight:900;"
+                                                                            },
+                                                                            "part": "_div_8",
+                                                                            "children": [
+                                                                                {
+                                                                                    "text": "div_text_2",
+                                                                                    "part": "_div_text_2",
+                                                                                    "before": "",
+                                                                                    "after": "",
+                                                                                    "plain": false
+                                                                                }
+                                                                            ],
+                                                                            "visible": "div_8_visible"
+                                                                        },
+                                                                        {
+                                                                            "literal": "\n                                    "
+                                                                        }
+                                                                    ],
+                                                                    "visible": "div_6_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                    "
+                                                                },
+                                                                {
+                                                                    "tag": "span",
+                                                                    "attrs": {
+                                                                        "class": "zc-badge-pill",
+                                                                        "style": "margin:0;"
+                                                                    },
+                                                                    "part": "_badge_pill_2",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "badge_pill_text_2",
+                                                                            "part": "_badge_pill_text_2",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "badge_pill_2_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                "
+                                                                }
+                                                            ],
+                                                            "visible": "div_5_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_4_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "div_3_visible"
+                                        },
+                                        {
+                                            "literal": "\n\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-dark-card",
+                                                "style": "padding:1.85rem;overflow:hidden;"
+                                            },
+                                            "part": "_dark_card_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "literal": "<!-- Real Executive Standing Portrait of Ehsan NaderiPanah -->"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "style": "position:relative;border-radius:1.35rem;overflow:hidden;margin-bottom:1.35rem;border:2px solid rgba(253,208,91,0.45);height:320px;"
+                                                    },
+                                                    "part": "_div_9",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "img",
+                                                            "attrs": {
+                                                                "style": "width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
+                                                            },
+                                                            "part": "_image_2",
+                                                            "image": "image_2_image",
+                                                            "alt": "image_2_alt",
+                                                            "size": "image_2_size",
+                                                            "visible": "image_2_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "position:absolute;top:0.85rem;right:0.85rem;"
+                                                            },
+                                                            "part": "_div_10",
+                                                            "children": [
+                                                                {
+                                                                    "literal": "\n                                    "
+                                                                },
+                                                                {
+                                                                    "tag": "span",
+                                                                    "attrs": {
+                                                                        "class": "zc-badge-pill",
+                                                                        "style": "margin:0;box-shadow:0 8px 20px rgba(0,0,0,0.35);"
+                                                                    },
+                                                                    "part": "_badge_pill_3",
+                                                                    "children": [
+                                                                        {
+                                                                            "tag": "i",
+                                                                            "attrs": [],
+                                                                            "part": "_icon_1",
+                                                                            "icon": "icon_1_icon",
+                                                                            "visible": "icon_1_visible"
+                                                                        },
+                                                                        {
+                                                                            "text": "badge_pill_text_3",
+                                                                            "part": "_badge_pill_text_3",
+                                                                            "before": " ",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "badge_pill_3_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                "
+                                                                }
+                                                            ],
+                                                            "visible": "div_10_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "position:absolute;bottom:0;left:0;right:0;padding:1.1rem 1.25rem;background:linear-gradient(to top,rgba(15,17,22,0.95) 0%,rgba(15,17,22,0.55) 65%,transparent 100%);display:flex;align-items:center;justify-content:space-between;"
+                                                            },
+                                                            "part": "_div_11",
+                                                            "children": [
+                                                                {
+                                                                    "literal": "\n                                    "
+                                                                },
+                                                                {
+                                                                    "tag": "div",
+                                                                    "attrs": {
+                                                                        "style": "display:flex;align-items:center;gap:0.75rem;"
+                                                                    },
+                                                                    "part": "_div_12",
+                                                                    "children": [
+                                                                        {
+                                                                            "literal": "\n                                        "
+                                                                        },
+                                                                        {
+                                                                            "tag": "img",
+                                                                            "attrs": {
+                                                                                "style": "width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--color-accent);"
+                                                                            },
+                                                                            "part": "_image_3",
+                                                                            "image": "image_3_image",
+                                                                            "alt": "image_3_alt",
+                                                                            "size": "image_3_size",
+                                                                            "visible": "image_3_visible"
+                                                                        },
+                                                                        {
+                                                                            "literal": "\n                                        "
+                                                                        },
+                                                                        {
+                                                                            "tag": "div",
+                                                                            "attrs": [],
+                                                                            "part": "_div_13",
+                                                                            "children": [
+                                                                                {
+                                                                                    "literal": "\n                                            "
+                                                                                },
+                                                                                {
+                                                                                    "tag": "h3",
+                                                                                    "attrs": {
+                                                                                        "style": "font-size:1.25rem;font-weight:900;color:#fff;margin:0;"
+                                                                                    },
+                                                                                    "part": "_heading_1",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "text": "heading_text_1",
+                                                                                            "part": "_heading_text_1",
+                                                                                            "before": "",
+                                                                                            "after": "",
+                                                                                            "plain": false
+                                                                                        }
+                                                                                    ],
+                                                                                    "heading_tag": "heading_1_tag",
+                                                                                    "visible": "heading_1_visible"
+                                                                                },
+                                                                                {
+                                                                                    "literal": "\n                                            "
+                                                                                },
+                                                                                {
+                                                                                    "tag": "div",
+                                                                                    "attrs": {
+                                                                                        "style": "color:var(--color-accent);font-size:0.78rem;font-weight:700;"
+                                                                                    },
+                                                                                    "part": "_div_14",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "text": "div_text_3",
+                                                                                            "part": "_div_text_3",
+                                                                                            "before": "",
+                                                                                            "after": "",
+                                                                                            "plain": false
+                                                                                        }
+                                                                                    ],
+                                                                                    "visible": "div_14_visible"
+                                                                                },
+                                                                                {
+                                                                                    "literal": "\n                                        "
+                                                                                }
+                                                                            ],
+                                                                            "visible": "div_13_visible"
+                                                                        },
+                                                                        {
+                                                                            "literal": "\n                                    "
+                                                                        }
+                                                                    ],
+                                                                    "visible": "div_12_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                    "
+                                                                },
+                                                                {
+                                                                    "tag": "span",
+                                                                    "attrs": {
+                                                                        "style": "background:rgba(16,185,129,0.22);color:#34D399;padding:0.25rem 0.65rem;border-radius:999px;font-size:0.72rem;font-weight:800;"
+                                                                    },
+                                                                    "part": "_span_1",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "span_text_1",
+                                                                            "part": "_span_text_1",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "span_1_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                "
+                                                                }
+                                                            ],
+                                                            "visible": "div_11_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_9_visible"
+                                                },
+                                                {
+                                                    "literal": "\n\n                            "
+                                                },
+                                                {
+                                                    "tag": "p",
+                                                    "attrs": {
+                                                        "style": "color:#D1D5DB;font-size:0.88rem;line-height:1.85;margin-bottom:1.2rem;"
+                                                    },
+                                                    "part": "_description_3",
+                                                    "rich": "description_3_body",
+                                                    "visible": "description_3_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "style": "display:flex;flex-direction:column;gap:0.55rem;font-size:0.86rem;color:#fff;background:rgba(255,255,255,0.06);padding:1rem 1.15rem;border-radius:1.15rem;"
+                                                    },
+                                                    "part": "_div_15",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": [],
+                                                            "part": "_div_16",
+                                                            "children": [
+                                                                {
+                                                                    "tag": "i",
+                                                                    "attrs": {
+                                                                        "style": "color:var(--color-accent);width:1.5rem;"
+                                                                    },
+                                                                    "part": "_icon_2",
+                                                                    "icon": "icon_2_icon",
+                                                                    "visible": "icon_2_visible"
+                                                                },
+                                                                {
+                                                                    "text": "div_text_4",
+                                                                    "part": "_div_text_4",
+                                                                    "before": " ",
+                                                                    "after": " ",
+                                                                    "plain": false
+                                                                },
+                                                                {
+                                                                    "tag": "strong",
+                                                                    "attrs": {
+                                                                        "dir": "ltr"
+                                                                    },
+                                                                    "part": "_strong_1",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "strong_text_1",
+                                                                            "part": "_strong_text_1",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "strong_1_visible"
+                                                                }
+                                                            ],
+                                                            "visible": "div_16_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": [],
+                                                            "part": "_div_17",
+                                                            "children": [
+                                                                {
+                                                                    "tag": "i",
+                                                                    "attrs": {
+                                                                        "style": "color:var(--color-accent);width:1.5rem;"
+                                                                    },
+                                                                    "part": "_icon_3",
+                                                                    "icon": "icon_3_icon",
+                                                                    "visible": "icon_3_visible"
+                                                                },
+                                                                {
+                                                                    "text": "div_text_5",
+                                                                    "part": "_div_text_5",
+                                                                    "before": " ",
+                                                                    "after": " ",
+                                                                    "plain": false
+                                                                },
+                                                                {
+                                                                    "tag": "strong",
+                                                                    "attrs": [],
+                                                                    "part": "_strong_2",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "strong_text_2",
+                                                                            "part": "_strong_text_2",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "strong_2_visible"
+                                                                }
+                                                            ],
+                                                            "visible": "div_17_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": [],
+                                                            "part": "_div_18",
+                                                            "children": [
+                                                                {
+                                                                    "tag": "i",
+                                                                    "attrs": {
+                                                                        "style": "color:var(--color-accent);width:1.5rem;"
+                                                                    },
+                                                                    "part": "_icon_4",
+                                                                    "icon": "icon_4_icon",
+                                                                    "visible": "icon_4_visible"
+                                                                },
+                                                                {
+                                                                    "text": "div_text_6",
+                                                                    "part": "_div_text_6",
+                                                                    "before": " ",
+                                                                    "after": " ",
+                                                                    "plain": false
+                                                                },
+                                                                {
+                                                                    "tag": "strong",
+                                                                    "attrs": [],
+                                                                    "part": "_strong_3",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "strong_text_3",
+                                                                            "part": "_strong_text_3",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "strong_3_visible"
+                                                                }
+                                                            ],
+                                                            "visible": "div_18_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_15_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "dark_card_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "hero_grid_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "div_2_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "container_1_visible"
+                },
+                {
+                    "literal": "\n\n                    "
+                },
+                {
+                    "tag": "section",
+                    "attrs": {
+                        "style": "padding:2rem 0 3.5rem;"
+                    },
+                    "part": "_section_1",
+                    "children": [
+                        {
+                            "literal": "\n            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-container"
+                            },
+                            "part": "_container_2",
+                            "children": [
+                                {
+                                    "literal": "\n                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-glass-panel",
+                                        "style": "padding:2.75rem;"
+                                    },
+                                    "part": "_div_19",
+                                    "children": [
+                                        {
+                                            "literal": "\n                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-hero-grid",
+                                                "style": "align-items:center;"
+                                            },
+                                            "part": "_hero_grid_2",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                        "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": [],
+                                                    "part": "_div_20",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                            "
+                                                        },
+                                                        {
+                                                            "tag": "span",
+                                                            "attrs": {
+                                                                "class": "zc-badge-pill"
+                                                            },
+                                                            "part": "_badge_pill_4",
+                                                            "children": [
+                                                                {
+                                                                    "text": "badge_pill_text_4",
+                                                                    "part": "_badge_pill_text_4",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "badge_pill_4_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        },
+                                                        {
+                                                            "tag": "h2",
+                                                            "attrs": {
+                                                                "class": "zc-section-title"
+                                                            },
+                                                            "part": "_section_title_2",
+                                                            "children": [
+                                                                {
+                                                                    "text": "section_title_text_2",
+                                                                    "part": "_section_title_text_2",
+                                                                    "before": "\n                                ",
+                                                                    "after": " ",
+                                                                    "plain": false
+                                                                },
+                                                                {
+                                                                    "tag": "span",
+                                                                    "attrs": {
+                                                                        "class": "zc-hero-inline-pill",
+                                                                        "style": "font-size:0.78em;"
+                                                                    },
+                                                                    "part": "_hero_inline_pill_1",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "hero_inline_pill_text_1",
+                                                                            "part": "_hero_inline_pill_text_1",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "hero_inline_pill_1_visible"
+                                                                },
+                                                                {
+                                                                    "text": "section_title_text_3",
+                                                                    "part": "_section_title_text_3",
+                                                                    "before": " ",
+                                                                    "after": "\n                            ",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "heading_tag": "section_title_2_tag",
+                                                            "visible": "section_title_2_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        },
+                                                        {
+                                                            "tag": "p",
+                                                            "attrs": {
+                                                                "style": "color:var(--zc-text-secondary);font-size:0.98rem;line-height:1.95;margin-bottom:1.25rem;"
+                                                            },
+                                                            "part": "_description_4",
+                                                            "rich": "description_4_body",
+                                                            "visible": "description_4_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n\n                            \n                            "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "display:flex;flex-wrap:wrap;gap:0.9rem;"
+                                                            },
+                                                            "part": "_div_21",
+                                                            "children": [
+                                                                {
+                                                                    "literal": "\n                                "
+                                                                },
+                                                                {
+                                                                    "tag": "a",
+                                                                    "attrs": {
+                                                                        "class": "zc-btn zc-btn-yellow"
+                                                                    },
+                                                                    "part": "_btn_yellow_1",
+                                                                    "bindings": {
+                                                                        "href": "btn_yellow_1_href"
+                                                                    },
+                                                                    "children": [
+                                                                        {
+                                                                            "literal": "\n                                    "
+                                                                        },
+                                                                        {
+                                                                            "tag": "i",
+                                                                            "attrs": [],
+                                                                            "part": "_icon_5",
+                                                                            "icon": "icon_5_icon",
+                                                                            "visible": "icon_5_visible"
+                                                                        },
+                                                                        {
+                                                                            "text": "btn_yellow_text_1",
+                                                                            "part": "_btn_yellow_text_1",
+                                                                            "before": " ",
+                                                                            "after": "\n                                ",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "btn_yellow_1_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                                "
+                                                                },
+                                                                {
+                                                                    "tag": "button",
+                                                                    "attrs": {
+                                                                        "type": "button",
+                                                                        "class": "zc-btn zc-btn-dark"
+                                                                    },
+                                                                    "part": "_btn_dark_1",
+                                                                    "action": "btn_dark_1_action",
+                                                                    "action_target": "btn_dark_1_target",
+                                                                    "bindings": {
+                                                                        "href": "btn_dark_1_href"
+                                                                    },
+                                                                    "children": [
+                                                                        {
+                                                                            "literal": "\n                                    "
+                                                                        },
+                                                                        {
+                                                                            "tag": "i",
+                                                                            "attrs": [],
+                                                                            "part": "_icon_6",
+                                                                            "icon": "icon_6_icon",
+                                                                            "visible": "icon_6_visible"
+                                                                        },
+                                                                        {
+                                                                            "text": "btn_dark_text_1",
+                                                                            "part": "_btn_dark_text_1",
+                                                                            "before": " ",
+                                                                            "after": "\n                                ",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "btn_dark_1_visible"
+                                                                },
+                                                                {
+                                                                    "literal": "\n                            "
+                                                                }
+                                                            ],
+                                                            "visible": "div_21_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                        "
+                                                        }
+                                                    ],
+                                                    "visible": "div_20_visible"
+                                                },
+                                                {
+                                                    "literal": "\n\n                        "
+                                                },
+                                                {
+                                                    "literal": "<!-- 4 Differentiator Bento Boxes + 3 Webinex Counters -->"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "class": "zc-why-bento-grid",
+                                                        "style": "display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;"
+                                                    },
+                                                    "part": "_why_bento_grid_1",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                            "
+                                                        },
+                                                        {
+                                                            "repeat": "why_bento_grid_items_1"
+                                                        }
+                                                    ],
+                                                    "visible": "why_bento_grid_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                    "
+                                                }
+                                            ],
+                                            "visible": "hero_grid_2_visible"
+                                        },
+                                        {
+                                            "literal": "\n                "
+                                        }
+                                    ],
+                                    "visible": "div_19_visible"
+                                },
+                                {
+                                    "literal": "\n            "
+                                }
+                            ],
+                            "visible": "container_2_visible"
+                        },
+                        {
+                            "literal": "\n        "
+                        }
+                    ],
+                    "visible": "section_1_visible"
+                },
+                {
+                    "literal": "\n                "
+                }
+            ],
+            "visible": "div_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

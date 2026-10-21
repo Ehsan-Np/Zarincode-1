@@ -1,0 +1,2161 @@
+{
+    "name": "page_section_contact_page",
+    "kind": "page_section",
+    "section": "contact-page",
+    "fields": {
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "CONTACT ZARINCODE TEAM",
+            "label": "متن: CONTACT ZARINCODE TEAM"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: CONTACT ZARINCODE TEAM"
+        },
+        "section_title_text_1": {
+            "type": "text",
+            "default": "با تیم",
+            "label": "متن: با تیم",
+            "purpose": "title"
+        },
+        "highlight_text_1": {
+            "type": "text",
+            "default": "زرین کد",
+            "label": "متن: زرین کد",
+            "purpose": "title"
+        },
+        "highlight_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد"
+        },
+        "section_title_text_2": {
+            "type": "text",
+            "default": "در ارتباط باشید...",
+            "label": "متن: در ارتباط باشید...",
+            "purpose": "title"
+        },
+        "section_title_1_tag": {
+            "type": "select",
+            "default": "h1",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "section_title_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: با تیم زرین کد در ارتباط باشید..."
+        },
+        "description_1_body": {
+            "type": "wysiwyg",
+            "default": "\n                        ۷ روز هفته آماده پاسخگویی به سوالات شما در زمینه سفارش طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت، سئو شبکه‌های اجتماعی، تولید محتوا و خرید محصولات آماده (قالب، افزونه و سورس‌کد) هستیم.\n                    ",
+            "label": "توضیحات: ۷ روز هفته آماده پاسخگویی به سوالات شما در زمینه سفارش طراحی سایت",
+            "purpose": "description"
+        },
+        "description_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ۷ روز هفته آماده پاسخگویی به سوالات شما در زمینه سفارش طراحی سایت"
+        },
+        "image_1_image": {
+            "type": "media",
+            "default": {
+                "url": "{{THEME}}/assets/images/ehsan-contact-consultation.jpg",
+                "id": 0
+            },
+            "label": "تصویر: image"
+        },
+        "image_1_alt": {
+            "type": "text",
+            "default": "مشاوره مستقیم با احسان نادری پناه در زرین کد",
+            "label": "متن جایگزین تصویر"
+        },
+        "image_1_size": {
+            "type": "select",
+            "default": "full",
+            "label": "اندازه تصویر",
+            "options": {
+                "thumbnail": "بندانگشتی",
+                "medium": "متوسط",
+                "large": "بزرگ",
+                "full": "کامل"
+            }
+        },
+        "image_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: image"
+        },
+        "div_text_1": {
+            "type": "text",
+            "default": "DIRECT TECHNICAL CONSULTATION",
+            "label": "متن: DIRECT TECHNICAL CONSULTATION"
+        },
+        "div_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT TECHNICAL CONSULTATION"
+        },
+        "div_text_2": {
+            "type": "text",
+            "default": "پاسخگویی و مشاوره مستقیم با احسان نادری پناه",
+            "label": "متن: پاسخگویی و مشاوره مستقیم با احسان نادری پناه"
+        },
+        "div_6_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: پاسخگویی و مشاوره مستقیم با احسان نادری پناه"
+        },
+        "div_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن"
+        },
+        "btn_yellow_1_href": {
+            "type": "url",
+            "default": {
+                "url": "tel:09024561001",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: 09024561001",
+            "purpose": "link"
+        },
+        "icon_1_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-phone-volume",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: 09024561001"
+        },
+        "icon_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "btn_yellow_text_1": {
+            "type": "text",
+            "default": "09024561001",
+            "label": "متن: 09024561001"
+        },
+        "btn_yellow_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 09024561001"
+        },
+        "div_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن"
+        },
+        "div_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن"
+        },
+        "div_7_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: مدیریت و توسعه‌دهنده ارشد: احسان نادری پناه (Ehsan NaderiPanah) ش"
+        },
+        "div_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف"
+        },
+        "badge_pill_text_2": {
+            "type": "text",
+            "default": "DIRECT MESSAGE",
+            "label": "متن: DIRECT MESSAGE"
+        },
+        "badge_pill_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT MESSAGE"
+        },
+        "heading_text_1": {
+            "type": "text",
+            "default": "سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید!",
+            "label": "متن: سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید!",
+            "purpose": "title"
+        },
+        "heading_1_tag": {
+            "type": "select",
+            "default": "h2",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "heading_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید!"
+        },
+        "form_label_text_1": {
+            "type": "text",
+            "default": "نام و نام خانوادگی *",
+            "label": "متن: نام و نام خانوادگی *"
+        },
+        "form_label_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: نام و نام خانوادگی *"
+        },
+        "form_control_1_placeholder": {
+            "type": "text",
+            "default": "نام کامل خود را وارد نمایید",
+            "label": "placeholder: form_control"
+        },
+        "form_control_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: form_control"
+        },
+        "form_group_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: نام و نام خانوادگی *"
+        },
+        "form_label_text_2": {
+            "type": "text",
+            "default": "شماره تماس *",
+            "label": "متن: شماره تماس *"
+        },
+        "form_label_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس *"
+        },
+        "form_control_2_placeholder": {
+            "type": "text",
+            "default": "0912XXXXXXX",
+            "label": "placeholder: form_control"
+        },
+        "form_control_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: form_control"
+        },
+        "form_group_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس *"
+        },
+        "form_label_text_3": {
+            "type": "text",
+            "default": "آدرس ایمیل",
+            "label": "متن: آدرس ایمیل"
+        },
+        "form_label_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: آدرس ایمیل"
+        },
+        "form_control_3_placeholder": {
+            "type": "text",
+            "default": "you@domain.com",
+            "label": "placeholder: form_control"
+        },
+        "form_control_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: form_control"
+        },
+        "form_group_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: آدرس ایمیل"
+        },
+        "div_9_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس * آدرس ایمیل"
+        },
+        "form_label_text_4": {
+            "type": "text",
+            "default": "موضوع درخواست",
+            "label": "متن: موضوع درخواست"
+        },
+        "form_label_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: موضوع درخواست"
+        },
+        "option_text_1": {
+            "type": "text",
+            "default": "سفارش طراحی سایت اختصاصی",
+            "label": "متن: سفارش طراحی سایت اختصاصی"
+        },
+        "option_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سفارش طراحی سایت اختصاصی"
+        },
+        "option_text_2": {
+            "type": "text",
+            "default": "سفارش برنامه‌نویسی نرم‌افزار و سامانه",
+            "label": "متن: سفارش برنامه‌نویسی نرم‌افزار و سامانه"
+        },
+        "option_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سفارش برنامه‌نویسی نرم‌افزار و سامانه"
+        },
+        "option_text_3": {
+            "type": "text",
+            "default": "سفارش سئو سایت یا سئو شبکه‌های اجتماعی",
+            "label": "متن: سفارش سئو سایت یا سئو شبکه‌های اجتماعی"
+        },
+        "option_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سفارش سئو سایت یا سئو شبکه‌های اجتماعی"
+        },
+        "option_text_4": {
+            "type": "text",
+            "default": "سفارش تولید محتوا",
+            "label": "متن: سفارش تولید محتوا"
+        },
+        "option_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سفارش تولید محتوا"
+        },
+        "option_text_5": {
+            "type": "text",
+            "default": "پشتیبانی و خرید قالب، افزونه و سورس‌کد آماده",
+            "label": "متن: پشتیبانی و خرید قالب، افزونه و سورس‌کد آماده"
+        },
+        "option_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: پشتیبانی و خرید قالب، افزونه و سورس‌کد آماده"
+        },
+        "form_control_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: سفارش طراحی سایت اختصاصی سفارش برنامه‌نویسی نرم‌افزار و سامانه سف"
+        },
+        "form_group_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: موضوع درخواست سفارش طراحی سایت اختصاصی سفارش برنامه‌نویسی نرم‌افز"
+        },
+        "form_label_text_5": {
+            "type": "text",
+            "default": "توضیحات پیام شما *",
+            "label": "متن: توضیحات پیام شما *"
+        },
+        "form_label_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: توضیحات پیام شما *"
+        },
+        "form_control_5_placeholder": {
+            "type": "text",
+            "default": "جزئیات درخواست یا سوال خود را بنویسید...",
+            "label": "placeholder: form_control"
+        },
+        "form_control_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: form_control"
+        },
+        "form_group_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: توضیحات پیام شما *"
+        },
+        "form_feedback_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: form_feedback"
+        },
+        "icon_2_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-paper-plane",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: ثبت و ارسال مستقیم پیغام به احسان نادری پناه"
+        },
+        "icon_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "btn_yellow_text_2": {
+            "type": "text",
+            "default": "ثبت و ارسال مستقیم پیغام به احسان نادری پناه",
+            "label": "متن: ثبت و ارسال مستقیم پیغام به احسان نادری پناه"
+        },
+        "btn_yellow_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ثبت و ارسال مستقیم پیغام به احسان نادری پناه"
+        },
+        "ajax_form_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: نام و نام خانوادگی * شماره تماس * آدرس ایمیل موضوع درخواست سفارش "
+        },
+        "div_8_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: DIRECT MESSAGE سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید"
+        },
+        "hero_grid_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف"
+        }
+    },
+    "repeaters": {
+        "div_items_1": {
+            "label": "آیتم‌ها: مدیریت و توسعه‌دهنده ارشد: احسان نادری پناه (Ehsan NaderiPanah)",
+            "fields": {
+                "icon_1_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-globe",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: service_icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "service_icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: service_icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "div_text_1": {
+                    "type": "text",
+                    "default": "وب‌سایت رسمی و پست الکترونیک:",
+                    "label": "متن: وب‌سایت رسمی و پست الکترونیک:",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "div_3_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: وب‌سایت رسمی و پست الکترونیک:",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "div_text_2": {
+                    "type": "text",
+                    "default": "Zarincode.com • info@zarincode.com",
+                    "label": "متن: Zarincode.com • info@zarincode.com",
+                    "variants": [
+                        "v1",
+                        "v3"
+                    ]
+                },
+                "div_4_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: Zarincode.com • info@zarincode.com",
+                    "variants": [
+                        "v1",
+                        "v3"
+                    ]
+                },
+                "div_2_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: وب‌سایت رسمی و پست الکترونیک: Zarincode.com • info@zarincode.com",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "div_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: وب‌سایت رسمی و پست الکترونیک: Zarincode.com • info@zarincode.com",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "link_1_href": {
+                    "type": "url",
+                    "default": {
+                        "url": "tel:09024561001",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "label": "پیوند: 09024561001",
+                    "purpose": "link",
+                    "variants": [
+                        "v2"
+                    ]
+                },
+                "link_text_1": {
+                    "type": "text",
+                    "default": "09024561001",
+                    "label": "متن: 09024561001",
+                    "variants": [
+                        "v2"
+                    ]
+                },
+                "link_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: 09024561001",
+                    "variants": [
+                        "v2"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "9a827861",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-user-tie",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "service_icon_1_visible": "yes",
+                    "div_text_1": "مدیریت و توسعه‌دهنده ارشد:",
+                    "div_3_visible": "yes",
+                    "div_text_2": "احسان نادری پناه (Ehsan NaderiPanah)",
+                    "div_4_visible": "yes",
+                    "div_2_visible": "yes",
+                    "div_1_visible": "yes"
+                },
+                {
+                    "_id": "c8b2fa01",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-phone-volume",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "service_icon_1_visible": "yes",
+                    "div_text_1": "شماره تماس مستقیم، واتساپ و تلگرام:",
+                    "div_3_visible": "yes",
+                    "link_1_href": {
+                        "url": "tel:09024561001",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "09024561001",
+                    "link_1_visible": "yes",
+                    "div_2_visible": "yes",
+                    "div_1_visible": "yes"
+                },
+                {
+                    "_id": "aa98eb65",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-globe",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "service_icon_1_visible": "yes",
+                    "div_text_1": "وب‌سایت رسمی و پست الکترونیک:",
+                    "div_3_visible": "yes",
+                    "div_text_2": "Zarincode.com • info@zarincode.com",
+                    "div_4_visible": "yes",
+                    "div_2_visible": "yes",
+                    "div_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-white-card",
+                        "style": "padding:1.15rem;display:flex;align-items:center;gap:1rem;"
+                    },
+                    "part": "div_items_1_div_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-service-icon",
+                                "style": "width:3.2rem;height:3.2rem;font-size:1.2rem;"
+                            },
+                            "part": "div_items_1_service_icon_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "div_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                }
+                            ],
+                            "visible": "service_icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "div_items_1_div_2",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "font-size:0.78rem;color:var(--zc-text-muted);"
+                                    },
+                                    "part": "div_items_1_div_3",
+                                    "children": [
+                                        {
+                                            "text": "div_text_1",
+                                            "part": "div_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "div_3_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "font-size:1.05rem;font-weight:900;"
+                                    },
+                                    "part": "div_items_1_div_4",
+                                    "children": [
+                                        {
+                                            "text": "div_text_2",
+                                            "part": "div_items_1_div_text_2",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "div_4_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                }
+                            ],
+                            "visible": "div_2_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "div_1_visible"
+                },
+                "v2": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-white-card",
+                        "style": "padding:1.15rem;display:flex;align-items:center;gap:1rem;"
+                    },
+                    "part": "div_items_1_div_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-service-icon",
+                                "style": "width:3.2rem;height:3.2rem;font-size:1.2rem;"
+                            },
+                            "part": "div_items_1_service_icon_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "div_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                }
+                            ],
+                            "visible": "service_icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "div_items_1_div_2",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "font-size:0.78rem;color:var(--zc-text-muted);"
+                                    },
+                                    "part": "div_items_1_div_3",
+                                    "children": [
+                                        {
+                                            "text": "div_text_1",
+                                            "part": "div_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "div_3_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "a",
+                                    "attrs": {
+                                        "dir": "ltr",
+                                        "style": "font-size:1.2rem;font-weight:900;color:var(--zc-text-main);"
+                                    },
+                                    "part": "div_items_1_link_1",
+                                    "bindings": {
+                                        "href": "link_1_href"
+                                    },
+                                    "children": [
+                                        {
+                                            "text": "link_text_1",
+                                            "part": "div_items_1_link_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "link_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                }
+                            ],
+                            "visible": "div_2_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "div_1_visible"
+                },
+                "v3": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-white-card",
+                        "style": "padding:1.15rem;display:flex;align-items:center;gap:1rem;"
+                    },
+                    "part": "div_items_1_div_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-service-icon",
+                                "style": "width:3.2rem;height:3.2rem;font-size:1.2rem;"
+                            },
+                            "part": "div_items_1_service_icon_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "div_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                }
+                            ],
+                            "visible": "service_icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "div_items_1_div_2",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "font-size:0.78rem;color:var(--zc-text-muted);"
+                                    },
+                                    "part": "div_items_1_div_3",
+                                    "children": [
+                                        {
+                                            "text": "div_text_1",
+                                            "part": "div_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "div_3_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "font-size:1rem;font-weight:800;"
+                                    },
+                                    "part": "div_items_1_div_4",
+                                    "children": [
+                                        {
+                                            "text": "div_text_2",
+                                            "part": "div_items_1_div_text_2",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "div_4_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                }
+                            ],
+                            "visible": "div_2_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "div_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_container_1": {
+            "label": "بخش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف",
+            "type": "box"
+        },
+        "_hero_grid_1": {
+            "label": "بخش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف",
+            "type": "box"
+        },
+        "_div_1": {
+            "label": "بخش: CONTACT ZARINCODE TEAM با تیم زرین کد در ارتباط باشید... ۷ روز هف",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: CONTACT ZARINCODE TEAM",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: CONTACT ZARINCODE TEAM",
+            "type": "text"
+        },
+        "_section_title_1": {
+            "label": "بخش: با تیم زرین کد در ارتباط باشید...",
+            "type": "box"
+        },
+        "_section_title_text_1": {
+            "label": "متن: با تیم",
+            "type": "text"
+        },
+        "_highlight_1": {
+            "label": "جزء: زرین کد",
+            "type": "text"
+        },
+        "_highlight_text_1": {
+            "label": "متن: زرین کد",
+            "type": "text"
+        },
+        "_section_title_text_2": {
+            "label": "متن: در ارتباط باشید...",
+            "type": "text"
+        },
+        "_description_1": {
+            "label": "جزء: ۷ روز هفته آماده پاسخگویی به سوالات شما در زمینه سفارش طراحی سایت",
+            "type": "text"
+        },
+        "_div_2": {
+            "label": "بخش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن",
+            "type": "box"
+        },
+        "_image_1": {
+            "label": "جزء: image",
+            "type": "img"
+        },
+        "_div_3": {
+            "label": "بخش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن",
+            "type": "box"
+        },
+        "_div_4": {
+            "label": "بخش: DIRECT TECHNICAL CONSULTATION پاسخگویی و مشاوره مستقیم با احسان ن",
+            "type": "box"
+        },
+        "_div_5": {
+            "label": "جزء: DIRECT TECHNICAL CONSULTATION",
+            "type": "text"
+        },
+        "_div_text_1": {
+            "label": "متن: DIRECT TECHNICAL CONSULTATION",
+            "type": "text"
+        },
+        "_div_6": {
+            "label": "جزء: پاسخگویی و مشاوره مستقیم با احسان نادری پناه",
+            "type": "text"
+        },
+        "_div_text_2": {
+            "label": "متن: پاسخگویی و مشاوره مستقیم با احسان نادری پناه",
+            "type": "text"
+        },
+        "_btn_yellow_1": {
+            "label": "بخش: 09024561001",
+            "type": "box"
+        },
+        "_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_btn_yellow_text_1": {
+            "label": "متن: 09024561001",
+            "type": "text"
+        },
+        "_div_7": {
+            "label": "بخش: مدیریت و توسعه‌دهنده ارشد: احسان نادری پناه (Ehsan NaderiPanah) ش",
+            "type": "box"
+        },
+        "div_items_1_div_1": {
+            "label": "بخش: وب‌سایت رسمی و پست الکترونیک: Zarincode.com • info@zarincode.com",
+            "type": "box"
+        },
+        "div_items_1_service_icon_1": {
+            "label": "بخش: service_icon",
+            "type": "box"
+        },
+        "div_items_1_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "div_items_1_div_2": {
+            "label": "بخش: وب‌سایت رسمی و پست الکترونیک: Zarincode.com • info@zarincode.com",
+            "type": "box"
+        },
+        "div_items_1_div_3": {
+            "label": "جزء: وب‌سایت رسمی و پست الکترونیک:",
+            "type": "text"
+        },
+        "div_items_1_div_text_1": {
+            "label": "متن: وب‌سایت رسمی و پست الکترونیک:",
+            "type": "text"
+        },
+        "div_items_1_div_4": {
+            "label": "جزء: Zarincode.com • info@zarincode.com",
+            "type": "text"
+        },
+        "div_items_1_div_text_2": {
+            "label": "متن: Zarincode.com • info@zarincode.com",
+            "type": "text"
+        },
+        "div_items_1_link_1": {
+            "label": "جزء: 09024561001",
+            "type": "text"
+        },
+        "div_items_1_link_text_1": {
+            "label": "متن: 09024561001",
+            "type": "text"
+        },
+        "_div_8": {
+            "label": "بخش: DIRECT MESSAGE سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید",
+            "type": "box"
+        },
+        "_badge_pill_2": {
+            "label": "جزء: DIRECT MESSAGE",
+            "type": "text"
+        },
+        "_badge_pill_text_2": {
+            "label": "متن: DIRECT MESSAGE",
+            "type": "text"
+        },
+        "_heading_1": {
+            "label": "جزء: سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید!",
+            "type": "text"
+        },
+        "_heading_text_1": {
+            "label": "متن: سوال، درخواست مشاوره یا سفارش پروژه دارید؟ بنویسید!",
+            "type": "text"
+        },
+        "_ajax_form_1": {
+            "label": "بخش: نام و نام خانوادگی * شماره تماس * آدرس ایمیل موضوع درخواست سفارش ",
+            "type": "box"
+        },
+        "_form_group_1": {
+            "label": "بخش: نام و نام خانوادگی *",
+            "type": "box"
+        },
+        "_form_label_1": {
+            "label": "جزء: نام و نام خانوادگی *",
+            "type": "text"
+        },
+        "_form_label_text_1": {
+            "label": "متن: نام و نام خانوادگی *",
+            "type": "text"
+        },
+        "_form_control_1": {
+            "label": "جزء: form_control",
+            "type": "text"
+        },
+        "_div_9": {
+            "label": "بخش: شماره تماس * آدرس ایمیل",
+            "type": "box"
+        },
+        "_form_group_2": {
+            "label": "بخش: شماره تماس *",
+            "type": "box"
+        },
+        "_form_label_2": {
+            "label": "جزء: شماره تماس *",
+            "type": "text"
+        },
+        "_form_label_text_2": {
+            "label": "متن: شماره تماس *",
+            "type": "text"
+        },
+        "_form_control_2": {
+            "label": "جزء: form_control",
+            "type": "text"
+        },
+        "_form_group_3": {
+            "label": "بخش: آدرس ایمیل",
+            "type": "box"
+        },
+        "_form_label_3": {
+            "label": "جزء: آدرس ایمیل",
+            "type": "text"
+        },
+        "_form_label_text_3": {
+            "label": "متن: آدرس ایمیل",
+            "type": "text"
+        },
+        "_form_control_3": {
+            "label": "جزء: form_control",
+            "type": "text"
+        },
+        "_form_group_4": {
+            "label": "بخش: موضوع درخواست سفارش طراحی سایت اختصاصی سفارش برنامه‌نویسی نرم‌افز",
+            "type": "box"
+        },
+        "_form_label_4": {
+            "label": "جزء: موضوع درخواست",
+            "type": "text"
+        },
+        "_form_label_text_4": {
+            "label": "متن: موضوع درخواست",
+            "type": "text"
+        },
+        "_form_control_4": {
+            "label": "بخش: سفارش طراحی سایت اختصاصی سفارش برنامه‌نویسی نرم‌افزار و سامانه سف",
+            "type": "box"
+        },
+        "_option_1": {
+            "label": "جزء: سفارش طراحی سایت اختصاصی",
+            "type": "text"
+        },
+        "_option_text_1": {
+            "label": "متن: سفارش طراحی سایت اختصاصی",
+            "type": "text"
+        },
+        "_option_2": {
+            "label": "جزء: سفارش برنامه‌نویسی نرم‌افزار و سامانه",
+            "type": "text"
+        },
+        "_option_text_2": {
+            "label": "متن: سفارش برنامه‌نویسی نرم‌افزار و سامانه",
+            "type": "text"
+        },
+        "_option_3": {
+            "label": "جزء: سفارش سئو سایت یا سئو شبکه‌های اجتماعی",
+            "type": "text"
+        },
+        "_option_text_3": {
+            "label": "متن: سفارش سئو سایت یا سئو شبکه‌های اجتماعی",
+            "type": "text"
+        },
+        "_option_4": {
+            "label": "جزء: سفارش تولید محتوا",
+            "type": "text"
+        },
+        "_option_text_4": {
+            "label": "متن: سفارش تولید محتوا",
+            "type": "text"
+        },
+        "_option_5": {
+            "label": "جزء: پشتیبانی و خرید قالب، افزونه و سورس‌کد آماده",
+            "type": "text"
+        },
+        "_option_text_5": {
+            "label": "متن: پشتیبانی و خرید قالب، افزونه و سورس‌کد آماده",
+            "type": "text"
+        },
+        "_form_group_5": {
+            "label": "بخش: توضیحات پیام شما *",
+            "type": "box"
+        },
+        "_form_label_5": {
+            "label": "جزء: توضیحات پیام شما *",
+            "type": "text"
+        },
+        "_form_label_text_5": {
+            "label": "متن: توضیحات پیام شما *",
+            "type": "text"
+        },
+        "_form_control_5": {
+            "label": "جزء: form_control",
+            "type": "text"
+        },
+        "_form_feedback_1": {
+            "label": "جزء: form_feedback",
+            "type": "text"
+        },
+        "_btn_yellow_2": {
+            "label": "بخش: ثبت و ارسال مستقیم پیغام به احسان نادری پناه",
+            "type": "box"
+        },
+        "_icon_2": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_btn_yellow_text_2": {
+            "label": "متن: ثبت و ارسال مستقیم پیغام به احسان نادری پناه",
+            "type": "text"
+        }
+    },
+    "legacy": {
+        "/div/div/div/div[1]/span": {
+            "baseline": "ee45b70c2a9194aeb00112ea79626db0fd14d0d542c7859985223ce9d99ffbba",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/h1/text()[1]": {
+            "baseline": "f16a2da6d54fad215fda7170c3f216cb9398f905b0b062fdd2ee67f013b9d72f",
+            "target": [
+                "",
+                "section_title_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/h1/span/text()": {
+            "baseline": "02749544fdc47de4d5a8968f6736303b695c2e99d249969a097b1342923c5fad",
+            "target": [
+                "",
+                "highlight_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/h1/text()[2]": {
+            "baseline": "08962c1606e3abda867a87d96f75ca7070d0e62cc5058ed3653c18a61f1a10fe",
+            "target": [
+                "",
+                "section_title_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/p": {
+            "baseline": "34f832f3426430202ce8b5784d61c579a0dfe93d4a6964c3644bcfb70bb12543",
+            "target": [
+                "",
+                "description_1_body",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/div[1]/div/div/div[1]": {
+            "baseline": "7ea5363026e64d4a1bb6b7d19db4d35a02fae66b4f52c1c531c17d7c5621c6e1",
+            "target": [
+                "",
+                "div_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/div[1]/div/div/div[2]": {
+            "baseline": "0a06282a69ea64edbbe1ec6eade3725097a0b9e98b665108b082b7ec54da6ef1",
+            "target": [
+                "",
+                "div_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/div[1]/div/a/text()[2]": {
+            "baseline": "314290cf04defdf9d0f01fc6879ef8eedbcc037f778affd1aec6a8ab5fffdf00",
+            "target": [
+                "",
+                "btn_yellow_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[1]/div[2]/div[1]": {
+            "baseline": "58fae7ae8e22dab764ccc1baf487ee3e1ba012837747cabf25efdfe1e76ee4fb",
+            "target": [
+                "div_items_1",
+                "div_text_1",
+                0
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[1]/div[2]/div[2]": {
+            "baseline": "6368a1b8ad1db828bdada78ecbdd56152a96d7aaee08abee8284cfd96ac1f03c",
+            "target": [
+                "div_items_1",
+                "div_text_2",
+                0
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[2]/div[2]/div": {
+            "baseline": "daebe53fc32ce27a50e1d1d26a624415c3a37853db5e877a9bd24fb35eb76bba",
+            "target": [
+                "div_items_1",
+                "div_text_1",
+                1
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[2]/div[2]/a": {
+            "baseline": "ae7dbaf63c6628f5266f14a1fd17d9fff9880acf78ab1a48d27400dc9f345b43",
+            "target": [
+                "div_items_1",
+                "link_text_1",
+                1
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[3]/div[2]/div[1]": {
+            "baseline": "88bb23e46d478f422fabcf46245cdadb7514d8b4741940a60dcd08808c1a583f",
+            "target": [
+                "div_items_1",
+                "div_text_1",
+                2
+            ]
+        },
+        "/div/div/div/div[1]/div[2]/div[3]/div[2]/div[2]": {
+            "baseline": "bd03b835bd7b2eebafd09446c6b7bdd0efe35a6d43b38801d736cc25d3b2ef80",
+            "target": [
+                "div_items_1",
+                "div_text_2",
+                2
+            ]
+        },
+        "/div/div/div/div[2]/span": {
+            "baseline": "561221503c17662a5d6ae164a3c73a798bd3cb41d7c25be082ac9916f00c53a6",
+            "target": [
+                "",
+                "badge_pill_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/h2": {
+            "baseline": "221799eec48d9f07bb966f5353ae6b8c383d9dc684136d5350335cf938d150b5",
+            "target": [
+                "",
+                "heading_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/div[1]/label": {
+            "baseline": "f465623c65b2627d6db81f054a566fec030556524bf035a6e04c7ba8c69f46dd",
+            "target": [
+                "",
+                "form_label_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/div[2]/div[1]/label": {
+            "baseline": "18e26fa326109fa27717f1253b51940dd32aad835269b8fcda7615ee3f3cba71",
+            "target": [
+                "",
+                "form_label_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/div[2]/div[2]/label": {
+            "baseline": "611af214ef348fb516975ead94ae589a8a815fdd601ead77d3c853eb9d499864",
+            "target": [
+                "",
+                "form_label_text_3",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/div[3]/label": {
+            "baseline": "4503052fb34cba2743b2cd39e01a45bb37b9135ba11fc168bc495395682d76af",
+            "target": [
+                "",
+                "form_label_text_4",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/div[4]/label": {
+            "baseline": "b2857ecbd6f7050fc92027af5ae316f85409aabe5cbb8d454ff0ba7fb8498dab",
+            "target": [
+                "",
+                "form_label_text_5",
+                -1
+            ]
+        },
+        "/div/div/div/div[2]/form/button/text()[2]": {
+            "baseline": "fcde5d10d45bb04785eb2cb2ec58654f529b7d4c428af5f086ce2cb771362e75",
+            "target": [
+                "",
+                "btn_yellow_text_2",
+                -1
+            ]
+        }
+    },
+    "has_form": true,
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "div",
+            "attrs": {
+                "class": "zc-container",
+                "style": "padding-top:2rem;padding-bottom:3rem;"
+            },
+            "part": "_container_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-hero-grid"
+                    },
+                    "part": "_hero_grid_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-glass-panel",
+                                "style": "padding:2.5rem;"
+                            },
+                            "part": "_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-badge-pill"
+                                    },
+                                    "part": "_badge_pill_1",
+                                    "children": [
+                                        {
+                                            "text": "badge_pill_text_1",
+                                            "part": "_badge_pill_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "badge_pill_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "h1",
+                                    "attrs": {
+                                        "class": "zc-section-title"
+                                    },
+                                    "part": "_section_title_1",
+                                    "children": [
+                                        {
+                                            "text": "section_title_text_1",
+                                            "part": "_section_title_text_1",
+                                            "before": "",
+                                            "after": " ",
+                                            "plain": false
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-highlight"
+                                            },
+                                            "part": "_highlight_1",
+                                            "children": [
+                                                {
+                                                    "text": "highlight_text_1",
+                                                    "part": "_highlight_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "highlight_1_visible"
+                                        },
+                                        {
+                                            "text": "section_title_text_2",
+                                            "part": "_section_title_text_2",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "heading_tag": "section_title_1_tag",
+                                    "visible": "section_title_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "style": "color:var(--zc-text-secondary);line-height:1.95;margin-bottom:1.35rem;"
+                                    },
+                                    "part": "_description_1",
+                                    "rich": "description_1_body",
+                                    "visible": "description_1_visible"
+                                },
+                                {
+                                    "literal": "\n\n                    "
+                                },
+                                {
+                                    "literal": "<!-- Real Executive Consultation Photo -->"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "position:relative;border-radius:1.35rem;overflow:hidden;height:285px;margin-bottom:1.35rem;border:2px solid rgba(253,208,91,0.45);box-shadow:var(--zc-shadow-card);"
+                                    },
+                                    "part": "_div_2",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "img",
+                                            "attrs": {
+                                                "style": "width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;"
+                                            },
+                                            "part": "_image_1",
+                                            "image": "image_1_image",
+                                            "alt": "image_1_alt",
+                                            "size": "image_1_size",
+                                            "visible": "image_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.92) 0%,rgba(15,17,22,0.18) 52%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;padding:1.1rem 1.25rem;flex-wrap:wrap;gap:0.5rem;"
+                                            },
+                                            "part": "_div_3",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": [],
+                                                    "part": "_div_4",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "font-size:0.75rem;color:var(--color-accent);font-weight:800;"
+                                                            },
+                                                            "part": "_div_5",
+                                                            "children": [
+                                                                {
+                                                                    "text": "div_text_1",
+                                                                    "part": "_div_text_1",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "div_5_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "div",
+                                                            "attrs": {
+                                                                "style": "font-size:0.98rem;color:#fff;font-weight:900;"
+                                                            },
+                                                            "part": "_div_6",
+                                                            "children": [
+                                                                {
+                                                                    "text": "div_text_2",
+                                                                    "part": "_div_text_2",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "div_6_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_4_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "class": "zc-btn zc-btn-yellow",
+                                                        "style": "padding:0.4rem 0.9rem;font-size:0.78rem;",
+                                                        "dir": "ltr"
+                                                    },
+                                                    "part": "_btn_yellow_1",
+                                                    "bindings": {
+                                                        "href": "btn_yellow_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "i",
+                                                            "attrs": [],
+                                                            "part": "_icon_1",
+                                                            "icon": "icon_1_icon",
+                                                            "visible": "icon_1_visible"
+                                                        },
+                                                        {
+                                                            "text": "btn_yellow_text_1",
+                                                            "part": "_btn_yellow_text_1",
+                                                            "before": " ",
+                                                            "after": "\n                            ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "btn_yellow_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "div_3_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "display:grid;grid-template-columns:1fr;gap:0.9rem;margin-bottom:0.5rem;"
+                                    },
+                                    "part": "_div_7",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "repeat": "div_items_1"
+                                        }
+                                    ],
+                                    "visible": "div_7_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n\n                "
+                        },
+                        {
+                            "literal": "<!-- Interactive Contact & Order Form -->"
+                        },
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-white-card",
+                                "style": "padding:2.5rem;"
+                            },
+                            "part": "_div_8",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-badge-pill"
+                                    },
+                                    "part": "_badge_pill_2",
+                                    "children": [
+                                        {
+                                            "text": "badge_pill_text_2",
+                                            "part": "_badge_pill_text_2",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "badge_pill_2_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "h2",
+                                    "attrs": {
+                                        "style": "font-size:1.45rem;font-weight:900;margin:0.25rem 0 1.25rem;"
+                                    },
+                                    "part": "_heading_1",
+                                    "children": [
+                                        {
+                                            "text": "heading_text_1",
+                                            "part": "_heading_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "heading_tag": "heading_1_tag",
+                                    "visible": "heading_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "form",
+                                    "attrs": {
+                                        "class": "zc-Ajax-form"
+                                    },
+                                    "part": "_ajax_form_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-form-group"
+                                            },
+                                            "part": "_form_group_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "label",
+                                                    "attrs": {
+                                                        "class": "zc-form-label"
+                                                    },
+                                                    "part": "_form_label_1",
+                                                    "children": [
+                                                        {
+                                                            "text": "form_label_text_1",
+                                                            "part": "_form_label_text_1",
+                                                            "before": "",
+                                                            "after": "",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "form_label_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "input",
+                                                    "attrs": {
+                                                        "type": "text",
+                                                        "class": "zc-form-control",
+                                                        "required": ""
+                                                    },
+                                                    "part": "_form_control_1",
+                                                    "bindings": {
+                                                        "placeholder": "form_control_1_placeholder"
+                                                    },
+                                                    "children": [],
+                                                    "visible": "form_control_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "form_group_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "display:grid;grid-template-columns:1fr 1fr;gap:1rem;"
+                                            },
+                                            "part": "_div_9",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "class": "zc-form-group"
+                                                    },
+                                                    "part": "_form_group_2",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "label",
+                                                            "attrs": {
+                                                                "class": "zc-form-label"
+                                                            },
+                                                            "part": "_form_label_2",
+                                                            "children": [
+                                                                {
+                                                                    "text": "form_label_text_2",
+                                                                    "part": "_form_label_text_2",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "form_label_2_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "input",
+                                                            "attrs": {
+                                                                "type": "tel",
+                                                                "class": "zc-form-control",
+                                                                "required": "",
+                                                                "dir": "ltr"
+                                                            },
+                                                            "part": "_form_control_2",
+                                                            "bindings": {
+                                                                "placeholder": "form_control_2_placeholder"
+                                                            },
+                                                            "children": [],
+                                                            "visible": "form_control_2_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "form_group_2_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "class": "zc-form-group"
+                                                    },
+                                                    "part": "_form_group_3",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "label",
+                                                            "attrs": {
+                                                                "class": "zc-form-label"
+                                                            },
+                                                            "part": "_form_label_3",
+                                                            "children": [
+                                                                {
+                                                                    "text": "form_label_text_3",
+                                                                    "part": "_form_label_text_3",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "form_label_3_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "input",
+                                                            "attrs": {
+                                                                "type": "email",
+                                                                "class": "zc-form-control",
+                                                                "dir": "ltr"
+                                                            },
+                                                            "part": "_form_control_3",
+                                                            "bindings": {
+                                                                "placeholder": "form_control_3_placeholder"
+                                                            },
+                                                            "children": [],
+                                                            "visible": "form_control_3_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "form_group_3_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "div_9_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-form-group"
+                                            },
+                                            "part": "_form_group_4",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "label",
+                                                    "attrs": {
+                                                        "class": "zc-form-label"
+                                                    },
+                                                    "part": "_form_label_4",
+                                                    "children": [
+                                                        {
+                                                            "text": "form_label_text_4",
+                                                            "part": "_form_label_text_4",
+                                                            "before": "",
+                                                            "after": "",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "form_label_4_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "select",
+                                                    "attrs": {
+                                                        "class": "zc-form-control"
+                                                    },
+                                                    "part": "_form_control_4",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "option",
+                                                            "attrs": [],
+                                                            "part": "_option_1",
+                                                            "children": [
+                                                                {
+                                                                    "text": "option_text_1",
+                                                                    "part": "_option_text_1",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": true
+                                                                }
+                                                            ],
+                                                            "visible": "option_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "option",
+                                                            "attrs": [],
+                                                            "part": "_option_2",
+                                                            "children": [
+                                                                {
+                                                                    "text": "option_text_2",
+                                                                    "part": "_option_text_2",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": true
+                                                                }
+                                                            ],
+                                                            "visible": "option_2_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "option",
+                                                            "attrs": [],
+                                                            "part": "_option_3",
+                                                            "children": [
+                                                                {
+                                                                    "text": "option_text_3",
+                                                                    "part": "_option_text_3",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": true
+                                                                }
+                                                            ],
+                                                            "visible": "option_3_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "option",
+                                                            "attrs": [],
+                                                            "part": "_option_4",
+                                                            "children": [
+                                                                {
+                                                                    "text": "option_text_4",
+                                                                    "part": "_option_text_4",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": true
+                                                                }
+                                                            ],
+                                                            "visible": "option_4_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "option",
+                                                            "attrs": [],
+                                                            "part": "_option_5",
+                                                            "children": [
+                                                                {
+                                                                    "text": "option_text_5",
+                                                                    "part": "_option_text_5",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": true
+                                                                }
+                                                            ],
+                                                            "visible": "option_5_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "form_control_4_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "form_group_4_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-form-group"
+                                            },
+                                            "part": "_form_group_5",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "label",
+                                                    "attrs": {
+                                                        "class": "zc-form-label"
+                                                    },
+                                                    "part": "_form_label_5",
+                                                    "children": [
+                                                        {
+                                                            "text": "form_label_text_5",
+                                                            "part": "_form_label_text_5",
+                                                            "before": "",
+                                                            "after": "",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "form_label_5_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "textarea",
+                                                    "attrs": {
+                                                        "class": "zc-form-control",
+                                                        "rows": "4",
+                                                        "required": ""
+                                                    },
+                                                    "part": "_form_control_5",
+                                                    "bindings": {
+                                                        "placeholder": "form_control_5_placeholder"
+                                                    },
+                                                    "children": [],
+                                                    "visible": "form_control_5_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "form_group_5_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-form-feedback",
+                                                "style": "display:none;padding:0.85rem 1rem;border-radius:1rem;background:var(--color-accent);color:var(--color-accent-contrast);font-weight:700;font-size:0.88rem;margin-bottom:1rem;"
+                                            },
+                                            "part": "_form_feedback_1",
+                                            "children": [],
+                                            "visible": "form_feedback_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "button",
+                                            "attrs": {
+                                                "type": "submit",
+                                                "class": "zc-btn zc-btn-yellow",
+                                                "style": "width:100%;"
+                                            },
+                                            "part": "_btn_yellow_2",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "_icon_2",
+                                                    "icon": "icon_2_icon",
+                                                    "visible": "icon_2_visible"
+                                                },
+                                                {
+                                                    "text": "btn_yellow_text_2",
+                                                    "part": "_btn_yellow_text_2",
+                                                    "before": " ",
+                                                    "after": "\n                        ",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "btn_yellow_2_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "ajax_form_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "div_8_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "hero_grid_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "container_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

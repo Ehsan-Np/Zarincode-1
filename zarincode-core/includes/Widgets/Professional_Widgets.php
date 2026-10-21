@@ -43,7 +43,7 @@ abstract class Professional_Widget extends Widget_Base {
     }
     protected function get_init_settings(){return Repeater_Identity::settings(parent::get_init_settings(),$this->get_controls(),$this->get_name().'.'.$this->get_id());}
     protected function control(string $id,string $label,string $type=C::TEXT,$default='',array $extra=[]): void {
-        $this->add_control($id,array_merge(['label'=>$label,'type'=>$type,'default'=>$default],$extra));
+        $this->add_control($id,array_merge(['label'=>$label,'type'=>$type,'default'=>$default,'dynamic'=>['active'=>in_array($type,[C::TEXT,C::TEXTAREA,C::WYSIWYG,C::URL,C::MEDIA],true)]],$extra));
     }
     private function defaults(): array {
         switch($this->type()){
@@ -81,6 +81,7 @@ abstract class Professional_Widget extends Widget_Base {
                 $this->control($key.'_alt','متن جایگزین '.$label,C::TEXT,$label);
                 $this->control($key.'_label','برچسب '.$label,C::TEXT,$label);
             }
+            $this->control('handle_symbol','نماد جداکننده',C::TEXT,'↔');
             $this->control('position','موقعیت اولیه جداکننده',C::NUMBER,50,['min'=>0,'max'=>100]);
             $this->control('range_label','عنوان دسترس‌پذیری اسلایدر',C::TEXT,'مقایسه تصاویر قبل و بعد');
             $this->control('caption','زیرنویس',C::TEXT,'جداکننده را جابه‌جا کنید تا تفاوت دو نسخه را ببینید.');
@@ -89,20 +90,20 @@ abstract class Professional_Widget extends Widget_Base {
         }else{
             $this->start_controls_section('data',['label'=>$type==='service_matrix'?'ردیف‌های جدول':'آیتم‌ها و محتوای اختصاصی']);
             $r=new Repeater();
-            $r->add_control('title',['label'=>$type==='service_matrix'?'ویژگی':'عنوان / نام','type'=>C::TEXT]);
+            $r->add_control('title',['label'=>$type==='service_matrix'?'ویژگی':'عنوان / نام','type'=>C::TEXT,'dynamic'=>['active'=>true]]);
             if($type==='service_matrix'){
-                foreach([1,2,3] as $n)$r->add_control('column_'.$n,['label'=>'مقدار ستون '.$n,'type'=>C::TEXT]);
+                foreach([1,2,3] as $n)$r->add_control('column_'.$n,['label'=>'مقدار ستون '.$n,'type'=>C::TEXT,'dynamic'=>['active'=>true]]);
             }else{
                 $r->add_control('text',['label'=>'توضیحات','type'=>C::WYSIWYG]);
-                foreach(['meta'=>'مرحله / تخصص / زیرعنوان','badge'=>'نشان','button'=>'متن دکمه'] as $key=>$label)$r->add_control($key,['label'=>$label,'type'=>C::TEXT]);
-                $r->add_control('link',['label'=>'پیوند','type'=>C::URL]);
+                foreach(['meta'=>'مرحله / تخصص / زیرعنوان','badge'=>'نشان','button'=>'متن دکمه'] as $key=>$label)$r->add_control($key,['label'=>$label,'type'=>C::TEXT,'dynamic'=>['active'=>true]]);
+                $r->add_control('link',['label'=>'پیوند','type'=>C::URL,'dynamic'=>['active'=>true]]);
                 $r->add_control('icon',['label'=>'آیکون (کتابخانه یا SVG)','type'=>C::ICONS]);
                 if(in_array($type,['service_spotlight','team_experts'],true)){
-                    $r->add_control('image',['label'=>'تصویر','type'=>C::MEDIA]);
-                    $r->add_control('alt',['label'=>'متن جایگزین تصویر','type'=>C::TEXT]);
+                    $r->add_control('image',['label'=>'تصویر','type'=>C::MEDIA,'dynamic'=>['active'=>true]]);
+                    $r->add_control('alt',['label'=>'متن جایگزین تصویر','type'=>C::TEXT,'dynamic'=>['active'=>true]]);
                 }
                 if($type==='service_spotlight')$r->add_control('features',['label'=>'مزایا و ویژگی‌ها','type'=>C::WYSIWYG]);
-                if($type==='team_experts')foreach(['linkedin'=>'LinkedIn','github'=>'GitHub','website'=>'وب‌سایت'] as $social=>$label){$r->add_control($social.'_label',['label'=>'متن '.$label,'type'=>C::TEXT,'default'=>$label]);$r->add_control($social.'_link',['label'=>'پیوند '.$label,'type'=>C::URL]);}
+                if($type==='team_experts')foreach(['linkedin'=>'LinkedIn','github'=>'GitHub','website'=>'وب‌سایت'] as $social=>$label){$r->add_control($social.'_label',['label'=>'متن '.$label,'type'=>C::TEXT,'default'=>$label]);$r->add_control($social.'_link',['label'=>'پیوند '.$label,'type'=>C::URL,'dynamic'=>['active'=>true]]);}
                 if($type==='seo_audit')$r->add_control('value',['label'=>'امتیاز از ۱۰۰','type'=>C::NUMBER,'min'=>0,'max'=>100,'default'=>75]);
             }
             $r->add_control('highlight',['label'=>'آیتم ویژه','type'=>C::SWITCHER]);
@@ -155,6 +156,9 @@ abstract class Professional_Widget extends Widget_Base {
             foreach(['padding'=>'فاصله داخلی','margin'=>'فاصله بیرونی','border-radius'=>'گردی'] as $property=>$label2)$this->add_responsive_control($id.'_'.str_replace('-','_',$property),['label'=>$label2,'type'=>C::DIMENSIONS,'size_units'=>['px','em','%'],'selectors'=>[$target=>$property.':{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};']]);
             $this->end_controls_section();
         }
+        if($type!=='service_matrix'){$this->start_controls_section('media_options',['label'=>'تنظیمات تصاویر']);
+        $this->control('media_size','اندازه پیوست تصاویر',C::SELECT,'full',['options'=>['thumbnail'=>'بندانگشتی','medium'=>'متوسط','large'=>'بزرگ','full'=>'کامل']]);
+        $this->end_controls_section();}
         if($type!=='service_matrix'){
             $this->start_controls_section('sizes',['label'=>'ابعاد تصویر و آیکون','tab'=>C::TAB_STYLE]);
             if(in_array($type,['service_spotlight','team_experts'],true))$this->add_responsive_control('image_height',['label'=>'ارتفاع تصویر','type'=>C::SLIDER,'range'=>['px'=>['min'=>30,'max'=>800]],'selectors'=>['{{WRAPPER}} .zc-pro-image'=>'height:{{SIZE}}{{UNIT}};']]);
@@ -176,11 +180,16 @@ abstract class Professional_Widget extends Widget_Base {
         return '<'.$tag.' '.$this->inline($key,$rich?'advanced':'none').'>'.($rich?wp_kses_post($value):esc_html($value)).'</'.$tag.'>';
     }
     private function icon(array $icon): string {if(empty($icon['value']))return '';ob_start();\Elementor\Icons_Manager::render_icon($icon,['aria-hidden'=>'true']);return '<span class="zc-pro-icon">'.ob_get_clean().'</span>';}
+    private function image(array $image,string $alt,string $class,string $size='full'):string {
+        $attrs=['class'=>$class,'alt'=>$alt,'loading'=>'lazy','decoding'=>'async'];
+        if(!empty($image['id']))return wp_get_attachment_image(absint($image['id']),in_array($size,['thumbnail','medium','large','full'],true)?$size:'full',false,$attrs);
+        return empty($image['url'])?'':'<img class="'.esc_attr($class).'" src="'.esc_url($image['url']).'" alt="'.esc_attr($alt).'" loading="lazy" decoding="async">';
+    }
     private function link(string $text,array $link,string $key): string {
         if($text===''||empty($link['url']))return '';
-        $rel=!empty($link['is_external'])?'noopener noreferrer':'';if(!empty($link['nofollow']))$rel.=' nofollow';
+        $this->remove_render_attribute($key);$this->add_link_attributes($key,$link);
         $this->set_render_attribute($key,'class','zc-pro-button');
-        return '<a href="'.esc_url($link['url']).'"'.(!empty($link['is_external'])?' target="_blank"':'').' rel="'.esc_attr(trim($rel)).'" '.$this->inline($key).'>'.esc_html($text).'</a>';
+        return '<a '.$this->inline($key).'>'.esc_html($text).'</a>';
     }
     protected function render(): void {
         $s=$this->get_settings_for_display();$type=$this->type();$tag=in_array($s['tag']??'h2',['h1','h2','h3','div'],true)?$s['tag']:'h2';
@@ -197,7 +206,7 @@ abstract class Professional_Widget extends Widget_Base {
             foreach($s['records']??[] as $index=>$row){
                 $key='records.'.$index.'.';
                 echo '<article class="zc-pro-card elementor-repeater-item-'.esc_attr($row['_id']).(!empty($row['highlight'])?' is-highlighted':'').'">';
-                if(($s['show_images']??'yes')==='yes'&&!empty($row['image']['url']))echo '<img class="zc-pro-image" src="'.esc_url($row['image']['url']).'" alt="'.esc_attr($row['alt']??'').'" loading="lazy" decoding="async">';
+                if(($s['show_images']??'yes')==='yes'&&!empty($row['image']['url']))echo $this->image($row['image'],$row['alt']??'','zc-pro-image',$s['media_size']??'full');
                 if(($s['show_icons']??'yes')==='yes')echo $this->icon($row['icon']??[]);
                 if(($row['badge']??'')!=='')echo $this->field('div','zc-pro-badge',$row['badge'],$key.'badge');
                 if(($row['meta']??'')!=='')echo $this->field('div','zc-pro-meta',$row['meta'],$key.'meta');
@@ -226,9 +235,9 @@ abstract class Professional_Widget extends Widget_Base {
     private function comparison(array $s): void {
         $position=max(0,min(100,(float)($s['position']??50)));
         echo '<figure class="zc-pro-comparison"><div class="zc-pro-compare" style="--zc-split:'.esc_attr((string)$position).'%">';
-        foreach(['before','after'] as $side){echo '<div class="zc-pro-'.$side.'">';if(!empty($s[$side.'_image']['url']))echo '<img src="'.esc_url($s[$side.'_image']['url']).'" alt="'.esc_attr($s[$side.'_alt']??'').'" loading="lazy" decoding="async">';echo '</div>';}
+        foreach(['before','after'] as $side){echo '<div class="zc-pro-'.$side.'">';if(!empty($s[$side.'_image']['url']))echo $this->image($s[$side.'_image'],$s[$side.'_alt']??'','zc-pro-compare-image',$s['media_size']??'full');echo '</div>';}
         if(($s['show_labels']??'yes')==='yes')foreach(['before','after'] as $side)echo $this->field('span','zc-pro-compare-label zc-pro-label-'.$side,$s[$side.'_label']??'',$side.'_label');
-        echo '<span class="zc-pro-divider" aria-hidden="true"></span><input class="zc-pro-range" type="range" min="0" max="100" value="'.esc_attr((string)$position).'" aria-label="'.esc_attr($s['range_label']??'').'" data-zc-compare></div>';
+        echo '<span class="zc-pro-divider" data-symbol="'.esc_attr($s['handle_symbol']??'↔').'" aria-hidden="true"></span><input class="zc-pro-range" type="range" min="0" max="100" value="'.esc_attr((string)$position).'" aria-label="'.esc_attr($s['range_label']??'').'" data-zc-compare></div>';
         echo $this->field('figcaption','zc-pro-caption',$s['caption']??'','caption');echo '</figure>';
     }
     private function matrix(array $s): void {

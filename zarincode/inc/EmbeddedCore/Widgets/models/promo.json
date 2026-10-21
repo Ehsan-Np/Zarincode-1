@@ -1,0 +1,655 @@
+{
+    "name": "promo",
+    "kind": "promo",
+    "section": "about-page",
+    "fields": {
+        "icon_1_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-gift",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: div"
+        },
+        "icon_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "div_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: div"
+        },
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "ZARINCODE PLUS CAMPAIGN",
+            "label": "متن: ZARINCODE PLUS CAMPAIGN"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN"
+        },
+        "heading_text_1": {
+            "type": "text",
+            "default": "جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین کد پلاس",
+            "label": "متن: جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین ",
+            "purpose": "title"
+        },
+        "heading_1_tag": {
+            "type": "select",
+            "default": "h3",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "heading_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین "
+        },
+        "description_text_1": {
+            "type": "text",
+            "default": "با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا",
+            "label": "متن: با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا"
+        },
+        "strong_text_1": {
+            "type": "text",
+            "default": "۵۰٪ تخفیف ویژه",
+            "label": "متن: ۵۰٪ تخفیف ویژه"
+        },
+        "strong_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ۵۰٪ تخفیف ویژه"
+        },
+        "description_text_2": {
+            "type": "text",
+            "default": "روی پکیج سئو شبکه‌های اجتماعی و تولید محتوا دریافت کنید!",
+            "label": "متن: روی پکیج سئو شبکه‌های اجتماعی و تولید محتوا دریافت کنید!"
+        },
+        "description_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا ۵۰٪ "
+        },
+        "div_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        },
+        "div_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        },
+        "btn_yellow_1_action": {
+            "type": "select",
+            "default": "modal",
+            "label": "عملکرد دکمه",
+            "options": {
+                "url": "پیوند",
+                "modal": "باز کردن پنجره",
+                "drawer": "باز کردن منوی کشویی",
+                "none": "بدون عملکرد"
+            }
+        },
+        "btn_yellow_1_target": {
+            "type": "text",
+            "default": "zc-consult-modal",
+            "label": "شناسه پنجره یا منوی مقصد"
+        },
+        "btn_yellow_1_href": {
+            "type": "url",
+            "default": {
+                "url": ""
+            },
+            "label": "پیوند دکمه"
+        },
+        "icon_2_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-fire",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: دریافت کد تخفیف و مشاوره"
+        },
+        "icon_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "btn_yellow_text_1": {
+            "type": "text",
+            "default": "دریافت کد تخفیف و مشاوره",
+            "label": "متن: دریافت کد تخفیف و مشاوره"
+        },
+        "btn_yellow_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: دریافت کد تخفیف و مشاوره"
+        },
+        "link_1_href": {
+            "type": "url",
+            "default": {
+                "url": "tel:09024561001",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: 09024561001",
+            "purpose": "link"
+        },
+        "icon_3_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-phone",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: 09024561001"
+        },
+        "icon_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "link_text_1": {
+            "type": "text",
+            "default": "09024561001",
+            "label": "متن: 09024561001"
+        },
+        "link_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 09024561001"
+        },
+        "div_5_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: دریافت کد تخفیف و مشاوره 09024561001"
+        },
+        "div_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        },
+        "dark_card_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        },
+        "section_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی"
+        }
+    },
+    "repeaters": [],
+    "parts": {
+        "_section_1": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_container_1": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_dark_card_1": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_div_1": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_div_2": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_div_3": {
+            "label": "بخش: div",
+            "type": "box"
+        },
+        "_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_div_4": {
+            "label": "بخش: ZARINCODE PLUS CAMPAIGN جشنواره ویژه خدمات سئو، تولید محتوا و پکی",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: ZARINCODE PLUS CAMPAIGN",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: ZARINCODE PLUS CAMPAIGN",
+            "type": "text"
+        },
+        "_heading_1": {
+            "label": "جزء: جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین ",
+            "type": "text"
+        },
+        "_heading_text_1": {
+            "label": "متن: جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین ",
+            "type": "text"
+        },
+        "_description_1": {
+            "label": "بخش: با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا ۵۰٪ ",
+            "type": "box"
+        },
+        "_description_text_1": {
+            "label": "متن: با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا",
+            "type": "text"
+        },
+        "_strong_1": {
+            "label": "جزء: ۵۰٪ تخفیف ویژه",
+            "type": "text"
+        },
+        "_strong_text_1": {
+            "label": "متن: ۵۰٪ تخفیف ویژه",
+            "type": "text"
+        },
+        "_description_text_2": {
+            "label": "متن: روی پکیج سئو شبکه‌های اجتماعی و تولید محتوا دریافت کنید!",
+            "type": "text"
+        },
+        "_div_5": {
+            "label": "بخش: دریافت کد تخفیف و مشاوره 09024561001",
+            "type": "box"
+        },
+        "_btn_yellow_1": {
+            "label": "بخش: دریافت کد تخفیف و مشاوره",
+            "type": "box"
+        },
+        "_icon_2": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_btn_yellow_text_1": {
+            "label": "متن: دریافت کد تخفیف و مشاوره",
+            "type": "text"
+        },
+        "_link_1": {
+            "label": "بخش: 09024561001",
+            "type": "box"
+        },
+        "_icon_3": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_link_text_1": {
+            "label": "متن: 09024561001",
+            "type": "text"
+        }
+    },
+    "legacy": {
+        "/div/section/div/div/div/div[1]/div[2]/span": {
+            "baseline": "b6a48c23a9d70da049413e64657f923d35cd8947f1964b026e03f070668469e8",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[1]/div[2]/h3": {
+            "baseline": "200f8c5d38dbf92cc602dfc216e0369282ba98c09e096addd25864e25644d217",
+            "target": [
+                "",
+                "heading_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[1]/div[2]/p/text()[1]": {
+            "baseline": "f110d13e02d35af94679077374d59fd06352cd593d8b5057832674151e458f92",
+            "target": [
+                "",
+                "description_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[1]/div[2]/p/strong/text()": {
+            "baseline": "3f78a94cbe984c6c9b33842fde90994ac1e109de1e4daf929b8a2ce08002c0de",
+            "target": [
+                "",
+                "strong_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[1]/div[2]/p/text()[2]": {
+            "baseline": "379ba97c95c41f87752899e56b6b5762a10d922017f38c91f6fa5f460f9f4828",
+            "target": [
+                "",
+                "description_text_2",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[2]/button/text()[2]": {
+            "baseline": "9d3cd0ca4c4eccbcae408403a4be1507ebfd0c591b2e7099bf7d3a46650c1e96",
+            "target": [
+                "",
+                "btn_yellow_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div/div[2]/a/text()[2]": {
+            "baseline": "314290cf04defdf9d0f01fc6879ef8eedbcc037f778affd1aec6a8ab5fffdf00",
+            "target": [
+                "",
+                "link_text_1",
+                -1
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "section",
+            "attrs": {
+                "style": "padding:1.5rem 0 3.5rem;"
+            },
+            "part": "_section_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-container"
+                    },
+                    "part": "_container_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-dark-card",
+                                "style": "padding:2.75rem;background:linear-gradient(135deg, #2A2C31 0%, #17181C 100%);border:2px solid var(--color-accent);"
+                            },
+                            "part": "_dark_card_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:2;"
+                                    },
+                                    "part": "_div_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;"
+                                            },
+                                            "part": "_div_2",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "style": "width:4.8rem;height:4.8rem;border-radius:1.5rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;font-size:2.2rem;box-shadow:0 12px 30px rgba(253,208,91,0.4);"
+                                                    },
+                                                    "part": "_div_3",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "i",
+                                                            "attrs": [],
+                                                            "part": "_icon_1",
+                                                            "icon": "icon_1_icon",
+                                                            "visible": "icon_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_3_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": [],
+                                                    "part": "_div_4",
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "span",
+                                                            "attrs": {
+                                                                "class": "zc-badge-pill",
+                                                                "style": "margin-bottom:0.4rem;"
+                                                            },
+                                                            "part": "_badge_pill_1",
+                                                            "children": [
+                                                                {
+                                                                    "text": "badge_pill_text_1",
+                                                                    "part": "_badge_pill_text_1",
+                                                                    "before": "",
+                                                                    "after": "",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "badge_pill_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "h3",
+                                                            "attrs": {
+                                                                "style": "font-size:clamp(1.35rem,2.4vw,2rem);font-weight:900;margin:0 0 0.35rem;color:#FFFFFF;"
+                                                            },
+                                                            "part": "_heading_1",
+                                                            "children": [
+                                                                {
+                                                                    "text": "heading_text_1",
+                                                                    "part": "_heading_text_1",
+                                                                    "before": "\n                                    ",
+                                                                    "after": "\n                                ",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "heading_tag": "heading_1_tag",
+                                                            "visible": "heading_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "p",
+                                                            "attrs": {
+                                                                "style": "margin:0;color:#D1D5DB;font-size:0.95rem;"
+                                                            },
+                                                            "part": "_description_1",
+                                                            "children": [
+                                                                {
+                                                                    "text": "description_text_1",
+                                                                    "part": "_description_text_1",
+                                                                    "before": "\n                                    ",
+                                                                    "after": " ",
+                                                                    "plain": false
+                                                                },
+                                                                {
+                                                                    "tag": "strong",
+                                                                    "attrs": {
+                                                                        "style": "color:var(--color-accent);"
+                                                                    },
+                                                                    "part": "_strong_1",
+                                                                    "children": [
+                                                                        {
+                                                                            "text": "strong_text_1",
+                                                                            "part": "_strong_text_1",
+                                                                            "before": "",
+                                                                            "after": "",
+                                                                            "plain": false
+                                                                        }
+                                                                    ],
+                                                                    "visible": "strong_1_visible"
+                                                                },
+                                                                {
+                                                                    "text": "description_text_2",
+                                                                    "part": "_description_text_2",
+                                                                    "before": " ",
+                                                                    "after": "\n                                ",
+                                                                    "plain": false
+                                                                }
+                                                            ],
+                                                            "visible": "description_1_visible"
+                                                        },
+                                                        {
+                                                            "literal": "\n                            "
+                                                        }
+                                                    ],
+                                                    "visible": "div_4_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "div_2_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "display:flex;gap:0.85rem;flex-wrap:wrap;"
+                                            },
+                                            "part": "_div_5",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "button",
+                                                    "attrs": {
+                                                        "type": "button",
+                                                        "class": "zc-btn zc-btn-yellow"
+                                                    },
+                                                    "part": "_btn_yellow_1",
+                                                    "action": "btn_yellow_1_action",
+                                                    "action_target": "btn_yellow_1_target",
+                                                    "bindings": {
+                                                        "href": "btn_yellow_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "i",
+                                                            "attrs": [],
+                                                            "part": "_icon_2",
+                                                            "icon": "icon_2_icon",
+                                                            "visible": "icon_2_visible"
+                                                        },
+                                                        {
+                                                            "text": "btn_yellow_text_1",
+                                                            "part": "_btn_yellow_text_1",
+                                                            "before": " ",
+                                                            "after": "\n                            ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "btn_yellow_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                            "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "class": "zc-btn",
+                                                        "style": "background:rgba(255,255,255,0.1);color:#fff;"
+                                                    },
+                                                    "part": "_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "literal": "\n                                "
+                                                        },
+                                                        {
+                                                            "tag": "i",
+                                                            "attrs": [],
+                                                            "part": "_icon_3",
+                                                            "icon": "icon_3_icon",
+                                                            "visible": "icon_3_visible"
+                                                        },
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "_link_text_1",
+                                                            "before": " ",
+                                                            "after": "\n                            ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                        "
+                                                }
+                                            ],
+                                            "visible": "div_5_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "div_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "dark_card_1_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "container_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "section_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

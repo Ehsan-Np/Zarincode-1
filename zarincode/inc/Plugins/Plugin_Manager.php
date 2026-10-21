@@ -47,7 +47,7 @@ class Plugin_Manager {
                 'file'        => 'zarincode-core/zarincode-core.php',
                 'required'    => true,
                 'badge'       => 'اجباری • هسته قالب',
-                'version'     => '2.7.0',
+                'version'     => '3.0.0',
                 'source_type' => 'هسته داخلی قالب + مخزن گیت‌هاب Zarincode-1',
                 'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/packages/zarincode-core.zip',
                 'description' => 'افزونه هسته قالب شامل ۲۰ ویجت با امکانات ویرایش محتوا المنتور (Crextio + Webinex)، پست‌تایپ‌های خدمات و پروژه‌ها، هدر و فوترساز و درون‌ریز هوشمند دمو.',

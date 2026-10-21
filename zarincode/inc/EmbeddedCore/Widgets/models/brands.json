@@ -1,0 +1,870 @@
+{
+    "name": "brands",
+    "kind": "brands",
+    "section": "about-page",
+    "fields": {
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "PARTNERS & TECHNOLOGIES",
+            "label": "متن: PARTNERS & TECHNOLOGIES"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PARTNERS & TECHNOLOGIES"
+        },
+        "heading_text_1": {
+            "type": "text",
+            "default": "برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!",
+            "label": "متن: برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!",
+            "purpose": "title"
+        },
+        "heading_1_tag": {
+            "type": "select",
+            "default": "h2",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "heading_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!"
+        },
+        "div_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم"
+        },
+        "marquee_track_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: WordPress & Elementor PHP 8.4 & Laravel React & Next.js Node.js &"
+        },
+        "marquee_track_wrap_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم"
+        },
+        "marquee_section_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم"
+        }
+    },
+    "repeaters": {
+        "marquee_track_items_1": {
+            "label": "آیتم‌ها: WordPress & Elementor",
+            "fields": {
+                "icon_1_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-shield-alt",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: ThemeForest & Zhaket Standard",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "span_text_1": {
+                    "type": "text",
+                    "default": "ThemeForest & Zhaket Standard",
+                    "label": "متن: ThemeForest & Zhaket Standard",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "span_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ThemeForest & Zhaket Standard",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "partner_pill_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ThemeForest & Zhaket Standard",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "83090bc9",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-wordpress",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "WordPress & Elementor",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "b445f2e5",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-php",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "PHP 8.4 & Laravel",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "529df379",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-react",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "React & Next.js",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "1aeaa96a",
+                    "_variant": "v4",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-node-js",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "Node.js & Microservices",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "0c01f011",
+                    "_variant": "v5",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-google",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "Google Technical SEO",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "df052846",
+                    "_variant": "v6",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fab fa-instagram",
+                        "library": "fa-brands"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "Social Media SEO",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "fe62ead4",
+                    "_variant": "v7",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-cart-shopping",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "WooCommerce Pro",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                },
+                {
+                    "_id": "128e389b",
+                    "_variant": "v8",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-shield-alt",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "ThemeForest & Zhaket Standard",
+                    "span_1_visible": "yes",
+                    "partner_pill_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v2": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v3": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v4": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v5": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v6": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v7": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                },
+                "v8": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-partner-pill"
+                    },
+                    "part": "marquee_track_items_1_partner_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "i",
+                            "attrs": {
+                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                            },
+                            "part": "marquee_track_items_1_icon_1",
+                            "icon": "icon_1_icon",
+                            "visible": "icon_1_visible"
+                        },
+                        {
+                            "literal": "\n                                "
+                        },
+                        {
+                            "tag": "span",
+                            "attrs": [],
+                            "part": "marquee_track_items_1_span_1",
+                            "children": [
+                                {
+                                    "text": "span_text_1",
+                                    "part": "marquee_track_items_1_span_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "span_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        }
+                    ],
+                    "visible": "partner_pill_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_marquee_section_1": {
+            "label": "بخش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم",
+            "type": "box"
+        },
+        "_container_1": {
+            "label": "بخش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم",
+            "type": "box"
+        },
+        "_marquee_track_wrap_1": {
+            "label": "بخش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم",
+            "type": "box"
+        },
+        "_div_1": {
+            "label": "بخش: PARTNERS & TECHNOLOGIES برندها و تکنولوژی‌هایی که به زرین کد اعتم",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: PARTNERS & TECHNOLOGIES",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: PARTNERS & TECHNOLOGIES",
+            "type": "text"
+        },
+        "_heading_1": {
+            "label": "جزء: برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!",
+            "type": "text"
+        },
+        "_heading_text_1": {
+            "label": "متن: برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!",
+            "type": "text"
+        },
+        "_marquee_track_1": {
+            "label": "بخش: WordPress & Elementor PHP 8.4 & Laravel React & Next.js Node.js &",
+            "type": "box"
+        },
+        "marquee_track_items_1_partner_pill_1": {
+            "label": "بخش: ThemeForest & Zhaket Standard",
+            "type": "box"
+        },
+        "marquee_track_items_1_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "marquee_track_items_1_span_1": {
+            "label": "جزء: ThemeForest & Zhaket Standard",
+            "type": "text"
+        },
+        "marquee_track_items_1_span_text_1": {
+            "label": "متن: ThemeForest & Zhaket Standard",
+            "type": "text"
+        }
+    },
+    "legacy": {
+        "/div/section/div/div/div[1]/span": {
+            "baseline": "d22468b44b8f2ae5663b30dd8c0258490a30e9843ea272045616be0c062e3ae9",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div[1]/h2": {
+            "baseline": "6818f9df9e14aa755eb40561fa9061c475fd0dcf345abb778c1c0ee1a2d9caaf",
+            "target": [
+                "",
+                "heading_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div/div[2]/div[1]/span/text()": {
+            "baseline": "e298bca78ab9675b80dea40ea10c9e49f615696825b240662de0e987114f2f75",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                0
+            ]
+        },
+        "/div/section/div/div/div[2]/div[2]/span/text()": {
+            "baseline": "0ba6fc73ca900d4efa00f69ef2c470792c193775d27e927211b79e1a422e8fd1",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                1
+            ]
+        },
+        "/div/section/div/div/div[2]/div[3]/span/text()": {
+            "baseline": "e227aed2dfc8df658d71f6ce046a48d11725375c119465c1bddb013039f9e955",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                2
+            ]
+        },
+        "/div/section/div/div/div[2]/div[4]/span/text()": {
+            "baseline": "9219c8e00ab4951b29d698b27c76394f9859872e5a854bc2aa5a62a7bf5954ee",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                3
+            ]
+        },
+        "/div/section/div/div/div[2]/div[5]/span/text()": {
+            "baseline": "ffa0980b07bda26c29c1a581aa07cb99b38814da246198bc0e247904a898009f",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                4
+            ]
+        },
+        "/div/section/div/div/div[2]/div[6]/span/text()": {
+            "baseline": "d9f2e8b1ad529a2cad30b38ef6a3a15f16c8019a176d9e90dda717617f1d50b8",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                5
+            ]
+        },
+        "/div/section/div/div/div[2]/div[7]/span/text()": {
+            "baseline": "35fec52bffb5994ce42d526599601752da8489c57c3c691f4c4fd4460188282e",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                6
+            ]
+        },
+        "/div/section/div/div/div[2]/div[8]/span/text()": {
+            "baseline": "61312f50dadeea47181a952898a58bd73c49333a00ffbc7d62eac770484d2222",
+            "target": [
+                "marquee_track_items_1",
+                "span_text_1",
+                7
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "section",
+            "attrs": {
+                "class": "zc-marquee-section"
+            },
+            "part": "_marquee_section_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-container"
+                    },
+                    "part": "_container_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-glass-panel zc-marquee-track-wrap"
+                            },
+                            "part": "_marquee_track_wrap_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "text-align:center;margin-bottom:1rem;"
+                                    },
+                                    "part": "_div_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-badge-pill",
+                                                "style": "margin-bottom:0.35rem;"
+                                            },
+                                            "part": "_badge_pill_1",
+                                            "children": [
+                                                {
+                                                    "text": "badge_pill_text_1",
+                                                    "part": "_badge_pill_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "badge_pill_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "h2",
+                                            "attrs": {
+                                                "style": "font-size:1.25rem;font-weight:800;margin:0;"
+                                            },
+                                            "part": "_heading_1",
+                                            "children": [
+                                                {
+                                                    "text": "heading_text_1",
+                                                    "part": "_heading_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "div_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-marquee-track"
+                                    },
+                                    "part": "_marquee_track_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                                    "
+                                        },
+                                        {
+                                            "repeat": "marquee_track_items_1"
+                                        }
+                                    ],
+                                    "visible": "marquee_track_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "marquee_track_wrap_1_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "container_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "marquee_section_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

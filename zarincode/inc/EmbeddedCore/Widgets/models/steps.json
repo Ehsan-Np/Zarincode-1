@@ -1,0 +1,852 @@
+{
+    "name": "steps",
+    "kind": "steps",
+    "section": "about-page",
+    "fields": {
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "PROJECT STEPS",
+            "label": "متن: PROJECT STEPS"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PROJECT STEPS"
+        },
+        "section_title_text_1": {
+            "type": "text",
+            "default": "مراحل انجام پروژه در",
+            "label": "متن: مراحل انجام پروژه در",
+            "purpose": "title"
+        },
+        "highlight_text_1": {
+            "type": "text",
+            "default": "زرین کد",
+            "label": "متن: زرین کد",
+            "purpose": "title"
+        },
+        "highlight_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد"
+        },
+        "section_title_1_tag": {
+            "type": "select",
+            "default": "h2",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "section_title_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: مراحل انجام پروژه در زرین کد"
+        },
+        "section_desc_1_body": {
+            "type": "wysiwyg",
+            "default": "مسیر شفاف، مهندسی‌شده و بدون ریسک از ایده تا تحویل نهایی و پشتیبانی مستمر",
+            "label": "توضیحات: مسیر شفاف، مهندسی‌شده و بدون ریسک از ایده تا تحویل نهایی و پشتیبا",
+            "purpose": "description"
+        },
+        "section_desc_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: مسیر شفاف، مهندسی‌شده و بدون ریسک از ایده تا تحویل نهایی و پشتیبا"
+        },
+        "section_head_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده "
+        },
+        "steps_grid_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: ۰۱ مشاوره رایگان و نیازسنجی دقیق بررسی دقیق اهداف کسب‌وکار شما تو"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده "
+        },
+        "section_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده "
+        }
+    },
+    "repeaters": {
+        "steps_grid_items_1": {
+            "label": "آیتم‌ها: ۰۱ مشاوره رایگان و نیازسنجی دقیق بررسی دقیق اهداف کسب‌وکار شما تو",
+            "fields": {
+                "step_number_text_1": {
+                    "type": "text",
+                    "default": "۰۴",
+                    "label": "متن: ۰۴",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "step_number_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ۰۴",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_text_1": {
+                    "type": "text",
+                    "default": "تحویل نهایی، آموزش و گارانتی",
+                    "label": "متن: تحویل نهایی، آموزش و گارانتی",
+                    "purpose": "title",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_1_tag": {
+                    "type": "select",
+                    "default": "h3",
+                    "label": "تگ عنوان",
+                    "options": {
+                        "h1": "H1",
+                        "h2": "H2",
+                        "h3": "H3",
+                        "h4": "H4",
+                        "h5": "H5",
+                        "h6": "H6",
+                        "div": "DIV"
+                    },
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "heading_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: تحویل نهایی، آموزش و گارانتی",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "description_1_body": {
+                    "type": "wysiwyg",
+                    "default": "ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ۱ سال گارانتی و پشتیبانی فنی رایگان.",
+                    "label": "توضیحات: ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ",
+                    "purpose": "description",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "description_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                },
+                "step_card_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ۰۴ تحویل نهایی، آموزش و گارانتی ارائه کامل فایل‌ها و دسترسی‌ها، آ",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "45fa2df6",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "step_number_text_1": "۰۱",
+                    "step_number_1_visible": "yes",
+                    "heading_text_1": "مشاوره رایگان و نیازسنجی دقیق",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "بررسی دقیق اهداف کسب‌وکار شما توسط احسان نادری پناه، آنالیز رقبا و ارائه بهترین راهکار فنی و سئو.",
+                    "description_1_visible": "yes",
+                    "step_card_1_visible": "yes"
+                },
+                {
+                    "_id": "9ba479c9",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "step_number_text_1": "۰۲",
+                    "step_number_1_visible": "yes",
+                    "heading_text_1": "برنامه‌ریزی و عقد قرارداد شفاف",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "تدوین معماری پروژه، زمان‌بندی دقیق، تعیین تعرفه شفاف و عقد قرارداد رسمی همراه با ضمانت بازگشت وجه.",
+                    "description_1_visible": "yes",
+                    "step_card_1_visible": "yes"
+                },
+                {
+                    "_id": "c4f28883",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "step_number_text_1": "۰۳",
+                    "step_number_1_visible": "yes",
+                    "heading_text_1": "طراحی UI/UX، کدنویسی و اجرا",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "طراحی اختصاصی با متد Crextio، کدنویسی استاندارد PHP/JS، بهینه‌سازی سرعت و اجرای سئو تکنیکال و محتوایی.",
+                    "description_1_visible": "yes",
+                    "step_card_1_visible": "yes"
+                },
+                {
+                    "_id": "7e6d6df8",
+                    "_variant": "v4",
+                    "_enabled": "yes",
+                    "step_number_text_1": "۰۴",
+                    "step_number_1_visible": "yes",
+                    "heading_text_1": "تحویل نهایی، آموزش و گارانتی",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ۱ سال گارانتی و پشتیبانی فنی رایگان.",
+                    "description_1_visible": "yes",
+                    "step_card_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-glass-panel zc-step-card"
+                    },
+                    "part": "steps_grid_items_1_step_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-step-number"
+                            },
+                            "part": "steps_grid_items_1_step_number_1",
+                            "children": [
+                                {
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "step_card_1_visible"
+                },
+                "v2": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-glass-panel zc-step-card"
+                    },
+                    "part": "steps_grid_items_1_step_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-step-number"
+                            },
+                            "part": "steps_grid_items_1_step_number_1",
+                            "children": [
+                                {
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "step_card_1_visible"
+                },
+                "v3": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-glass-panel zc-step-card"
+                    },
+                    "part": "steps_grid_items_1_step_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-step-number"
+                            },
+                            "part": "steps_grid_items_1_step_number_1",
+                            "children": [
+                                {
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "step_card_1_visible"
+                },
+                "v4": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-glass-panel zc-step-card"
+                    },
+                    "part": "steps_grid_items_1_step_card_1",
+                    "children": [
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-step-number"
+                            },
+                            "part": "steps_grid_items_1_step_number_1",
+                            "children": [
+                                {
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        }
+                    ],
+                    "visible": "step_card_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_section_1": {
+            "label": "بخش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده ",
+            "type": "box"
+        },
+        "_container_1": {
+            "label": "بخش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده ",
+            "type": "box"
+        },
+        "_section_head_1": {
+            "label": "بخش: PROJECT STEPS مراحل انجام پروژه در زرین کد مسیر شفاف، مهندسی‌شده ",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: PROJECT STEPS",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: PROJECT STEPS",
+            "type": "text"
+        },
+        "_section_title_1": {
+            "label": "بخش: مراحل انجام پروژه در زرین کد",
+            "type": "box"
+        },
+        "_section_title_text_1": {
+            "label": "متن: مراحل انجام پروژه در",
+            "type": "text"
+        },
+        "_highlight_1": {
+            "label": "جزء: زرین کد",
+            "type": "text"
+        },
+        "_highlight_text_1": {
+            "label": "متن: زرین کد",
+            "type": "text"
+        },
+        "_section_desc_1": {
+            "label": "جزء: مسیر شفاف، مهندسی‌شده و بدون ریسک از ایده تا تحویل نهایی و پشتیبا",
+            "type": "text"
+        },
+        "_steps_grid_1": {
+            "label": "بخش: ۰۱ مشاوره رایگان و نیازسنجی دقیق بررسی دقیق اهداف کسب‌وکار شما تو",
+            "type": "box"
+        },
+        "steps_grid_items_1_step_card_1": {
+            "label": "بخش: ۰۴ تحویل نهایی، آموزش و گارانتی ارائه کامل فایل‌ها و دسترسی‌ها، آ",
+            "type": "box"
+        },
+        "steps_grid_items_1_step_number_1": {
+            "label": "جزء: ۰۴",
+            "type": "text"
+        },
+        "steps_grid_items_1_step_number_text_1": {
+            "label": "متن: ۰۴",
+            "type": "text"
+        },
+        "steps_grid_items_1_heading_1": {
+            "label": "جزء: تحویل نهایی، آموزش و گارانتی",
+            "type": "text"
+        },
+        "steps_grid_items_1_heading_text_1": {
+            "label": "متن: تحویل نهایی، آموزش و گارانتی",
+            "type": "text"
+        },
+        "steps_grid_items_1_description_1": {
+            "label": "جزء: ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ",
+            "type": "text"
+        }
+    },
+    "legacy": {
+        "/div/section/div/div[1]/span": {
+            "baseline": "e46f068ec440fa1461c93f68f8fff03386a9e9ea26e6223174893fd756ee5a6a",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div[1]/h2/text()": {
+            "baseline": "d88cf95346dc0b7c2c60519deb9a49607a410ddbd6b1551dfcc2167dac0803e9",
+            "target": [
+                "",
+                "section_title_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div[1]/h2/span/text()": {
+            "baseline": "02749544fdc47de4d5a8968f6736303b695c2e99d249969a097b1342923c5fad",
+            "target": [
+                "",
+                "highlight_text_1",
+                -1
+            ]
+        },
+        "/div/section/div/div[1]/p": {
+            "baseline": "357ba69b1580f5488b8e7eaa2c4b50d18a512d94dcd4086af7f6f54454e5c413",
+            "target": [
+                "",
+                "section_desc_1_body",
+                -1
+            ]
+        },
+        "/div/section/div/div[2]/div[1]/div": {
+            "baseline": "0f460bd0015ace97197c618997514a64be88746c15d7a2ed3e98f6d74375be8d",
+            "target": [
+                "steps_grid_items_1",
+                "step_number_text_1",
+                0
+            ]
+        },
+        "/div/section/div/div[2]/div[1]/h3": {
+            "baseline": "8d5e7a1cd1272faeaa085ab9aa93610ba54835e2b2065a45baa21d67067e3f08",
+            "target": [
+                "steps_grid_items_1",
+                "heading_text_1",
+                0
+            ]
+        },
+        "/div/section/div/div[2]/div[1]/p": {
+            "baseline": "69da33a9a88931560b27ecebec3d2d67e15fb0a5d41ba07bf8ddf7a957c4570e",
+            "target": [
+                "steps_grid_items_1",
+                "description_1_body",
+                0
+            ]
+        },
+        "/div/section/div/div[2]/div[2]/div": {
+            "baseline": "955cddeea854d38f595e199a3480d5f5fc703af5208b86edf7f7d346d0efb73d",
+            "target": [
+                "steps_grid_items_1",
+                "step_number_text_1",
+                1
+            ]
+        },
+        "/div/section/div/div[2]/div[2]/h3": {
+            "baseline": "e2a73a639f6c35e5a5cf89ce6d5b34895d4b4e2bd69a04214588d646d4e1a15f",
+            "target": [
+                "steps_grid_items_1",
+                "heading_text_1",
+                1
+            ]
+        },
+        "/div/section/div/div[2]/div[2]/p": {
+            "baseline": "e3d6287b5364df6c5047e4cca87bafba3f7f28f218761bcb356db38200ea35cc",
+            "target": [
+                "steps_grid_items_1",
+                "description_1_body",
+                1
+            ]
+        },
+        "/div/section/div/div[2]/div[3]/div": {
+            "baseline": "9566c178606e7da055074e1be016c1394fb773554c740de25abaee2d371ff7f3",
+            "target": [
+                "steps_grid_items_1",
+                "step_number_text_1",
+                2
+            ]
+        },
+        "/div/section/div/div[2]/div[3]/h3": {
+            "baseline": "e930295a6d7b870e7916b30b1ea64a1c5e9ef30043eb97d0cd4cb4c2c90fb879",
+            "target": [
+                "steps_grid_items_1",
+                "heading_text_1",
+                2
+            ]
+        },
+        "/div/section/div/div[2]/div[3]/p": {
+            "baseline": "6f178c7e99272b5aa005d74b57bd52a585af09ae486f6e3cf3c653c8ef88a1ca",
+            "target": [
+                "steps_grid_items_1",
+                "description_1_body",
+                2
+            ]
+        },
+        "/div/section/div/div[2]/div[4]/div": {
+            "baseline": "7fe4c4c4c49d6b3ca10f60c9f962cd16e4ef5dc2c81b6b0420463c12398a30a3",
+            "target": [
+                "steps_grid_items_1",
+                "step_number_text_1",
+                3
+            ]
+        },
+        "/div/section/div/div[2]/div[4]/h3": {
+            "baseline": "e3a782fa9ddc9c626603f7005f13818929c03ce40b81015ceaca6adc02715263",
+            "target": [
+                "steps_grid_items_1",
+                "heading_text_1",
+                3
+            ]
+        },
+        "/div/section/div/div[2]/div[4]/p": {
+            "baseline": "7680c8d84a5b342ea842908f6251ed905c929e08bff844e7d2ec08b04731ad57",
+            "target": [
+                "steps_grid_items_1",
+                "description_1_body",
+                3
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "section",
+            "attrs": {
+                "style": "padding:3rem 0 4rem;"
+            },
+            "part": "_section_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-container"
+                    },
+                    "part": "_container_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-section-head text-center"
+                            },
+                            "part": "_section_head_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-badge-pill"
+                                    },
+                                    "part": "_badge_pill_1",
+                                    "children": [
+                                        {
+                                            "text": "badge_pill_text_1",
+                                            "part": "_badge_pill_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "badge_pill_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "h2",
+                                    "attrs": {
+                                        "class": "zc-section-title"
+                                    },
+                                    "part": "_section_title_1",
+                                    "children": [
+                                        {
+                                            "text": "section_title_text_1",
+                                            "part": "_section_title_text_1",
+                                            "before": "",
+                                            "after": " ",
+                                            "plain": false
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-highlight"
+                                            },
+                                            "part": "_highlight_1",
+                                            "children": [
+                                                {
+                                                    "text": "highlight_text_1",
+                                                    "part": "_highlight_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "highlight_1_visible"
+                                        }
+                                    ],
+                                    "heading_tag": "section_title_1_tag",
+                                    "visible": "section_title_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-section-desc"
+                                    },
+                                    "part": "_section_desc_1",
+                                    "rich": "section_desc_1_body",
+                                    "visible": "section_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "section_head_1_visible"
+                        },
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-steps-grid"
+                            },
+                            "part": "_steps_grid_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                            "
+                                },
+                                {
+                                    "repeat": "steps_grid_items_1"
+                                }
+                            ],
+                            "visible": "steps_grid_1_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "container_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "section_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

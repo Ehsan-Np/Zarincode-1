@@ -26,7 +26,7 @@ class Elementor_Loader {
     }
 
     private function __construct() {
-        add_action( 'admin_notices', [ $this, 'required_extensions_notice' ] );
+
         add_action( 'admin_init', [ $this, 'refresh_generated_css' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ], 5 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_assets' ] );
@@ -35,16 +35,11 @@ class Elementor_Loader {
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
     }
 
-    public function required_extensions_notice(): void {
-        if(class_exists('DOMDocument') || !current_user_can('manage_options'))return;
-        echo '<div class="notice notice-warning"><p>'.esc_html__('برای ویرایش مستقیم و دقیق متن‌های طراحی اصلی زرین کد، افزونه DOM در PHP هاست را فعال کنید. تا آن زمان نمایش سایت و کنترل‌های قبلی حفظ می‌شوند.', 'zarincode-core').'</p></div>';
-    }
-
     public function refresh_generated_css(): void {
-        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='2.7.0') return;
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.0.0') return;
         if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
-            update_option('zarincode_css_identity_release','2.7.0',false);
+            update_option('zarincode_css_identity_release','3.0.0',false);
         }
     }
 
@@ -52,10 +47,12 @@ class Elementor_Loader {
         $base = strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( get_template_directory() ) . '/' ) === 0
             ? get_template_directory_uri() . '/inc/EmbeddedCore/Widgets/assets/'
             : plugin_dir_url( __FILE__ ) . 'assets/';
-        wp_register_style('zarincode-professional',$base.'professional.css',[],'2.7.0');
-        wp_register_script('zarincode-professional',$base.'professional.js',[],'2.7.0',true);
-        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '2.7.0' );
-        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', [], '2.7.0', true );
+        wp_register_style('zarincode-native',$base.'native.css',[],'3.0.0');
+        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.0.0',true);
+        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.0.0');
+        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.0.0',true);
+        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.0.0' );
+        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.0.0', true );
     }
 
     public function register_category( $elements_manager ): void {

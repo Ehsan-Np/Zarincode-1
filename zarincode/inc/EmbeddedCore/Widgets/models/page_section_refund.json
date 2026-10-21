@@ -1,0 +1,2004 @@
+{
+    "name": "page_section_refund",
+    "kind": "page_section",
+    "section": "refund",
+    "fields": {
+        "badge_pill_text_1": {
+            "type": "text",
+            "default": "LEGAL CENTER",
+            "label": "متن: LEGAL CENTER"
+        },
+        "badge_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: LEGAL CENTER"
+        },
+        "heading_text_1": {
+            "type": "text",
+            "default": "مرکز قوانین و اسناد حقوقی زرین کد",
+            "label": "متن: مرکز قوانین و اسناد حقوقی زرین کد",
+            "purpose": "title"
+        },
+        "heading_1_tag": {
+            "type": "select",
+            "default": "h4",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "heading_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: مرکز قوانین و اسناد حقوقی زرین کد"
+        },
+        "div_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد"
+        },
+        "legal_nav_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: قوانین و شرایط + قوانین ایران شرایط گارانتی و پشتیبانی سیاست حفظ "
+        },
+        "div_text_1": {
+            "type": "text",
+            "default": "واحد حقوقی و پشتیبانی قراردادها",
+            "label": "متن: واحد حقوقی و پشتیبانی قراردادها"
+        },
+        "div_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: واحد حقوقی و پشتیبانی قراردادها"
+        },
+        "div_text_2": {
+            "type": "text",
+            "default": "احسان نادری پناه",
+            "label": "متن: احسان نادری پناه"
+        },
+        "div_3_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: احسان نادری پناه"
+        },
+        "div_text_3": {
+            "type": "text",
+            "default": "شماره تماس مستقیم:",
+            "label": "متن: شماره تماس مستقیم:"
+        },
+        "strong_text_1": {
+            "type": "text",
+            "default": "09024561001",
+            "label": "متن: 09024561001"
+        },
+        "strong_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 09024561001"
+        },
+        "div_4_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شماره تماس مستقیم: 09024561001"
+        },
+        "btn_yellow_1_href": {
+            "type": "url",
+            "default": {
+                "url": "tel:09024561001",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: تماس با واحد حقوقی",
+            "purpose": "link"
+        },
+        "btn_yellow_text_1": {
+            "type": "text",
+            "default": "تماس با واحد حقوقی",
+            "label": "متن: تماس با واحد حقوقی"
+        },
+        "btn_yellow_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: تماس با واحد حقوقی"
+        },
+        "dark_card_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: واحد حقوقی و پشتیبانی قراردادها احسان نادری پناه شماره تماس مستقی"
+        },
+        "legal_sidebar_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق"
+        },
+        "icon_1_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-undo",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: 100% MONEY-BACK GUARANTEE"
+        },
+        "icon_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "badge_pill_text_2": {
+            "type": "text",
+            "default": "100% MONEY-BACK GUARANTEE",
+            "label": "متن: 100% MONEY-BACK GUARANTEE"
+        },
+        "badge_pill_2_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 100% MONEY-BACK GUARANTEE"
+        },
+        "section_title_text_1": {
+            "type": "text",
+            "default": "شرایط و ضوابط ضمانت بازگشت وجه در زرین کد",
+            "label": "متن: شرایط و ضوابط ضمانت بازگشت وجه در زرین کد",
+            "purpose": "title"
+        },
+        "section_title_1_tag": {
+            "type": "select",
+            "default": "h1",
+            "label": "تگ عنوان",
+            "options": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4",
+                "h5": "H5",
+                "h6": "H6",
+                "div": "DIV"
+            }
+        },
+        "section_title_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: شرایط و ضوابط ضمانت بازگشت وجه در زرین کد"
+        },
+        "description_1_body": {
+            "type": "wysiwyg",
+            "default": "\n                        برای حذف هرگونه ریسک از مسیر همکاری شما با <strong>زرین کد (احسان نادری پناه - 09024561001)</strong>، شرایط بازگشت وجه برای هر دو بخش «خدمات پروژه‌ای» و «فروشگاه محصولات آماده» به صورت کاملاً شفاف تدوین شده است.\n                    ",
+            "label": "توضیحات: برای حذف هرگونه ریسک از مسیر همکاری شما با زرین کد (احسان نادری پ",
+            "purpose": "description"
+        },
+        "description_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: برای حذف هرگونه ریسک از مسیر همکاری شما با زرین کد (احسان نادری پ"
+        },
+        "legal_content_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: 100% MONEY-BACK GUARANTEE شرایط و ضوابط ضمانت بازگشت وجه در زرین "
+        },
+        "legal_layout_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق"
+        }
+    },
+    "repeaters": {
+        "legal_nav_items_1": {
+            "label": "آیتم‌ها: قوانین و شرایط + قوانین ایران",
+            "fields": {
+                "link_1_href": {
+                    "type": "url",
+                    "default": {
+                        "url": "{{HOME}}/dmca-policy/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "label": "پیوند: DMCA Policy (English)",
+                    "purpose": "link",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "icon_1_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-copyright",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "span_text_1": {
+                    "type": "text",
+                    "default": "DMCA Policy (English)",
+                    "label": "متن: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "span_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "icon_2_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "icon_2_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "link_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                },
+                "list_item_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: DMCA Policy (English)",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "8f3aee23",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/terms-and-conditions/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-balance-scale",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "قوانین و شرایط + قوانین ایران",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "72e0347b",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/warranty-policy/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-shield-alt",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "شرایط گارانتی و پشتیبانی",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "1d63e435",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/privacy-policy/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-user-shield",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "سیاست حفظ حریم خصوصی",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "5c96ced2",
+                    "_variant": "v4",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/refund-policy/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-undo",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "شرایط ضمانت بازگشت وجه",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "617eaf31",
+                    "_variant": "v5",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/gdpr-compliance/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-globe-europe",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "قوانین حفاظت داده (GDPR)",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "99ce077c",
+                    "_variant": "v6",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/dmca-policy/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "icon_1_icon": {
+                        "value": "fas fa-copyright",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "span_text_1": "DMCA Policy (English)",
+                    "span_1_visible": "yes",
+                    "icon_2_icon": {
+                        "value": "fas fa-angle-left",
+                        "library": "fa-solid"
+                    },
+                    "icon_2_visible": "yes",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": ""
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v2": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": ""
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v3": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": ""
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v4": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": "is-active"
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v5": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": ""
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v6": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "legal_nav_items_1_list_item_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": ""
+                            },
+                            "part": "legal_nav_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": [],
+                                    "part": "legal_nav_items_1_span_1",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": {
+                                                "style": "margin-left:0.45rem;"
+                                            },
+                                            "part": "legal_nav_items_1_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "span_text_1",
+                                            "part": "legal_nav_items_1_span_text_1",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "span_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "i",
+                                    "attrs": {
+                                        "style": "font-size:0.75rem;"
+                                    },
+                                    "part": "legal_nav_items_1_icon_2",
+                                    "icon": "icon_2_icon",
+                                    "visible": "icon_2_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                }
+            }
+        },
+        "legal_content_items_1": {
+            "label": "آیتم‌ها: ۱. ضمانت بازگشت وجه در خدمات طراحی سایت، نرم‌افزار و سئو در صورتی",
+            "fields": {
+                "icon_1_icon": {
+                    "type": "icons",
+                    "default": {
+                        "value": "fas fa-exchange-alt",
+                        "library": "fa-solid"
+                    },
+                    "label": "آیکون: ۳. نحوه ثبت درخواست و زمان واریز",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "icon_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: icon",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "heading_text_1": {
+                    "type": "text",
+                    "default": "۳. نحوه ثبت درخواست و زمان واریز",
+                    "label": "متن: ۳. نحوه ثبت درخواست و زمان واریز",
+                    "purpose": "title",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "heading_1_tag": {
+                    "type": "select",
+                    "default": "h3",
+                    "label": "تگ عنوان",
+                    "options": {
+                        "h1": "H1",
+                        "h2": "H2",
+                        "h3": "H3",
+                        "h4": "H4",
+                        "h5": "H5",
+                        "h6": "H6",
+                        "div": "DIV"
+                    },
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "heading_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ۳. نحوه ثبت درخواست و زمان واریز",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "list_item_text_1": {
+                    "type": "text",
+                    "default": "در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳ مرحله بازبینی رایگان مطابق با نیازمندی‌های مکتوب قرارداد نباشد، کارفرما حق فسخ قرارداد و دریافت ۱۰۰٪ پیش‌پرداخت واریزی را دارد.",
+                    "label": "متن: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "list_item_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "list_item_text_2": {
+                    "type": "text",
+                    "default": "در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پروژه (خارج از موارد فورس‌ماژور یا تاخیر کارفرما)، کارفرما می‌تواند درخواست استرداد کامل وجه نماید.",
+                    "label": "متن: در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پرو",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "list_item_2_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پرو",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "list_item_text_3": {
+                    "type": "text",
+                    "default": "در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (KPI) توافق‌شده در پایان دوره قرارداد، وجه مطابق مفاد قرارداد به کارفرما مسترد می‌گردد.",
+                    "label": "متن: در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "list_item_3_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "ul_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+                    "variants": [
+                        "v1"
+                    ]
+                },
+                "legal_clause_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: ۳. نحوه ثبت درخواست و زمان واریز جهت ثبت درخواست بازگشت وجه کافیس",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "description_1_body": {
+                    "type": "wysiwyg",
+                    "default": "جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستقیم با شماره <strong>09024561001</strong> درخواست خود را به همراه شماره شبا اعلام فرمایید. مبالغ تاییدشده ظرف حداکثر ۲۴ الی ۷۲ ساعت کاری از طریق حواله پایا/ساتنا به حساب بانکی کارفرما واریز می‌گردد.",
+                    "label": "توضیحات: جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستق",
+                    "purpose": "description",
+                    "variants": [
+                        "v2",
+                        "v3"
+                    ]
+                },
+                "description_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستق",
+                    "variants": [
+                        "v2",
+                        "v3"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "46e7602b",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-laptop-code",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "heading_text_1": "۱. ضمانت بازگشت وجه در خدمات طراحی سایت، نرم‌افزار و سئو",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "list_item_text_1": "در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳ مرحله بازبینی رایگان مطابق با نیازمندی‌های مکتوب قرارداد نباشد، کارفرما حق فسخ قرارداد و دریافت ۱۰۰٪ پیش‌پرداخت واریزی را دارد.",
+                    "list_item_1_visible": "yes",
+                    "list_item_text_2": "در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پروژه (خارج از موارد فورس‌ماژور یا تاخیر کارفرما)، کارفرما می‌تواند درخواست استرداد کامل وجه نماید.",
+                    "list_item_2_visible": "yes",
+                    "list_item_text_3": "در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (KPI) توافق‌شده در پایان دوره قرارداد، وجه مطابق مفاد قرارداد به کارفرما مسترد می‌گردد.",
+                    "list_item_3_visible": "yes",
+                    "ul_1_visible": "yes",
+                    "legal_clause_1_visible": "yes"
+                },
+                {
+                    "_id": "7d308352",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-box-open",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "heading_text_1": "۲. شرایط بازگشت وجه در خرید قالب، افزونه و سورس‌کد آماده",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "با توجه به ماهیت فایل‌های دیجیتال و سورس‌کد باز، در صورتی که محصول خریداری‌شده دارای نقص فنی اساسی یا مغایرت با امکانات اعلام‌شده در صفحه دمو باشد و تیم پشتیبانی فنی زرین کد (احسان نادری پناه) ظرف حداکثر ۴۸ ساعت کاری قادر به رفع مشکل نباشد، ۱۰۰٪ مبلغ پرداختی بدون کسر هیچ‌گونه کارمزدی به حساب خریدار عودت داده می‌شود.",
+                    "description_1_visible": "yes",
+                    "legal_clause_1_visible": "yes"
+                },
+                {
+                    "_id": "7301147e",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "icon_1_icon": {
+                        "value": "fas fa-exchange-alt",
+                        "library": "fa-solid"
+                    },
+                    "icon_1_visible": "yes",
+                    "heading_text_1": "۳. نحوه ثبت درخواست و زمان واریز",
+                    "heading_1_tag": "h3",
+                    "heading_1_visible": "yes",
+                    "description_1_body": "جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستقیم با شماره <strong>09024561001</strong> درخواست خود را به همراه شماره شبا اعلام فرمایید. مبالغ تاییدشده ظرف حداکثر ۲۴ الی ۷۲ ساعت کاری از طریق حواله پایا/ساتنا به حساب بانکی کارفرما واریز می‌گردد.",
+                    "description_1_visible": "yes",
+                    "legal_clause_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-legal-clause"
+                    },
+                    "part": "legal_content_items_1_legal_clause_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": [],
+                            "part": "legal_content_items_1_heading_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                },
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "legal_content_items_1_heading_text_1",
+                                    "before": " ",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "ul",
+                            "attrs": [],
+                            "part": "legal_content_items_1_ul_1",
+                            "children": [
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "li",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_list_item_1",
+                                    "children": [
+                                        {
+                                            "text": "list_item_text_1",
+                                            "part": "legal_content_items_1_list_item_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "list_item_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "li",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_list_item_2",
+                                    "children": [
+                                        {
+                                            "text": "list_item_text_2",
+                                            "part": "legal_content_items_1_list_item_text_2",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "list_item_2_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
+                                },
+                                {
+                                    "tag": "li",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_list_item_3",
+                                    "children": [
+                                        {
+                                            "text": "list_item_text_3",
+                                            "part": "legal_content_items_1_list_item_text_3",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "list_item_3_visible"
+                                },
+                                {
+                                    "literal": "\n                        "
+                                }
+                            ],
+                            "visible": "ul_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "legal_clause_1_visible"
+                },
+                "v2": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-legal-clause"
+                    },
+                    "part": "legal_content_items_1_legal_clause_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": [],
+                            "part": "legal_content_items_1_heading_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                },
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "legal_content_items_1_heading_text_1",
+                                    "before": " ",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": [],
+                            "part": "legal_content_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "legal_clause_1_visible"
+                },
+                "v3": {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-legal-clause"
+                    },
+                    "part": "legal_content_items_1_legal_clause_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": [],
+                            "part": "legal_content_items_1_heading_1",
+                            "children": [
+                                {
+                                    "tag": "i",
+                                    "attrs": [],
+                                    "part": "legal_content_items_1_icon_1",
+                                    "icon": "icon_1_icon",
+                                    "visible": "icon_1_visible"
+                                },
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "legal_content_items_1_heading_text_1",
+                                    "before": " ",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": [],
+                            "part": "legal_content_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                    "
+                        }
+                    ],
+                    "visible": "legal_clause_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_container_1": {
+            "label": "بخش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق",
+            "type": "box"
+        },
+        "_legal_layout_1": {
+            "label": "بخش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق",
+            "type": "box"
+        },
+        "_legal_sidebar_1": {
+            "label": "بخش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد قوانین و شرایط + ق",
+            "type": "box"
+        },
+        "_div_1": {
+            "label": "بخش: LEGAL CENTER مرکز قوانین و اسناد حقوقی زرین کد",
+            "type": "box"
+        },
+        "_badge_pill_1": {
+            "label": "جزء: LEGAL CENTER",
+            "type": "text"
+        },
+        "_badge_pill_text_1": {
+            "label": "متن: LEGAL CENTER",
+            "type": "text"
+        },
+        "_heading_1": {
+            "label": "جزء: مرکز قوانین و اسناد حقوقی زرین کد",
+            "type": "text"
+        },
+        "_heading_text_1": {
+            "label": "متن: مرکز قوانین و اسناد حقوقی زرین کد",
+            "type": "text"
+        },
+        "_legal_nav_1": {
+            "label": "بخش: قوانین و شرایط + قوانین ایران شرایط گارانتی و پشتیبانی سیاست حفظ ",
+            "type": "box"
+        },
+        "legal_nav_items_1_list_item_1": {
+            "label": "بخش: DMCA Policy (English)",
+            "type": "box"
+        },
+        "legal_nav_items_1_link_1": {
+            "label": "بخش: DMCA Policy (English)",
+            "type": "box"
+        },
+        "legal_nav_items_1_span_1": {
+            "label": "بخش: DMCA Policy (English)",
+            "type": "box"
+        },
+        "legal_nav_items_1_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "legal_nav_items_1_span_text_1": {
+            "label": "متن: DMCA Policy (English)",
+            "type": "text"
+        },
+        "legal_nav_items_1_icon_2": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_dark_card_1": {
+            "label": "بخش: واحد حقوقی و پشتیبانی قراردادها احسان نادری پناه شماره تماس مستقی",
+            "type": "box"
+        },
+        "_div_2": {
+            "label": "جزء: واحد حقوقی و پشتیبانی قراردادها",
+            "type": "text"
+        },
+        "_div_text_1": {
+            "label": "متن: واحد حقوقی و پشتیبانی قراردادها",
+            "type": "text"
+        },
+        "_div_3": {
+            "label": "جزء: احسان نادری پناه",
+            "type": "text"
+        },
+        "_div_text_2": {
+            "label": "متن: احسان نادری پناه",
+            "type": "text"
+        },
+        "_div_4": {
+            "label": "بخش: شماره تماس مستقیم: 09024561001",
+            "type": "box"
+        },
+        "_div_text_3": {
+            "label": "متن: شماره تماس مستقیم:",
+            "type": "text"
+        },
+        "_strong_1": {
+            "label": "جزء: 09024561001",
+            "type": "text"
+        },
+        "_strong_text_1": {
+            "label": "متن: 09024561001",
+            "type": "text"
+        },
+        "_btn_yellow_1": {
+            "label": "جزء: تماس با واحد حقوقی",
+            "type": "text"
+        },
+        "_btn_yellow_text_1": {
+            "label": "متن: تماس با واحد حقوقی",
+            "type": "text"
+        },
+        "_legal_content_1": {
+            "label": "بخش: 100% MONEY-BACK GUARANTEE شرایط و ضوابط ضمانت بازگشت وجه در زرین ",
+            "type": "box"
+        },
+        "_badge_pill_2": {
+            "label": "بخش: 100% MONEY-BACK GUARANTEE",
+            "type": "box"
+        },
+        "_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "_badge_pill_text_2": {
+            "label": "متن: 100% MONEY-BACK GUARANTEE",
+            "type": "text"
+        },
+        "_section_title_1": {
+            "label": "جزء: شرایط و ضوابط ضمانت بازگشت وجه در زرین کد",
+            "type": "text"
+        },
+        "_section_title_text_1": {
+            "label": "متن: شرایط و ضوابط ضمانت بازگشت وجه در زرین کد",
+            "type": "text"
+        },
+        "_description_1": {
+            "label": "بخش: برای حذف هرگونه ریسک از مسیر همکاری شما با زرین کد (احسان نادری پ",
+            "type": "box"
+        },
+        "legal_content_items_1_legal_clause_1": {
+            "label": "بخش: ۳. نحوه ثبت درخواست و زمان واریز جهت ثبت درخواست بازگشت وجه کافیس",
+            "type": "box"
+        },
+        "legal_content_items_1_heading_1": {
+            "label": "بخش: ۳. نحوه ثبت درخواست و زمان واریز",
+            "type": "box"
+        },
+        "legal_content_items_1_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        },
+        "legal_content_items_1_heading_text_1": {
+            "label": "متن: ۳. نحوه ثبت درخواست و زمان واریز",
+            "type": "text"
+        },
+        "legal_content_items_1_ul_1": {
+            "label": "بخش: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+            "type": "box"
+        },
+        "legal_content_items_1_list_item_1": {
+            "label": "جزء: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+            "type": "text"
+        },
+        "legal_content_items_1_list_item_text_1": {
+            "label": "متن: در صورتی که طرح اولیه UI/UX یا معماری نرم‌افزار ارائه شده پس از ۳",
+            "type": "text"
+        },
+        "legal_content_items_1_list_item_2": {
+            "label": "جزء: در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پرو",
+            "type": "text"
+        },
+        "legal_content_items_1_list_item_text_2": {
+            "label": "متن: در صورت تاخیر غیرموجه بیش از ۱۵ روز کاری از سوی مجری در تحویل پرو",
+            "type": "text"
+        },
+        "legal_content_items_1_list_item_3": {
+            "label": "جزء: در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (",
+            "type": "text"
+        },
+        "legal_content_items_1_list_item_text_3": {
+            "label": "متن: در پروژه‌های سئو تضمینی، در صورت عدم تحقق شاخص‌های کلیدی عملکرد (",
+            "type": "text"
+        },
+        "legal_content_items_1_description_1": {
+            "label": "بخش: جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستق",
+            "type": "box"
+        }
+    },
+    "legacy": {
+        "/div/div/div/aside/div[1]/span": {
+            "baseline": "18e61e3852a94f1b1357d98c0fe1bcb099c752fdeeaf7e192d47005ba2e6d25f",
+            "target": [
+                "",
+                "badge_pill_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/aside/div[1]/h4": {
+            "baseline": "420f6baca33eb57f8cf615796c46cc7356fce92cc0667735a965aeb87d4f6431",
+            "target": [
+                "",
+                "heading_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/aside/ul/li[1]/a/span/text()": {
+            "baseline": "2be1a5d7d3e2236fe7c614c8b188eb0434009d633733e10651599bc12ce8fcc9",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                0
+            ]
+        },
+        "/div/div/div/aside/ul/li[2]/a/span/text()": {
+            "baseline": "cafb1c42da1ae6501cd818137dba8bb509cf888601a116a12ac135dc6615ca85",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                1
+            ]
+        },
+        "/div/div/div/aside/ul/li[3]/a/span/text()": {
+            "baseline": "af28428df1b4a0364d0d05e150bd1ad7f1d39f3de90370aca2fa996551489b37",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                2
+            ]
+        },
+        "/div/div/div/aside/ul/li[4]/a/span/text()": {
+            "baseline": "554c65d730b583b176855ce03448928fc41154fa2e0e5a0b17722165e1d87e0f",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                3
+            ]
+        },
+        "/div/div/div/aside/ul/li[5]/a/span/text()": {
+            "baseline": "67df488db4cd18d3e32dc1e3cfb5b8f999a7b166d130a755bbe74e1357018e46",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                4
+            ]
+        },
+        "/div/div/div/aside/ul/li[6]/a/span/text()": {
+            "baseline": "b755c2290d0126c996e96e0df3b836f769738c8e585872a2d827e869c9f5a61d",
+            "target": [
+                "legal_nav_items_1",
+                "span_text_1",
+                5
+            ]
+        },
+        "/div/div/div/aside/div[2]/div[1]": {
+            "baseline": "c18aeee2e311a4805e4296bc44947d4cc56f3ced34fabaa72acd9cddf05fcc9f",
+            "target": [
+                "",
+                "div_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/aside/div[2]/div[2]": {
+            "baseline": "cdcde3a2d45506be0031d40d7d257fd84b275c88ced637c633d16f450d719ac4",
+            "target": [
+                "",
+                "div_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/aside/div[2]/div[3]/text()": {
+            "baseline": "2f15affa2b4ffed1869ced1393f4b181f436bc50cc5e4e042e1ea8d5c0ec7eef",
+            "target": [
+                "",
+                "div_text_3",
+                -1
+            ]
+        },
+        "/div/div/div/aside/div[2]/div[3]/strong/text()": {
+            "baseline": "ae7dbaf63c6628f5266f14a1fd17d9fff9880acf78ab1a48d27400dc9f345b43",
+            "target": [
+                "",
+                "strong_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/aside/div[2]/a": {
+            "baseline": "eea03aac7c83e76be6bf098cfded9cedfc82a87e2f7055ac420d869626a61c0b",
+            "target": [
+                "",
+                "btn_yellow_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/span/text()": {
+            "baseline": "ffe0e774f1d962a9e808e761a2b63e0f4b7e44e53f3268e9f19758589ab0bff4",
+            "target": [
+                "",
+                "badge_pill_text_2",
+                -1
+            ]
+        },
+        "/div/div/div/div/h1": {
+            "baseline": "29bce8e3c8f052560042e9526cdfa95284b6aebc095aabe0a02265e4fa68f18d",
+            "target": [
+                "",
+                "section_title_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/div/div[1]/h3/text()": {
+            "baseline": "af509f3f35e5f6a4f081d59ab8e900dabe62538bf309316db05fda2c711f9952",
+            "target": [
+                "legal_content_items_1",
+                "heading_text_1",
+                0
+            ]
+        },
+        "/div/div/div/div/div[1]/ul/li[1]": {
+            "baseline": "7c57ebdbf1970916502dd162a05a95a9919ce245126a8d112a0899289409b002",
+            "target": [
+                "legal_content_items_1",
+                "list_item_text_1",
+                0
+            ]
+        },
+        "/div/div/div/div/div[1]/ul/li[2]": {
+            "baseline": "c5fc3ccc7b5f6679867b6ab94ae1604de509821959dcea0780ca3562640598c2",
+            "target": [
+                "legal_content_items_1",
+                "list_item_text_2",
+                0
+            ]
+        },
+        "/div/div/div/div/div[1]/ul/li[3]": {
+            "baseline": "26e851b236a332c75e9b7e6af8010465d2e5e0ff5bd59a7c0f022962e1e98a82",
+            "target": [
+                "legal_content_items_1",
+                "list_item_text_3",
+                0
+            ]
+        },
+        "/div/div/div/div/div[2]/h3/text()": {
+            "baseline": "e8e89c327443c10dbbdc79a05fb85e04a0c1dffe7c6fa5e463bcc2b9b89bfe11",
+            "target": [
+                "legal_content_items_1",
+                "heading_text_1",
+                1
+            ]
+        },
+        "/div/div/div/div/div[2]/p": {
+            "baseline": "0f1852ac5806f8143b6a617fb6397288a7cdbb44ca0757db143f61d1a7e40e5c",
+            "target": [
+                "legal_content_items_1",
+                "description_1_body",
+                1
+            ]
+        },
+        "/div/div/div/div/div[3]/h3/text()": {
+            "baseline": "3eee9356eb15014d1cc2d1de8718907189ba5489d6ce0a46360f105adf581088",
+            "target": [
+                "legal_content_items_1",
+                "heading_text_1",
+                2
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "div",
+            "attrs": {
+                "class": "zc-container"
+            },
+            "part": "_container_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-legal-layout"
+                    },
+                    "part": "_legal_layout_1",
+                    "children": [
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "aside",
+                            "attrs": {
+                                "class": "zc-glass-panel zc-legal-sidebar"
+                            },
+                            "part": "_legal_sidebar_1",
+                            "children": [
+                                {
+                                    "literal": "\n            "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "style": "padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid var(--zc-border-subtle);"
+                                    },
+                                    "part": "_div_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-badge-pill",
+                                                "style": "margin-bottom:0.35rem;"
+                                            },
+                                            "part": "_badge_pill_1",
+                                            "children": [
+                                                {
+                                                    "text": "badge_pill_text_1",
+                                                    "part": "_badge_pill_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "badge_pill_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "h4",
+                                            "attrs": {
+                                                "style": "margin:0;font-size:1.05rem;font-weight:900;"
+                                            },
+                                            "part": "_heading_1",
+                                            "children": [
+                                                {
+                                                    "text": "heading_text_1",
+                                                    "part": "_heading_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n            "
+                                        }
+                                    ],
+                                    "visible": "div_1_visible"
+                                },
+                                {
+                                    "literal": "\n            "
+                                },
+                                {
+                                    "tag": "ul",
+                                    "attrs": {
+                                        "class": "zc-legal-nav"
+                                    },
+                                    "part": "_legal_nav_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "repeat": "legal_nav_items_1"
+                                        }
+                                    ],
+                                    "visible": "legal_nav_1_visible"
+                                },
+                                {
+                                    "literal": "\n            "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-dark-card",
+                                        "style": "padding:1.25rem;margin-top:1.25rem;"
+                                    },
+                                    "part": "_dark_card_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "font-size:0.78rem;color:var(--color-accent);font-weight:700;margin-bottom:0.35rem;"
+                                            },
+                                            "part": "_div_2",
+                                            "children": [
+                                                {
+                                                    "text": "div_text_1",
+                                                    "part": "_div_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "div_2_visible"
+                                        },
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "font-size:0.9rem;font-weight:800;color:#fff;margin-bottom:0.25rem;"
+                                            },
+                                            "part": "_div_3",
+                                            "children": [
+                                                {
+                                                    "text": "div_text_2",
+                                                    "part": "_div_text_2",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "div_3_visible"
+                                        },
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "style": "font-size:0.82rem;color:#D1D5DB;margin-bottom:0.75rem;"
+                                            },
+                                            "part": "_div_4",
+                                            "children": [
+                                                {
+                                                    "text": "div_text_3",
+                                                    "part": "_div_text_3",
+                                                    "before": "",
+                                                    "after": " ",
+                                                    "plain": false
+                                                },
+                                                {
+                                                    "tag": "strong",
+                                                    "attrs": {
+                                                        "dir": "ltr",
+                                                        "style": "color:var(--color-accent);"
+                                                    },
+                                                    "part": "_strong_1",
+                                                    "children": [
+                                                        {
+                                                            "text": "strong_text_1",
+                                                            "part": "_strong_text_1",
+                                                            "before": "",
+                                                            "after": "",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "strong_1_visible"
+                                                }
+                                            ],
+                                            "visible": "div_4_visible"
+                                        },
+                                        {
+                                            "literal": "\n                "
+                                        },
+                                        {
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-btn zc-btn-yellow",
+                                                "style": "width:100%;padding:0.5rem;font-size:0.82rem;"
+                                            },
+                                            "part": "_btn_yellow_1",
+                                            "bindings": {
+                                                "href": "btn_yellow_1_href"
+                                            },
+                                            "children": [
+                                                {
+                                                    "text": "btn_yellow_text_1",
+                                                    "part": "_btn_yellow_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "btn_yellow_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n            "
+                                        }
+                                    ],
+                                    "visible": "dark_card_1_visible"
+                                },
+                                {
+                                    "literal": "\n        "
+                                }
+                            ],
+                            "visible": "legal_sidebar_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-glass-panel zc-legal-content"
+                            },
+                            "part": "_legal_content_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-badge-pill"
+                                    },
+                                    "part": "_badge_pill_2",
+                                    "children": [
+                                        {
+                                            "tag": "i",
+                                            "attrs": [],
+                                            "part": "_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "text": "badge_pill_text_2",
+                                            "part": "_badge_pill_text_2",
+                                            "before": " ",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "badge_pill_2_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "h1",
+                                    "attrs": {
+                                        "class": "zc-section-title"
+                                    },
+                                    "part": "_section_title_1",
+                                    "children": [
+                                        {
+                                            "text": "section_title_text_1",
+                                            "part": "_section_title_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "heading_tag": "section_title_1_tag",
+                                    "visible": "section_title_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "style": "color:var(--zc-text-secondary);margin-bottom:2rem;"
+                                    },
+                                    "part": "_description_1",
+                                    "rich": "description_1_body",
+                                    "visible": "description_1_visible"
+                                },
+                                {
+                                    "literal": "\n\n                    "
+                                },
+                                {
+                                    "repeat": "legal_content_items_1"
+                                }
+                            ],
+                            "visible": "legal_content_1_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "legal_layout_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "container_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

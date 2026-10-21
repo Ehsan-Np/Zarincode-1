@@ -15,14 +15,15 @@ require_once __DIR__.'/Repeater_Identity.php';
 require_once __DIR__.'/Original_Design.php';
 require_once __DIR__.'/Original_Pages.php';
 require_once __DIR__.'/Inline_Editing.php';
+require_once __DIR__.'/Native_Design.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
     abstract protected function kind(): string;
     public function get_name(): string { return 'zarincode_'.$this->kind(); }
     public function get_title(): string { return Widget_Schema::definitions()[$this->kind()][1]; }
     public function get_icon(): string { return Widget_Schema::definitions()[$this->kind()][2]; }
-    public function get_style_depends(): array { return ['zarincode-editable-widgets']; }
-    public function get_script_depends(): array { return ['zarincode-editable-widgets']; }
+    public function get_style_depends(): array { return ['zarincode-editable-widgets','zarincode-native']; }
+    public function get_script_depends(): array { return ['zarincode-editable-widgets','zarincode-native']; }
     public function get_categories(): array { return ['zarincode-elements']; }
     public function get_keywords(): array { return ['zarincode','زرین کد','bento']; }
     /** Normalize defaults before Elementor builds style_fields for {{CURRENT_ITEM}}. */
@@ -34,15 +35,22 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     }
     /** Also cover saved/imported rows from 2.6.0, before CSS generation (not just render). */
     protected function get_init_settings() {
-        return Repeater_Identity::settings(parent::get_init_settings(),$this->get_controls(),$this->get_name().'.'.$this->get_id());
+        $settings=parent::get_init_settings();
+        $settings=Native_Design::migrate($settings,$this->get_data('settings')?:[],$this->kind());
+        return Repeater_Identity::settings($settings,$this->get_controls(),$this->get_name().'.'.$this->get_id());
+    }
+    public function get_raw_data($with_html_content=false) {
+        $data=parent::get_raw_data($with_html_content);
+        $data['settings']=Native_Design::migrate($data['settings'],$data['settings'],$this->kind());
+        return $data;
     }
     public function inline_attributes(string $key,string $toolbar='none'): array {
         $this->remove_render_attribute($key);
         $this->add_inline_editing_attributes($key,$toolbar);
-        return $this->get_render_attributes($key);
+        return $this->get_render_attributes($key)??[];
     }
     public function start_controls_section($id,array $args=[]) {
-        if($id!=='main_content' && strpos($id,'original_text_')!==0) $args['condition']=array_merge($args['condition']??[],['design_mode'=>'custom']);
+        if($id!=='main_content' && strpos($id,'original_text_')!==0 && strpos($id,'n_')!==0) $args['condition']=array_merge($args['condition']??[],['design_mode'=>'custom']);
         parent::start_controls_section($id,$args);
     }
     private function field($id,$label,$type=C::TEXT,$default='',$extra=[]): void {
@@ -51,7 +59,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     protected function register_controls(): void {
         $kind=$this->kind();
         $this->start_controls_section('main_content',['label'=>'محتوا و هویت بخش']);
-        $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'طراحی اصلی بدون تغییر نمایش داده می‌شود. برای استفاده از موتور کارت‌ها و استایل‌های جدید، چیدمان سفارشی را انتخاب کنید.']);
+        $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'همان طرح اصلی از کنترل‌های مستقل ساخته می‌شود. متن، آیکون، تصویر، پیوند، آیتم‌ها و استایل اجزا در بخش‌های طراحی اصلی قابل ویرایش‌اند؛ طرح سفارشی قدیمی نیز حفظ شده است.']);
         if ($kind==='page_section') {
             $this->field('page_cards_source','منبع کارت‌های صفحه',C::SELECT,'auto',['options'=>['auto'=>'خودکار مطابق نوع صفحه','manual'=>'کارت‌های دستی زیر']]);
             $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
@@ -217,22 +225,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->field('image_fit','نحوه قرارگیری تصویر',C::SELECT,'cover',['options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن','fill'=>'کشیده','none'=>'اصلی'],'selectors'=>['{{WRAPPER}} .zc-edit-image'=>'object-fit: {{VALUE}};']]);
         $this->add_responsive_control('icon_size',['label'=>'اندازه آیکون','type'=>C::SLIDER,'range'=>['px'=>['min'=>8,'max'=>200]],'selectors'=>['{{WRAPPER}} .zc-edit-icon'=>'font-size: {{SIZE}}{{UNIT}};','{{WRAPPER}} .zc-edit-icon svg'=>'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};']]);
         $this->end_controls_section();
-        $this->original_controls();
-    }
-    private function original_controls(): void {
-        $r=new Repeater();
-        $r->add_control('path',['type'=>C::HIDDEN]);
-        $r->add_control('baseline',['type'=>C::HIDDEN]);
-        $r->add_control('label',['type'=>C::HIDDEN]);
-        $r->add_control('text',['label'=>'متن (ویرایش مستقیم با کلیک در پیش‌نمایش نیز فعال است)','type'=>C::WYSIWYG]);
-        $sections=$this->kind()==='page_section'?Widget_Schema::sections():['default'=>'متن‌های طراحی اصلی'];
-        foreach($sections as $key=>$label){
-            $control=$key==='default'?'original_texts':'original_texts_'.str_replace('-','_',$key);
-            $condition=['design_mode'=>'original'];if($key!=='default')$condition['section_key']=$key;
-            $this->start_controls_section('original_text_'.$key,['label'=>$label.' — ویرایش متن','condition'=>$condition]);
-            $this->add_control($control,['label'=>'متن‌ها، عنوان‌ها، نشان‌ها و دکمه‌ها','type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>Inline_Editing::original_defaults($this->kind(),$key==='default'?'about-page':$key),'title_field'=>'{{{ label }}}','item_actions'=>['add'=>false,'remove'=>false,'duplicate'=>false,'sort'=>false],'prevent_empty'=>false]);
-            $this->end_controls_section();
-        }
+        Native_Design::register($this,$kind);
     }
     protected function render(): void {
         $settings=$this->get_settings_for_display();
@@ -240,10 +233,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
             $settings['__kind']=$this->kind();
             echo Inline_Editing::custom(Editable_Renderer::render($this->kind(),$settings,$this->get_id()),$settings,$this);
         } else {
-            // Pass explicit saved content only: new generic defaults must not replace original demo copy.
-            $html=Renderer::original($this->kind(),$this->get_data('settings')?:[]);
-            $key=$this->kind()==='page_section'?'original_texts_'.str_replace('-','_',$settings['section_key']??'about-page'):'original_texts';
-            echo Inline_Editing::original($html,$settings,$this,$key);
+            echo Native_Design::render($this,$settings,$this->kind());
         }
     }
 }

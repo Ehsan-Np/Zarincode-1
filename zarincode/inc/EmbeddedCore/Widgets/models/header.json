@@ -1,0 +1,890 @@
+{
+    "name": "header",
+    "kind": "header",
+    "section": "about-page",
+    "fields": {
+        "brand_1_href": {
+            "type": "url",
+            "default": {
+                "url": "{{HOME}}/",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: Z زرین کد Zarincode",
+            "purpose": "link"
+        },
+        "brand_logo_box_text_1": {
+            "type": "text",
+            "default": "Z",
+            "label": "متن: Z"
+        },
+        "brand_logo_box_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Z"
+        },
+        "brand_name_text_1": {
+            "type": "text",
+            "default": "زرین کد",
+            "label": "متن: زرین کد"
+        },
+        "brand_name_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد"
+        },
+        "brand_sub_text_1": {
+            "type": "text",
+            "default": "Zarincode",
+            "label": "متن: Zarincode"
+        },
+        "brand_sub_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Zarincode"
+        },
+        "brand_text_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: زرین کد Zarincode"
+        },
+        "brand_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Z زرین کد Zarincode"
+        },
+        "nav_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کارها قوانین و گارانتی د"
+        },
+        "btn_yellow_1_href": {
+            "type": "url",
+            "default": {
+                "url": "tel:09024561001",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+            },
+            "label": "پیوند: درخواست مشاوره",
+            "purpose": "link"
+        },
+        "btn_yellow_text_1": {
+            "type": "text",
+            "default": "درخواست مشاوره",
+            "label": "متن: درخواست مشاوره"
+        },
+        "btn_yellow_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: درخواست مشاوره"
+        },
+        "icon_btn_1_aria_label": {
+            "type": "text",
+            "default": "باز کردن منوی موبایل",
+            "label": "aria-label: icon_btn"
+        },
+        "icon_btn_1_action": {
+            "type": "select",
+            "default": "drawer",
+            "label": "عملکرد دکمه",
+            "options": {
+                "url": "پیوند",
+                "modal": "باز کردن پنجره",
+                "drawer": "باز کردن منوی کشویی",
+                "none": "بدون عملکرد"
+            }
+        },
+        "icon_btn_1_target": {
+            "type": "text",
+            "default": "zc-mobile-drawer",
+            "label": "شناسه پنجره یا منوی مقصد"
+        },
+        "icon_btn_1_href": {
+            "type": "url",
+            "default": {
+                "url": ""
+            },
+            "label": "پیوند دکمه"
+        },
+        "icon_1_icon": {
+            "type": "icons",
+            "default": {
+                "value": "fas fa-bars",
+                "library": "fa-solid"
+            },
+            "label": "آیکون: icon_btn"
+        },
+        "icon_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon"
+        },
+        "icon_btn_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: icon_btn"
+        },
+        "header_actions_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: درخواست مشاوره"
+        },
+        "header_pill_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Z زرین کد Zarincode صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کاره"
+        },
+        "container_1_visible": {
+            "type": "switcher",
+            "default": "yes",
+            "label": "نمایش: Z زرین کد Zarincode صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کاره"
+        }
+    },
+    "repeaters": {
+        "nav_pill_items_1": {
+            "label": "آیتم‌ها: صفحه اصلی",
+            "fields": {
+                "link_1_href": {
+                    "type": "url",
+                    "default": {
+                        "url": "{{HOME}}/contact-us/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "label": "پیوند: تماس با ما",
+                    "purpose": "link",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7"
+                    ]
+                },
+                "link_text_1": {
+                    "type": "text",
+                    "default": "تماس با ما",
+                    "label": "متن: تماس با ما",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7"
+                    ]
+                },
+                "link_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: تماس با ما",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7"
+                    ]
+                },
+                "list_item_1_visible": {
+                    "type": "switcher",
+                    "default": "yes",
+                    "label": "نمایش: تماس با ما",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7"
+                    ]
+                }
+            },
+            "default": [
+                {
+                    "_id": "f7f5fa52",
+                    "_variant": "v1",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "صفحه اصلی",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "5db05d2c",
+                    "_variant": "v2",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/services/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "خدمات ما",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "288f53fd",
+                    "_variant": "v3",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/shop/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "فروشگاه محصولات",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "a38c78f6",
+                    "_variant": "v4",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/projects-portfolio/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "نمونه‌کارها",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "36e45fe7",
+                    "_variant": "v5",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/terms-and-conditions/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "قوانین و گارانتی",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "ab7e0f6b",
+                    "_variant": "v6",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/about-us/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "درباره ما",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                },
+                {
+                    "_id": "49176d3c",
+                    "_variant": "v7",
+                    "_enabled": "yes",
+                    "link_1_href": {
+                        "url": "{{HOME}}/contact-us/",
+                        "is_external": "",
+                        "nofollow": "",
+                        "custom_attributes": ""
+                    },
+                    "link_text_1": "تماس با ما",
+                    "link_1_visible": "yes",
+                    "list_item_1_visible": "yes"
+                }
+            ],
+            "variants": {
+                "v1": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v2": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v3": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v4": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v5": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v6": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                },
+                "v7": {
+                    "tag": "li",
+                    "attrs": [],
+                    "part": "nav_pill_items_1_list_item_1",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "attrs": [],
+                            "part": "nav_pill_items_1_link_1",
+                            "bindings": {
+                                "href": "link_1_href"
+                            },
+                            "children": [
+                                {
+                                    "text": "link_text_1",
+                                    "part": "nav_pill_items_1_link_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "visible": "link_1_visible"
+                        }
+                    ],
+                    "visible": "list_item_1_visible"
+                }
+            }
+        }
+    },
+    "parts": {
+        "_container_1": {
+            "label": "بخش: Z زرین کد Zarincode صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کاره",
+            "type": "box"
+        },
+        "_header_pill_1": {
+            "label": "بخش: Z زرین کد Zarincode صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کاره",
+            "type": "box"
+        },
+        "_brand_1": {
+            "label": "بخش: Z زرین کد Zarincode",
+            "type": "box"
+        },
+        "_brand_logo_box_1": {
+            "label": "جزء: Z",
+            "type": "text"
+        },
+        "_brand_logo_box_text_1": {
+            "label": "متن: Z",
+            "type": "text"
+        },
+        "_brand_text_1": {
+            "label": "بخش: زرین کد Zarincode",
+            "type": "box"
+        },
+        "_brand_name_1": {
+            "label": "جزء: زرین کد",
+            "type": "text"
+        },
+        "_brand_name_text_1": {
+            "label": "متن: زرین کد",
+            "type": "text"
+        },
+        "_brand_sub_1": {
+            "label": "جزء: Zarincode",
+            "type": "text"
+        },
+        "_brand_sub_text_1": {
+            "label": "متن: Zarincode",
+            "type": "text"
+        },
+        "_nav_pill_1": {
+            "label": "بخش: صفحه اصلی خدمات ما فروشگاه محصولات نمونه‌کارها قوانین و گارانتی د",
+            "type": "box"
+        },
+        "nav_pill_items_1_list_item_1": {
+            "label": "بخش: تماس با ما",
+            "type": "box"
+        },
+        "nav_pill_items_1_link_1": {
+            "label": "جزء: تماس با ما",
+            "type": "text"
+        },
+        "nav_pill_items_1_link_text_1": {
+            "label": "متن: تماس با ما",
+            "type": "text"
+        },
+        "_header_actions_1": {
+            "label": "بخش: درخواست مشاوره",
+            "type": "box"
+        },
+        "_btn_yellow_1": {
+            "label": "جزء: درخواست مشاوره",
+            "type": "text"
+        },
+        "_btn_yellow_text_1": {
+            "label": "متن: درخواست مشاوره",
+            "type": "text"
+        },
+        "_icon_btn_1": {
+            "label": "بخش: icon_btn",
+            "type": "box"
+        },
+        "_icon_1": {
+            "label": "جزء: icon",
+            "type": "i"
+        }
+    },
+    "legacy": {
+        "/div/div/div/a/span[1]/text()": {
+            "baseline": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+            "target": [
+                "",
+                "brand_logo_box_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/a/span[2]/span[1]/text()": {
+            "baseline": "02749544fdc47de4d5a8968f6736303b695c2e99d249969a097b1342923c5fad",
+            "target": [
+                "",
+                "brand_name_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/a/span[2]/span[2]/text()": {
+            "baseline": "ee48bcfe2403d213ea3faa0536cd467d1036e4f56e7ad0db21ef789990a30b08",
+            "target": [
+                "",
+                "brand_sub_text_1",
+                -1
+            ]
+        },
+        "/div/div/div/ul/li[1]/a/text()": {
+            "baseline": "012ce417b894a3bca98ef4aec16910e01cec2ee64fea5d88ddb521c65f0c2243",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                0
+            ]
+        },
+        "/div/div/div/ul/li[2]/a/text()": {
+            "baseline": "9d6c80145a2886636c6217cedd43fda477bb433b370c2cd6e15b849525e0933c",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                1
+            ]
+        },
+        "/div/div/div/ul/li[3]/a/text()": {
+            "baseline": "9c7659a78a08ddaf5dd584df124f59cc24f82f57cd62704a7e673c2176012d69",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                2
+            ]
+        },
+        "/div/div/div/ul/li[4]/a/text()": {
+            "baseline": "9bd04c841501c8cdea7645f94edd535a568e2a2b7fdff67e0e7bf25317da9b1f",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                3
+            ]
+        },
+        "/div/div/div/ul/li[5]/a/text()": {
+            "baseline": "0689cbe5ce1acfb96ce30b5cda1c242904cb8d56ead40ff516bbb6ead2fc779a",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                4
+            ]
+        },
+        "/div/div/div/ul/li[6]/a/text()": {
+            "baseline": "52de6560b6279056e00758156e9b9be2997a09e75d4d0b96f5086cb866c8aeac",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                5
+            ]
+        },
+        "/div/div/div/ul/li[7]/a/text()": {
+            "baseline": "9d4984f7f6312bf20cef0bb081ab7c0c7c2c5be1b0d57fd2591d22a3aced7730",
+            "target": [
+                "nav_pill_items_1",
+                "link_text_1",
+                6
+            ]
+        },
+        "/div/div/div/div/a/text()": {
+            "baseline": "694f61b8e90eafe6df0723f7c6c3d4539221c80b82202f589b672b9c1b5c721b",
+            "target": [
+                "",
+                "btn_yellow_text_1",
+                -1
+            ]
+        }
+    },
+    "tree": [
+        {
+            "literal": "        "
+        },
+        {
+            "tag": "div",
+            "attrs": {
+                "class": "zc-container",
+                "style": "padding:1rem 0;"
+            },
+            "part": "_container_1",
+            "children": [
+                {
+                    "literal": "\n            "
+                },
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "class": "zc-header-pill"
+                    },
+                    "part": "_header_pill_1",
+                    "children": [
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "a",
+                            "attrs": {
+                                "class": "zc-brand"
+                            },
+                            "part": "_brand_1",
+                            "bindings": {
+                                "href": "brand_1_href"
+                            },
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-brand-logo-box"
+                                    },
+                                    "part": "_brand_logo_box_1",
+                                    "children": [
+                                        {
+                                            "text": "brand_logo_box_text_1",
+                                            "part": "_brand_logo_box_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "brand_logo_box_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "span",
+                                    "attrs": {
+                                        "class": "zc-brand-text"
+                                    },
+                                    "part": "_brand_text_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-brand-name"
+                                            },
+                                            "part": "_brand_name_1",
+                                            "children": [
+                                                {
+                                                    "text": "brand_name_text_1",
+                                                    "part": "_brand_name_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "brand_name_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-brand-sub"
+                                            },
+                                            "part": "_brand_sub_1",
+                                            "children": [
+                                                {
+                                                    "text": "brand_sub_text_1",
+                                                    "part": "_brand_sub_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "brand_sub_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "brand_text_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "brand_1_visible"
+                        },
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "ul",
+                            "attrs": {
+                                "class": "zc-nav-pill"
+                            },
+                            "part": "_nav_pill_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "repeat": "nav_pill_items_1"
+                                }
+                            ],
+                            "visible": "nav_pill_1_visible"
+                        },
+                        {
+                            "literal": "\n                "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "class": "zc-header-actions"
+                            },
+                            "part": "_header_actions_1",
+                            "children": [
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "a",
+                                    "attrs": {
+                                        "class": "zc-btn zc-btn-yellow zc-header-cta-btn"
+                                    },
+                                    "part": "_btn_yellow_1",
+                                    "bindings": {
+                                        "href": "btn_yellow_1_href"
+                                    },
+                                    "children": [
+                                        {
+                                            "text": "btn_yellow_text_1",
+                                            "part": "_btn_yellow_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
+                                        }
+                                    ],
+                                    "visible": "btn_yellow_1_visible"
+                                },
+                                {
+                                    "literal": "\n                    "
+                                },
+                                {
+                                    "tag": "button",
+                                    "attrs": {
+                                        "type": "button",
+                                        "class": "zc-icon-btn zc-mobile-menu-toggle"
+                                    },
+                                    "part": "_icon_btn_1",
+                                    "bindings": {
+                                        "aria-label": "icon_btn_1_aria_label",
+                                        "href": "icon_btn_1_href"
+                                    },
+                                    "action": "icon_btn_1_action",
+                                    "action_target": "icon_btn_1_target",
+                                    "children": [
+                                        {
+                                            "literal": "\n                        "
+                                        },
+                                        {
+                                            "tag": "i",
+                                            "attrs": [],
+                                            "part": "_icon_1",
+                                            "icon": "icon_1_icon",
+                                            "visible": "icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                    "
+                                        }
+                                    ],
+                                    "visible": "icon_btn_1_visible"
+                                },
+                                {
+                                    "literal": "\n                "
+                                }
+                            ],
+                            "visible": "header_actions_1_visible"
+                        },
+                        {
+                            "literal": "\n            "
+                        }
+                    ],
+                    "visible": "header_pill_1_visible"
+                },
+                {
+                    "literal": "\n        "
+                }
+            ],
+            "visible": "container_1_visible"
+        },
+        {
+            "literal": "\n        "
+        }
+    ]
+}

@@ -8,7 +8,8 @@ $manager=\Elementor\Plugin::instance()->elements_manager;
 $rows=Inline_Editing::original_defaults('hero');
 $check(count($rows)>20,'original hero has independent text controls');
 $widget=$manager->create_element_instance(['id'=>'origtest','elType'=>'widget','widgetType'=>'zarincode_hero','settings'=>[]]);
-$defaults=$widget->get_settings_for_display();$original=Renderer::original('hero');
+$defaults=$widget->get_settings_for_display();$defaults['original_texts']=$rows; // Explicit fixture for the retired 2.7 adapter, not the current UI.
+$original=Renderer::original('hero');
 $check(Inline_Editing::original($original,$defaults,$widget,'original_texts')===$original,'unedited original hero is byte-for-byte unchanged');
 $edit=$defaults['original_texts'];$edit[0]['text']='<strong>ORIGINAL SAVED EDIT</strong>';
 $html=Inline_Editing::original($original,['original_texts'=>$edit],$widget,'original_texts');
