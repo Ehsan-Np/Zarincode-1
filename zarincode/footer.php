@@ -25,6 +25,10 @@ $modal_title     = zarincode_get_option( 'consult_modal_title', 'درخواست 
 $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر را تکمیل کنید یا مستقیماً با شماره 09024561001 (احسان نادری پناه) تماس بگیرید. کارشناسان ما در کمتر از ۱۵ دقیقه با شما تماس خواهند گرفت.' );
 ?>
 
+<?php $zc_custom_footer = zarincode_builder_part( 'footer' ); ?>
+<?php if ( $zc_custom_footer !== '' ) : ?>
+<footer role="contentinfo"><?php echo $zc_custom_footer; ?></footer>
+<?php else : ?>
 <footer class="zc-footer" role="contentinfo">
     <div class="zc-container">
         <div class="zc-footer-bento">
@@ -141,6 +145,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
         </div>
     </div>
 </footer>
+<?php endif; ?>
 
 <!-- Global Consultation Request Modal (Webinex Popup + Crextio UI) -->
 <div id="zc-consult-modal" class="zc-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="zc-consult-title">

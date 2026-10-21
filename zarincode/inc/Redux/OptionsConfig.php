@@ -620,27 +620,43 @@ class OptionsConfig {
 
         $first_tab = array_key_first( $schema );
         ?>
-        <div class="wrap zc-options-fullwidth-wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:none;box-sizing:border-box;">
+        <div class="wrap zc-options-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
             <h1 class="screen-reader-text">پنل تنظیمات پیشرفته قالب زرین کد</h1>
             <hr class="wp-header-end">
             <style>
+                #wpcontent {
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                }
+                #wpbody,
+                #wpbody-content {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    float: none !important;
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                }
                 #wpbody-content > .wrap.zc-options-fullwidth-wrap,
+                .wrap.zc-options-fullwidth-wrap,
                 .redux-container {
                     width: 100% !important;
                     max-width: 100% !important;
-                    margin: 16px 0 0 0 !important;
-                    padding: 0 20px 28px 20px !important;
+                    margin: 0 !important;
+                    padding: 18px 24px 36px 24px !important;
                     box-sizing: border-box !important;
+                    direction: rtl !important;
+                    text-align: right !important;
                 }
-                .zc-opt-shell { display:grid; grid-template-columns: 300px minmax(0, 1fr); gap: 24px; align-items: start; width: 100%; }
+                .zc-opt-shell { display:grid; grid-template-columns: 310px minmax(0, 1fr); gap: 24px; align-items: start; width: 100%; box-sizing: border-box; direction: rtl; text-align: right; }
                 @media (max-width: 960px) { .zc-opt-shell { grid-template-columns: 1fr; } }
-                .zc-opt-sidebar { background: #1E2025; border-radius: 22px; padding: 16px; border: 2px solid #FDD05B; position: sticky; top: 46px; }
-                .zc-opt-nav-btn { display:flex; align-items:center; gap:10px; width:100%; text-align:right; background:transparent; border:none; color:#D1D5DB; padding:11px 14px; border-radius:12px; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s ease; margin-bottom:4px; }
+                .zc-opt-sidebar { background: #1E2025; border-radius: 22px; padding: 16px; border: 2px solid #FDD05B; position: sticky; top: 46px; box-sizing: border-box; }
+                .zc-opt-nav-btn { display:flex; align-items:center; gap:10px; width:100%; text-align:right; direction:rtl; background:transparent; border:none; color:#D1D5DB; padding:11px 14px; border-radius:12px; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s ease; margin-bottom:4px; }
                 .zc-opt-nav-btn:hover { background:rgba(255,255,255,0.08); color:#fff; }
                 .zc-opt-nav-btn.is-active { background:#FDD05B; color:#2A2C31; font-weight:900; box-shadow:0 6px 16px rgba(253,208,91,0.3); }
-                .zc-opt-panel { display:none; background:#fff; border-radius:24px; padding:28px 34px; border:1px solid #E5E7EB; box-shadow:0 10px 30px rgba(0,0,0,0.04); width:100%; box-sizing:border-box; }
+                .zc-opt-panel { display:none; background:#fff; border-radius:24px; padding:28px 34px; border:1px solid #E5E7EB; box-shadow:0 10px 30px rgba(0,0,0,0.04); width:100%; box-sizing:border-box; direction:rtl; text-align:right; }
                 .zc-opt-panel.is-active { display:block; }
-                .zc-field-row { display:grid; grid-template-columns: 340px minmax(0, 1fr); gap:24px; padding:18px 0; border-bottom:1px solid #F3F4F6; align-items:center; width:100%; }
+                .zc-field-row { display:grid; grid-template-columns: 340px minmax(0, 1fr); gap:24px; padding:18px 0; border-bottom:1px solid #F3F4F6; align-items:center; width:100%; direction:rtl; text-align:right; }
+                .zc-field-row > div { text-align: right; direction: rtl; width: 100%; box-sizing: border-box; }
                 @media (max-width: 780px) { .zc-field-row { grid-template-columns: 1fr; } }
                 .zc-field-row:last-child { border-bottom:none; }
                 .zc-input-text, .zc-input-select, .zc-input-textarea { width:100%; max-width:100%; box-sizing:border-box; padding:10px 14px; border-radius:12px; border:1px solid #D1D5DB; font-size:13.5px; background:#F9FAFB; }
@@ -769,9 +785,9 @@ class OptionsConfig {
                                                 </select>
 
                                             <?php elseif ( 'media' === $ftype ) : ?>
-                                                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                                                    <input type="text" id="zc_field_<?php echo esc_attr( $fid ); ?>" name="zc_opt[<?php echo esc_attr( $fid ); ?>]" value="<?php echo esc_attr( (string) $val ); ?>" class="zc-input-text" placeholder="آدرس تصویر یا انتخاب از کتابخانه رسانه..." style="max-width:400px;" dir="ltr">
-                                                    <button type="button" class="button zc-media-upload-btn" data-target="zc_field_<?php echo esc_attr( $fid ); ?>" style="border-radius:10px;font-weight:bold;">
+                                                <div style="display:flex;gap:10px;align-items:center;width:100%;">
+                                                    <input type="text" id="zc_field_<?php echo esc_attr( $fid ); ?>" name="zc_opt[<?php echo esc_attr( $fid ); ?>]" value="<?php echo esc_attr( (string) $val ); ?>" class="zc-input-text" placeholder="آدرس تصویر یا انتخاب از کتابخانه رسانه..." style="flex:1;width:100%;" dir="ltr">
+                                                    <button type="button" class="button zc-media-upload-btn" data-target="zc_field_<?php echo esc_attr( $fid ); ?>" style="border-radius:10px;font-weight:bold;flex-shrink:0;">
                                                         🖼️ انتخاب تصویر
                                                     </button>
                                                 </div>

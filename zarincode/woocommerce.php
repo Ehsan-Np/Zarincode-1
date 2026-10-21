@@ -45,8 +45,8 @@ $phone = zarincode_get_option( 'contact_phone', '09024561001' );
     </div>
 
     <?php
-    if ( class_exists( '\Zarincode\Core\Widgets\Renderer' ) ) {
-        echo \Zarincode\Core\Widgets\Renderer::render_products_marketplace( [ 'count' => 8, 'show_filters' => true ] );
+    if ( class_exists( '\Zarincode\Runtime260\Widgets\Renderer' ) ) {
+        echo \Zarincode\Runtime260\Widgets\Renderer::render_products_marketplace( [ 'count' => 8, 'show_filters' => true ] );
     } else {
         echo '<div class="zc-container">';
         woocommerce_content();

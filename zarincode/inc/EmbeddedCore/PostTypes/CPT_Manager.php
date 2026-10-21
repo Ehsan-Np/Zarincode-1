@@ -3,11 +3,11 @@
  * Custom Post Types, Taxonomies & Admin Meta Boxes Manager
  * (Services, Portfolio Projects, WooCommerce Product Live Demo Meta, and Elementor Header/Footer/MegaMenu Builder)
  *
- * @package Zarincode\Core\PostTypes
+ * @package Zarincode\Runtime260\PostTypes
  * @author  Ehsan NaderiPanah (09024561001 | https://zarincode.com)
  */
 
-namespace Zarincode\Core\PostTypes;
+namespace Zarincode\Runtime260\PostTypes;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

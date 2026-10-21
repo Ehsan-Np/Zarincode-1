@@ -1,12 +1,12 @@
 <?php
 /**
- * Complete Required & Recommended Plugin Installer & Manager (TGMPA + Visual Wizard + AJAX Batch Installer)
+ * Zarincode Required & Recommended Plugin Installer & Manager (TGMPA-Standard + 1-Click Cloud Installer)
  *
- * Handles automatic installation, extraction, activation, and updating of required and recommended
- * plugins from bundled theme ZIPs (inc/plugins/), Ehsan NaderiPanah's afzoneha repository, and WordPress.org.
+ * Uses direct GitHub repository links (Ehsan-Np/afzoneha & Ehsan-Np/Zarincode-1) and
+ * the official WordPress.org Plugin Repository without bundling heavy ZIP files inside the theme.
+ * Also supports direct on-the-fly provisioning of zarincode-core from the theme's EmbeddedCore.
  *
  * @package Zarincode\Theme\Plugins
- * @author  Ehsan NaderiPanah (09024561001 | https://zarincode.com)
  */
 
 namespace Zarincode\Theme\Plugins;
@@ -27,194 +27,247 @@ class Plugin_Manager {
     }
 
     private function __construct() {
-        add_action( 'admin_menu', [ $this, 'register_plugin_installer_menus' ], 11 );
+        add_action( 'admin_menu', [ $this, 'register_plugin_installer_menus' ], 9 );
         add_action( 'admin_notices', [ $this, 'render_missing_plugins_notice' ] );
         add_action( 'wp_ajax_zarincode_plugin_action', [ $this, 'ajax_handle_plugin_action' ] );
-        add_action( 'after_switch_theme', [ $this, 'auto_install_bundled_core_plugins' ], 5 );
+        add_action( 'after_switch_theme', [ $this, 'auto_install_bundled_core_plugins' ] );
     }
 
     /**
-     * Get the complete manifest of Required & Recommended plugins for Zarincode Theme
+     * Complete Manifest of Required & Recommended Plugins for Zarincode Theme
+     * All plugins use GitHub (Ehsan-Np/afzoneha / Ehsan-Np/Zarincode-1) and WordPress.org links.
      *
-     * @return array<string, array<string, mixed>>
+     * @return array<string,array<string,mixed>>
      */
     public static function get_plugins_manifest(): array {
-        $bundled_dir = get_template_directory() . '/inc/plugins/';
-        $afzoneha_url = 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/';
-
         return [
             'zarincode-core' => [
-                'name'        => 'هسته و ۱۴ ویجت اختصاصی زرین کد (Zarincode Core)',
                 'slug'        => 'zarincode-core',
+                'name'        => 'هسته و ویجت‌های اختصاصی زرین کد (Zarincode Core)',
                 'file'        => 'zarincode-core/zarincode-core.php',
-                'version'     => '2.5.0',
                 'required'    => true,
-                'badge'       => 'اجباری — هسته قالب',
-                'source_type' => 'Bundled (پکیج داخلی قالب)',
-                'local_zip'   => $bundled_dir . 'zarincode-core.zip',
-                'remote_zip'  => '',
-                'description' => 'اضافه‌کننده ۱۴ ویجت اختصاصی المنتور، سازنده هدر و فوتر، پست‌تایپ‌های خدمات و نمونه‌کارها و درون‌ریز هوشمند دمو.',
-                'icon'        => 'dashicons-superhero-alt',
+                'badge'       => 'اجباری • هسته قالب',
+                'version'     => '2.6.0',
+                'source_type' => 'هسته داخلی قالب + مخزن گیت‌هاب Zarincode-1',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/packages/zarincode-core.zip',
+                'description' => 'افزونه هسته قالب شامل ۱۴ ویجت ۱۰۰٪ قابل سفارشی‌سازی المنتور (Crextio + Webinex)، پست‌تایپ‌های خدمات و پروژه‌ها، هدر و فوترساز و درون‌ریز هوشمند دمو.',
+                'icon'        => 'dashicons-superhero',
             ],
             'redux-framework' => [
-                'name'        => 'فریم‌ورک تنظیمات پیشرفته قالب (Redux Framework)',
                 'slug'        => 'redux-framework',
+                'name'        => 'چارچوب تنظیمات پیشرفته قالب (Redux Framework)',
                 'file'        => 'redux-framework/redux-framework.php',
-                'version'     => '4.4.18',
                 'required'    => true,
-                'badge'       => 'اجباری — پنل تنظیمات',
-                'source_type' => 'Bundled (پکیج داخلی قالب + مخزن afzoneha)',
-                'local_zip'   => $bundled_dir . 'redux-framework.zip',
-                'remote_zip'  => $afzoneha_url . 'redux-framework.zip',
-                'description' => 'موتور قدرتمند پنل تنظیمات قالب برای شخصی‌سازی رنگ‌بندی، تایپوگرافی، هدر، فوتر، فروشگاه و سئو.',
+                'badge'       => 'اجباری • پنل تنظیمات',
+                'version'     => '4.4+',
+                'source_type' => 'مخزن رسمی وردپرس + گیت‌هاب (afzoneha)',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/redux-framework.zip',
+                'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/redux-framework.latest-stable.zip',
+                'description' => 'موتور استاندارد ThemeForest و ژاکت برای مدیریت پیشرفته رنگ‌بندی Sunshine، تایپوگرافی وزیرمتن، هدر، فوتر، فروشگاه و سئو.',
                 'icon'        => 'dashicons-admin-generic',
             ],
             'elementor' => [
-                'name'        => 'صفحه‌ساز المنتور (Elementor Page Builder)',
                 'slug'        => 'elementor',
+                'name'        => 'صفحه‌ساز المنتور (Elementor Page Builder)',
                 'file'        => 'elementor/elementor.php',
-                'version'     => '4.3.2',
                 'required'    => true,
-                'badge'       => 'اجباری — صفحه‌ساز اصلی',
-                'source_type' => 'مخزن وردپرس + مخزن گیت‌هاب afzoneha',
-                'local_zip'   => file_exists( '/tmp/afzoneha/elementor.4.3.2.zip' ) ? '/tmp/afzoneha/elementor.4.3.2.zip' : $bundled_dir . 'elementor.4.3.2.zip',
-                'remote_zip'  => $afzoneha_url . 'elementor.4.3.2.zip',
+                'badge'       => 'اجباری • صفحه‌ساز',
+                'version'     => '3.20+',
+                'source_type' => 'مخزن رسمی وردپرس + گیت‌هاب (afzoneha)',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/elementor.4.3.2.zip',
                 'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/elementor.latest-stable.zip',
-                'description' => 'صفحه‌ساز بصری پیشرفته جهت ویرایش درگ اند دراپ تمامی صفحات، هدر، فوتر و ۱۴ ویجت اختصاصی زرین کد.',
+                'description' => 'صفحه‌ساز بصری قدرتمند برای ویرایش ۱۰۰٪ متن‌ها، تکرارکننده‌ها (Repeaters)، آیکون‌ها، استایل‌ها و چیدمان ۱۴ ویجت اختصاصی زرین کد.',
                 'icon'        => 'dashicons-layout',
             ],
             'elementor-pro' => [
-                'name'        => 'المنتور پرو (Elementor Pro — نسخه پرمیوم)',
                 'slug'        => 'elementor-pro',
+                'name'        => 'المنتور پرو (Elementor Pro)',
                 'file'        => 'elementor-pro/elementor-pro.php',
-                'version'     => '3.25.0',
                 'required'    => true,
-                'badge'       => 'اجباری — امکانات پرمیوم',
-                'source_type' => 'Bundled (پکیج داخلی قالب + مخزن afzoneha)',
-                'local_zip'   => $bundled_dir . 'elementor-pro.zip',
-                'remote_zip'  => $afzoneha_url . 'elementor-pro.zip',
-                'description' => 'نسخه حرفه‌ای المنتور جهت پشتیبانی کامل از قالب‌های پویا، پاپ‌آپ‌ها، فرم‌ها و ووکامرس بیلدر.',
+                'badge'       => 'اجباری • امکانات حرفه‌ای',
+                'version'     => '3.20+',
+                'source_type' => 'مخزن گیت‌هاب (Ehsan-Np/afzoneha)',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/elementor-pro.zip',
+                'description' => 'امکانات پیشرفته صفحه‌ساز المنتور، قالب‌ساز پویا، پاپ‌آپ‌ها و فرم‌های اختصاصی سفارش پروژه زرین کد.',
                 'icon'        => 'dashicons-star-filled',
             ],
             'woocommerce' => [
-                'name'        => 'فروشگاه‌ساز ووکامرس (WooCommerce)',
                 'slug'        => 'woocommerce',
+                'name'        => 'فروشگاه‌ساز ووکامرس (WooCommerce)',
                 'file'        => 'woocommerce/woocommerce.php',
-                'version'     => '11.2.0',
                 'required'    => true,
-                'badge'       => 'اجباری — مارکت‌پلیس محصولات',
-                'source_type' => 'مخزن وردپرس + مخزن گیت‌هاب afzoneha',
-                'local_zip'   => file_exists( '/tmp/afzoneha/woocommerce.11.2.0.zip' ) ? '/tmp/afzoneha/woocommerce.11.2.0.zip' : $bundled_dir . 'woocommerce.11.2.0.zip',
-                'remote_zip'  => $afzoneha_url . 'woocommerce.11.2.0.zip',
+                'badge'       => 'اجباری • مارکت‌پلیس دیجیتال',
+                'version'     => '9.0+',
+                'source_type' => 'مخزن رسمی وردپرس + گیت‌هاب (afzoneha)',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/woocommerce.11.2.0.zip',
                 'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip',
-                'description' => 'موتور فروشگاه اینترنتی جهت فروش آنلاین قالب وردپرس، افزونه و سورس‌کدهای نرم‌افزاری با دانلود آنی.',
+                'description' => 'موتور فروشگاه محصولات آماده دیجیتال (قالب وردپرس، افزونه، اسکریپت و سورس‌کد) با دانلود آنی، پیش‌نمایش زنده دمو و درگاه پرداخت.',
                 'icon'        => 'dashicons-cart',
             ],
             'wordpress-seo-premium' => [
-                'name'        => 'افزونه سئو پرمیوم یوست (Yoast SEO Premium)',
                 'slug'        => 'wordpress-seo-premium',
+                'name'        => 'یوست سئو پرمیوم (Yoast SEO Premium)',
                 'file'        => 'wordpress-seo-premium/wp-seo-premium.php',
-                'version'     => '23.0',
+                'alt_files'   => [
+                    'wordpress-seo-premium/wp-seo-premium.php',
+                    'wordpress-seo/wp-seo.php',
+                ],
                 'required'    => false,
-                'badge'       => 'پیشنهادی — سئو پیشرفته',
-                'source_type' => 'Bundled (پکیج داخلی قالب + مخزن afzoneha)',
-                'local_zip'   => $bundled_dir . 'wordpress-seo-premium.zip',
-                'remote_zip'  => $afzoneha_url . 'wordpress-seo-premium.zip',
-                'description' => 'ابزار تخصصی بهینه‌سازی کلمات کلیدی، اسکیما، ریدایرکت‌ها و نقشه سایت XML برای کسب رتبه اول گوگل.',
-                'icon'        => 'dashicons-chart-area',
+                'badge'       => 'پیشنهادی • سئو و اسکیما',
+                'version'     => '22.0+',
+                'source_type' => 'مخزن گیت‌هاب (afzoneha) + مخزن رسمی وردپرس',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/wordpress-seo-premium.zip',
+                'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip',
+                'description' => 'بهینه‌سازی کامل متاتگ‌ها، نقشه سایت XML، اسکیما مارک‌آپ خدمات و محصولات و سئو تکنیکال سایت زرین کد.',
+                'icon'        => 'dashicons-chart-line',
             ],
             'one-click-demo-import' => [
-                'name'        => 'درون‌ریز دمو با یک کلیک (One Click Demo Import)',
                 'slug'        => 'one-click-demo-import',
+                'name'        => 'درون‌ریز دمو با یک کلیک (One Click Demo Import)',
                 'file'        => 'one-click-demo-import/one-click-demo-import.php',
-                'version'     => '3.2.1',
                 'required'    => false,
-                'badge'       => 'پیشنهادی — ابزار کمکی دمو',
-                'source_type' => 'مخزن رسمی وردپرس (WordPress.org)',
-                'local_zip'   => '',
-                'remote_zip'  => 'https://downloads.wordpress.org/plugin/one-click-demo-import.latest-stable.zip',
-                'description' => 'افزونه کمکی استاندارد مارکت‌های جهانی جهت درون‌ریزی فایل‌های XML و JSON در کنار درون‌ریز بومی زرین کد.',
-                'icon'        => 'dashicons-cloud-upload',
+                'badge'       => 'پیشنهادی • درون‌ریز استاندارد',
+                'version'     => '3.2+',
+                'source_type' => 'مخزن رسمی وردپرس',
+                'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/one-click-demo-import.latest-stable.zip',
+                'description' => 'پشتیبانی از درون‌ریزی استاندارد فایل‌های XML/WIE/JSON علاوه بر درون‌ریز اتوماتیک داخلی قالب زرین کد.',
+                'icon'        => 'dashicons-database-import',
             ],
             'wp-parsidate' => [
-                'name'        => 'تاریخ شمسی و فارسی‌ساز وردپرس (WP-Parsidate)',
                 'slug'        => 'wp-parsidate',
+                'name'        => 'بومی‌ساز و تاریخ شمسی وردپرس (WP-Parsidate)',
                 'file'        => 'wp-parsidate/wp-parsidate.php',
-                'version'     => '5.0.0',
                 'required'    => false,
-                'badge'       => 'پیشنهادی — تقویم جلالی',
-                'source_type' => 'مخزن رسمی وردپرس (WordPress.org)',
-                'local_zip'   => '',
-                'remote_zip'  => 'https://downloads.wordpress.org/plugin/wp-parsidate.latest-stable.zip',
-                'description' => 'تبدیل تاریخ میلادی وردپرس و ووکامرس به تقویم شمسی (جلالی) و بهبود یکپارچگی زبان فارسی.',
+                'badge'       => 'پیشنهادی • تقویم جلالی',
+                'version'     => '4.0+',
+                'source_type' => 'مخزن رسمی وردپرس',
+                'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/wp-parsidate.latest-stable.zip',
+                'description' => 'تبدیل کامل تاریخ‌های وردپرس و ووکامرس به تقویم هجری شمسی و بهبود سازگاری زبان فارسی مطابق استاندارد ژاکت.',
                 'icon'        => 'dashicons-calendar-alt',
             ],
         ];
     }
 
     /**
-     * Determine current state of a plugin: 'active', 'installed', or 'not_installed'
+     * Check current status of a plugin: 'active', 'installed', or 'not_installed'
      */
     public static function get_plugin_status( array $plugin ): string {
-        if ( ! function_exists( 'get_plugins' ) ) {
+        if ( ! function_exists( 'is_plugin_active' ) ) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        $installed_plugins = get_plugins();
-        $file              = $plugin['file'];
 
-        // Also detect if plugin folder exists with slightly different main file
-        if ( ! isset( $installed_plugins[ $file ] ) ) {
-            foreach ( $installed_plugins as $installed_path => $pdata ) {
-                if ( strpos( $installed_path, $plugin['slug'] . '/' ) === 0 ) {
-                    $file = $installed_path;
-                    break;
-                }
+        $candidates = $plugin['alt_files'] ?? [ $plugin['file'] ];
+        foreach ( $candidates as $rel_file ) {
+            if ( is_plugin_active( $rel_file ) ) {
+                return 'active';
             }
         }
 
-        if ( is_plugin_active( $file ) ) {
-            return 'active';
+        // Dynamic scan inside plugin folder in case main PHP file has a slightly different header name
+        $slug_dir = WP_PLUGIN_DIR . '/' . $plugin['slug'];
+        if ( is_dir( $slug_dir ) ) {
+            $all_plugins = get_plugins( '/' . $plugin['slug'] );
+            foreach ( array_keys( $all_plugins ) as $p_file ) {
+                $full_rel = $plugin['slug'] . '/' . $p_file;
+                if ( is_plugin_active( $full_rel ) ) {
+                    return 'active';
+                }
+            }
+            if ( ! empty( $all_plugins ) ) {
+                return 'installed';
+            }
         }
-        if ( isset( $installed_plugins[ $file ] ) ) {
-            return 'installed';
+
+        foreach ( $candidates as $rel_file ) {
+            if ( file_exists( WP_PLUGIN_DIR . '/' . $rel_file ) ) {
+                return 'installed';
+            }
         }
+
         return 'not_installed';
     }
 
     /**
-     * Resolve actual plugin main file path if installed
+     * Find exact relative plugin file path for activation
      */
     public static function resolve_plugin_file( array $plugin ): string {
         if ( ! function_exists( 'get_plugins' ) ) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        $installed_plugins = get_plugins();
-        if ( isset( $installed_plugins[ $plugin['file'] ] ) ) {
-            return $plugin['file'];
+        $candidates = $plugin['alt_files'] ?? [ $plugin['file'] ];
+        foreach ( $candidates as $rel_file ) {
+            if ( file_exists( WP_PLUGIN_DIR . '/' . $rel_file ) ) {
+                return $rel_file;
+            }
         }
-        foreach ( $installed_plugins as $installed_path => $pdata ) {
-            if ( strpos( $installed_path, $plugin['slug'] . '/' ) === 0 ) {
-                return $installed_path;
+        $slug_dir = WP_PLUGIN_DIR . '/' . $plugin['slug'];
+        if ( is_dir( $slug_dir ) ) {
+            $found = get_plugins( '/' . $plugin['slug'] );
+            if ( ! empty( $found ) ) {
+                $first = array_key_first( $found );
+                return $plugin['slug'] . '/' . $first;
             }
         }
         return $plugin['file'];
     }
 
     /**
-     * Auto-install and activate bundled core plugins on theme switch
+     * Automatically provision zarincode-core when theme is activated
      */
     public function auto_install_bundled_core_plugins(): void {
-        foreach ( [ 'zarincode-core', 'redux-framework' ] as $slug ) {
-            self::install_and_activate_plugin( $slug );
-        }
+        self::install_and_activate_plugin( 'zarincode-core' );
     }
 
     /**
-     * Install and/or activate a plugin by slug
+     * Provision or update wp-content/plugins/zarincode-core directly from ZARINCODE_DIR . '/inc/EmbeddedCore/'
+     */
+    public static function provision_core_plugin_from_theme(): bool {
+        $theme_inc = ZARINCODE_DIR . '/inc/EmbeddedCore';
+        if ( ! is_dir( $theme_inc ) ) {
+            return false;
+        }
+
+        $target_root = WP_PLUGIN_DIR . '/zarincode-core';
+        $target_inc  = $target_root . '/includes';
+        if ( ! is_dir( $target_inc ) ) {
+            if ( ! wp_mkdir_p( $target_inc ) ) { return false; }
+        }
+
+        // Write main zarincode-core.php bootstrap file
+        $bootstrap_code = file_get_contents( ZARINCODE_DIR . '/inc/core-bootstrap.php' );
+        if ( false === $bootstrap_code || false === file_put_contents( $target_root . '/zarincode-core.php', $bootstrap_code ) ) { return false; }
+
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator( $theme_inc, \RecursiveDirectoryIterator::SKIP_DOTS ),
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
+
+        foreach ( $iterator as $item ) {
+            $rel_path = substr( $item->getPathname(), strlen( $theme_inc ) );
+            $dest     = $target_inc . $rel_path;
+            if ( $item->isDir() ) {
+                if ( ! is_dir( $dest ) ) {
+                    if ( ! wp_mkdir_p( $dest ) ) { return false; }
+                }
+            } elseif ( $item->isFile() ) {
+                $dest_dir = dirname( $dest );
+                if ( ! is_dir( $dest_dir ) ) {
+                    if ( ! wp_mkdir_p( $dest_dir ) ) { return false; }
+                }
+                if ( ! copy( $item->getPathname(), $dest ) ) { return false; }
+                if ( function_exists( 'opcache_invalidate' ) ) { opcache_invalidate( $dest, true ); }
+            }
+        }
+
+        return file_exists( $target_root . '/zarincode-core.php' );
+    }
+
+    /**
+     * Install (from EmbeddedCore, GitHub repository, or WordPress.org) and Activate a plugin
      *
-     * @param string $slug   Plugin slug from manifest.
+     * @param string $slug   Plugin slug.
      * @param string $action 'install_activate', 'activate', or 'deactivate'.
-     * @return array{success: bool, status: string, message: string}
+     * @return array{success:bool,status:string,message:string}
      */
     public static function install_and_activate_plugin( string $slug, string $action = 'install_activate' ): array {
         $manifest = self::get_plugins_manifest();
@@ -228,7 +281,6 @@ class Plugin_Manager {
 
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
         require_once ABSPATH . 'wp-admin/includes/file.php';
-        require_once ABSPATH . 'wp-admin/includes/misc.php';
         require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
         $plugin = $manifest[ $slug ];
@@ -244,26 +296,31 @@ class Plugin_Manager {
             ];
         }
 
-        // If not installed yet, extract from local bundled ZIP or download
+        // For zarincode-core, always sync/provision the latest files from theme EmbeddedCore first
+        if ( 'zarincode-core' === $slug ) {
+            if ( self::provision_core_plugin_from_theme() ) {
+                wp_clean_plugins_cache( true );
+                $status = self::get_plugin_status( $plugin );
+            }
+        }
+
+        // If not installed yet, download from GitHub or WordPress.org
         if ( 'not_installed' === $status ) {
             WP_Filesystem();
             $zip_to_extract = '';
             $temp_file      = '';
 
-            if ( ! empty( $plugin['local_zip'] ) && file_exists( $plugin['local_zip'] ) ) {
-                $zip_to_extract = $plugin['local_zip'];
-            } else {
-                $download_urls = array_filter( [
-                    $plugin['remote_zip'] ?? '',
-                    $plugin['wp_org_zip'] ?? '',
-                ] );
-                foreach ( $download_urls as $url ) {
-                    $downloaded = download_url( $url, 60 );
-                    if ( ! is_wp_error( $downloaded ) && file_exists( $downloaded ) ) {
-                        $zip_to_extract = $downloaded;
-                        $temp_file      = $downloaded;
-                        break;
-                    }
+            $download_urls = array_filter( [
+                $plugin['wp_org_zip'] ?? '',
+                $plugin['remote_zip'] ?? '',
+            ] );
+
+            foreach ( $download_urls as $url ) {
+                $downloaded = download_url( $url, 90 );
+                if ( ! is_wp_error( $downloaded ) && file_exists( $downloaded ) ) {
+                    $zip_to_extract = $downloaded;
+                    $temp_file      = $downloaded;
+                    break;
                 }
             }
 
@@ -271,7 +328,7 @@ class Plugin_Manager {
                 return [
                     'success' => false,
                     'status'  => 'not_installed',
-                    'message' => sprintf( 'فایل نصبی افزونه «%s» یافت نشد یا دانلود با خطا مواجه شد.', $plugin['name'] ),
+                    'message' => sprintf( 'دانلود فایل نصبی افزونه «%s» از گیت‌هاب یا مخزن وردپرس با خطا مواجه شد.', $plugin['name'] ),
                 ];
             }
 
@@ -335,7 +392,6 @@ class Plugin_Manager {
      * Register Admin Menus for Plugin Installer
      */
     public function register_plugin_installer_menus(): void {
-        // Under Appearance > نصب افزونه‌های قالب (Standard ThemeForest / Zhaket TGMPA location)
         add_theme_page(
             'نصب و مدیریت افزونه‌های قالب زرین کد',
             'نصب افزونه‌های قالب',
@@ -379,7 +435,7 @@ class Plugin_Manager {
 
         $url = admin_url( 'themes.php?page=zarincode-install-plugins' );
         ?>
-        <div class="notice notice-error is-dismissible" style="border-right:5px solid #FDD05B;background:#1E2025;color:#fff;padding:18px 22px;direction:rtl;font-family:Tahoma,system-ui,sans-serif;border-radius:12px;margin-top:15px;">
+        <div class="notice notice-error is-dismissible" style="border-right:5px solid #FDD05B;background:#1E2025;color:#fff;padding:18px 22px;direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;border-radius:12px;margin-top:15px;">
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
                 <div>
                     <h3 style="margin:0 0 8px;font-size:15px;color:#FDD05B;">
@@ -407,12 +463,11 @@ class Plugin_Manager {
     }
 
     /**
-     * Render the Interactive Plugin Installer & Manager Admin Page
+     * Render the Interactive Full-Width Plugin Installer & Manager Admin Page
      */
     public function render_plugin_manager_page(): void {
         $sync_feedback = '';
 
-        // Synchronous Fallback Handler (if user clicks a non-AJAX form button)
         if ( isset( $_POST['zarincode_sync_plugin_action'] ) && check_admin_referer( 'zarincode_plugin_sync_nonce' ) ) {
             $target_slug = sanitize_text_field( wp_unslash( $_POST['target_slug'] ?? '' ) );
             $act_type    = sanitize_text_field( wp_unslash( $_POST['act_type'] ?? 'install_activate' ) );
@@ -437,24 +492,39 @@ class Plugin_Manager {
         $nonce    = wp_create_nonce( 'zarincode_plugin_manager_nonce' );
         ?>
         <style>
-            #wpbody-content > .wrap.zc-plugins-fullwidth-wrap {
+            #wpcontent {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            #wpbody,
+            #wpbody-content {
                 width: 100% !important;
                 max-width: 100% !important;
-                margin: 16px 0 0 0 !important;
-                padding: 0 20px 28px 20px !important;
+                float: none !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            #wpbody-content > .wrap.zc-plugins-fullwidth-wrap,
+            .wrap.zc-plugins-fullwidth-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 18px 24px 36px 24px !important;
                 box-sizing: border-box !important;
+                direction: rtl !important;
+                text-align: right !important;
             }
         </style>
-        <div class="wrap zc-plugins-fullwidth-wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:none;box-sizing:border-box;">
+        <div class="wrap zc-plugins-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
             <h1 class="screen-reader-text">نصب و مدیریت افزونه‌های قالب زرین کد</h1>
             <hr class="wp-header-end">
             <!-- Header Banner -->
-            <div style="background:linear-gradient(135deg,#2A2C31 0%,#15171C 100%);color:#fff;padding:30px 34px;border-radius:24px;border:2px solid #FDD05B;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;box-shadow:0 16px 40px rgba(0,0,0,0.12);">
+            <div style="background:linear-gradient(135deg,#2A2C31 0%,#15171C 100%);color:#fff;padding:30px 34px;border-radius:24px;border:2px solid #FDD05B;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;box-shadow:0 16px 40px rgba(0,0,0,0.12);width:100%;box-sizing:border-box;">
                 <div>
-                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:900;font-size:11.5px;">ZARINCODE TGMPA &amp; AUTO PLUGIN INSTALLER v2.5</span>
+                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:900;font-size:11.5px;">ZARINCODE TGMPA &amp; CLOUD PLUGIN INSTALLER v2.5</span>
                     <h1 style="color:#fff;font-size:23px;margin:10px 0 6px;font-weight:900;">مدیریت و نصب خودکار افزونه‌های مورد نیاز قالب «زرین کد»</h1>
                     <p style="color:#D1D5DB;font-size:13.5px;margin:0;">
-                        توسعه‌دهنده: <strong>احسان نادری پناه (09024561001 | Zarincode.com)</strong> — نصب مستقیم از پکیج داخلی قالب و مخزن رسمی بدون نیاز به آپلود دستی
+                        توسعه‌دهنده: <strong>احسان نادری پناه (09024561001 | Zarincode.com)</strong> — نصب مستقیم از مخزن گیت‌هاب (Ehsan-Np/afzoneha) و مخزن رسمی وردپرس بدون افزایش حجم قالب
                     </p>
                 </div>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -476,7 +546,7 @@ class Plugin_Manager {
             <!-- Live AJAX Progress Box -->
             <div id="zc-plugin-progress-box" style="display:none;background:#FFFBEB;border:2px solid #FDD05B;padding:18px 22px;border-radius:18px;margin-bottom:24px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                    <strong id="zc-plugin-progress-text" style="color:#2A2C31;font-size:14px;">در حال آماده‌سازی نصب خودکار افزونه‌ها...</strong>
+                    <strong id="zc-plugin-progress-text" style="color:#2A2C31;font-size:14px;">در حال آماده‌سازی دانلود و نصب خودکار افزونه‌ها...</strong>
                     <span id="zc-plugin-progress-pct" style="font-weight:900;color:#2A2C31;">0%</span>
                 </div>
                 <div style="width:100%;height:12px;background:#E5E7EB;border-radius:999px;overflow:hidden;">
@@ -485,7 +555,7 @@ class Plugin_Manager {
             </div>
 
             <!-- Plugins Grid -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:18px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:18px;width:100%;box-sizing:border-box;">
                 <?php foreach ( $manifest as $slug => $plugin ) :
                     $status = self::get_plugin_status( $plugin );
                     $is_req = ! empty( $plugin['required'] );
@@ -530,7 +600,7 @@ class Plugin_Manager {
                                 <input type="hidden" name="target_slug" value="<?php echo esc_attr( $slug ); ?>">
                                 <?php if ( 'active' === $status ) : ?>
                                     <button type="button" class="button zc-ajax-plugin-btn" data-slug="<?php echo esc_attr( $slug ); ?>" data-action="install_activate" style="flex:1;background:#ECFDF5;border-color:#10B981;color:#065F46;font-weight:bold;">
-                                        ✓ افزونه فعال است (بررسی مجدد)
+                                        ✓ افزونه فعال است (بروزرسانی / بررسی)
                                     </button>
                                     <?php if ( 'zarincode-core' !== $slug ) : ?>
                                         <button type="submit" name="zarincode_sync_plugin_action" value="1" onclick="this.form.act_type.value='deactivate';" class="button" style="color:#DC2626;border-color:#FCA5A5;">
@@ -546,7 +616,7 @@ class Plugin_Manager {
                                 <?php else : ?>
                                     <input type="hidden" name="act_type" value="install_activate">
                                     <button type="submit" name="zarincode_sync_plugin_action" value="1" class="button button-primary zc-ajax-plugin-btn" data-slug="<?php echo esc_attr( $slug ); ?>" data-action="install_activate" style="flex:1;background:#2A2C31;border-color:#2A2C31;color:#FDD05B;font-weight:bold;">
-                                        📥 نصب و فعال‌سازی خودکار
+                                        📥 دانلود، نصب و فعال‌سازی خودکار
                                     </button>
                                 <?php endif; ?>
                             </form>

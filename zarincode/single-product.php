@@ -440,8 +440,8 @@ while ( have_posts() ) :
                 </a>
             </div>
             <?php
-            if ( class_exists( '\Zarincode\Core\Widgets\Renderer' ) ) {
-                echo \Zarincode\Core\Widgets\Renderer::render_products_marketplace( [ 'count' => 4, 'hide_header' => true ] );
+            if ( class_exists( '\Zarincode\Runtime260\Widgets\Renderer' ) ) {
+                echo \Zarincode\Runtime260\Widgets\Renderer::render_products_marketplace( [ 'count' => 4, 'hide_header' => true ] );
             }
             ?>
         </section>
