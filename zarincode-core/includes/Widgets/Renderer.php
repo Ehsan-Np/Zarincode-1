@@ -563,7 +563,18 @@ class Renderer {
 
                 <div id="zc-products-grid-target" class="zc-products-grid">
                     <?php foreach ( $products as $prod ) :
-                        $prod_url = home_url( '/product/' . $prod['slug'] . '/' );
+                        $prod_url  = home_url( '/product/' . $prod['slug'] . '/' );
+                        $prod_post = get_page_by_path( $prod['slug'], OBJECT, 'product' );
+                        $demo_url  = '';
+                        if ( $prod_post ) {
+                            $demo_url = get_post_meta( $prod_post->ID, '_zc_prod_demo_url', true );
+                            if ( ! $demo_url ) {
+                                $demo_url = get_post_meta( $prod_post->ID, 'demo_url', true );
+                            }
+                        }
+                        if ( ! $demo_url ) {
+                            $demo_url = home_url( '/?demo_preview=' . $prod['slug'] );
+                        }
                         ?>
                         <div class="zc-white-card zc-product-card" data-category="<?php echo esc_attr( $prod['cat'] ); ?>">
                             <div>
@@ -600,9 +611,12 @@ class Renderer {
                                     <span class="zc-price-amount"><?php echo esc_html( $prod['price'] ); ?></span>
                                     <span class="zc-price-unit">تومان</span>
                                 </div>
-                                <div style="display:flex;gap:0.4rem;">
-                                    <a href="<?php echo esc_url( $prod_url ); ?>" class="zc-btn zc-btn-yellow" style="padding:0.45rem 0.95rem;font-size:0.8rem;">
-                                        <i class="fa-solid fa-bag-shopping"></i> مشاهده و خرید
+                                <div style="display:flex;gap:0.35rem;align-items:center;">
+                                    <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" title="مشاهده پیش‌نمایش آنلاین دمو" class="zc-btn zc-btn-glass" style="padding:0.42rem 0.7rem;font-size:0.76rem;">
+                                        <i class="fa-solid fa-desktop"></i> دمو
+                                    </a>
+                                    <a href="<?php echo esc_url( $prod_url ); ?>" class="zc-btn zc-btn-yellow" style="padding:0.42rem 0.85rem;font-size:0.78rem;">
+                                        <i class="fa-solid fa-bag-shopping"></i> خرید
                                     </a>
                                 </div>
                             </div>

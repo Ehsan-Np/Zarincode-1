@@ -1509,18 +1509,31 @@ html.dark .zc-project-info-pills span {
     box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 
-/* ── FAQ Accordion ── */
-.zc-faq-item {
-    border: 1px solid var(--zc-border-subtle);
-    background: var(--zc-surface-solid);
-    border-radius: 1.25rem;
-    margin-bottom: 0.85rem;
-    overflow: hidden;
+/* ── Professional Crextio FAQ & Guarantee Accordion ── */
+.zc-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
 }
 
-.zc-faq-btn {
+.zc-faq-item {
+    border: 1.5px solid var(--zc-border-subtle);
+    background: var(--zc-surface-solid);
+    border-radius: 1.35rem;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(17, 24, 39, 0.03);
+}
+
+.zc-faq-item:hover {
+    border-color: rgba(253, 208, 91, 0.75);
+    box-shadow: 0 8px 22px rgba(17, 24, 39, 0.06);
+}
+
+.zc-faq-btn,
+.zc-faq-trigger {
     width: 100%;
-    padding: 1.15rem 1.35rem;
+    padding: 1.15rem 1.4rem;
     background: transparent;
     border: none;
     display: flex;
@@ -1528,26 +1541,84 @@ html.dark .zc-project-info-pills span {
     justify-content: space-between;
     gap: 1rem;
     font-family: var(--zc-font-family);
-    font-size: 0.98rem;
-    font-weight: 700;
+    font-size: 0.96rem;
+    font-weight: 800;
     color: var(--zc-text-main);
     cursor: pointer;
     text-align: right;
+    transition: background-color 0.2s ease;
+}
+
+.zc-faq-q-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: right;
+}
+
+.zc-faq-num {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    background: rgba(253, 208, 91, 0.22);
+    color: var(--color-accent-contrast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.zc-faq-toggle-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: rgba(42, 44, 49, 0.07);
+    color: var(--zc-text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    transition: transform 0.28s ease, background-color 0.25s ease, color 0.25s ease;
 }
 
 .zc-faq-body {
-    padding: 0 1.35rem 1.2rem;
+    padding: 1.1rem 1.45rem 1.35rem;
     color: var(--zc-text-secondary);
-    font-size: 0.92rem;
+    font-size: 0.91rem;
+    line-height: 1.95;
+    border-top: 1px dashed var(--zc-border-subtle);
+    background: rgba(253, 208, 91, 0.04);
     display: none;
-}
-
-.zc-faq-item.is-open .zc-faq-body {
-    display: block;
 }
 
 .zc-faq-item.is-open {
     border-color: var(--color-accent);
+    box-shadow: 0 12px 30px rgba(253, 208, 91, 0.18);
+}
+
+.zc-faq-item.is-open .zc-faq-btn,
+.zc-faq-item.is-open .zc-faq-trigger {
+    background: rgba(253, 208, 91, 0.1);
+}
+
+.zc-faq-item.is-open .zc-faq-num {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    box-shadow: 0 4px 12px rgba(253, 208, 91, 0.4);
+}
+
+.zc-faq-item.is-open .zc-faq-toggle-icon {
+    background: var(--zc-dark);
+    color: var(--color-accent);
+    transform: rotate(180deg);
+}
+
+.zc-faq-item.is-open .zc-faq-body {
+    display: block;
 }
 
 /* ── Single Product Page & Marketplace Layout ── */

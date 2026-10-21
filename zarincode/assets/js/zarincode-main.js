@@ -106,12 +106,25 @@
             });
         });
 
-        // FAQ Accordions
-        document.querySelectorAll('.zc-faq-btn').forEach(function (btn) {
+        // FAQ Accordions (.zc-faq-btn & .zc-faq-trigger)
+        document.querySelectorAll('.zc-faq-btn, .zc-faq-trigger').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 const item = btn.closest('.zc-faq-item');
                 if (!item) return;
-                item.classList.toggle('is-open');
+                const list = item.closest('.zc-faq-list');
+                const wasOpen = item.classList.contains('is-open');
+                if (list) {
+                    list.querySelectorAll('.zc-faq-item.is-open').forEach(function (other) {
+                        if (other !== item) {
+                            other.classList.remove('is-open');
+                        }
+                    });
+                }
+                if (wasOpen) {
+                    item.classList.remove('is-open');
+                } else {
+                    item.classList.add('is-open');
+                }
             });
         });
 

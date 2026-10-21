@@ -528,6 +528,24 @@ class OptionsConfig {
         if ( strpos( $hook, 'zarincode' ) !== false ) {
             wp_enqueue_media();
         }
+        add_action( 'admin_head', static function () {
+            echo '<style id="zarincode-admin-fullwidth-css">
+                #wpbody-content > .wrap.zc-options-fullwidth-wrap,
+                #wpbody-content > .wrap.zc-demo-fullwidth-wrap,
+                #wpbody-content > .wrap.zc-plugins-fullwidth-wrap,
+                .wrap.zc-options-fullwidth-wrap,
+                .wrap.zc-demo-fullwidth-wrap,
+                .wrap.zc-plugins-fullwidth-wrap,
+                .redux-container,
+                .redux-main {
+                    width: 100% !important;
+                    max-width: none !important;
+                    margin: 14px 0 0 0 !important;
+                    padding: 0 18px 28px 18px !important;
+                    box-sizing: border-box !important;
+                }
+            </style>';
+        } );
     }
 
     /**
@@ -602,20 +620,30 @@ class OptionsConfig {
 
         $first_tab = array_key_first( $schema );
         ?>
-        <div class="wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;max-width:1320px;margin-top:18px;">
+        <div class="wrap zc-options-fullwidth-wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:none;box-sizing:border-box;">
+            <h1 class="screen-reader-text">پنل تنظیمات پیشرفته قالب زرین کد</h1>
+            <hr class="wp-header-end">
             <style>
-                .zc-opt-shell { display:grid; grid-template-columns: 290px 1fr; gap: 22px; align-items: start; }
+                #wpbody-content > .wrap.zc-options-fullwidth-wrap,
+                .redux-container {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    margin: 16px 0 0 0 !important;
+                    padding: 0 20px 28px 20px !important;
+                    box-sizing: border-box !important;
+                }
+                .zc-opt-shell { display:grid; grid-template-columns: 300px minmax(0, 1fr); gap: 24px; align-items: start; width: 100%; }
                 @media (max-width: 960px) { .zc-opt-shell { grid-template-columns: 1fr; } }
                 .zc-opt-sidebar { background: #1E2025; border-radius: 22px; padding: 16px; border: 2px solid #FDD05B; position: sticky; top: 46px; }
                 .zc-opt-nav-btn { display:flex; align-items:center; gap:10px; width:100%; text-align:right; background:transparent; border:none; color:#D1D5DB; padding:11px 14px; border-radius:12px; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s ease; margin-bottom:4px; }
                 .zc-opt-nav-btn:hover { background:rgba(255,255,255,0.08); color:#fff; }
                 .zc-opt-nav-btn.is-active { background:#FDD05B; color:#2A2C31; font-weight:900; box-shadow:0 6px 16px rgba(253,208,91,0.3); }
-                .zc-opt-panel { display:none; background:#fff; border-radius:24px; padding:28px 32px; border:1px solid #E5E7EB; box-shadow:0 10px 30px rgba(0,0,0,0.04); }
+                .zc-opt-panel { display:none; background:#fff; border-radius:24px; padding:28px 34px; border:1px solid #E5E7EB; box-shadow:0 10px 30px rgba(0,0,0,0.04); width:100%; box-sizing:border-box; }
                 .zc-opt-panel.is-active { display:block; }
-                .zc-field-row { display:grid; grid-template-columns: 320px 1fr; gap:20px; padding:18px 0; border-bottom:1px solid #F3F4F6; align-items:center; }
+                .zc-field-row { display:grid; grid-template-columns: 340px minmax(0, 1fr); gap:24px; padding:18px 0; border-bottom:1px solid #F3F4F6; align-items:center; width:100%; }
                 @media (max-width: 780px) { .zc-field-row { grid-template-columns: 1fr; } }
                 .zc-field-row:last-child { border-bottom:none; }
-                .zc-input-text, .zc-input-select, .zc-input-textarea { width:100%; max-width:560px; padding:9px 14px; border-radius:12px; border:1px solid #D1D5DB; font-size:13.5px; background:#F9FAFB; }
+                .zc-input-text, .zc-input-select, .zc-input-textarea { width:100%; max-width:100%; box-sizing:border-box; padding:10px 14px; border-radius:12px; border:1px solid #D1D5DB; font-size:13.5px; background:#F9FAFB; }
                 .zc-input-text:focus, .zc-input-select:focus, .zc-input-textarea:focus { border-color:#FDD05B; outline:none; background:#fff; box-shadow:0 0 0 3px rgba(253,208,91,0.25); }
                 .zc-switch { position:relative; display:inline-block; width:54px; height:28px; }
                 .zc-switch input { opacity:0; width:0; height:0; }

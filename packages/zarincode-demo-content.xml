@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-	<!-- generator="WordPress/7.1.3" created="2026-10-21 10:45" -->
+	<!-- generator="WordPress/7.1.3" created="2026-10-21 11:19" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>زرین کد &#124; Zarincode - آژانس طراحی سایت، نرم‌افزار، سئو و فروشگاه محصولات دیجیتال</title>
 	<link>http://localhost:8080</link>
 	<description></description>
-	<pubDate>Wed, 21 Oct 2026 10:45:29 +0000</pubDate>
+	<pubDate>Wed, 21 Oct 2026 11:19:02 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://localhost:8080</wp:base_site_url>
@@ -1003,8 +1003,8 @@
 		<wp:post_id>76</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:32:01]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:32:01]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:01]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:01]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-main-header-el]]></wp:post_name>
@@ -1028,7 +1028,7 @@
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"df32692","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"50579ea","elType":"column","settings":{"_column_size":100},"elements":[{"id":"20f6191","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"\u0632\u0631\u06cc\u0640\u0640\u0646 \u06a9\u0640\u062f","brand_subtitle":"Zarincode Studio","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647","phone":"09024561001","cta_text":"\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0645\u0634\u0627\u0648\u0631\u0647"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"6acf0a1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fb2efdf","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c126787","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"\u0632\u0631\u06cc\u0640\u0640\u0646 \u06a9\u0640\u062f","brand_subtitle":"Zarincode Studio","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647","phone":"09024561001","cta_text":"\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0645\u0634\u0627\u0648\u0631\u0647"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1043,8 +1043,8 @@
 		<wp:post_id>78</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:32:01]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:32:01]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:01]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:01]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-main-footer-el]]></wp:post_name>
@@ -1068,7 +1068,7 @@
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"4bf4202","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2c11f03","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ca8b9ea","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"\u0628\u0631\u0627\u06cc \u062a\u062d\u0648\u0644 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644\u060c \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0627\u062e\u062a\u0635\u0627\u0635\u06cc \u06cc\u0627 \u062e\u0631\u06cc\u062f \u0633\u0648\u0631\u0633\u200c\u06a9\u062f\u0647\u0627\u06cc \u0622\u0645\u0627\u062f\u0647 \u0622\u0645\u0627\u062f\u0647\u200c\u0627\u06cc\u062f\u061f","phone":"09024561001","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647 (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"1f8aeba","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"31ded04","elType":"column","settings":{"_column_size":100},"elements":[{"id":"73a7af4","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"\u0628\u0631\u0627\u06cc \u062a\u062d\u0648\u0644 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644\u060c \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0627\u062e\u062a\u0635\u0627\u0635\u06cc \u06cc\u0627 \u062e\u0631\u06cc\u062f \u0633\u0648\u0631\u0633\u200c\u06a9\u062f\u0647\u0627\u06cc \u0622\u0645\u0627\u062f\u0647 \u0622\u0645\u0627\u062f\u0647\u200c\u0627\u06cc\u062f\u061f","phone":"09024561001","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647 (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1083,8 +1083,8 @@
 		<wp:post_id>80</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:32:01]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:32:01]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-services-megamenu-el]]></wp:post_name>
@@ -1108,7 +1108,7 @@
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"15db539","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"15c2858","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b66c87b","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"183ee9c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"beaf76a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f507971","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1123,8 +1123,8 @@
 		<wp:post_id>82</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:32:01]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:32:01]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-consultation-popup-el]]></wp:post_name>
@@ -1148,7 +1148,7 @@
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"b1e68c0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9885f20","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f73523c","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"60ab3de","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1f50e88","elType":"column","settings":{"_column_size":100},"elements":[{"id":"5aa4a6a","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1456,8 +1456,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>3</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:55]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:55]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[privacy-policy]]></wp:post_name>
@@ -1485,7 +1485,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"c3c4e5a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"efc3921","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f61f605","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"privacy"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"1864e3d","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c3e08c1","elType":"column","settings":{"_column_size":100},"elements":[{"id":"df47402","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"privacy"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1510,8 +1510,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>30</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[home]]></wp:post_name>
@@ -1539,7 +1539,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"2220d09","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"934b6fb","elType":"column","settings":{"_column_size":100},"elements":[{"id":"5aedae5","elType":"widget","widgetType":"zarincode_hero","settings":[]}]}]},{"id":"65e2f1c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"23fd447","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fce940b","elType":"widget","widgetType":"zarincode_brands","settings":[]}]}]},{"id":"4d2da50","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"82583d2","elType":"column","settings":{"_column_size":100},"elements":[{"id":"47a74a8","elType":"widget","widgetType":"zarincode_services","settings":[]}]}]},{"id":"6060eaa","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3843702","elType":"column","settings":{"_column_size":100},"elements":[{"id":"5e9f8e2","elType":"widget","widgetType":"zarincode_products","settings":[]}]}]},{"id":"091bf14","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1144f52","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e0269f5","elType":"widget","widgetType":"zarincode_portfolio","settings":[]}]}]},{"id":"06ef860","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"022c180","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fde007e","elType":"widget","widgetType":"zarincode_why_us","settings":[]}]}]},{"id":"9db811a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4c4ed14","elType":"column","settings":{"_column_size":100},"elements":[{"id":"00aaf4b","elType":"widget","widgetType":"zarincode_pricing","settings":[]}]}]},{"id":"3576916","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1c7496c","elType":"column","settings":{"_column_size":100},"elements":[{"id":"973e513","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"e8b67a4","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fb735b5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e899a56","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]},{"id":"2f32cbb","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"61967b1","elType":"column","settings":{"_column_size":100},"elements":[{"id":"dab1b43","elType":"widget","widgetType":"zarincode_testimonials","settings":[]}]}]},{"id":"e08e411","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"e37da5c","elType":"column","settings":{"_column_size":100},"elements":[{"id":"6054b25","elType":"widget","widgetType":"zarincode_blog","settings":[]}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"79a6b8a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fd043f0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"41a4d92","elType":"widget","widgetType":"zarincode_hero","settings":[]}]}]},{"id":"604cf8d","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f4c4de9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8ae24c3","elType":"widget","widgetType":"zarincode_brands","settings":[]}]}]},{"id":"7afdd44","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"217078c","elType":"column","settings":{"_column_size":100},"elements":[{"id":"285c72a","elType":"widget","widgetType":"zarincode_services","settings":[]}]}]},{"id":"05954c9","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b581321","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f930845","elType":"widget","widgetType":"zarincode_products","settings":[]}]}]},{"id":"c54752f","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"ca7d7c3","elType":"column","settings":{"_column_size":100},"elements":[{"id":"03f22c3","elType":"widget","widgetType":"zarincode_portfolio","settings":[]}]}]},{"id":"d1911ab","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2ab38b0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e9914a8","elType":"widget","widgetType":"zarincode_why_us","settings":[]}]}]},{"id":"d4c0cbd","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2f2e433","elType":"column","settings":{"_column_size":100},"elements":[{"id":"1ca03ca","elType":"widget","widgetType":"zarincode_pricing","settings":[]}]}]},{"id":"3e2145a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9423644","elType":"column","settings":{"_column_size":100},"elements":[{"id":"9df85fe","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"6755d12","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1696ef2","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b213223","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]},{"id":"73a6307","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"69c020a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"78d68ff","elType":"widget","widgetType":"zarincode_testimonials","settings":[]}]}]},{"id":"8a33192","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c9d81e0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e9bc8d5","elType":"widget","widgetType":"zarincode_blog","settings":[]}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1566,8 +1566,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>31</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[services]]></wp:post_name>
@@ -1595,7 +1595,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"b3976dc","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"304e64c","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8864f6a","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"services-page"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"a35eb3b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"09b6f59","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ca795b5","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"services-page"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1622,8 +1622,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>32</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[projects-portfolio]]></wp:post_name>
@@ -1651,7 +1651,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"5ac48c9","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4bc5b14","elType":"column","settings":{"_column_size":100},"elements":[{"id":"9c988fe","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"projects-page"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"ead7126","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4091fd0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"75b1ba6","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"projects-page"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1678,8 +1678,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>33</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[about-us]]></wp:post_name>
@@ -1707,7 +1707,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"b2da73b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c433d66","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fb51c54","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"about-page"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"56e688d","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"0f0f9e0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2825660","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"about-page"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1734,8 +1734,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>34</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[contact-us]]></wp:post_name>
@@ -1763,7 +1763,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"82dc2f1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"cec7196","elType":"column","settings":{"_column_size":100},"elements":[{"id":"557e6f4","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"contact-page"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"f47f76e","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"a169347","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0c36227","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"contact-page"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1790,8 +1790,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>35</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[terms-and-conditions]]></wp:post_name>
@@ -1819,7 +1819,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"7b767f0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"894ffb6","elType":"column","settings":{"_column_size":100},"elements":[{"id":"665aeb7","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"terms"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"f8b986c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"34939af","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2a1a80d","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"terms"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_page_assets]]></wp:meta_key>
@@ -1846,8 +1846,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>36</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[warranty-policy]]></wp:post_name>
@@ -1875,7 +1875,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"a1a43af","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"0f09a2e","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e3bc06c","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"warranty"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"122fc48","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"74e6ef1","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fa54540","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"warranty"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1890,8 +1890,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>38</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[refund-policy]]></wp:post_name>
@@ -1919,7 +1919,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"41379e6","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f6adf0e","elType":"column","settings":{"_column_size":100},"elements":[{"id":"edae6f5","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"refund"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"dec641c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"e016b5e","elType":"column","settings":{"_column_size":100},"elements":[{"id":"94c1a20","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"refund"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1934,8 +1934,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>39</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[gdpr-compliance]]></wp:post_name>
@@ -1963,7 +1963,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"1776ef4","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1d52ab2","elType":"column","settings":{"_column_size":100},"elements":[{"id":"97ab5b9","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"gdpr"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"01f8685","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"d6c0b97","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7d34a56","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"gdpr"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1978,8 +1978,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>40</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[dmca-policy]]></wp:post_name>
@@ -2007,7 +2007,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"facd44f","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7632e11","elType":"column","settings":{"_column_size":100},"elements":[{"id":"29bdca6","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"dmca"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"4d08f9c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"575f3d7","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2913647","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"dmca"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -2022,8 +2022,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>41</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[shop]]></wp:post_name>
@@ -2051,7 +2051,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"73bbd11","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fc1f886","elType":"column","settings":{"_column_size":100},"elements":[{"id":"d3d3787","elType":"widget","widgetType":"zarincode_products","settings":{"count":8}}]}]},{"id":"1aa58c2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"435db82","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c8b4359","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"72bbe5c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"a61cfb9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"6213dcb","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"c3cc607","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c4b37b4","elType":"column","settings":{"_column_size":100},"elements":[{"id":"237ab9d","elType":"widget","widgetType":"zarincode_products","settings":{"count":8}}]}]},{"id":"1f1820b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3ca20b5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"100a48c","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"f23e036","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f6b35e4","elType":"column","settings":{"_column_size":100},"elements":[{"id":"d36f022","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -2066,8 +2066,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>42</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[blog]]></wp:post_name>
@@ -2095,7 +2095,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"29643a9","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"890ade2","elType":"column","settings":{"_column_size":100},"elements":[{"id":"614ca40","elType":"widget","widgetType":"zarincode_blog","settings":[]}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"7402a3a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"47cbc5f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7c27ca4","elType":"widget","widgetType":"zarincode_blog","settings":[]}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -2110,8 +2110,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>43</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[elementor-based-wordpress-theme-architecture]]></wp:post_name>
@@ -2122,7 +2122,15 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
 										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						</item>
+						<wp:postmeta>
+		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
 					<item>
 		<title><![CDATA[راهنمای جامع سئو سایت و سئو شبکه‌های اجتماعی برای افزایش ۳ برابری فروش]]></title>
 		<link>http://localhost:8080/website-and-social-media-seo-strategy-2026/</link>
@@ -2135,8 +2143,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>44</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[website-and-social-media-seo-strategy-2026]]></wp:post_name>
@@ -2147,7 +2155,15 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
 										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						</item>
+						<wp:postmeta>
+		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
 					<item>
 		<title><![CDATA[Cart]]></title>
 		<link>http://localhost:8080/cart/</link>
@@ -2398,8 +2414,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>4</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:01]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:01]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-main-header]]></wp:post_name>
@@ -2423,7 +2439,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"df32692","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"50579ea","elType":"column","settings":{"_column_size":100},"elements":[{"id":"20f6191","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"\u0632\u0631\u06cc\u0640\u0640\u0646 \u06a9\u0640\u062f","brand_subtitle":"Zarincode Studio","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647","phone":"09024561001","cta_text":"\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0645\u0634\u0627\u0648\u0631\u0647"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"6acf0a1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fb2efdf","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c126787","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"\u0632\u0631\u06cc\u0640\u0640\u0646 \u06a9\u0640\u062f","brand_subtitle":"Zarincode Studio","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647","phone":"09024561001","cta_text":"\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0645\u0634\u0627\u0648\u0631\u0647"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_zc_hf_type]]></wp:meta_key>
@@ -2446,8 +2462,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>5</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:01]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:01]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-main-footer]]></wp:post_name>
@@ -2471,7 +2487,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"4bf4202","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2c11f03","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ca8b9ea","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"\u0628\u0631\u0627\u06cc \u062a\u062d\u0648\u0644 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644\u060c \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0627\u062e\u062a\u0635\u0627\u0635\u06cc \u06cc\u0627 \u062e\u0631\u06cc\u062f \u0633\u0648\u0631\u0633\u200c\u06a9\u062f\u0647\u0627\u06cc \u0622\u0645\u0627\u062f\u0647 \u0622\u0645\u0627\u062f\u0647\u200c\u0627\u06cc\u062f\u061f","phone":"09024561001","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647 (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"1f8aeba","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"31ded04","elType":"column","settings":{"_column_size":100},"elements":[{"id":"73a7af4","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"\u0628\u0631\u0627\u06cc \u062a\u062d\u0648\u0644 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644\u060c \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0627\u062e\u062a\u0635\u0627\u0635\u06cc \u06cc\u0627 \u062e\u0631\u06cc\u062f \u0633\u0648\u0631\u0633\u200c\u06a9\u062f\u0647\u0627\u06cc \u0622\u0645\u0627\u062f\u0647 \u0622\u0645\u0627\u062f\u0647\u200c\u0627\u06cc\u062f\u061f","phone":"09024561001","dev_name":"\u0627\u062d\u0633\u0627\u0646 \u0646\u0627\u062f\u0631\u06cc \u067e\u0646\u0627\u0647 (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_zc_hf_type]]></wp:meta_key>
@@ -2494,8 +2510,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>6</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-services-megamenu]]></wp:post_name>
@@ -2519,7 +2535,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"15db539","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"15c2858","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b66c87b","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"183ee9c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"beaf76a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f507971","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_zc_hf_type]]></wp:meta_key>
@@ -2542,8 +2558,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>7</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-consultation-popup]]></wp:post_name>
@@ -2567,7 +2583,7 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_elementor_data]]></wp:meta_key>
-		<wp:meta_value><![CDATA[[{"id":"b1e68c0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9885f20","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f73523c","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
+		<wp:meta_value><![CDATA[[{"id":"60ab3de","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1f50e88","elType":"column","settings":{"_column_size":100},"elements":[{"id":"5aa4a6a","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_zc_hf_type]]></wp:meta_key>
@@ -2590,8 +2606,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>14</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[tech-marketplace-design]]></wp:post_name>
@@ -2648,8 +2664,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>15</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[crextio-cloud-hrm-software]]></wp:post_name>
@@ -2705,8 +2721,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>16</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[tebgostar-medical-seo]]></wp:post_name>
@@ -2762,8 +2778,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>17</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[cloud-hosting-portal-design]]></wp:post_name>
@@ -2820,8 +2836,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>18</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[stylemode-fashion-ecommerce]]></wp:post_name>
@@ -2878,8 +2894,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>19</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[fintech-magazine-content-seo]]></wp:post_name>
@@ -2936,8 +2952,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>20</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[bartar-clinic-booking-software]]></wp:post_name>
@@ -2994,8 +3010,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>22</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincode-pro-wordpress-theme]]></wp:post_name>
@@ -3061,6 +3077,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[Elementor,Redux,WooCommerce,PHP 8.4,RTL Ready]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v2.5.0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۴۲۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarincode-pro-wordpress-theme]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[افزونه سئو هوشمند و ایندکس آنی گوگل (ZarinSEO Booster)]]></title>
@@ -3074,8 +3106,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>23</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarinseo-booster-plugin]]></wp:post_name>
@@ -3141,6 +3173,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[Google Indexing API,Schema Pro,Auto-Index,WordPress]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v3.2.1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۶۱۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarinseo-booster-plugin]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[سورس‌کد سامانه جامع CRM، فاکتور و مدیریت مشتریان زرین‌یار]]></title>
@@ -3154,8 +3202,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>24</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarinyar-crm-full-source-code]]></wp:post_name>
@@ -3221,6 +3269,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[Laravel 11,React,REST API,Full Source,Accounting]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v4.0.0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۱۹۵ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarinyar-crm-full-source-code]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[افزونه ورود و ثبت‌نام پیامکی و پنل کاربری (ZarinDigits OTP)]]></title>
@@ -3234,8 +3298,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>25</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarindigits-otp-auth-plugin]]></wp:post_name>
@@ -3301,6 +3365,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[OTP SMS,WooCommerce,AJAX Auth,20 Iranian Gateways]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v2.1.0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۸۴۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarindigits-otp-auth-plugin]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[قالب فروشگاهی سوپرمارکت و کالای دیجیتال (ZarinMart)]]></title>
@@ -3314,8 +3394,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>26</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarinmart-woocommerce-theme]]></wp:post_name>
@@ -3381,6 +3461,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[WooCommerce,Elementor,AJAX Filter,Multi-Vendor]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v1.9.4]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۳۱۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarinmart-woocommerce-theme]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[سورس‌کد پلتفرم آنالیز و سئو شبکه‌های اجتماعی (ZarinSocial AI)]]></title>
@@ -3394,8 +3490,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>27</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarinsocial-ai-platform-source]]></wp:post_name>
@@ -3461,6 +3557,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[Node.js,AI Analytics,Instagram SEO,LinkedIn Growth]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v2.4.0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۱۵۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarinsocial-ai-platform-source]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[افزونه تولید محتوای خودکار با هوش مصنوعی (ZarinContent AI)]]></title>
@@ -3474,8 +3586,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>28</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarincontent-ai-writer-plugin]]></wp:post_name>
@@ -3541,6 +3653,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[AI Content,Auto SEO,WordPress,Table of Contents]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v1.8.0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۴۹۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarincontent-ai-writer-plugin]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[سورس‌کد سامانه آموزش آنلاین و برگزاری وبینار (ZarinLMS Pro)]]></title>
@@ -3554,8 +3682,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>29</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[zarinlms-pro-online-academy-source]]></wp:post_name>
@@ -3621,6 +3749,22 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:meta_key><![CDATA[_zc_prod_tags]]></wp:meta_key>
 		<wp:meta_value><![CDATA[Full-Stack LMS,Quiz Engine,PDF Certificate,Shaparak]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_ver]]></wp:meta_key>
+		<wp:meta_value><![CDATA[v3.0.2]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_sales]]></wp:meta_key>
+		<wp:meta_value><![CDATA[+۲۲۰ فروش موفق]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[http://localhost:8080/?demo_preview=zarinlms-pro-online-academy-source]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_zc_prod_demo_label]]></wp:meta_key>
+		<wp:meta_value><![CDATA[پیش‌نمایش آنلاین دمو]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[مزایای استفاده از افزونه‌ها و سورس‌کدهای آماده استاندارد در پروژه‌های نرم‌افزاری]]></title>
@@ -3634,8 +3778,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>45</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[ready-made-software-source-codes-benefits]]></wp:post_name>
@@ -3646,7 +3790,15 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
 										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						</item>
+						<wp:postmeta>
+		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
 					<item>
 		<title><![CDATA[طراحی سایت اختصاصی]]></title>
 		<link>http://localhost:8080/service/website-design/</link>
@@ -3659,8 +3811,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>8</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[website-design]]></wp:post_name>
@@ -3736,8 +3888,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>9</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[software-development]]></wp:post_name>
@@ -3813,8 +3965,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>10</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[website-seo]]></wp:post_name>
@@ -3890,8 +4042,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>11</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[social-media-seo]]></wp:post_name>
@@ -3967,8 +4119,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>12</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[content-creation]]></wp:post_name>
@@ -4044,8 +4196,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>13</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[ready-made-products]]></wp:post_name>
@@ -4121,8 +4273,8 @@ Commenter avatars come from <a href="https://gravatar.com/">Gravatar</a>.]]></wp
 		<wp:post_id>21</wp:post_id>
 		<wp:post_date><![CDATA[2026-10-21 10:29:56]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2026-10-21 10:29:56]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-10-21 10:42:00]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2026-10-21 10:42:00]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2026-10-21 11:19:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2026-10-21 11:19:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[arad-holding-social-seo-campaign]]></wp:post_name>

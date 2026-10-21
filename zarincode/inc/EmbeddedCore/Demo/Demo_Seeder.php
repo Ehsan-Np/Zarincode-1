@@ -86,7 +86,7 @@ class Demo_Seeder {
             return;
         }
         $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-        if ( $screen && strpos( $screen->id, 'zarincode-demo-importer' ) !== false ) {
+        if ( $screen && strpos( $screen->id, 'zarincode' ) !== false ) {
             return;
         }
         $import_url = admin_url( 'admin.php?page=zarincode-demo-importer' );
@@ -148,7 +148,18 @@ class Demo_Seeder {
         $cnt_posts    = wp_count_posts( 'post' )->publish ?? 0;
         $cnt_products = post_type_exists( 'product' ) ? ( wp_count_posts( 'product' )->publish ?? 0 ) : 0;
         ?>
-        <div class="wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;max-width:1100px;margin-top:20px;">
+        <style>
+            #wpbody-content > .wrap.zc-demo-fullwidth-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 16px 0 0 0 !important;
+                padding: 0 20px 28px 20px !important;
+                box-sizing: border-box !important;
+            }
+        </style>
+        <div class="wrap zc-demo-fullwidth-wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:none;box-sizing:border-box;">
+            <h1 class="screen-reader-text">پنل درون‌ریز هوشمند قالب زرین کد</h1>
+            <hr class="wp-header-end">
             <div style="background:linear-gradient(135deg,#2A2C31 0%,#18191D 100%);color:#fff;padding:30px;border-radius:24px;margin-bottom:24px;border:2px solid #FDD05B;box-shadow:0 15px 40px rgba(0,0,0,0.15);">
                 <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE ONE-CLICK DEMO IMPORTER v2.5</span>
                 <h1 style="color:#fff;font-size:24px;margin:12px 0 8px;">پنل درون‌ریز هوشمند و یک‌کلیکی قالب «زرین کد (Zarincode)»</h1>
@@ -659,7 +670,10 @@ class Demo_Seeder {
      */
     public static function seed_woocommerce_products(): void {
         if ( ! post_type_exists( 'product' ) && class_exists( '\Zarincode\Core\PostTypes\CPT_Manager' ) ) {
-            \Zarincode\Core\PostTypes\CPT_Manager::instance()->register_cpts_and_taxonomies();
+            $cpt_mgr = \Zarincode\Core\PostTypes\CPT_Manager::instance();
+            if ( method_exists( $cpt_mgr, 'register_post_types_and_taxonomies' ) ) {
+                $cpt_mgr->register_post_types_and_taxonomies();
+            }
         }
 
         $items = [
@@ -796,10 +810,14 @@ class Demo_Seeder {
                     '_zc_prod_price_display' => $it['price_fa'],
                     '_zc_prod_old_price'     => $it['old_price'],
                     '_zc_prod_version'       => $it['ver'],
+                    '_zc_prod_ver'           => $it['ver'],
                     '_zc_prod_cat_badge'     => $it['cat_badge'],
                     '_zc_prod_sales_count'   => $it['sales'],
+                    '_zc_prod_sales'         => $it['sales'],
                     '_zc_prod_icon'          => $it['icon'],
                     '_zc_prod_tags'          => $it['tags'],
+                    '_zc_prod_demo_url'      => home_url( '/?demo_preview=' . $it['slug'] ),
+                    '_zc_prod_demo_label'    => 'پیش‌نمایش آنلاین دمو',
                 ]
             );
         }
@@ -1020,7 +1038,10 @@ class Demo_Seeder {
      */
     public static function seed_all(): void {
         if ( class_exists( '\Zarincode\Core\PostTypes\CPT_Manager' ) ) {
-            \Zarincode\Core\PostTypes\CPT_Manager::instance()->register_cpts_and_taxonomies();
+            $cpt_mgr = \Zarincode\Core\PostTypes\CPT_Manager::instance();
+            if ( method_exists( $cpt_mgr, 'register_post_types_and_taxonomies' ) ) {
+                $cpt_mgr->register_post_types_and_taxonomies();
+            }
         }
         self::seed_redux_options();
         self::seed_header_footer_templates();

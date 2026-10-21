@@ -436,7 +436,18 @@ class Plugin_Manager {
         $manifest = self::get_plugins_manifest();
         $nonce    = wp_create_nonce( 'zarincode_plugin_manager_nonce' );
         ?>
-        <div class="wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;max-width:1180px;margin-top:20px;">
+        <style>
+            #wpbody-content > .wrap.zc-plugins-fullwidth-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 16px 0 0 0 !important;
+                padding: 0 20px 28px 20px !important;
+                box-sizing: border-box !important;
+            }
+        </style>
+        <div class="wrap zc-plugins-fullwidth-wrap" style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:none;box-sizing:border-box;">
+            <h1 class="screen-reader-text">نصب و مدیریت افزونه‌های قالب زرین کد</h1>
+            <hr class="wp-header-end">
             <!-- Header Banner -->
             <div style="background:linear-gradient(135deg,#2A2C31 0%,#15171C 100%);color:#fff;padding:30px 34px;border-radius:24px;border:2px solid #FDD05B;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;box-shadow:0 16px 40px rgba(0,0,0,0.12);">
                 <div>

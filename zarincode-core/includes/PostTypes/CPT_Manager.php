@@ -1,7 +1,7 @@
 <?php
 /**
  * Custom Post Types, Taxonomies & Admin Meta Boxes Manager
- * (Services, Portfolio Projects, and Elementor Header/Footer/MegaMenu Builder)
+ * (Services, Portfolio Projects, WooCommerce Product Live Demo Meta, and Elementor Header/Footer/MegaMenu Builder)
  *
  * @package Zarincode\Core\PostTypes
  * @author  Ehsan NaderiPanah (09024561001 | https://zarincode.com)
@@ -29,6 +29,17 @@ class CPT_Manager {
         add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
         add_action( 'save_post', [ $this, 'save_meta_boxes' ], 10, 2 );
         add_action( 'init', [ $this, 'enable_elementor_cpt_support' ], 20 );
+
+        // Native WooCommerce Product Data panel integration for Live Demo URL
+        add_action( 'woocommerce_product_options_general_product_data', [ $this, 'render_wc_general_demo_fields' ] );
+        add_action( 'woocommerce_process_product_meta', [ $this, 'save_wc_general_demo_fields' ] );
+    }
+
+    /**
+     * Alias method so both register_cpts_and_taxonomies() and register_post_types_and_taxonomies() work seamlessly.
+     */
+    public function register_cpts_and_taxonomies(): void {
+        $this->register_post_types_and_taxonomies();
     }
 
     public function register_post_types_and_taxonomies(): void {
@@ -199,6 +210,15 @@ class CPT_Manager {
 
     public function register_meta_boxes(): void {
         add_meta_box(
+            'zc_product_meta_box',
+            '🌟 لینک پیش‌نمایش آنلاین دمو و مشخصات مارکت‌پلیس زرین کد (Live Demo & Product Meta)',
+            [ $this, 'render_product_meta_box' ],
+            'product',
+            'normal',
+            'high'
+        );
+
+        add_meta_box(
             'zc_service_meta_box',
             'تنظیمات و شرایط ارائه خدمت (Webinex Service Conditions)',
             [ $this, 'render_service_meta_box' ],
@@ -224,6 +244,98 @@ class CPT_Manager {
             'side',
             'high'
         );
+    }
+
+    /**
+     * Render WooCommerce Product Meta Box (with prominent Live Demo Link field)
+     */
+    public function render_product_meta_box( \WP_Post $post ): void {
+        wp_nonce_field( 'zc_meta_save', 'zc_meta_nonce' );
+        $demo_url   = get_post_meta( $post->ID, '_zc_prod_demo_url', true );
+        if ( '' === $demo_url ) {
+            $demo_url = 'https://zarincode.com/?demo=' . ( $post->post_name ?: 'zarincode-pro' );
+        }
+        $demo_label = get_post_meta( $post->ID, '_zc_prod_demo_label', true ) ?: 'پیش‌نمایش آنلاین دمو';
+        $fields = [
+            '_zc_prod_ver'       => [ 'نسخه فعلی محصول (Version)', 'v2.5.0' ],
+            '_zc_prod_cat_badge' => [ 'برچسب دسته‌بندی محصول', 'قالب وردپرس' ],
+            '_zc_prod_sales'     => [ 'آمار فروش و نصب فعال', '+۴۲۰ فروش موفق' ],
+            '_zc_prod_old_price' => [ 'قیمت قبل از تخفیف (نمایشی)', '۳,۹۰۰,۰۰۰' ],
+            '_zc_prod_icon'      => [ 'کلاس آیکون FontAwesome', 'fa-brands fa-wordpress' ],
+            '_zc_prod_tags'      => [ 'تگ‌های تکنولوژی (جداشده با کاما)', 'Elementor,Redux,WooCommerce,PHP 8.4,RTL Ready' ],
+        ];
+        ?>
+        <div style="direction:rtl;font-family:Tahoma,system-ui,sans-serif;padding:8px 4px;">
+            <div style="background:#FFFBEB;border:2px solid #FDD05B;border-radius:14px;padding:16px;margin-bottom:16px;">
+                <div style="font-weight:900;font-size:14px;color:#2A2C31;margin-bottom:10px;">
+                    🖥️ تنظیمات دکمه «پیش‌نمایش آنلاین دمو (Live Demo)» محصول
+                </div>
+                <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;">
+                    <div>
+                        <label for="_zc_prod_demo_url" style="display:block;font-weight:bold;margin-bottom:6px;color:#1F2937;">
+                            لینک پیش‌نمایش آنلاین دمو (Live Demo URL):
+                        </label>
+                        <input type="url" id="_zc_prod_demo_url" name="_zc_prod_demo_url" value="<?php echo esc_attr( $demo_url ); ?>" placeholder="https://demo.zarincode.com/product-name" dir="ltr" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid #D1D5DB;text-align:left;font-family:monospace;">
+                        <small style="color:#6B7280;display:block;margin-top:4px;">این لینک به دکمه «پیش‌نمایش آنلاین دمو» در کارت محصول و صفحه تکی محصول متصل می‌شود.</small>
+                    </div>
+                    <div>
+                        <label for="_zc_prod_demo_label" style="display:block;font-weight:bold;margin-bottom:6px;color:#1F2937;">
+                            متن دکمه نمایش دمو:
+                        </label>
+                        <input type="text" id="_zc_prod_demo_label" name="_zc_prod_demo_label" value="<?php echo esc_attr( $demo_label ); ?>" placeholder="پیش‌نمایش آنلاین دمو" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid #D1D5DB;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <?php foreach ( $fields as $key => $info ) :
+                    $val = get_post_meta( $post->ID, $key, true );
+                    if ( '' === $val ) {
+                        $val = $info[1];
+                    }
+                    ?>
+                    <div>
+                        <label style="display:block;font-weight:bold;margin-bottom:4px;"><?php echo esc_html( $info[0] ); ?></label>
+                        <input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $val ); ?>" style="width:100%;padding:7px 10px;border-radius:8px;border:1px solid #D1D5DB;">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Also add Live Demo URL field inside WooCommerce's native "General" product data tab
+     */
+    public function render_wc_general_demo_fields(): void {
+        if ( ! function_exists( 'woocommerce_wp_text_input' ) ) {
+            return;
+        }
+        echo '<div class="options_group">';
+        woocommerce_wp_text_input( [
+            'id'          => '_zc_prod_demo_url',
+            'label'       => 'لینک پیش‌نمایش دمو (Live Demo URL)',
+            'placeholder' => 'https://zarincode.com/?demo=product-slug',
+            'desc_tip'    => true,
+            'description' => 'لینک دمو آنلاین این محصول که در صفحه فروشگاه و صفحه تکی محصول روی دکمه «پیش‌نمایش آنلاین دمو» قرار می‌گیرد.',
+        ] );
+        woocommerce_wp_text_input( [
+            'id'          => '_zc_prod_demo_label',
+            'label'       => 'متن دکمه دمو',
+            'placeholder' => 'پیش‌نمایش آنلاین دمو',
+            'desc_tip'    => true,
+            'description' => 'عنوان نمایشی روی دکمه پیش‌نمایش آنلاین دمو.',
+        ] );
+        echo '</div>';
+    }
+
+    public function save_wc_general_demo_fields( int $post_id ): void {
+        if ( isset( $_POST['_zc_prod_demo_url'] ) ) {
+            update_post_meta( $post_id, '_zc_prod_demo_url', esc_url_raw( wp_unslash( $_POST['_zc_prod_demo_url'] ) ) );
+        }
+        if ( isset( $_POST['_zc_prod_demo_label'] ) ) {
+            update_post_meta( $post_id, '_zc_prod_demo_label', sanitize_text_field( wp_unslash( $_POST['_zc_prod_demo_label'] ) ) );
+        }
     }
 
     public function render_service_meta_box( \WP_Post $post ): void {
@@ -314,7 +426,13 @@ class CPT_Manager {
             return;
         }
 
+        if ( isset( $_POST['_zc_prod_demo_url'] ) ) {
+            update_post_meta( $post_id, '_zc_prod_demo_url', esc_url_raw( wp_unslash( $_POST['_zc_prod_demo_url'] ) ) );
+        }
+
         $meta_keys = [
+            '_zc_prod_demo_label', '_zc_prod_ver', '_zc_prod_cat_badge',
+            '_zc_prod_sales', '_zc_prod_old_price', '_zc_prod_icon', '_zc_prod_tags',
             '_zc_srv_en_title', '_zc_srv_icon', '_zc_srv_price_range', '_zc_srv_old_price',
             '_zc_srv_discount', '_zc_srv_delivery_mode', '_zc_srv_refund_guarantee',
             '_zc_srv_quality_guarantee', '_zc_srv_prepayment', '_zc_srv_duration',

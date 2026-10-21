@@ -140,6 +140,9 @@ class Setup {
     }
 
     public function force_rtl_attributes( string $output ): string {
+        if ( is_admin() ) {
+            return $output;
+        }
         if ( is_page( 'dmca-policy' ) ) {
             return 'lang="en-US" dir="ltr"';
         }

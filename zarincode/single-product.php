@@ -40,6 +40,11 @@ while ( have_posts() ) :
     $tags_str     = get_post_meta( $post_id, '_zc_prod_tags', true ) ?: 'PHP 8.4,Elementor,WooCommerce,Open Source,RTL Ready';
     $tags         = array_map( 'trim', explode( ',', $tags_str ) );
     $updated_date = get_post_meta( $post_id, '_zc_prod_updated', true ) ?: 'مهر ۱۴۰۵';
+    $demo_url     = get_post_meta( $post_id, '_zc_prod_demo_url', true );
+    if ( ! $demo_url ) {
+        $demo_url = get_post_meta( $post_id, 'demo_url', true ) ?: home_url( '/?demo_preview=' . $slug );
+    }
+    $demo_label   = get_post_meta( $post_id, '_zc_prod_demo_label', true ) ?: 'پیش‌نمایش آنلاین دمو';
 
     $add_to_cart_url = function_exists( 'wc_get_cart_url' ) ? add_query_arg( 'add-to-cart', $post_id, wc_get_cart_url() ) : '#zc-consult-modal';
     ?>
@@ -135,15 +140,20 @@ while ( have_posts() ) :
                     <!-- Quick Action Bar under Preview -->
                     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:rgba(253,208,91,0.14);border:1px solid rgba(253,208,91,0.45);border-radius:1.25rem;">
                         <div style="display:flex;align-items:center;gap:0.75rem;">
-                            <i class="fa-solid fa-bolt" style="font-size:1.35rem;color:var(--color-accent-contrast);background:var(--color-accent);width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;"></i>
+                            <i class="fa-solid fa-bolt" style="font-size:1.35rem;color:var(--color-accent-contrast);background:var(--color-accent);width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></i>
                             <div>
-                                <div style="font-weight:900;font-size:0.92rem;">فایل کامل محصول + مستندات فارسی + درون‌ریز خودکار آماده دانلود است</div>
-                                <div style="font-size:0.78rem;color:var(--zc-text-secondary);">بلافاصله پس از تکمیل سفارش، لینک دانلود مستقیم در پنل کاربری و ایمیل شما فعال می‌شود.</div>
+                                <div style="font-weight:900;font-size:0.9rem;">فایل کامل محصول + مستندات فارسی + درون‌ریز خودکار آماده دانلود است</div>
+                                <div style="font-size:0.77rem;color:var(--zc-text-secondary);">بلافاصله پس از تکمیل سفارش، لینک دانلود مستقیم در پنل کاربری و ایمیل شما فعال می‌شود.</div>
                             </div>
                         </div>
-                        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+                        <div style="display:flex;gap:0.55rem;flex-wrap:wrap;">
+                            <?php if ( ! empty( $demo_url ) ) : ?>
+                                <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="zc-btn zc-btn-yellow" style="padding:0.55rem 1.15rem;font-size:0.82rem;">
+                                    <i class="fa-solid fa-desktop"></i> <?php echo esc_html( $demo_label ); ?>
+                                </a>
+                            <?php endif; ?>
                             <button type="button" class="zc-btn zc-btn-dark" style="padding:0.55rem 1.15rem;font-size:0.82rem;" data-zc-modal-open="zc-consult-modal">
-                                <i class="fa-solid fa-desktop"></i> درخواست دمو / مشاوره فنی
+                                <i class="fa-solid fa-headset"></i> مشاوره فنی پیش از خرید
                             </button>
                         </div>
                     </div>
@@ -258,35 +268,81 @@ while ( have_posts() ) :
                         </div>
                     </div>
 
-                    <!-- TAB 4: Guarantee & FAQ -->
+                    <!-- TAB 4: Guarantee & FAQ (Redesigned Professional Crextio Accordion) -->
                     <div id="tab-faq" class="zc-prod-tab-pane" style="display:none;">
-                        <h3 style="font-size:1.15rem;font-weight:900;margin:0 0 1.25rem;">شرایط گارانتی، بازگشت وجه و سوالات متداول خریداران</h3>
+                        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.35rem;">
+                            <div>
+                                <span class="zc-badge-pill" style="margin-bottom:0.35rem;"><i class="fa-solid fa-shield-halved"></i> WARRANTY &amp; BUYER FAQ</span>
+                                <h3 style="font-size:1.2rem;font-weight:900;margin:0;">شرایط گارانتی، بازگشت وجه و سوالات متداول خریداران</h3>
+                            </div>
+                            <a href="<?php echo esc_url( home_url( '/warranty-policy/' ) ); ?>" class="zc-btn zc-btn-glass" style="padding:0.45rem 1rem;font-size:0.8rem;">
+                                مطالعه کامل قوانین گارانتی <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+
                         <div class="zc-faq-list">
                             <div class="zc-faq-item is-open">
-                                <button type="button" class="zc-faq-trigger">
-                                    <span>۱. آیا سورس‌کد محصول کاملاً باز است یا روی دامنه قفل می‌شود؟</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
+                                <button type="button" class="zc-faq-btn">
+                                    <span class="zc-faq-q-wrap">
+                                        <span class="zc-faq-num">۰۱</span>
+                                        <span>آیا سورس‌کد این محصول کاملاً باز است یا روی دامنه قفل می‌شود؟</span>
+                                    </span>
+                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
                                 </button>
                                 <div class="zc-faq-body">
-                                    تمامی محصولات عرضه شده در مارکت‌پلیس زرین کد دارای <strong>سورس‌کد ۱۰۰٪ باز (Open Source)</strong> و بدون هیچ‌گونه قفل دامنه یا کدهای رمزنگاری شده (IonCube) هستند تا بتوانید با خیال راحت روی دامنه‌های خود نصب و سفارشی‌سازی کنید.
+                                    تمامی محصولات عرضه شده در مارکت‌پلیس زرین کد دارای <strong>سورس‌کد ۱۰۰٪ باز (Open Source)</strong> و بدون هیچ‌گونه قفل دامنه، لایسنس محدودکننده یا کدهای رمزنگاری شده (IonCube) هستند تا بتوانید با خیال راحت روی دامنه‌های خود نصب، توسعه و سفارشی‌سازی کنید.
                                 </div>
                             </div>
+
                             <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-trigger">
-                                    <span>۲. نحوه دریافت فایل‌ها و پشتیبانی فنی پس از خرید چگونه است؟</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
+                                <button type="button" class="zc-faq-btn">
+                                    <span class="zc-faq-q-wrap">
+                                        <span class="zc-faq-num">۰۲</span>
+                                        <span>نحوه دریافت فایل‌ها، نصب دمو و پشتیبانی فنی پس از خرید چگونه است؟</span>
+                                    </span>
+                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
                                 </button>
                                 <div class="zc-faq-body">
-                                    بلافاصله پس از پرداخت، لینک دانلود پکیج کامل (شامل فایل محصول، افزونه‌های همراه، فایل درون‌ریز دمو و مستندات فارسی) فعال می‌شود. همچنین به مدت ۶ ماه از پشتیبانی مستقیم احسان نادری پناه (09024561001) برخوردار خواهید بود.
+                                    بلافاصله پس از پرداخت آنلاین، لینک دانلود پکیج کامل (شامل فایل اصلی محصول، افزونه‌های همراه، بسته درون‌ریز خودکار دمو و مستندات فارسی) در حساب کاربری شما فعال می‌شود. همچنین به مدت <strong>۶ ماه از پشتیبانی فنی رایگان و مستقیم احسان نادری پناه (09024561001)</strong> برخوردار خواهید بود.
                                 </div>
                             </div>
+
                             <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-trigger">
-                                    <span>۳. آیا امکان نصب و راه‌اندازی رایگان توسط تیم زرین کد وجود دارد؟</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
+                                <button type="button" class="zc-faq-btn">
+                                    <span class="zc-faq-q-wrap">
+                                        <span class="zc-faq-num">۰۳</span>
+                                        <span>آیا امکان نصب و راه‌اندازی رایگان دمو توسط تیم زرین کد وجود دارد؟</span>
+                                    </span>
+                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
                                 </button>
                                 <div class="zc-faq-body">
-                                    بله! در صورت تمایل، پس از خرید می‌توانید اطلاعات هاست یا پیشخوان خود را برای واحد پشتیبانی ارسال کنید تا نصب اولیه و درون‌ریزی کامل دمو به صورت رایگان برای شما انجام شود.
+                                    بله! در صورت تمایل، پس از خرید می‌توانید تیکت ارسال کنید یا با شماره پشتیبانی تماس بگیرید تا نصب اولیه و درون‌ریزی کامل دمو دقیقاً مشابه پیش‌نمایش آنلاین، به صورت <strong>۱۰۰٪ رایگان</strong> توسط کارشناسان فنی زرین کد برای شما انجام شود.
+                                </div>
+                            </div>
+
+                            <div class="zc-faq-item">
+                                <button type="button" class="zc-faq-btn">
+                                    <span class="zc-faq-q-wrap">
+                                        <span class="zc-faq-num">۰۴</span>
+                                        <span>شرایط گارانتی ۱۰۰٪ بازگشت وجه در چه مواردی شامل خریدار می‌شود؟</span>
+                                    </span>
+                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                                </button>
+                                <div class="zc-faq-body">
+                                    در صورتی که محصول خریداری‌شده دارای مغایرت فنی با امکانات درج‌شده در صفحه معرفی و پیش‌نمایش دمو باشد و تیم فنی زرین کد ظرف ۴۸ ساعت کاری قادر به رفع مشکل نباشد، <strong>۱۰۰٪ مبلغ پرداختی بدون هیچ‌گونه کسری</strong> طبق ضوابط صفحه <a href="<?php echo esc_url( home_url( '/refund-policy/' ) ); ?>" style="color:var(--zc-text-main);font-weight:800;text-decoration:underline;">شرایط بازگشت وجه</a> به حساب شما عودت داده می‌شود.
+                                </div>
+                            </div>
+
+                            <div class="zc-faq-item">
+                                <button type="button" class="zc-faq-btn">
+                                    <span class="zc-faq-q-wrap">
+                                        <span class="zc-faq-num">۰۵</span>
+                                        <span>آپدیت‌های بعدی محصول چگونه و با چه هزینه‌ای در اختیار خریداران قرار می‌گیرد؟</span>
+                                    </span>
+                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                                </button>
+                                <div class="zc-faq-body">
+                                    تمامی بروزرسانی‌های آینده این محصول (شامل قابلیت‌های جدید، سازگاری با نسخه‌های جدید وردپرس/PHP و بهینه‌سازی‌های امنیتی) به صورت <strong>مادام‌العمر و کاملاً رایگان</strong> در پنل کاربری شما قابل دانلود خواهد بود.
                                 </div>
                             </div>
                         </div>
@@ -340,7 +396,12 @@ while ( have_posts() ) :
                                 <i class="fa-solid fa-cart-shopping"></i> افزودن به سبد خرید و دانلود آنی
                             </a>
                         <?php endif; ?>
-                        <button type="button" class="zc-btn <?php echo function_exists( 'WC' ) ? 'zc-btn-glass' : 'zc-btn-yellow'; ?>" style="width:100%;padding:0.85rem;font-size:0.9rem;<?php echo function_exists( 'WC' ) ? 'background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);' : ''; ?>" data-zc-modal-open="zc-consult-modal">
+                        <?php if ( ! empty( $demo_url ) ) : ?>
+                            <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="zc-btn" style="width:100%;padding:0.85rem;font-size:0.88rem;background:rgba(253,208,91,0.16);color:#FDD05B;border:1.5px solid var(--color-accent);">
+                                <i class="fa-solid fa-desktop"></i> <?php echo esc_html( $demo_label ); ?>
+                            </a>
+                        <?php endif; ?>
+                        <button type="button" class="zc-btn <?php echo function_exists( 'WC' ) ? 'zc-btn-glass' : 'zc-btn-yellow'; ?>" style="width:100%;padding:0.85rem;font-size:0.88rem;<?php echo function_exists( 'WC' ) ? 'background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);' : ''; ?>" data-zc-modal-open="zc-consult-modal">
                             <i class="fa-solid fa-bolt"></i> خرید سریع / سفارش سفارشی‌سازی
                         </button>
                         <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn" style="width:100%;padding:0.75rem;font-size:0.84rem;background:rgba(255,255,255,0.06);color:#FDD05B;border:1px solid rgba(253,208,91,0.3);">
