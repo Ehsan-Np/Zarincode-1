@@ -138,6 +138,51 @@
             });
         });
 
+        // Mobile Navigation Drawer Open / Close / Submenu Accordion
+        document.querySelectorAll('[data-zc-drawer-open]').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const id = btn.getAttribute('data-zc-drawer-open');
+                const drawer = document.getElementById(id);
+                if (drawer) {
+                    drawer.classList.add('is-open');
+                    drawer.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-zc-drawer-close]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const drawer = btn.closest('.zc-mobile-drawer-backdrop') || document.getElementById('zc-mobile-drawer');
+                if (drawer) {
+                    drawer.classList.remove('is-open');
+                    drawer.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.querySelectorAll('.zc-mobile-drawer-backdrop').forEach(function (backdrop) {
+            backdrop.addEventListener('click', function (e) {
+                if (e.target === backdrop) {
+                    backdrop.classList.remove('is-open');
+                    backdrop.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-zc-mobile-sub-toggle]').forEach(function (subBtn) {
+            subBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const parentLi = subBtn.closest('.zc-mobile-has-sub');
+                if (parentLi) {
+                    parentLi.classList.toggle('is-open');
+                }
+            });
+        });
+
         // Ctrl+K shortcut for search modal
         document.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -151,6 +196,11 @@
             }
             if (e.key === 'Escape') {
                 document.querySelectorAll('.zc-modal-backdrop.is-open').forEach(m => m.classList.remove('is-open'));
+                document.querySelectorAll('.zc-mobile-drawer-backdrop.is-open').forEach(d => {
+                    d.classList.remove('is-open');
+                    d.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                });
             }
         });
 

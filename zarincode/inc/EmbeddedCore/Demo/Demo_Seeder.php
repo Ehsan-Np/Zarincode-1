@@ -658,103 +658,150 @@ class Demo_Seeder {
      * 4. SEED 8 WOOCOMMERCE READY-MADE DIGITAL PRODUCTS
      */
     public static function seed_woocommerce_products(): void {
-        if ( ! post_type_exists( 'product' ) ) {
-            return;
+        if ( ! post_type_exists( 'product' ) && class_exists( '\Zarincode\Core\PostTypes\CPT_Manager' ) ) {
+            \Zarincode\Core\PostTypes\CPT_Manager::instance()->register_cpts_and_taxonomies();
         }
 
         $items = [
             [
-                'slug'  => 'zarincode-pro-wordpress-theme',
-                'name'  => 'قالب وردپرس آژانسی و فروشگاهی زرین کد (Zarincode Pro)',
-                'price' => '2490000',
-                'sku'   => 'ZC-THEME-01',
-                'desc'  => 'قالب وردپرس المنتور بیس با ۱۴ ویجت اختصاصی، هدر و فوترساز المنتوری، پنل تنظیمات Redux Framework و رنگ‌بندی زرد سانشاین Crextio — کدنویسی شده توسط احسان نادری پناه.',
+                'slug'        => 'zarincode-pro-wordpress-theme',
+                'name'        => 'قالب وردپرس آژانسی و فروشگاهی زرین کد (Zarincode Pro)',
+                'price'       => '2490000',
+                'price_fa'    => '۲,۴۹۰,۰۰۰',
+                'old_price'   => '۳,۹۰۰,۰۰۰',
+                'ver'         => 'v2.5.0',
+                'cat_badge'   => 'قالب وردپرس',
+                'sales'       => '+۴۲۰ فروش موفق',
+                'icon'        => 'fa-brands fa-wordpress',
+                'tags'        => 'Elementor,Redux,WooCommerce,PHP 8.4,RTL Ready',
+                'sku'         => 'ZC-THEME-01',
+                'desc'        => 'قالب وردپرس المنتور بیس با ۱۴ ویجت اختصاصی، هدر و فوترساز المنتوری، پنل تنظیمات ۱۶ بخشی Redux Framework و رنگ‌بندی زرد سانشاین Crextio — کدنویسی شده توسط احسان نادری پناه.',
             ],
             [
-                'slug'  => 'zarinseo-booster-plugin',
-                'name'  => 'افزونه سئو هوشمند و ایندکس آنی گوگل (ZarinSEO Booster)',
-                'price' => '1290000',
-                'sku'   => 'ZC-PLUG-01',
-                'desc'  => 'افزونه اختصاصی وردپرس برای اتصال مستقیم به Google Indexing API، تولید خودکار اسکیماهای پیشرفته و آنالیز لحظه‌ای چگالی کلمات کلیدی.',
+                'slug'        => 'zarinseo-booster-plugin',
+                'name'        => 'افزونه سئو هوشمند و ایندکس آنی گوگل (ZarinSEO Booster)',
+                'price'       => '1290000',
+                'price_fa'    => '۱,۲۹۰,۰۰۰',
+                'old_price'   => '۲,۱۰۰,۰۰۰',
+                'ver'         => 'v3.2.1',
+                'cat_badge'   => 'افزونه وردپرس',
+                'sales'       => '+۶۱۰ فروش موفق',
+                'icon'        => 'fa-solid fa-plug-circle-bolt',
+                'tags'        => 'Google Indexing API,Schema Pro,Auto-Index,WordPress',
+                'sku'         => 'ZC-PLUG-01',
+                'desc'        => 'افزونه اختصاصی وردپرس برای اتصال مستقیم به Google Indexing API، تولید خودکار اسکیماهای پیشرفته JSON-LD و آنالیز لحظه‌ای چگالی کلمات کلیدی.',
             ],
             [
-                'slug'  => 'zarinyar-crm-full-source-code',
-                'name'  => 'سورس‌کد سامانه جامع CRM، فاکتور و مدیریت مشتریان زرین‌یار',
-                'price' => '6900000',
-                'sku'   => 'ZC-SRC-01',
-                'desc'  => 'سورس‌کد کامل و متن‌باز PHP/Laravel + React شامل ماژول‌های مدیریت سرنخ، صدور پیش‌فاکتور و فاکتور رسمی، تیکتینگ و اطلاع‌رسانی پیامکی.',
+                'slug'        => 'zarinyar-crm-full-source-code',
+                'name'        => 'سورس‌کد سامانه جامع CRM، فاکتور و مدیریت مشتریان زرین‌یار',
+                'price'       => '6900000',
+                'price_fa'    => '۶,۹۰۰,۰۰۰',
+                'old_price'   => '۹,۸۰۰,۰۰۰',
+                'ver'         => 'v4.0.0',
+                'cat_badge'   => 'سورس‌کد نرم‌افزار',
+                'sales'       => '+۱۹۵ فروش موفق',
+                'icon'        => 'fa-solid fa-boxes-stacked',
+                'tags'        => 'Laravel 11,React,REST API,Full Source,Accounting',
+                'sku'         => 'ZC-SRC-01',
+                'desc'        => 'سورس‌کد کامل و متن‌باز PHP/Laravel + React شامل ماژول‌های مدیریت سرنخ، صدور پیش‌فاکتور و فاکتور رسمی، تیکتینگ، پنل حسابداری و اطلاع‌رسانی پیامکی.',
             ],
             [
-                'slug'  => 'zarindigits-otp-auth-plugin',
-                'name'  => 'افزونه ورود و ثبت‌نام پیامکی و پنل کاربری (ZarinDigits OTP)',
-                'price' => '980000',
-                'sku'   => 'ZC-PLUG-02',
-                'desc'  => 'سیستم احراز هویت دو مرحله‌ای پیامکی (OTP) برای وردپرس و ووکامرس با پشتیبانی از ۲۰ سامانه پیامکی ایران و پنل کاربری مدرن.',
+                'slug'        => 'zarindigits-otp-auth-plugin',
+                'name'        => 'افزونه ورود و ثبت‌نام پیامکی و پنل کاربری (ZarinDigits OTP)',
+                'price'       => '980000',
+                'price_fa'    => '۹۸۰,۰۰۰',
+                'old_price'   => '۱,۶۵۰,۰۰۰',
+                'ver'         => 'v2.1.0',
+                'cat_badge'   => 'افزونه وردپرس',
+                'sales'       => '+۸۴۰ فروش موفق',
+                'icon'        => 'fa-solid fa-mobile-screen-button',
+                'tags'        => 'OTP SMS,WooCommerce,AJAX Auth,20 Iranian Gateways',
+                'sku'         => 'ZC-PLUG-02',
+                'desc'        => 'سیستم احراز هویت دو مرحله‌ای پیامکی (OTP) برای وردپرس و ووکامرس با پشتیبانی از ۲۰ سامانه پیامکی ایران و پنل کاربری مدرن.',
             ],
             [
-                'slug'  => 'zarinmart-woocommerce-theme',
-                'name'  => 'قالب فروشگاهی سوپرمارکت و کالای دیجیتال (ZarinMart)',
-                'price' => '2190000',
-                'sku'   => 'ZC-THEME-02',
-                'desc'  => 'قالب فروشگاهی حرفه‌ای ووکامرس با فیلتر ایجکس، پیشنهاد شگفت‌انگیز تایمردار، مینی‌کارت کشویی و جدول مقایسه پیشرفته محصولات.',
+                'slug'        => 'zarinmart-woocommerce-theme',
+                'name'        => 'قالب فروشگاهی سوپرمارکت و کالای دیجیتال (ZarinMart)',
+                'price'       => '2190000',
+                'price_fa'    => '۲,۱۹۰,۰۰۰',
+                'old_price'   => '۳,۴۰۰,۰۰۰',
+                'ver'         => 'v1.9.4',
+                'cat_badge'   => 'قالب وردپرس',
+                'sales'       => '+۳۱۰ فروش موفق',
+                'icon'        => 'fa-solid fa-bag-shopping',
+                'tags'        => 'WooCommerce,Elementor,AJAX Filter,Multi-Vendor',
+                'sku'         => 'ZC-THEME-02',
+                'desc'        => 'قالب فروشگاهی حرفه‌ای ووکامرس با فیلتر ایجکس، پیشنهاد شگفت‌انگیز تایمردار، مینی‌کارت کشویی و جدول مقایسه پیشرفته محصولات.',
             ],
             [
-                'slug'  => 'zarinsocial-ai-platform-source',
-                'name'  => 'سورس‌کد پلتفرم آنالیز و سئو شبکه‌های اجتماعی (ZarinSocial AI)',
-                'price' => '5400000',
-                'sku'   => 'ZC-SRC-02',
-                'desc'  => 'نرم‌افزار تحت وب تحلیل هشتگ، زمان‌بندی انتشار پست و بهینه‌سازی سئو الگوریتمی اینستاگرام و لینکدین.',
+                'slug'        => 'zarinsocial-ai-platform-source',
+                'name'        => 'سورس‌کد پلتفرم آنالیز و سئو شبکه‌های اجتماعی (ZarinSocial AI)',
+                'price'       => '5400000',
+                'price_fa'    => '۵,۴۰۰,۰۰۰',
+                'old_price'   => '۷,۹۰۰,۰۰۰',
+                'ver'         => 'v2.4.0',
+                'cat_badge'   => 'سورس‌کد نرم‌افزار',
+                'sales'       => '+۱۵۰ فروش موفق',
+                'icon'        => 'fa-brands fa-instagram',
+                'tags'        => 'Node.js,AI Analytics,Instagram SEO,LinkedIn Growth',
+                'sku'         => 'ZC-SRC-02',
+                'desc'        => 'نرم‌افزار تحت وب تحلیل هشتگ، زمان‌بندی انتشار پست و بهینه‌سازی سئو الگوریتمی اینستاگرام و لینکدین.',
             ],
             [
-                'slug'  => 'zarincontent-ai-writer-plugin',
-                'name'  => 'افزونه تولید محتوای خودکار با هوش مصنوعی (ZarinContent AI)',
-                'price' => '1450000',
-                'sku'   => 'ZC-PLUG-03',
-                'desc'  => 'افزونه وردپرس برای تولید مقالات سئو شده فارسی با ساختار هدینگ استاندارد، جدول محتوا و متادیسکریپشن خودکار.',
+                'slug'        => 'zarincontent-ai-writer-plugin',
+                'name'        => 'افزونه تولید محتوای خودکار با هوش مصنوعی (ZarinContent AI)',
+                'price'       => '1450000',
+                'price_fa'    => '۱,۴۵۰,۰۰۰',
+                'old_price'   => '۲,۳۰۰,۰۰۰',
+                'ver'         => 'v1.8.0',
+                'cat_badge'   => 'افزونه وردپرس',
+                'sales'       => '+۴۹۰ فروش موفق',
+                'icon'        => 'fa-solid fa-wand-magic-sparkles',
+                'tags'        => 'AI Content,Auto SEO,WordPress,Table of Contents',
+                'sku'         => 'ZC-PLUG-03',
+                'desc'        => 'افزونه وردپرس برای تولید مقالات سئو شده فارسی با ساختار هدینگ استاندارد، جدول محتوا و متادیسکریپشن خودکار.',
             ],
             [
-                'slug'  => 'zarinlms-pro-online-academy-source',
-                'name'  => 'سورس‌کد سامانه آموزش آنلاین و برگزاری وبینار (ZarinLMS Pro)',
-                'price' => '7800000',
-                'sku'   => 'ZC-SRC-03',
-                'desc'  => 'پلتفرم جامع فروش دوره آموزشی، برگزاری آزمون آنلاین، صدور گواهینامه PDF و کیف پول دیجیتال با سورس باز.',
+                'slug'        => 'zarinlms-pro-online-academy-source',
+                'name'        => 'سورس‌کد سامانه آموزش آنلاین و برگزاری وبینار (ZarinLMS Pro)',
+                'price'       => '7800000',
+                'price_fa'    => '۷,۸۰۰,۰۰۰',
+                'old_price'   => '۱۱,۵۰۰,۰۰۰',
+                'ver'         => 'v3.0.2',
+                'cat_badge'   => 'سورس‌کد نرم‌افزار',
+                'sales'       => '+۲۲۰ فروش موفق',
+                'icon'        => 'fa-solid fa-graduation-cap',
+                'tags'        => 'Full-Stack LMS,Quiz Engine,PDF Certificate,Shaparak',
+                'sku'         => 'ZC-SRC-03',
+                'desc'        => 'پلتفرم جامع فروش دوره آموزشی، برگزاری آزمون آنلاین، صدور گواهینامه PDF و کیف پول دیجیتال با سورس باز.',
             ],
         ];
 
         foreach ( $items as $it ) {
-            if ( class_exists( '\WC_Product_Simple' ) && function_exists( 'wc_get_product_id_by_sku' ) ) {
-                $existing_id = wc_get_product_id_by_sku( $it['sku'] );
-                $p = $existing_id ? wc_get_product( $existing_id ) : new \WC_Product_Simple();
-                if ( ! $p ) {
-                    $p = new \WC_Product_Simple();
-                }
-                $p->set_name( $it['name'] );
-                $p->set_slug( $it['slug'] );
-                $p->set_regular_price( $it['price'] );
-                $p->set_description( $it['desc'] );
-                $p->set_short_description( $it['desc'] );
-                $p->set_sku( $it['sku'] );
-                $p->set_virtual( true );
-                $p->set_downloadable( true );
-                $p->set_status( 'publish' );
-                $p->save();
-            } else {
-                self::upsert_post_with_elementor(
-                    'product',
-                    $it['slug'],
-                    $it['name'],
-                    [],
-                    $it['desc'],
-                    $it['desc'],
-                    [
-                        '_regular_price' => $it['price'],
-                        '_price'         => $it['price'],
-                        '_sku'           => $it['sku'],
-                        '_virtual'       => 'yes',
-                        '_downloadable'  => 'yes',
-                    ]
-                );
-            }
+            self::upsert_post_with_elementor(
+                'product',
+                $it['slug'],
+                $it['name'],
+                [],
+                '<p>' . $it['desc'] . '</p>',
+                $it['desc'],
+                [
+                    '_regular_price'         => $it['price'],
+                    '_price'                 => $it['price'],
+                    '_sku'                   => $it['sku'],
+                    '_virtual'               => 'yes',
+                    '_downloadable'          => 'yes',
+                    '_stock_status'          => 'instock',
+                    '_visibility'            => 'visible',
+                    '_zc_prod_price_display' => $it['price_fa'],
+                    '_zc_prod_old_price'     => $it['old_price'],
+                    '_zc_prod_version'       => $it['ver'],
+                    '_zc_prod_cat_badge'     => $it['cat_badge'],
+                    '_zc_prod_sales_count'   => $it['sales'],
+                    '_zc_prod_icon'          => $it['icon'],
+                    '_zc_prod_tags'          => $it['tags'],
+                ]
+            );
         }
     }
 

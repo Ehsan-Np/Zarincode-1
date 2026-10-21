@@ -149,61 +149,64 @@ class Renderer {
                         </div>
                     </div>
 
-                    <!-- Right Column: Crextio Interactive Bento Dashboard Card -->
+                    <!-- Right Column: Crextio Interactive Bento Dashboard Card with Real Founder Portrait -->
                     <div style="display:flex;flex-direction:column;gap:1.25rem;">
-                        <!-- Developer Profile & Live Tracker Card (Crextio Dark Card) -->
-                        <div class="zc-dark-card" style="padding:2rem;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-                            <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;z-index:2;">
-                                <div style="display:flex;align-items:center;gap:0.9rem;">
-                                    <div style="width:3.6rem;height:3.6rem;border-radius:1.25rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;box-shadow:0 8px 20px rgba(253,208,91,0.35);">
-                                        EN
-                                    </div>
-                                    <div>
-                                        <div style="font-weight:900;font-size:1.12rem;color:#FFFFFF;">احسان نادری پناه</div>
-                                        <div style="font-size:0.8rem;color:var(--color-accent);">Ehsan NaderiPanah • Lead Architect</div>
+                        <!-- Developer Profile & Live Studio Card (Crextio Dark Card + Authentic Portrait) -->
+                        <div class="zc-dark-card" style="padding:1.75rem;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+                            <div style="display:grid;grid-template-columns:125px 1fr;gap:1.15rem;align-items:center;position:relative;z-index:2;margin-bottom:1.1rem;" class="zc-hero-founder-row">
+                                <div style="position:relative;">
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/ehsan-hero-executive.jpg' ); ?>" alt="احسان نادری پناه - مدیر و موسس زرین کد" style="width:125px;height:145px;object-fit:cover;object-position:top center;border-radius:1.25rem;border:2px solid var(--color-accent);box-shadow:0 12px 28px rgba(0,0,0,0.35);display:block;">
+                                    <span style="position:absolute;bottom:-8px;right:8px;background:#10B981;color:#fff;font-size:0.66rem;font-weight:800;padding:0.15rem 0.55rem;border-radius:999px;border:2px solid #2A2C31;">● آنلاین</span>
+                                </div>
+                                <div>
+                                    <span style="display:inline-block;background:rgba(253,208,91,0.16);color:var(--color-accent);font-size:0.72rem;font-weight:800;padding:0.2rem 0.65rem;border-radius:999px;margin-bottom:0.4rem;">FOUNDER &amp; LEAD ARCHITECT</span>
+                                    <div style="font-weight:900;font-size:1.2rem;color:#FFFFFF;margin-bottom:0.2rem;">احسان نادری پناه</div>
+                                    <div style="font-size:0.8rem;color:#D1D5DB;margin-bottom:0.75rem;">معمار ارشد نرم‌افزار، طراح وب و متخصص سئو</div>
+                                    <div style="display:flex;flex-wrap:wrap;gap:0.45rem;">
+                                        <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-prod-badge" dir="ltr" style="font-size:0.8rem;padding:0.35rem 0.8rem;">
+                                            <i class="fa-solid fa-phone"></i> <?php echo esc_html( $phone ); ?>
+                                        </a>
+                                        <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" style="font-size:0.76rem;color:#FDE68A;padding:0.35rem 0.7rem;background:rgba(255,255,255,0.08);border-radius:999px;">رزومه و درباره ما ←</a>
                                     </div>
                                 </div>
-                                <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-prod-badge" dir="ltr" style="font-size:0.82rem;padding:0.4rem 0.85rem;">
-                                    <i class="fa-solid fa-phone"></i> <?php echo esc_html( $phone ); ?>
-                                </a>
                             </div>
 
                             <!-- Crextio Weekly Progress & Time Tracker Simulation -->
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1.35rem;padding:1.25rem;margin:1.35rem 0;position:relative;z-index:2;">
-                                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;">
+                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;padding:1.1rem;margin-bottom:1.1rem;position:relative;z-index:2;">
+                                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem;flex-wrap:wrap;gap:0.5rem;">
                                     <div>
-                                        <div style="font-size:0.75rem;color:#9CA3AF;">پایش زنده پشتیبانی و توسعه (Crextio Tracker)</div>
-                                        <div id="zc-live-timer" dir="ltr" style="font-size:1.65rem;font-weight:900;color:var(--color-accent);letter-spacing:0.04em;">02:35:00</div>
+                                        <div style="font-size:0.74rem;color:#9CA3AF;">پایش زنده پروژه‌ها و پشتیبانی (Crextio Studio Tracker)</div>
+                                        <div id="zc-live-timer" dir="ltr" style="font-size:1.45rem;font-weight:900;color:var(--color-accent);letter-spacing:0.04em;">02:35:00</div>
                                     </div>
-                                    <span style="padding:0.35rem 0.85rem;border-radius:999px;background:rgba(16,185,129,0.2);color:#34D399;font-size:0.76rem;font-weight:800;">
-                                        ● آنلاین و آماده پاسخگویی
+                                    <span style="padding:0.3rem 0.75rem;border-radius:999px;background:rgba(16,185,129,0.2);color:#34D399;font-size:0.74rem;font-weight:800;">
+                                        ● تحویل ۱۰۰٪ مطابق قرارداد
                                     </span>
                                 </div>
                                 <!-- 7-Day Activity Bars -->
-                                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0.5rem;align-items:end;height:56px;padding-top:0.5rem;">
-                                    <div style="text-align:center;"><div style="height:28px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ش</small></div>
-                                    <div style="text-align:center;"><div style="height:40px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ی</small></div>
-                                    <div style="text-align:center;"><div style="height:36px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">د</small></div>
-                                    <div style="text-align:center;"><div style="height:46px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">س</small></div>
-                                    <div style="text-align:center;"><div style="height:42px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">چ</small></div>
-                                    <div style="text-align:center;"><div style="height:50px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">پ</small></div>
-                                    <div style="text-align:center;"><div style="height:32px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ج</small></div>
+                                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0.45rem;align-items:end;height:46px;padding-top:0.35rem;">
+                                    <div style="text-align:center;"><div style="height:24px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ش</small></div>
+                                    <div style="text-align:center;"><div style="height:34px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ی</small></div>
+                                    <div style="text-align:center;"><div style="height:30px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">د</small></div>
+                                    <div style="text-align:center;"><div style="height:38px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.63rem;color:var(--color-accent);font-weight:800;">س</small></div>
+                                    <div style="text-align:center;"><div style="height:36px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">چ</small></div>
+                                    <div style="text-align:center;"><div style="height:42px;background:var(--color-accent);border-radius:999px;"></div><small style="font-size:0.63rem;color:var(--color-accent);font-weight:800;">پ</small></div>
+                                    <div style="text-align:center;"><div style="height:28px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.63rem;color:#9CA3AF;">ج</small></div>
                                 </div>
                             </div>
 
                             <!-- 3 Quick KPI Stat Boxes -->
-                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;position:relative;z-index:2;">
-                                <div style="background:rgba(255,255,255,0.06);padding:0.85rem;border-radius:1.1rem;text-align:center;">
-                                    <div style="font-size:1.35rem;font-weight:900;color:var(--color-accent);">+۴۲۰</div>
-                                    <div style="font-size:0.73rem;color:#D1D5DB;">پروژه موفق</div>
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;position:relative;z-index:2;">
+                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
+                                    <div style="font-size:1.25rem;font-weight:900;color:var(--color-accent);">+۴۸۰</div>
+                                    <div style="font-size:0.72rem;color:#D1D5DB;">پروژه موفق</div>
                                 </div>
-                                <div style="background:rgba(255,255,255,0.06);padding:0.85rem;border-radius:1.1rem;text-align:center;">
-                                    <div style="font-size:1.35rem;font-weight:900;color:#FFFFFF;">۹۹.۸٪</div>
-                                    <div style="font-size:0.73rem;color:#D1D5DB;">رضایت کارفرما</div>
+                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
+                                    <div style="font-size:1.25rem;font-weight:900;color:#FFFFFF;">۹۹.۸٪</div>
+                                    <div style="font-size:0.72rem;color:#D1D5DB;">رضایت کارفرما</div>
                                 </div>
-                                <div style="background:rgba(255,255,255,0.06);padding:0.85rem;border-radius:1.1rem;text-align:center;">
-                                    <div style="font-size:1.35rem;font-weight:900;color:var(--color-accent);">+۳۵</div>
-                                    <div style="font-size:0.73rem;color:#D1D5DB;">قالب و افزونه آماده</div>
+                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
+                                    <div style="font-size:1.25rem;font-weight:900;color:var(--color-accent);">+۳۵</div>
+                                    <div style="font-size:0.72rem;color:#D1D5DB;">قالب و سورس آماده</div>
                                 </div>
                             </div>
                         </div>
@@ -286,14 +289,17 @@ class Renderer {
                 <ul class="zc-nav-pill">
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">صفحه اصلی</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">خدمات ما</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">فروشگاه سورس و افزونه</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">فروشگاه محصولات</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>">نمونه‌کارها</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>">قوانین و گارانتی</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>">درباره ما</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">تماس با ما</a></li>
                 </ul>
                 <div class="zc-header-actions">
-                    <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn zc-btn-yellow"><?php echo esc_html( $cta ); ?></a>
+                    <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn zc-btn-yellow zc-header-cta-btn"><?php echo esc_html( $cta ); ?></a>
+                    <button type="button" class="zc-icon-btn zc-mobile-menu-toggle" data-zc-drawer-open="zc-mobile-drawer" aria-label="باز کردن منوی موبایل">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -445,10 +451,10 @@ class Renderer {
                 'ver'     => 'v2.5.0',
                 'icon'    => 'fa-brands fa-wordpress',
                 'title'   => 'قالب وردپرس آژانسی و فروشگاهی زرین کد (Zarincode Pro)',
-                'desc'    => 'قالب المنتور بیس با ۱۲ ویجت اختصاصی، پنل Redux و رنگ‌بندی زرد سانشاین Crextio.',
+                'desc'    => 'قالب المنتور بیس با ۱۴ ویجت اختصاصی، پنل ۱۶ بخشی Redux و رنگ‌بندی زرد سانشاین Crextio.',
                 'tags'    => [ 'Elementor', 'Redux', 'WooCommerce', 'PHP 8.4' ],
                 'price'   => '۲,۴۹۰,۰۰۰',
-                'slug'    => 'zarincode-pro-theme',
+                'slug'    => 'zarincode-pro-wordpress-theme',
             ],
             [
                 'cat'     => 'wp-plugin',
@@ -470,7 +476,7 @@ class Renderer {
                 'desc'    => 'سورس‌کد کامل PHP/Laravel + React با پنل حسابداری، تیکتینگ، پیامک و گزارش‌گیری پیشرفته.',
                 'tags'    => [ 'Laravel 11', 'React', 'REST API', 'Full Source' ],
                 'price'   => '۶,۹۰۰,۰۰۰',
-                'slug'    => 'zarinyar-crm-source',
+                'slug'    => 'zarinyar-crm-full-source-code',
             ],
             [
                 'cat'     => 'wp-plugin',
@@ -481,7 +487,7 @@ class Renderer {
                 'desc'    => 'سیستم احراز هویت دو مرحله‌ای پیامکی با پشتیبانی از ۲۰ پنل پیامک ایرانی و داشبورد مدرن ووکامرس.',
                 'tags'    => [ 'OTP SMS', 'WooCommerce', 'AJAX Auth' ],
                 'price'   => '۹۸۰,۰۰۰',
-                'slug'    => 'zarindigits-otp-plugin',
+                'slug'    => 'zarindigits-otp-auth-plugin',
             ],
             [
                 'cat'     => 'wp-theme',
@@ -492,7 +498,7 @@ class Renderer {
                 'desc'    => 'قالب فروشگاهی ووکامرس با فیلتر ایجکس، پیشنهاد شگفت‌انگیز تایمردار و مقایسه پیشرفته محصولات.',
                 'tags'    => [ 'WooCommerce', 'Elementor', 'AJAX Filter' ],
                 'price'   => '۲,۱۹۰,۰۰۰',
-                'slug'    => 'zarinmart-shop-theme',
+                'slug'    => 'zarinmart-woocommerce-theme',
             ],
             [
                 'cat'     => 'source-code',
@@ -503,7 +509,7 @@ class Renderer {
                 'desc'    => 'نرم‌افزار تحت وب تحلیل هشتگ، زمان‌بندی انتشار محتوا و بهینه‌سازی سئو اینستاگرام و لینکدین.',
                 'tags'    => [ 'Node.js', 'AI Content', 'Social SEO' ],
                 'price'   => '۵,۴۰۰,۰۰۰',
-                'slug'    => 'zarinsocial-ai-source',
+                'slug'    => 'zarinsocial-ai-platform-source',
             ],
             [
                 'cat'     => 'wp-plugin',
@@ -514,7 +520,7 @@ class Renderer {
                 'desc'    => 'تولید مقالات سئو شده فارسی با ساختار هدینگ استاندارد، جدول محتوا و تصویر شاخص خودکار در وردپرس.',
                 'tags'    => [ 'AI Writer', 'Auto SEO', 'WordPress' ],
                 'price'   => '۱,۴۵۰,۰۰۰',
-                'slug'    => 'zarincontent-ai-plugin',
+                'slug'    => 'zarincontent-ai-writer-plugin',
             ],
             [
                 'cat'     => 'source-code',
@@ -525,14 +531,21 @@ class Renderer {
                 'desc'    => 'پلتفرم جامع فروش دوره، آزمون آنلاین، صدور گواهینامه PDF و کیف پول دیجیتال با سورس باز.',
                 'tags'    => [ 'Full-Stack', 'LMS', 'Payment Gateway' ],
                 'price'   => '۷,۸۰۰,۰۰۰',
-                'slug'    => 'zarinlms-pro-source',
+                'slug'    => 'zarinlms-pro-online-academy-source',
             ],
         ];
 
+        $limit = isset( $settings['count'] ) ? (int) $settings['count'] : 8;
+        if ( $limit > 0 && $limit < count( $products ) ) {
+            $products = array_slice( $products, 0, $limit );
+        }
+        $hide_header = ! empty( $settings['hide_header'] );
+
         ob_start();
         ?>
-        <section style="padding:3rem 0 4rem;">
-            <div class="zc-container">
+        <section style="<?php echo $hide_header ? 'padding:0;' : 'padding:3rem 0 4rem;'; ?>">
+            <div class="<?php echo $hide_header ? '' : 'zc-container'; ?>">
+                <?php if ( ! $hide_header ) : ?>
                 <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:1.75rem;">
                     <div>
                         <span class="zc-badge-pill"><i class="fa-solid fa-code"></i> READY-MADE DIGITAL PRODUCTS</span>
@@ -546,12 +559,15 @@ class Renderer {
                         <button type="button" class="zc-filter-tab" data-filter="source-code">سورس‌کد نرم‌افزار</button>
                     </div>
                 </div>
+                <?php endif; ?>
 
                 <div id="zc-products-grid-target" class="zc-products-grid">
-                    <?php foreach ( $products as $prod ) : ?>
+                    <?php foreach ( $products as $prod ) :
+                        $prod_url = home_url( '/product/' . $prod['slug'] . '/' );
+                        ?>
                         <div class="zc-white-card zc-product-card" data-category="<?php echo esc_attr( $prod['cat'] ); ?>">
                             <div>
-                                <div class="zc-product-thumb">
+                                <a href="<?php echo esc_url( $prod_url ); ?>" class="zc-product-thumb" style="display:block;text-decoration:none;">
                                     <div class="zc-product-badges">
                                         <span class="zc-prod-badge"><?php echo esc_html( $prod['cat_lbl'] ); ?></span>
                                         <span class="zc-prod-ver" dir="ltr"><?php echo esc_html( $prod['ver'] ); ?></span>
@@ -562,10 +578,12 @@ class Renderer {
                                         </div>
                                         <div style="font-size:0.75rem;color:#9CA3AF;">By Ehsan NaderiPanah</div>
                                     </div>
-                                </div>
+                                </a>
 
-                                <h3 style="font-size:1.03rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;">
-                                    <?php echo esc_html( $prod['title'] ); ?>
+                                <h3 style="font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;">
+                                    <a href="<?php echo esc_url( $prod_url ); ?>" style="color:inherit;text-decoration:none;">
+                                        <?php echo esc_html( $prod['title'] ); ?>
+                                    </a>
                                 </h3>
                                 <p style="font-size:0.84rem;color:var(--zc-text-secondary);margin:0 0 0.85rem;">
                                     <?php echo esc_html( $prod['desc'] ); ?>
@@ -583,9 +601,9 @@ class Renderer {
                                     <span class="zc-price-unit">تومان</span>
                                 </div>
                                 <div style="display:flex;gap:0.4rem;">
-                                    <button type="button" class="zc-btn zc-btn-yellow" style="padding:0.45rem 0.95rem;font-size:0.8rem;" data-zc-modal-open="zc-consult-modal">
-                                        <i class="fa-solid fa-cart-plus"></i> خرید آنی
-                                    </button>
+                                    <a href="<?php echo esc_url( $prod_url ); ?>" class="zc-btn zc-btn-yellow" style="padding:0.45rem 0.95rem;font-size:0.8rem;">
+                                        <i class="fa-solid fa-bag-shopping"></i> مشاهده و خرید
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -603,6 +621,7 @@ class Renderer {
     public static function render_portfolio_showcase( array $settings = [] ): string {
         $projects = [
             [
+                'slug'     => 'tech-marketplace-design',
                 'cat'      => 'ecommerce web',
                 'cat_lbl'  => '* فروشگاهی و مارکت‌پلیس *',
                 'title'    => 'طراحی و کدنویسی مارکت‌پلیس تکنولوژی و دیجیتال پلاس',
@@ -613,6 +632,7 @@ class Renderer {
                 'metrics'  => '+۳۲۰٪ رشد فروش آنلاین',
             ],
             [
+                'slug'     => 'crextio-cloud-hrm-software',
                 'cat'      => 'software',
                 'cat_lbl'  => '* نرم‌افزار اختصاصی *',
                 'title'    => 'توسعه سامانه ابری مدیریت منابع انسانی و حقوق (مشابه Crextio)',
@@ -623,6 +643,7 @@ class Renderer {
                 'metrics'  => '۱۲,۰۰۰ کاربر فعال روزانه',
             ],
             [
+                'slug'     => 'tebgostar-medical-seo',
                 'cat'      => 'seo',
                 'cat_lbl'  => '* سئو سایت و شبکه‌های اجتماعی *',
                 'title'    => 'سئو جامع و رشد اکسپلور برند تجهیزات پزشکی طب‌گستر',
@@ -633,6 +654,7 @@ class Renderer {
                 'metrics'  => 'رتبه ۱ گوگل در ۴۵ کلیدواژه',
             ],
             [
+                'slug'     => 'cloud-hosting-portal-design',
                 'cat'      => 'web',
                 'cat_lbl'  => '* شرکتی و استارتاپی *',
                 'title'    => 'طراحی سایت پلتفرم فروش هاست ابری و سرور اختصاصی',
@@ -643,6 +665,7 @@ class Renderer {
                 'metrics'  => 'سرعت لود ۰.۸ ثانیه (GTmetrix A)',
             ],
             [
+                'slug'     => 'stylemode-fashion-ecommerce',
                 'cat'      => 'ecommerce web',
                 'cat_lbl'  => '* فروشگاهی مد و پوشاک *',
                 'title'    => 'طراحی فروشگاه اینترنتی استایل‌مد با سیستم ست‌ساز هوشمند',
@@ -653,6 +676,7 @@ class Renderer {
                 'metrics'  => 'نرخ تبدیل ۴.۸٪ فروش',
             ],
             [
+                'slug'     => 'fintech-magazine-content-seo',
                 'cat'      => 'content seo',
                 'cat_lbl'  => '* تولید محتوا و مجله‌ای *',
                 'title'    => 'طراحی پرتال خبری، مجله دیجیتال و استراتژی محتوای فین‌تک',
@@ -683,22 +707,24 @@ class Renderer {
                 </div>
 
                 <div id="zc-portfolio-grid-target" class="zc-portfolio-grid">
-                    <?php foreach ( $projects as $prj ) : ?>
+                    <?php foreach ( $projects as $prj ) :
+                        $prj_url = home_url( '/project/' . $prj['slug'] . '/' );
+                        ?>
                         <div class="zc-white-card zc-project-card" data-category="<?php echo esc_attr( $prj['cat'] ); ?>">
-                            <div class="zc-project-visual">
+                            <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-project-visual" style="display:block;text-decoration:none;">
                                 <div style="display:flex;justify-content:space-between;align-items:center;">
                                     <span class="zc-prod-badge"><?php echo esc_html( $prj['cat_lbl'] ); ?></span>
                                     <span class="zc-prod-ver"><i class="fa-solid fa-chart-simple"></i> <?php echo esc_html( $prj['metrics'] ); ?></span>
                                 </div>
                                 <div style="margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-                                    <h3 style="font-size:1.1rem;font-weight:800;margin:0;color:#FFFFFF;line-height:1.55;">
+                                    <h3 style="font-size:1.06rem;font-weight:800;margin:0;color:#FFFFFF;line-height:1.55;">
                                         <?php echo esc_html( $prj['title'] ); ?>
                                     </h3>
                                     <div style="width:3rem;height:3rem;border-radius:0.9rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem;">
                                         <i class="<?php echo esc_attr( $prj['icon'] ); ?>"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                             <div class="zc-project-info-pills">
                                 <span><i class="fa-solid fa-building" style="color:var(--color-accent);"></i> مجری: <?php echo esc_html( $prj['agency'] ); ?></span>
                                 <span><i class="fa-regular fa-calendar" style="color:var(--color-accent);"></i> <?php echo esc_html( $prj['date'] ); ?></span>
@@ -706,7 +732,7 @@ class Renderer {
                             </div>
                             <div class="zc-service-footer" style="padding-top:0.75rem;">
                                 <span style="font-size:0.8rem;color:var(--zc-text-muted);font-weight:600;">تضمین کیفیت و پشتیبانی فعال</span>
-                                <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>" class="zc-btn zc-btn-glass" style="padding:0.4rem 1rem;font-size:0.8rem;">
+                                <a href="<?php echo esc_url( $prj_url ); ?>" class="zc-btn zc-btn-glass" style="padding:0.4rem 1rem;font-size:0.8rem;">
                                     مشاهده و بررسی پروژه <i class="fa-solid fa-arrow-left"></i>
                                 </a>
                             </div>
@@ -720,9 +746,11 @@ class Renderer {
     }
 
     /**
-     * 6. WHY US & STATS COUNTERS WIDGET (Webinex ? WHY US + Crextio Bento Layout)
+     * 6. WHY US & STATS COUNTERS WIDGET (Webinex ? WHY US + Crextio Bento Layout + Real Studio Photo)
      */
     public static function render_why_us_stats( array $settings = [] ): string {
+        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.jpg';
+        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
         ob_start();
         ?>
         <section style="padding:3rem 0 4rem;">
@@ -734,9 +762,26 @@ class Renderer {
                             <h2 class="zc-section-title">
                                 چرا <span class="zc-hero-inline-pill" style="font-size:0.78em;">زرین کد</span> ؟ چه چیزی ما را متمایز می‌کند؟
                             </h2>
-                            <p style="color:var(--zc-text-secondary);font-size:0.98rem;line-height:1.95;margin-bottom:1.5rem;">
+                            <p style="color:var(--zc-text-secondary);font-size:0.98rem;line-height:1.95;margin-bottom:1.25rem;">
                                 ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌وکار شما در دنیای دیجیتالیم. تمرکز ما در <strong>زرین کد (با مدیریت احسان نادری پناه)</strong> نه فقط بر زیبایی ظاهری، بلکه بر معماری کدنویسی تمیز، امنیت، سرعت لود، سئوی تکنیکال و نرخ تبدیل واقعی فروش است. از طراحی سایت و نرم‌افزار اختصاصی تا سئو شبکه‌های اجتماعی و ارائه سورس‌کدهای آماده، همه‌چیز در خدمت موفقیت شماست!
                             </p>
+
+                            <!-- Real Luxury Studio Image Strip -->
+                            <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:0.85rem;margin-bottom:1.4rem;" class="zc-why-studio-photos">
+                                <div style="position:relative;border-radius:1.15rem;overflow:hidden;height:165px;border:1px solid var(--zc-border-subtle);">
+                                    <img src="<?php echo esc_url( $office_img ); ?>" alt="استودیو مهندسی نرم‌افزار و طراحی وب زرین کد" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.85) 0%,transparent 60%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
+                                        <span style="color:#fff;font-size:0.78rem;font-weight:800;"><i class="fa-solid fa-building-shield" style="color:var(--color-accent);margin-left:0.3rem;"></i> استودیو مهندسی نرم‌افزار و وب زرین کد</span>
+                                    </div>
+                                </div>
+                                <div style="position:relative;border-radius:1.15rem;overflow:hidden;height:165px;border:1px solid var(--zc-border-subtle);">
+                                    <img src="<?php echo esc_url( $consult_img ); ?>" alt="احسان نادری پناه - مشاوره تخصصی طراحی سایت و سئو" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+                                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.85) 0%,transparent 60%);display:flex;align-items:flex-end;padding:0.75rem 1rem;">
+                                        <span style="color:#fff;font-size:0.78rem;font-weight:800;"><i class="fa-solid fa-user-check" style="color:var(--color-accent);margin-left:0.3rem;"></i> نظارت مستقیم احسان نادری پناه</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div style="display:flex;flex-wrap:wrap;gap:0.9rem;">
                                 <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" class="zc-btn zc-btn-yellow">
                                     <i class="fa-solid fa-award"></i> درباره استودیو زرین کد
@@ -748,7 +793,7 @@ class Renderer {
                         </div>
 
                         <!-- 4 Differentiator Bento Boxes + 3 Webinex Counters -->
-                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
+                        <div class="zc-why-bento-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
                             <div class="zc-white-card" style="padding:1.35rem;">
                                 <span class="zc-badge-pill" style="margin-bottom:0.5rem;">01</span>
                                 <h4 style="margin:0 0 0.35rem;font-weight:800;">کدنویسی استاندارد جهانی</h4>

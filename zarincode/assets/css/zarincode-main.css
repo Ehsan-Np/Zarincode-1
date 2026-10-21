@@ -319,38 +319,41 @@ html.dark .progress-dashed {
 
 .zc-header-wrap {
     position: sticky;
-    top: 0.75rem;
+    top: 0.65rem;
     z-index: 100;
-    padding: 0.75rem 0;
+    padding: 0.6rem 0;
 }
 
 .zc-header-pill {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 0.65rem 1rem;
+    gap: 0.65rem;
+    padding: 0.55rem 0.85rem;
     background: var(--zc-surface);
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     border: 1px solid var(--zc-surface-border);
     border-radius: var(--zc-radius-pill);
     box-shadow: var(--zc-shadow-md);
+    flex-wrap: nowrap;
 }
 
 .zc-brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.35rem 0.85rem 0.35rem 0.45rem;
+    gap: 0.65rem;
+    padding: 0.3rem 0.75rem 0.3rem 0.4rem;
     background: var(--zc-surface-solid);
     border: 1px solid var(--zc-border-subtle);
     border-radius: var(--zc-radius-pill);
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .zc-brand-logo-box {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.35rem;
+    height: 2.35rem;
     border-radius: 50%;
     background: var(--zc-dark);
     color: var(--color-accent);
@@ -358,53 +361,72 @@ html.dark .progress-dashed {
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .zc-brand-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    line-height: 1.18;
 }
 
 .zc-brand-name {
     font-weight: 800;
-    font-size: 1.08rem;
+    font-size: 1rem;
     color: var(--zc-text-main);
+    white-space: nowrap;
 }
 
 .zc-brand-sub {
-    font-size: 0.7rem;
+    font-size: 0.66rem;
     color: var(--zc-text-muted);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .zc-nav-pill {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.18rem;
     background: var(--zc-surface-solid);
-    padding: 0.35rem;
+    padding: 0.3rem;
     border-radius: var(--zc-radius-pill);
     border: 1px solid var(--zc-border-subtle);
     list-style: none;
     margin: 0;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
 }
 
 .zc-nav-pill > li {
     position: relative;
+    flex-shrink: 0;
 }
 
 .zc-nav-pill > li > a {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1.05rem;
+    gap: 0.35rem;
+    padding: 0.45rem 0.78rem;
     border-radius: var(--zc-radius-pill);
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.8125rem; /* 13px — balanced & prevents wrapping */
+    font-weight: 700;
+    line-height: 1.3;
     color: var(--zc-text-secondary);
+    white-space: nowrap;
+}
+
+.zc-nav-pill > li > a > i:first-child {
+    font-size: 0.78rem;
+    opacity: 0.85;
+}
+
+.zc-nav-caret {
+    font-size: 0.62rem;
+    margin-right: 0.1rem;
+    opacity: 0.75;
 }
 
 .zc-nav-pill > li.current-menu-item > a,
@@ -412,6 +434,12 @@ html.dark .progress-dashed {
 .zc-nav-pill > li > a:hover {
     background: var(--zc-dark);
     color: #FFFFFF;
+}
+
+.zc-nav-pill > li.current-menu-item > a > i:first-child,
+.zc-nav-pill > li > a:hover > i:first-child {
+    color: var(--color-accent);
+    opacity: 1;
 }
 
 .zc-nav-pill > li.has-megamenu:hover > .zc-dropdown-menu {
@@ -422,13 +450,13 @@ html.dark .progress-dashed {
 
 .zc-dropdown-menu {
     position: absolute;
-    top: calc(100% + 0.75rem);
+    top: calc(100% + 0.65rem);
     right: 0;
-    min-width: 280px;
+    min-width: 285px;
     background: var(--zc-surface-solid);
     border: 1px solid var(--zc-surface-border);
-    border-radius: 1.5rem;
-    padding: 0.85rem;
+    border-radius: 1.4rem;
+    padding: 0.75rem;
     box-shadow: var(--zc-shadow-lg);
     opacity: 0;
     visibility: hidden;
@@ -441,12 +469,13 @@ html.dark .progress-dashed {
 .zc-dropdown-menu li a {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
-    padding: 0.65rem 0.85rem;
-    border-radius: 0.9rem;
-    font-size: 0.88rem;
-    font-weight: 600;
+    gap: 0.65rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 700;
     color: var(--zc-text-main);
+    white-space: nowrap;
 }
 
 .zc-dropdown-menu li a:hover {
@@ -454,7 +483,7 @@ html.dark .progress-dashed {
     color: var(--zc-text-main);
 }
 
-.zc- dropdown-icon {
+.zc-dropdown-icon {
     width: 2rem;
     height: 2rem;
     border-radius: 0.65rem;
@@ -463,17 +492,26 @@ html.dark .progress-dashed {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
 }
 
 .zc-header-actions {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.45rem;
+    flex-shrink: 0;
+}
+
+.zc-header-cta-btn {
+    padding: 0.58rem 1.15rem;
+    font-size: 0.82rem;
+    font-weight: 800;
 }
 
 .zc-icon-btn {
-    width: 2.65rem;
-    height: 2.65rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background: var(--zc-surface-solid);
     border: 1px solid var(--zc-border-subtle);
@@ -483,6 +521,7 @@ html.dark .progress-dashed {
     justify-content: center;
     cursor: pointer;
     position: relative;
+    flex-shrink: 0;
     transition: all 0.2s ease;
 }
 
@@ -496,12 +535,12 @@ html.dark .progress-dashed {
     position: absolute;
     top: -3px;
     left: -3px;
-    min-width: 1.2rem;
-    height: 1.2rem;
+    min-width: 1.15rem;
+    height: 1.15rem;
     border-radius: 999px;
     background: var(--color-accent);
     color: var(--color-accent-contrast);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -509,10 +548,182 @@ html.dark .progress-dashed {
     border: 2px solid var(--zc-surface-solid);
 }
 
-@media (max-width: 1120px) {
-    .zc-nav-pill {
-        display: none;
-    }
+.zc-mobile-menu-toggle {
+    display: none;
+    background: var(--zc-dark);
+    color: var(--color-accent);
+    border-color: var(--zc-dark);
+}
+
+/* ── Mobile Navigation Drawer ── */
+.zc-mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 17, 23, 0.68);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.zc-mobile-drawer-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zc-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(88vw, 370px);
+    background: var(--zc-surface-solid);
+    border-left: 1px solid var(--zc-border-subtle);
+    box-shadow: var(--zc-shadow-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zc-mobile-drawer-backdrop.is-open .zc-mobile-drawer {
+    transform: translateX(0);
+}
+
+.zc-mobile-drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--zc-border-subtle);
+}
+
+.zc-mobile-founder-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+    margin: 1rem 0;
+    border-radius: 1.2rem;
+    background: var(--zc-dark);
+    color: #fff;
+}
+
+.zc-mobile-founder-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-accent);
+    flex-shrink: 0;
+}
+
+.zc-mobile-nav-wrap {
+    flex: 1;
+}
+
+.zc-mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.zc-mobile-nav-list > li > a,
+.zc-mobile-sub-row > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.95rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--zc-text-main);
+    background: rgba(42, 44, 49, 0.04);
+}
+
+html.dark .zc-mobile-nav-list > li > a,
+html.dark .zc-mobile-sub-row > a {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.zc-mobile-nav-list > li > a i:first-child,
+.zc-mobile-sub-row > a i:first-child {
+    color: var(--color-accent-contrast);
+    background: var(--color-accent);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.zc-mobile-sub-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.zc-mobile-sub-row > a {
+    flex: 1;
+}
+
+.zc-mobile-sub-toggle {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--zc-border-subtle);
+    background: var(--zc-surface-solid);
+    color: var(--zc-text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.zc-mobile-sub-list {
+    list-style: none;
+    padding: 0.45rem 0.75rem 0.45rem 0;
+    margin: 0.3rem 0.65rem 0.35rem 0;
+    border-right: 2px solid var(--color-accent);
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.zc-mobile-has-sub.is-open .zc-mobile-sub-list {
+    display: flex;
+}
+
+.zc-mobile-sub-list li a {
+    display: block;
+    padding: 0.48rem 0.75rem;
+    border-radius: 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--zc-text-secondary);
+}
+
+.zc-mobile-sub-list li a:hover {
+    background: var(--color-accent-soft);
+    color: var(--zc-text-main);
+}
+
+.zc-mobile-drawer-foot {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--zc-border-subtle);
 }
 
 /* ── Hero Section (Webinex Agency Headline + Crextio Sunshine Bento Dashboard) ── */
@@ -1339,3 +1550,287 @@ html.dark .zc-project-info-pills span {
 .zc-faq-item.is-open {
     border-color: var(--color-accent);
 }
+
+/* ── Single Product Page & Marketplace Layout ── */
+.zc-single-product-grid {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.zc-product-sticky-sidebar {
+    position: sticky;
+    top: 6rem;
+}
+
+.zc-product-tab-btn.is-active {
+    background: var(--color-accent) !important;
+    color: var(--color-accent-contrast) !important;
+    box-shadow: 0 4px 14px rgba(253, 208, 91, 0.4);
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE BREAKPOINTS (Desktop, Laptop, Tablet, Mobile)
+   ========================================================================== */
+
+/* 1. Compact Desktops & 13-inch / 14-inch Laptops (1181px – 1380px) */
+@media (max-width: 1380px) and (min-width: 1181px) {
+    .zc-nav-pill > li > a {
+        font-size: 0.775rem; /* 12.4px */
+        padding: 0.42rem 0.62rem;
+        gap: 0.28rem;
+    }
+
+    .zc-header-cta-btn {
+        padding: 0.5rem 0.95rem;
+        font-size: 0.78rem;
+    }
+
+    .zc-brand-name {
+        font-size: 0.94rem;
+    }
+
+    .zc-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 2. Small Laptops & Landscape Tablets (max-width: 1180px) */
+@media (max-width: 1180px) {
+    .zc-nav-pill {
+        display: none !important;
+    }
+
+    .zc-mobile-menu-toggle {
+        display: inline-flex !important;
+    }
+
+    .zc-topbar-legal {
+        display: none;
+    }
+
+    .zc-topbar-inner {
+        justify-content: center;
+    }
+}
+
+/* 3. Tablets & Portrait iPad (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .zc-hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    .zc-single-product-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.75rem;
+    }
+
+    .zc-product-sticky-sidebar {
+        position: static !important;
+    }
+
+    .zc-legal-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .zc-legal-sidebar {
+        position: static !important;
+    }
+
+    .zc-pricing-card.is-popular {
+        transform: none;
+    }
+
+    .zc-services-grid,
+    .zc-portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .zc-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 4. Mobile Landscape & Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+    :root {
+        --zc-radius-2xl: 1.45rem;
+        --zc-radius-xl: 1.15rem;
+    }
+
+    .zc-container {
+        padding-inline: 1rem;
+    }
+
+    .zc-hide-sm {
+        display: none !important;
+    }
+
+    .zc-topbar {
+        font-size: 0.75rem;
+        padding: 0.4rem 0;
+    }
+
+    .zc-topbar-items {
+        gap: 0.65rem;
+        justify-content: center;
+    }
+
+    .zc-header-wrap {
+        top: 0.35rem;
+        padding: 0.45rem 0;
+    }
+
+    .zc-header-pill {
+        padding: 0.45rem 0.65rem;
+        gap: 0.4rem;
+    }
+
+    .zc-header-cta-btn {
+        display: none !important;
+    }
+
+    .zc-brand-logo-box {
+        width: 2.15rem;
+        height: 2.15rem;
+        font-size: 1rem;
+    }
+
+    .zc-brand-name {
+        font-size: 0.92rem;
+    }
+
+    .zc-brand-sub {
+        font-size: 0.6rem;
+    }
+
+    .zc-icon-btn {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+
+    .zc-hero-section {
+        padding: 1.25rem 0 2.5rem;
+    }
+
+    .zc-hero-main-card {
+        padding: 1.5rem 1.25rem !important;
+    }
+
+    .zc-hero-title {
+        font-size: 1.65rem !important;
+        line-height: 1.45;
+    }
+
+    .zc-hero-inline-pill {
+        font-size: 0.78em;
+        padding: 0.1rem 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .zc-hero-trust-list {
+        gap: 0.5rem;
+        margin: 1.1rem 0 1.35rem;
+    }
+
+    .zc-trust-pill {
+        font-size: 0.78rem;
+        padding: 0.4rem 0.75rem;
+        width: 100%;
+    }
+
+    .zc-hero-founder-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .zc-hero-founder-photo-wrap {
+        min-height: 250px !important;
+        max-height: 300px;
+    }
+
+    .zc-why-studio-photos,
+    .zc-why-bento-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .zc-services-grid,
+    .zc-products-grid,
+    .zc-portfolio-grid,
+    .zc-pricing-grid,
+    .zc-steps-grid,
+    .zc-footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.15rem;
+    }
+
+    .zc-filter-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding: 0.35rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .zc-filter-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 0.45rem 0.95rem;
+        font-size: 0.8rem;
+    }
+
+    .zc-service-card,
+    .zc-pricing-card,
+    .zc-legal-content,
+    .zc-glass-panel {
+        padding: 1.4rem !important;
+    }
+
+    .zc-footer-bento {
+        padding: 2rem 1.25rem 1.5rem;
+    }
+
+    .zc-modal-dialog {
+        padding: 1.35rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* 5. Compact Smartphones (max-width: 480px) */
+@media (max-width: 480px) {
+    .zc-brand-sub {
+        display: none;
+    }
+
+    .zc-hero-title {
+        font-size: 1.42rem !important;
+    }
+
+    .zc-section-title {
+        font-size: 1.38rem !important;
+    }
+
+    .zc-btn {
+        padding: 0.68rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .zc-crextio-progress-labels {
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+    }
+
+    .zc-product-price-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .zc-product-price-row .zc-btn {
+        width: 100%;
+    }
+}
+

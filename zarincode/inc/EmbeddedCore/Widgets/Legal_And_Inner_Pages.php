@@ -181,9 +181,12 @@ class Legal_And_Inner_Pages {
     }
 
     /**
-     * ABOUT US FULL PAGE (Featuring Ehsan NaderiPanah & Zarincode Team)
+     * ABOUT US FULL PAGE (Featuring Ehsan NaderiPanah & Zarincode Team + Real Executive Photography)
      */
     private static function render_about_full_page(): string {
+        $founder_img = get_template_directory_uri() . '/assets/images/ehsan-about-founder.jpg';
+        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.jpg';
+        $studio_img  = get_template_directory_uri() . '/assets/images/ehsan-portrait.png';
         ob_start();
         ?>
         <div class="zc-container" style="padding-top:2rem;padding-bottom:3rem;">
@@ -203,15 +206,43 @@ class Legal_And_Inner_Pages {
                             <span class="zc-trust-pill"><i class="fa-solid fa-face-smile"></i> رضایت ۹۹.۸٪ از ۴۲۰+ کارفرما و خریدار</span>
                             <span class="zc-trust-pill"><i class="fa-solid fa-bolt"></i> تحویل سریع و پشتیبانی مستقیم: 09024561001</span>
                         </div>
+
+                        <!-- Studio Architecture Banner Inside About -->
+                        <div style="margin-top:1.75rem;position:relative;border-radius:1.35rem;overflow:hidden;height:210px;border:1px solid var(--zc-border-subtle);box-shadow:var(--zc-shadow-card);">
+                            <img src="<?php echo esc_url( $office_img ); ?>" alt="دفتر و استودیو مهندسی نرم‌افزار زرین کد" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.88) 0%,transparent 65%);display:flex;align-items:flex-end;justify-content:space-between;padding:1.15rem 1.35rem;">
+                                <div>
+                                    <div style="color:var(--color-accent);font-size:0.75rem;font-weight:800;">ZARINCODE SOFTWARE &amp; DESIGN STUDIO</div>
+                                    <div style="color:#fff;font-size:0.95rem;font-weight:900;">محیط مهندسی و توسعه محصولات دیجیتال زرین کد</div>
+                                </div>
+                                <span class="zc-badge-pill" style="margin:0;">ISO / Zhaket / ThemeForest</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="zc-dark-card" style="padding:2.25rem;">
-                        <span class="zc-badge-pill">FOUNDER &amp; LEAD DEVELOPER</span>
-                        <h3 style="font-size:1.5rem;font-weight:900;color:#fff;margin:0.5rem 0 0.25rem;">احسان نادری پناه</h3>
-                        <div style="color:var(--color-accent);font-size:0.9rem;font-weight:700;margin-bottom:1.25rem;">Ehsan NaderiPanah — Full-Stack Developer &amp; WordPress Architect</div>
-                        <p style="color:#D1D5DB;font-size:0.9rem;line-height:1.85;margin-bottom:1.5rem;">
+
+                    <div class="zc-dark-card" style="padding:1.85rem;overflow:hidden;">
+                        <!-- Real Executive Standing Portrait of Ehsan NaderiPanah -->
+                        <div style="position:relative;border-radius:1.35rem;overflow:hidden;margin-bottom:1.35rem;border:2px solid rgba(253,208,91,0.45);height:310px;">
+                            <img src="<?php echo esc_url( $founder_img ); ?>" alt="احسان نادری پناه - موسس و مدیر فنی زرین کد" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+                            <div style="position:absolute;top:0.85rem;right:0.85rem;">
+                                <span class="zc-badge-pill" style="margin:0;box-shadow:0 8px 20px rgba(0,0,0,0.35);"><i class="fa-solid fa-crown"></i> FOUNDER &amp; ARCHITECT</span>
+                            </div>
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.1rem 1.25rem;background:linear-gradient(to top,rgba(15,17,22,0.95) 0%,rgba(15,17,22,0.55) 65%,transparent 100%);display:flex;align-items:center;justify-content:space-between;">
+                                <div style="display:flex;align-items:center;gap:0.75rem;">
+                                    <img src="<?php echo esc_url( $studio_img ); ?>" alt="احسان نادری پناه" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--color-accent);">
+                                    <div>
+                                        <h3 style="font-size:1.25rem;font-weight:900;color:#fff;margin:0;">احسان نادری پناه</h3>
+                                        <div style="color:var(--color-accent);font-size:0.78rem;font-weight:700;">Ehsan NaderiPanah — Full-Stack Architect</div>
+                                    </div>
+                                </div>
+                                <span style="background:rgba(16,185,129,0.22);color:#34D399;padding:0.25rem 0.65rem;border-radius:999px;font-size:0.72rem;font-weight:800;">● Verified</span>
+                            </div>
+                        </div>
+
+                        <p style="color:#D1D5DB;font-size:0.88rem;line-height:1.85;margin-bottom:1.2rem;">
                             متخصص معماری قالب‌ها و افزونه‌های حرفه‌ای وردپرس (Elementor &amp; Redux Framework)، توسعه‌دهنده فول‌استک نرم‌افزارهای تحت وب و استراتژیست ارشد سئو سایت و شبکه‌های اجتماعی.
                         </p>
-                        <div style="display:flex;flex-direction:column;gap:0.6rem;font-size:0.9rem;color:#fff;background:rgba(255,255,255,0.06);padding:1.15rem;border-radius:1.15rem;">
+                        <div style="display:flex;flex-direction:column;gap:0.55rem;font-size:0.86rem;color:#fff;background:rgba(255,255,255,0.06);padding:1rem 1.15rem;border-radius:1.15rem;">
                             <div><i class="fa-solid fa-phone" style="color:var(--color-accent);width:1.5rem;"></i> شماره تماس مستقیم: <strong dir="ltr">09024561001</strong></div>
                             <div><i class="fa-solid fa-globe" style="color:var(--color-accent);width:1.5rem;"></i> وب‌سایت رسمی: <strong>Zarincode.com</strong></div>
                             <div><i class="fa-brands fa-github" style="color:var(--color-accent);width:1.5rem;"></i> مخزن گیت‌هاب: <strong>github.com/Ehsan-Np</strong></div>
@@ -227,9 +258,10 @@ class Legal_And_Inner_Pages {
     }
 
     /**
-     * CONTACT US FULL PAGE
+     * CONTACT US FULL PAGE (Featuring Real Consultation Portrait of Ehsan NaderiPanah)
      */
     private static function render_contact_full_page(): string {
+        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
         ob_start();
         ?>
         <div class="zc-container" style="padding-top:2rem;padding-bottom:3rem;">
@@ -237,26 +269,40 @@ class Legal_And_Inner_Pages {
                 <div class="zc-glass-panel" style="padding:2.5rem;">
                     <span class="zc-badge-pill">CONTACT ZARINCODE TEAM</span>
                     <h1 class="zc-section-title">با تیم <span class="zc-highlight">زرین کد</span> در ارتباط باشید...</h1>
-                    <p style="color:var(--zc-text-secondary);line-height:1.95;margin-bottom:1.75rem;">
+                    <p style="color:var(--zc-text-secondary);line-height:1.95;margin-bottom:1.35rem;">
                         ۷ روز هفته آماده پاسخگویی به سوالات شما در زمینه سفارش طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت، سئو شبکه‌های اجتماعی، تولید محتوا و خرید محصولات آماده (قالب، افزونه و سورس‌کد) هستیم.
                     </p>
 
-                    <div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.75rem;">
-                        <div class="zc-white-card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                    <!-- Real Executive Consultation Photo -->
+                    <div style="position:relative;border-radius:1.35rem;overflow:hidden;height:215px;margin-bottom:1.35rem;border:2px solid rgba(253,208,91,0.45);box-shadow:var(--zc-shadow-card);">
+                        <img src="<?php echo esc_url( $consult_img ); ?>" alt="مشاوره مستقیم با احسان نادری پناه در زرین کد" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+                        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,22,0.92) 0%,rgba(15,17,22,0.25) 60%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;padding:1rem 1.25rem;">
+                            <div>
+                                <div style="font-size:0.75rem;color:var(--color-accent);font-weight:800;">DIRECT TECHNICAL CONSULTATION</div>
+                                <div style="font-size:0.98rem;color:#fff;font-weight:900;">پاسخگویی و مشاوره مستقیم با احسان نادری پناه</div>
+                            </div>
+                            <a href="tel:09024561001" class="zc-btn zc-btn-yellow" style="padding:0.4rem 0.9rem;font-size:0.78rem;" dir="ltr">
+                                <i class="fa-solid fa-phone-volume"></i> 09024561001
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr;gap:0.9rem;margin-bottom:0.5rem;">
+                        <div class="zc-white-card" style="padding:1.15rem;display:flex;align-items:center;gap:1rem;">
                             <div class="zc-service-icon" style="width:3.2rem;height:3.2rem;font-size:1.2rem;"><i class="fa-solid fa-user-tie"></i></div>
                             <div>
                                 <div style="font-size:0.78rem;color:var(--zc-text-muted);">مدیریت و توسعه‌دهنده ارشد:</div>
                                 <div style="font-size:1.05rem;font-weight:900;">احسان نادری پناه (Ehsan NaderiPanah)</div>
                             </div>
                         </div>
-                        <div class="zc-white-card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                        <div class="zc-white-card" style="padding:1.15rem;display:flex;align-items:center;gap:1rem;">
                             <div class="zc-service-icon" style="width:3.2rem;height:3.2rem;font-size:1.2rem;"><i class="fa-solid fa-phone-volume"></i></div>
                             <div>
                                 <div style="font-size:0.78rem;color:var(--zc-text-muted);">شماره تماس مستقیم، واتساپ و تلگرام:</div>
                                 <a href="tel:09024561001" dir="ltr" style="font-size:1.2rem;font-weight:900;color:var(--zc-text-main);">09024561001</a>
                             </div>
                         </div>
-                        <div class="zc-white-card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                        <div class="zc-white-card" style="padding:1.15rem;display:flex;align-items:center;gap:1rem;">
                             <div class="zc-service-icon" style="width:3.2rem;height:3.2rem;font-size:1.2rem;"><i class="fa-solid fa-globe"></i></div>
                             <div>
                                 <div style="font-size:0.78rem;color:var(--zc-text-muted);">وب‌سایت رسمی و پست الکترونیک:</div>

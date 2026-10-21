@@ -1,6 +1,6 @@
 <?php
 /**
- * WooCommerce Digital Marketplace Template (WordPress Themes, Plugins & Software Source Codes)
+ * WooCommerce Digital Marketplace Template (Routes Single Product vs Shop Archive)
  *
  * @package Zarincode
  * @author  Ehsan NaderiPanah (09024561001 | https://zarincode.com)
@@ -8,6 +8,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
+}
+
+// Route Single Digital Product pages directly to our dedicated single-product.php template!
+if ( is_singular( 'product' ) ) {
+    include get_template_directory() . '/single-product.php';
+    return;
 }
 
 get_header();
@@ -20,7 +26,7 @@ get_header();
             <div>
                 <span class="zc-badge-pill"><i class="fa-solid fa-code-branch"></i> ZARINCODE DIGITAL MARKETPLACE</span>
                 <h1 style="font-size:clamp(1.75rem,3vw,2.6rem);font-weight:900;margin:0.4rem 0 0.85rem;color:#FFFFFF;">
-                    فروشگاه اختصاصی قالب وردپرس، افزونه و سورس‌کدهای آماده نرم‌افزار
+                    <?php echo esc_html( zarincode_get_option( 'shop_hero_title', 'فروشگاه اختصاصی قالب وردپرس، افزونه و سورس‌کدهای آماده نرم‌افزار' ) ); ?>
                 </h1>
                 <p style="color:#D1D5DB;font-size:1rem;max-width:860px;margin:0 0 1.5rem;">
                     تمامی محصولات این فروشگاه به صورت ۱۰۰٪ اختصاصی توسط <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> کدنویسی و بهینه‌سازی شده‌اند و دارای <strong>ضمانت بازگشت وجه، آپدیت دائمی، کدهای تمیز و استاندارد ژاکت و تم‌فارست و پشتیبانی مستقیم (09024561001)</strong> هستند.

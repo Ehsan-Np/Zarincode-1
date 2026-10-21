@@ -149,6 +149,34 @@ class CPT_Manager {
                 'show_in_rest'        => true,
             ]
         );
+
+        // 4. Fallback Digital Product CPT when WooCommerce is not yet activated
+        if ( ! class_exists( 'WooCommerce' ) && ! post_type_exists( 'product' ) ) {
+            register_post_type(
+                'product',
+                [
+                    'labels'              => [
+                        'name'          => 'محصولات آماده فروشگاه',
+                        'singular_name' => 'محصول دیجیتال',
+                        'menu_name'     => 'محصولات فروشگاه',
+                        'add_new'       => 'افزودن محصول جدید',
+                        'add_new_item'  => 'افزودن محصول دیجیتال جدید',
+                        'edit_item'     => 'ویرایش محصول',
+                        'all_items'     => 'همه محصولات آماده',
+                    ],
+                    'public'              => true,
+                    'has_archive'         => 'products-catalog',
+                    'publicly_queryable'  => true,
+                    'show_ui'             => true,
+                    'show_in_menu'        => true,
+                    'menu_position'       => 24,
+                    'menu_icon'           => 'dashicons-cart',
+                    'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'comments', 'elementor' ],
+                    'show_in_rest'        => true,
+                    'rewrite'             => [ 'slug' => 'product', 'with_front' => false ],
+                ]
+            );
+        }
     }
 
     public function enable_elementor_cpt_support(): void {

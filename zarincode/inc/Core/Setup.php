@@ -27,6 +27,39 @@ class Setup {
         add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
         add_filter( 'body_class', [ $this, 'body_classes' ] );
         add_filter( 'language_attributes', [ $this, 'force_rtl_attributes' ], 20 );
+        add_filter( 'template_include', [ $this, 'enforce_custom_single_templates' ], 99 );
+    }
+
+    /**
+     * Ensure Single Product, Single Service, and Single Project always use Zarincode's dedicated templates
+     * instead of WooCommerce's unstyled default single-product.php
+     */
+    public function enforce_custom_single_templates( string $template ): string {
+        if ( is_singular( 'product' ) ) {
+            $custom = get_template_directory() . '/single-product.php';
+            if ( file_exists( $custom ) ) {
+                return $custom;
+            }
+        }
+        if ( is_singular( 'zc_service' ) ) {
+            $custom = get_template_directory() . '/single-zc_service.php';
+            if ( file_exists( $custom ) ) {
+                return $custom;
+            }
+        }
+        if ( is_singular( 'zc_project' ) ) {
+            $custom = get_template_directory() . '/single-zc_project.php';
+            if ( file_exists( $custom ) ) {
+                return $custom;
+            }
+        }
+        if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() ) ) {
+            $custom = get_template_directory() . '/woocommerce.php';
+            if ( file_exists( $custom ) ) {
+                return $custom;
+            }
+        }
+        return $template;
     }
 
     public function setup_theme(): void {
