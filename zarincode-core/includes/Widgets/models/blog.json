@@ -343,6 +343,19 @@
                         "v2",
                         "v3"
                     ]
+                },
+                "featured_image": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر شاخص",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
                 }
             },
             "default": [
@@ -454,6 +467,17 @@
                     },
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -644,6 +668,17 @@
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -832,6 +867,17 @@
                     },
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -1141,6 +1187,10 @@
         "services_grid_items_1_btn_yellow_text_1": {
             "label": "متن: مطالعه مقاله",
             "type": "text"
+        },
+        "services_grid_items_1_featured_image": {
+            "label": "تصویر شاخص کارت",
+            "type": "img"
         }
     },
     "legacy": {

@@ -68,6 +68,8 @@ class Setup {
         add_theme_support( 'automatic-feed-links' );
         add_theme_support( 'title-tag' );
         add_theme_support( 'post-thumbnails' );
+        add_image_size('zarincode-card',960,600,true);
+        add_image_size('zarincode-avatar',160,160,true);
         add_theme_support( 'customize-selective-refresh-widgets' );
         add_theme_support( 'align-wide' );
         add_theme_support( 'responsive-embeds' );

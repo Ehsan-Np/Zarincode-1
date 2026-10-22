@@ -367,6 +367,7 @@ class Demo_Seeder {
         }
 
         if ( $post_id && ! is_wp_error( $post_id ) ) {
+            update_post_meta($post_id,'_zarincode_seeded','1');
             if ( 'page' === $post_type ) {
                 update_post_meta( $post_id, '_wp_page_template', 'template-elementor-canvas.php' );
             }
@@ -852,7 +853,7 @@ class Demo_Seeder {
         ];
 
         foreach ( $items as $it ) {
-            self::upsert_post_with_elementor(
+            $product_id=self::upsert_post_with_elementor(
                 'product',
                 $it['slug'],
                 $it['name'],
@@ -880,6 +881,16 @@ class Demo_Seeder {
                     '_zc_prod_demo_label'    => 'پیش‌نمایش آنلاین دمو',
                 ]
             );
+            if($product_id&&taxonomy_exists('product_cat')){
+                $term=term_exists($it['cat_badge'],'product_cat');
+                if(!$term)$term=wp_insert_term($it['cat_badge'],'product_cat');
+                if(!is_wp_error($term)){
+                    $category=(int)(is_array($term)?$term['term_id']:$term);
+                    if(class_exists('WC_Product_Simple')){
+                        $product=new \WC_Product_Simple($product_id);$product->set_status('publish');$product->set_regular_price($it['price']);$product->set_virtual(true);$product->set_category_ids([$category]);$product->set_catalog_visibility('visible');$product->save();
+                    }else wp_set_object_terms($product_id,[$category],'product_cat');
+                }
+            }
         }
     }
 
@@ -888,7 +899,6 @@ class Demo_Seeder {
      */
     public static function seed_elementor_pages(): void {
         $home_widgets = [
-            [ 'widget' => 'zarincode_hero',         'sc' => '[zarincode_widget type="hero"]' ],
             [ 'widget' => 'zarincode_brands',       'sc' => '[zarincode_widget type="brands"]' ],
             [ 'widget' => 'zarincode_services',     'sc' => '[zarincode_widget type="services"]' ],
             [ 'widget' => 'zarincode_products',     'sc' => '[zarincode_widget type="products"]' ],
@@ -901,13 +911,30 @@ class Demo_Seeder {
             [ 'widget' => 'zarincode_blog',         'sc' => '[zarincode_widget type="blog"]' ],
         ];
 
-        $home_tree = [];
+        require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
+        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition()];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
-            $home_tree[]       = self::make_elementor_section( $hw['widget'], [] );
+            $kind=substr($hw['widget'],strlen('zarincode_'));
+            $settings=[];
+            if(in_array($kind,['products','services','portfolio','blog'],true))$settings=['n_'.$kind.'_source'=>'query','n_'.$kind.'_count'=>8];
+            if($kind==='pricing'){
+                $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');
+                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['features_source']='icon_list';unset($row);$settings['n_pricing_'.$key]=$rows;}
+            }
+            if($kind==='testimonials'){
+                $m=\Zarincode\Runtime260\Widgets\Native_Design::model('testimonials');
+                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.jpg','id'=>0];unset($row);$settings['n_testimonials_'.$key]=$rows;}
+            }
+            $home_tree[] = self::make_elementor_section($hw['widget'],$settings);
             $home_shortcodes[] = $hw['sc'];
         }
 
+        foreach(['service_spotlight','before_after','seo_audit','project_roadmap','team_experts','service_matrix'] as $professional){
+            $settings=[];
+            if($professional==='before_after')$settings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی رابط مقایسه؛ تصاویر واقعی قبل و بعد پروژه را جایگزین کنید.'];
+            $home_tree[]=self::make_elementor_section('zarincode_'.$professional,$settings);
+        }
         $home_id = self::upsert_post_with_elementor(
             'page',
             'home',
@@ -943,7 +970,7 @@ class Demo_Seeder {
 
         // Shop Page
         $shop_tree = [
-            self::make_elementor_section( 'zarincode_products', [ 'count' => 8 ] ),
+            self::make_elementor_section( 'zarincode_products', [ 'n_products_source'=>'query','n_products_count'=>8 ] ),
             self::make_elementor_section( 'zarincode_promo', [] ),
             self::make_elementor_section( 'zarincode_steps', [] ),
         ];
@@ -956,7 +983,7 @@ class Demo_Seeder {
         );
 
         // Blog Page
-        $blog_tree = [ self::make_elementor_section( 'zarincode_blog', [] ) ];
+        $blog_tree = [ self::make_elementor_section( 'zarincode_blog', ['n_blog_source'=>'query','n_blog_count'=>8] ) ];
         self::upsert_post_with_elementor(
             'page',
             'blog',
@@ -1096,6 +1123,27 @@ class Demo_Seeder {
     /**
      * SEED EVERYTHING IN ONE CALL
      */
+    /** Only explicit demo import calls this; existing custom thumbnails are never replaced. */
+    public static function seed_featured_images():void {
+        require_once ABSPATH.'wp-admin/includes/image.php';
+        foreach(['product'=>'product','zc_service'=>'service','zc_project'=>'project','post'=>'post'] as $type=>$asset){
+            $file=get_template_directory().'/assets/images/demo-'.$asset.'-cover.jpg';
+            if(!is_file($file))continue;
+            $option='zarincode_demo_cover_'.$asset;$attachment=absint(get_option($option));
+            if(!$attachment||get_post_type($attachment)!=='attachment'){
+                $upload=wp_upload_bits('zarincode-demo-'.$asset.'.jpg',null,file_get_contents($file));
+                if(!empty($upload['error']))continue;
+                $attachment=wp_insert_attachment(['post_mime_type'=>'image/jpeg','post_title'=>'تصویر نمایشی زرین کد — '.$asset,'post_status'=>'inherit'],$upload['file']);
+                if(is_wp_error($attachment)||!$attachment)continue;
+                wp_update_attachment_metadata($attachment,wp_generate_attachment_metadata($attachment,$upload['file']));
+                update_post_meta($attachment,'_wp_attachment_image_alt','تصویر نمایشی خدمات دیجیتال زرین کد');update_option($option,$attachment,false);
+            }
+            $ids=get_posts(['post_type'=>$type,'post_status'=>'publish','posts_per_page'=>-1,'fields'=>'ids','meta_key'=>'_zarincode_seeded','meta_value'=>'1']);
+            // Match only explicit demo records using their seeder marker (not customer content).
+            foreach($ids as $id)if(!has_post_thumbnail($id))set_post_thumbnail($id,$attachment);
+        }
+    }
+
     public static function seed_all(): void {
         if ( class_exists( '\Zarincode\Runtime260\PostTypes\CPT_Manager' ) ) {
             $cpt_mgr = \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();
@@ -1110,7 +1158,9 @@ class Demo_Seeder {
         self::seed_woocommerce_products();
         self::seed_elementor_pages();
         self::seed_blog_posts();
+        self::seed_featured_images();
         self::seed_navigation_menus();
+        if(class_exists('Elementor\\Plugin'))\Elementor\Plugin::instance()->files_manager->clear_cache();
         flush_rewrite_rules( false );
     }
 

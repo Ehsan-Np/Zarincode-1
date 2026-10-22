@@ -5,7 +5,12 @@ use Zarincode\Runtime260\Widgets\Widget_Schema as S;
 use Zarincode\Runtime260\Widgets\Renderer;
 $passed=0;$checks=static function($ok,$message)use(&$passed){if(!$ok)throw new RuntimeException($message);$passed++;};
 $manager=Elementor\Plugin::instance()->elements_manager;
-$make=static fn($kind,$settings=[],$id='nativeprobe')=>$manager->create_element_instance(['id'=>$id,'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$settings]);
+$make=static function($kind,$settings=[],$id='nativeprobe')use($manager){
+    if($kind==='page_section'&&in_array($settings['section_key']??'',['services-page','projects-page'],true)){
+        $model=N::model($kind,$settings['section_key']);$settings+=['n_'.$model['name'].'_source'=>'manual'];
+    }
+    return $manager->create_element_instance(['id'=>$id,'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$settings]);
+};
 $render=static function($w){ob_start();$w->render_content();return ob_get_clean();};
 $compare=[];
 foreach(array_keys(S::definitions()) as $kind){
@@ -29,7 +34,7 @@ foreach(array_keys(S::definitions()) as $kind){
             $checks(count($ids)===count(array_unique($ids))&&count($ids)===count($rows),'Unique pre-CSS identities '.$id);
             $out=$render($w2);$checks(str_contains($out,'elementor-repeater-item-'.$ids[0]),'Row CSS identity rendered '.$id);
             $checks(!str_contains($render($make($kind,['section_key'=>$section,$id=>[]])),'elementor-repeater-item-'.$rep['default'][0]['_id']),'Empty rows respected '.$id);
-            foreach($rep['fields'] as $field=>$def){if($def['type']==='icons'){$changed=$rep['default'];$changed[0][$field]=['value'=>'fas fa-anchor','library'=>'fa-solid'];if(in_array($changed[0]['_variant'],$def['variants'],true))$checks(str_contains($render($make($kind,['section_key'=>$section,$id=>$changed])),'e-fas-anchor'),'Repeater native icon '.$id.'.'.$field);}if($def['type']!=='text')continue;$changed=$rep['default'];$sample='ROW_'.substr(hash('sha256',$field),0,12);$index=0;foreach($changed as $i=>$r)if(in_array($r['_variant'],$def['variants'],true)){$index=$i;break;}$changed[$index][$field]=$sample;
+            foreach($rep['fields'] as $field=>$def){if($def['type']==='media'){$changed=$rep['default'];$changed[0][$field]=['id'=>0,'url'=>'https://example.org/repeater-media.jpg'];$checks(str_contains($render($make($kind,['section_key'=>$section,$id=>$changed])),'https://example.org/repeater-media.jpg'),'Repeater media drives output '.$id.'.'.$field);}if($def['type']==='icons'){$changed=$rep['default'];$changed[0][$field]=['value'=>'fas fa-anchor','library'=>'fa-solid'];if(in_array($changed[0]['_variant'],$def['variants'],true))$checks(str_contains($render($make($kind,['section_key'=>$section,$id=>$changed])),'e-fas-anchor'),'Repeater native icon '.$id.'.'.$field);}if($def['type']!=='text'||$field==='plan_key')continue;$changed=$rep['default'];$sample='ROW_'.substr(hash('sha256',$field),0,12);$index=0;foreach($changed as $i=>$r)if(in_array($r['_variant'],$def['variants'],true)){$index=$i;break;}$changed[$index][$field]=$sample;
                 $checks(str_contains($render($make($kind,['section_key'=>$section,$id=>$changed])),$sample),'Repeater text drives output '.$id.'.'.$field);
             }
         }
@@ -45,4 +50,4 @@ $checks(count(N::model('brands')['repeaters'])===1,'Brand logos are real repeate
 $checks(N::model('page_section','../../private')===[],'Template path traversal rejected');
 foreach(['services','products','portfolio','blog'] as $kind){$m=N::model($kind);$items=Zarincode\Runtime260\Widgets\Editable_Renderer::query_items($kind,['count'=>2]);$html=$render($make($kind,[N::id($m,'source')=>'query',N::id($m,'count')=>2]));foreach($items as $item)$checks(str_contains($html,esc_html($item['title'])),'Query title '.$kind);}
 file_put_contents('/tmp/zc300-compare.json',wp_json_encode($compare));
-echo "PASS {$passed} native-design assertions; 23 layouts.\n";
+echo "PASS {$passed} native-design assertions; ".count($compare)." layouts.\n";

@@ -30,22 +30,32 @@ final class Editable_Renderer {
         if($caption!=='') $html.='<figcaption>'.self::text($caption).'</figcaption>';
         return $html.'</figure>';
     }
+    private static function ids($value):array {
+        $values=is_array($value)?$value:(is_scalar($value)?explode(',',(string)$value):[]);$ids=[];
+        foreach($values as $id)if(is_scalar($id)&&absint($id)>0)$ids[]=absint($id);
+        return array_values(array_unique($ids));
+    }
     public static function query_items(string $kind,array $s): array {
         $types=['products'=>'product','blog'=>'post','portfolio'=>'zc_project','services'=>'zc_service'];
         $tax=['products'=>'product_cat','blog'=>'category','portfolio'=>'zc_project_cat','services'=>'zc_service_cat'];
-        $args=['post_type'=>$types[$kind],'post_status'=>'publish','posts_per_page'=>max(1,min(50,absint($s['count']??8))),'no_found_rows'=>true,'ignore_sticky_posts'=>true,'orderby'=>in_array($s['orderby']??'date',['date','title','menu_order','rand'],true)?($s['orderby']??'date'):'date','order'=>($s['order']??'DESC')==='ASC'?'ASC':'DESC'];
-        $ids=array_filter(array_map('absint',explode(',',(string)($s['include_ids']??''))));
+        $args=['post_type'=>($types[$kind] ?? 'post'),'post_status'=>'publish','posts_per_page'=>(($s['show_all']??'')==='yes' || (int)($s['count']??8)===-1 ? -1 : max(1,min(100,absint($s['count']??8)))),'no_found_rows'=>true,'ignore_sticky_posts'=>true,'orderby'=>in_array($s['orderby']??'date',['date','title','menu_order','rand'],true)?($s['orderby']??'date'):'date','order'=>($s['order']??'DESC')==='ASC'?'ASC':'DESC'];
+        $ids=self::ids($s['include_ids']??'');
         if($ids) $args['post__in']=$ids;
-        $cats=array_filter(array_map('absint',explode(',',(string)($s['category_ids']??''))));
-        if($cats) $args['tax_query']=[['taxonomy'=>$tax[$kind],'field'=>'term_id','terms'=>$cats]];
+        $cats=self::ids($s['category_ids']??'');
+        if($cats) $args['tax_query']=[['taxonomy'=>($tax[$kind]??'category'),'field'=>'term_id','terms'=>$cats]];
         if($kind==='products') {
             $visibility=function_exists('wc_get_product_visibility_term_ids')?wc_get_product_visibility_term_ids():[];
+            if(get_option('woocommerce_hide_out_of_stock_items')==='yes'&&!empty($visibility['outofstock']))$args['tax_query'][]=['taxonomy'=>'product_visibility','field'=>'term_taxonomy_id','terms'=>[$visibility['outofstock']],'operator'=>'NOT IN'];
             if(!empty($visibility['exclude-from-catalog'])) $args['tax_query'][]=['taxonomy'=>'product_visibility','field'=>'term_taxonomy_id','terms'=>[$visibility['exclude-from-catalog']],'operator'=>'NOT IN'];
         }
         $q=new \WP_Query($args);$items=[];
         foreach($q->posts as $post) {
-            $terms=get_the_terms($post->ID,$tax[$kind]);
-            $item=['_id'=>'post-'.$post->ID,'visible'=>'yes','title'=>get_the_title($post),'description'=>wp_trim_words(wp_strip_all_tags($post->post_excerpt?:$post->post_content),max(0,min(200,absint($s['excerpt_length']??22)))),'image'=>['url'=>get_the_post_thumbnail_url($post,'large')?:'','id'=>get_post_thumbnail_id($post)],'link'=>['url'=>get_permalink($post)],'button_text'=>$s['read_more']??'','category'=>!is_wp_error($terms)&&$terms?implode('، ',wp_list_pluck($terms,'name')):''];
+            $terms=get_the_terms($post->ID,($tax[$kind]??'category'));
+            $item=['_id'=>'post-'.$post->ID,'visible'=>'yes','title'=>get_the_title($post),'description'=>wp_trim_words(wp_strip_all_tags($post->post_excerpt?:$post->post_content),max(0,min(200,absint($s['excerpt_length']??22)))),'image'=>['url'=>get_the_post_thumbnail_url($post,'zarincode-card')?:'','id'=>get_post_thumbnail_id($post)],'link'=>['url'=>get_permalink($post)],'button_text'=>$s['read_more']??'','category'=>!is_wp_error($terms)&&$terms?implode('، ',wp_list_pluck($terms,'name')):''];
+            $item['image']['alt']=get_the_title($post);
+            $item['date']=get_the_date('', $post);
+            $item['author']=get_the_author_meta('display_name',$post->post_author);
+            $item['record_meta']=get_post_meta($post->ID);
             if($kind==='products'&&function_exists('wc_get_product')) {
                 $product=wc_get_product($post->ID);
                 if(!$product || !$product->is_visible()) continue;
@@ -54,7 +64,16 @@ final class Editable_Renderer {
                 $item['demo_link']=['url'=>get_post_meta($post->ID,'_zc_prod_demo_url',true),'is_external'=>true];
                 $item['demo_text']=$s['demo_label']??'';
             }
-            $item['category_slug']=!is_wp_error($terms)&&$terms?$terms[0]->slug:'';
+            $filters=[];
+            foreach(is_array($terms)?$terms:[] as $term) {
+                if($kind==='products') {
+                    $ancestors=get_ancestors($term->term_id,($tax[$kind]??'category'),'taxonomy');
+                    if($ancestors){$parent=get_term((int)end($ancestors),($tax[$kind]??'category'));if($parent&&!is_wp_error($parent))$term=$parent;}
+                }
+                $filters[$term->slug]=$term->name;
+            }
+            $item['filter_terms']=$filters;
+            $item['category_slug']=implode(' ',array_keys($filters));
             $items[]=$item;
         }
         return $items;
@@ -107,10 +126,10 @@ final class Editable_Renderer {
             </div><?php endif; ?>
             <?php if($items): ?>
                 <?php if(!empty($s['show_search'])): ?><label class="zc-edit-search"><input type="search" data-zc-search placeholder="<?php echo esc_attr($s['search_placeholder']??''); ?>" aria-label="<?php echo esc_attr($s['search_placeholder']??''); ?>"></label><?php endif; ?>
-                <?php if(!empty($s['show_filters'])): $groups=array_values(array_unique(array_filter(array_column($items,'category')))); ?>
+                <?php if(!empty($s['show_filters'])): $groups=[];foreach($items as $record){if(!empty($record['filter_terms']))$groups=array_merge($groups,$record['filter_terms']);elseif(!empty($record['category']))$groups[$record['category']]=$record['category'];} ?>
                     <div class="zc-edit-filters" role="group" aria-label="<?php echo esc_attr($s['title']??''); ?>">
                         <button type="button" class="zc-edit-filter is-active" data-zc-filter="" aria-pressed="true"><?php echo self::text($s['all_label']??''); ?></button>
-                        <?php foreach($groups as $group): ?><button type="button" class="zc-edit-filter" data-zc-filter="<?php echo esc_attr($group); ?>" aria-pressed="false"><?php echo self::text($group); ?></button><?php endforeach; ?>
+                        <?php foreach($groups as $groupKey=>$group): ?><button type="button" class="zc-edit-filter" data-zc-filter="<?php echo esc_attr($groupKey); ?>" aria-pressed="false"><?php echo self::text($group); ?></button><?php endforeach; ?>
                     </div>
                 <?php endif; ?>
                 <?php if($kind==='header'): ?><details class="zc-edit-mobile-nav"><summary><?php echo self::icon($s['menu_icon']??[]); echo self::text($s['menu_label']??''); ?></summary><?php self::nav($items,true,($s['show_icons']??'yes')==='yes'); ?></details><nav class="zc-edit-desktop-nav"><?php self::nav($items,true,($s['show_icons']??'yes')==='yes'); ?></nav>
@@ -134,7 +153,7 @@ final class Editable_Renderer {
     <?php }
     private static function card(string $kind,array $item,array $s,int $i): string {
         ob_start(); ?>
-        <article class="zc-edit-card elementor-repeater-item-<?php echo esc_attr($item['_id']??'item-'.$i); ?><?php echo !empty($item['featured'])?' is-featured':''; ?>" data-zc-category="<?php echo esc_attr($item['category']??''); ?>">
+        <article class="zc-edit-card elementor-repeater-item-<?php echo esc_attr($item['_id']??'item-'.$i); ?><?php echo !empty($item['featured'])?' is-featured':''; ?>" data-zc-groups="<?php echo esc_attr(wp_json_encode(array_keys($item['filter_terms']??[]))); ?>" data-zc-category="<?php echo esc_attr($item['category']??''); ?>">
             <?php if(($s['show_image']??'yes')==='yes') echo self::image($item['image']??[],$item['image_alt']??''); ?>
             <?php if(($s['show_icons']??'yes')==='yes') echo self::icon($item['icon']??[]); ?>
             <?php if(($item['number']??'')!==''): ?><span class="zc-edit-badge zc-edit-number"><?php echo self::text($item['number']); ?></span><?php endif; ?>

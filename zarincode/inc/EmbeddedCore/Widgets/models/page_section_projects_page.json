@@ -909,6 +909,22 @@
                         "v5",
                         "v6"
                     ]
+                },
+                "featured_image": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر شاخص",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
                 }
             },
             "default": [
@@ -1364,6 +1380,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -1712,6 +1739,17 @@
                         "data-category": "project_card_1_data_category"
                     },
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2062,6 +2100,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -2410,6 +2459,17 @@
                         "data-category": "project_card_1_data_category"
                     },
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2760,6 +2820,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -3108,6 +3179,17 @@
                         "data-category": "project_card_1_data_category"
                     },
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "portfolio_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -3681,6 +3763,10 @@
         "portfolio_grid_items_1_icon_6": {
             "label": "جزء: icon",
             "type": "i"
+        },
+        "portfolio_grid_items_1_featured_image": {
+            "label": "تصویر شاخص کارت",
+            "type": "img"
         }
     },
     "legacy": {

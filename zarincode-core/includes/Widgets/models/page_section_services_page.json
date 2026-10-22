@@ -930,6 +930,22 @@
                         "v2",
                         "v6"
                     ]
+                },
+                "featured_image": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر شاخص",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6"
+                    ]
                 }
             },
             "default": [
@@ -1207,6 +1223,17 @@
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -1433,6 +1460,17 @@
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -1661,6 +1699,17 @@
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -1887,6 +1936,17 @@
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2115,6 +2175,17 @@
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -2341,6 +2412,17 @@
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -3403,6 +3485,20 @@
                         "v3",
                         "v4"
                     ]
+                },
+                "featured_image": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر شاخص",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4"
+                    ]
                 }
             },
             "default": [
@@ -3467,6 +3563,17 @@
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -3534,6 +3641,17 @@
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -3600,6 +3718,17 @@
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -3665,6 +3794,17 @@
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -4087,6 +4227,14 @@
         "steps_grid_items_1_description_1": {
             "label": "جزء: ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع ",
             "type": "text"
+        },
+        "services_grid_items_1_featured_image": {
+            "label": "تصویر شاخص کارت",
+            "type": "img"
+        },
+        "steps_grid_items_1_featured_image": {
+            "label": "تصویر شاخص کارت",
+            "type": "img"
         }
     },
     "legacy": {

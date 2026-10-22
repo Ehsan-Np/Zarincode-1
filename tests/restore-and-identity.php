@@ -20,8 +20,8 @@ $manager=\Elementor\Plugin::instance()->elements_manager;
 foreach(array_keys(Widget_Schema::definitions()) as $kind){
     $make=static fn()=> $manager->create_element_instance(['id'=>'identityfixture','elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>['items'=>$rows,'stats'=>[['title'=>'Stat','value'=>'1']],'faq'=>[['title'=>'Question','answer'=>'Answer']]]]);
     $widget=$make();$settings=$widget->get_settings_for_display();
-    foreach(['items','stats','faq'] as $field){foreach($settings[$field] as $row)$check(!empty($row['_id']),$kind.' '.$field.' runtime ID is nonempty');}
-    $check($settings['items']===$make()->get_settings_for_display('items'),$kind.' saved invalid IDs normalized consistently');
+    foreach(['items','stats','faq'] as $field){if(!isset($widget->get_controls()[$field]))continue;foreach($settings[$field]??[] as $row)$check(!empty($row['_id']),$kind.' '.$field.' runtime ID is nonempty');}
+    $check(($settings['items']??null)===$make()->get_settings_for_display('items'),$kind.' saved invalid IDs normalized consistently');
     foreach($widget->get_controls() as $control) if(($control['type']??'')==='repeater') foreach($control['default']??[] as $row)$check(!empty($row['_id']),$kind.' default '.$control['name'].' has identity');
     $check(($settings['design_mode']??'')==='original',$kind.' defaults to original design');
 }

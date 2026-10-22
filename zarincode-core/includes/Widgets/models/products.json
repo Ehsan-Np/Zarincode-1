@@ -1049,6 +1049,24 @@
                         "v7",
                         "v8"
                     ]
+                },
+                "featured_image": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر شاخص",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
                 }
             },
             "default": [
@@ -1725,6 +1743,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -1869,7 +1898,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -2062,7 +2092,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -2082,7 +2113,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -2201,6 +2233,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -2345,7 +2388,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -2517,7 +2561,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -2537,7 +2582,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -2655,6 +2701,17 @@
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2800,7 +2857,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -2993,7 +3051,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -3013,7 +3072,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -3132,6 +3192,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -3276,7 +3347,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -3448,7 +3520,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -3468,7 +3541,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -3587,6 +3661,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -3731,7 +3816,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -3903,7 +3989,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -3923,7 +4010,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -4042,6 +4130,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -4186,7 +4285,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -4358,7 +4458,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -4378,7 +4479,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -4497,6 +4599,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -4641,7 +4754,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -4813,7 +4927,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -4833,7 +4948,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -4952,6 +5068,17 @@
                     },
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "products_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -5096,7 +5223,8 @@
                                             "literal": "\n                                "
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -5268,7 +5396,8 @@
                                                     "part": "products_grid_items_1_price_amount_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_price": true
                                                 }
                                             ],
                                             "visible": "price_amount_1_visible"
@@ -5288,7 +5417,8 @@
                                                     "part": "products_grid_items_1_price_unit_text_1",
                                                     "before": "",
                                                     "after": "",
-                                                    "plain": false
+                                                    "plain": false,
+                                                    "commerce_currency": true
                                                 }
                                             ],
                                             "visible": "price_unit_1_visible"
@@ -5619,6 +5749,10 @@
         "products_grid_items_1_btn_yellow_text_1": {
             "label": "متن: خرید",
             "type": "text"
+        },
+        "products_grid_items_1_featured_image": {
+            "label": "تصویر شاخص کارت",
+            "type": "img"
         }
     },
     "legacy": {

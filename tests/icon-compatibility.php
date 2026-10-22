@@ -24,7 +24,7 @@ try{
         $w=Elementor\Plugin::instance()->elements_manager->create_element_instance(['id'=>'icon'.$kind,'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$settings]);
         ob_start();$w->render_content();$html=ob_get_clean();$check(!str_contains($html,'zc-invalid-name'),'Invalid icons do not reach SVG renderer '.$kind);
         $export=$w->get_raw_data();foreach($settings as $key=>$value)if(($proto->get_controls($key)['type']??'')==='icons')$check(($export['settings'][$key]['value']??null)==='','Editor export repaired '.$kind.' '.$key);
-        $check($w->get_settings('items')[0]['icon']['value']==='fas fa-shield-alt','Nested legacy icon normalized '.$kind);
+        if(isset($proto->get_controls('items')['fields']['icon']))$check($w->get_settings('items')[0]['icon']['value']==='fas fa-shield-alt','Nested legacy icon normalized '.$kind);
     }
     foreach(array_keys(Zarincode\Runtime260\Widgets\Professional_Widget::catalog()) as $kind){
         $w=Elementor\Plugin::instance()->elements_manager->create_element_instance(['id'=>'bad'.str_replace('_','',$kind),'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>['records'=>[['title'=>'ICON TEST','icon'=>['value'=>'fas fa-zc-invalid-name','library'=>'fa-solid']]]]]);
@@ -33,4 +33,4 @@ try{
     }
     $check(I::render(['value'=>'fas fa-zc-invalid-name','library'=>'fa-solid'])==='','Static renderer guard');
 }finally{restore_error_handler();}
-echo "PASS $checks icon compatibility checks on 20 widget types\n";
+echo "PASS $checks icon compatibility checks on 23 widget types\n";

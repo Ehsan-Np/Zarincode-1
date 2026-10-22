@@ -356,6 +356,19 @@
                         "v2",
                         "v3"
                     ]
+                },
+                "customer_photo": {
+                    "type": "media",
+                    "default": {
+                        "url": "",
+                        "id": 0
+                    },
+                    "label": "تصویر مشتری",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3"
+                    ]
                 }
             },
             "default": [
@@ -510,6 +523,17 @@
                     },
                     "part": "services_grid_items_1_div_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-customer-photo",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_customer_photo",
+                            "image": "customer_photo",
+                            "image_preset": "zarincode-avatar"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -701,6 +725,17 @@
                     "part": "services_grid_items_1_div_1",
                     "children": [
                         {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-customer-photo",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_customer_photo",
+                            "image": "customer_photo",
+                            "image_preset": "zarincode-avatar"
+                        },
+                        {
                             "literal": "\n                            "
                         },
                         {
@@ -890,6 +925,17 @@
                     },
                     "part": "services_grid_items_1_div_1",
                     "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {
+                                "class": "zc-customer-photo",
+                                "loading": "lazy",
+                                "decoding": "async"
+                            },
+                            "part": "services_grid_items_1_customer_photo",
+                            "image": "customer_photo",
+                            "image_preset": "zarincode-avatar"
+                        },
                         {
                             "literal": "\n                            "
                         },
@@ -1191,6 +1237,10 @@
         "services_grid_items_1_div_text_2": {
             "label": "متن: مدیر فنی فروشگاه دیجیتال‌مارکت",
             "type": "text"
+        },
+        "services_grid_items_1_customer_photo": {
+            "label": "تصویر مشتری",
+            "type": "img"
         }
     },
     "legacy": {

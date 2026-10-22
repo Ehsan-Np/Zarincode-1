@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+require_once __DIR__.'/Hero_Layout.php';
+
 class Elementor_Loader {
 
     private static ?Elementor_Loader $instance = null;
@@ -27,6 +29,7 @@ class Elementor_Loader {
 
     private function __construct() {
 
+        add_action('admin_menu',static function(){add_theme_page('تفکیک هیرو','تفکیک هیرو','edit_theme_options','zarincode-split-hero',[Hero_Layout::class,'page']);});
         add_action('admin_notices',[Icon_Compatibility::class,'notice']);
         add_action('elementor/editor/after_enqueue_scripts',[$this,'editor_assets']);
         add_action( 'admin_init', [ $this, 'refresh_generated_css' ] );
@@ -38,10 +41,10 @@ class Elementor_Loader {
     }
 
     public function refresh_generated_css(): void {
-        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.1.0') return;
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.2.0') return;
         if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
-            update_option('zarincode_css_identity_release','3.1.0',false);
+            update_option('zarincode_css_identity_release','3.2.0',false);
         }
     }
 
@@ -49,18 +52,18 @@ class Elementor_Loader {
         $base = strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( get_template_directory() ) . '/' ) === 0
             ? get_template_directory_uri() . '/inc/EmbeddedCore/Widgets/assets/'
             : plugin_dir_url( __FILE__ ) . 'assets/';
-        wp_register_style('zarincode-native',$base.'native.css',[],'3.1.0');
-        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.1.0',true);
-        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.1.0');
-        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.1.0',true);
-        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.1.0' );
-        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.1.0', true );
+        wp_register_style('zarincode-native',$base.'native.css',[],'3.2.0');
+        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.2.0',true);
+        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.2.0');
+        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.2.0',true);
+        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.2.0' );
+        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.2.0', true );
     }
 
     public function editor_assets():void {
         $base=strpos(wp_normalize_path(__DIR__),wp_normalize_path(get_template_directory()).'/')===0?get_template_directory_uri().'/inc/EmbeddedCore/Widgets/assets/':plugin_dir_url(__FILE__).'assets/';
-        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.1.0',true);
-        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.1.0');
+        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.2.0',true);
+        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.2.0');
     }
 
     public function register_category( $elements_manager ): void {
@@ -68,7 +71,7 @@ class Elementor_Loader {
         $elements_manager->add_category(
             'zarincode-elements',
             [
-                'title' => '✨ زرین کد (Crextio + Webinex — ۱۴ ویجت طراحی اصلی)',
+                'title' => 'زرین کد — ویجت‌های اختصاصی',
                 'icon'  => 'fa fa-plug',
             ]
         );
@@ -88,6 +91,9 @@ class Elementor_Loader {
             Widget_Header_Crextio::class,
             Widget_Footer_Crextio::class,
             Widget_Hero_Crextio::class,
+            Widget_Hero_Intro::class,
+            Widget_Hero_Profile::class,
+            Widget_Hero_CTA::class,
             Widget_Brands_Marquee::class,
             Widget_Services_Bento::class,
             Widget_Products_Marketplace::class,

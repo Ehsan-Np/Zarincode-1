@@ -32,7 +32,7 @@
                     let grid; try { grid = this.root.querySelector(target); } catch (_) { return; }
                     if (!grid) return;
                     const value = button.getAttribute('data-filter');
-                    grid.querySelectorAll('[data-category]').forEach(card => { card.hidden = !['all', '*', ''].includes(value) && card.getAttribute('data-category') !== value; });
+                    grid.querySelectorAll('[data-category]').forEach(card => { card.hidden = !['all', '*', ''].includes(value) && !(card.getAttribute('data-category') || '').split(/\s+/).includes(value); });
                 } else if (button.hasAttribute('data-pricing-target')) {
                     const value = button.getAttribute('data-pricing-target');
                     this.root.querySelectorAll('[data-pricing-target]').forEach(b => b.classList.toggle('is-active', b === button));
@@ -54,7 +54,7 @@
                 super.onDestroy();
             }
         }
-        ['header','footer','hero','brands','services','products','portfolio','why_us','pricing','promo','steps','testimonials','blog','page_section'].forEach(name => {
+        ['header','footer','hero','hero_intro','hero_profile','hero_cta','brands','services','products','portfolio','why_us','pricing','promo','steps','testimonials','blog','page_section'].forEach(name => {
             elementorFrontend.hooks.addAction('frontend/element_ready/zarincode_' + name + '.default', $element => elementorFrontend.elementsHandler.addHandler(ZarincodeNative, { $element }));
         });
     }

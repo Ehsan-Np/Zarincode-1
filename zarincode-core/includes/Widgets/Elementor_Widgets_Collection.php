@@ -15,6 +15,8 @@ require_once __DIR__.'/Repeater_Identity.php';
 require_once __DIR__.'/Original_Design.php';
 require_once __DIR__.'/Original_Pages.php';
 require_once __DIR__.'/Inline_Editing.php';
+require_once __DIR__.'/Pricing_Features.php';
+require_once __DIR__.'/Hero_Layout.php';
 require_once __DIR__.'/Native_Design.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
@@ -60,6 +62,11 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     }
     protected function register_controls(): void {
         $kind=$this->kind();
+        if(in_array($kind,['hero_intro','hero_profile','hero_cta'],true)){
+            $this->start_controls_section('main_content',['label'=>'تنظیمات ویجت']);
+            $this->add_control('design_mode',['type'=>C::HIDDEN,'default'=>'original']);
+            $this->end_controls_section();Native_Design::register($this,$kind);return;
+        }
         $this->start_controls_section('main_content',['label'=>'محتوا و هویت بخش']);
         $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'همان طرح اصلی از کنترل‌های مستقل ساخته می‌شود. متن، آیکون، تصویر، پیوند، آیتم‌ها و استایل اجزا در بخش‌های طراحی اصلی قابل ویرایش‌اند؛ طرح سفارشی قدیمی نیز حفظ شده است.']);
         if ($kind==='page_section') {
@@ -136,7 +143,8 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->start_controls_section('records',['label'=>'کارت‌ها / منو / پلن‌ها / نظرات']);
         if (in_array($kind,['products','blog','portfolio','services'],true)) {
             $this->field('source','منبع کارت‌ها',C::SELECT,in_array($kind,['products','blog','portfolio'],true)?'query':'manual',['options'=>['manual'=>'کارت‌های دستی (ویرایش همه جزئیات)','query'=>'محتوای پویا از وردپرس']]);
-            $this->field('count','تعداد نتایج',C::NUMBER,8,['min'=>1,'max'=>50]);
+            $this->field('show_all','نمایش تمام موارد منتشرشده',C::SWITCHER,'',['return_value'=>'yes']);
+            $this->field('count','تعداد نتایج',C::NUMBER,8,['min'=>1,'max'=>100,'condition'=>['show_all'=>'']]);
             $this->field('include_ids','شناسه نوشته‌ها (با کاما)',C::TEXT,'');
             $this->field('category_ids','شناسه دسته‌ها (با کاما)',C::TEXT,'');
             $this->field('orderby','مرتب‌سازی',C::SELECT,'date',['options'=>['date'=>'تاریخ','title'=>'عنوان','menu_order'=>'ترتیب دستی','rand'=>'تصادفی']]);
@@ -242,7 +250,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
 
 class Widget_Header_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'header'; } }
 class Widget_Footer_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'footer'; } }
-class Widget_Hero_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero'; } }
+class Widget_Hero_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero'; } public function show_in_panel(): bool { return false; } }
 class Widget_Brands_Marquee extends Abstract_Zarincode_Widget { protected function kind(): string { return 'brands'; } }
 class Widget_Services_Bento extends Abstract_Zarincode_Widget { protected function kind(): string { return 'services'; } }
 class Widget_Products_Marketplace extends Abstract_Zarincode_Widget { protected function kind(): string { return 'products'; } }
@@ -254,3 +262,7 @@ class Widget_Project_Steps extends Abstract_Zarincode_Widget { protected functio
 class Widget_Testimonials extends Abstract_Zarincode_Widget { protected function kind(): string { return 'testimonials'; } }
 class Widget_Blog_Grid extends Abstract_Zarincode_Widget { protected function kind(): string { return 'blog'; } }
 class Widget_Page_Content_Section extends Abstract_Zarincode_Widget { protected function kind(): string { return 'page_section'; } }
+
+class Widget_Hero_Intro extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_intro'; } }
+class Widget_Hero_Profile extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_profile'; } }
+class Widget_Hero_CTA extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_cta'; } }
