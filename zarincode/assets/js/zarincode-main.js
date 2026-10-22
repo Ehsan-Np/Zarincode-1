@@ -332,3 +332,5 @@
         });
     }
 })();
+// Close a contact disclosure with Escape/outside click; retain the native details control.
+(()=>{'use strict';document.addEventListener('click',e=>{document.querySelectorAll('.zc-floating-socials[open]').forEach(d=>{if(!d.contains(e.target))d.open=false})});document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;document.querySelectorAll('.zc-floating-socials[open]').forEach(d=>{d.open=false;d.querySelector('summary').focus()})})})();

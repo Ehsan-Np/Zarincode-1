@@ -83,3 +83,21 @@ for template in r['variants'].values():
 m['parts']['brand_description']={'label':'توضیحات فناوری','type':'box'}
 m['parts']['brand_description_text']={'label':'متن معرفی فناوری','type':'text'}
 save('brands',m)
+# 3.7: dynamic global account CTA and linked, non-cropped product artwork.
+m=load('header')
+for n in walk(m['tree']):
+ if 'zc-header-actions' in cls(n).split() and not any(x.get('account_link') for x in n.get('children',[]) if isinstance(x,dict)):
+  n.setdefault('children',[]).insert(0,{'tag':'span','attrs':{},'account_link':True})
+save('header',m)
+m=load('products')
+for g,r in m['repeaters'].items():
+ if 'grid_items' not in g:continue
+ for template in r['variants'].values():
+  for parent in walk([template]):
+   if 'zc-product-media-link' in cls(parent).split():continue
+   for i,node in enumerate(parent.get('children',[])):
+    if isinstance(node,dict) and node.get('image')=='featured_image':
+     node['image_preset']='woocommerce_single'
+     parent['children'][i]={'tag':'a','attrs':{'class':'zc-product-media-link'},'part':g+'_featured_link','bindings':{'href':'product_thumb_1_href'},'image_guard':'featured_image','children':[node]}
+ m['parts'][g+'_featured_link']={'label':'قاب تصویر محصول و پیوند','type':'box'}
+save('products',m)

@@ -25,6 +25,7 @@ class Setup {
     private function __construct() {
         add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
         add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
+        add_filter('woocommerce_single_product_image_gallery_classes',static fn(array $classes):array=>array_merge($classes,[is_rtl()?'zc-gallery-rtl':'zc-gallery-ltr']));
         add_filter( 'body_class', [ $this, 'body_classes' ] );
         add_filter( 'language_attributes', [ $this, 'force_rtl_attributes' ], 20 );
         add_filter( 'template_include', [ $this, 'enforce_custom_single_templates' ], 99 );

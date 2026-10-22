@@ -810,6 +810,11 @@
               "part": "_header_actions_1",
               "children": [
                 {
+                  "tag": "span",
+                  "attrs": {},
+                  "account_link": true
+                },
+                {
                   "literal": "\n                    "
                 },
                 {

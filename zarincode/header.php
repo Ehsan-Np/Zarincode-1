@@ -215,6 +215,7 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
 
             <!-- Header Actions (Search Ctrl+K, Dark Mode, Mini Cart, Consultation CTA, Mobile Drawer Toggle) -->
             <div class="zc-header-actions">
+                <?php echo \Zarincode\Theme\Core\Account::button(); ?>
                 <?php if ( $show_search ) : ?>
                     <button type="button" class="zc-icon-btn" data-zc-modal-open="zc-search-modal" title="جستجوی سریع خدمات و محصولات (Ctrl + K)" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>

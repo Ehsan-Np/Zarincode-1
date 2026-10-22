@@ -152,6 +152,10 @@ class OptionsConfig {
                     [ 'id' => 'enable_sticky_header',     'type' => 'switch', 'title' => 'چسبان بودن هدر هنگام اسکرول', 'default' => true ],
                     [ 'id' => 'header_show_search',       'type' => 'switch', 'title' => 'نمایش دکمه مودال جستجوی سریع', 'default' => true ],
                     [ 'id' => 'header_show_dark_toggle',  'type' => 'switch', 'title' => 'نمایش دکمه تغییر حالت روشن / تیره در هدر', 'default' => true ],
+                    ['id'=>'header_account_enabled','type'=>'switch','title'=>'نمایش دکمه ورود / حساب کاربری','default'=>true],
+                    ['id'=>'header_account_url','type'=>'text','title'=>'پیوند دلخواه ورود / حساب کاربری','subtitle'=>'نشانی کامل HTTPS یا مسیر داخلی مانند /login/. خالی = حساب ووکامرس؛ بدون ووکامرس = ورود وردپرس.','default'=>''],
+                    ['id'=>'header_account_text','type'=>'text','title'=>'عنوان دکمه حساب برای مهمان','default'=>'ورود / حساب کاربری'],
+                    ['id'=>'header_account_logged_text','type'=>'text','title'=>'عنوان دکمه حساب پس از ورود','default'=>'حساب من'],
                     [ 'id' => 'header_show_cart',         'type' => 'switch', 'title' => 'نمایش آیکون سبد خرید و شمارنده محصولات در هدر', 'default' => true ],
                     [ 'id' => 'header_show_cta',          'type' => 'switch', 'title' => 'نمایش دکمه زرد فراخوان مشاوره در هدر', 'default' => true ],
                     [ 'id' => 'header_cta_text',          'type' => 'text',   'title' => 'متن دکمه فراخوان هدر', 'default' => 'درخواست مشاوره' ],
@@ -1113,7 +1117,7 @@ class OptionsConfig {
         // Independent visibility: turning off contact does not disable back-to-top.
         if(zarincode_get_option('enable_floating_contact',true)||zarincode_get_option('enable_back_to_top',true)){
             echo '<div class="zc-floating-quick-contact">';
-            if(zarincode_get_option('enable_back_to_top',true))echo '<button type="button" id="zc-back-to-top-btn" aria-label="بازگشت به بالای صفحه" onclick="window.scrollTo({top:0,behavior:matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches?&quot;instant&quot;:&quot;smooth&quot;});"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>';
+            if(zarincode_get_option('enable_back_to_top',true))echo '<button type="button" id="zc-back-to-top-btn" aria-label="بازگشت به بالای صفحه" onclick="window.scrollTo({top:0,behavior:matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches?&quot;auto&quot;:&quot;smooth&quot;});"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>';
             if(zarincode_get_option('enable_floating_contact',true))echo \Zarincode\Theme\Core\Social_Links::floating();echo '</div>';
         }
 

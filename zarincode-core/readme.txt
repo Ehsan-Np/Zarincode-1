@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.6.0
+Stable tag: 3.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,11 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 3.7.0 =
+* Theme: bespoke native Woo account portal, configurable header account URL, fixed viewport contact controls.
+* Continuous article-rating stars, compact sharing, actual Woo product gallery and linked responsive product artwork.
+* Refined editable customer-logo carousel and brand wall; locale-aware gallery direction.
 
 = 3.6.0 =
 * Theme: native threaded discussion across products, posts, services, projects and pages.

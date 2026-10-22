@@ -24,9 +24,11 @@ final class Editable_Renderer {
         return '<a class="zc-edit-button zc-edit-'.esc_attr($class).'"'.self::attrs($link).'>'.self::text($text).self::icon($icon).'</a>';
     }
     private static function image($image,$alt='',$caption=''): string {
-        if(empty($image['url'])) return '';
-        $alt=$alt!==''?$alt:(!empty($image['id'])?get_post_meta(absint($image['id']),'_wp_attachment_image_alt',true):'');
-        $html='<figure class="zc-edit-figure"><img class="zc-edit-image" src="'.esc_url($image['url']).'" alt="'.esc_attr($alt).'" loading="lazy" decoding="async">';
+        $alt=$alt!==''?$alt:($image['alt']??(!empty($image['id'])?get_post_meta(absint($image['id']),'_wp_attachment_image_alt',true):''));
+        $img=!empty($image['id'])?wp_get_attachment_image(absint($image['id']),'large',false,['class'=>'zc-edit-image','alt'=>$alt,'loading'=>'lazy','decoding'=>'async']):'';
+        if(!$img&&!empty($image['url']))$img='<img class="zc-edit-image" src="'.esc_url($image['url']).'" alt="'.esc_attr($alt).'" loading="lazy" decoding="async">';
+        if(!$img)return '';
+        $html='<figure class="zc-edit-figure">'.$img;
         if($caption!=='') $html.='<figcaption>'.self::text($caption).'</figcaption>';
         return $html.'</figure>';
     }
@@ -59,6 +61,8 @@ final class Editable_Renderer {
             if($kind==='products'&&function_exists('wc_get_product')) {
                 $product=wc_get_product($post->ID);
                 if(!$product || !$product->is_visible()) continue;
+                $imageId=$product->get_image_id();if(!$imageId){$gallery=$product->get_gallery_image_ids();$imageId=$gallery[0]??0;}
+                if($imageId&&wp_attachment_is_image($imageId))$item['image']=['id'=>$imageId,'url'=>wp_get_attachment_image_url($imageId,'woocommerce_single')?:'','alt'=>get_post_meta($imageId,'_wp_attachment_image_alt',true)?:get_the_title($post)];
                 $item['price_html']=$product->get_price_html();
                 $item['price_amount']=wc_get_price_to_display($product);$item['price_currency']=get_woocommerce_currency_symbol();
                 $item['demo_link']=['url'=>get_post_meta($post->ID,'_zc_prod_demo_url',true),'is_external'=>true];

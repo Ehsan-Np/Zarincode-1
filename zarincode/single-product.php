@@ -89,35 +89,17 @@ while ( have_posts() ) :
                         <?php echo esc_html( $title ); ?>
                     </h1>
 
-                    <!-- Visual Showcase Box (Crextio Dark & Sunshine Presentation) -->
-                    <div class="zc-dark-card" style="padding:2.25rem;margin-bottom:1.5rem;background:linear-gradient(135deg,#2A2C31 0%,#16181D 100%);border:2px solid rgba(253,208,91,0.35);">
-                        <div style="display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;">
-                            <div>
-                                <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(253,208,91,0.15);color:var(--color-accent);padding:0.35rem 0.9rem;border-radius:999px;font-size:0.78rem;font-weight:800;margin-bottom:0.85rem;">
-                                    <i class="fa-solid fa-code"></i> ZARINCODE OFFICIAL COMMERCIAL RELEASE • <?php echo esc_html( $version ); ?>
-                                </div>
-                                <h2 style="font-size:1.12rem;font-weight:900;color:#fff;margin:0 0 0.65rem;line-height:1.55;">
-                                    بررسی ویژگی‌ها، پیش‌نیازها و شرایط محصول
-                                </h2>
-                                <p style="color:#D1D5DB;font-size:0.9rem;line-height:1.85;margin:0 0 1.25rem;">
-                                    <?php echo wp_kses_post( get_the_excerpt() ?: get_the_content() ); ?>
-                                </p>
-                                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-                                    <?php foreach ( $tags as $t ) : ?>
-                                        <span style="background:rgba(255,255,255,0.08);color:#FDE68A;border:1px solid rgba(253,208,91,0.25);padding:0.25rem 0.75rem;border-radius:999px;font-size:0.76rem;font-weight:700;" dir="ltr">
-                                            #<?php echo esc_html( $t ); ?>
-                                        </span>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                            <div style="text-align:center;">
-                                <div style="width:5.5rem;height:5.5rem;border-radius:1.6rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;font-size:2.4rem;box-shadow:0 14px 32px rgba(253,208,91,0.35);margin:0 auto 0.6rem;">
-                                    <i class="<?php echo esc_attr( $icon_class ); ?>"></i>
-                                </div>
-                                <div style="font-size:0.74rem;color:#9CA3AF;font-weight:700;" dir="ltr">SKU: <?php echo esc_html( get_post_meta( $post_id, '_sku', true ) ?: 'ZC-PRO' ); ?></div>
-                            </div>
+                    <!-- Native Woo gallery: attachments, thumbnail navigation, zoom and lightbox. -->
+                    <div class="zc-product-media">
+                        <div class="zc-product-media-label"><span><i class="fa-regular fa-image" aria-hidden="true"></i> نمای محصول</span><small>برای مشاهده جزئیات، تصویر را باز کنید</small></div>
+                        <?php if($zc_wc_product){$GLOBALS['product']=$zc_wc_product;woocommerce_show_product_images();}else{echo get_the_post_thumbnail($post_id,'large',['class'=>'zc-product-cover']);} ?>
+                        <noscript><style>.zc-product-media .woocommerce-product-gallery__wrapper{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.zc-product-media .woocommerce-product-gallery__wrapper>div:first-child{grid-column:1/-1}</style></noscript>
+                    </div>
+                    <div class="zc-dark-card" style="padding:1.5rem;margin-bottom:1.5rem;">
+                        <p style="color:#d1d5db;font-size:.85rem;line-height:2;margin:0;"> <?php echo wp_kses_post(get_the_excerpt()); ?> </p>
+                        <div class="zc-product-media-meta">
+                            <?php $sku=$zc_wc_product?$zc_wc_product->get_sku():get_post_meta($post_id,'_sku',true);if($sku)echo '<span dir="ltr">SKU: '.esc_html($sku).'</span>';foreach(array_filter($tags) as $tag)echo '<span dir="auto">#'.esc_html($tag).'</span>'; ?>
                         </div>
-
                         <!-- 4 Quick Product KPIs inside Visual Banner -->
                         <div class="zc-prod-kpi-strip" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-top:1.75rem;padding-top:1.35rem;border-top:1px solid rgba(255,255,255,0.1);">
                             <div style="background:rgba(255,255,255,0.05);padding:0.85rem;border-radius:1rem;text-align:center;">

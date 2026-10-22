@@ -1743,15 +1743,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -2233,15 +2246,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -2702,15 +2728,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -3192,15 +3231,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -3661,15 +3713,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -4130,15 +4195,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -4599,15 +4677,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -5068,15 +5159,28 @@
                     },
                     "children": [
                         {
-                            "tag": "img",
+                            "tag": "a",
                             "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
+                                "class": "zc-product-media-link"
                             },
-                            "part": "products_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
+                            "part": "products_grid_items_1_featured_link",
+                            "bindings": {
+                                "href": "product_thumb_1_href"
+                            },
+                            "image_guard": "featured_image",
+                            "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "products_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "woocommerce_single"
+                                }
+                            ]
                         },
                         {
                             "literal": "\n                            "
@@ -5753,6 +5857,10 @@
         "products_grid_items_1_featured_image": {
             "label": "تصویر شاخص کارت",
             "type": "img"
+        },
+        "products_grid_items_1_featured_link": {
+            "label": "قاب تصویر محصول و پیوند",
+            "type": "box"
         }
     },
     "legacy": {

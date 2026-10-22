@@ -17,7 +17,9 @@ get_header();
     while ( have_posts() ) :
         the_post();
         $is_elementor = get_post_meta( get_the_ID(), '_elementor_edit_mode', true );
-        if ( 'builder' === $is_elementor ) :
+        if(function_exists('is_account_page')&&is_account_page()):
+            echo '<div class="zc-container zc-account-page">';the_content();echo '</div>';
+        elseif ( 'builder' === $is_elementor ) :
             the_content();
         else :
             ?>
