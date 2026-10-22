@@ -74,7 +74,7 @@ while ( have_posts() ) :
             <!-- Right Column: Product Showcase, Preview & Interactive Technical Tabs -->
             <div class="zc-single-product-main">
                 <!-- Product Hero Card -->
-                <div class="zc-glass-panel" style="padding:2.25rem;margin-bottom:1.75rem;">
+                <div class="zc-glass-panel zc-product-reference-hero" style="padding:2.25rem;margin-bottom:1.75rem;">
                     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:1rem;">
                         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;">
                             <span class="zc-badge-pill" style="margin-bottom:0;"><i class="fa-solid fa-award"></i> <?php echo esc_html( $cat_badge ); ?></span>
@@ -89,13 +89,14 @@ while ( have_posts() ) :
                         <?php echo esc_html( $title ); ?>
                     </h1>
 
+                    <div class="zc-product-reference-row">
                     <!-- Native Woo gallery: attachments, thumbnail navigation, zoom and lightbox. -->
                     <div class="zc-product-media">
                         <div class="zc-product-media-label"><span><i class="fa-regular fa-image" aria-hidden="true"></i> نمای محصول</span><small>برای مشاهده جزئیات، تصویر را باز کنید</small></div>
                         <?php if($zc_wc_product){$GLOBALS['product']=$zc_wc_product;woocommerce_show_product_images();}else{echo get_the_post_thumbnail($post_id,'large',['class'=>'zc-product-cover']);} ?>
                         <noscript><style>.zc-product-media .woocommerce-product-gallery__wrapper{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.zc-product-media .woocommerce-product-gallery__wrapper>div:first-child{grid-column:1/-1}</style></noscript>
                     </div>
-                    <div class="zc-dark-card" style="padding:1.5rem;margin-bottom:1.5rem;">
+                    <div class="zc-dark-card zc-product-reference-info" style="padding:1.5rem;margin-bottom:1.5rem;">
                         <p style="color:#d1d5db;font-size:.85rem;line-height:2;margin:0;"> <?php echo wp_kses_post(get_the_excerpt()); ?> </p>
                         <div class="zc-product-media-meta">
                             <?php $sku=$zc_wc_product?$zc_wc_product->get_sku():get_post_meta($post_id,'_sku',true);if($sku)echo '<span dir="ltr">SKU: '.esc_html($sku).'</span>';foreach(array_filter($tags) as $tag)echo '<span dir="auto">#'.esc_html($tag).'</span>'; ?>
@@ -121,25 +122,14 @@ while ( have_posts() ) :
                         </div>
                     </div>
 
-                    <!-- Quick Action Bar under Preview -->
-                    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:rgba(253,208,91,0.14);border:1px solid rgba(253,208,91,0.45);border-radius:1.25rem;">
-                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                            <i class="fa-solid fa-bolt" style="font-size:1.35rem;color:var(--color-accent-contrast);background:var(--color-accent);width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></i>
-                            <div>
-                                <div style="font-weight:900;font-size:0.9rem;">پیش از سفارش، توضیحات و شیوه تحویل محصول را بررسی کنید</div>
-                                <div style="font-size:0.77rem;color:var(--zc-text-secondary);">بلافاصله پس از تکمیل سفارش، لینک دانلود مستقیم در پنل کاربری و ایمیل شما فعال می‌شود.</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;gap:0.55rem;flex-wrap:wrap;">
-                            <?php if ( ! empty( $demo_url ) ) : ?>
-                                <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="zc-btn zc-btn-yellow" style="padding:0.55rem 1.15rem;font-size:0.82rem;">
-                                    <i class="fa-solid fa-desktop"></i> <?php echo esc_html( $demo_label ); ?>
-                                </a>
-                            <?php endif; ?>
-                            <button type="button" class="zc-btn zc-btn-dark" style="padding:0.55rem 1.15rem;font-size:0.82rem;" data-zc-modal-open="zc-consult-modal">
-                                <i class="fa-solid fa-headset"></i> مشاوره فنی پیش از خرید
-                            </button>
-                        </div>
+                    </div><!-- .zc-product-reference-row -->
+                    <div class="zc-product-reference-actions" aria-label="خرید و پیش‌نمایش محصول">
+                        <?php if(function_exists('WC')): ?>
+                        <a class="zc-btn zc-btn-yellow zc-product-reference-buy" href="<?php echo esc_url($add_to_cart_url); ?>"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد خرید و دانلود آنی</a>
+                        <?php endif; ?>
+                        <?php if(!empty($demo_url)): ?>
+                        <a class="zc-btn zc-product-reference-demo" href="<?php echo esc_url($demo_url); ?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-desktop" aria-hidden="true"></i> <?php echo esc_html($demo_label); ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
 

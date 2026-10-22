@@ -1,0 +1,28 @@
+/* Approved reference: keep 3.7.0 outer purchase/sidebar layout; compose only the main showcase. */
+.zc-single-product-main .zc-product-reference-hero{margin-bottom:16px!important;padding-bottom:18px!important}
+.zc-product-reference-row{display:grid;grid-template-columns:minmax(0,.39fr) minmax(0,.61fr);gap:10px;align-items:stretch;direction:ltr;margin-inline:-26px}
+.zc-product-reference-row>.zc-product-media,.zc-product-reference-row>.zc-product-reference-info{min-width:0;direction:rtl;margin-bottom:0}
+.zc-product-reference-row>.zc-product-media{padding:7px;border-radius:10px;align-self:start}
+.zc-product-reference-row .zc-product-media-label{font-size:9px;gap:5px;margin:0 0 7px;line-height:1.8}
+.zc-product-reference-row .zc-product-media-label small{font-size:8px}
+.zc-product-reference-row .woocommerce-product-gallery__image{border-radius:7px}
+.zc-product-reference-row .woocommerce-product-gallery__trigger{width:27px;height:27px;top:7px;inset-inline-end:7px}
+.zc-product-reference-row .flex-control-thumbs{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:6px!important}
+.zc-product-reference-row .flex-control-thumbs img{height:36px;border-radius:5px}
+.zc-product-reference-row>.zc-product-reference-info{padding:17px!important;margin-bottom:0!important;border-radius:24px;display:flex;flex-direction:column}
+.zc-product-reference-info>p{font-size:12px!important;line-height:2!important;margin:0!important;overflow-wrap:anywhere}
+.zc-product-reference-info .zc-product-media-meta{gap:5px;margin-top:12px}
+.zc-product-reference-info .zc-product-media-meta>span{font-size:9px;padding:4px 6px;overflow-wrap:anywhere;max-width:100%}
+.zc-product-reference-info .zc-prod-kpi-strip{gap:7px!important;margin-top:auto!important;padding-top:15px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.zc-product-reference-info .zc-prod-kpi-strip>div{min-width:0;padding:11px 5px!important;border-radius:12px!important;margin-top:12px}
+.zc-product-reference-info .zc-prod-kpi-strip>div>div:first-child{font-size:12px!important;line-height:1.8;overflow-wrap:anywhere}
+.zc-product-reference-info .zc-prod-kpi-strip>div>div:last-child{font-size:9px!important;line-height:1.9;overflow-wrap:anywhere}
+.zc-product-reference-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;direction:rtl;margin:16px -8px 0}
+.zc-product-reference-actions .zc-btn{width:100%;min-width:0;min-height:55px;box-sizing:border-box;white-space:normal;text-align:center;padding:12px 14px;font-size:14px;line-height:1.9}
+.zc-product-reference-demo{border:1px solid var(--color-accent);background:var(--zc-dark,#2a2c31);color:var(--color-accent)}
+.zc-product-reference-actions>.zc-btn:only-child{grid-column:1/-1}
+@media(max-width:1200px) and (min-width:901px){.zc-product-reference-row{grid-template-columns:minmax(0,.4fr) minmax(0,.6fr)}.zc-product-reference-info .zc-prod-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}.zc-product-reference-info .zc-prod-kpi-strip>div{margin-top:0}.zc-product-reference-actions{gap:10px}.zc-product-reference-actions .zc-btn{font-size:12px}}
+@media(max-width:900px){.zc-product-reference-row{grid-template-columns:1fr;margin-inline:0;gap:14px}.zc-product-reference-row>.zc-product-media{width:100%;box-sizing:border-box}.zc-product-reference-row>.zc-product-reference-info{padding:18px!important}.zc-product-reference-info>p{font-size:14px!important}.zc-product-reference-info .zc-prod-kpi-strip{margin-top:16px!important}.zc-product-reference-actions{margin-inline:0;gap:10px}.zc-product-reference-actions .zc-btn{font-size:13px}}
+@media(max-width:480px){.zc-product-reference-info .zc-prod-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}.zc-product-reference-actions{grid-template-columns:1fr}.zc-product-reference-actions .zc-btn{font-size:13px}.zc-product-reference-row .zc-product-media-label{font-size:11px}.zc-product-reference-row .zc-product-media-label small{display:none}}
+.zc-single-product-wrap .zc-single-product-main,.zc-single-product-wrap .zc-single-product-sidebar{min-width:0}
+@media(max-width:600px){.zc-single-product-wrap .zc-single-product-grid{grid-template-columns:minmax(0,1fr)}.zc-single-product-main>.zc-glass-panel,.zc-single-product-sidebar>.zc-dark-card,.zc-single-product-sidebar>.zc-glass-panel{padding:20px!important}.zc-single-product-wrap .zc-prod-tabs-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}.zc-single-product-wrap .zc-prod-tab-btn{white-space:normal;min-width:0}.zc-single-product-wrap .zc-prod-tab-pane>div[style*="minmax"]{grid-template-columns:1fr!important}}
