@@ -155,6 +155,7 @@ class OptionsConfig {
                     [ 'id' => 'header_show_dark_toggle',  'type' => 'switch', 'title' => 'نمایش دکمه تغییر حالت روشن / تیره در هدر', 'default' => true ],
                     ['id'=>'header_account_enabled','type'=>'switch','title'=>'نمایش دکمه ورود / حساب کاربری','default'=>true],
                     ['id'=>'header_account_url','type'=>'text','title'=>'پیوند دلخواه ورود / حساب کاربری','subtitle'=>'نشانی کامل HTTPS یا مسیر داخلی مانند /login/. خالی = حساب ووکامرس؛ بدون ووکامرس = ورود وردپرس.','default'=>''],
+                    ['id'=>'header_account_label_display','type'=>'select','title'=>'نمایش متن کنار آیکون ورود / حساب','options'=>['desktop'=>'فقط دسکتاپ و تبلت','always'=>'همیشه، شامل موبایل','never'=>'عدم نمایش متن (فقط آیکون)'],'default'=>'desktop','subtitle'=>'عنوان دسترس‌پذیر دکمه در همه حالت‌ها حفظ می‌شود.'],
                     ['id'=>'header_account_text','type'=>'text','title'=>'عنوان دکمه حساب برای مهمان','default'=>'ورود / حساب کاربری'],
                     ['id'=>'header_account_logged_text','type'=>'text','title'=>'عنوان دکمه حساب پس از ورود','default'=>'حساب من'],
                     [ 'id' => 'header_show_cart',         'type' => 'switch', 'title' => 'نمایش آیکون سبد خرید و شمارنده محصولات در هدر', 'default' => true ],
@@ -647,7 +648,8 @@ class OptionsConfig {
             }
         }
 
-        $first_tab = array_key_first( $schema );
+        $requested_tab = isset($_POST['zc_active_tab']) && is_string($_POST['zc_active_tab']) ? sanitize_key(wp_unslash($_POST['zc_active_tab'])) : '';
+        $first_tab = isset($schema[$requested_tab]) || $requested_tab === 'backup' ? $requested_tab : array_key_first($schema);
         ?>
         <div class="wrap zc-options-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
             <h1 class="screen-reader-text">پنل تنظیمات پیشرفته قالب زرین کد</h1>
@@ -700,6 +702,7 @@ class OptionsConfig {
 
             <form method="post" id="zc-theme-options-form">
                 <?php wp_nonce_field( 'zarincode_save_options_nonce' ); ?>
+                <input type="hidden" name="zc_active_tab" id="zc-active-tab" value="<?php echo esc_attr($first_tab); ?>">
                 <input type="hidden" name="zarincode_options_action" id="zc-options-action-input" value="save">
 
                 <!-- Top Control Header -->
@@ -751,7 +754,7 @@ class OptionsConfig {
                                 <span><?php echo esc_html( $sec['title'] ); ?></span>
                             </button>
                         <?php endforeach; ?>
-                        <button type="button" class="zc-opt-nav-btn" data-target="zc-sec-backup">
+                        <button type="button" class="zc-opt-nav-btn <?php echo $first_tab === 'backup' ? 'is-active' : ''; ?>" data-target="zc-sec-backup">
                             <span class="dashicons dashicons-database-export"></span>
                             <span>۱۷. پشتیبان‌گیری و انتقال (JSON)</span>
                         </button>
@@ -837,7 +840,7 @@ class OptionsConfig {
                         <?php endforeach; ?>
 
                         <!-- Section 17: Backup & JSON Import/Export -->
-                        <section id="zc-sec-backup" class="zc-opt-panel">
+                        <section id="zc-sec-backup" class="zc-opt-panel <?php echo $first_tab === 'backup' ? 'is-active' : ''; ?>">
                             <h2 style="margin:0 0 8px;font-size:19px;font-weight:900;">۱۷. پشتیبان‌گیری، برون‌ریزی (Export) و درون‌ریزی (Import) تنظیمات قالب</h2>
                             <p style="color:#6B7280;font-size:13px;margin-bottom:20px;">
                                 از تنظیمات فعلی پشتیبان JSON بگیرید یا فایل پشتیبان قبلی را بازیابی کنید.
@@ -870,6 +873,9 @@ class OptionsConfig {
             navBtns.forEach(function(btn){
                 btn.addEventListener('click', function(){
                     const target = btn.getAttribute('data-target');
+                    const state = document.getElementById('zc-active-tab');
+                    if (state) state.value = target.replace(/^zc-sec-/, '');
+                    try { history.replaceState(null, '', '#' + target); } catch(e) {}
                     navBtns.forEach(function(b){ b.classList.remove('is-active'); });
                     panels.forEach(function(p){ p.classList.remove('is-active'); });
                     btn.classList.add('is-active');
@@ -878,6 +884,9 @@ class OptionsConfig {
                     document.querySelectorAll('.zc-field-row').forEach(function(r){ r.style.display = ''; });
                 });
             });
+
+            const initial = Array.from(navBtns).find(function(b){return '#' + b.getAttribute('data-target') === location.hash;});
+            if (initial) initial.click();
 
             // Instant Live Search across all 120+ settings
             const searchInput = document.getElementById('zc-options-live-search');

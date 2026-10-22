@@ -150,7 +150,7 @@ final class Native_Design {
                 $widget->start_controls_section(self::id($m,'image_style'),['label'=>'تصاویر و برش استاندارد','tab'=>C::TAB_STYLE,'condition'=>$condition]);
                 if($kind==='testimonials')$widget->add_responsive_control(self::id($m,'avatar_size'),['label'=>'اندازه تصویر مشتری','type'=>C::SLIDER,'range'=>['px'=>['min'=>32,'max'=>160]],'default'=>['size'=>44,'unit'=>'px'],'selectors'=>['{{WRAPPER}} .zc-native-layout'=>'--zc-avatar-size:{{SIZE}}px;']]);
                 else {
-                    $widget->add_control(self::id($m,'image_ratio'),['label'=>'نسبت ابعاد تصویر شاخص','type'=>C::SELECT,'default'=>'8/5','options'=>['8/5'=>'استاندارد ۹۶۰ × ۶۰۰','16/9'=>'عریض ۱۶:۹','4/3'=>'کلاسیک ۴:۳','1/1'=>'مربع ۱:۱'],'selectors'=>['{{WRAPPER}} .zc-record-image'=>'aspect-ratio:{{VALUE}};']]);
+                    $widget->add_control(self::id($m,'image_ratio'),['label'=>'نسبت ابعاد تصویر شاخص','type'=>C::SELECT,'default'=>'8/5','options'=>['8/5'=>'استاندارد ۹۶۰ × ۶۰۰','16/9'=>'عریض ۱۶:۹','4/3'=>'کلاسیک ۴:۳','1/1'=>'مربع ۱:۱'],'selectors'=>['{{WRAPPER}} .zc-record-image'=>'aspect-ratio:{{VALUE}};','{{WRAPPER}} .zc-card-cover'=>'--zc-cover-ratio:{{VALUE}};']]);
                     $widget->add_control(self::id($m,'image_fit'),['label'=>'شیوه نمایش تصویر','type'=>C::SELECT,'default'=>$queryKind==='products'?'contain':'cover','options'=>['cover'=>'پوشش بدون تغییر تناسب','contain'=>'نمایش کامل بدون برش'],'selectors'=>['{{WRAPPER}} .zc-record-image'=>'object-fit:{{VALUE}};']]);
                 }
                 $widget->end_controls_section();

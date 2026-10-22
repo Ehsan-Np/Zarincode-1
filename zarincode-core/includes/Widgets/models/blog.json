@@ -463,39 +463,40 @@
                 "v1": {
                     "tag": "article",
                     "attrs": {
-                        "class": "zc-white-card zc-project-card"
+                        "class": "zc-white-card zc-project-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
-                        {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
                         {
                             "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-project-visual",
-                                "style": "min-height:165px;"
+                                "class": "zc-project-visual zc-card-cover",
+                                "style": ";"
                             },
                             "part": "services_grid_items_1_project_visual_1",
                             "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
+                                },
                                 {
                                     "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "display:flex;justify-content:space-between;align-items:center;"
+                                        "style": "display:flex;justify-content:space-between;align-items:center;",
+                                        "class": "zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_div_1",
                                     "children": [
@@ -551,7 +552,8 @@
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;"
+                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;",
+                                        "class": "zc-card-cover-title"
                                     },
                                     "part": "services_grid_items_1_heading_1",
                                     "children": [
@@ -663,39 +665,40 @@
                 "v2": {
                     "tag": "article",
                     "attrs": {
-                        "class": "zc-white-card zc-project-card"
+                        "class": "zc-white-card zc-project-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
-                        {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
                         {
                             "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-project-visual",
-                                "style": "min-height:165px;"
+                                "class": "zc-project-visual zc-card-cover",
+                                "style": ";"
                             },
                             "part": "services_grid_items_1_project_visual_1",
                             "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
+                                },
                                 {
                                     "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "display:flex;justify-content:space-between;align-items:center;"
+                                        "style": "display:flex;justify-content:space-between;align-items:center;",
+                                        "class": "zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_div_1",
                                     "children": [
@@ -751,7 +754,8 @@
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;"
+                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;",
+                                        "class": "zc-card-cover-title"
                                     },
                                     "part": "services_grid_items_1_heading_1",
                                     "children": [
@@ -863,39 +867,40 @@
                 "v3": {
                     "tag": "article",
                     "attrs": {
-                        "class": "zc-white-card zc-project-card"
+                        "class": "zc-white-card zc-project-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_project_card_1",
                     "children": [
-                        {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
                         {
                             "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-project-visual",
-                                "style": "min-height:165px;"
+                                "class": "zc-project-visual zc-card-cover",
+                                "style": ";"
                             },
                             "part": "services_grid_items_1_project_visual_1",
                             "children": [
+                                {
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
+                                },
                                 {
                                     "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "display:flex;justify-content:space-between;align-items:center;"
+                                        "style": "display:flex;justify-content:space-between;align-items:center;",
+                                        "class": "zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_div_1",
                                     "children": [
@@ -951,7 +956,8 @@
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;"
+                                        "style": "font-size:1.08rem;font-weight:800;margin:1rem 0 0;color:#FFFFFF;line-height:1.6;",
+                                        "class": "zc-card-cover-title"
                                     },
                                     "part": "services_grid_items_1_heading_1",
                                     "children": [

@@ -15,7 +15,9 @@ final class Account {
         $fallback=function_exists('wc_get_page_id')&&wc_get_page_id('myaccount')>0?wc_get_page_permalink('myaccount'):wp_login_url();if(!$fallback)$fallback=wp_login_url();
         $raw=zarincode_get_option('header_account_url','');if(is_string($raw)&&strpos($raw,'/')===0&&strpos($raw,'//')!==0)$raw=home_url($raw);
         $url=Social_Manager::url($raw)?:$fallback;$label=zarincode_get_option(is_user_logged_in()?'header_account_logged_text':'header_account_text',is_user_logged_in()?'حساب من':'ورود / حساب کاربری');
-        return '<a class="zc-header-account zc-icon-btn" href="'.esc_url($url).'" aria-label="'.esc_attr($label).'" title="'.esc_attr($label).'"><i class="fa-regular fa-user" aria-hidden="true"></i><span>'.esc_html($label).'</span></a>';
+        $mode=zarincode_get_option('header_account_label_display','desktop');
+        if(!in_array($mode,['desktop','always','never'],true))$mode='desktop';
+        return '<a class="zc-header-account zc-icon-btn zc-account-label-'.esc_attr($mode).'" href="'.esc_url($url).'" aria-label="'.esc_attr($label).'" title="'.esc_attr($label).'"><i class="fa-regular fa-user" aria-hidden="true"></i>'.($mode==='never'?'':'<span>'.esc_html($label).'</span>').'</a>';
     }
     public static function labels():array{return ['dashboard'=>['پیشخوان','fa-solid fa-grip'],'orders'=>['سفارش‌های من','fa-solid fa-box-open'],'downloads'=>['فایل‌ها و دانلودها','fa-solid fa-cloud-arrow-down'],'edit-address'=>['آدرس‌های من','fa-solid fa-location-dot'],'payment-methods'=>['روش‌های پرداخت','fa-regular fa-credit-card'],'edit-account'=>['اطلاعات حساب','fa-regular fa-user'],'customer-logout'=>['خروج از حساب','fa-solid fa-arrow-right-from-bracket'],'view-order'=>['جزئیات سفارش','fa-solid fa-receipt'],'add-payment-method'=>['افزودن روش پرداخت','fa-regular fa-credit-card']];}
     private static function is_current(string $endpoint):bool {

@@ -1,0 +1,44 @@
+PASS save retains tab zc-sec-general_branding
+PASS save retains tab zc-sec-crextio_colors
+PASS save retains tab zc-sec-typography_settings
+PASS save retains tab zc-sec-topbar_settings
+PASS save retains tab zc-sec-header_navigation
+PASS save retains tab zc-sec-hero_homepage
+PASS save retains tab zc-sec-services_department
+PASS save retains tab zc-sec-portfolio_projects
+PASS save retains tab zc-sec-pricing_plans
+PASS save retains tab zc-sec-woocommerce_store
+PASS save retains tab zc-sec-blog_settings
+PASS save retains tab zc-sec-footer_bento
+PASS save retains tab zc-sec-article_experience
+PASS save retains tab zc-sec-contact_socials
+PASS save retains tab zc-sec-modals_forms
+PASS save retains tab zc-sec-legal_compliance
+PASS save retains tab zc-sec-performance_advanced
+PASS save retains tab zc-sec-backup
+PASS account mode always 320
+PASS account mode always 390
+PASS account mode always 768
+PASS account mode always 1024
+PASS account mode always 1440
+PASS account mode always 1920
+PASS account mode never 320
+PASS account mode never 390
+PASS account mode never 768
+PASS account mode never 1024
+PASS account mode never 1440
+PASS account mode never 1920
+PASS account mode desktop 320
+PASS account mode desktop 390
+PASS account mode desktop 768
+PASS account mode desktop 1024
+PASS account mode desktop 1440
+PASS account mode desktop 1920
+PASS reload/hash restores header
+PASS image/heading overlay 320
+PASS image/heading overlay 390
+PASS image/heading overlay 768
+PASS image/heading overlay 1024
+PASS image/heading overlay 1440
+PASS image/heading overlay 1920
+PASS zero browser page errors

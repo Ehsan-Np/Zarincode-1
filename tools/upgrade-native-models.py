@@ -101,3 +101,6 @@ for g,r in m['repeaters'].items():
      parent['children'][i]={'tag':'a','attrs':{'class':'zc-product-media-link'},'part':g+'_featured_link','bindings':{'href':'product_thumb_1_href'},'image_guard':'featured_image','children':[node]}
  m['parts'][g+'_featured_link']={'label':'قاب تصویر محصول و پیوند','type':'box'}
 save('products',m)
+# Keep the approved cover-card structure after a full regeneration as well.
+import runpy
+runpy.run_path(str(pathlib.Path(__file__).with_name('upgrade-cover-cards.py')))
