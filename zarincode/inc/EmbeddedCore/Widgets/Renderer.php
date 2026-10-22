@@ -34,7 +34,7 @@ class Renderer {
             $prefix='document_'.str_replace('-','_',$key).'_';
             foreach(Legal_And_Inner_Pages::documents()[$key]??[] as $field=>$value) if(!array_key_exists($prefix.$field,$settings))$settings[$prefix.$field]=$value;
         }
-        wp_enqueue_style('zarincode-editable-widgets');wp_enqueue_script('zarincode-editable-widgets');
+        wp_enqueue_style('zarincode-editable-widgets');wp_enqueue_style('zarincode-cards');wp_enqueue_script('zarincode-editable-widgets');
         return Editable_Renderer::render($kind,$settings,'zc-'.sanitize_key($kind));
     }
     public static function render_hero(array $s=[]): string{return self::output('hero',$s);}

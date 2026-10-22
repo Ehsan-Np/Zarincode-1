@@ -22,3 +22,6 @@ coverage/
 .env
 .env.*
 !.env.example
+
+# Browser-generated certificate cache (never source)
+.pki/

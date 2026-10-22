@@ -77,6 +77,7 @@ class OptionsConfig {
                     [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت', 'default' => '' ],
                     [ 'id' => 'logo_width',            'type' => 'number', 'title' => 'حداکثر عرض لوگو (پیکسل)', 'default' => 155 ],
                     [ 'id' => 'container_max_width',   'type' => 'select', 'title' => 'حداکثر عرض کانتینر اصلی صفحات', 'options' => [ '1280px' => '۱۲۸۰ پیکسل (کلاسیک)', '1360px' => '۱۳۶۰ پیکسل (استاندارد Crextio)', '1440px' => '۱۴۴۰ پیکسل (عریض مدرن)', '1600px' => '۱۶۰۰ پیکسل (فول‌ویدث استودیویی)' ], 'default' => '1360px' ],
+                    ['id'=>'site_width_scale','type'=>'select','title'=>'مقیاس عرض سراسری سایت','options'=>['100'=>'عرض پایه انتخاب‌شده','115'=>'۱۵٪ عریض‌تر (پیشنهادی)'],'default'=>'115','subtitle'=>'هدر، محتوای اصلی و فوتر از عرض مشترک استفاده می‌کنند؛ موبایل از عرض نمایشگر فراتر نمی‌رود.'],
                     [ 'id' => 'bento_border_radius',   'type' => 'select', 'title' => 'میزان گردی گوشه‌های کارت‌های بنتو', 'options' => [ '16px' => '۱۶ پیکسل (ملایم)', '24px' => '۲۴ پیکسل (مدرن)', '28px' => '۲۸ پیکسل (استاندارد Crextio)', '36px' => '۳۶ پیکسل (کپسولی فوق‌گرد)' ], 'default' => '28px' ],
                     [ 'id' => 'enable_preloader',      'type' => 'switch', 'title' => 'فعال‌سازی پیش‌بارگذار صفحه', 'default' => false ],
                     [ 'id' => 'preloader_text',        'type' => 'text',   'title' => 'متن نمایشی پیش‌بارگذار', 'default' => 'زرین کد | Zarincode.com' ],
@@ -120,7 +121,7 @@ class OptionsConfig {
                 'fields' => [
                     [ 'id' => 'primary_font',          'type' => 'select', 'title' => 'فونت اصلی متون و رابط کاربری', 'options' => [ 'Vazirmatn' => 'فونت وزیرمتن (Vazirmatn — نسخه کامل WOFF2 داخلی)' ], 'default' => 'Vazirmatn' ],
                     [ 'id' => 'heading_font',          'type' => 'select', 'title' => 'فونت تیترها و عناوین', 'options' => [ 'Vazirmatn' => 'فونت وزیرمتن ضخیم (Vazirmatn ExtraBold/Black)' ], 'default' => 'Vazirmatn' ],
-                    [ 'id' => 'body_font_size',        'type' => 'number', 'title' => 'اندازه فونت پایه متون سایت (پیکسل)', 'default' => 15 ],
+                    [ 'id' => 'body_font_size',        'type' => 'number', 'title' => 'اندازه فونت پایه متون سایت (پیکسل)', 'default' => 16 ],
                     [ 'id' => 'body_line_height',      'type' => 'text',   'title' => 'ارتفاع خط متون', 'default' => '1.9' ],
                     [ 'id' => 'heading_weight',        'type' => 'select', 'title' => 'وزن فونت تیترهای اصلی', 'options' => [ '700' => '۷۰۰ (Bold)', '800' => '۸۰۰ (ExtraBold)', '900' => '۹۰۰ (Black — استاندارد زرین کد)' ], 'default' => '900' ],
                     [ 'id' => 'persian_digits',        'type' => 'switch', 'title' => 'تبدیل خودکار اعداد انگلیسی به فارسی در قیمت‌ها و آمارها', 'default' => true ],
@@ -1007,10 +1008,10 @@ class OptionsConfig {
         $bg_to        = zarincode_get_option( 'bg_gradient_to', '#FFF5D1' );
         $dark_from    = zarincode_get_option( 'dark_bg_from', '#15171C' );
         $dark_to      = zarincode_get_option( 'dark_bg_to', '#1F1B14' );
-        $container_w  = zarincode_get_option( 'container_max_width', '1360px' );
+        $container_w  = \Zarincode\Theme\Core\Presentation::width(zarincode_get_option('container_max_width','1360px'),zarincode_get_option('site_width_scale',115));
         $radius       = zarincode_get_option( 'bento_border_radius', '28px' );
         $blur         = (int) zarincode_get_option( 'glass_blur_px', 14 );
-        $font_size    = (int) zarincode_get_option( 'body_font_size', 15 );
+        $font_size    = (int) zarincode_get_option( 'body_font_size', 16 );
         $line_height  = zarincode_get_option( 'body_line_height', '1.9' );
         $h_weight     = zarincode_get_option( 'heading_weight', '900' );
         $topbar_bg    = zarincode_get_option( 'topbar_bg_color', '#2A2C31' );

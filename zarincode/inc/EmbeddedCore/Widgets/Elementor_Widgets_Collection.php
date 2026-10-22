@@ -24,7 +24,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     public function get_name(): string { return 'zarincode_'.$this->kind(); }
     public function get_title(): string { return Widget_Schema::definitions()[$this->kind()][1]; }
     public function get_icon(): string { return Widget_Schema::definitions()[$this->kind()][2]; }
-    public function get_style_depends(): array { return ['zarincode-editable-widgets','zarincode-native','zarincode-studio']; }
+    public function get_style_depends(): array { return ['zarincode-editable-widgets','zarincode-native','zarincode-studio','zarincode-cards']; }
     public function get_script_depends(): array { return ['zarincode-editable-widgets','zarincode-native']; }
     public function get_categories(): array { return ['zarincode-elements']; }
     public function get_keywords(): array { return ['zarincode','زرین کد','bento']; }
