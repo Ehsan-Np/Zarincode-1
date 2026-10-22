@@ -405,7 +405,7 @@ class Plugin_Manager {
      * Register Admin Menus for Plugin Installer
      */
     public function register_plugin_installer_menus(): void {
-        add_theme_page(
+        add_submenu_page(null,
             'نصب و مدیریت افزونه‌های قالب زرین کد',
             'نصب افزونه‌های قالب',
             'manage_options',
@@ -446,7 +446,7 @@ class Plugin_Manager {
             return;
         }
 
-        $url = admin_url( 'themes.php?page=zarincode-install-plugins' );
+        $url = admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=plugins' );
         ?>
         <div class="notice notice-error is-dismissible" style="border-right:5px solid #FDD05B;background:#1E2025;color:#fff;padding:18px 22px;direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;border-radius:12px;margin-top:15px;">
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">

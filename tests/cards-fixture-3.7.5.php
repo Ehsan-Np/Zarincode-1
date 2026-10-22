@@ -1,0 +1,8 @@
+<?php require __DIR__.'/wordpress/wp-load.php';
+update_option('woocommerce_coming_soon','no');update_option('woocommerce_store_pages_only','no');
+update_option('home','http://localhost:8080');update_option('siteurl','http://localhost:8080');
+$opt=get_option('zarincode_opt',[]);$opt['qa_preserve_unknown']='keep-existing';update_option('zarincode_opt',$opt);
+$img=(int)get_posts(['post_type'=>'attachment','fields'=>'ids','numberposts'=>1])[0];
+$nodes=[];foreach(['services','products','page_section','portfolio','blog'] as $i=>$kind){$section='services-page';$m=Zarincode\Runtime260\Widgets\Native_Design::model($kind,$section);$s=$kind==='page_section'?['section_key'=>$section]:[];foreach($m['repeaters'] as $g=>$r)if(str_contains($g,'grid_items')){$rows=$r['default'];foreach($rows as $j=>&$row)$row['featured_image']=$j===1?['id'=>0,'url'=>'']:['id'=>$img,'url'=>wp_get_attachment_url($img)];unset($row);$s['n_'.$m['name'].'_'.$g]=$rows;}$nodes[]=['id'=>'cardqa'.$i,'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$s,'elements'=>[]];}
+$id=wp_insert_post(['post_type'=>'page','post_status'=>'publish','post_title'=>'آزمون کارت‌های محصولات و خدمات']);update_post_meta($id,'_elementor_edit_mode','builder');update_post_meta($id,'_elementor_template_type','wp-page');update_post_meta($id,'_elementor_version',ELEMENTOR_VERSION);update_post_meta($id,'_elementor_data',wp_slash(wp_json_encode([['id'=>'cardsroot','elType'=>'container','settings'=>['content_width'=>'full','flex_direction'=>'column'],'elements'=>$nodes]])));
+$f=json_decode(file_get_contents(__DIR__.'/fixture.json'),true);$f['cards']=get_permalink($id);file_put_contents(__DIR__.'/fixture.json',wp_json_encode($f));Elementor\Plugin::instance()->files_manager->clear_cache();

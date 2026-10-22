@@ -334,3 +334,14 @@
 })();
 // Close a contact disclosure with Escape/outside click; retain the native details control.
 (()=>{'use strict';document.addEventListener('click',e=>{document.querySelectorAll('.zc-floating-socials[open]').forEach(d=>{if(!d.contains(e.target))d.open=false})});document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;document.querySelectorAll('.zc-floating-socials[open]').forEach(d=>{d.open=false;d.querySelector('summary').focus()})})})();
+// Manual site-width overrides: react to actual content width, not just viewport width.
+// Avoid layout containment on Elementor's flex descendants: it can inflate intrinsic block heights.
+(()=>{'use strict';const init=()=>{const seen=new WeakSet(),selector='.zc-container,.zc-single-product-main';
+ const flag=(el,name,on)=>{if(el.hasAttribute(name)!==on)el.toggleAttribute(name,on)};
+ const update=(el,width)=>{if(el.matches('.zc-container')){const state=width<=640?'small':width<=1000?'medium':'wide';if(el.dataset.zcLayout!==state)el.dataset.zcLayout=state;flag(el,'data-zc-compact-header',width<=1280);flag(el,'data-zc-narrow-header',width<=320)}else flag(el,'data-zc-product-narrow',width<=620)};
+ const measure=el=>{const s=getComputedStyle(el);update(el,Math.max(0,el.clientWidth-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)))};
+ const observer='ResizeObserver'in window?new ResizeObserver(entries=>entries.forEach(e=>update(e.target,e.contentRect.width))):null;
+ const scan=root=>{const elements=[];if(root.matches?.(selector))elements.push(root);root.querySelectorAll?.(selector).forEach(el=>elements.push(el));elements.forEach(el=>{if(seen.has(el))return;seen.add(el);measure(el);observer?.observe(el)})};
+ scan(document);new MutationObserver(entries=>entries.forEach(e=>e.addedNodes.forEach(n=>{if(n.nodeType===1)scan(n)}))).observe(document.body,{childList:true,subtree:true});
+ if(!observer){let frame;window.addEventListener('resize',()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>document.querySelectorAll(selector).forEach(measure))},{passive:true})}
+ };if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init()})();

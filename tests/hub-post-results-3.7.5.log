@@ -1,0 +1,13 @@
+demo controls [
+  {
+    name: 'zarincode_run_seeder',
+    value: '',
+    text: '\n' +
+      '                        🚀 شروع درون‌ریزی خودکار دموی زرین کد\n' +
+      '                 '
+  }
+]
+scope 5
+PASS scoped demo import via canonical hub nonce/form
+PASS real save through canonical hub socials
+PASS real save through canonical hub policies

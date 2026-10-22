@@ -60,25 +60,11 @@ class Demo_Seeder {
     }
 
     public function register_demo_admin_menus(): void {
-        // Top-Level Menu in WP Admin Sidebar so it is impossible to miss
-        add_menu_page(
-            'درون‌ریز دمو زرین کد',
-            'درون‌ریز دمو زرین کد',
-            'manage_options',
-            'zarincode-demo-importer',
-            [ $this, 'render_admin_page' ],
-            'dashicons-cloud-Download',
-            3
-        );
+        // Hidden compatibility routes; the sole visible entry is the theme control center.
+        foreach(['zarincode-demo-importer','zarincode-demo-importer-sub'] as $slug) {
+            add_submenu_page(null,'درون‌ریزی دمو','درون‌ریزی دمو','manage_options',$slug,[$this,'render_admin_page']);
+        }
 
-        // Also under Appearance > درون‌ریز دموی زرین کد
-        add_theme_page(
-            'درون‌ریز هوشمند دموی زرین کد',
-            'درون‌ریز دموی زرین کد',
-            'manage_options',
-            'zarincode-demo-importer-sub',
-            [ $this, 'render_admin_page' ]
-        );
     }
 
     public function render_admin_notice_banner(): void {
@@ -89,7 +75,7 @@ class Demo_Seeder {
         if ( $screen && strpos( $screen->id, 'zarincode' ) !== false ) {
             return;
         }
-        $import_url = admin_url( 'admin.php?page=zarincode-demo-importer' );
+        $import_url = admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=demo' );
         ?>
         <div class="notice notice-warning is-dismissible" style="border-right:5px solid #FDD05B;background:#FFFDF5;padding:16px 20px;direction:rtl;font-family:Tahoma,system-ui,sans-serif;">
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
@@ -198,7 +184,7 @@ class Demo_Seeder {
                     </p>
                 </div>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                    <a href="<?php echo esc_url( admin_url( 'themes.php?page=zarincode-install-plugins' ) ); ?>" class="button button-hero" style="border-radius:999px;background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.25);">
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=plugins' ) ); ?>" class="button button-hero" style="border-radius:999px;background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.25);">
                         🔌 مدیریت افزونه‌های قالب
                     </a>
                     <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options' ) ); ?>" class="button button-hero" style="border-radius:999px;background:#FDD05B;color:#2A2C31;border-color:#FDD05B;font-weight:bold;">

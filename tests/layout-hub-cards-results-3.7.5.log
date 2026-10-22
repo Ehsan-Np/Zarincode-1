@@ -1,0 +1,17 @@
+PASS single visible settings entry with real Redux active
+PASS unified route, original handlers, separate forms/assets demo
+PASS unified route, original handlers, separate forms/assets plugins
+PASS unified route, original handlers, separate forms/assets socials
+PASS unified route, original handlers, separate forms/assets policies
+PASS unified route, original handlers, separate forms/assets layout
+PASS unified route, original handlers, separate forms/assets hero
+PASS 9 legacy URL redirects
+PASS nullable range controls
+PASS responsive matrix automatic
+PASS responsive matrix desktop-min
+PASS responsive matrix desktop-max
+PASS responsive matrix manual-min
+PASS responsive matrix manual-max
+PASS responsive matrix mobile-inherits-tablet
+PASS 216 page/width/config cases; card geometry pages 54
+PASS active tab retained, zero JS page errors

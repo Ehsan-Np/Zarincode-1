@@ -31,6 +31,7 @@ class OptionsConfig {
     }
 
     private function __construct() {
+        add_filter('pre_update_option_'.$this->opt_name, [\Zarincode\Theme\Core\Layout::class,'normalize']);
         // Initialize defaults if option does not exist yet
         add_action( 'after_setup_theme', [ $this, 'ensure_default_options' ], 5 );
         // Register Redux Framework sections if Redux plugin is active
@@ -76,8 +77,11 @@ class OptionsConfig {
                     [ 'id' => 'logo_dark',             'type' => 'media',  'title' => 'تصویر لوگو (حالت تیره / فوتر)', 'default' => '' ],
                     [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت', 'default' => '' ],
                     [ 'id' => 'logo_width',            'type' => 'number', 'title' => 'حداکثر عرض لوگو (پیکسل)', 'default' => 155 ],
-                    [ 'id' => 'container_max_width',   'type' => 'select', 'title' => 'حداکثر عرض کانتینر اصلی صفحات', 'options' => [ '1280px' => '۱۲۸۰ پیکسل (کلاسیک)', '1360px' => '۱۳۶۰ پیکسل (استاندارد Crextio)', '1440px' => '۱۴۴۰ پیکسل (عریض مدرن)', '1600px' => '۱۶۰۰ پیکسل (فول‌ویدث استودیویی)' ], 'default' => '1360px' ],
-                    ['id'=>'layout_width_scale','type'=>'select','title'=>'مقیاس عرض سراسری','options'=>['100'=>'عرض پایه','108'=>'۸٪ عریض‌تر (پیش‌فرض)'],'default'=>'108','subtitle'=>'عرض پایه حفظ می‌شود؛ افزایش فقط یک بار محاسبه شده و در موبایل به اندازه نمایشگر محدود است.'],
+                    ['id'=>'layout_width_desktop','type'=>'number','title'=>'عرض دستی دسکتاپ (پیکسل)','default'=>'','min'=>1200,'max'=>1920,'step'=>1,'subtitle'=>'بازه ۱۲۰۰ تا ۱۹۲۰؛ خالی = عرض پایه با مقیاس قبلی. مقدار دستی عرض نهایی است و دوباره در ۸٪ ضرب نمی‌شود.'],
+                    ['id'=>'layout_width_tablet','type'=>'number','title'=>'عرض دستی تبلت (پیکسل)','default'=>'','min'=>640,'max'=>1200,'step'=>1,'subtitle'=>'بازه ۶۴۰ تا ۱۲۰۰؛ نمایشگر ۷۶۸ تا ۱۱۹۹. خالی = پیروی خودکار از عرض دسکتاپ، محدود به نمایشگر.'],
+                    ['id'=>'layout_width_mobile','type'=>'number','title'=>'عرض دستی موبایل (پیکسل)','default'=>'','min'=>280,'max'=>767,'step'=>1,'subtitle'=>'بازه ۲۸۰ تا ۷۶۷؛ نمایشگر کمتر از ۷۶۸. خالی = پیروی از تبلت/دسکتاپ؛ هرگز از نمایشگر بزرگ‌تر نمی‌شود. فاصله‌های داخلی نیز خودکار متناسب می‌شوند.'],
+                    [ 'id' => 'container_max_width',   'type' => 'select', 'title' => 'عرض پایهٔ قبلی (فقط در حالت خودکار دسکتاپ)', 'subtitle'=>'وقتی عرض دستی دسکتاپ خالی است، این مقدار با مقیاس زیر استفاده می‌شود؛ مقدار دستی اولویت دارد.', 'options' => [ '1280px' => '۱۲۸۰ پیکسل (کلاسیک)', '1360px' => '۱۳۶۰ پیکسل (استاندارد Crextio)', '1440px' => '۱۴۴۰ پیکسل (عریض مدرن)', '1600px' => '۱۶۰۰ پیکسل (فول‌ویدث استودیویی)' ], 'default' => '1360px' ],
+                    ['id'=>'layout_width_scale','type'=>'select','title'=>'مقیاس عرض سراسری','options'=>['100'=>'عرض پایه','108'=>'۸٪ عریض‌تر (پیش‌فرض)'],'default'=>'108','subtitle'=>'فقط روی عرض پایهٔ قبلی اثر دارد؛ عرض دستی نهایی است و این ضریب روی آن اعمال نمی‌شود.'],
                     [ 'id' => 'bento_border_radius',   'type' => 'select', 'title' => 'میزان گردی گوشه‌های کارت‌های بنتو', 'options' => [ '16px' => '۱۶ پیکسل (ملایم)', '24px' => '۲۴ پیکسل (مدرن)', '28px' => '۲۸ پیکسل (استاندارد Crextio)', '36px' => '۳۶ پیکسل (کپسولی فوق‌گرد)' ], 'default' => '28px' ],
                     [ 'id' => 'enable_preloader',      'type' => 'switch', 'title' => 'فعال‌سازی پیش‌بارگذار صفحه', 'default' => false ],
                     [ 'id' => 'preloader_text',        'type' => 'text',   'title' => 'متن نمایشی پیش‌بارگذار', 'default' => 'زرین کد | Zarincode.com' ],
@@ -405,15 +409,16 @@ class OptionsConfig {
             'opt_name'           => $this->opt_name,
             'display_name'       => 'پنل تنظیمات پیشرفته قالب زرین کد (Zarincode Pro)',
             'display_version'    => ZARINCODE_VERSION . ' — توسعه‌دهنده: احسان نادری پناه (09024561001)',
-            'menu_type'          => 'submenu',
+            'menu_type'          => 'hidden',
             'page_parent'        => 'zarincode-theme-options',
-            'allow_sub_menu'     => true,
+            'allow_sub_menu'     => false,
+            'page_slug'          => 'zarincode-redux-options',
             'menu_title'         => 'تنظیمات با موتور Redux',
             'page_title'         => 'تنظیمات قالب زرین کد (موتور Redux Framework)',
             'admin_bar'          => false,
             'page_priority'      => 59,
-            'save_defaults'      => true,
-            'show_import_export' => true,
+            'save_defaults'      => false,
+            'show_import_export' => false,
             'footer_credit'      => 'طراحی و کدنویسی توسط احسان نادری پناه (Ehsan NaderiPanah) | شماره تماس: 09024561001 | وب‌سایت: Zarincode.com',
         ];
 
@@ -482,38 +487,7 @@ class OptionsConfig {
             2
         );
 
-        add_submenu_page(
-            'zarincode-theme-options',
-            'پنل تنظیمات پیشرفته قالب زرین کد',
-            'تنظیمات قالب',
-            'manage_options',
-            'zarincode-theme-options',
-            [ $this, 'render_native_options_panel' ]
-        );
 
-        add_submenu_page(
-            'zarincode-theme-options',
-            'نصب افزونه‌های مورد نیاز قالب',
-            'افزونه‌های موردنیاز',
-            'manage_options',
-            'themes.php?page=zarincode-install-plugins'
-        );
-
-        add_submenu_page(
-            'zarincode-theme-options',
-            'درون‌ریز هوشمند دموی زرین کد',
-            'درون‌ریزی دمو',
-            'manage_options',
-            'admin.php?page=zarincode-demo-importer'
-        );
-
-        add_submenu_page(
-            'zarincode-theme-options',
-            'مدیریت هدر و فوتر المنتوری',
-            'سربرگ و پابرگ المنتور',
-            'manage_options',
-            'edit.php?post_type=zc_hf_template'
-        );
     }
 
     /**
@@ -528,30 +502,7 @@ class OptionsConfig {
             'title' => 'مدیریت زرین کد',
             'href'  => admin_url( 'admin.php?page=zarincode-theme-options' ),
         ] );
-        $wp_admin_bar->add_node( [
-            'id'     => 'zarincode-hub-options',
-            'parent' => 'zarincode-hub',
-            'title'  => '⚙️ تنظیمات قالب زرین کد',
-            'href'   => admin_url( 'admin.php?page=zarincode-theme-options' ),
-        ] );
-        $wp_admin_bar->add_node( [
-            'id'     => 'zarincode-hub-plugins',
-            'parent' => 'zarincode-hub',
-            'title'  => '🔌 نصب و مدیریت افزونه‌های قالب',
-            'href'   => admin_url( 'themes.php?page=zarincode-install-plugins' ),
-        ] );
-        $wp_admin_bar->add_node( [
-            'id'     => 'zarincode-hub-demo',
-            'parent' => 'zarincode-hub',
-            'title'  => '🚀 درون‌ریز هوشمند دمو با یک کلیک',
-            'href'   => admin_url( 'admin.php?page=zarincode-demo-importer' ),
-        ] );
-        $wp_admin_bar->add_node( [
-            'id'     => 'zarincode-hub-hf',
-            'parent' => 'zarincode-hub',
-            'title'  => '🎨 مدیریت هدر و فوتر المنتوری',
-            'href'   => admin_url( 'edit.php?post_type=zc_hf_template' ),
-        ] );
+
     }
 
     public function enqueue_admin_assets( string $hook ): void {
@@ -582,6 +533,8 @@ class OptionsConfig {
      * Render the Native Crextio-Styled Advanced Control Center (16 Tabs, Search, Presets, Import/Export)
      */
     public function render_native_options_panel(): void {
+        if(!current_user_can('manage_options'))return;
+        if(\Zarincode\Theme\Core\Admin_Hub::route())return;
         $schema   = self::get_sections_schema();
         $defaults = self::get_all_defaults();
         $saved    = get_option( $this->opt_name, [] );
@@ -611,13 +564,15 @@ class OptionsConfig {
                 }
             } else {
                 $posted = isset( $_POST['zc_opt'] ) && is_array( $_POST['zc_opt'] ) ? wp_unslash( $_POST['zc_opt'] ) : [];
-                $new_options = [];
+                $new_options = $options;
                 foreach ( $schema as $sec ) {
                     foreach ( $sec['fields'] as $field ) {
                         $fid   = $field['id'];
                         $ftype = $field['type'];
                         if ( 'switch' === $ftype ) {
                             $new_options[ $fid ] = ! empty( $posted[ $fid ] );
+                        } elseif (isset(\Zarincode\Theme\Core\Layout::RANGES[$fid])) {
+                            $new_options[$fid]=\Zarincode\Theme\Core\Layout::optional($posted[$fid]??'', $fid);
                         } elseif ( 'number' === $ftype ) {
                             $new_options[ $fid ] = isset( $posted[ $fid ] ) ? (int) $posted[ $fid ] : (int) $field['default'];
                         } elseif ( 'code' === $ftype || 'textarea' === $ftype ) {
@@ -648,6 +603,7 @@ class OptionsConfig {
             }
         }
 
+        $options=\Zarincode\Theme\Core\Layout::normalize($options);
         $requested_tab = isset($_POST['zc_active_tab']) && is_string($_POST['zc_active_tab']) ? sanitize_key(wp_unslash($_POST['zc_active_tab'])) : '';
         $first_tab = isset($schema[$requested_tab]) || $requested_tab === 'backup' ? $requested_tab : array_key_first($schema);
         ?>
@@ -731,8 +687,6 @@ class OptionsConfig {
 
                 <!-- Quick Access Strip -->
                 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
-                    <a href="<?php echo esc_url( admin_url( 'themes.php?page=zarincode-install-plugins' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🔌 نصب و مدیریت افزونه‌های قالب</a>
-                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-demo-importer' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">درون‌ریزی دمو</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_hf_template' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🎨 مدیریت هدر و فوتر المنتوری</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_service' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🏆 مدیریت ۶ خدمت تخصصی</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_project' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">💼 مدیریت نمونه‌کارها</a>
@@ -793,7 +747,7 @@ class OptionsConfig {
                                                 <input type="text" id="zc_field_<?php echo esc_attr( $fid ); ?>" name="zc_opt[<?php echo esc_attr( $fid ); ?>]" value="<?php echo esc_attr( (string) $val ); ?>" class="zc-input-text">
 
                                             <?php elseif ( 'number' === $ftype ) : ?>
-                                                <input type="number" id="zc_field_<?php echo esc_attr( $fid ); ?>" name="zc_opt[<?php echo esc_attr( $fid ); ?>]" value="<?php echo esc_attr( (string) $val ); ?>" class="zc-input-text" style="max-width:180px;">
+                                                <input type="number" id="zc_field_<?php echo esc_attr( $fid ); ?>" name="zc_opt[<?php echo esc_attr( $fid ); ?>]" value="<?php echo esc_attr( (string) $val ); ?>" class="zc-input-text" style="max-width:180px;" <?php foreach(['min','max','step'] as $bound) if(isset($field[$bound])) echo $bound.'="'.esc_attr((string)$field[$bound]).'" '; ?>>
 
                                             <?php elseif ( 'color' === $ftype ) : ?>
                                                 <div style="display:flex;align-items:center;gap:10px;">
@@ -1017,7 +971,8 @@ class OptionsConfig {
         $bg_to        = zarincode_get_option( 'bg_gradient_to', '#FFF5D1' );
         $dark_from    = zarincode_get_option( 'dark_bg_from', '#15171C' );
         $dark_to      = zarincode_get_option( 'dark_bg_to', '#1F1B14' );
-        $container_w  = \Zarincode\Theme\Core\Layout::width(zarincode_get_option('container_max_width','1360px'),zarincode_get_option('layout_width_scale',108));
+        $layout = \Zarincode\Theme\Core\Layout::responsive((array)get_option($this->opt_name, []));
+        $container_w = $layout['desktop'].'px';
         $radius       = zarincode_get_option( 'bento_border_radius', '28px' );
         $blur         = (int) zarincode_get_option( 'glass_blur_px', 14 );
         $font_size    = (int) zarincode_get_option( 'body_font_size', 15 );
@@ -1039,9 +994,13 @@ class OptionsConfig {
                 --zc-bg-from: <?php echo esc_attr( $bg_from ); ?>;
                 --zc-bg-to: <?php echo esc_attr( $bg_to ); ?>;
                 --zc-container-width: <?php echo esc_attr( $container_w ); ?>;
+                --zc-site-gutter: <?php echo esc_attr($layout['gutter'].'px'); ?>;
                 --zc-radius-bento: <?php echo esc_attr( $radius ); ?>;
                 --zc-glass-blur: <?php echo esc_attr( $blur . 'px' ); ?>;
             }
+            @media(max-width:1199px){:root{--zc-container-width:<?php echo esc_attr($layout['tablet'].'px'); ?>;--zc-site-gutter:<?php echo esc_attr($layout['tablet_gutter'].'px'); ?>}}
+            @media(max-width:767px){:root{--zc-container-width:<?php echo esc_attr($layout['mobile'].'px'); ?>;--zc-site-gutter:<?php echo esc_attr($layout['mobile_gutter'].'px'); ?>}}
+            @media(max-width:380px){:root{--zc-site-gutter:<?php echo esc_attr($layout['small_gutter'].'px'); ?>}}
             body {
                 font-size: <?php echo esc_attr( $font_size . 'px' ); ?>;
                 line-height: <?php echo esc_attr( $line_height ); ?>;

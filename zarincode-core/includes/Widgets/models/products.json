@@ -1735,37 +1735,13 @@
                 "v1": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -1778,23 +1754,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -1846,12 +1840,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -1908,51 +1912,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -2238,37 +2245,13 @@
                 "v2": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2281,23 +2264,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -2349,12 +2350,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -2411,51 +2422,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -2720,37 +2734,13 @@
                 "v3": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -2763,23 +2753,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -2831,12 +2839,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -2893,51 +2911,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -3223,37 +3244,13 @@
                 "v4": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -3266,23 +3263,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -3334,12 +3349,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -3396,51 +3421,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -3705,37 +3733,13 @@
                 "v5": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -3748,23 +3752,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -3816,12 +3838,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -3878,51 +3910,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -4187,37 +4222,13 @@
                 "v6": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -4230,23 +4241,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -4298,12 +4327,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -4360,51 +4399,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -4669,37 +4711,13 @@
                 "v7": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -4712,23 +4730,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -4780,12 +4816,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -4842,51 +4888,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "
@@ -5151,37 +5200,13 @@
                 "v8": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-product-card"
+                        "class": "zc-white-card zc-product-card zc-cover-card"
                     },
                     "part": "products_grid_items_1_product_card_1",
                     "bindings": {
                         "data-category": "product_card_1_data_category"
                     },
                     "children": [
-                        {
-                            "tag": "a",
-                            "attrs": {
-                                "class": "zc-product-media-link"
-                            },
-                            "part": "products_grid_items_1_featured_link",
-                            "bindings": {
-                                "href": "product_thumb_1_href"
-                            },
-                            "image_guard": "featured_image",
-                            "children": [
-                                {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "products_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "woocommerce_single"
-                                }
-                            ]
-                        },
                         {
                             "literal": "\n                            "
                         },
@@ -5194,23 +5219,41 @@
                                     "literal": "\n                                "
                                 },
                                 {
-                                    "tag": "a",
+                                    "tag": "div",
                                     "attrs": {
-                                        "class": "zc-product-thumb",
-                                        "style": "display:block;text-decoration:none;"
+                                        "class": "zc-product-thumb zc-card-cover",
+                                        "style": ""
                                     },
                                     "part": "products_grid_items_1_product_thumb_1",
-                                    "bindings": {
-                                        "href": "product_thumb_1_href"
-                                    },
                                     "children": [
                                         {
-                                            "literal": "\n                                    "
+                                            "tag": "a",
+                                            "attrs": {
+                                                "class": "zc-product-media-link"
+                                            },
+                                            "part": "products_grid_items_1_featured_link",
+                                            "bindings": {
+                                                "href": "product_thumb_1_href"
+                                            },
+                                            "image_guard": "featured_image",
+                                            "children": [
+                                                {
+                                                    "tag": "img",
+                                                    "attrs": {
+                                                        "class": "zc-record-image zc-card-cover-image",
+                                                        "loading": "lazy",
+                                                        "decoding": "async"
+                                                    },
+                                                    "part": "products_grid_items_1_featured_image",
+                                                    "image": "featured_image",
+                                                    "image_preset": "woocommerce_single"
+                                                }
+                                            ]
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "class": "zc-product-badges"
+                                                "class": "zc-product-badges zc-card-cover-meta"
                                             },
                                             "part": "products_grid_items_1_product_badges_1",
                                             "children": [
@@ -5262,12 +5305,22 @@
                                             "visible": "product_badges_1_visible"
                                         },
                                         {
-                                            "literal": "\n                                    "
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "literal": "\n                                    ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
                                         },
                                         {
                                             "tag": "div",
                                             "attrs": {
-                                                "style": "text-align:center;margin-top:1.25rem;"
+                                                "style": "text-align:center;margin-top:1.25rem;",
+                                                "class": "zc-card-cover-icon"
                                             },
                                             "part": "products_grid_items_1_div_2",
                                             "children": [
@@ -5324,51 +5377,54 @@
                                             "visible": "div_2_visible"
                                         },
                                         {
-                                            "literal": "\n                                "
+                                            "literal": "\n                                ",
+                                            "attrs": {
+                                                "class": "zc-card-cover-icon"
+                                            }
+                                        },
+                                        {
+                                            "tag": "h3",
+                                            "attrs": {
+                                                "style": "font-size:1.02rem;font-weight:800;line-height:1.5;",
+                                                "class": "zc-card-cover-title"
+                                            },
+                                            "part": "products_grid_items_1_heading_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                    "
+                                                },
+                                                {
+                                                    "tag": "a",
+                                                    "attrs": {
+                                                        "style": "color:inherit;text-decoration:none;"
+                                                    },
+                                                    "part": "products_grid_items_1_link_1",
+                                                    "bindings": {
+                                                        "href": "link_1_href"
+                                                    },
+                                                    "children": [
+                                                        {
+                                                            "text": "link_text_1",
+                                                            "part": "products_grid_items_1_link_text_1",
+                                                            "before": "\n                                        ",
+                                                            "after": "                                    ",
+                                                            "plain": false
+                                                        }
+                                                    ],
+                                                    "visible": "link_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                "
+                                                }
+                                            ],
+                                            "heading_tag": "heading_1_tag",
+                                            "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible",
-                                    "fallback_image_for": "featured_image"
+                                    "visible": "product_thumb_1_visible"
                                 },
                                 {
                                     "literal": "\n\n                                "
-                                },
-                                {
-                                    "tag": "h3",
-                                    "attrs": {
-                                        "style": "font-size:1.02rem;font-weight:800;margin:1rem 0 0.45rem;line-height:1.5;"
-                                    },
-                                    "part": "products_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "literal": "\n                                    "
-                                        },
-                                        {
-                                            "tag": "a",
-                                            "attrs": {
-                                                "style": "color:inherit;text-decoration:none;"
-                                            },
-                                            "part": "products_grid_items_1_link_1",
-                                            "bindings": {
-                                                "href": "link_1_href"
-                                            },
-                                            "children": [
-                                                {
-                                                    "text": "link_text_1",
-                                                    "part": "products_grid_items_1_link_text_1",
-                                                    "before": "\n                                        ",
-                                                    "after": "                                    ",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "link_1_visible"
-                                        },
-                                        {
-                                            "literal": "\n                                "
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
                                 },
                                 {
                                     "literal": "\n                                "

@@ -1218,36 +1218,32 @@
                 "v1": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card "
+                        "class": "zc-white-card zc-service-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -1305,13 +1301,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1325,6 +1318,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -1456,36 +1465,32 @@
                 "v2": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card is-featured"
+                        "class": "zc-white-card zc-service-card is-featured zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -1543,13 +1548,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1563,6 +1565,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -1694,36 +1712,32 @@
                 "v3": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card "
+                        "class": "zc-white-card zc-service-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -1781,13 +1795,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1801,6 +1812,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -1932,36 +1959,32 @@
                 "v4": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card "
+                        "class": "zc-white-card zc-service-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -2019,13 +2042,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2039,6 +2059,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -2170,36 +2206,32 @@
                 "v5": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card "
+                        "class": "zc-white-card zc-service-card zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -2257,13 +2289,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2277,6 +2306,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -2408,36 +2453,32 @@
                 "v6": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card is-featured"
+                        "class": "zc-white-card zc-service-card is-featured zc-cover-card"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-record-image",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_featured_image",
-                            "image": "featured_image",
-                            "image_preset": "zarincode-card"
-                        },
-                        {
-                            "literal": "\n                            "
-                        },
-                        {
                             "tag": "div",
-                            "attrs": [],
-                            "part": "services_grid_items_1_div_1",
+                            "attrs": {
+                                "class": "zc-card-cover"
+                            },
+                            "part": "services_grid_items_1_cover",
                             "children": [
                                 {
-                                    "literal": "\n                                "
+                                    "tag": "img",
+                                    "attrs": {
+                                        "class": "zc-record-image zc-card-cover-image",
+                                        "loading": "lazy",
+                                        "decoding": "async"
+                                    },
+                                    "part": "services_grid_items_1_featured_image",
+                                    "image": "featured_image",
+                                    "image_preset": "zarincode-card"
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-service-top"
+                                        "class": "zc-service-top zc-card-cover-meta"
                                     },
                                     "part": "services_grid_items_1_service_top_1",
                                     "children": [
@@ -2495,13 +2536,10 @@
                                     "visible": "service_top_1_visible"
                                 },
                                 {
-                                    "literal": "\n                                "
-                                },
-                                {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title",
-                                        "style": "margin-top:1.25rem;"
+                                        "class": "zc-service-title zc-card-cover-title",
+                                        "style": ";"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2515,6 +2553,22 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
+                                }
+                            ]
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
+                            "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "literal": "\n                                "
@@ -4235,6 +4289,10 @@
         "steps_grid_items_1_featured_image": {
             "label": "تصویر شاخص کارت",
             "type": "img"
+        },
+        "services_grid_items_1_cover": {
+            "label": "بخش تصویری خدمت",
+            "type": "div"
         }
     },
     "legacy": {

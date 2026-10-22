@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.7.4' );
+define( 'ZARINCODE_VERSION', '3.7.5' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -176,3 +176,5 @@ add_shortcode('zarincode_social_links',static fn()=>\Zarincode\Theme\Core\Social
 add_action('after_setup_theme',static function(){
     $options=get_option('zarincode_opt',[]);if(is_array($options)&&($options['logo_monogram']??'')==='Z'){$options['logo_monogram']='ZC';update_option('zarincode_opt',$options);global $zarincode_opt;$zarincode_opt=$options;}
 },30);
+
+\Zarincode\Theme\Core\Admin_Hub::boot();

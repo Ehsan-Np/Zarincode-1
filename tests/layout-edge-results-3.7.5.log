@@ -1,0 +1,8 @@
+PASS account text always + minimum device width 320
+PASS account text always + minimum device width 390
+PASS account text always + minimum device width 768
+PASS account text always + minimum device width 1024
+PASS account text always + minimum device width 1440
+PASS account text always + minimum device width 1920
+PASS drawer/Escape and product cover image remains linked
+PASS published Woo product destination

@@ -1,0 +1,28 @@
+MENU [
+  {
+    text: 'Theme Builder',
+    url: 'http://localhost:8080/wp-admin/admin.php?page=elementor-app&ver=4.3.5&return_to=/wp-admin/admin.php?page=zarincode-theme-options#site-editor/promotion'
+  },
+  {
+    text: 'تنظیمات زرین کد',
+    url: 'http://localhost:8080/wp-admin/admin.php?page=zarincode-theme-options'
+  },
+  {
+    text: 'Customize',
+    url: 'http://localhost:8080/wp-admin/customize.php?return=%2Fwp-admin%2Fadmin.php%3Fpage%3Dzarincode-theme-options'
+  }
+]
+FORM 1200
+TOOL demo forms 1 h1 [
+  'پنل درون‌ریز هوشمند قالب زرین کد',
+  'پنل درون‌ریز هوشمند و یک‌کلیکی قالب «زرین کد (Zarincode)»'
+]
+TOOL plugins forms 9 h1 [
+  'نصب و مدیریت افزونه‌های قالب زرین کد',
+  'مدیریت و نصب خودکار افزونه‌های مورد نیاز قالب «زرین کد»'
+]
+TOOL socials forms 1 h1 [ 'شبکه‌های اجتماعی دلخواه' ]
+TOOL policies forms 1 h1 [ 'گارانتی و پرسش‌های مشترک محصولات' ]
+TOOL layout forms 1 h1 [ 'ساماندهی ویجت‌های دموی ۳٫۲' ]
+TOOL hero forms 1 h1 [ 'تفکیک هیرو به سه ویجت مستقل' ]
+GEOMETRY []
