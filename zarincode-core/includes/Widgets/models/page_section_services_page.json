@@ -1218,21 +1218,100 @@
                 "v1": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card  zc-story-card"
+                        "class": "zc-white-card zc-service-card "
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1246,151 +1325,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_dark_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -1470,6 +1446,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -1477,21 +1456,100 @@
                 "v2": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card is-featured zc-story-card"
+                        "class": "zc-white-card zc-service-card is-featured"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1505,151 +1563,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_yellow_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -1729,6 +1684,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -1736,21 +1694,100 @@
                 "v3": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card  zc-story-card"
+                        "class": "zc-white-card zc-service-card "
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -1764,151 +1801,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_dark_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -1988,6 +1922,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -1995,21 +1932,100 @@
                 "v4": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card  zc-story-card"
+                        "class": "zc-white-card zc-service-card "
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2023,151 +2039,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_dark_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -2247,6 +2160,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -2254,21 +2170,100 @@
                 "v5": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card  zc-story-card"
+                        "class": "zc-white-card zc-service-card "
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2282,151 +2277,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_dark_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -2506,6 +2398,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -2513,21 +2408,100 @@
                 "v6": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-white-card zc-service-card is-featured zc-story-card"
+                        "class": "zc-white-card zc-service-card is-featured"
                     },
                     "part": "services_grid_items_1_service_card_1",
                     "children": [
                         {
-                            "tag": "a",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "services_grid_items_1_story_title",
+                            "part": "services_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "div",
+                            "attrs": [],
+                            "part": "services_grid_items_1_div_1",
                             "children": [
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "div",
+                                    "attrs": {
+                                        "class": "zc-service-top"
+                                    },
+                                    "part": "services_grid_items_1_service_top_1",
+                                    "children": [
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "div",
+                                            "attrs": {
+                                                "class": "zc-service-icon"
+                                            },
+                                            "part": "services_grid_items_1_service_icon_1",
+                                            "children": [
+                                                {
+                                                    "literal": "\n                                        "
+                                                },
+                                                {
+                                                    "tag": "i",
+                                                    "attrs": [],
+                                                    "part": "services_grid_items_1_icon_1",
+                                                    "icon": "icon_1_icon",
+                                                    "visible": "icon_1_visible"
+                                                },
+                                                {
+                                                    "literal": "\n                                    "
+                                                }
+                                            ],
+                                            "visible": "service_icon_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                    "
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "attrs": {
+                                                "class": "zc-service-num",
+                                                "dir": "ltr"
+                                            },
+                                            "part": "services_grid_items_1_service_num_1",
+                                            "children": [
+                                                {
+                                                    "text": "service_num_text_1",
+                                                    "part": "services_grid_items_1_service_num_text_1",
+                                                    "before": "",
+                                                    "after": "",
+                                                    "plain": false
+                                                }
+                                            ],
+                                            "visible": "service_num_1_visible"
+                                        },
+                                        {
+                                            "literal": "\n                                "
+                                        }
+                                    ],
+                                    "visible": "service_top_1_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
                                 {
                                     "tag": "h3",
                                     "attrs": {
-                                        "class": "zc-service-title"
+                                        "class": "zc-service-title",
+                                        "style": "margin-top:1.25rem;"
                                     },
                                     "part": "services_grid_items_1_service_title_1",
                                     "children": [
@@ -2541,151 +2515,48 @@
                                     ],
                                     "heading_tag": "service_title_1_tag",
                                     "visible": "service_title_1_visible"
-                                }
-                            ],
-                            "bindings": {
-                                "href": "btn_yellow_1_href"
-                            },
-                            "visible": "service_title_1_visible"
-                        },
-                        {
-                            "tag": "div",
-                            "attrs": {
-                                "class": "zc-card-scene"
-                            },
-                            "part": "services_grid_items_1_story_scene",
-                            "children": [
+                                },
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "services_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
+                                    "literal": "\n                                "
                                 },
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "class": "zc-card-copy"
+                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
+                                        "dir": "ltr"
                                     },
-                                    "part": "services_grid_items_1_story_copy",
+                                    "part": "services_grid_items_1_div_2",
                                     "children": [
                                         {
-                                            "tag": "div",
-                                            "attrs": [],
-                                            "part": "services_grid_items_1_div_1",
-                                            "children": [
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "class": "zc-service-top"
-                                                    },
-                                                    "part": "services_grid_items_1_service_top_1",
-                                                    "children": [
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "div",
-                                                            "attrs": {
-                                                                "class": "zc-service-icon"
-                                                            },
-                                                            "part": "services_grid_items_1_service_icon_1",
-                                                            "children": [
-                                                                {
-                                                                    "literal": "\n                                        "
-                                                                },
-                                                                {
-                                                                    "tag": "i",
-                                                                    "attrs": [],
-                                                                    "part": "services_grid_items_1_icon_1",
-                                                                    "icon": "icon_1_icon",
-                                                                    "visible": "icon_1_visible"
-                                                                },
-                                                                {
-                                                                    "literal": "\n                                    "
-                                                                }
-                                                            ],
-                                                            "visible": "service_icon_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                    "
-                                                        },
-                                                        {
-                                                            "tag": "span",
-                                                            "attrs": {
-                                                                "class": "zc-service-num",
-                                                                "dir": "ltr"
-                                                            },
-                                                            "part": "services_grid_items_1_service_num_1",
-                                                            "children": [
-                                                                {
-                                                                    "text": "service_num_text_1",
-                                                                    "part": "services_grid_items_1_service_num_text_1",
-                                                                    "before": "",
-                                                                    "after": "",
-                                                                    "plain": false
-                                                                }
-                                                            ],
-                                                            "visible": "service_num_1_visible"
-                                                        },
-                                                        {
-                                                            "literal": "\n                                "
-                                                        }
-                                                    ],
-                                                    "visible": "service_top_1_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "tag": "div",
-                                                    "attrs": {
-                                                        "style": "font-size:0.78rem;opacity:0.65;margin-bottom:0.65rem;",
-                                                        "dir": "ltr"
-                                                    },
-                                                    "part": "services_grid_items_1_div_2",
-                                                    "children": [
-                                                        {
-                                                            "text": "div_text_1",
-                                                            "part": "services_grid_items_1_div_text_1",
-                                                            "before": "",
-                                                            "after": "",
-                                                            "plain": false
-                                                        }
-                                                    ],
-                                                    "visible": "div_2_visible"
-                                                },
-                                                {
-                                                    "literal": "\n                                "
-                                                },
-                                                {
-                                                    "literal": "\n                            "
-                                                }
-                                            ],
-                                            "visible": "div_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-service-desc zc-story-description"
-                                            },
-                                            "part": "services_grid_items_1_service_desc_1",
-                                            "rich": "service_desc_1_body",
-                                            "visible": "service_desc_1_visible"
+                                            "text": "div_text_1",
+                                            "part": "services_grid_items_1_div_text_1",
+                                            "before": "",
+                                            "after": "",
+                                            "plain": false
                                         }
-                                    ]
+                                    ],
+                                    "visible": "div_2_visible"
+                                },
+                                {
+                                    "literal": "\n                                "
+                                },
+                                {
+                                    "tag": "p",
+                                    "attrs": {
+                                        "class": "zc-service-desc"
+                                    },
+                                    "part": "services_grid_items_1_service_desc_1",
+                                    "rich": "service_desc_1_body",
+                                    "visible": "service_desc_1_visible"
+                                },
+                                {
+                                    "literal": "\n                            "
                                 }
-                            ]
+                            ],
+                            "visible": "div_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
@@ -2765,6 +2636,9 @@
                                 }
                             ],
                             "visible": "service_footer_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "service_card_1_visible"
@@ -3685,90 +3559,76 @@
                 "v1": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-glass-panel zc-step-card zc-story-card"
+                        "class": "zc-glass-panel zc-step-card"
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
-                            "tag": "div",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "steps_grid_items_1_story_title",
-                            "children": [
-                                {
-                                    "tag": "h3",
-                                    "attrs": {},
-                                    "part": "steps_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "text": "heading_text_1",
-                                            "part": "steps_grid_items_1_heading_text_1",
-                                            "before": "",
-                                            "after": "",
-                                            "plain": false
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
-                                }
-                            ],
-                            "visible": "heading_1_visible"
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-card-scene"
+                                "class": "zc-step-number"
                             },
-                            "part": "steps_grid_items_1_story_scene",
+                            "part": "steps_grid_items_1_step_number_1",
                             "children": [
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "steps_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
-                                },
-                                {
-                                    "tag": "div",
-                                    "attrs": {
-                                        "class": "zc-card-copy"
-                                    },
-                                    "part": "steps_grid_items_1_story_copy",
-                                    "children": [
-                                        {
-                                            "tag": "div",
-                                            "attrs": {
-                                                "class": "zc-step-number"
-                                            },
-                                            "part": "steps_grid_items_1_step_number_1",
-                                            "children": [
-                                                {
-                                                    "text": "step_number_text_1",
-                                                    "part": "steps_grid_items_1_step_number_text_1",
-                                                    "before": "",
-                                                    "after": "",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "step_number_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-story-description"
-                                            },
-                                            "part": "steps_grid_items_1_description_1",
-                                            "rich": "description_1_body",
-                                            "visible": "description_1_visible"
-                                        }
-                                    ]
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
                                 }
-                            ]
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "step_card_1_visible"
@@ -3776,90 +3636,76 @@
                 "v2": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-glass-panel zc-step-card zc-story-card"
+                        "class": "zc-glass-panel zc-step-card"
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
-                            "tag": "div",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "steps_grid_items_1_story_title",
-                            "children": [
-                                {
-                                    "tag": "h3",
-                                    "attrs": {},
-                                    "part": "steps_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "text": "heading_text_1",
-                                            "part": "steps_grid_items_1_heading_text_1",
-                                            "before": "",
-                                            "after": "",
-                                            "plain": false
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
-                                }
-                            ],
-                            "visible": "heading_1_visible"
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-card-scene"
+                                "class": "zc-step-number"
                             },
-                            "part": "steps_grid_items_1_story_scene",
+                            "part": "steps_grid_items_1_step_number_1",
                             "children": [
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "steps_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
-                                },
-                                {
-                                    "tag": "div",
-                                    "attrs": {
-                                        "class": "zc-card-copy"
-                                    },
-                                    "part": "steps_grid_items_1_story_copy",
-                                    "children": [
-                                        {
-                                            "tag": "div",
-                                            "attrs": {
-                                                "class": "zc-step-number"
-                                            },
-                                            "part": "steps_grid_items_1_step_number_1",
-                                            "children": [
-                                                {
-                                                    "text": "step_number_text_1",
-                                                    "part": "steps_grid_items_1_step_number_text_1",
-                                                    "before": "",
-                                                    "after": "",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "step_number_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-story-description"
-                                            },
-                                            "part": "steps_grid_items_1_description_1",
-                                            "rich": "description_1_body",
-                                            "visible": "description_1_visible"
-                                        }
-                                    ]
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
                                 }
-                            ]
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "step_card_1_visible"
@@ -3867,90 +3713,76 @@
                 "v3": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-glass-panel zc-step-card zc-story-card"
+                        "class": "zc-glass-panel zc-step-card"
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
-                            "tag": "div",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "steps_grid_items_1_story_title",
-                            "children": [
-                                {
-                                    "tag": "h3",
-                                    "attrs": {},
-                                    "part": "steps_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "text": "heading_text_1",
-                                            "part": "steps_grid_items_1_heading_text_1",
-                                            "before": "",
-                                            "after": "",
-                                            "plain": false
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
-                                }
-                            ],
-                            "visible": "heading_1_visible"
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-card-scene"
+                                "class": "zc-step-number"
                             },
-                            "part": "steps_grid_items_1_story_scene",
+                            "part": "steps_grid_items_1_step_number_1",
                             "children": [
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "steps_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
-                                },
-                                {
-                                    "tag": "div",
-                                    "attrs": {
-                                        "class": "zc-card-copy"
-                                    },
-                                    "part": "steps_grid_items_1_story_copy",
-                                    "children": [
-                                        {
-                                            "tag": "div",
-                                            "attrs": {
-                                                "class": "zc-step-number"
-                                            },
-                                            "part": "steps_grid_items_1_step_number_1",
-                                            "children": [
-                                                {
-                                                    "text": "step_number_text_1",
-                                                    "part": "steps_grid_items_1_step_number_text_1",
-                                                    "before": "",
-                                                    "after": "",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "step_number_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-story-description"
-                                            },
-                                            "part": "steps_grid_items_1_description_1",
-                                            "rich": "description_1_body",
-                                            "visible": "description_1_visible"
-                                        }
-                                    ]
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
                                 }
-                            ]
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "step_card_1_visible"
@@ -3958,90 +3790,76 @@
                 "v4": {
                     "tag": "div",
                     "attrs": {
-                        "class": "zc-glass-panel zc-step-card zc-story-card"
+                        "class": "zc-glass-panel zc-step-card"
                     },
                     "part": "steps_grid_items_1_step_card_1",
                     "children": [
                         {
-                            "tag": "div",
+                            "tag": "img",
                             "attrs": {
-                                "class": "zc-story-title"
+                                "class": "zc-record-image",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
-                            "part": "steps_grid_items_1_story_title",
-                            "children": [
-                                {
-                                    "tag": "h3",
-                                    "attrs": {},
-                                    "part": "steps_grid_items_1_heading_1",
-                                    "children": [
-                                        {
-                                            "text": "heading_text_1",
-                                            "part": "steps_grid_items_1_heading_text_1",
-                                            "before": "",
-                                            "after": "",
-                                            "plain": false
-                                        }
-                                    ],
-                                    "heading_tag": "heading_1_tag",
-                                    "visible": "heading_1_visible"
-                                }
-                            ],
-                            "visible": "heading_1_visible"
+                            "part": "steps_grid_items_1_featured_image",
+                            "image": "featured_image",
+                            "image_preset": "zarincode-card"
+                        },
+                        {
+                            "literal": "\n                            "
                         },
                         {
                             "tag": "div",
                             "attrs": {
-                                "class": "zc-card-scene"
+                                "class": "zc-step-number"
                             },
-                            "part": "steps_grid_items_1_story_scene",
+                            "part": "steps_grid_items_1_step_number_1",
                             "children": [
                                 {
-                                    "tag": "img",
-                                    "attrs": {
-                                        "class": "zc-record-image",
-                                        "loading": "lazy",
-                                        "decoding": "async"
-                                    },
-                                    "part": "steps_grid_items_1_featured_image",
-                                    "image": "featured_image",
-                                    "image_preset": "zarincode-card"
-                                },
-                                {
-                                    "tag": "div",
-                                    "attrs": {
-                                        "class": "zc-card-copy"
-                                    },
-                                    "part": "steps_grid_items_1_story_copy",
-                                    "children": [
-                                        {
-                                            "tag": "div",
-                                            "attrs": {
-                                                "class": "zc-step-number"
-                                            },
-                                            "part": "steps_grid_items_1_step_number_1",
-                                            "children": [
-                                                {
-                                                    "text": "step_number_text_1",
-                                                    "part": "steps_grid_items_1_step_number_text_1",
-                                                    "before": "",
-                                                    "after": "",
-                                                    "plain": false
-                                                }
-                                            ],
-                                            "visible": "step_number_1_visible"
-                                        },
-                                        {
-                                            "tag": "p",
-                                            "attrs": {
-                                                "class": "zc-story-description"
-                                            },
-                                            "part": "steps_grid_items_1_description_1",
-                                            "rich": "description_1_body",
-                                            "visible": "description_1_visible"
-                                        }
-                                    ]
+                                    "text": "step_number_text_1",
+                                    "part": "steps_grid_items_1_step_number_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
                                 }
-                            ]
+                            ],
+                            "visible": "step_number_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "h3",
+                            "attrs": {
+                                "style": "font-size:1.15rem;font-weight:800;margin:0 0 0.6rem;"
+                            },
+                            "part": "steps_grid_items_1_heading_1",
+                            "children": [
+                                {
+                                    "text": "heading_text_1",
+                                    "part": "steps_grid_items_1_heading_text_1",
+                                    "before": "",
+                                    "after": "",
+                                    "plain": false
+                                }
+                            ],
+                            "heading_tag": "heading_1_tag",
+                            "visible": "heading_1_visible"
+                        },
+                        {
+                            "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "style": "margin:0;font-size:0.9rem;color:var(--zc-text-secondary);line-height:1.85;"
+                            },
+                            "part": "steps_grid_items_1_description_1",
+                            "rich": "description_1_body",
+                            "visible": "description_1_visible"
+                        },
+                        {
+                            "literal": "\n                        "
                         }
                     ],
                     "visible": "step_card_1_visible"
@@ -4417,30 +4235,6 @@
         "steps_grid_items_1_featured_image": {
             "label": "تصویر شاخص کارت",
             "type": "img"
-        },
-        "services_grid_items_1_story_title": {
-            "label": "عنوان بالای تصویر",
-            "type": "box"
-        },
-        "services_grid_items_1_story_scene": {
-            "label": "قاب یکپارچه تصویر",
-            "type": "box"
-        },
-        "services_grid_items_1_story_copy": {
-            "label": "پوشش و توضیحات روی تصویر",
-            "type": "box"
-        },
-        "steps_grid_items_1_story_title": {
-            "label": "عنوان بالای تصویر",
-            "type": "box"
-        },
-        "steps_grid_items_1_story_scene": {
-            "label": "قاب یکپارچه تصویر",
-            "type": "box"
-        },
-        "steps_grid_items_1_story_copy": {
-            "label": "پوشش و توضیحات روی تصویر",
-            "type": "box"
         }
     },
     "legacy": {

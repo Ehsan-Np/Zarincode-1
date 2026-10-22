@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.8.1' );
+define( 'ZARINCODE_VERSION', '3.7.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -109,7 +109,6 @@ function zarincode_fa_digits( $input ): string {
 \Zarincode\Theme\Core\Article_Ratings::boot();
 \Zarincode\Theme\Core\Discussion::boot();
 \Zarincode\Theme\Core\Account::boot();
-\Zarincode\Theme\Core\Presentation::boot();
 \Zarincode\Theme\Core\Social_Manager::boot();
 \Zarincode\Theme\Core\Product_Policies::boot();
 \Zarincode\Theme\Plugins\Plugin_Manager::instance();
