@@ -1942,3 +1942,4 @@ html.dark .zc-product-media{background:#292c30;border-color:#514b3d}html.dark .z
 /* FlexSlider must follow Woo's locale, not the theme's forced RTL HTML attribute. */
 .zc-product-media .woocommerce-product-gallery{direction:ltr}.zc-product-media .woocommerce-product-gallery.zc-gallery-rtl{direction:rtl}
 .zc-product-media-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;color:#e6d3a4;font-size:.65rem}.zc-product-media-meta>span{border:1px solid #d5b65f35;background:#ffffff08;padding:5px 9px;border-radius:7px}.zc-product-media .woocommerce-product-gallery__trigger{font-size:0}.zc-product-media .woocommerce-product-gallery__trigger:before{content:'⤢';font:22px/1 system-ui,sans-serif}.zc-product-media .woocommerce-product-gallery__trigger:after{display:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
