@@ -37,6 +37,13 @@ final class Registry {
             'dependencies'=>[],'widgets'=>[],'css'=>[],'js'=>[],'services'=>['elementor_public_content_tag'],
             'tests'=>['dynamic-tag-public-content','dynamic-tag-private-content'],
         ]);
+        $features['article_ratings'] = array_replace($features['native_widgets'],[
+            'id'=>'article_ratings','name'=>'Moderated article ratings','settings'=>'blog_article_ratings',
+            'description'=>'Optional moderated article-comment ratings.','category'=>'content','cache_groups'=>[],
+            'dependencies'=>[],'plugins'=>[],'widgets'=>[],'css'=>[],'js'=>[],
+            'services'=>['comment_rating_validation','comment_rating_persistence'],
+            'tests'=>['rating-nonce','rating-validation','rating-duplicates','rating-moderation','theme-switch-rating'],
+        ]);
         return (array) apply_filters( 'zarincode_feature_registry', $features );
     }
 }

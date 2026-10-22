@@ -1,0 +1,8 @@
+parameters:
+    level: 10
+    scanFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+        - constants.php
+    paths:
+        - ../../zarincode-core/includes/Support/Settings_Schema.php
+        - ../../zarincode-core/includes/Content

@@ -1,0 +1,23 @@
+{
+  "name": "zarincode/quality-harness",
+  "description": "Development-only checks, never shipped inside the WordPress plugin",
+  "type": "project",
+  "require-dev": {
+    "phpunit/phpunit": "^9.6",
+    "phpstan/phpstan": "^2.1",
+    "squizlabs/php_codesniffer": "^3.13",
+    "wp-coding-standards/wpcs": "^3.2",
+    "php-stubs/wordpress-stubs": "^7.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "standards": "phpcs --standard=phpcs.xml",
+    "analyse": "phpstan analyse -c phpstan.neon --no-progress",
+    "test": "phpunit -c phpunit.xml"
+  },
+  "license": "GPL-2.0-or-later"
+}

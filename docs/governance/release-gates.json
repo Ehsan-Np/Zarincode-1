@@ -14,11 +14,22 @@
     "visual_regression": "not_verified",
     "WCAG_22_AA": "not_verified",
     "PHPStan_WPCS_JS_CSS_quality": "not_verified",
-    "critical_logic_coverage_80": "not_measured",
+    "critical_logic_coverage_80": "partially_measured: 59/59 lines in 3 critical files; whole critical-logic inventory not complete",
     "WPML_Polylang": "not_verified",
     "Woo_HPOS_blocks_payments": "not_verified",
     "full_feature_registry_migration": "incomplete",
-    "commercial_asset_licenses": "blocked",
+    "commercial_asset_licenses": "user_owns_license_and_will_add_file; independent redistribution review not verified",
     "human_release_approval": "pending"
+  },
+  "development_evidence": {
+    "article_rating_ownership": "docs/architecture/ADR-ARTICLE-RATING-OWNERSHIP.md",
+    "critical_services": "docs/audits/critical-content/",
+    "scope": "3 files only; final release gates are not cleared by scoped results",
+    "phpstan_level": 10,
+    "wpcs_errors": 0,
+    "phpunit_tests": 20,
+    "phpunit_assertions": 70,
+    "scoped_line_coverage_percent": 100,
+    "remote_ci_run": "not verified"
   }
 }

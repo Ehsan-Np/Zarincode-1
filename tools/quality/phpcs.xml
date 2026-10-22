@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="ZarinCode critical service checks">
+  <description>WPCS on the critical services currently being hardened. PSR-4 filenames follow the project's required autoloader, not WordPress class-file naming.</description>
+  <rule ref="WordPress"><exclude name="WordPress.Files.FileName"/></rule>
+  <file>../../zarincode-core/includes/Support/Settings_Schema.php</file>
+  <file>../../zarincode-core/includes/Content</file>
+</ruleset>

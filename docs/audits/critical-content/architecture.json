@@ -1,0 +1,18 @@
+{
+  "suite": "skill-v3-scoped-architecture",
+  "checks": {
+    "thin_theme_bootstrap": true,
+    "plugin_no_theme_autoload": true,
+    "no_embedded_runtime": true,
+    "no_automatic_install_hook": true,
+    "no_plugin_source_overwrite": true,
+    "no_unknown_installer_actions": true,
+    "uninstall_retains_data": true,
+    "new_domain_independent": true,
+    "contract_trait_on_all_bases": true
+  },
+  "passed": true,
+  "limitations": [
+    "No complete AST dependency graph or full legacy business-logic audit."
+  ]
+}

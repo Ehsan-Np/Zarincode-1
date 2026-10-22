@@ -39,7 +39,13 @@
     "Safari",
     "physical devices"
   ],
-  "composer_lock": "Not applicable to runtime: no Composer runtime packages. Required dev-tool governance remains open.",
+  "composer_lock": "Runtime has no Composer dependencies. Development tooling is locked in tools/quality/composer.lock.",
   "provenance_limits": "Hash/integrity checks do not authenticate a vendor or establish redistribution rights. See earlier dependency provenance manifest.",
-  "previous_candidate_pro_version": "4.3.0"
+  "previous_candidate_pro_version": "4.3.0",
+  "user_license_statement": {
+    "statement": "User states they own the product license and will add the license to the project themselves.",
+    "independently_verified": false,
+    "asset_decision": "Preserve existing user fonts/assets. No replacements or invented redistribution certification.",
+    "pending": "User to supply/add their license file."
+  }
 }

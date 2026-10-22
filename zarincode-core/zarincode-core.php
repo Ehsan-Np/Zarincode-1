@@ -56,6 +56,7 @@ final class Zarincode_Core_Plugin_260 {
             $manager->register_group('zarincode-public',['title'=>'ZarinCode']);
             $manager->register(new \Zarincode\Runtime260\Elementor\Public_Data_Tag());
         });
+        add_action('init',static function(){if(\Zarincode\Runtime260\Features\Manager::enabled('article_ratings'))\Zarincode\Runtime260\Content\Article_Rating_Service::boot();});
         add_filter('debug_information', [\Zarincode\Runtime260\Support\Diagnostics::class,'site_health']);
         add_action('init',static function(){load_plugin_textdomain('zarincode-core',false,dirname(plugin_basename(__FILE__)).'/languages');});
         \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();

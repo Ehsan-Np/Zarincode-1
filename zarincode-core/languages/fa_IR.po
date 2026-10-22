@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ZarinCode 4.0.0-rc.2\n"
@@ -20,8 +21,16 @@ msgstr "https://zarincode.com"
 
 #. Description of the plugin
 #: zarincode-core.php
-msgid "افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
-msgstr "افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
+msgid ""
+"افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور "
+"با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و "
+"فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی "
+"(قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
+msgstr ""
+"افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور "
+"با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و "
+"فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی "
+"(قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
 
 #. Author of the plugin
 #: zarincode-core.php
@@ -69,8 +78,12 @@ msgid "Link hover color"
 msgstr "رنگ پیوند هنگام اشاره"
 
 #: includes/Integrations/Multilingual.php:42
-msgid "WPML and Polylang are both active. ZarinCode translation adapters are paused; keep only one translation engine active."
-msgstr "WPML و Polylang هم‌زمان فعال‌اند. اتصال ترجمهٔ زرین‌کد متوقف شده است؛ فقط یک موتور ترجمه را فعال نگه دارید."
+msgid ""
+"WPML and Polylang are both active. ZarinCode translation adapters are "
+"paused; keep only one translation engine active."
+msgstr ""
+"WPML و Polylang هم‌زمان فعال‌اند. اتصال ترجمهٔ زرین‌کد متوقف شده است؛ فقط یک"
+" موتور ترجمه را فعال نگه دارید."
 
 #: includes/Support/Diagnostics.php:17
 msgid "Insufficient permissions."
@@ -81,5 +94,17 @@ msgid "ZarinCode diagnostics"
 msgstr "سلامت و عیب‌یابی زرین‌کد"
 
 #: includes/Widgets/Icon_Compatibility.php:107
-msgid "فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."
-msgstr "فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."
+msgid ""
+"فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی "
+"مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل "
+"نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."
+msgstr ""
+"فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی "
+"مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل "
+"نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."
+
+#: includes/Content/Article_Rating_Service.php:55
+msgid ""
+"The rating or submission session is invalid. Refresh the page and try again."
+msgstr ""
+"امتیاز یا نشست ارسال معتبر نیست. صفحه را تازه کنید و دوباره تلاش کنید."

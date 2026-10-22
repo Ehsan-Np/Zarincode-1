@@ -18,3 +18,49 @@ jobs:
       - name: Build and validate evaluation packages
         run: python3 tools/build-release.py --output /tmp/zarincode-evaluation
       # Deliberately no publication job. Full compatibility, quality, licensing and approval gates remain open.
+  critical-content:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: qa_disposable_only
+          MARIADB_DATABASE: zarincode_qa
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysqli
+          coverage: xdebug
+          tools: composer, wp-cli
+      - name: Locked development tools
+        run: composer install --working-dir=tools/quality --no-interaction --prefer-dist
+      - name: Scoped WPCS and PHPStan level 10
+        run: |
+          composer --working-dir=tools/quality standards
+          composer --working-dir=tools/quality analyse
+      - name: Disposable real WordPress database fixture
+        run: |
+          mkdir -p /tmp/zc-ci
+          wp core download --path=/tmp/zc-ci --version=7.1.3
+          wp config create --path=/tmp/zc-ci --dbname=zarincode_qa --dbuser=root --dbpass=qa_disposable_only --dbhost=127.0.0.1:3306
+          wp core install --path=/tmp/zc-ci --url=http://qa.invalid --title=QA --admin_user=qa --admin_password="$(openssl rand -hex 24)" --admin_email=qa@example.test --skip-email
+          wp config set --path=/tmp/zc-ci WP_ENVIRONMENT_TYPE local
+          wp config set --path=/tmp/zc-ci ZARINCODE_DISPOSABLE_QA true --raw
+          ln -s "$GITHUB_WORKSPACE/zarincode-core" /tmp/zc-ci/wp-content/plugins/zarincode-core
+          wp plugin activate --path=/tmp/zc-ci zarincode-core
+      - name: Critical service tests and measured coverage
+        env:
+          ZARINCODE_QA_WP: /tmp/zc-ci
+          XDEBUG_MODE: coverage
+        run: |
+          tools/quality/vendor/bin/phpunit -c tools/quality/phpunit.xml --coverage-clover /tmp/zc-coverage.xml
+          python3 tools/quality/check-coverage.py /tmp/zc-coverage.xml 80
+      - name: Cleanup disposable fixture
+        if: always()
+        run: rm -rf /tmp/zc-ci

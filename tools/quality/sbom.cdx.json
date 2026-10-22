@@ -1,0 +1,708 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "Zarincode development-only quality harness"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "dealerdirect/phpcodesniffer-composer-installer",
+      "version": "v1.2.1",
+      "scope": "required",
+      "purl": "pkg:composer/dealerdirect/phpcodesniffer-composer-installer@v1.2.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/PHPCSStandards/composer-installer.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "doctrine/instantiator",
+      "version": "2.1.0",
+      "scope": "required",
+      "purl": "pkg:composer/doctrine/instantiator@2.1.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/doctrine/instantiator.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "myclabs/deep-copy",
+      "version": "1.14.0",
+      "scope": "required",
+      "purl": "pkg:composer/myclabs/deep-copy@1.14.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/myclabs/DeepCopy.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "nikic/php-parser",
+      "version": "v5.9.0",
+      "scope": "required",
+      "purl": "pkg:composer/nikic/php-parser@v5.9.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/nikic/PHP-Parser.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phar-io/manifest",
+      "version": "2.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/phar-io/manifest@2.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/phar-io/manifest.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "scope": "required",
+      "purl": "pkg:composer/phar-io/version@3.2.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/phar-io/version.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "php-stubs/wordpress-stubs",
+      "version": "v7.1.2",
+      "scope": "required",
+      "purl": "pkg:composer/php-stubs/wordpress-stubs@v7.1.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/php-stubs/wordpress-stubs.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpcsstandards/phpcsextra",
+      "version": "1.5.1",
+      "scope": "required",
+      "purl": "pkg:composer/phpcsstandards/phpcsextra@1.5.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "LGPL-3.0-or-later"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/PHPCSStandards/PHPCSExtra.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpcsstandards/phpcsutils",
+      "version": "1.2.3",
+      "scope": "required",
+      "purl": "pkg:composer/phpcsstandards/phpcsutils@1.2.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "LGPL-3.0-or-later"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/PHPCSStandards/PHPCSUtils.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpstan/phpstan",
+      "version": "2.3.1",
+      "scope": "required",
+      "purl": "pkg:composer/phpstan/phpstan@2.3.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": []
+    },
+    {
+      "type": "library",
+      "name": "phpunit/php-code-coverage",
+      "version": "9.2.32",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/php-code-coverage@9.2.32",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/php-code-coverage.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpunit/php-file-iterator",
+      "version": "3.0.6",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/php-file-iterator@3.0.6",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/php-file-iterator.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpunit/php-invoker",
+      "version": "3.1.1",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/php-invoker@3.1.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/php-invoker.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpunit/php-text-template",
+      "version": "2.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/php-text-template@2.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/php-text-template.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpunit/php-timer",
+      "version": "5.0.3",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/php-timer@5.0.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/php-timer.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "phpunit/phpunit",
+      "version": "9.6.38",
+      "scope": "required",
+      "purl": "pkg:composer/phpunit/phpunit@9.6.38",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/phpunit.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/cli-parser",
+      "version": "1.0.2",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/cli-parser@1.0.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/cli-parser.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/code-unit",
+      "version": "1.0.8",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/code-unit@1.0.8",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/code-unit.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/code-unit-reverse-lookup",
+      "version": "2.0.3",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/code-unit-reverse-lookup@2.0.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/comparator",
+      "version": "4.0.10",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/comparator@4.0.10",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/comparator.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/complexity",
+      "version": "2.0.3",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/complexity@2.0.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/complexity.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/diff",
+      "version": "4.0.6",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/diff@4.0.6",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/diff.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/environment",
+      "version": "5.1.5",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/environment@5.1.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/environment.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/exporter",
+      "version": "4.0.9",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/exporter@4.0.9",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/exporter.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/global-state",
+      "version": "5.0.8",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/global-state@5.0.8",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/global-state.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/lines-of-code",
+      "version": "1.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/lines-of-code@1.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/lines-of-code.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/object-enumerator",
+      "version": "4.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/object-enumerator@4.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/object-enumerator.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/object-reflector",
+      "version": "2.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/object-reflector@2.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/object-reflector.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/recursion-context",
+      "version": "4.0.7",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/recursion-context@4.0.7",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/recursion-context.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/resource-operations",
+      "version": "3.0.4",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/resource-operations@3.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/resource-operations.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/type",
+      "version": "3.2.1",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/type@3.2.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/type.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sebastian/version",
+      "version": "3.0.2",
+      "scope": "required",
+      "purl": "pkg:composer/sebastian/version@3.0.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/sebastianbergmann/version.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "squizlabs/php_codesniffer",
+      "version": "3.13.6",
+      "scope": "required",
+      "purl": "pkg:composer/squizlabs/php_codesniffer@3.13.6",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "theseer/tokenizer",
+      "version": "1.3.1",
+      "scope": "required",
+      "purl": "pkg:composer/theseer/tokenizer@1.3.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/theseer/tokenizer.git"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "wp-coding-standards/wpcs",
+      "version": "3.4.1",
+      "scope": "required",
+      "purl": "pkg:composer/wp-coding-standards/wpcs@3.4.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/WordPress/WordPress-Coding-Standards.git"
+        }
+      ]
+    }
+  ]
+}
