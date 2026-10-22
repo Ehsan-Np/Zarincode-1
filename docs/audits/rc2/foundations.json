@@ -1,0 +1,2430 @@
+{
+    "environment": {
+        "wordpress": "7.1.3",
+        "php": "8.4.27",
+        "elementor": "4.3.2",
+        "elementor_pro": "not_installed",
+        "woocommerce": "11.2.0",
+        "redux": "loaded",
+        "database": "11.8.6"
+    },
+    "checks": {
+        "resolver_default": true,
+        "resolver_preserved_off": true,
+        "resolver_dependency": true,
+        "resolver_unknown": true,
+        "resolver_cycle": true,
+        "resolver_plugin": true,
+        "resolver_conflict": true,
+        "widgets_default_26": true,
+        "studio_disabled_23": true,
+        "professional_disabled_17": true,
+        "all_disabled_zero": true,
+        "disabled_shortcode_output": true,
+        "settings_preserved": true,
+        "restricted_snippet_unchanged": true,
+        "style_cannot_close": true,
+        "malformed_switch_preserved": true,
+        "malformed_store_rejected": true,
+        "schema_no_owner": true,
+        "schema_yoast_ownership": true,
+        "editor_support": true,
+        "pattern_registered": true,
+        "theme_json_palette": true,
+        "english_not_rtl": true,
+        "english_no_forced_rtl": true
+    },
+    "installed_widget_inventory": [
+        {
+            "name": "nested-tabs",
+            "title": "Tabs",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "nested-accordion",
+            "title": "Accordion",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "common-base",
+            "title": "",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "common",
+            "title": "",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "common-optimized",
+            "title": "",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "inner-section",
+            "title": "Inner Section",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "heading",
+            "title": "Heading",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "image",
+            "title": "Image",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "text-editor",
+            "title": "Text Editor",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "video",
+            "title": "Video",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "button",
+            "title": "Button",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "divider",
+            "title": "Divider",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "spacer",
+            "title": "Spacer",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "image-box",
+            "title": "Image Box",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "google_maps",
+            "title": "Google Maps",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "icon",
+            "title": "Icon",
+            "origin": "installed third-party",
+            "categories": [
+                "basic"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "icon-box",
+            "title": "Icon Box",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "star-rating",
+            "title": "Star Rating",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "image-carousel",
+            "title": "Image Carousel",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "image-gallery",
+            "title": "Basic Gallery",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "icon-list",
+            "title": "Icon List",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "counter",
+            "title": "Counter",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "progress",
+            "title": "Progress Bar",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "testimonial",
+            "title": "Testimonial",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "tabs",
+            "title": "Tabs",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "accordion",
+            "title": "Accordion",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "toggle",
+            "title": "Toggle",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "social-icons",
+            "title": "Social Icons",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "alert",
+            "title": "Alert",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "audio",
+            "title": "SoundCloud",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "shortcode",
+            "title": "Shortcode",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "html",
+            "title": "HTML",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "menu-anchor",
+            "title": "Menu Anchor",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "sidebar",
+            "title": "Sidebar",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "read-more",
+            "title": "Read More",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "rating",
+            "title": "Rating",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-pages",
+            "title": "Pages",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-calendar",
+            "title": "Calendar",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-archives",
+            "title": "Archives",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-media_audio",
+            "title": "Audio",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-media_image",
+            "title": "Image",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-media_gallery",
+            "title": "Gallery",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-media_video",
+            "title": "Video",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-meta",
+            "title": "Meta",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-search",
+            "title": "Search",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-text",
+            "title": "Text",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-categories",
+            "title": "Categories",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-recent-posts",
+            "title": "Recent Posts",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-recent-comments",
+            "title": "Recent Comments",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-rss",
+            "title": "RSS",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-tag_cloud",
+            "title": "Tag Cloud",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-nav_menu",
+            "title": "Navigation Menu",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-custom_html",
+            "title": "Custom HTML",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-block",
+            "title": "Block",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_widget_cart",
+            "title": "Cart",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_layered_nav_filters",
+            "title": "Active Product Filters",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_layered_nav",
+            "title": "Filter Products by Attribute",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_price_filter",
+            "title": "Filter Products by Price",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_product_categories",
+            "title": "Product Categories",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_product_search",
+            "title": "Product Search",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_product_tag_cloud",
+            "title": "Product Tag Cloud",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_products",
+            "title": "Products list",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_recently_viewed_products",
+            "title": "Recently Viewed Products list",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_top_rated_products",
+            "title": "Products by Rating list",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_recent_reviews",
+            "title": "Recent Product Reviews",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_rating_filter",
+            "title": "Filter Products by Rating",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-wc_brands_brand_description",
+            "title": "WooCommerce Brand Description",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-woocommerce_brand_nav",
+            "title": "WooCommerce Brand Layered Nav",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-wc_brands_brand_thumbnails",
+            "title": "WooCommerce Brand Thumbnails",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-zc_article_products",
+            "title": "زرین کد — محصولات در مقاله",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wp-widget-zc_article_template",
+            "title": "زرین کد — قالب المنتور در ستون",
+            "origin": "installed third-party",
+            "categories": [
+                "wordpress"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_trust_badges",
+            "title": "اعتبارنامه‌ها و نشان‌های پرداخت ایرانی",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_client_logos",
+            "title": "کاروسل لوگوی مشتریان",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_pricing_plan",
+            "title": "کارت تعرفه مستقل — مدیریت سریع",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_service_spotlight",
+            "title": "خدمات ویژه و راهکارهای زرین کد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_project_roadmap",
+            "title": "نقشه راه اجرای پروژه",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_seo_audit",
+            "title": "داشبورد ارزیابی سئو و عملکرد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_before_after",
+            "title": "مقایسه تصویری قبل و بعد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_team_experts",
+            "title": "تیم متخصص و مشاوران",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_service_matrix",
+            "title": "ماتریس مقایسه خدمات و پکیج‌ها",
+            "origin": "companion",
+            "categories": [
+                "zarincode-professional"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_header",
+            "title": "هدر و منوی زرین کد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_footer",
+            "title": "فوتر زرین کد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_hero",
+            "title": "هیرو یکپارچه — نسخه قدیمی",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_hero_intro",
+            "title": "معرفی اصلی آژانس",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_hero_profile",
+            "title": "معرفی مدیر و آمار عملکرد",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_hero_cta",
+            "title": "دعوت به شروع همکاری",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_brands",
+            "title": "برندها و تکنولوژی‌ها",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_services",
+            "title": "خدمات تخصصی",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_products",
+            "title": "فروشگاه محصولات دیجیتال",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_portfolio",
+            "title": "نمونه‌کارها",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_why_us",
+            "title": "مزیت‌های همکاری",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_pricing",
+            "title": "تعرفه خدمات",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_promo",
+            "title": "پیشنهاد ویژه و فراخوان",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_steps",
+            "title": "مراحل اجرای پروژه",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_testimonials",
+            "title": "نظرات مشتریان",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_blog",
+            "title": "مقالات وبلاگ",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "zarincode_page_section",
+            "title": "صفحات داخلی و حقوقی",
+            "origin": "companion",
+            "categories": [
+                "zarincode-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "text-path",
+            "title": "Text Path",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "search",
+            "title": "Search",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "posts",
+            "title": "Posts",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-2",
+            "title": "Classic",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "portfolio",
+            "title": "Portfolio",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-3",
+            "title": "Showcase",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "mega-menu",
+            "title": "Menu",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-4",
+            "title": "Links",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "form",
+            "title": "Form",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-5",
+            "title": "Services",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "loop-grid",
+            "title": "Loop Grid",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-6",
+            "title": "Portfolio Bio",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "loop-carousel",
+            "title": "Loop Carousel",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio-var-7",
+            "title": "Business Card",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "gallery",
+            "title": "Gallery",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "animated-headline",
+            "title": "Animated Headline",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "price-list",
+            "title": "Price List",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "price-table",
+            "title": "Price Table",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "flip-box",
+            "title": "Flip Box",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "call-to-action",
+            "title": "Call to Action",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "media-carousel",
+            "title": "Media Carousel",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "nested-carousel",
+            "title": "Carousel",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "off-canvas",
+            "title": "Off-Canvas",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "countdown",
+            "title": "Countdown",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "share-buttons",
+            "title": "Share Buttons",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "blockquote",
+            "title": "Blockquote",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "lottie",
+            "title": "Lottie",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "hotspot",
+            "title": "Hotspot",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "paypal-button",
+            "title": "PayPal Button",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "code-highlight",
+            "title": "Code Highlight",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "video-playlist",
+            "title": "Video Playlist",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "template",
+            "title": "Template",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "stripe-button",
+            "title": "Stripe Button",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "progress-tracker",
+            "title": "Progress Tracker",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "nav-menu",
+            "title": "Nav Menu",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "table-of-contents",
+            "title": "Table of Contents",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "login",
+            "title": "Login",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "slides",
+            "title": "Slides",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "testimonial-carousel",
+            "title": "Testimonial Carousel",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "reviews",
+            "title": "Reviews",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "facebook-button",
+            "title": "Facebook Button",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "facebook-comments",
+            "title": "Facebook Comments",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "facebook-embed",
+            "title": "Facebook Embed",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "facebook-page",
+            "title": "Facebook Page",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-site-logo",
+            "title": "Site Logo",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-site-title",
+            "title": "Site Title",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-page-title",
+            "title": "Page Title",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-post-title",
+            "title": "Post Title",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-post-excerpt",
+            "title": "Post Excerpt",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-post-featured-image",
+            "title": "Featured Image",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "theme-archive-title",
+            "title": "Archive Title",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "archive-posts",
+            "title": "Archive Posts",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "author-box",
+            "title": "Author Box",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "post-comments",
+            "title": "Post Comments",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "post-navigation",
+            "title": "Post Navigation",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "post-info",
+            "title": "Post Info",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "sitemap",
+            "title": "Sitemap",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "breadcrumbs",
+            "title": "Breadcrumbs",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-menu-cart",
+            "title": "Menu Cart",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wc-archive-products",
+            "title": "Archive Products",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-archive-description",
+            "title": "Archive Description",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-products",
+            "title": "Products",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-breadcrumb",
+            "title": "WooCommerce Breadcrumbs",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wc-add-to-cart",
+            "title": "Custom Add To Cart",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wc-elements",
+            "title": "WooCommerce Pages",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "wc-categories",
+            "title": "Product Categories",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-title",
+            "title": "Product Title",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-images",
+            "title": "Product Images",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-price",
+            "title": "Product Price",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-add-to-cart",
+            "title": "Add To Cart",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-rating",
+            "title": "Product Rating",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-stock",
+            "title": "Product Stock",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-meta",
+            "title": "Product Meta",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-short-description",
+            "title": "Short Description",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-data-tabs",
+            "title": "Product Data Tabs",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-additional-information",
+            "title": "Additional Information",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-related",
+            "title": "Product Related",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-product-upsell",
+            "title": "Upsells",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-checkout-page",
+            "title": "Checkout",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-cart",
+            "title": "Cart",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-my-account",
+            "title": "My Account",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-purchase-summary",
+            "title": "Purchase Summary",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "woocommerce-notices",
+            "title": "WooCommerce Notices",
+            "origin": "installed third-party",
+            "categories": [
+                "general",
+                "pro-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "link-in-bio",
+            "title": "Minimalist",
+            "origin": "installed third-party",
+            "categories": [
+                "link-in-bio"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "contact-buttons",
+            "title": "Single Chat",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "floating-bars-var-1",
+            "title": "Floating Bar CTA",
+            "origin": "installed third-party",
+            "categories": [
+                "general"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-heading",
+            "title": "Heading",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-image",
+            "title": "Image",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-paragraph",
+            "title": "Paragraph",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-svg",
+            "title": "SVG",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-button",
+            "title": "Button",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-youtube",
+            "title": "YouTube",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-divider",
+            "title": "Divider",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-self-hosted-video",
+            "title": "Video",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        },
+        {
+            "name": "e-component",
+            "title": "Component",
+            "origin": "installed third-party",
+            "categories": [
+                "v4-elements"
+            ],
+            "frontend": "not_tested",
+            "editor": "not_tested",
+            "accessibility": "not_tested",
+            "visual": "not_tested"
+        }
+    ],
+    "limitations": [
+        "Inventory is not visual/editor/a11y coverage.",
+        "Not a full Skill-compliance test or 80% coverage evidence.",
+        "WPML add-ons and Polylang runtime not tested."
+    ]
+}

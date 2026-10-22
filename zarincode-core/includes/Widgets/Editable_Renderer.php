@@ -42,8 +42,9 @@ final class Editable_Renderer {
         $tax=['products'=>'product_cat','blog'=>'category','portfolio'=>'zc_project_cat','services'=>'zc_service_cat'];
         $args=['post_type'=>($types[$kind] ?? 'post'),'post_status'=>'publish','posts_per_page'=>(($s['show_all']??'')==='yes' || (int)($s['count']??8)===-1 ? 100 : max(1,min(100,absint($s['count']??8)))),'no_found_rows'=>true,'ignore_sticky_posts'=>true,'orderby'=>in_array($s['orderby']??'date',['date','title','menu_order','rand'],true)?($s['orderby']??'date'):'date','order'=>($s['order']??'DESC')==='ASC'?'ASC':'DESC'];
         $ids=self::ids($s['include_ids']??'');
-        if($ids) $args['post__in']=$ids;
+        if($ids) $args['post__in']=array_values(array_unique(array_map([\Zarincode\Runtime260\Integrations\Multilingual::class,'post_id'],$ids)));
         $cats=self::ids($s['category_ids']??'');
+        $cats=array_map(static fn($id)=>\Zarincode\Runtime260\Integrations\Multilingual::term_id($id,$tax[$kind]??'category'),$cats);
         if($cats) $args['tax_query']=[['taxonomy'=>($tax[$kind]??'category'),'field'=>'term_id','terms'=>$cats]];
         if($kind==='products') {
             $visibility=function_exists('wc_get_product_visibility_term_ids')?wc_get_product_visibility_term_ids():[];

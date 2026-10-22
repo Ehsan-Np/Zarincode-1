@@ -1,0 +1,19 @@
+/* Reviewed families only. Not a certification of every installed Elementor/Pro widget. */
+.elementor-widget-heading .elementor-heading-title{font-family:inherit;color:var(--zc-text-primary,#2a2c31);overflow-wrap:anywhere}
+.elementor-widget-text-editor .elementor-widget-container{line-height:1.9;overflow-wrap:anywhere}
+.elementor-widget-button .elementor-button{border-radius:var(--zc-radius-pill,999px);background:var(--color-accent,#fdd05b);color:#202227;padding:.85em 1.5em;line-height:1.5}
+.elementor-widget-button .elementor-button:hover{filter:brightness(.96)}
+.elementor-widget-image img{max-inline-size:100%;height:auto}
+.elementor-widget-icon-box .elementor-icon-box-title,.elementor-widget-image-box .elementor-image-box-title{font-family:inherit}
+.elementor-widget-progress .elementor-progress-wrapper{border-radius:999px;overflow:hidden}
+.elementor-widget-progress .elementor-progress-bar{background:var(--color-accent,#fdd05b);color:#202227}
+.elementor-widget-accordion .elementor-accordion-item,.elementor-widget-toggle .elementor-toggle-item{border-color:var(--zc-border-subtle,#d9d9d9)}
+.elementor-widget-tabs .elementor-tab-title.elementor-active{color:var(--zc-text-primary,#2a2c31);border-color:var(--color-accent,#fdd05b)}
+.elementor-widget-form .elementor-field:not(.elementor-select-wrapper),.elementor-widget-search-form input{border-radius:var(--zc-radius-md,12px);min-inline-size:0;font:inherit}
+.elementor-widget-form .elementor-message{overflow-wrap:anywhere}
+.elementor-widget-divider .elementor-divider-separator{border-color:var(--zc-border-subtle,#d9d9d9)}
+.elementor-widget-social-icons .elementor-social-icon{border-radius:12px}
+.elementor-widget-testimonial .elementor-testimonial-content{line-height:1.9}
+.elementor-widget-price-table .elementor-price-table,.elementor-widget-call-to-action .elementor-cta{border-radius:var(--zc-radius-bento,28px);overflow:hidden}
+.elementor-widget :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.elementor-widget-button .elementor-button{transition:none}}

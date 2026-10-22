@@ -27,6 +27,7 @@ class Assets {
     }
 
     public function enqueue_frontend_assets(): void {
+        wp_enqueue_script('zarincode-dialogs',ZARINCODE_URI.'/assets/js/dialogs.js',[],ZARINCODE_VERSION,true);
         // 1. Local Vazirmatn Font
         wp_enqueue_style(
             'zarincode-vazirmatn',

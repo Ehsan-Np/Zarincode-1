@@ -6,7 +6,7 @@ p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argum
 gates=json.loads((root/'docs/governance/release-gates.json').read_text())
 if args.commercial and (not gates['commercial_approved'] or not all(v=='passed' for v in gates['gates'].values())):
  raise SystemExit('Commercial release BLOCKED: unresolved quality, compatibility or licensing gates.')
-version='4.0.0-rc.1';dest=Path(args.output).resolve();dest.mkdir(parents=True,exist_ok=True)
+version=gates['version'];dest=Path(args.output).resolve();dest.mkdir(parents=True,exist_ok=True)
 artifacts=[]
 for package in ['zarincode','zarincode-core']:
  file=dest/f'{package}-{version}.zip'

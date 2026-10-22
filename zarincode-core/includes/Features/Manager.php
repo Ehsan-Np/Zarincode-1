@@ -28,13 +28,20 @@ final class Manager {
     }
     public static function enabled( string $id ): bool { return 'enabled' === self::status( $id ); }
     public static function invalidate( $old, $new ): void {
-        foreach ( Registry::all() as $feature ) {
-            $key = $feature['settings'];
-            if ( ( $old[$key] ?? $feature['default'] ) !== ( $new[$key] ?? $feature['default'] ) ) {
-                if ( class_exists( '\Elementor\Plugin' ) ) { \Elementor\Plugin::instance()->files_manager->clear_cache(); }
-                do_action( 'zarincode_feature_cache_invalidated', $feature['id'] );
-                break;
-            }
+        $old = is_array($old) ? $old : [];
+        $new = is_array($new) ? $new : [];
+        $registry = Registry::all();
+        $available = ['elementor'=>defined('ELEMENTOR_VERSION')];
+        $changed = [];
+        foreach ($registry as $id=>$feature) {
+            $key=$feature['settings'];
+            if (($old[$key]??$feature['default']) !== ($new[$key]??$feature['default']) || self::resolve($id,$registry,$old,$available)!==self::resolve($id,$registry,$new,$available)) {$changed[]=$id;}
         }
+        if (!$changed) {return;}
+        if (class_exists('\\Elementor\\Plugin')) {
+            $plugin=\Elementor\Plugin::instance();
+            if (isset($plugin->files_manager)) {$plugin->files_manager->clear_cache();}
+        }
+        foreach ($changed as $id) {do_action('zarincode_feature_cache_invalidated',$id);}
     }
 }

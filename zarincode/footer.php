@@ -134,14 +134,14 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 <?php endif; ?>
 
 <!-- Global Consultation Request Modal (Webinex Popup + Crextio UI) -->
-<div id="zc-consult-modal" class="zc-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="zc-consult-title">
+<div id="zc-consult-modal" class="zc-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="zc-consult-title">
     <div class="zc-modal-dialog">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
             <div>
                 <span class="zc-badge-pill" style="margin-bottom:0.25rem;">FREE CONSULTATION</span>
                 <h3 id="zc-consult-title" style="margin:0;font-size:1.3rem;font-weight:900;"><?php echo esc_html( $modal_title ); ?></h3>
             </div>
-            <button type="button" data-zc-modal-close style="width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;font-size:1.2rem;">×</button>
+            <button type="button" data-zc-modal-close aria-label="بستن پنجره" style="width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;font-size:1.2rem;">×</button>
         </div>
         <p style="font-size:0.9rem;color:var(--zc-text-secondary);margin-top:0;margin-bottom:1.25rem;">
             <?php echo esc_html( $modal_desc ); ?>
@@ -149,18 +149,18 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
         <form class="zc-Ajax-form">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
                 <div class="zc-form-group">
-                    <label class="zc-form-label">نام و نام خانوادگی *</label>
-                    <input type="text" class="zc-form-control" required placeholder="مثلاً: علی محمدی">
+                    <label class="zc-form-label" for="zc-consult-name">نام و نام خانوادگی *</label>
+                    <input type="text" id="zc-consult-name" name="zc-consult-name" class="zc-form-control" required placeholder="مثلاً: علی محمدی">
                 </div>
                 <div class="zc-form-group">
-                    <label class="zc-form-label">شماره موبایل *</label>
-                    <input type="tel" class="zc-form-control" required placeholder="0912XXXXXXX" dir="ltr">
+                    <label class="zc-form-label" for="zc-consult-phone">شماره موبایل *</label>
+                    <input type="tel" id="zc-consult-phone" name="zc-consult-phone" class="zc-form-control" required placeholder="0912XXXXXXX" dir="ltr">
                 </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
                 <div class="zc-form-group">
-                    <label class="zc-form-label">سرویس یا محصول مد نظر</label>
-                    <select class="zc-form-control">
+                    <label class="zc-form-label" for="zc-consult-service">سرویس یا محصول مد نظر</label>
+                    <select id="zc-consult-service" name="zc-consult-service" class="zc-form-control">
                         <option value="web-design">طراحی سایت اختصاصی و المنتوری</option>
                         <option value="software">برنامه‌نویسی نرم‌افزار و سامانه تحت وب</option>
                         <option value="seo">سئو سایت تضمینی و رشد گوگل</option>
@@ -170,8 +170,8 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
                     </select>
                 </div>
                 <div class="zc-form-group">
-                    <label class="zc-form-label">اولویت زمانی پروژه</label>
-                    <select class="zc-form-control">
+                    <label class="zc-form-label" for="zc-consult-priority">اولویت زمانی پروژه</label>
+                    <select id="zc-consult-priority" name="zc-consult-priority" class="zc-form-control">
                         <option value="normal">عادی (کیفیت و زمان‌بندی استاندارد)</option>
                         <option value="urgent">فوریتی (نیاز به تحویل سریع دارم)</option>
                         <option value="relaxed">غیرفوریتی (تمرکز حداکثری بر جزئیات)</option>
@@ -179,10 +179,10 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
                 </div>
             </div>
             <div class="zc-form-group">
-                <label class="zc-form-label">توضیحات پروژه یا محصول مورد نیاز</label>
-                <textarea class="zc-form-control" rows="3" placeholder="کوتاه در مورد اهداف کسب‌وکار یا پروژه خود بنویسید..."></textarea>
+                <label class="zc-form-label" for="zc-consult-details">توضیحات پروژه یا محصول مورد نیاز</label>
+                <textarea id="zc-consult-details" name="zc-consult-details" class="zc-form-control" rows="3" placeholder="کوتاه در مورد اهداف کسب‌وکار یا پروژه خود بنویسید..."></textarea>
             </div>
-            <div class="zc-form-feedback" style="display:none;padding:0.85rem 1rem;border-radius:1rem;background:var(--color-accent);color:var(--color-accent-contrast);font-weight:700;font-size:0.88rem;margin-bottom:1rem;"></div>
+            <div class="zc-form-feedback" role="status" aria-live="polite" style="display:none;padding:0.85rem 1rem;border-radius:1rem;background:var(--color-accent);color:var(--color-accent-contrast);font-weight:700;font-size:0.88rem;margin-bottom:1rem;"></div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
                 <button type="submit" class="zc-btn zc-btn-yellow" style="flex:1;">
                     <i class="fa-solid fa-paper-plane"></i> ثبت درخواست مشاوره رایگان
@@ -196,15 +196,15 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 </div>
 
 <!-- Quick Search Modal (Ctrl + K) -->
-<div id="zc-search-modal" class="zc-modal-backdrop" role="dialog" aria-modal="true" aria-label="جستجو در زرین کد">
+<div id="zc-search-modal" class="zc-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-label="جستجو در زرین کد">
     <div class="zc-modal-dialog">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
             <h4 style="margin:0;font-weight:800;"><i class="fa-solid fa-magnifying-glass" style="color:var(--color-accent);"></i> جستجوی سریع خدمات، افزونه‌ها و سورس‌کدهای زرین کد</h4>
-            <button type="button" data-zc-modal-close style="width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;">×</button>
+            <button type="button" data-zc-modal-close aria-label="بستن پنجره" style="width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;">×</button>
         </div>
         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
             <div style="display:flex;gap:0.65rem;">
-                <input type="search" name="s" class="zc-form-control" placeholder="نام سرویس، افزونه وردپرس، قالب یا سورس‌کد را وارد کنید..." value="<?php echo get_search_query(); ?>">
+                <input aria-label="عبارت جستجو" type="search" name="s" class="zc-form-control" placeholder="نام سرویس، افزونه وردپرس، قالب یا سورس‌کد را وارد کنید..." value="<?php echo get_search_query(); ?>">
                 <button type="submit" class="zc-btn zc-btn-yellow">جستجو</button>
             </div>
         </form>

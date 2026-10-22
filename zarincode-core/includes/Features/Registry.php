@@ -13,7 +13,7 @@ final class Registry {
                 'plugins' => [ 'elementor' ], 'conflicts' => [], 'capability' => 'manage_options',
                 'css' => [], 'js' => [], 'services' => [], 'widgets' => [],
                 'settings' => 'feature_' . $id, 'translation' => 'zarincode-core',
-                'cache_groups' => [ 'elementor-css' ], 'version' => '4.0.0-rc.1',
+                'cache_groups' => [ 'elementor-css' ], 'version' => '4.0.0-rc.2',
                 'migration' => 'No destructive migration. Missing option preserves enabled state.',
                 'tests' => [ 'feature-resolver', 'disabled-widget-output', 'disabled-widget-assets' ],
             ];
@@ -27,6 +27,16 @@ final class Registry {
         $features['professional_widgets']['widgets'] = array_map(static fn($id) => 'zarincode_'.$id, ['service_spotlight','project_roadmap','seo_audit','before_after','team_experts','service_matrix']);
         $features['professional_widgets']['css'] = ['zarincode-professional'];
         $features['professional_widgets']['js'] = ['zarincode-professional'];
+        $features['official_widget_styles'] = array_replace($features['native_widgets'],[
+            'id'=>'official_widget_styles','name'=>'Official widget theme styles','settings'=>'feature_official_widget_styles',
+            'dependencies'=>[],'widgets'=>[],'css'=>['zarincode-elementor-official'],'js'=>[],
+            'tests'=>['official-style-controls','official-style-assets'],
+        ]);
+        $features['public_dynamic_tags'] = array_replace($features['native_widgets'],[
+            'id'=>'public_dynamic_tags','name'=>'Public content dynamic tags','settings'=>'feature_public_dynamic_tags',
+            'dependencies'=>[],'widgets'=>[],'css'=>[],'js'=>[],'services'=>['elementor_public_content_tag'],
+            'tests'=>['dynamic-tag-public-content','dynamic-tag-private-content'],
+        ]);
         return (array) apply_filters( 'zarincode_feature_registry', $features );
     }
 }

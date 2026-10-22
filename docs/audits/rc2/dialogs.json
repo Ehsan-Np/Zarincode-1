@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "opens": true,
+    "focus_inside": true,
+    "tab_wraps_forward": true,
+    "tab_wraps_backward": true,
+    "form_labels": true,
+    "escape_closes": true,
+    "focus_returns": true,
+    "inert_restored": true,
+    "keyboard_search": true
+  },
+  "assertions": 9,
+  "limitations": [
+    "Chromium keyboard checks only; not a full WCAG audit."
+  ]
+}

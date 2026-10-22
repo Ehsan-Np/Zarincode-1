@@ -1,14 +1,45 @@
 {
-  "version": "4.0.0-rc.1",
+  "version": "4.0.0-rc.2",
   "runtime_dependencies_bundled": [],
   "framework": "WordPress and plugins are installed separately; no vendor code or license bypass added.",
   "assets": [
-    {"name":"Font Awesome Pro","header_version":"7.3.1","source":"User-designated GitHub assets, preserved","license":"Commercial license per bundled CSS header","redistribution_verified":false,"release_blocking":true},
-    {"name":"Vazirmatn","source":"Existing repository font files, preserved","license_review":"Verify bundled font attribution and complete commercial distribution inventory before approval"},
-    {"name":"Portraits and demonstration images","source":"Existing user repository","license_review":"Rights for commercial redistribution require confirmation; no license grant invented"}
+    {
+      "name": "Font Awesome Pro",
+      "header_version": "7.3.1",
+      "source": "User-designated GitHub assets, preserved",
+      "license": "Commercial license per bundled CSS header",
+      "redistribution_verified": false,
+      "release_blocking": true
+    },
+    {
+      "name": "Vazirmatn",
+      "source": "Existing repository font files, preserved",
+      "license_review": "Verify bundled font attribution and complete commercial distribution inventory before approval"
+    },
+    {
+      "name": "Portraits and demonstration images",
+      "source": "Existing user repository",
+      "license_review": "Rights for commercial redistribution require confirmation; no license grant invented"
+    }
   ],
-  "external_plugin_versions_tested_this_candidate": {"WordPress":"7.1.3","PHP":"8.4.27","Elementor":"4.3.2","Elementor Pro":"4.3.0","Redux":"4.5.15","WooCommerce":"11.2.0"},
-  "unverified_integrations":["WPML","Polylang","real Yoast/Rank Math integration","minimum-version compatibility","Firefox","Safari","physical devices"],
-  "composer_lock":"Not applicable to runtime: no Composer runtime packages. Required dev-tool governance remains open.",
-  "provenance_limits":"Hash/integrity checks do not authenticate a vendor or establish redistribution rights. See earlier dependency provenance manifest."
+  "external_plugin_versions_tested_this_candidate": {
+    "WordPress": "7.1.3",
+    "PHP": "8.4.27",
+    "Elementor": "4.3.2",
+    "Elementor Pro": "not retested",
+    "Redux": "4.5.15",
+    "WooCommerce": "11.2.0"
+  },
+  "unverified_integrations": [
+    "WPML",
+    "Polylang",
+    "real Yoast/Rank Math integration",
+    "minimum-version compatibility",
+    "Firefox",
+    "Safari",
+    "physical devices"
+  ],
+  "composer_lock": "Not applicable to runtime: no Composer runtime packages. Required dev-tool governance remains open.",
+  "provenance_limits": "Hash/integrity checks do not authenticate a vendor or establish redistribution rights. See earlier dependency provenance manifest.",
+  "previous_candidate_pro_version": "4.3.0"
 }

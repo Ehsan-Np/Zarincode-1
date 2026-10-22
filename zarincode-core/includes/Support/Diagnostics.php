@@ -8,7 +8,7 @@ final class Diagnostics {
         foreach ( \Zarincode\Runtime260\Features\Registry::all() as $id => $feature ) {
             $features[$id] = [ 'status' => \Zarincode\Runtime260\Features\Manager::status($id), 'version' => $feature['version'] ];
         }
-        return [ 'core' => ZARINCODE_CORE_VERSION, 'php' => PHP_VERSION,
+        return [ 'translation_engine'=>\Zarincode\Runtime260\Integrations\Multilingual::engine(), 'core' => ZARINCODE_CORE_VERSION, 'php' => PHP_VERSION,
             'elementor' => defined('ELEMENTOR_VERSION') ? ELEMENTOR_VERSION : 'absent',
             'elementor_pro' => defined('ELEMENTOR_PRO_VERSION') ? ELEMENTOR_PRO_VERSION : 'absent',
             'woocommerce' => defined('WC_VERSION') ? WC_VERSION : 'absent', 'features' => $features ];

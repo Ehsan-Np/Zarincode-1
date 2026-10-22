@@ -128,28 +128,7 @@
             });
         });
 
-        // Consultation & Search Modals
-        legacyNodes('[data-zc-modal-open]').forEach(function (trigger) {
-            trigger.addEventListener('click', function (e) {
-                e.preventDefault();
-                const id = trigger.getAttribute('data-zc-modal-open');
-                const modal = document.getElementById(id);
-                if (modal) modal.classList.add('is-open');
-            });
-        });
-
-        legacyNodes('[data-zc-modal-close]').forEach(function (closeBtn) {
-            closeBtn.addEventListener('click', function () {
-                const modal = closeBtn.closest('.zc-modal-backdrop');
-                if (modal) modal.classList.remove('is-open');
-            });
-        });
-
-        legacyNodes('.zc-modal-backdrop').forEach(function (backdrop) {
-            backdrop.addEventListener('click', function (e) {
-                if (e.target === backdrop) backdrop.classList.remove('is-open');
-            });
-        });
+        // Dialog interactions are managed by the delegated, focus-safe dialogs module.
 
         // Mobile Navigation Drawer Open / Close / Submenu Accordion
         legacyNodes('[data-zc-drawer-open]').forEach(function (btn) {
@@ -198,17 +177,7 @@
 
         // Ctrl+K shortcut for search modal
         document.addEventListener('keydown', function (e) {
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-                e.preventDefault();
-                const searchModal = document.getElementById('zc-search-modal');
-                if (searchModal) {
-                    searchModal.classList.add('is-open');
-                    const input = searchModal.querySelector('input');
-                    if (input) input.focus();
-                }
-            }
             if (e.key === 'Escape') {
-                legacyNodes('.zc-modal-backdrop.is-open').forEach(m => m.classList.remove('is-open'));
                 legacyNodes('.zc-mobile-drawer-backdrop.is-open').forEach(d => {
                     d.classList.remove('is-open');
                     d.setAttribute('aria-hidden', 'true');

@@ -1,0 +1,17 @@
+{
+  "version": "4.0.0-rc.2",
+  "php_linted": 75,
+  "pure_assertions": 94,
+  "integration_assertions": 40,
+  "foundation_assertions": 24,
+  "new_feature_assertions": 58,
+  "adapter_fixture_assertions": 24,
+  "keyboard_dialog_assertions": 9,
+  "responsive_combinations": 24,
+  "official_styling_smoke": "heading and button only",
+  "full_Skill3_compliance": false,
+  "full_WCAG22_AA": false,
+  "WPML_Polylang_real_plugin_tests": false,
+  "Elementor_Pro_tested_this_revision": false,
+  "critical_coverage_percent": null
+}

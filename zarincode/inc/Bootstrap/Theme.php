@@ -1,7 +1,7 @@
 <?php
 /** Theme presentation bootstrap and backwards-compatible public helper functions. */
 defined( 'ABSPATH' ) || exit;
-define( 'ZARINCODE_VERSION', '4.0.0-rc.1' );
+define( 'ZARINCODE_VERSION', '4.0.0-rc.2' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -81,7 +81,7 @@ function zarincode_builder_part( string $type ): string {
     if ( ! in_array( $type, [ 'header', 'footer' ], true ) || 'elementor_hf' !== zarincode_get_option( $type . '_source', 'elementor_hf' ) || ! class_exists( '\Elementor\Plugin' ) ) { return ''; }
     static $rendering = false;
     if ( $rendering ) { return ''; }
-    $ids = get_posts( [ 'post_type' => 'zc_hf_template', 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids', 'meta_query' => [ [ 'key' => '_zc_hf_type', 'value' => $type ], [ 'key' => '_zc_hf_active', 'value' => 'yes' ] ] ] );
+    $ids = get_posts( [ 'post_type' => 'zc_hf_template', 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids', 'suppress_filters'=>false, 'meta_query' => [ [ 'key' => '_zc_hf_type', 'value' => $type ], [ 'key' => '_zc_hf_active', 'value' => 'yes' ] ] ] );
     if ( ! $ids ) { return ''; }
     $rendering = true;
     try {
@@ -110,3 +110,5 @@ add_action('after_setup_theme',static function(){
 
 \Zarincode\Theme\Core\Settings_Security::boot();
 \Zarincode\Theme\Compatibility\Editor::boot();
+
+\Zarincode\Theme\Compatibility\Elementor_Styles::boot();

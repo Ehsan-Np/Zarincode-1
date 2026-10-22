@@ -1,0 +1,4 @@
+{"fixture":"none","assertions":6,"passed":true}
+{"fixture":"wpml","assertions":6,"passed":true}
+{"fixture":"polylang","assertions":6,"passed":true}
+{"fixture":"conflict","assertions":6,"passed":true}

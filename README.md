@@ -1,4 +1,4 @@
-> **Skill 3.0.0 — 4.0.0-rc.1:** independent companion-runtime architecture and scoped tests implemented. This is an evaluation candidate, **not an approved commercial final release**. [Installation, migration and open gates](docs/releases/4.0.0-rc.1-FA.md). Stable 3.7.5 ZIPs are not replaced.
+> **Skill 3.0.0 — 4.0.0-rc.2:** independent companion-runtime architecture and scoped tests implemented. This is an evaluation candidate, **not an approved commercial final release**. [Installation, migration and open gates](docs/releases/4.0.0-rc.2-FA.md). Stable 3.7.5 ZIPs are not replaced.
 
 > **۳٫۷٫۵:** کارت‌های تصویری محصول/خدمات، عرض دستی واکنش‌گرا و یک ورودی یکپارچهٔ تنظیمات/دمو. [جزئیات](RELEASE-3.7.5.md) · [آزمون‌ها](tests/RESULTS-3.7.5.md).
 

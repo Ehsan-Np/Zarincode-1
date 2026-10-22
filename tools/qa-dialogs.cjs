@@ -1,0 +1,15 @@
+const {chromium}=require('playwright');const fs=require('fs');
+(async()=>{const browser=await chromium.launch();const p=await browser.newPage({viewport:{width:1280,height:900}});const checks={};const ok=(name,pass)=>{checks[name]=pass;if(!pass)throw Error(name)};
+try{await p.goto(process.env.ZC_QA_URL+'/?page_id='+fs.readFileSync(process.env.ZC_QA_ROOT+'/block-id','utf8'),{waitUntil:'networkidle'});
+ const trigger=p.locator('[data-zc-modal-open="zc-consult-modal"]:visible').first();await trigger.focus();await trigger.click();
+ const modal=p.locator('#zc-consult-modal');ok('opens',await modal.getAttribute('aria-hidden')==='false');
+ ok('focus_inside',await p.evaluate(()=>document.querySelector('#zc-consult-modal').contains(document.activeElement)));
+ const state=()=>{const m=document.querySelector('#zc-consult-modal');const nodes=[...m.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')].filter(n=>!n.disabled&&n.tabIndex>=0&&n.getClientRects().length);return {m,nodes}};
+ await p.evaluate(()=>{const m=document.querySelector('#zc-consult-modal');const n=[...m.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')].filter(n=>!n.disabled&&n.tabIndex>=0&&n.getClientRects().length);n[n.length-1].focus()});await p.keyboard.press('Tab');
+ ok('tab_wraps_forward',await p.evaluate(()=>document.activeElement===document.querySelector('#zc-consult-modal button')));
+ await p.keyboard.press('Shift+Tab');ok('tab_wraps_backward',await p.evaluate(()=>{const m=document.querySelector('#zc-consult-modal');const n=[...m.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')].filter(n=>!n.disabled&&n.tabIndex>=0&&n.getClientRects().length);return document.activeElement===n[n.length-1]}));
+ ok('form_labels',await p.evaluate(()=>[...document.querySelectorAll('#zc-consult-modal input,#zc-consult-modal select,#zc-consult-modal textarea')].every(n=>n.labels&&n.labels.length)));
+ await p.keyboard.press('Escape');ok('escape_closes',await modal.getAttribute('aria-hidden')==='true');ok('focus_returns',await trigger.evaluate(n=>n===document.activeElement));
+ ok('inert_restored',await p.evaluate(()=>!document.querySelector('main').inert));await p.keyboard.press('Control+k');ok('keyboard_search',await p.locator('#zc-search-modal').getAttribute('aria-hidden')==='false');await p.keyboard.press('Escape');
+ fs.writeFileSync(process.env.ZC_QA_ROOT+'/dialogs.json',JSON.stringify({checks,assertions:Object.keys(checks).length,limitations:['Chromium keyboard checks only; not a full WCAG audit.']},null,2));console.log(JSON.stringify(checks));
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});

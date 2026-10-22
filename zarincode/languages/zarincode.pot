@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zarincode 4.0.0-rc.1\n"
+"Project-Id-Version: Zarincode 4.0.0-rc.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/zarincode\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-22T17:48:15+00:00\n"
+"POT-Creation-Date: 2026-10-22T18:03:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: zarincode\n"
@@ -76,14 +76,22 @@ msgid "Disabling a family preserves saved widget settings. Dependent families re
 msgstr ""
 
 #: inc/Redux/OptionsConfig.php:369
-msgid "Native Elementor widgets"
+msgid "Public content Dynamic Tags"
 msgstr ""
 
 #: inc/Redux/OptionsConfig.php:370
-msgid "Studio widgets (requires native widgets)"
+msgid "Theme styles for reviewed official Elementor families"
 msgstr ""
 
 #: inc/Redux/OptionsConfig.php:371
+msgid "Native Elementor widgets"
+msgstr ""
+
+#: inc/Redux/OptionsConfig.php:372
+msgid "Studio widgets (requires native widgets)"
+msgstr ""
+
+#: inc/Redux/OptionsConfig.php:373
 msgid "Professional widgets (requires native widgets)"
 msgstr ""
 
