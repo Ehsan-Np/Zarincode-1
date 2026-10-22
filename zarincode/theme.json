@@ -1,0 +1,12 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/theme.json",
+  "version":3,
+  "settings":{
+    "appearanceTools":true,
+    "layout":{"contentSize":"var(--zc-container-width, 1469px)","wideSize":"var(--zc-container-width, 1469px)"},
+    "color":{"defaultPalette":false,"palette":[{"slug":"sunshine","name":"Sunshine","color":"#FDD05B"},{"slug":"ink","name":"Ink","color":"#2A2C31"},{"slug":"paper","name":"Paper","color":"#FFFFFF"}]},
+    "typography":{"fluid":true,"fontFamilies":[{"slug":"vazirmatn","name":"Vazirmatn","fontFamily":"Vazirmatn, system-ui, sans-serif"}],"fontSizes":[{"slug":"small","name":"Small","size":"0.875rem"},{"slug":"body","name":"Body","size":"1rem"},{"slug":"large","name":"Large","size":"1.5rem"}]},
+    "spacing":{"units":["px","em","rem","%","vw","vh"]}
+  },
+  "styles":{"blocks":{"core/button":{"border":{"radius":"28px"},"color":{"background":"var:preset|color|sunshine","text":"var:preset|color|ink"}},"core/quote":{"border":{"color":"var:preset|color|sunshine","width":"0 0 0 4px","style":"solid"},"spacing":{"padding":"1rem"}}}}
+}

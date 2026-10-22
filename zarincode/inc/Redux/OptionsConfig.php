@@ -363,6 +363,14 @@ class OptionsConfig {
                     [ 'id' => 'custom_footer_js',         'type' => 'code',     'title' => 'کدهای جاوااسکریپت یا آنالیتیکس در فوتر (قبل از </body>)', 'default' => '' ],
                 ],
             ],
+            'feature_modules'=>[
+                'title'=>esc_html__('Optional widget modules','zarincode'),'icon'=>'dashicons-admin-plugins','desc'=>esc_html__('Disabling a family preserves saved widget settings. Dependent families require native widgets and Elementor.','zarincode'),
+                'fields'=>[
+                    ['id'=>'feature_native_widgets','type'=>'switch','title'=>esc_html__('Native Elementor widgets','zarincode'),'default'=>true],
+                    ['id'=>'feature_studio_widgets','type'=>'switch','title'=>esc_html__('Studio widgets (requires native widgets)','zarincode'),'default'=>true],
+                    ['id'=>'feature_professional_widgets','type'=>'switch','title'=>esc_html__('Professional widgets (requires native widgets)','zarincode'),'default'=>true],
+                ],
+            ],
         ];
     }
 
@@ -556,7 +564,7 @@ class OptionsConfig {
                 $raw_json = wp_unslash( $_POST['zarincode_import_json_raw'] );
                 $decoded  = json_decode( $raw_json, true );
                 if ( is_array( $decoded ) ) {
-                    $options = array_merge( $defaults, $decoded );
+                    $options = \Zarincode\Theme\Core\Settings_Security::sanitize(array_merge( $defaults, $decoded ), $saved);
                     update_option( $this->opt_name, $options );
                     $feedback = '📥 فایل پشتیبان تنظیمات JSON با موفقیت درون‌ریزی و اعمال شد!';
                 } else {
@@ -564,6 +572,7 @@ class OptionsConfig {
                 }
             } else {
                 $posted = isset( $_POST['zc_opt'] ) && is_array( $_POST['zc_opt'] ) ? wp_unslash( $_POST['zc_opt'] ) : [];
+                foreach($posted as $key=>$value)if(!is_scalar($value)&&null!==$value)$posted[$key]=$options[$key]??'';
                 $new_options = $options;
                 foreach ( $schema as $sec ) {
                     foreach ( $sec['fields'] as $field ) {
@@ -597,7 +606,7 @@ class OptionsConfig {
                     }
                 }
 
-                $options = $new_options;
+                $options = \Zarincode\Theme\Core\Settings_Security::sanitize($new_options, $saved);
                 update_option( $this->opt_name, $options );
                 $feedback = '✅ تمامی تغییرات شما در پنل تنظیمات پیشرفته قالب زرین کد با موفقیت ذخیره و در سایت اعمال شدند!';
             }
@@ -1022,7 +1031,7 @@ class OptionsConfig {
 
         $custom_css = zarincode_get_option( 'custom_css', '' );
         if ( ! empty( $custom_css ) ) {
-            echo '<style id="zarincode-user-custom-css">' . "\n" . $custom_css . "\n" . '</style>' . "\n";
+            echo '<style id="zarincode-user-custom-css">' . "\n" . \Zarincode\Theme\Core\Settings_Security::css((string)$custom_css) . "\n" . '</style>' . "\n";
         }
 
         $custom_head_js = zarincode_get_option( 'custom_head_js', '' );
@@ -1031,7 +1040,7 @@ class OptionsConfig {
         }
 
         // Schema.org JSON-LD Structured Data
-        if ( zarincode_get_option( 'enable_schema_markup', true ) ) {
+        if ( zarincode_get_option( 'enable_schema_markup', true ) && \Zarincode\Theme\Compatibility\SEO::theme_schema_allowed() ) {
             $schema_data = [
                 '@context'    => 'https://schema.org',
                 '@type'       => 'ProfessionalService',
@@ -1049,7 +1058,7 @@ class OptionsConfig {
                     zarincode_get_option( 'social_github', 'https://github.com/Ehsan-Np' ),
                 ] ) ),
             ];
-            echo '<script type="application/ld+json">' . wp_json_encode( $schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+            echo '<script type="application/ld+json">' . wp_json_encode( $schema_data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
         }
     }
 

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.7.5' );
+define( 'ZARINCODE_VERSION', '3.9.0-dev' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -92,7 +92,7 @@ function zarincode_get_option( string $key, $default = '' ) {
  * @return string
  */
 function zarincode_fa_digits( $input ): string {
-    if ( ! zarincode_get_option( 'persian_digits', true ) ) {
+    if ( ! is_rtl() || ! zarincode_get_option( 'persian_digits', true ) ) {
         return (string) $input;
     }
     $en = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
@@ -178,3 +178,6 @@ add_action('after_setup_theme',static function(){
 },30);
 
 \Zarincode\Theme\Core\Admin_Hub::boot();
+
+\Zarincode\Theme\Core\Settings_Security::boot();
+\Zarincode\Theme\Compatibility\Editor::boot();

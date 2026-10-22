@@ -30,6 +30,7 @@ class Elementor_Loader {
 
     private function __construct() {
 
+        add_action('update_option_zarincode_opt', [\Zarincode\Runtime260\Features\Manager::class,'invalidate'], 10, 2);
         add_action('admin_menu',static function(){add_submenu_page(null,'ساماندهی دمو','ساماندهی دمو','edit_theme_options','zarincode-demo-layout',[Demo_Composition::class,'page']);add_submenu_page(null,'تفکیک هیرو','تفکیک هیرو','edit_theme_options','zarincode-split-hero',[Hero_Layout::class,'page']);});
         add_action('admin_notices',[Icon_Compatibility::class,'notice']);
         add_action('elementor/editor/after_enqueue_scripts',[$this,'editor_assets']);
@@ -42,10 +43,10 @@ class Elementor_Loader {
     }
 
     public function refresh_generated_css(): void {
-        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.7.5') return;
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.9.0-dev') return;
         if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
-            update_option('zarincode_css_identity_release','3.7.5',false);
+            update_option('zarincode_css_identity_release','3.9.0-dev',false);
         }
     }
 
@@ -54,20 +55,20 @@ class Elementor_Loader {
         $base = strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( get_template_directory() ) . '/' ) === 0
             ? get_template_directory_uri() . '/inc/EmbeddedCore/Widgets/assets/'
             : plugin_dir_url( __FILE__ ) . 'assets/';
-        wp_register_style('zarincode-studio',$base.'studio.css',[],'3.7.5');
-        wp_register_script('zarincode-studio',$base.'studio.js',['elementor-frontend'],'3.7.5',true);
-        wp_register_style('zarincode-native',$base.'native.css',[],'3.7.5');
-        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.7.5',true);
-        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.7.5');
-        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.7.5',true);
-        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.7.5' );
-        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.7.5', true );
+        wp_register_style('zarincode-studio',$base.'studio.css',[],'3.9.0-dev');
+        wp_register_script('zarincode-studio',$base.'studio.js',['elementor-frontend'],'3.9.0-dev',true);
+        wp_register_style('zarincode-native',$base.'native.css',[],'3.9.0-dev');
+        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.9.0-dev',true);
+        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.9.0-dev');
+        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.9.0-dev',true);
+        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.9.0-dev' );
+        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.9.0-dev', true );
     }
 
     public function editor_assets():void {
         $base=strpos(wp_normalize_path(__DIR__),wp_normalize_path(get_template_directory()).'/')===0?get_template_directory_uri().'/inc/EmbeddedCore/Widgets/assets/':plugin_dir_url(__FILE__).'assets/';
-        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.7.5',true);
-        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.7.5');
+        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.9.0-dev',true);
+        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.9.0-dev');
     }
 
     public function register_category( $elements_manager ): void {
@@ -117,6 +118,8 @@ class Elementor_Loader {
         ];
 
         foreach ( $widget_classes as $w_class ) {
+            $group = is_subclass_of($w_class, Studio_Widget::class) ? 'studio_widgets' : (is_subclass_of($w_class, Professional_Widget::class) ? 'professional_widgets' : 'native_widgets');
+            if(!\Zarincode\Runtime260\Features\Manager::enabled($group))continue;
             if ( class_exists( $w_class ) ) {
                 $widgets_manager->register( new $w_class() );
             }

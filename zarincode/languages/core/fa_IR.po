@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZarinCode 3.9.0-dev foundations\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Plugin Name of the plugin
+#: zarincode-core.php
+msgid "Zarincode Core (هسته و ویجت‌های المنتوری قالب زرین کد)"
+msgstr "Zarincode Core (هسته و ویجت‌های المنتوری قالب زرین کد)"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: zarincode-core.php
+msgid "https://zarincode.com"
+msgstr "https://zarincode.com"
+
+#. Description of the plugin
+#: zarincode-core.php
+msgid "افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
+msgstr "افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)."
+
+#. Author of the plugin
+#: zarincode-core.php
+msgid "Ehsan NaderiPanah (احسان نادری پناه)"
+msgstr "Ehsan NaderiPanah (احسان نادری پناه)"
+
+#: includes/Widgets/Icon_Compatibility.php:107
+msgid "فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."
+msgstr "فایل داده آیکون Elementor موجود یا معتبر نیست. Elementor را از منبع رسمی مجدداً نصب و کش آن را بازسازی کنید. آیکون‌های معیوب زرین کد تا رفع فایل نمایش داده نمی‌شوند؛ فایل داخلی Elementor تغییر نکرده است."

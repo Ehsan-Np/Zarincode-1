@@ -73,3 +73,6 @@ details:not([open])>:not(summary){display:none}
 .zc-single-product-main[data-zc-product-narrow] .zc-product-reference-actions{margin-inline:0}
 .zc-single-product-main[data-zc-product-narrow] .zc-product-reference-info .zc-prod-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 .zc-single-product-main[data-zc-product-narrow] .zc-prod-tab-pane>div[style*="minmax"]{grid-template-columns:minmax(0,1fr)!important}
+
+.zc-skip-link{position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:100000;background:#fff;color:#111;padding:12px 18px;border:2px solid #111;border-radius:8px;transform:translateY(-160%)}.zc-skip-link:focus{transform:none;outline:3px solid #111;outline-offset:3px}
+html[dir=ltr] body{direction:ltr;text-align:left}html[dir=ltr] :is(.zc-card-cover-title,.zc-breadcrumb-bar){text-align:start}

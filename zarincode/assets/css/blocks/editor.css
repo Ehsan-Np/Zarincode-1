@@ -1,0 +1,5 @@
+.editor-styles-wrapper{font-family:Vazirmatn,system-ui,sans-serif;color:#2a2c31;line-height:1.9}
+.editor-styles-wrapper .wp-block{max-width:1469px}
+.editor-styles-wrapper :where(.wp-block-image img,.wp-block-cover){border-radius:28px}
+.editor-styles-wrapper :where(.wp-block-table td,.wp-block-table th){padding:.7em;border:1px solid #d9d9d9}
+.editor-styles-wrapper :where(pre,code){direction:ltr;text-align:start}

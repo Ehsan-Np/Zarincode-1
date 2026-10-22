@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZarinCode 3.9.0-dev foundations\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Zarincode"
+msgstr "Zarincode"
+
+#. Theme URI of the theme
+#. Author URI of the theme
+#: style.css
+msgid "https://zarincode.com"
+msgstr "https://zarincode.com"
+
+#. Description of the theme
+#: style.css
+msgid "قالب فوق حرفه‌ای، مدرن و المنتور بیس «زرین کد (Zarincode)» ویژه آژانس‌های طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و فروشگاه محصولات دیجیتال (قالب، افزونه و سورس‌کد آماده). طراحی شده با تلفیق امکانات قالب Webinex و متد طراحی و رنگ‌بندی زرد سانشاین قالب Crextio، مجهز به پنل تنظیمات Redux Framework، ویجت‌های اختصاصی المنتور، پشتیبانی کامل از ووکامرس و استانداردهای مارکت‌های ژاکت (Zhaket) و تم‌فارست (ThemeForest)."
+msgstr "قالب فوق حرفه‌ای، مدرن و المنتور بیس «زرین کد (Zarincode)» ویژه آژانس‌های طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و فروشگاه محصولات دیجیتال (قالب، افزونه و سورس‌کد آماده). طراحی شده با تلفیق امکانات قالب Webinex و متد طراحی و رنگ‌بندی زرد سانشاین قالب Crextio، مجهز به پنل تنظیمات Redux Framework، ویجت‌های اختصاصی المنتور، پشتیبانی کامل از ووکامرس و استانداردهای مارکت‌های ژاکت (Zhaket) و تم‌فارست (ThemeForest)."
+
+#. Author of the theme
+#: style.css
+msgid "Ehsan NaderiPanah"
+msgstr "Ehsan NaderiPanah"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "پرش به محتوای اصلی"
+
+#: inc/Core/Setup.php:100
+msgid "منوی اصلی هدر (Pill Navigation)"
+msgstr "منوی اصلی هدر (Pill Navigation)"
+
+#: inc/Core/Setup.php:101
+msgid "منوی قوانین و مقررات (فوتر و سایدبار حقوقی)"
+msgstr "منوی قوانین و مقررات (فوتر و سایدبار حقوقی)"
+
+#: inc/Core/Setup.php:102
+msgid "دسترسی سریع فوتر"
+msgstr "دسترسی سریع فوتر"
+
+#: inc/Core/Setup.php:115
+msgid "سایدبار وبلاگ زرین کد"
+msgstr "سایدبار وبلاگ زرین کد"
+
+#: inc/Core/Setup.php:117
+msgid "ابزارک‌های ستون کناری وبلاگ"
+msgstr "ابزارک‌های ستون کناری وبلاگ"
+
+#: inc/Core/Setup.php:127
+msgid "سایدبار فروشگاه محصولات دیجیتال"
+msgstr "سایدبار فروشگاه محصولات دیجیتال"
+
+#: inc/Core/Setup.php:129
+msgid "فیلترها و ابزارک‌های فروشگاه قالب، افزونه و سورس‌کد"
+msgstr "فیلترها و ابزارک‌های فروشگاه قالب، افزونه و سورس‌کد"
+
+#: inc/Redux/OptionsConfig.php:367
+msgid "Optional widget modules"
+msgstr "ماژول‌های اختیاری ویجت‌ها"
+
+#: inc/Redux/OptionsConfig.php:367
+msgid "Disabling a family preserves saved widget settings. Dependent families require native widgets and Elementor."
+msgstr "با غیرفعال‌کردن هر گروه، تنظیمات ذخیره‌شدهٔ ویجت‌ها حفظ می‌شود. گروه‌های وابسته به ویجت‌های بومی و المنتور نیاز دارند."
+
+#: inc/Redux/OptionsConfig.php:369
+msgid "Native Elementor widgets"
+msgstr "ویجت‌های بومی المنتور"
+
+#: inc/Redux/OptionsConfig.php:370
+msgid "Studio widgets (requires native widgets)"
+msgstr "ویجت‌های استودیو (نیازمند ویجت‌های بومی)"
+
+#: inc/Redux/OptionsConfig.php:371
+msgid "Professional widgets (requires native widgets)"
+msgstr "ویجت‌های حرفه‌ای (نیازمند ویجت‌های بومی)"
+
+#: page.php:37
+msgid "صفحات:"
+msgstr "صفحات:"
+
+#: patterns/agency-intro.php
+msgctxt "Pattern title"
+msgid "Agency introduction"
+msgstr "معرفی آژانس"
+
+#: patterns/agency-intro.php
+msgctxt "Pattern description"
+msgid "Accessible introductory section using native WordPress blocks."
+msgstr "بخش معرفی دسترس‌پذیر با بلوک‌های بومی وردپرس."
+
+#: patterns/agency-intro.php:11
+msgid "Build your next digital experience"
+msgstr "تجربهٔ دیجیتال بعدی خود را بسازید"
+
+#: patterns/agency-intro.php:13
+msgid "Introduce your services and explain how customers can work with your team."
+msgstr "خدمات خود را معرفی کنید و روش همکاری مشتریان با تیم خود را توضیح دهید."
+
+#. Template Name of the theme
+msgid "Zarincode Elementor Fullwidth (تمامی صفحات المنتوری زرین کد)"
+msgstr "Zarincode Elementor Fullwidth (تمامی صفحات المنتوری زرین کد)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Sunshine"
+msgstr "زرد آفتابی"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Ink"
+msgstr "مرکبی"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Paper"
+msgstr "کاغذی"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Vazirmatn"
+msgstr "وزیرمتن"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "کوچک"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Body"
+msgstr "متن"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "بزرگ"

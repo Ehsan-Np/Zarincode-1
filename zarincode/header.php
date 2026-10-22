@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$zc_custom_header = zarincode_builder_part( 'header' );
+$zc_custom_header = '';
 $phone            = zarincode_get_option( 'contact_phone', '09024561001' );
 $dev_name         = zarincode_get_option( 'developer_name', 'احسان نادری پناه' );
 $brand_name       = zarincode_get_option( 'brand_name', 'زریــن کـد' );
@@ -43,7 +43,9 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<?php if ( $zc_custom_header !== '' ) : ?>
+<a class="zc-skip-link" href="#primary"><?php echo esc_html__( 'Skip to content', 'zarincode' ); ?></a>
+<?php if ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('header') ) : ?>
+<?php elseif ( ( $zc_custom_header = zarincode_builder_part( 'header' ) ) !== '' ) : ?>
 <header role="banner"><?php echo $zc_custom_header; ?></header>
 <?php else : ?>
 

@@ -1,0 +1,1282 @@
+{
+  "version": "3.9.0-dev",
+  "release_gate": "blocked",
+  "files": [
+    {
+      "path": "zarincode/404.php",
+      "sha256": "59b5e7979e37b6d054ea9dfab0a9427718d2452ab5ea5bb1b067f1070a61d476"
+    },
+    {
+      "path": "zarincode/README.md",
+      "sha256": "fee81892ba851c055490bb1eeee620907821a5848b7e4e7baf9b23d9cecc9f66"
+    },
+    {
+      "path": "zarincode/archive-zc_project.php",
+      "sha256": "2068abf037d9ac54cc4d898a699905ea9bf32ce44c6809d7549ee91ff35c2ec6"
+    },
+    {
+      "path": "zarincode/archive-zc_service.php",
+      "sha256": "433fe8982abcbb33854002786f1afb9150a09ad45354ad3cc957b939bc6b861b"
+    },
+    {
+      "path": "zarincode/assets/css/account.css",
+      "sha256": "c249bb6c5ba211708d8e36bfad57d4d0db8113c7edf446351342a70397800cbe"
+    },
+    {
+      "path": "zarincode/assets/css/blocks/content.css",
+      "sha256": "56697e2b23345e81d44d6526292f177f8174ed28421fdc6e34af8896c8ed03b1"
+    },
+    {
+      "path": "zarincode/assets/css/blocks/editor.css",
+      "sha256": "601e80482720092628dde20ed363af02f453c368ce32d90282c0adf3868bb7bc"
+    },
+    {
+      "path": "zarincode/assets/css/product-reference.css",
+      "sha256": "409cd9309f40aea98196fac141afe2ede949a66f168deac33502200ff951eadb"
+    },
+    {
+      "path": "zarincode/assets/css/responsive.css",
+      "sha256": "e481bac5ce45c308d3823364dc34b7b5e453ba3fb9fabc1a16bed97b81eeabc0"
+    },
+    {
+      "path": "zarincode/assets/css/single-experience.css",
+      "sha256": "4604c31c250ac36c1412618abdfc65498bcb7e7ce5a4295a63ddc08ffe0ef873"
+    },
+    {
+      "path": "zarincode/assets/css/vazirmatn.css",
+      "sha256": "36925f5f9671b822c51f47eca635bf221cda449c46bca343512f88857ed4f755"
+    },
+    {
+      "path": "zarincode/assets/css/zarincode-main.css",
+      "sha256": "2fa7d74e1bab604abdcfd05b1846e44d252e77df3784082123680803fb68a8ad"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/all.min.css",
+      "sha256": "6bbba1d003e25eb103dbd53d310af4e6517da1cad3171e04f6d8b232845cb2c9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/brands.min.css",
+      "sha256": "50999b5489245c26aff50f56421dccd8fb7b8630fdfdf4957048053cdec2ce60"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/chisel-regular.min.css",
+      "sha256": "2c7b7cb2738c566627cb37dc775dd672c19dc1df37d60160c18774d76b52e7f2"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/duotone-light.min.css",
+      "sha256": "d5df19e275837c3273680b7bd4b61316f056a2cc1ffac487b27874fb14a9bee9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/duotone-regular.min.css",
+      "sha256": "3d92b88b1c9f7ee0c19987313a284531d1ec4e4894dc11012badfba94906d5e9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/duotone-thin.min.css",
+      "sha256": "5663b93720248f407f734795b493939ec683891dd65e96e94146a97c0a905cdb"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/duotone.min.css",
+      "sha256": "422a9dabd284a0392d1664162c77d28f900c385f214be088b9dc0ee18282211b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/etch-solid.min.css",
+      "sha256": "dc380c3cb25f6388e67353a6fd9fbce18d803f53ed2d4eddbed616b98670d496"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/fontawesome.min.css",
+      "sha256": "2f3ee9a2fd492776d57b4d9a84a3065b753bdeec7542765a1a22aad9337fa4dc"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/graphite-thin.min.css",
+      "sha256": "f3ea622a58162ade3782f699ba36037c532bcfd7a57204fe93fecff8b72c12db"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/jelly-duo-regular.min.css",
+      "sha256": "c572e007ed2c695420d3bb7cec82084634e21b8abd8019a16c2e2d09b681378a"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/jelly-fill-regular.min.css",
+      "sha256": "d2a83aac78d1fdec435ac835f9718444ddbbee65cb96ccbcaa29fbba03918abe"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/jelly-regular.min.css",
+      "sha256": "2052854e7a9be978319c12d773fd1f1fe892d3ee52500ee37074f8900e29371b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/light.min.css",
+      "sha256": "75e0dd95fb9a3738017994cd93c47fb69e8e01fd785970b19467be9abebeb0e8"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/mosaic-solid.min.css",
+      "sha256": "93734173e2c1770dbfadc399f7df15a3d03a8c063077cdb4977ddbfd6cc91fe1"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/notdog-duo-solid.min.css",
+      "sha256": "1bce12c94b73a5f26ea72cd326b6ab18c8d79bb61ee48ca8630bc033a600fb84"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/notdog-solid.min.css",
+      "sha256": "c175c218bfcb71b902dc969ddc82ff306dfd0963f93afe5de822bfe4bbdd6b1a"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/pixel-regular.min.css",
+      "sha256": "15d6d3c795d0fb936109cb4430dcc188de02059ae5d0afe0e8838cfff003adfa"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/regular.min.css",
+      "sha256": "a14cbbad545eaa7d10dd28647e50a1dd2b26ba34493787794726642f3748aec1"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-duotone-light.min.css",
+      "sha256": "b4419bcdd7d74bc63d2ad2bf99bfbc899fec31be45ea0e6859ef45270f642e82"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-duotone-regular.min.css",
+      "sha256": "2d4f69f9e4717c5adb2556438ad06d00589ac717884d1cd8e83ab0ff8b1f5592"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-duotone-solid.min.css",
+      "sha256": "fbdf07b39ccbe0b7f274c35fe06757aafcc24d0020d1e6a573e7bc617bb80af0"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-duotone-thin.min.css",
+      "sha256": "352a9715fe5a600970ab78fb77532a2b7db346efb8aee245713ed07ea0b6a6a8"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-light.min.css",
+      "sha256": "c0cda4859bc55b695d55ef1987495df35bfd84e4b43b210c5b133cdac2321496"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-regular.min.css",
+      "sha256": "e8d9e56219fb3204e83ac7a7706514e6ca30e2bacb92e5237635fab6e59d5799"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-solid.min.css",
+      "sha256": "965a40eb9ba312c2da142f7653e414734a663e0acc1afd260039da0605dcd26e"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/sharp-thin.min.css",
+      "sha256": "924ea8c1d639fd125e3dad5731225a8d213be624411c1abe93932f6e26a15456"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/slab-duo-regular.min.css",
+      "sha256": "9ff7f6919bc3ca4d761bee125174b07094d91a38c8ab7c25c57640b159335429"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/slab-press-duo-regular.min.css",
+      "sha256": "e496389b2259736272e43583395f40a74eb8d54fa9a0405b934295e28f8b17c1"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/slab-press-regular.min.css",
+      "sha256": "36eb66d0f51a17014ded3f0e8939a228156f3620f8d125ad0e785138a660ded0"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/slab-regular.min.css",
+      "sha256": "709ed9518ef933b2d70e0d4f98e6fdec7339f80501223e1f84353174f3ada00f"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/solid.min.css",
+      "sha256": "a6d9bf4224180c149d74353df7bc6e9b6e6d308ff839d20c8a4a20e2f17469c8"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/svg-with-js.min.css",
+      "sha256": "edbd44080813113dcaef8584b16e6e7a29c1e906de35af4b4c6fa951b9d7a35b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/svg.min.css",
+      "sha256": "da293d1738b6ddb75f17a2108ebc6f92be105fb11f5ae75861e4f97f17ee0ce1"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/thin.min.css",
+      "sha256": "35b29d60eb3f9800fe192254b50cc54f2054b503bd6cdec701e48761d64ceb84"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/thumbprint-light.min.css",
+      "sha256": "ab920a9dbec437387bdc79297bf651c40d2b2fb86fbd1f48f134499087bff7ff"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/utility-duo-semibold.min.css",
+      "sha256": "d54307ada6d02f667144e748ce0fcafd2a809308953d5d2f7ace36ea484b6260"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/utility-fill-semibold.min.css",
+      "sha256": "0d585195148e076cc7a06abe3330e00f81ca2781d3f0ef1642cf00490aa7315b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/utility-semibold.min.css",
+      "sha256": "c11e719c77d02b5310ca4f86ab74968faddbb0767757f68a84efb4c187ce1404"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/v4-font-face.min.css",
+      "sha256": "efb8191adb5898a44813ba7b657eee103e68a3a669ac60d2a23e5d438aa9a7ef"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/v4-shims.min.css",
+      "sha256": "d591a084b0557db723b0166435f3474d1f6f0d24b9ba02a7feaa257ed8462252"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/v5-font-face.min.css",
+      "sha256": "741d512a0e8ebbb014871bf6aa732775cc06b70b738feb6131ad5b8039901d8a"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/vellum-solid.min.css",
+      "sha256": "cc73046819a82afbadfb781df790c757ad7952d98c4679ac7ed727a1327adeee"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/css/whiteboard-semibold.min.css",
+      "sha256": "5cca3e5e663e564aa69d10874fdf718466107d4ab658e838ad9f905ac477230b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-brands-400.woff2",
+      "sha256": "57f8508ef396d096c48c6ad56257e0fcc510a5560bb220c13339be93543ff868"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-chisel-regular-400.woff2",
+      "sha256": "9a80682b57f5dfc0c7e79f33ef3c4a07795927276c0788c5b3bd5cb2985c51b9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-duotone-900.woff2",
+      "sha256": "f7ca5ea4170a9146d28718bd5413d2150b9fb7d60698fbce16570ff1b43f2f06"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-duotone-light-300.woff2",
+      "sha256": "381a50c5ead90d36879592553bd0d3ef294b7cef90c5d5b3a2dd86c4e66c898d"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-duotone-regular-400.woff2",
+      "sha256": "2b41641ca6903f3a1b1b56834e385d9233b34082e8d35a24e1eb5a2151c0d00a"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-duotone-thin-100.woff2",
+      "sha256": "606a7eb0988209d9f18b78acda8185f92f04e8be567ef641b59b1aa75096211d"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-etch-solid-900.woff2",
+      "sha256": "7e408bc7cf0f624eafdef6cd3f02b0c1544a2f9849b7e0fe570e233c74514827"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-graphite-thin-100.woff2",
+      "sha256": "c4197658d1e7f017b9573952b7d7764024d0bd4a17ac4755dc7cd47f0451abd2"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-jelly-duo-regular-400.woff2",
+      "sha256": "efc136bca41d4459e36fbd7fe2f3106dd391365624e0beda7c66fbaa7cb2f3db"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-jelly-fill-regular-400.woff2",
+      "sha256": "1641b24844c8ee5fb58aef8e55f7ab478c4c73cefe20cd84c1ca2d36190aded9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-jelly-regular-400.woff2",
+      "sha256": "b75febcd8ac4cfed30d1ffd21485e0cab4e1cbc9d7a5d1cc136f4eff0f2bfaf9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-light-300.woff2",
+      "sha256": "4bf8e8608d8ddb833c06b636235b13f3d6926de361fbf590f369405fb06c4707"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-mosaic-solid-900.woff2",
+      "sha256": "6a598c6a0796f6c44a84092e8efd6051463eda8cc6e70f6857de005dbdb74e6b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-notdog-duo-solid-900.woff2",
+      "sha256": "61a511b6ea83b5c65f6a92323e1755e16fb3ad654930c286207d5a87ffca87a1"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-notdog-solid-900.woff2",
+      "sha256": "d02da26bc69a4624877f4399e1bb00c81094a9340832e518040425d01a407810"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-pixel-regular-400.woff2",
+      "sha256": "624c82fd5d5ad32e88fbd2cd0519be13138a66959b5490081c875a030166c081"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-regular-400.woff2",
+      "sha256": "74f9b47004f302d62d54a87fa2a7144327890d9c81ed3d058304f5419e0c4c6f"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-duotone-light-300.woff2",
+      "sha256": "adba0a351b5c8da4fb3a40d3e3b06b1382c8afe45cc1fede2d8aa123efa64537"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-duotone-regular-400.woff2",
+      "sha256": "e90ad1115fc8051052228c4d2bfe5c477b8017228533e744e1c7f27e7237d365"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-duotone-solid-900.woff2",
+      "sha256": "de666b45006c4872a86230ac1282bcddad30228f64a6ca39ddb9c343a5f532b2"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-duotone-thin-100.woff2",
+      "sha256": "d5df3abeeb4143712aa5289ea814faa472402623d306591d11295a3191292478"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-light-300.woff2",
+      "sha256": "faba94920798811a0674e6dc3450f0d38780f3a05bad9276fbdb8865130babdd"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-regular-400.woff2",
+      "sha256": "4e86c95e5dd2581ebb8366975a0b2af8f94eeee30f0f0255adf48c7198101cc8"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-solid-900.woff2",
+      "sha256": "54a393cc3d53fd206da526bb16ced042c30bd2e47ea9ad5dc298b06d51aac351"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-sharp-thin-100.woff2",
+      "sha256": "eedc18c5dae57a8d3e63f3e464daef6064573a466c20fc7ff4a9ad1217fb6ec4"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-slab-duo-regular-400.woff2",
+      "sha256": "48e51144802c8036a6b24fec062a648d3434a5419d41e7877cb7b217bd8e3734"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-slab-press-duo-regular-400.woff2",
+      "sha256": "8bdb05987caf91d3c87b6fe76220bd31518050ce8bcfea479aacda9175f30ff7"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-slab-press-regular-400.woff2",
+      "sha256": "a429261989759a06dafa8945373f4d45d771d258f592ba0b61658b3c580f7c1e"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-slab-regular-400.woff2",
+      "sha256": "1b05b23932b6030259eff369884d306696befa2e41a3ffe464aa6554b8d10138"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-solid-900.woff2",
+      "sha256": "eaaf4a8d23f978f710ae61585a5644e4c94237a239d5d91a8e5b9486f90942d5"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-thin-100.woff2",
+      "sha256": "7b66032765d0bd962cd4deff5488c9088290e809dceb98a3442b54826223ebf9"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-thumbprint-light-300.woff2",
+      "sha256": "02aad29f65420e31bf2ae0777d98800981307d9838a10b0f4998f52c6d6ae21f"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-utility-duo-semibold-600.woff2",
+      "sha256": "605dfdbf2f719b6bce9315924c7aa6cdb3df34e86db4eec4ac7085a16279f3ec"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-utility-fill-semibold-600.woff2",
+      "sha256": "b3eee212ab8dbbc605dd6b6c88a5dcf24352a9a27a290cceca0f9dda2661dc2d"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-utility-semibold-600.woff2",
+      "sha256": "04212e81c876bb440ee20973e194319ca3820ff8557d31cba6bc4fc66809330f"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-v4compatibility.woff2",
+      "sha256": "8284f4893a416eb14806f0c5a1e90fe54b540864e65126969c91706fc2ccaa3b"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-vellum-solid-900.woff2",
+      "sha256": "20fafaf86274126e9423623f4ef8d2d28584051cf1fc8f0d110bb24f7859edf6"
+    },
+    {
+      "path": "zarincode/assets/fontawesome/webfonts/fa-whiteboard-semibold-600.woff2",
+      "sha256": "1e2b49f89feff7c2bd7cebc779431bed8a0547ffa65a92c6c1602ec973da17d5"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-Black.woff2",
+      "sha256": "e65a05523e6c0a434265913805746ebe6ed48af843e6126a936d06f69d7d47ad"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-Bold.woff2",
+      "sha256": "836fae7d42d83faa249bc00e0099592be98a1fa260d22d82f269b6091e585627"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-ExtraBold.woff2",
+      "sha256": "cd67558bbca0ad319b89e3b2edb8a914f87f864951d7a9d24e1404cbf3b45b02"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-Light.woff2",
+      "sha256": "a3aa104f9a256734ca6769e017b4a2697c3036221e13758e0995a0cbeea969c4"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-Medium.woff2",
+      "sha256": "3333e31188a2b628db8780ca22fd5aad85bc083ccee9beb8d4d52db18cb98d48"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-Regular.woff2",
+      "sha256": "e382101336c6eb32cfb31381c027d02d2e0354bad08f6a395d4088beb3db3d91"
+    },
+    {
+      "path": "zarincode/assets/fonts/vazirmatn/Vazirmatn-SemiBold.woff2",
+      "sha256": "6a39a3c25eb18503cad590527b95bb5d4062b889a7ebbd3f01b0488d239e0499"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/LICENSE.txt",
+      "sha256": "e7422416994b5f9cda138d3893a4b8932e3ccff92fd1aaf4673011b0da5c9ea9"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/bale.svg",
+      "sha256": "d213397267a108a56ac73252f9e4716b86119664441c00b90169a685491d0cc0"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/eita.svg",
+      "sha256": "83d50623f85cebc574fe69ed7c3593d0b72a071dba7b68e6411813b4e71350b3"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/gap.svg",
+      "sha256": "a3f750c18118292faa4f7d54aa34141402e7667147dc2fe7c6378ea307352353"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/i-gap.svg",
+      "sha256": "82130cd18ae3f815135a3f530012d484f7983053118eaa1bb80330b24ef8a61f"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/rubika.svg",
+      "sha256": "429bd6944608934d85546a0588b5e1b937ed712f2622d707e8d434ce6b1d449b"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/shad.svg",
+      "sha256": "dbcbffd6329e537b82adc38338a462fda088f4ca5b05cd1b0676254d3a07591e"
+    },
+    {
+      "path": "zarincode/assets/icons/persian/soroush.svg",
+      "sha256": "1e39f35dc2903df5d9260a0b9d82e5ccc1856f527a66adb9c6766b80535d3e89"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-1.png",
+      "sha256": "d552321dade3039c47489ebce2d48e4f0026551cee9c8da62e5fdca6e4ef565d"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-2.png",
+      "sha256": "8e1ef81418b7af0a327dfe3ff40d7fe013fbf2d622b9d1bb41cdb511a9c939a3"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-3.png",
+      "sha256": "7411088bb5bdee0b7ad9fbe6413d74ba58b884134a5d847e81573f9b8eeb8a67"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-4.png",
+      "sha256": "dfe8b66dd55f344b2f2db42b03180dd758a6912ee29a0c4d891758bd811122bf"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-5.png",
+      "sha256": "e39e8af2ef9eb1592bb1548a819cf5338aaf587108a9781b5c52d4a931678aed"
+    },
+    {
+      "path": "zarincode/assets/images/demo-client-6.png",
+      "sha256": "d6c25bd4a3695ba631a96bd8c602f4c5eac69a251b805d0376b2f1069d30fe24"
+    },
+    {
+      "path": "zarincode/assets/images/demo-customer-avatar.jpg",
+      "sha256": "678bf4106c529afd3b872f1f5731813e03039c3cd4fa9a7c544135b7eac3c71e"
+    },
+    {
+      "path": "zarincode/assets/images/demo-post-cover.jpg",
+      "sha256": "e76369869166acdcae8d70808a93ba607de219bf88f68b598bb59e3fef491da8"
+    },
+    {
+      "path": "zarincode/assets/images/demo-product-cover.jpg",
+      "sha256": "dd0c9f82b610d542214f32ce28f8baeffd8ffd7b2a103fba4278adc4a65cf931"
+    },
+    {
+      "path": "zarincode/assets/images/demo-project-cover.jpg",
+      "sha256": "45368f62074d3ad52638b1033764413ee719078e57ae17aeb337eb22ca10dee0"
+    },
+    {
+      "path": "zarincode/assets/images/demo-service-cover.jpg",
+      "sha256": "abaaa9373ca808a981b41218af68a7435529a55acff226de41ac3c48b2c59ad3"
+    },
+    {
+      "path": "zarincode/assets/images/ehsan-about-founder.jpg",
+      "sha256": "f019a18ca304279dd911cf8a964252b222544d85fa6b10406e906cc279ff15ce"
+    },
+    {
+      "path": "zarincode/assets/images/ehsan-contact-consultation.jpg",
+      "sha256": "fc783ef6e0e4864641c8921e317ba8833bfebfe71a5ae3dcedcb9e18457ad96c"
+    },
+    {
+      "path": "zarincode/assets/images/ehsan-hero-executive.jpg",
+      "sha256": "85b170bf7f72b8dd11c38297a0796c5c7e1b6c4fc2889440b343c5034200ff32"
+    },
+    {
+      "path": "zarincode/assets/images/ehsan-portrait.png",
+      "sha256": "e0d333cb32e20c7d3c0225f89b6e42bf194c547e4cd37c85e947c098124341df"
+    },
+    {
+      "path": "zarincode/assets/images/zarincode-luxury-office.jpg",
+      "sha256": "959b9dfeaca29d7748ba8a17b47e13335312450986570313667c265c05eb847b"
+    },
+    {
+      "path": "zarincode/assets/js/policy-manager.js",
+      "sha256": "fbc488aaf5237203036356e44c3075cb52b87d3f77f65b275826698857906f47"
+    },
+    {
+      "path": "zarincode/assets/js/single-experience.js",
+      "sha256": "5da82bf1551f57c5ebe00e0953c95bd31ce1dd98dc4d0a123f5b80624c7d8ee5"
+    },
+    {
+      "path": "zarincode/assets/js/social-manager.js",
+      "sha256": "a132ea2beb6212cf5fbb90f468276368285fdd9a02199bb20f2c3ca70f237297"
+    },
+    {
+      "path": "zarincode/assets/js/zarincode-main.js",
+      "sha256": "ccf509c6be0da9a2c13e79504f493fca6c375e17ccca1dc7671bdbd2ae21d719"
+    },
+    {
+      "path": "zarincode/comments-product.php",
+      "sha256": "cc2ddb59818b66a45c3e90fa3afcaec070969114b8fb6489482130191f423c4f"
+    },
+    {
+      "path": "zarincode/comments.php",
+      "sha256": "a55f252546f0b1eb1f1fb9a9c975293648269b44e6f18fda86a6eaa767d6acbe"
+    },
+    {
+      "path": "zarincode/demo-data/zarincode-demo-content.xml",
+      "sha256": "d25303385eff425fd811ba99eb4b0aed2db5cfb820d9e90033e0a2877478b541"
+    },
+    {
+      "path": "zarincode/demo-data/zarincode-professional-kit.json",
+      "sha256": "9e6acc0b59a86b2ad56a3504faa8e4d88057a8436f86dbbe0ee75ae8c8451678"
+    },
+    {
+      "path": "zarincode/demo-data/zarincode-redux-options.json",
+      "sha256": "948528d35a29e457cceaa871bb377c92095233736f3ce02861f7f259da015c5c"
+    },
+    {
+      "path": "zarincode/footer.php",
+      "sha256": "bddd9027011a962242e4c89fb34924703a885adac838b145b5896382c8916159"
+    },
+    {
+      "path": "zarincode/front-page.php",
+      "sha256": "b84fb88aca9f4ca6ad0a499c6174f6b66a27d005b90a85918f20e8d42947e58d"
+    },
+    {
+      "path": "zarincode/functions.php",
+      "sha256": "624caa0fc25a23406c031dac55c9769b77113f7a7150766444be5cde107033ed"
+    },
+    {
+      "path": "zarincode/header.php",
+      "sha256": "5ca1b5c0f6790c631181c13b3fed2ca93adbf3a634e22ff086b1bf0a84f50ef0"
+    },
+    {
+      "path": "zarincode/inc/Compatibility/Editor.php",
+      "sha256": "86ffef5e814748cd9e198d22614701e3333863b99b554e071a301c5e71f69bb5"
+    },
+    {
+      "path": "zarincode/inc/Compatibility/SEO.php",
+      "sha256": "e9257ba91c2342541e752edd503bf5fe24ffe7369e91f92f13f1a3dc18bdb05b"
+    },
+    {
+      "path": "zarincode/inc/Core/Account.php",
+      "sha256": "765a6a1e2397156c0798e1e2ba96d624986945feb07320471fb6b3a2ab8d5f4e"
+    },
+    {
+      "path": "zarincode/inc/Core/Admin_Hub.php",
+      "sha256": "55d3d924e5e19ec0b772f7733dd68cfc4cc09a9113be7c08505d061aeab11069"
+    },
+    {
+      "path": "zarincode/inc/Core/Article_Layout.php",
+      "sha256": "648922df6c0d5db5c52cf7a9ddeb4d8e77765c0fd983a3371d5df8208adfe097"
+    },
+    {
+      "path": "zarincode/inc/Core/Article_Ratings.php",
+      "sha256": "c45b6db4e3674ea0cee49c18f17e52b3990f8b3b56875a9ec271614e0aba7abf"
+    },
+    {
+      "path": "zarincode/inc/Core/Article_Toc.php",
+      "sha256": "375b7ae1642946109dc7b252651905df60c2ab827f95a2babfb4872ce754767c"
+    },
+    {
+      "path": "zarincode/inc/Core/Assets.php",
+      "sha256": "c70a0b7e19e71ff93366a73b60b253a4f81ffab07b47d90e9ccf06f65e3a381e"
+    },
+    {
+      "path": "zarincode/inc/Core/Discussion.php",
+      "sha256": "fcec9983e838f1befb3fcdb24d849a02df5511cea5d4dfa6d8757ea3ad284279"
+    },
+    {
+      "path": "zarincode/inc/Core/Layout.php",
+      "sha256": "35b2198a84e9941aaaa773ea20bdcd93fdc5ae60a951f2d1ab4c5ea26327be7b"
+    },
+    {
+      "path": "zarincode/inc/Core/Product_Policies.php",
+      "sha256": "bc0138d27fa2365461861d22ae1cf5d0331c56a7b8c0ece8ba3ac96176c0a933"
+    },
+    {
+      "path": "zarincode/inc/Core/Settings_Security.php",
+      "sha256": "6606a20e757c30b737e3e780032a3846dc1d5c28fbf6086bb83a95ce20349f2f"
+    },
+    {
+      "path": "zarincode/inc/Core/Setup.php",
+      "sha256": "1d6a53449938e0e4cfbc80ffa61cd4af9b2f23562f45942cdb18f948cb5b87cd"
+    },
+    {
+      "path": "zarincode/inc/Core/Single_Experience.php",
+      "sha256": "7ddca818dc139b390352b14b3e1817813dc8b9b67c2c04ef3afb058f4df014e6"
+    },
+    {
+      "path": "zarincode/inc/Core/Social_Links.php",
+      "sha256": "ddeb3700b2526514215fec49b1894a4e56bd6d43cc004f7bcd31cfc099de6e2a"
+    },
+    {
+      "path": "zarincode/inc/Core/Social_Manager.php",
+      "sha256": "631020d867bd155bd50b69b4d6e2f1c3a10c47f1c154a9b98a23fd98a9cbbb64"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Demo/Demo_Seeder.php",
+      "sha256": "cbdbcd305bc72845702e4ff567ca84e9410550da3177ee07a77c2758b76eb77a"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Demo/Service_Demo.php",
+      "sha256": "b3a436d0fd852bfc515078a6563b89a47a04ef4484a05d24f1b77a3eb75ba5d9"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Demo/service-demo.json",
+      "sha256": "2df8640e6bbfc8d42ea3017b9d5b266dc1c3539c4c07c2d00944ee9c6513dea2"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Features/Manager.php",
+      "sha256": "fd5079187d9b1c47ccf148ac216011c73122a946796787f946d162abbc7045e4"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Features/Registry.php",
+      "sha256": "ceaaad81ddfee7e18bfecc75f5b20916df2ff0e1ae32044249287a7e5a0891b5"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/PostTypes/CPT_Manager.php",
+      "sha256": "8f969715ea7ca9e3acb0f83e62a793b8951ab7cb136bfc9d61e2fd2ae4de72ed"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/COPYING-GPL-3.0.txt",
+      "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Demo_Composition.php",
+      "sha256": "71da9a60fe6ce42ecf11d6c4b12cfe100cccc18d7eb75304b9a1ef80d51e2d92"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Editable_Renderer.php",
+      "sha256": "c53ecd22273142a45f2e38fde750b03618477f6487e6bcfc49cbeec6d0eb9400"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Editor_Controls.php",
+      "sha256": "7898494c3338aed230976d212c5fb5ad01fea0947aee20e42585bbf923163dd1"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Elementor_Loader.php",
+      "sha256": "72bbb76d8471df12f03e025086baa0867c28ad762ed8c04e95bccd8804392765"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Elementor_Widgets_Collection.php",
+      "sha256": "aa7c07d2474806966545fa73ce8aeaef64dd4e0214af4b7d12cba2e7cea96f8e"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Hero_Layout.php",
+      "sha256": "6de367da6cbe7c47f104c773281419ae187551ad317b4a5ed916d1e6d15bc37b"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Icon_Compatibility.php",
+      "sha256": "c07a3d5c0b18ec2ec96240c4737b6f1fc4059dd090846c1eb89eea477f9fda07"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Inline_Editing.php",
+      "sha256": "72c909454d2c528da58523dc63e7932e0eedcb3d0f0ebf089172f151be10a33d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Legal_And_Inner_Pages.php",
+      "sha256": "c47ee759a6d1c144ae24671a3dafcf33dc4553a53acbbcd1b5be4dd603fcfad7"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Native_Design.php",
+      "sha256": "38ddbf6285eb7ee9bc351462b4db8d7aafee6668cc05ef886bd61db93187a927"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Original_Design.php",
+      "sha256": "9a3d49dd9d98fd8417b8753d30ebe0ff58ea4bd1f0faf100829ad37e931fb8b3"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Original_Pages.php",
+      "sha256": "00c040fcfe5ae35c16497711cd3793609824fb60cb9201dee5c6db514b4976bd"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Pricing_Features.php",
+      "sha256": "6627b2dca323ae98b0ff8ff2f34832097a04328f2ddb1503b2f92262a429b7b7"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Professional_Widgets.php",
+      "sha256": "88ac539ad79d5560d6177ba7e0c262a16e01781047284da94d797b3bedbadb4d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Renderer.php",
+      "sha256": "37890df934b70048a26fb3770f2c8f6954b64060eaba350626f7f1e4c0b3c03d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Repeater_Identity.php",
+      "sha256": "3ebb57f7de42b98cd460748852c23a47797b0caf5b9b3980c156bfac9ba23a11"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Studio_Widgets.php",
+      "sha256": "4ae83aeff94afb64274d51bd792b72a11349652f29d8dd126253586b31ab84b8"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/THIRD-PARTY-NOTICES.md",
+      "sha256": "88915e9c36ca46c4af5d90e26454177af4ee4c8cb92a19937bb70aab0e410c99"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Trust_Badges.php",
+      "sha256": "f78353eabec50f390704e28855e59ba72157c3e869b8e14cd6336b8a6a845e84"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Widget_Schema.php",
+      "sha256": "19464c3e5b6176c5a6a014dbb3a85fb044ac61f77e7ade3315952e1d3dce9f08"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/Widget_Trust_Badges.php",
+      "sha256": "3f7065881098243a788a8454393ff0d8481756aad6d4351d7e9431a3fe9cffd8"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/editor.css",
+      "sha256": "d9a4b1858a29da2989e650c3ffcf72e176d63e40e3987e28225c5dbde1611c11"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/editor.js",
+      "sha256": "784f3fe0d597af5fb9f9939e746d325d4f2dfca5f4756c44f1536cf3fab8977b"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/native.css",
+      "sha256": "fdf8515f4356a1222ad56091728d2aa2879e367513180902c770bd96d2a07ec6"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/native.js",
+      "sha256": "6b701b8c2ffb09754ad63a7221a1942111661d1c3fd7e3a7a185f7207025d879"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/professional.css",
+      "sha256": "eb3eb96bd230a42b714574f0ebc3afafb01317c76c221db2d9294a5044ebb5b5"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/professional.js",
+      "sha256": "be2993e252d7e7d0b5884b43014221349f177e33b08abf2cc414db0da18e863d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/studio.css",
+      "sha256": "28852e9f57677a420ebfd9296e0ec60949687f49720d12aaab23841aca7c0d9f"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/studio.js",
+      "sha256": "7dae9e835e7e7f8633840dc1fa2aef529f527274664f66540b17e4c5533952d8"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/trust-badges.css",
+      "sha256": "3478b757ebba9b2779847988b3aa3bf7418a3e75d7e5c512719f6d84ab03ceed"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/widgets.css",
+      "sha256": "2f969c1aa4252e06c54bd0d38a0f9a4ec0e2ff5ed3a49ba867794d99e1cf87bf"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/assets/widgets.js",
+      "sha256": "731a3f2c6ad26d578621d25e649038a7966477a7ac1f97baa570a7831ac91a64"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/documents.json",
+      "sha256": "9c66a1308cc4f3ccc64b7b9be63144e6a2a9cfc84790fba9f3769fb0aa6dc508"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/blog.json",
+      "sha256": "ba0c8857cb56bef40e6a4502386728a51f16cdb36aa894092b56e58fcd71aba8"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/brands.json",
+      "sha256": "45955fab7bd58fdbf245b8b356eda1166d340ab1bf8d3f9600b5fd574ce39d27"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/footer.json",
+      "sha256": "de5e308cf60ee37cd4b43b9535779d3525f16ab3444c549539aea4e48a60fd49"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/header.json",
+      "sha256": "0ee604f92b702229a951c5fdb8d045c885c99be94011dda741fce0e75e080e8a"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/hero.json",
+      "sha256": "b70d1bdbe87504799addefc77c9a3dafb5843583d71841ffe3b2f6427d248816"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/hero_cta.json",
+      "sha256": "0cae66b3dafcf8940a22f618d3262608e98448c3c0ef763010b8076c80b485d3"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/hero_intro.json",
+      "sha256": "ec9d96665e6abb9496fb2e7ccbf855f08378958bcbabf67c126e34dbebf5fffc"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/hero_profile.json",
+      "sha256": "ac3d844355f9988fccb82ad44e2bde8060d6301bb03d315b650b01b9d2d31d33"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_about_page.json",
+      "sha256": "cfbbf5879b240116aae950c41495a57a19d673752be3e995a6b9c9c6ff16ba4c"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_contact_page.json",
+      "sha256": "507bbb8690217f017ce39cf77b20ab4f4e1db980744307a3cd6b89208c71eb28"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_dmca.json",
+      "sha256": "9117242f497db00c14cb3da482037c181507662fa4692dfa0fedd2b6e9807f6d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_gdpr.json",
+      "sha256": "c529d1234d879a699e29c6b3e4b1e0b3a402a81dd93e53892f5a214cc4df16db"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_privacy.json",
+      "sha256": "5f673e30eb4cae75878845905d18d26dda99df6e88b6971934614b91bafb0b48"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_projects_page.json",
+      "sha256": "ca35c050482d2e813bb6e2b51f585401c5cd3f84e0828d620383c34d7445d6a7"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_refund.json",
+      "sha256": "7b4e68202b260c46b7569b2ac74c91597c09fd4e215865a29aaeb50227235c92"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_services_page.json",
+      "sha256": "1e7b7ad249c989f81471ec22959f563fb17cbf125a90147a132c7a03a35907d2"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_terms.json",
+      "sha256": "dc54348561c0c59a2edc76b611546393c886d1f9bb17ceecb082095183589d96"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/page_section_warranty.json",
+      "sha256": "c12dd1c8642dfc1b4f389d484f74381313bd2aa208562259e85e43fb38fb741b"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/portfolio.json",
+      "sha256": "6c8a2a91ca64a5b5d042f245e9a5af201df3cd603d78947ba2f069e4cadd3c8e"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/pricing.json",
+      "sha256": "9f708acb8c353fb5dedc3a0cc4826b703282390efe232b4fbed7962746b9053d"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/products.json",
+      "sha256": "ffc7b50b6a5e29fce3b25d3da05a7dc32d019913b502215f64a17ee3d7732f96"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/promo.json",
+      "sha256": "79b03426b4d1baedb3ef1ea077c6541aef1f0cd15717366bac0971d323c78abb"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/services.json",
+      "sha256": "690db67eb2eaa1b4e60b771883695d38be6b87e8e8ae46cd4f3c7c40132d8733"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/steps.json",
+      "sha256": "05d96589e3570915b21ade8c411775bb9440a5b983a24db21241db42b05574df"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/testimonials.json",
+      "sha256": "120840aae5e0d89b9e6b5cbcf7e9aa3769ecbf9f2c8db8392a00239b3ec1d30e"
+    },
+    {
+      "path": "zarincode/inc/EmbeddedCore/Widgets/models/why_us.json",
+      "sha256": "ccd372777d529289933ffab24d2f823b63c1f5d0e1088328111e06101e5bb504"
+    },
+    {
+      "path": "zarincode/inc/Plugins/Plugin_Manager.php",
+      "sha256": "06d69cced305b44e4f2e6ed74612d761bb65fef702c39e18d9941919216983b1"
+    },
+    {
+      "path": "zarincode/inc/Redux/OptionsConfig.php",
+      "sha256": "7c898dac495f368d5d34300e39ce73d6c8b3f923302ab1f6c2903bd11112d895"
+    },
+    {
+      "path": "zarincode/inc/core-bootstrap.php",
+      "sha256": "31c7611b682915dccf558e69371200dc3e3a86d12d9c60b4823962dfc74366d0"
+    },
+    {
+      "path": "zarincode/index.php",
+      "sha256": "b88174eea3291e93dbbab4959def9c02fa89987e7f910551cf988c40614bd717"
+    },
+    {
+      "path": "zarincode/languages/core/fa_IR.mo",
+      "sha256": "76ce109f0d9b04704be08c222b5401ec15137b8d572e02f91b0cf94c459b1d7c"
+    },
+    {
+      "path": "zarincode/languages/core/fa_IR.po",
+      "sha256": "73268f022dd549d1d9c8a60cdfbb0318d683d2663312f74cee0cffe1d134872a"
+    },
+    {
+      "path": "zarincode/languages/fa_IR.mo",
+      "sha256": "02774e0be95c38a9c52a04d6d6c13ccbf681e044e6332352cf7a4f1bfd434b69"
+    },
+    {
+      "path": "zarincode/languages/fa_IR.po",
+      "sha256": "97e54c75870313d135dbb4df32451b04f829a883c7be15f58f1cc29a6b5ac9b5"
+    },
+    {
+      "path": "zarincode/languages/zarincode.pot",
+      "sha256": "72e8d332f5e87f7c2ad811279681041844fa1ea83a2bd3885e559dff7d798c3e"
+    },
+    {
+      "path": "zarincode/page.php",
+      "sha256": "b750a0acfbea0e609d25d7bc9f26c584b58e29454d78c849c5bd0da130797d52"
+    },
+    {
+      "path": "zarincode/patterns/agency-intro.php",
+      "sha256": "4ec929eaf64112ca01ae994cb2be475f169e6e4027f42e48462e347177f76a18"
+    },
+    {
+      "path": "zarincode/rtl.css",
+      "sha256": "23034de679c62836bdb7d4a07a00a6fbb68e3e24f3c30a35d80ac175030aad29"
+    },
+    {
+      "path": "zarincode/screenshot.png",
+      "sha256": "6fc560922a07c08cbb096795927c3f4572edfe97d6d55a55384d37fccb1d7cec"
+    },
+    {
+      "path": "zarincode/single-product.php",
+      "sha256": "495bd81b8be16a283dd3fd34b42439b42c4845515579fb2a4aee8f9b9f5c2d38"
+    },
+    {
+      "path": "zarincode/single-zc_project.php",
+      "sha256": "5ff0ca7aa7759ced4c19cee2a6c5e169ba4b445c83bcdd8b0ab8f21ba6c37989"
+    },
+    {
+      "path": "zarincode/single-zc_service.php",
+      "sha256": "1eb74d2f859869125cc863e5d0c83bd2f57909b0a1c14ac0aba078aa4e8606c9"
+    },
+    {
+      "path": "zarincode/single.php",
+      "sha256": "1aa54eb870d026f4b4fc11344cd90bd75ff9230c3f0c479ae990c30dab25f8b0"
+    },
+    {
+      "path": "zarincode/style.css",
+      "sha256": "64c4ed92a5e8cd9f768db8d935897f1913d8acf7f681a15b868a664d43af1822"
+    },
+    {
+      "path": "zarincode/template-elementor-canvas.php",
+      "sha256": "2912c07e7c466b883637d1e48c2a73eaccd4d7ff44c716694db5ab3bede158b7"
+    },
+    {
+      "path": "zarincode/theme.json",
+      "sha256": "dbd388a7bd3be015888e22b38f47a881e05a5404bf1a9cc60ec2141124f97994"
+    },
+    {
+      "path": "zarincode/woocommerce/myaccount/dashboard.php",
+      "sha256": "74c46e5c18f110c006a2c89a797c892289efdf440122b21dd84d1f88d09de507"
+    },
+    {
+      "path": "zarincode/woocommerce/myaccount/my-account.php",
+      "sha256": "c0cf218d61aa68ea3ff1e75f102fc45acb89da0783271cc5039ce35cb04697d3"
+    },
+    {
+      "path": "zarincode/woocommerce/myaccount/navigation.php",
+      "sha256": "442788b3eb952fb12f3278545788a7490d7f002fd05546fdd04e0dcfc85a3d48"
+    },
+    {
+      "path": "zarincode/woocommerce.php",
+      "sha256": "e958a840a6b2077d6bfd0dca6bd75c8a3a0b3cc178578531bec19868168b937b"
+    },
+    {
+      "path": "zarincode/wpml-config.xml",
+      "sha256": "780cdeb5b953d6531033d1c87f792d7ab6ae0732d1a1c8356a5cf9946e8f0c00"
+    },
+    {
+      "path": "zarincode-core/includes/Demo/Demo_Seeder.php",
+      "sha256": "cbdbcd305bc72845702e4ff567ca84e9410550da3177ee07a77c2758b76eb77a"
+    },
+    {
+      "path": "zarincode-core/includes/Demo/Service_Demo.php",
+      "sha256": "b3a436d0fd852bfc515078a6563b89a47a04ef4484a05d24f1b77a3eb75ba5d9"
+    },
+    {
+      "path": "zarincode-core/includes/Demo/service-demo.json",
+      "sha256": "2df8640e6bbfc8d42ea3017b9d5b266dc1c3539c4c07c2d00944ee9c6513dea2"
+    },
+    {
+      "path": "zarincode-core/includes/Features/Manager.php",
+      "sha256": "fd5079187d9b1c47ccf148ac216011c73122a946796787f946d162abbc7045e4"
+    },
+    {
+      "path": "zarincode-core/includes/Features/Registry.php",
+      "sha256": "ceaaad81ddfee7e18bfecc75f5b20916df2ff0e1ae32044249287a7e5a0891b5"
+    },
+    {
+      "path": "zarincode-core/includes/PostTypes/CPT_Manager.php",
+      "sha256": "8f969715ea7ca9e3acb0f83e62a793b8951ab7cb136bfc9d61e2fd2ae4de72ed"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/COPYING-GPL-3.0.txt",
+      "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Demo_Composition.php",
+      "sha256": "71da9a60fe6ce42ecf11d6c4b12cfe100cccc18d7eb75304b9a1ef80d51e2d92"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Editable_Renderer.php",
+      "sha256": "c53ecd22273142a45f2e38fde750b03618477f6487e6bcfc49cbeec6d0eb9400"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Editor_Controls.php",
+      "sha256": "7898494c3338aed230976d212c5fb5ad01fea0947aee20e42585bbf923163dd1"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Elementor_Loader.php",
+      "sha256": "72bbb76d8471df12f03e025086baa0867c28ad762ed8c04e95bccd8804392765"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Elementor_Widgets_Collection.php",
+      "sha256": "aa7c07d2474806966545fa73ce8aeaef64dd4e0214af4b7d12cba2e7cea96f8e"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Hero_Layout.php",
+      "sha256": "6de367da6cbe7c47f104c773281419ae187551ad317b4a5ed916d1e6d15bc37b"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Icon_Compatibility.php",
+      "sha256": "c07a3d5c0b18ec2ec96240c4737b6f1fc4059dd090846c1eb89eea477f9fda07"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Inline_Editing.php",
+      "sha256": "72c909454d2c528da58523dc63e7932e0eedcb3d0f0ebf089172f151be10a33d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Legal_And_Inner_Pages.php",
+      "sha256": "c47ee759a6d1c144ae24671a3dafcf33dc4553a53acbbcd1b5be4dd603fcfad7"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Native_Design.php",
+      "sha256": "38ddbf6285eb7ee9bc351462b4db8d7aafee6668cc05ef886bd61db93187a927"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Original_Design.php",
+      "sha256": "9a3d49dd9d98fd8417b8753d30ebe0ff58ea4bd1f0faf100829ad37e931fb8b3"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Original_Pages.php",
+      "sha256": "00c040fcfe5ae35c16497711cd3793609824fb60cb9201dee5c6db514b4976bd"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Pricing_Features.php",
+      "sha256": "6627b2dca323ae98b0ff8ff2f34832097a04328f2ddb1503b2f92262a429b7b7"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Professional_Widgets.php",
+      "sha256": "88ac539ad79d5560d6177ba7e0c262a16e01781047284da94d797b3bedbadb4d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Renderer.php",
+      "sha256": "37890df934b70048a26fb3770f2c8f6954b64060eaba350626f7f1e4c0b3c03d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Repeater_Identity.php",
+      "sha256": "3ebb57f7de42b98cd460748852c23a47797b0caf5b9b3980c156bfac9ba23a11"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Studio_Widgets.php",
+      "sha256": "4ae83aeff94afb64274d51bd792b72a11349652f29d8dd126253586b31ab84b8"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/THIRD-PARTY-NOTICES.md",
+      "sha256": "88915e9c36ca46c4af5d90e26454177af4ee4c8cb92a19937bb70aab0e410c99"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Trust_Badges.php",
+      "sha256": "f78353eabec50f390704e28855e59ba72157c3e869b8e14cd6336b8a6a845e84"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Widget_Schema.php",
+      "sha256": "19464c3e5b6176c5a6a014dbb3a85fb044ac61f77e7ade3315952e1d3dce9f08"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/Widget_Trust_Badges.php",
+      "sha256": "3f7065881098243a788a8454393ff0d8481756aad6d4351d7e9431a3fe9cffd8"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/editor.css",
+      "sha256": "d9a4b1858a29da2989e650c3ffcf72e176d63e40e3987e28225c5dbde1611c11"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/editor.js",
+      "sha256": "784f3fe0d597af5fb9f9939e746d325d4f2dfca5f4756c44f1536cf3fab8977b"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/native.css",
+      "sha256": "fdf8515f4356a1222ad56091728d2aa2879e367513180902c770bd96d2a07ec6"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/native.js",
+      "sha256": "6b701b8c2ffb09754ad63a7221a1942111661d1c3fd7e3a7a185f7207025d879"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/professional.css",
+      "sha256": "eb3eb96bd230a42b714574f0ebc3afafb01317c76c221db2d9294a5044ebb5b5"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/professional.js",
+      "sha256": "be2993e252d7e7d0b5884b43014221349f177e33b08abf2cc414db0da18e863d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/studio.css",
+      "sha256": "28852e9f57677a420ebfd9296e0ec60949687f49720d12aaab23841aca7c0d9f"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/studio.js",
+      "sha256": "7dae9e835e7e7f8633840dc1fa2aef529f527274664f66540b17e4c5533952d8"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/trust-badges.css",
+      "sha256": "3478b757ebba9b2779847988b3aa3bf7418a3e75d7e5c512719f6d84ab03ceed"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/widgets.css",
+      "sha256": "2f969c1aa4252e06c54bd0d38a0f9a4ec0e2ff5ed3a49ba867794d99e1cf87bf"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/assets/widgets.js",
+      "sha256": "731a3f2c6ad26d578621d25e649038a7966477a7ac1f97baa570a7831ac91a64"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/documents.json",
+      "sha256": "9c66a1308cc4f3ccc64b7b9be63144e6a2a9cfc84790fba9f3769fb0aa6dc508"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/blog.json",
+      "sha256": "ba0c8857cb56bef40e6a4502386728a51f16cdb36aa894092b56e58fcd71aba8"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/brands.json",
+      "sha256": "45955fab7bd58fdbf245b8b356eda1166d340ab1bf8d3f9600b5fd574ce39d27"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/footer.json",
+      "sha256": "de5e308cf60ee37cd4b43b9535779d3525f16ab3444c549539aea4e48a60fd49"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/header.json",
+      "sha256": "0ee604f92b702229a951c5fdb8d045c885c99be94011dda741fce0e75e080e8a"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/hero.json",
+      "sha256": "b70d1bdbe87504799addefc77c9a3dafb5843583d71841ffe3b2f6427d248816"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/hero_cta.json",
+      "sha256": "0cae66b3dafcf8940a22f618d3262608e98448c3c0ef763010b8076c80b485d3"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/hero_intro.json",
+      "sha256": "ec9d96665e6abb9496fb2e7ccbf855f08378958bcbabf67c126e34dbebf5fffc"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/hero_profile.json",
+      "sha256": "ac3d844355f9988fccb82ad44e2bde8060d6301bb03d315b650b01b9d2d31d33"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_about_page.json",
+      "sha256": "cfbbf5879b240116aae950c41495a57a19d673752be3e995a6b9c9c6ff16ba4c"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_contact_page.json",
+      "sha256": "507bbb8690217f017ce39cf77b20ab4f4e1db980744307a3cd6b89208c71eb28"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_dmca.json",
+      "sha256": "9117242f497db00c14cb3da482037c181507662fa4692dfa0fedd2b6e9807f6d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_gdpr.json",
+      "sha256": "c529d1234d879a699e29c6b3e4b1e0b3a402a81dd93e53892f5a214cc4df16db"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_privacy.json",
+      "sha256": "5f673e30eb4cae75878845905d18d26dda99df6e88b6971934614b91bafb0b48"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_projects_page.json",
+      "sha256": "ca35c050482d2e813bb6e2b51f585401c5cd3f84e0828d620383c34d7445d6a7"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_refund.json",
+      "sha256": "7b4e68202b260c46b7569b2ac74c91597c09fd4e215865a29aaeb50227235c92"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_services_page.json",
+      "sha256": "1e7b7ad249c989f81471ec22959f563fb17cbf125a90147a132c7a03a35907d2"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_terms.json",
+      "sha256": "dc54348561c0c59a2edc76b611546393c886d1f9bb17ceecb082095183589d96"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/page_section_warranty.json",
+      "sha256": "c12dd1c8642dfc1b4f389d484f74381313bd2aa208562259e85e43fb38fb741b"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/portfolio.json",
+      "sha256": "6c8a2a91ca64a5b5d042f245e9a5af201df3cd603d78947ba2f069e4cadd3c8e"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/pricing.json",
+      "sha256": "9f708acb8c353fb5dedc3a0cc4826b703282390efe232b4fbed7962746b9053d"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/products.json",
+      "sha256": "ffc7b50b6a5e29fce3b25d3da05a7dc32d019913b502215f64a17ee3d7732f96"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/promo.json",
+      "sha256": "79b03426b4d1baedb3ef1ea077c6541aef1f0cd15717366bac0971d323c78abb"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/services.json",
+      "sha256": "690db67eb2eaa1b4e60b771883695d38be6b87e8e8ae46cd4f3c7c40132d8733"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/steps.json",
+      "sha256": "05d96589e3570915b21ade8c411775bb9440a5b983a24db21241db42b05574df"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/testimonials.json",
+      "sha256": "120840aae5e0d89b9e6b5cbcf7e9aa3769ecbf9f2c8db8392a00239b3ec1d30e"
+    },
+    {
+      "path": "zarincode-core/includes/Widgets/models/why_us.json",
+      "sha256": "ccd372777d529289933ffab24d2f823b63c1f5d0e1088328111e06101e5bb504"
+    },
+    {
+      "path": "zarincode-core/languages/fa_IR.mo",
+      "sha256": "76ce109f0d9b04704be08c222b5401ec15137b8d572e02f91b0cf94c459b1d7c"
+    },
+    {
+      "path": "zarincode-core/languages/fa_IR.po",
+      "sha256": "73268f022dd549d1d9c8a60cdfbb0318d683d2663312f74cee0cffe1d134872a"
+    },
+    {
+      "path": "zarincode-core/languages/zarincode-core.pot",
+      "sha256": "02c7d99607be2d6ce74bd3f1207ebb9a8c80cf27c53ecb3bfebcdef61b583c73"
+    },
+    {
+      "path": "zarincode-core/readme.txt",
+      "sha256": "cb30324bc7702a468ca201c79e7ca3b538449a6da95e97c1d8aa7f323395dfd2"
+    },
+    {
+      "path": "zarincode-core/wpml-config.xml",
+      "sha256": "0f741d177900b8beb99c17e5cb1dee0b7a31e9f6da281d985b81327c98a95162"
+    },
+    {
+      "path": "zarincode-core/zarincode-core.php",
+      "sha256": "1d818bfeef48aa377dcb986881ca55b05441c539c93e7082bdcb448d2b69ff67"
+    },
+    {
+      "path": "tools/qa-skill-foundations.php",
+      "sha256": "5be281cc53ce5b36600e9a44454692a0694a0ccc888a120daf38f746cc54ff73"
+    },
+    {
+      "path": "tools/qa-skill-browser.cjs",
+      "sha256": "3a0b9419626e475a6bd8e952545e4567723fb0ea25d540c5453b95d74b22020b"
+    }
+  ]
+}

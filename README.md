@@ -1,3 +1,5 @@
+> **Development status — Skill 2.0.0:** source is `3.9.0-dev`, not a marketplace-ready release. Stable ZIPs remain 3.7.5. See [implementation and release gates](docs/audits/SKILL-2.0.0-IMPLEMENTATION-FA.md). No production deployment.
+
 > **۳٫۷٫۵:** کارت‌های تصویری محصول/خدمات، عرض دستی واکنش‌گرا و یک ورودی یکپارچهٔ تنظیمات/دمو. [جزئیات](RELEASE-3.7.5.md) · [آزمون‌ها](tests/RESULTS-3.7.5.md).
 
 > **۳٫۷٫۴:** کارت‌های نمونه‌کار و مقاله با عنوان روی تصویر؛ تنظیم متن دکمهٔ حساب؛ حفظ تب پنل پس از ذخیره. [جزئیات](RELEASE-3.7.4.md) · [آزمون‌ها](tests/RESULTS-3.7.4.md).

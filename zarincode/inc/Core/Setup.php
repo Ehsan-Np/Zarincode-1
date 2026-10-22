@@ -138,7 +138,7 @@ class Setup {
     public function body_classes( array $classes ): array {
         $classes[] = 'zarincode-theme';
         $classes[] = 'crextio-sunshine-ui';
-        $classes[] = 'rtl';
+        if ( is_rtl() ) { $classes[] = 'rtl'; }
         return $classes;
     }
 
@@ -146,11 +146,8 @@ class Setup {
         if ( is_admin() ) {
             return $output;
         }
-        if ( is_page( 'dmca-policy' ) ) {
-            return 'lang="en-US" dir="ltr"';
-        }
         if ( strpos( $output, 'dir=' ) === false ) {
-            $output .= ' dir="rtl"';
+            $output .= is_rtl() ? ' dir="rtl"' : ' dir="ltr"';
         }
         return $output;
     }

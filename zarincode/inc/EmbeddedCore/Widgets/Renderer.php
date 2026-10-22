@@ -22,6 +22,7 @@ class Renderer {
         return isset($methods[$kind]) ? Original_Design::{$methods[$kind]}($settings) : '';
     }
     public static function output(string $kind,array $settings=[]): string {
+        if(!\Zarincode\Runtime260\Features\Manager::enabled('native_widgets'))return '';
         if(($settings['design_mode']??'original')!=='custom') return self::original($kind,$settings);
         $defaults=Widget_Schema::defaults($kind);
         if(class_exists('Elementor\\Plugin')&&did_action('elementor/init')){

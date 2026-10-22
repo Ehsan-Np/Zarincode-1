@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wpml-config>
+  <elementor-widgets>
+    <widget name="zarincode_blog">
+      <fields>
+        <field type="Zarincode: متن: ZARINCODE BLOG" editor_type="LINE">n_blog_badge_pill_text_1</field>
+        <field type="Zarincode: متن: آخرین مقالات آموزشی" editor_type="LINE">n_blog_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_blog_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: مطالب تخصصی برنامه‌نویسی، طراحی وب، سئو و بازاریابی محتوایی" editor_type="AREA">n_blog_section_desc_1_body</field>
+        <field type="Zarincode: متن: مشاهده وبلاگ" editor_type="LINE">n_blog_btn_dark_text_1</field>
+      </fields>
+      <fields-in-item items_of="n_blog_services_grid_items_1">
+        <field type="Zarincode: متن: مهندسی نرم‌افزار و سورس‌کد" editor_type="LINE">prod_badge_text_1</field>
+        <field type="Zarincode: متن: ۲۰ مهر ۱۴۰۵" editor_type="LINE">prod_ver_text_1</field>
+        <field type="Zarincode: متن: چرا خرید سورس‌کد و افزونه‌های استاندارد زمان راه‌اندازی استارتاپ " editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: توضیحات: بررسی مزایای استفاده از محصولات نرم‌افزاری تست‌شده با کدهای باز و" editor_type="LINE">description_1_body</field>
+        <field type="Zarincode: متن: احسان نادری پناه" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: مطالعه مقاله" editor_type="LINE">btn_yellow_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_brands">
+      <fields>
+        <field type="Zarincode: متن: PARTNERS &amp; TECHNOLOGIES" editor_type="LINE">n_brands_badge_pill_text_1</field>
+        <field type="Zarincode: متن: برندها و تکنولوژی‌هایی که به زرین کد اعتماد کردند!" editor_type="LINE">n_brands_heading_text_1</field>
+      </fields>
+      <fields-in-item items_of="n_brands_marquee_track_items_1">
+        <field type="Zarincode: نام برند یا فناوری" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: معرفی تخصص و تجربه" editor_type="LINE">brand_description</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_footer">
+      <fields>
+        <field type="Zarincode: متن: برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آم" editor_type="LINE">n_footer_heading_text_1</field>
+        <field type="Zarincode: متن: تماس مستقیم: 09024561001" editor_type="LINE">n_footer_btn_yellow_text_1</field>
+      </fields>
+    </widget>
+    <widget name="zarincode_header">
+      <fields>
+        <field type="Zarincode: متن: Z" editor_type="LINE">n_header_brand_logo_box_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_header_brand_name_text_1</field>
+        <field type="Zarincode: متن: Zarincode" editor_type="LINE">n_header_brand_sub_text_1</field>
+        <field type="Zarincode: متن: درخواست مشاوره" editor_type="LINE">n_header_btn_yellow_text_1</field>
+        <field type="Zarincode: aria-label: icon_btn" editor_type="LINE">n_header_icon_btn_1_aria_label</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">n_header_icon_btn_1_target</field>
+      </fields>
+      <fields-in-item items_of="n_header_nav_pill_items_1">
+        <field type="Zarincode: متن: تماس با ما" editor_type="LINE">link_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_hero">
+      <fields>
+        <field type="Zarincode: متن: ZARINCODE - Your Trusted Digital Expert &amp; Software Studio" editor_type="LINE">n_hero_badge_pill_text_1</field>
+        <field type="Zarincode: متن: آژانـس طراحی سایـت، نرم‌افزار و سئو" editor_type="LINE">n_hero_hero_title_text_1</field>
+        <field type="Zarincode: متن: زریــن کـد" editor_type="LINE">n_hero_hero_inline_pill_text_1</field>
+        <field type="Zarincode: توضیحات: در دنیای امروز، حضور آنلاین دیگر یک انتخاب نیست؛ یک ضرورت اساسی ا" editor_type="AREA">n_hero_description_1_body</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">n_hero_btn_yellow_1_target</field>
+        <field type="Zarincode: متن: درخواست مشاوره رایگان" editor_type="LINE">n_hero_btn_yellow_text_1</field>
+        <field type="Zarincode: متن: مشاهده خدمات ما" editor_type="LINE">n_hero_btn_dark_text_1</field>
+        <field type="Zarincode: متن: فروشگاه محصولات آماده" editor_type="LINE">n_hero_btn_glass_text_1</field>
+        <field type="Zarincode: متن: توزیع پروژه‌ها و محصولات فعال استودیو زرین کد" editor_type="LINE">n_hero_span_text_1</field>
+        <field type="Zarincode: متن: تحویل ۱۰۰٪ تضمینی" editor_type="LINE">n_hero_span_text_2</field>
+        <field type="Zarincode: متن: طراحی سایت ۳۰٪" editor_type="LINE">n_hero_div_text_1</field>
+        <field type="Zarincode: متن: نرم‌افزار ۲۵٪" editor_type="LINE">n_hero_div_text_2</field>
+        <field type="Zarincode: متن: سئو و محتوا ۲۵٪" editor_type="LINE">n_hero_div_text_3</field>
+        <field type="Zarincode: متن: سورس آماده ۲۰٪" editor_type="LINE">n_hero_div_text_4</field>
+        <field type="Zarincode: متن: Web Design" editor_type="LINE">n_hero_prog_seg_text_1</field>
+        <field type="Zarincode: متن: Software" editor_type="LINE">n_hero_prog_seg_text_2</field>
+        <field type="Zarincode: متن: SEO &amp; Social" editor_type="LINE">n_hero_prog_seg_text_3</field>
+        <field type="Zarincode: متن: Store" editor_type="LINE">n_hero_prog_seg_text_4</field>
+        <field type="Zarincode: متن جایگزین تصویر" editor_type="LINE">n_hero_image_1_alt</field>
+        <field type="Zarincode: متن: ● آنلاین" editor_type="LINE">n_hero_span_text_3</field>
+        <field type="Zarincode: متن: FOUNDER &amp; LEAD ARCHITECT" editor_type="LINE">n_hero_span_text_4</field>
+        <field type="Zarincode: متن: احسان نادری پناه" editor_type="LINE">n_hero_div_text_5</field>
+        <field type="Zarincode: متن: معمار ارشد نرم‌افزار، طراح وب و متخصص سئو" editor_type="LINE">n_hero_div_text_6</field>
+        <field type="Zarincode: متن: 09024561001" editor_type="LINE">n_hero_prod_badge_text_1</field>
+        <field type="Zarincode: متن: رزومه و درباره ما ←" editor_type="LINE">n_hero_link_text_1</field>
+        <field type="Zarincode: متن: پایش زنده پروژه‌ها و پشتیبانی (Crextio Studio Tracker)" editor_type="LINE">n_hero_div_text_7</field>
+        <field type="Zarincode: متن: 02:35:00" editor_type="LINE">n_hero_div_text_8</field>
+        <field type="Zarincode: متن: ● تحویل ۱۰۰٪ مطابق قرارداد" editor_type="LINE">n_hero_span_text_5</field>
+        <field type="Zarincode: متن: ش" editor_type="LINE">n_hero_small_text_1</field>
+        <field type="Zarincode: متن: ی" editor_type="LINE">n_hero_small_text_2</field>
+        <field type="Zarincode: متن: د" editor_type="LINE">n_hero_small_text_3</field>
+        <field type="Zarincode: متن: س" editor_type="LINE">n_hero_small_text_4</field>
+        <field type="Zarincode: متن: چ" editor_type="LINE">n_hero_small_text_5</field>
+        <field type="Zarincode: متن: پ" editor_type="LINE">n_hero_small_text_6</field>
+        <field type="Zarincode: متن: ج" editor_type="LINE">n_hero_small_text_7</field>
+        <field type="Zarincode: متن: +۴۸۰" editor_type="LINE">n_hero_div_text_9</field>
+        <field type="Zarincode: متن: پروژه موفق" editor_type="LINE">n_hero_div_text_10</field>
+        <field type="Zarincode: متن: ۹۹.۸٪" editor_type="LINE">n_hero_div_text_11</field>
+        <field type="Zarincode: متن: رضایت کارفرما" editor_type="LINE">n_hero_div_text_12</field>
+        <field type="Zarincode: متن: +۳۵" editor_type="LINE">n_hero_div_text_13</field>
+        <field type="Zarincode: متن: قالب و سورس آماده" editor_type="LINE">n_hero_div_text_14</field>
+        <field type="Zarincode: متن: برای یک طراحی، نرم‌افزار یا سئوی حرفه‌ای آماده‌اید؟" editor_type="LINE">n_hero_div_text_15</field>
+        <field type="Zarincode: متن: مشاوره مستقیم با احسان نادری پناه — Zarincode.com" editor_type="LINE">n_hero_div_text_16</field>
+        <field type="Zarincode: متن: شروع همکاری" editor_type="LINE">n_hero_btn_dark_text_2</field>
+      </fields>
+      <fields-in-item items_of="n_hero_hero_trust_list_items_1">
+        <field type="Zarincode: متن: پشتیبانی و گارانتی یک‌ساله" editor_type="LINE">trust_pill_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_hero_cta">
+      <fields>
+        <field type="Zarincode: متن: برای یک طراحی، نرم‌افزار یا سئوی حرفه‌ای آماده‌اید؟" editor_type="LINE">n_hero_div_text_15</field>
+        <field type="Zarincode: متن: مشاوره مستقیم با احسان نادری پناه — Zarincode.com" editor_type="LINE">n_hero_div_text_16</field>
+        <field type="Zarincode: متن: شروع همکاری" editor_type="LINE">n_hero_btn_dark_text_2</field>
+      </fields>
+    </widget>
+    <widget name="zarincode_hero_intro">
+      <fields>
+        <field type="Zarincode: متن: ZARINCODE - Your Trusted Digital Expert &amp; Software Studio" editor_type="LINE">n_hero_badge_pill_text_1</field>
+        <field type="Zarincode: متن: آژانـس طراحی سایـت، نرم‌افزار و سئو" editor_type="LINE">n_hero_hero_title_text_1</field>
+        <field type="Zarincode: متن: زریــن کـد" editor_type="LINE">n_hero_hero_inline_pill_text_1</field>
+        <field type="Zarincode: توضیحات: در دنیای امروز، حضور آنلاین دیگر یک انتخاب نیست؛ یک ضرورت اساسی ا" editor_type="AREA">n_hero_description_1_body</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">n_hero_btn_yellow_1_target</field>
+        <field type="Zarincode: متن: درخواست مشاوره رایگان" editor_type="LINE">n_hero_btn_yellow_text_1</field>
+        <field type="Zarincode: متن: مشاهده خدمات ما" editor_type="LINE">n_hero_btn_dark_text_1</field>
+        <field type="Zarincode: متن: فروشگاه محصولات آماده" editor_type="LINE">n_hero_btn_glass_text_1</field>
+        <field type="Zarincode: متن: توزیع پروژه‌ها و محصولات فعال استودیو زرین کد" editor_type="LINE">n_hero_span_text_1</field>
+        <field type="Zarincode: متن: تحویل ۱۰۰٪ تضمینی" editor_type="LINE">n_hero_span_text_2</field>
+        <field type="Zarincode: متن: طراحی سایت ۳۰٪" editor_type="LINE">n_hero_div_text_1</field>
+        <field type="Zarincode: متن: نرم‌افزار ۲۵٪" editor_type="LINE">n_hero_div_text_2</field>
+        <field type="Zarincode: متن: سئو و محتوا ۲۵٪" editor_type="LINE">n_hero_div_text_3</field>
+        <field type="Zarincode: متن: سورس آماده ۲۰٪" editor_type="LINE">n_hero_div_text_4</field>
+        <field type="Zarincode: متن: Web Design" editor_type="LINE">n_hero_prog_seg_text_1</field>
+        <field type="Zarincode: متن: Software" editor_type="LINE">n_hero_prog_seg_text_2</field>
+        <field type="Zarincode: متن: SEO &amp; Social" editor_type="LINE">n_hero_prog_seg_text_3</field>
+        <field type="Zarincode: متن: Store" editor_type="LINE">n_hero_prog_seg_text_4</field>
+      </fields>
+      <fields-in-item items_of="n_hero_hero_trust_list_items_1">
+        <field type="Zarincode: متن: پشتیبانی و گارانتی یک‌ساله" editor_type="LINE">trust_pill_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_hero_profile">
+      <fields>
+        <field type="Zarincode: متن جایگزین تصویر" editor_type="LINE">n_hero_image_1_alt</field>
+        <field type="Zarincode: متن: ● آنلاین" editor_type="LINE">n_hero_span_text_3</field>
+        <field type="Zarincode: متن: FOUNDER &amp; LEAD ARCHITECT" editor_type="LINE">n_hero_span_text_4</field>
+        <field type="Zarincode: متن: احسان نادری پناه" editor_type="LINE">n_hero_div_text_5</field>
+        <field type="Zarincode: متن: معمار ارشد نرم‌افزار، طراح وب و متخصص سئو" editor_type="LINE">n_hero_div_text_6</field>
+        <field type="Zarincode: متن: 09024561001" editor_type="LINE">n_hero_prod_badge_text_1</field>
+        <field type="Zarincode: متن: رزومه و درباره ما ←" editor_type="LINE">n_hero_link_text_1</field>
+        <field type="Zarincode: متن: پایش زنده پروژه‌ها و پشتیبانی (Crextio Studio Tracker)" editor_type="LINE">n_hero_div_text_7</field>
+        <field type="Zarincode: متن: 02:35:00" editor_type="LINE">n_hero_div_text_8</field>
+        <field type="Zarincode: متن: ● تحویل ۱۰۰٪ مطابق قرارداد" editor_type="LINE">n_hero_span_text_5</field>
+        <field type="Zarincode: متن: ش" editor_type="LINE">n_hero_small_text_1</field>
+        <field type="Zarincode: متن: ی" editor_type="LINE">n_hero_small_text_2</field>
+        <field type="Zarincode: متن: د" editor_type="LINE">n_hero_small_text_3</field>
+        <field type="Zarincode: متن: س" editor_type="LINE">n_hero_small_text_4</field>
+        <field type="Zarincode: متن: چ" editor_type="LINE">n_hero_small_text_5</field>
+        <field type="Zarincode: متن: پ" editor_type="LINE">n_hero_small_text_6</field>
+        <field type="Zarincode: متن: ج" editor_type="LINE">n_hero_small_text_7</field>
+        <field type="Zarincode: متن: +۴۸۰" editor_type="LINE">n_hero_div_text_9</field>
+        <field type="Zarincode: متن: پروژه موفق" editor_type="LINE">n_hero_div_text_10</field>
+        <field type="Zarincode: متن: ۹۹.۸٪" editor_type="LINE">n_hero_div_text_11</field>
+        <field type="Zarincode: متن: رضایت کارفرما" editor_type="LINE">n_hero_div_text_12</field>
+        <field type="Zarincode: متن: +۳۵" editor_type="LINE">n_hero_div_text_13</field>
+        <field type="Zarincode: متن: قالب و سورس آماده" editor_type="LINE">n_hero_div_text_14</field>
+      </fields>
+    </widget>
+    <widget name="zarincode_portfolio">
+      <fields>
+        <field type="Zarincode: متن: PORTFOLIO &amp; CASE STUDIES" editor_type="LINE">n_portfolio_badge_pill_text_1</field>
+        <field type="Zarincode: متن: برخی از" editor_type="LINE">n_portfolio_section_title_text_1</field>
+        <field type="Zarincode: متن: نمونه‌کارهای موفق" editor_type="LINE">n_portfolio_highlight_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_portfolio_section_title_text_2</field>
+        <field type="Zarincode: توضیحات: نگاهی به پروژه‌های طراحی سایت، نرم‌افزار، سئو و تولید محتوا اجرا " editor_type="AREA">n_portfolio_section_desc_1_body</field>
+      </fields>
+      <fields-in-item items_of="n_portfolio_filter_tabs_items_1">
+        <field type="Zarincode: data-filter: سئو و محتوا" editor_type="LINE">filter_tab_1_data_filter</field>
+        <field type="Zarincode: متن: سئو و محتوا" editor_type="LINE">filter_tab_text_1</field>
+      </fields-in-item>
+      <fields-in-item items_of="n_portfolio_portfolio_grid_items_1">
+        <field type="Zarincode: data-category: تولید محتوا و مجله‌ای +۱۸۰ هزار بازدید ماهانه طراحی پرتال خبری، م" editor_type="LINE">project_card_1_data_category</field>
+        <field type="Zarincode: متن: تولید محتوا و مجله‌ای" editor_type="LINE">prod_badge_text_1</field>
+        <field type="Zarincode: متن: +۱۸۰ هزار بازدید ماهانه" editor_type="LINE">prod_ver_text_1</field>
+        <field type="Zarincode: متن: طراحی پرتال خبری، مجله دیجیتال و استراتژی محتوای فین‌تک" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: شهریور ۱۴۰۵" editor_type="LINE">span_text_2</field>
+        <field type="Zarincode: متن: ۱۸ روز کاری" editor_type="LINE">span_text_3</field>
+        <field type="Zarincode: متن: تضمین کیفیت و پشتیبانی فعال" editor_type="LINE">span_text_4</field>
+        <field type="Zarincode: متن: مشاهده پروژه" editor_type="LINE">btn_glass_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_pricing">
+      <fields>
+        <field type="Zarincode: متن: TRANSPARENT PRICING" editor_type="LINE">n_pricing_badge_pill_text_1</field>
+        <field type="Zarincode: متن: تعرفه خدمات تخصصی" editor_type="LINE">n_pricing_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_pricing_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: پلن‌های شفاف، منعطف و همراه با ضمانت رسمی بازگشت وجه و پشتیبانی ی" editor_type="AREA">n_pricing_section_desc_1_body</field>
+        <field type="Zarincode: data-pricing-target: طراحی سایت" editor_type="LINE">n_pricing_filter_tab_1_data_pricing_target</field>
+        <field type="Zarincode: متن: طراحی سایت" editor_type="LINE">n_pricing_filter_tab_text_1</field>
+        <field type="Zarincode: data-pricing-target: برنامه‌نویسی نرم‌افزار" editor_type="LINE">n_pricing_filter_tab_2_data_pricing_target</field>
+        <field type="Zarincode: متن: برنامه‌نویسی نرم‌افزار" editor_type="LINE">n_pricing_filter_tab_text_2</field>
+        <field type="Zarincode: data-pricing-target: سئو سایت و شبکه‌های اجتماعی" editor_type="LINE">n_pricing_filter_tab_3_data_pricing_target</field>
+        <field type="Zarincode: متن: سئو سایت و شبکه‌های اجتماعی" editor_type="LINE">n_pricing_filter_tab_text_3</field>
+        <field type="Zarincode: data-pricing-target: تولید محتوا" editor_type="LINE">n_pricing_filter_tab_4_data_pricing_target</field>
+        <field type="Zarincode: متن: تولید محتوا" editor_type="LINE">n_pricing_filter_tab_text_4</field>
+        <field type="Zarincode: data-pricing-panel: پلن نقره‌ای (طراحی سایت) تحویل از ۱۵ تا ۲۵ روز کاری بازه سرمایه‌گ" editor_type="LINE">n_pricing_pricing_grid_1_data_pricing_panel</field>
+        <field type="Zarincode: data-pricing-panel: پلن MVP استارتاپی تحویل از ۳۰ تا ۴۵ روز کاری بازه سرمایه‌گذاری: ۲" editor_type="LINE">n_pricing_pricing_grid_2_data_pricing_panel</field>
+        <field type="Zarincode: data-pricing-panel: پلن اقتصادی (سئو و شبکه اجتماعی) دوره تمدید: ۳۰ روز کاری بازه سرم" editor_type="LINE">n_pricing_pricing_grid_3_data_pricing_panel</field>
+        <field type="Zarincode: data-pricing-panel: پکیج محتوای متنی و سئو وبلاگ تحویل ماهانه (۲۰ مقاله) بازه سرمایه‌" editor_type="LINE">n_pricing_pricing_grid_4_data_pricing_panel</field>
+      </fields>
+      <fields-in-item items_of="n_pricing_pricing_grid_items_1">
+        <field type="Zarincode: متن: پلن الماسی (فول اختصاصی)" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: متن: تحویل از ۳۵ تا ۵۰ روز کاری" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: بازه سرمایه‌گذاری:" editor_type="LINE">div_text_2</field>
+        <field type="Zarincode: متن: ۳۵ تا ۶۵ میلیون تومان" editor_type="LINE">div_text_3</field>
+        <field type="Zarincode: متن: کدنویسی ۱۰۰٪ اختصاصی قالب و افزونه‌های مورد نیاز" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: طراحی تمامی صفحات بدون محدودیت" editor_type="LINE">span_text_2</field>
+        <field type="Zarincode: متن: مگامنوساز، فیلتر ایجکس و پنل کاربری اختصاصی" editor_type="LINE">span_text_3</field>
+        <field type="Zarincode: متن: سرور ابری اختصاصی یک‌ساله + دامنه بین‌المللی" editor_type="LINE">span_text_4</field>
+        <field type="Zarincode: متن: پکیج امنیت سازمانی و ضد حملات DDoS" editor_type="LINE">span_text_5</field>
+        <field type="Zarincode: متن: استراتژی کامل سئو و ۵ مقاله تخصصی رایگان" editor_type="LINE">span_text_6</field>
+        <field type="Zarincode: متن: ۱ سال گارانتی طلایی + آموزش کامل ویدئویی" editor_type="LINE">span_text_7</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_dark_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_dark_text_1</field>
+        <field type="Zarincode: متن: پیشنهادی زرین کد" editor_type="LINE">popular_ribbon_text_1</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_yellow_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_yellow_text_1</field>
+        <field type="Zarincode: شناسه یکتای پلن" editor_type="LINE">plan_key</field>
+      </fields-in-item>
+      <fields-in-item items_of="n_pricing_pricing_grid_items_2">
+        <field type="Zarincode: متن: پلن سوپراپ و اینترپرایز" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: متن: تحویل از ۶۰ تا ۹۰ روز کاری" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: بازه سرمایه‌گذاری:" editor_type="LINE">div_text_2</field>
+        <field type="Zarincode: متن: ۸۵ تا ۱۵۰ میلیون تومان" editor_type="LINE">div_text_3</field>
+        <field type="Zarincode: متن: توسعه وب‌اپلیکیشن + اپلیکیشن موبایل (iOS/Android)" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: زیرساخت ابری Docker و CI/CD خودکار" editor_type="LINE">span_text_2</field>
+        <field type="Zarincode: متن: هوش مصنوعی اختصاصی و پردازش بلادرنگ" editor_type="LINE">span_text_3</field>
+        <field type="Zarincode: متن: قرارداد رسمی NDA و انتقال ۱۰۰٪ مالکیت سورس‌کد" editor_type="LINE">span_text_4</field>
+        <field type="Zarincode: متن: پشتیبانی فنی اختصاصی ۲۴/۷ یک‌ساله" editor_type="LINE">span_text_5</field>
+        <field type="Zarincode: متن: آموزش حضوری یا آنلاین تیم فنی کارفرما" editor_type="LINE">span_text_6</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_dark_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_dark_text_1</field>
+        <field type="Zarincode: متن: پیشنهادی زرین کد" editor_type="LINE">popular_ribbon_text_1</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_yellow_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_yellow_text_1</field>
+        <field type="Zarincode: شناسه یکتای پلن" editor_type="LINE">plan_key</field>
+      </fields-in-item>
+      <fields-in-item items_of="n_pricing_pricing_grid_items_3">
+        <field type="Zarincode: متن: پلن اختصاصی (تسلط کامل بر بازار)" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: متن: دوره تمدید: ۶۰ روز کاری" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: بازه سرمایه‌گذاری:" editor_type="LINE">div_text_2</field>
+        <field type="Zarincode: متن: ۴۵ تا ۷۵ میلیون تومان" editor_type="LINE">div_text_3</field>
+        <field type="Zarincode: متن: رقابت روی سخت‌ترین کلمات کلیدی صنعتی و فروشگاهی" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: مدیریت کامل سئو سایت + تمامی شبکه‌های اجتماعی" editor_type="LINE">span_text_2</field>
+        <field type="Zarincode: متن: کمپین‌های روابط عمومی و رپورتاژ در رسانه‌های برتر" editor_type="LINE">span_text_3</field>
+        <field type="Zarincode: متن: تولید محتوای روزانه متنی، گرافیکی و ویدئویی" editor_type="LINE">span_text_4</field>
+        <field type="Zarincode: متن: داشبورد اختصاصی رصد لحظه‌ای رتبه‌ها" editor_type="LINE">span_text_5</field>
+        <field type="Zarincode: متن: جلسات استراتژی هفتگی با احسان نادری پناه" editor_type="LINE">span_text_6</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_dark_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_dark_text_1</field>
+        <field type="Zarincode: متن: پیشنهادی زرین کد" editor_type="LINE">popular_ribbon_text_1</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_yellow_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_yellow_text_1</field>
+        <field type="Zarincode: شناسه یکتای پلن" editor_type="LINE">plan_key</field>
+      </fields-in-item>
+      <fields-in-item items_of="n_pricing_pricing_grid_items_4">
+        <field type="Zarincode: متن: پکیج برندینگ و تولید محتوای VIP" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: متن: مدیریت کامل محتوایی برند" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: بازه سرمایه‌گذاری:" editor_type="LINE">div_text_2</field>
+        <field type="Zarincode: متن: ۳۰ تا ۴۸ میلیون تومان" editor_type="LINE">div_text_3</field>
+        <field type="Zarincode: متن: تولید محتوای کامل سایت، اینستاگرام، لینکدین و یوتیوب" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: نگارش صفحات محصول و لندینگ‌پیج‌های فروشنده‌ساز" editor_type="LINE">span_text_2</field>
+        <field type="Zarincode: متن: تدوین ویدئوهای معرفی محصول و موشن‌گرافیک" editor_type="LINE">span_text_3</field>
+        <field type="Zarincode: متن: مدیریت و بارگذاری کامل در وردپرس و شبکه‌ها" editor_type="LINE">span_text_4</field>
+        <field type="Zarincode: متن: پشتیبانی و ویرایش نامحدود محتوایی" editor_type="LINE">span_text_5</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_dark_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_dark_text_1</field>
+        <field type="Zarincode: متن: پیشنهادی زرین کد" editor_type="LINE">popular_ribbon_text_1</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">btn_yellow_1_target</field>
+        <field type="Zarincode: متن: مشاوره رایگان و ثبت سفارش" editor_type="LINE">btn_yellow_text_1</field>
+        <field type="Zarincode: شناسه یکتای پلن" editor_type="LINE">plan_key</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_products">
+      <fields>
+        <field type="Zarincode: متن: READY-MADE DIGITAL PRODUCTS" editor_type="LINE">n_products_badge_pill_text_1</field>
+        <field type="Zarincode: متن: فروشگاه محصولات آماده" editor_type="LINE">n_products_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_products_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: قالب‌های وردپرس، افزونه‌های حرفه‌ای و سورس‌کدهای آماده نرم‌افزار " editor_type="AREA">n_products_section_desc_1_body</field>
+      </fields>
+      <fields-in-item items_of="n_products_filter_tabs_items_1">
+        <field type="Zarincode: data-filter: سورس‌کد نرم‌افزار" editor_type="LINE">filter_tab_1_data_filter</field>
+        <field type="Zarincode: متن: سورس‌کد نرم‌افزار" editor_type="LINE">filter_tab_text_1</field>
+      </fields-in-item>
+      <fields-in-item items_of="n_products_products_grid_items_1">
+        <field type="Zarincode: data-category: سورس‌کد نرم‌افزار v3.0.2 By Ehsan NaderiPanah سورس‌کد سامانه آموز" editor_type="LINE">product_card_1_data_category</field>
+        <field type="Zarincode: متن: سورس‌کد نرم‌افزار" editor_type="LINE">prod_badge_text_1</field>
+        <field type="Zarincode: متن: v3.0.2" editor_type="LINE">prod_ver_text_1</field>
+        <field type="Zarincode: متن: By Ehsan NaderiPanah" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: سورس‌کد سامانه آموزش آنلاین و برگزاری وبینار (ZarinLMS Pro)" editor_type="LINE">link_text_1</field>
+        <field type="Zarincode: توضیحات: پلتفرم جامع فروش دوره، آزمون آنلاین، صدور گواهینامه PDF و کیف پول" editor_type="LINE">description_1_body</field>
+        <field type="Zarincode: متن: Full-Stack" editor_type="LINE">meta_tag_text_1</field>
+        <field type="Zarincode: متن: LMS" editor_type="LINE">meta_tag_text_2</field>
+        <field type="Zarincode: متن: Payment Gateway" editor_type="LINE">meta_tag_text_3</field>
+        <field type="Zarincode: متن: Full Source" editor_type="LINE">meta_tag_text_4</field>
+        <field type="Zarincode: متن: ۷,۸۰۰,۰۰۰" editor_type="LINE">price_amount_text_1</field>
+        <field type="Zarincode: متن: تومان" editor_type="LINE">price_unit_text_1</field>
+        <field type="Zarincode: title: دمو" editor_type="LINE">btn_glass_1_title</field>
+        <field type="Zarincode: متن: دمو" editor_type="LINE">btn_glass_text_1</field>
+        <field type="Zarincode: متن: خرید" editor_type="LINE">btn_yellow_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_promo">
+      <fields>
+        <field type="Zarincode: متن: ZARINCODE PLUS CAMPAIGN" editor_type="LINE">n_promo_badge_pill_text_1</field>
+        <field type="Zarincode: متن: جشنواره ویژه خدمات سئو، تولید محتوا و پکیج سورس‌کدهای آماده زرین " editor_type="LINE">n_promo_heading_text_1</field>
+        <field type="Zarincode: متن: با سفارش همزمان طراحی سایت و سئو یا خرید باندل افزونه‌ها، تا" editor_type="LINE">n_promo_description_text_1</field>
+        <field type="Zarincode: متن: ۵۰٪ تخفیف ویژه" editor_type="LINE">n_promo_strong_text_1</field>
+        <field type="Zarincode: متن: روی پکیج سئو شبکه‌های اجتماعی و تولید محتوا دریافت کنید!" editor_type="LINE">n_promo_description_text_2</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">n_promo_btn_yellow_1_target</field>
+        <field type="Zarincode: متن: دریافت کد تخفیف و مشاوره" editor_type="LINE">n_promo_btn_yellow_text_1</field>
+        <field type="Zarincode: متن: 09024561001" editor_type="LINE">n_promo_link_text_1</field>
+      </fields>
+    </widget>
+    <widget name="zarincode_services">
+      <fields>
+        <field type="Zarincode: متن: ZARINCODE SERVICES" editor_type="LINE">n_services_badge_pill_text_1</field>
+        <field type="Zarincode: متن: خدمات تخصصی آژانس" editor_type="LINE">n_services_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_services_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: ترکیب خلاقیت، مهندسی نرم‌افزار، سئو داده‌محور و محصولات آماده برا" editor_type="AREA">n_services_section_desc_1_body</field>
+        <field type="Zarincode: متن: مشاهده همه خدمات" editor_type="LINE">n_services_btn_dark_text_1</field>
+      </fields>
+      <fields-in-item items_of="n_services_services_grid_items_1">
+        <field type="Zarincode: متن: 06 • MARKETPLACE" editor_type="LINE">service_num_text_1</field>
+        <field type="Zarincode: متن: ۶. فروش محصولات آماده" editor_type="LINE">service_title_text_1</field>
+        <field type="Zarincode: متن: Ready-Made Themes, Plugins &amp; Source Codes" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: توضیحات: دسترسی و خرید آنی قالب‌های حرفه‌ای وردپرس، افزونه‌های اختصاصی و س" editor_type="LINE">service_desc_1_body</field>
+        <field type="Zarincode: متن: از ۸۹۰ هزار تا ۱۲ میلیون تومان" editor_type="LINE">span_text_1</field>
+        <field type="Zarincode: متن: مشاهده و سفارش" editor_type="LINE">btn_dark_text_1</field>
+        <field type="Zarincode: متن: مشاهده و سفارش" editor_type="LINE">btn_yellow_text_1</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_steps">
+      <fields>
+        <field type="Zarincode: متن: PROJECT STEPS" editor_type="LINE">n_steps_badge_pill_text_1</field>
+        <field type="Zarincode: متن: مراحل انجام پروژه در" editor_type="LINE">n_steps_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_steps_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: مسیر شفاف، مهندسی‌شده و بدون ریسک از ایده تا تحویل نهایی و پشتیبا" editor_type="AREA">n_steps_section_desc_1_body</field>
+      </fields>
+      <fields-in-item items_of="n_steps_steps_grid_items_1">
+        <field type="Zarincode: متن: ۰۴" editor_type="LINE">step_number_text_1</field>
+        <field type="Zarincode: متن: تحویل نهایی، آموزش و گارانتی" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: توضیحات: ارائه کامل فایل‌ها و دسترسی‌ها، آموزش ویدئویی مدیریت سایت و شروع " editor_type="LINE">description_1_body</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_testimonials">
+      <fields>
+        <field type="Zarincode: متن: CUSTOMERS REVIEWS" editor_type="LINE">n_testimonials_badge_pill_text_1</field>
+        <field type="Zarincode: متن: نظرات مشتریان" editor_type="LINE">n_testimonials_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_testimonials_highlight_text_1</field>
+        <field type="Zarincode: توضیحات: تجربه واقعی مدیران کسب‌وکارهایی که طراحی سایت، سئو و تامین سورس‌ک" editor_type="AREA">n_testimonials_section_desc_1_body</field>
+      </fields>
+      <fields-in-item items_of="n_testimonials_services_grid_items_1">
+        <field type="Zarincode: توضیحات: «چندین افزونه وردپرس و سورس‌کد آماده را از فروشگاه زرین کد خریدار" editor_type="LINE">description_1_body</field>
+        <field type="Zarincode: متن: جناب آقای علی محمودی" editor_type="LINE">div_text_1</field>
+        <field type="Zarincode: متن: مدیر فنی فروشگاه دیجیتال‌مارکت" editor_type="LINE">div_text_2</field>
+      </fields-in-item>
+    </widget>
+    <widget name="zarincode_why_us">
+      <fields>
+        <field type="Zarincode: متن: ? WHY ZARINCODE" editor_type="LINE">n_why_us_badge_pill_text_1</field>
+        <field type="Zarincode: متن: چرا" editor_type="LINE">n_why_us_section_title_text_1</field>
+        <field type="Zarincode: متن: زرین کد" editor_type="LINE">n_why_us_hero_inline_pill_text_1</field>
+        <field type="Zarincode: متن: ؟ چه چیزی ما را متمایز می‌کند؟" editor_type="LINE">n_why_us_section_title_text_2</field>
+        <field type="Zarincode: توضیحات: ما فراتر از یک تیم طراحی سایت هستیم؛ ما هم‌مسیر مهندسی و رشد کسب‌" editor_type="AREA">n_why_us_description_1_body</field>
+        <field type="Zarincode: متن جایگزین تصویر" editor_type="LINE">n_why_us_image_1_alt</field>
+        <field type="Zarincode: متن: استودیو مهندسی نرم‌افزار و وب زرین کد" editor_type="LINE">n_why_us_span_text_1</field>
+        <field type="Zarincode: متن جایگزین تصویر" editor_type="LINE">n_why_us_image_2_alt</field>
+        <field type="Zarincode: متن: نظارت مستقیم احسان نادری پناه" editor_type="LINE">n_why_us_span_text_2</field>
+        <field type="Zarincode: متن: درباره استودیو زرین کد" editor_type="LINE">n_why_us_btn_yellow_text_1</field>
+        <field type="Zarincode: شناسه پنجره یا منوی مقصد" editor_type="LINE">n_why_us_btn_dark_1_target</field>
+        <field type="Zarincode: متن: تماس مستقیم: 09024561001" editor_type="LINE">n_why_us_btn_dark_text_1</field>
+      </fields>
+      <fields-in-item items_of="n_why_us_why_bento_grid_items_1">
+        <field type="Zarincode: متن: 04" editor_type="LINE">badge_pill_text_1</field>
+        <field type="Zarincode: متن: ۹۹.۸٪ رضایت مشتریان" editor_type="LINE">heading_text_1</field>
+        <field type="Zarincode: توضیحات: بیش از ۱۸۵۰ روز همراهی مستمر و ۴۲۰+ پروژه و محصول موفق" editor_type="LINE">description_1_body</field>
+      </fields-in-item>
+    </widget>
+  </elementor-widgets>
+  <custom-types>
+    <custom-type translate="1">zc_service</custom-type>
+    <custom-type translate="1">zc_project</custom-type>
+    <custom-type translate="1">zc_hf_template</custom-type>
+  </custom-types>
+  <taxonomies>
+    <taxonomy translate="1">zc_service_cat</taxonomy>
+    <taxonomy translate="1">zc_project_cat</taxonomy>
+  </taxonomies>
+  <custom-fields>
+    <custom-field action="translate">_zc_prj_client</custom-field>
+    <custom-field action="translate">_zc_prj_metrics</custom-field>
+    <custom-field action="translate">_zc_prj_plan</custom-field>
+    <custom-field action="translate">_zc_prj_duration</custom-field>
+    <custom-field action="translate">_zc_srv_price_range</custom-field>
+    <custom-field action="translate">_zc_product_changelog</custom-field>
+    <custom-field action="copy">_zc_hf_type</custom-field>
+    <custom-field action="copy">_zc_hf_active</custom-field>
+    <custom-field action="copy">_zc_srv_icon</custom-field>
+    <custom-field action="copy">_zc_policy_mode</custom-field>
+  </custom-fields>
+</wpml-config>

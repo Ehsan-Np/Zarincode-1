@@ -1,0 +1,9 @@
+/* Scoped block content; Elementor widget styling is deliberately not overridden. */
+.entry-content :where(.wp-block-image img,.wp-block-cover){border-radius:var(--zc-radius-bento,28px)}
+.entry-content :where(.wp-block-button__link){font:inherit;padding:.7em 1.4em;text-decoration:none;transition:box-shadow .2s}
+.entry-content :where(.wp-block-button__link:focus-visible){outline:3px solid currentColor;outline-offset:3px}
+.entry-content :where(.wp-block-table){overflow-x:auto;max-width:100%}.entry-content :where(.wp-block-table table){border-collapse:collapse;width:100%}
+.entry-content :where(.wp-block-table td,.wp-block-table th){padding:.7em;border:1px solid #d9d9d9}
+.entry-content :where(.wp-block-code,.wp-block-preformatted){max-width:100%;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.entry-content :where(.wp-block-columns,.wp-block-column){min-width:0}
+@media(prefers-reduced-motion:reduce){.entry-content .wp-block-button__link{transition:none}}

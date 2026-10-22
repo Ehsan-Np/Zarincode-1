@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1">zc_service</custom-type>
+    <custom-type translate="1">zc_project</custom-type>
+    <custom-type translate="1">zc_hf_template</custom-type>
+  </custom-types>
+  <taxonomies>
+    <taxonomy translate="1">zc_service_cat</taxonomy>
+    <taxonomy translate="1">zc_project_cat</taxonomy>
+  </taxonomies>
+  <custom-fields>
+    <custom-field action="translate">_zc_prj_client</custom-field>
+    <custom-field action="translate">_zc_prj_metrics</custom-field>
+    <custom-field action="translate">_zc_prj_plan</custom-field>
+    <custom-field action="translate">_zc_prj_duration</custom-field>
+    <custom-field action="translate">_zc_srv_price_range</custom-field>
+    <custom-field action="translate">_zc_product_changelog</custom-field>
+    <custom-field action="copy">_zc_hf_type</custom-field>
+    <custom-field action="copy">_zc_hf_active</custom-field>
+    <custom-field action="copy">_zc_srv_icon</custom-field>
+    <custom-field action="copy">_zc_policy_mode</custom-field>
+  </custom-fields>
+</wpml-config>
