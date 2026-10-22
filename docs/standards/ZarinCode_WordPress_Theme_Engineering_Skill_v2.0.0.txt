@@ -1,0 +1,1493 @@
+ZARINCODE - WordPress Theme Engineering Skill
+اسکیل جامع طراحی، توسعه و مهندسی قالب‌های حرفه‌ای وردپرس - زرین کد
+
+نام سند: ZarinCode WordPress Theme Engineering Skill
+شناسه سند: ZC-WP-SKILL-001
+نسخه: 2.0.0
+وضعیت: سند مرجع اصلی توسعه
+مالک استاندارد: ZarinCode
+حوزه کاربرد: طراحی، توسعه، تست، بهینه‌سازی و عرضه قالب‌های تجاری وردپرس
+زبان مرجع برنامه‌نویسی و کدنویسی: English
+زبان مستندات: فارسی
+معماری اصلی: Hybrid Theme + Companion Plugin
+ویرایشگر اصلی: Elementor Pro
+ویرایشگر مکمل: Gutenberg
+معماری چندزبانه: WPML با پشتیبانی ثانویه از Polylang
+مدیریت تنظیمات: Redux Framework
+مدیریت افزونه‌های وابسته: TGMPA
+
+================================================================
+بخش ۱ ـ مأموریت و فلسفه اصلی Skill
+================================================================
+
+۱.۱. هدف
+این Skill برای هدایت یک سیستم هوش مصنوعی در طراحی و توسعه قالب‌های حرفه‌ای، تجاری، امن، سریع، توسعه‌پذیر و قابل فروش وردپرس ایجاد شده است. هدف صرفاً تولید یک قالب زیبا نیست؛ هدف ساخت یک محصول نرم‌افزاری کامل است که در پروژه‌های مختلف با هویت بصری متفاوت قابل استفاده باشد، از قابلیت‌های استاندارد وردپرس و افزونه‌های هدف پشتیبانی کند، تجربه طراحی حرفه‌ای در Elementor و Elementor Pro ارائه دهد، تمام ویجت‌های استاندارد را با هویت بصری اختصاصی قالب نمایش دهد، ماژولار و توسعه‌پذیر باشد، امنیت و عملکرد و SEO و دسترس‌پذیری مناسبی داشته باشد، برای عرضه تجاری آماده باشد و مستندات و تست‌های قابل نگهداری داشته باشد.
+
+۱.۲. اصول غیرقابل‌چشم‌پوشی
+- کیفیت عملکردی بر سرعت تولید کد اولویت دارد.
+- کدنویسی باید واقعی، قابل اجرا و قابل تست باشد.
+- قابلیت نمایشی نباید به‌عنوان قابلیت عملیاتی معرفی شود.
+- کد غیرضروری نباید در Frontend بارگذاری شود.
+- امنیت نباید صرفاً به JavaScript سمت کاربر وابسته باشد.
+- تمام قابلیت‌ها باید معماری و مسئولیت مشخص داشته باشند.
+- تمام ویجت‌های Elementor و Elementor Pro باید از نظر بصری با قالب هماهنگ شوند.
+- هیچ ویجت پشتیبانی‌شده‌ای نباید بدون بررسی با ظاهر پیش‌فرض و ناسازگار باقی بماند.
+- تمام متن‌های ثابت باید از سیستم استاندارد ترجمه وردپرس استفاده کنند.
+- موتور مدیریت ترجمه موازی با WPML ساخته نشود.
+- موتور SEO موازی با Yoast SEO یا Rank Math ساخته نشود.
+- کدهای اصلی وردپرس، Elementor و WooCommerce مستقیماً دست‌کاری نشوند.
+- از APIهای عمومی و مستندشده استفاده شود.
+- هیچ تضمین غیرواقعی درباره رتبه گوگل، امتیاز ابزارهای سنجش یا ظرفیت سرور داده نشود.
+- پیش از انتشار، تست عملکرد، امنیت، واکنش‌گرایی و سازگاری الزامی است.
+
+۱.۳. استقلال از مدل هوش مصنوعی
+این Skill باید مستقل از مدل، شرکت سازنده یا محیط اجرای هوش مصنوعی باشد. هر مدل دریافت‌کننده باید بتواند نیازمندی‌ها را استخراج کند، معماری طراحی کند، ساختار فایل‌ها را بسازد، کد Theme و Companion Plugin را تولید کند، ویجت اختصاصی بسازد، استایل تمام ویجت‌های Elementor را پیاده‌سازی کند، تست بنویسد و اجرا کند، خطاها را اصلاح کند و مستندات و خروجی قابل ارزیابی تحویل دهد. هیچ بخش ضروری نباید به قابلیت اختصاصی یک مدل وابسته باشد.
+
+================================================================
+بخش ۲ ـ معماری پایه و تصمیمات قطعی
+================================================================
+
+۲.۱. معماری Hybrid: Theme + Companion Plugin
+
+وظایف Theme:
+- ظاهر و هویت بصری، ساختار صفحات و Templateها، Header و Footer.
+- ساختار نمایش محتوا، تنظیمات پایه، Design Tokens، Typography و رنگ‌ها.
+- استایل عمومی، ساختار نمایش نوشته‌ها و برگه‌ها.
+- استایل و Templateهای WooCommerce.
+- سازگاری Gutenberg و محل‌های رسمی نمایش Elementor.
+- Responsive Layout و تنظیمات ظاهری و چیدمان.
+
+وظایف Companion Plugin:
+- ویجت‌های اختصاصی Elementor و Dynamic Tags.
+- قابلیت‌های اختصاصی Gutenberg.
+- Feature Registry و Feature Manager.
+- سرویس‌های تجاری، CPT و Taxonomy در صورت نیاز.
+- REST API، پردازش پس‌زمینه، Migration و Integration.
+- قابلیت‌های توسعه‌پذیر، داده‌ها و تنظیمات ماندگار و منطق عملکردی اختصاصی.
+
+۲.۲. جداسازی مسئولیت‌ها
+منطق پرداخت، حساب کاربری و عملیات حساس نباید به Theme وابسته باشد. پردازش سنگین نباید در فایل‌های نمایش قالب اجرا شود. داده‌های ماندگار نباید با تغییر Theme از بین بروند. ویجت‌های اختصاصی و سرویس‌های وابسته باید در Companion Plugin قرار گیرند.
+
+۲.۳. استقلال نصب و حذف
+- Theme بدون Companion Plugin باید ساختار پایه وردپرس را نمایش دهد.
+- امکانات وابسته در نبود افزونه همراه باید وضعیت مشخصی داشته باشند.
+- حذف Theme نباید اطلاعات ماندگار Plugin را حذف کند.
+- حذف Plugin نباید داده‌های کاربر را ناخواسته پاک کند.
+- حذف داده‌ها باید شفاف و مطابق تنظیمات کاربر و الزامات حریم خصوصی باشد.
+
+================================================================
+بخش ۳ ـ ساختار پروژه و استاندارد کدنویسی
+================================================================
+
+۳.۱. ساختار Theme
+
+theme-name/
+  style.css
+  functions.php
+  index.php
+  screenshot.png
+  theme.json
+  wpml-config.xml
+  readme.txt
+  rtl.css
+  assets/
+    css/base/
+    css/components/
+    css/layouts/
+    css/widgets/
+    css/integrations/
+    css/responsive/
+    js/frontend/
+    js/editor/
+    fonts/
+    images/
+    icons/
+  inc/
+    setup/
+    assets/
+    template-functions/
+    template-hooks/
+    customizer/
+    elementor/
+    gutenberg/
+    woocommerce/
+    integrations/
+    compatibility/
+  template-parts/
+    header/
+    footer/
+    content/
+    archive/
+    single/
+    search/
+    components/
+  templates/
+  languages/
+    theme-name.pot
+    fa_IR.po
+    fa_IR.mo
+    en_US.po
+    en_US.mo
+  documentation/
+
+۳.۲. ساختار Companion Plugin
+
+theme-name-core/
+  theme-name-core.php
+  readme.txt
+  uninstall.php
+  wpml-config.xml
+  app/
+    Core/
+    Bootstrap/
+    Contracts/
+    Services/
+    Helpers/
+    Features/
+      FeatureRegistry.php
+      FeatureManager.php
+      DependencyResolver.php
+      ConflictResolver.php
+      Features/
+    Elementor/
+      Widgets/
+      Controls/
+      DynamicTags/
+      Extensions/
+      Integrations/
+      Compatibility/
+    Gutenberg/
+      Blocks/
+      Patterns/
+      Integrations/
+    Admin/
+      Redux/
+      FeatureManager/
+      Settings/
+    Integrations/
+      WooCommerce/
+      WPML/
+      Polylang/
+      SEO/
+      ThirdParty/
+    REST/
+    Database/
+    Cache/
+    Queue/
+    Security/
+    Compatibility/
+  assets/css/
+  assets/js/
+  assets/fonts/
+  assets/images/
+  languages/
+    theme-name-core.pot
+    fa_IR.po
+    fa_IR.mo
+    en_US.po
+    en_US.mo
+  tests/
+    Unit/
+    Integration/
+    Functional/
+    Accessibility/
+    Performance/
+    Security/
+    Visual/
+  documentation/
+
+۳.۳. استاندارد کدنویسی
+- PHP مطابق WordPress Coding Standards.
+- JavaScript مدرن و سازگار با محیط هدف.
+- CSS ماژولار و قابل نگهداری.
+- Namespace و Autoloading در معماری PHP.
+- جداسازی Business Logic از Presentation.
+- Composer در صورت نیاز.
+- مستندسازی APIهای داخلی.
+- جلوگیری از کد تکراری.
+- رعایت SOLID در بخش‌های مناسب.
+- استفاده از Hookهای عمومی وردپرس و APIهای رسمی Elementor و WooCommerce.
+- عدم وابستگی به APIهای خصوصی و مستندنشده.
+
+================================================================
+بخش ۴ ـ سیستم طراحی اختصاصی قالب
+================================================================
+
+۴.۱. Design System
+پیش از پیاده‌سازی ویجت‌ها، هر پروژه باید Design System مستقل داشته باشد.
+
+۴.۲. Design Tokens
+حداقل دسته‌ها:
+- Color Tokens
+- Typography Tokens
+- Spacing Tokens
+- Border Tokens
+- Radius Tokens
+- Shadow Tokens
+- Breakpoint Tokens
+- Animation Tokens
+- Z-index Tokens
+- Container Tokens
+- Icon Tokens
+- Form Tokens
+
+نمونه CSS:
+
+:root {
+    --theme-primary: #000000;
+    --theme-secondary: #000000;
+    --theme-accent: #000000;
+    --theme-text: #000000;
+    --theme-muted: #000000;
+    --theme-surface: #ffffff;
+    --theme-font-family: inherit;
+    --theme-radius-sm: 6px;
+    --theme-radius-md: 12px;
+    --theme-radius-lg: 20px;
+    --theme-spacing-sm: 8px;
+    --theme-spacing-md: 16px;
+    --theme-spacing-lg: 24px;
+    --theme-transition-fast: 150ms ease;
+    --theme-transition-normal: 220ms ease;
+}
+
+مقادیر واقعی باید بر اساس هویت بصری پروژه تعیین شوند.
+
+۴.۳. Typography
+برای H1 تا H6، Body، Paragraph، Caption، Label، Button، Navigation، Form Fields، Product Titles، Price، Meta Information، Blockquote، Code، Lists و Tables استایل مشخص تعریف شود.
+
+۴.۴. Responsive Design
+پشتیبانی واقعی از Desktop، Laptop، Tablet و Mobile الزامی است. ساختار ستون‌ها، فاصله‌ها، فونت، منو، تصاویر، فرم‌ها، جداول، اسلایدرها، Popupها، فروشگاه و صفحات ورود و حساب کاربری در اندازه‌های مختلف بررسی شوند.
+
+۴.۵. RTL و LTR
+فارسی و عربی باید RTL واقعی و انگلیسی LTR واقعی داشته باشند. صرفاً معکوس‌کردن چند ویژگی CSS کافی نیست. Logical CSS Properties، ترتیب آیکون و متن، منوها، فرم‌ها، Breadcrumbs، جداول، اسلایدرها، نمودارها، دکمه‌ها و انیمیشن‌های جهت‌دار باید بررسی شوند.
+
+================================================================
+بخش ۵ ـ الزام اختصاصی‌سازی کامل Elementor
+================================================================
+
+۵.۱. الزام اصلی و غیرقابل‌چشم‌پوشی
+در هر پروژه طراحی قالب وردپرس زرین کد، تمام ویجت‌های استاندارد Elementor و Elementor Pro باید از نظر ظاهری با هویت بصری اختصاصی همان قالب بازطراحی و استایل‌دهی شوند. استفاده از ظاهر پیش‌فرض Elementor بدون بررسی و تطبیق با Design System قالب، خروجی قابل قبول نیست. هدف فقط ساخت چند ویجت اختصاصی نیست؛ تمام ویجت‌های استاندارد باید بخشی از زبان بصری قالب باشند. این الزام در تمام پروژه‌ها اجباری است.
+
+۵.۲. ویجت‌های Elementor Core
+تمام ویجت‌های پایه نسخه هدف باید بررسی شوند، از جمله:
+- Container
+- Section / Column / Inner Section برای سازگاری قدیمی
+- Heading
+- Text Editor
+- Image
+- Image Box
+- Image Gallery
+- Image Carousel
+- Basic Gallery
+- Icon
+- Icon Box
+- Star Rating
+- Image Comparison
+- Video
+- Button
+- Divider
+- Spacer
+- Google Maps
+- HTML
+- Shortcode
+- Alert
+- Accordion
+- Toggle
+- Tabs
+- Progress Bar
+- Counter
+- Testimonial
+- Testimonial Carousel
+- Social Icons
+- Menu Anchor
+- Sidebar
+- Read More
+- WordPress Widgets
+
+فهرست نهایی باید از نسخه نصب‌شده و رسمی Elementor استخراج شود و به این نمونه محدود نیست.
+
+۵.۳. ویجت‌های Elementor Pro
+تمام ویجت‌های رسمی نسخه هدف بررسی شوند، از جمله:
+- Form
+- Login
+- Nav Menu
+- Posts
+- Portfolio
+- Loop Grid
+- Loop Carousel
+- Archive Posts
+- Archive Title
+- Post Title
+- Post Content
+- Post Excerpt
+- Featured Image
+- Author Box
+- Post Info
+- Post Navigation
+- Comments
+- Table of Contents
+- Share Buttons
+- Breadcrumbs
+- Search Form
+- Slides
+- Call to Action
+- Flip Box
+- Media Carousel
+- Reviews
+- Price Table
+- Price List
+- Countdown
+- Progress Tracker
+- Animated Headline
+- Lottie
+- Hotspot
+- Video Playlist
+- PayPal Button
+- Stripe Button
+- Template
+- Sitemap
+- سایر ویجت‌های رسمی موجود در نسخه هدف.
+
+ویجت‌های وابسته به سرویس، افزونه یا مجوز خاص باید جداگانه مشخص شوند.
+
+۵.۴. ویجت‌های WooCommerce در Elementor
+تمام ویجت‌های فروشگاهی موجود در نسخه هدف باید استایل اختصاصی داشته باشند:
+- Products
+- Archive Products
+- Product Title
+- Product Images
+- Product Price
+- Product Rating
+- Product Stock
+- Product Meta
+- Product Description
+- Product Content
+- Add to Cart
+- Variable Product Controls
+- Product Tabs
+- Related Products
+- Upsells
+- Categories
+- Menu Cart
+- Cart
+- Checkout
+- My Account
+- سایر ویجت‌های رسمی فروشگاهی.
+
+سازگاری WooCommerce Blocks نیز باید بررسی شود.
+
+۵.۵. استاندارد طراحی هر ویجت
+ظاهر پایه، در صورت تناسب:
+- رنگ‌ها و Typography
+- Padding و Margin
+- Border و Border Radius
+- Background و Shadow
+- Icon و Alignment
+- اندازه و چینش عناصر
+- فاصله عناصر داخلی و افکت‌های بصری
+
+حالت‌های تعاملی:
+- Normal
+- Hover
+- Focus
+- Active
+- Selected
+- Expanded
+- Collapsed
+- Disabled
+- Loading
+- Success
+- Error
+- Empty State
+
+Responsive:
+- Desktop
+- Tablet
+- Mobile
+- Breakpointهای سفارشی
+
+قابلیت‌های پیشرفته در صورت پشتیبانی:
+- Animation و Transition
+- Entrance Effects و Hover Effects
+- Overlay و Gradient
+- Background Video
+- Mask و Shape Divider
+- Sticky و Motion Effects
+
+افکت‌ها باید کنترل‌شده، بهینه و قابل غیرفعال‌سازی باشند.
+
+۵.۶. Elementor Styling Layer
+یک لایه مستقل برای استایل‌دهی ایجاد شود که:
+- تمام ویجت‌ها را با Design Tokens هماهنگ کند.
+- استایل‌های پایه و خانواده ویجت‌ها را تعریف کند.
+- Editor و Frontend را هماهنگ کند.
+- RTL/LTR را پشتیبانی کند.
+- از تداخل CSS جلوگیری کند.
+- تنظیمات Style خود Elementor را حفظ کند.
+- سازگاری نسخه‌ای داشته باشد.
+
+معماری CSS:
+- فایل‌های CSS ماژولار باشند.
+- استایل ویجت‌ها در فایل مستقل یا خانواده مشخص قرار گیرد.
+- Selectorها تا حد امکان به محدوده ویجت و قالب محدود باشند.
+- از Selector عمومی مخرب اجتناب شود.
+- !important فقط با دلیل فنی مستند استفاده شود.
+- فایل‌های Elementor تغییر داده نشوند.
+- ساختار خصوصی و مستندنشده وابستگی اصلی نباشد.
+- CSS تکراری بارگذاری نشود.
+
+هماهنگی Editor و Frontend:
+- فونت و رنگ در Editor صحیح باشد.
+- پیش‌نمایش Responsive صحیح باشد.
+- کنترل‌های ویرایشگر مختل نشوند.
+- UI خود Elementor آسیب نبیند.
+- تغییرات زنده قابل مشاهده باشند.
+- تفاوت غیرموجه Editor و Frontend وجود نداشته باشد.
+
+حفظ آزادی طراحی:
+استایل قالب هویت بصری پایه را فراهم کند، اما تنظیمات مجاز Elementor را محدود نکند. در صورت پشتیبانی ویجت، Typography، Color، Background، Border، Shadow، Spacing، Alignment، Width/Height، Responsive Controls، Motion Effects، Global Colors، Global Fonts و Site Settings باید قابل استفاده بمانند.
+
+۵.۷. Elementor Widget Coverage Matrix
+برای هر پروژه ماتریس پوشش اجباری ایجاد شود. فیلدها:
+- Widget ID
+- Widget Name
+- Provider: Elementor / Elementor Pro / WooCommerce
+- Version
+- Style Designed
+- CSS Implemented
+- Editor Tested
+- Frontend Tested
+- Responsive Tested
+- RTL/LTR Tested
+- Accessibility Tested
+- Visual Regression
+- Status
+
+وضعیت‌ها:
+- Not Reviewed
+- Designed
+- Implemented
+- Tested
+- Approved
+- Unsupported / Requires Dependency
+
+ویجت پشتیبانی‌نشده باید دلیل و محدودیت مستند داشته باشد.
+
+۵.۸. ویجت‌های اختصاصی قالب
+علاوه بر استایل‌دهی تمام ویجت‌های استاندارد، هر قالب باید ویجت‌های اختصاصی مورد نیاز خود را داشته باشد. این ویجت‌ها در Companion Plugin قرار می‌گیرند و می‌توانند شامل Layout، Header، Footer، Blog، Marketing، Landing Page، Media، Form، Navigation، Dynamic Content، Data Visualization، WooCommerce، Social و Utility باشند. ویجت‌ها باید از Dynamic Tags، کنترل‌های استاندارد Elementor، Responsive Controls و ترجمه پشتیبانی کنند.
+
+================================================================
+بخش ۶ ـ کاتالوگ خانواده ویجت‌ها
+================================================================
+
+۶.۱. Core Layout
+- Container
+- Section
+- Column
+- Inner Section
+- Grid
+- Flex Layout
+- Content Wrapper
+- Split Layout
+- Sticky Container
+- Full Width Section
+
+۶.۲. Header and Navigation
+- Site Logo
+- Site Title
+- Primary Navigation
+- Secondary Navigation
+- Mega Menu
+- Mobile Menu
+- Search
+- Account Menu
+- Cart Icon
+- Language Switcher Integration
+- Breadcrumbs
+- Header CTA
+- Sticky Header
+- Offcanvas Navigation
+
+۶.۳. Footer
+- Footer Logo
+- Footer Navigation
+- Footer Columns
+- Contact Information
+- Social Links
+- Newsletter
+- Copyright
+- Trust Badges
+- Payment Icons
+- Footer CTA
+
+۶.۴. Blog and Content
+- Post Grid
+- Post List
+- Post Carousel
+- Post Slider
+- Featured Post
+- Category Grid
+- Author Box
+- Post Meta
+- Post Tags
+- Related Posts
+- Popular Posts
+- Reading Time
+- Table of Contents
+- Content Navigation
+- Archive Header
+- Search Results
+
+۶.۵. Marketing and Landing Pages
+- Hero Section
+- CTA Section
+- Feature Grid
+- Feature List
+- Benefits
+- Statistics
+- Counter
+- Pricing Table
+- Pricing Comparison
+- Testimonials
+- Logo Cloud
+- Team Members
+- Timeline
+- Process Steps
+- FAQ
+- Newsletter
+- Lead Generation Form
+- Trust Section
+- Comparison Section
+- Countdown
+- Promotional Banner
+
+۶.۶. Media and Gallery
+- Image Grid
+- Masonry Gallery
+- Lightbox Gallery
+- Video Gallery
+- Video Background
+- Before / After
+- Image Hotspot
+- Media Carousel
+- Audio Player
+- Video Playlist
+
+۶.۷. Forms and UI
+- Contact Form
+- Multi-step Form
+- Search Form
+- Login Form
+- Registration Form
+- Newsletter Form
+- Rating
+- Alert
+- Accordion
+- Tabs
+- Toggle
+- Tooltip
+- Modal
+- Popup Trigger
+- Progress Indicator
+- Social Share
+- Icon List
+- Custom Select
+- Empty State
+- Loading State
+
+۶.۸. WooCommerce
+- Product Grid
+- Product Carousel
+- Product Categories
+- Product Search
+- Product Filters Integration
+- Product Card
+- Product Gallery
+- Product Price
+- Product Rating
+- Product Stock
+- Add to Cart
+- Variable Product Controls
+- Related Products
+- Upsells
+- Cart
+- Checkout
+- My Account
+- Mini Cart
+- Product Tabs
+- Sale Badge
+- Product Labels
+- Wishlist Integration در صورت وجود افزونه وابسته
+
+۶.۹. Dynamic Content
+- Dynamic Text
+- Dynamic Image
+- Dynamic Link
+- Dynamic Field
+- Dynamic Relationship
+- Dynamic User Data
+- Dynamic Taxonomy
+- Dynamic Query
+- Conditional Content
+- Dynamic Template
+
+۶.۱۰. Data Visualization
+- Bar Chart
+- Line Chart
+- Pie Chart
+- Donut Chart
+- Statistics Card
+- Progress Chart
+- Comparison Chart
+- Data Table
+
+تمام نمودارها باید از داده معتبر استفاده کنند و اطلاعات جعلی تولید نکنند.
+
+۶.۱۱. کنترل‌های عمومی
+در صورت تناسب هر ویجت: Typography، Colors، Background، Border، Shadow، Spacing، Responsive، Alignment، Width، Height، Position، Z-index، Animation، Visibility، Custom CSS و Accessibility Settings.
+
+================================================================
+بخش ۷ ـ Feature Registry و Feature Manager
+================================================================
+
+۷.۱. اصل ماژولار بودن
+تمام قابلیت‌های اختیاری قالب و افزونه همراه باید از طریق Feature Registry ثبت و مدیریت شوند. هیچ قابلیت اختیاری نباید به شکل غیرقابل‌کنترل در تمام صفحات اجرا شود.
+
+۷.۲. اطلاعات هر Feature
+- Feature ID
+- Name
+- Description
+- Category
+- Default State
+- Dependencies
+- Conflicts
+- Required Capabilities
+- CSS Assets
+- JS Assets
+- PHP Services
+- Widgets
+- Settings
+- Translation Support
+- Cache Groups
+- Version
+- Migration Requirements
+- Test Requirements
+
+۷.۳. مدیریت مرکزی Redux
+Redux Framework پنل اصلی تنظیمات و Feature Manager را فراهم می‌کند. امکانات:
+- فعال‌سازی و غیرفعال‌سازی Feature
+- مشاهده وابستگی‌ها و تعارض‌ها
+- مشاهده وضعیت و نسخه قابلیت
+- تنظیمات اختصاصی
+- بازگردانی تنظیمات
+- Export / Import در صورت نیاز
+
+۷.۴. رفتار واقعی خاموش‌کردن Feature
+خاموش‌کردن قابلیت باید واقعاً آن را از چرخه اجرا خارج کند:
+1) HTML اختصاصی تولید نشود.
+2) CSS غیرضروری بارگذاری نشود.
+3) JavaScript غیرضروری بارگذاری نشود.
+4) درخواست خارجی غیرضروری انجام نشود.
+5) Query غیرضروری اجرا نشود.
+6) پردازش PHP غیرضروری اجرا نشود.
+7) Cron و Background Job غیرضروری اجرا نشود.
+8) Widget وابسته در Frontend خروجی نداشته باشد.
+9) تنظیمات ذخیره‌شده حذف نشوند.
+10) فعال‌سازی مجدد تنظیمات قبلی را بازیابی کند.
+
+۷.۵. Dependency و Conflict
+- وابستگی‌ها هنگام فعال‌سازی بررسی شوند.
+- در نبود وابستگی، پیام مشخص نمایش داده شود.
+- تعارض قابلیت‌ها شناسایی شود.
+- فعال‌سازی هم‌زمان قابلیت‌های متعارض بی‌صدا انجام نشود.
+- امنیت و دسترس‌پذیری پایه قابل حذف نباشند.
+- غیرفعال‌سازی Feature، Cache مرتبط را Invalidate کند.
+
+۷.۶. سطح کنترل
+سطح سیستم: مدیریت قابلیت از Redux.
+سطح صفحه: کنترل نمایش و تنظیمات ویجت از Elementor.
+Feature خاموش‌شده در Editor باید پیام مناسب داشته باشد و در Frontend خروجی غیرضروری تولید نکند.
+
+================================================================
+بخش ۸ ـ Elementor، Gutenberg و افزونه‌های مدیریتی
+================================================================
+
+۸.۱. Elementor
+- Elementor Pro ویرایشگر اصلی طراحی است.
+- Elementor Free به‌عنوان سطح پایه پشتیبانی شود.
+- قابلیت‌های اختصاصی از APIهای رسمی استفاده کنند.
+- Dynamic Tags در صورت نیاز پیاده‌سازی شوند.
+- Theme Locations رسمی پشتیبانی شوند.
+- کنترل‌های اختصاصی با سیستم استاندارد Elementor هماهنگ باشند.
+- Editor و Frontend هماهنگ باشند.
+- نسخه‌های هدف در ماتریس سازگاری ثبت شوند.
+
+۸.۲. Gutenberg
+پشتیبانی Gutenberg الزامی است:
+- theme.json
+- Global Styles
+- Editor Styles
+- Block Styles
+- Block Patterns
+- Custom Blocks در صورت نیاز
+- Typography Controls
+- Color Palette
+- Layout Settings
+- Responsive Compatibility
+- RTL/LTR
+
+Elementor و Gutenberg باید بتوانند در یک سایت حضور داشته باشند و استفاده از یکی نباید دیگری را بی‌دلیل مختل کند.
+
+۸.۳. Redux Framework
+Redux برای تنظیمات عمومی قالب و Feature Manager استفاده شود. Redux جایگزین Elementor برای طراحی صفحه نیست و نباید منطق حساس تجاری را اجرا کند. تنظیمات باید اعتبارسنجی و ایمن‌سازی شوند.
+
+۸.۴. TGMPA
+برای مدیریت افزونه‌های وابسته از TGMPA استفاده شود. افزونه‌ها در دسته Required، Recommended و Optional قرار گیرند. وضعیت نصب، فعال‌سازی و وابستگی‌ها مشخص باشد. هیچ افزونه‌ای بدون دلیل فنی ضروری اجباری نشود.
+
+================================================================
+بخش ۹ ـ چندزبانگی و Localization
+================================================================
+
+۹.۱. اصول قطعی
+Localization رشته‌های ثابت و Multilingual Content Management دو مفهوم جدا هستند. قالب نباید موتور مدیریت ترجمه موازی ایجاد کند.
+
+۹.۲. gettext
+تمام رشته‌های ثابت از توابع استاندارد وردپرس استفاده کنند، از جمله:
+__( 'Example text', 'theme-textdomain' );
+_e( 'Example text', 'theme-textdomain' );
+_x( 'Post', 'Content type', 'theme-textdomain' );
+_n( '%s item', '%s items', $count, 'theme-textdomain' );
+esc_html__( 'Example text', 'theme-textdomain' );
+esc_attr__( 'Example text', 'theme-textdomain' );
+
+استفاده از رشته Hardcoded در رابط کاربری ممنوع است.
+
+۹.۳. فایل‌های ترجمه
+در Theme و Companion Plugin فایل‌های POT، PO و MO حفظ شوند. این فایل‌ها برای Localization معمول و استفاده تک‌زبانه، مانند فارسی یا انگلیسی، الزامی هستند. استخراج رشته‌ها و اعتبارسنجی ترجمه در فرآیند توسعه لحاظ شود.
+
+۹.۴. WPML
+WPML راهکار اصلی چندزبانه است و باید از صفحات، نوشته‌ها، CPT، Taxonomy، منوها، Elementor Widgets، Repeater Fields، Custom Fields، Dynamic Content، محصولات و ویژگی‌های WooCommerce، SEO Metadata، Demo Content و رشته‌های Theme و Plugin پشتیبانی کند.
+
+۹.۵. wpml-config.xml
+در ریشه Theme و Companion Plugin ایجاد شود و مشخص کند چه فیلدهایی ترجمه، کپی یا مستثنا شوند و چه Repeaterها و تنظیماتی قابل ترجمه باشند.
+
+۹.۶. WPML String Translation و WooCommerce
+رشته‌های رابط کاربری و تنظیمات قابل ترجمه در صورت نیاز ثبت شوند. محصولات، دسته‌بندی‌ها و ویژگی‌های فروشگاهی مطابق سازگاری رسمی WPML و WooCommerce مدیریت شوند.
+
+۹.۷. Polylang
+Polylang پشتیبانی ثانویه است:
+- Integration از طریق Adapter مستقل.
+- تست سازگاری جداگانه.
+- WPML و Polylang هم‌زمان اجرا نشوند.
+- منطق ترجمه در تمام لایه‌ها به یکی از این افزونه‌ها قفل نشود.
+
+================================================================
+بخش ۱۰ ـ WooCommerce
+================================================================
+
+۱۰.۱. پشتیبانی فروشگاهی
+قالب باید از WooCommerce به شکل جامع پشتیبانی کند.
+
+صفحات:
+- Shop
+- Product Archive
+- Single Product
+- Product Category
+- Product Tag
+- Cart
+- Checkout
+- My Account
+- Order Details
+- Order Tracking در صورت پشتیبانی
+- صفحات کوپن و تخفیف
+
+انواع محصول:
+- Simple
+- Variable
+- Grouped
+- External
+- Virtual
+- Downloadable
+- سایر انواع رسمی مورد نیاز پروژه
+
+امکانات:
+- Product Gallery
+- Product Variations
+- Stock Status
+- Sale Badge
+- Product Reviews
+- Ratings
+- Related Products
+- Upsells
+- Cross-sells
+- Product Tabs
+- Cart
+- Checkout
+- My Account
+
+۱۰.۲. HPOS
+قالب و افزونه همراه باید با High-Performance Order Storage سازگار باشند. برای خواندن و نوشتن سفارش‌ها نباید صرفاً به ساختار قدیمی Post Meta وابسته باشند.
+
+۱۰.۳. Cart و Checkout Blocks
+سازگاری با Cart Block، Checkout Block، Store API و Cart and Checkout Extensibility بررسی شود. از دست‌کاری Markup خصوصی Blocks خودداری شود.
+
+۱۰.۴. اصول فنی
+- استفاده از APIهای رسمی WooCommerce.
+- عدم تغییر مستقیم فایل‌های Core.
+- حفظ سازگاری Template Overrides و مستندسازی آن‌ها.
+- بررسی Deprecated Templates.
+- تست سناریوهای خرید و پرداخت.
+- تست موبایل و RTL/LTR.
+- تست HPOS.
+
+================================================================
+بخش ۱۱ ـ SEO و Structured Data
+================================================================
+
+۱۱.۱. معماری SEO-Compatible
+قالب موتور SEO مستقل و موازی نسازد. Yoast SEO و Rank Math مالک اصلی SEO Metadata و Schema عمومی باشند. وظیفه قالب سازگاری، Markup مناسب و جلوگیری از Metadata و Schema تکراری است.
+
+۱۱.۲. ساختار و Metadata
+- Semantic HTML5
+- Heading Hierarchy
+- Navigation Semantics
+- Main Content
+- Article Structure
+- Accessible Links
+- Meaningful Buttons
+- Title
+- Meta Description
+- Canonical
+- Robots
+- Open Graph
+- Twitter Cards
+- Breadcrumbs
+
+اطلاعات باید با افزونه SEO فعال هماهنگ باشند و دو بار تولید نشوند.
+
+۱۱.۳. Indexability
+صفحات قابل ایندکس و خصوصی تفکیک شوند. Pagination، صفحات تکراری، Canonical، Robots Directive و Sitemap بررسی شوند.
+
+۱۱.۴. Structured Data
+Schema باید مطابق محتوای واقعی باشد. انواع متناسب با پروژه می‌توانند شامل Organization، WebSite، WebPage، Article، Product، BreadcrumbList، Person، LocalBusiness و Event باشند. داده ساختگی، امتیاز جعلی، Review غیرواقعی یا اطلاعات غیرقابل اثبات ممنوع است.
+
+۱۱.۵. International SEO
+- hreflang
+- Canonical
+- Language-specific URLs
+- Language Switcher
+- ترجمه صحیح Metadata
+- مدیریت محتوای تکراری چندزبانه
+
+۱۱.۶. Image SEO
+ALT مناسب، نام‌گذاری فایل، ابعاد مشخص، فرمت مناسب و Lazy Loading صحیح رعایت شود. تصاویر حیاتی بالای صفحه نباید به‌اشتباه Lazy Load شوند.
+
+۱۱.۷. موتورهای جستجو
+زیرساخت با استانداردهای عمومی و مستند Google، Bing، Yahoo از طریق زیرساخت مرتبط با Bing و Yandex سازگار باشد. ادعای وجود الگوریتم یا سیستم SEO اختصاصی برای Yahoo مطرح نشود.
+
+۱۱.۸. Crawlerها و AI Agents
+- HTML معنایی
+- متن واقعی و قابل استخراج
+- Headingهای منظم
+- URL پایدار
+- لینک استاندارد
+- Schema معتبر
+- Author و Organization واقعی
+- محتوای چندزبانه صحیح
+- ALT مناسب تصاویر
+- عدم مسدودسازی ناخواسته Crawlerها
+- عدم تولید صفحات و اطلاعات ساختگی
+- عدم مخفی‌کردن محتوای اصلی در JavaScript غیرضروری
+
+================================================================
+بخش ۱۲ ـ Performance و Core Web Vitals
+================================================================
+
+۱۲.۱. اهداف عملکردی
+اهداف میدانی در صدک ۷۵ کاربران واقعی:
+- LCP حداکثر ۲.۵ ثانیه
+- INP حداکثر ۲۰۰ میلی‌ثانیه
+- CLS حداکثر ۰.۱
+
+این اهداف برای موبایل و دسکتاپ جداگانه بررسی شوند. Lighthouse آزمایشگاهی جایگزین داده واقعی کاربران نیست. TBT نیز جایگزین مستقیم INP نیست.
+
+۱۲.۲. Frontend Performance
+- Conditional CSS و JavaScript
+- جلوگیری از کتابخانه‌های تکراری
+- Critical CSS
+- Font Subsetting
+- Preload فقط منابع حیاتی
+- Lazy Loading رسانه‌های غیرحیاتی
+- تعیین ابعاد تصاویر
+- WebP و AVIF در صورت پشتیبانی
+- کاهش درخواست خارجی
+- کاهش DOM غیرضروری
+- کاهش JavaScript Blocking
+- کاهش انیمیشن سنگین
+- جلوگیری از Layout Shift
+- جلوگیری از بارگذاری ویجت‌های غیرفعال
+
+۱۲.۳. Backend Performance
+- Query Optimization و Indexing
+- جلوگیری از N+1 Queries
+- Pagination و Batch Processing
+- Transients
+- Redis Persistent Object Cache
+- Background Jobs
+- عدم پردازش سنگین در Page Load
+- عدم Visitor-triggered High Frequency Cron
+- کنترل Autoloaded Options
+- Cache Invalidation
+- عدم Cache عمومی اطلاعات خصوصی
+
+حجم Autoloaded Options بررسی شود؛ حدود ۸۰۰ کیلوبایت می‌تواند آستانه هشدار اولیه باشد، نه حد قطعی برای تمام سرورها.
+
+۱۲.۴. Caching
+لایه‌ها:
+- Browser Cache
+- CDN Cache
+- Page Cache
+- Object Cache
+- Query Cache در صورت نیاز
+- Application Cache
+
+اطلاعات حساس در Cache عمومی قرار نگیرند. تغییر تنظیمات، Feature و محتوا باید Cache مرتبط را Invalidate کند.
+
+================================================================
+بخش ۱۳ ـ امنیت و حریم خصوصی
+================================================================
+
+۱۳.۱. استانداردهای امنیتی
+- Nonce Verification
+- Capability Checks
+- Input Validation
+- Output Escaping
+- Sanitization
+- Prepared SQL Queries
+- CSRF Protection
+- XSS Prevention
+- SQL Injection Prevention
+- Secure REST API
+- Rate Limiting
+- Authentication و Authorization Checks
+- File Upload Validation
+- Secure File Handling
+- Secret Management
+- Dependency Updates
+
+۱۳.۲. اصول حیاتی
+هیچ ورودی کاربر قابل اعتماد فرض نشود. درخواست‌های حساس سمت سرور اعتبارسنجی شوند. مجوز کاربر پیش از عملیات حساس بررسی شود. Query ناامن، قرار دادن کلید API در کد عمومی، افشای اطلاعات حساس در Log یا افشای خطای داخلی در Frontend ممنوع است. امنیت پایه با Feature Manager قابل حذف نیست.
+
+۱۳.۳. Privacy
+- حداقل‌سازی داده‌های جمع‌آوری‌شده.
+- مشخص‌بودن هدف پردازش.
+- نگهداری امن اطلاعات.
+- امکان مدیریت داده‌های کاربر.
+- عدم افشای اطلاعات شخصی در Cache عمومی.
+- ثبت Log با رعایت حریم خصوصی.
+
+================================================================
+بخش ۱۴ ـ Accessibility
+================================================================
+
+هدف طراحی WCAG 2.2 AA است.
+
+موارد ضروری:
+- Keyboard Navigation
+- Focus Visibility
+- Contrast
+- Semantic HTML
+- ARIA در محل مناسب
+- Form Labels
+- Error Messages
+- Accessible Dialogs
+- Screen Reader Compatibility
+- Reduced Motion
+- Accessible Navigation
+- Alternative Text
+
+استفاده نادرست از ARIA ممنوع است؛ HTML معنایی در اولویت قرار دارد.
+
+================================================================
+بخش ۱۵ ـ مقیاس‌پذیری و ظرفیت
+================================================================
+
+۱۵.۱. اهداف معماری
+هدف طراحی باید پشتیبانی از دو ظرفیت مستقل باشد:
+1) ۱۰۰٬۰۰۰ حساب کاربری ثبت‌شده.
+2) ۱۰۰٬۰۰۰ کاربر هم‌زمان.
+
+این دو عدد مفهوم متفاوتی دارند. ۱۰۰ هزار حساب ثبت‌شده به‌معنای حضور هم‌زمان ۱۰۰ هزار کاربر نیست. معماری نرم‌افزار به‌تنهایی ظرفیت ۱۰۰ هزار کاربر هم‌زمان را تضمین نمی‌کند. ظرفیت باید با Workload مشخص و زیرساخت واقعی آزمایش شود.
+
+۱۵.۲. معماری مقیاس‌پذیر
+
+Users / Search Bots / AI Agents
+              |
+              v
+          CDN / WAF
+              |
+              v
+        Load Balancer
+              |
+              v
+   Stateless WordPress App Nodes
+              |
+      +-------+--------+
+      |                |
+      v                v
+    Redis         Database Layer
+                       |
+                Primary / Replicas
+                       |
+                       v
+                 Object Storage
+
+        Queue Workers / Background Jobs
+          Monitoring / Logs / Alerts
+
+۱۵.۳. الزامات
+- Stateless Application Nodes
+- Redis
+- Database Indexing
+- Read Replicas در صورت نیاز
+- Object Storage
+- Queue Workers و Background Jobs
+- Pagination و Batch Processing
+- Rate Limiting و Idempotency
+- جلوگیری از Race Conditions
+- کنترل Concurrent Writes
+- عدم پردازش سنگین در Page Load
+- سیاست جداگانه Cache خصوصی و عمومی
+- مدیریت Session در معماری چندسروری
+
+۱۵.۴. مدل تست ظرفیت
+پیش از ادعای ظرفیت باید Workload Model، Target RPS، Read/Write Ratio، Think Time، Active Sessions، Cache Hit Ratio، Geographic Distribution، منابع سرور، نوع درخواست‌ها و مدت بار پایدار مشخص شوند.
+
+سناریوها:
+- Baseline Test
+- Ramp-up Test
+- Target Load Test
+- Stress Test
+- Spike Test
+- Soak Test
+- Recovery Test
+
+ابزارها:
+- k6
+- JMeter
+- Locust
+
+معیارهای پذیرش:
+- RPS واقعی
+- P95 و P99 Latency
+- Error Rate
+- CPU و RAM
+- Database Metrics
+- Redis Hit Ratio
+- Recovery Time
+- مدت بار پایدار
+
+اعداد ۵۰۰، ۱۰۰۰، ۳۰۰۰ یا ۵۰۰۰ کاربر هم‌زمان فقط نقاط آزمایش مرحله‌ای هستند و تضمین ظرفیت نیستند.
+
+================================================================
+بخش ۱۶ ـ سازگاری و مدیریت نسخه‌ها
+================================================================
+
+۱۶.۱. ماتریس سازگاری
+نسخه‌های هدف و تست‌شده برای موارد زیر ثبت شوند:
+- WordPress
+- PHP
+- Elementor
+- Elementor Pro
+- WooCommerce
+- Redux
+- TGMPA
+- WPML
+- Polylang
+- Yoast SEO
+- Rank Math
+- Browserها
+
+نسخه‌های حداقل، پیشنهادی و تست‌شده مستند شوند.
+
+۱۶.۲. Compatibility Management
+- استفاده از API رسمی.
+- بررسی Deprecated APIها.
+- تست پس از به‌روزرسانی.
+- جلوگیری از وابستگی به ساختار داخلی افزونه‌ها.
+- Adapter برای Integrationهای مختلف.
+- ثبت Known Issues و Unsupported Combinations.
+
+۱۶.۳. Theme Update Safety
+به‌روزرسانی نباید اطلاعات کاربر، تنظیمات مشتری، صفحات Elementor، ساختار WooCommerce، ترجمه‌ها یا داده‌های افزونه همراه را خراب یا حذف کند. Migrationها باید نسخه‌بندی، قابل تست و تا حد امکان قابل بازیابی باشند.
+
+================================================================
+بخش ۱۷ ـ Demo Import و تجربه راه‌اندازی
+================================================================
+
+۱۷.۱. Demo Content
+در صورت نیاز Demo Importer فراهم شود. موارد قابل واردکردن:
+- Pages
+- Posts
+- Media
+- Menus
+- Widgets
+- Theme Settings
+- Elementor Templates
+- Global Styles
+- WooCommerce Demo Products
+- Custom Post Types
+
+۱۷.۲. الزامات Demo Importer
+- واردکردن قابل کنترل.
+- جلوگیری از Duplicate Import.
+- گزارش خطا.
+- امکان انتخاب بخش‌های Import.
+- مدیریت وابستگی‌ها.
+- عدم حذف اطلاعات موجود بدون تأیید.
+- مدیریت تصاویر و منابع.
+- ثبت وضعیت عملیات.
+
+محتوای نمایشی نباید به‌عنوان داده واقعی یا نظر واقعی مشتری معرفی شود.
+
+================================================================
+بخش ۱۸ ـ تست و تضمین کیفیت
+================================================================
+
+۱۸.۱. لایه‌های تست
+Unit Testing: PHPUnit؛ منطق مستقل هر ماژول تست شود.
+Integration Testing: WordPress Test Suite، WooCommerce، Elementor، WPML، Polylang، Redux و REST API.
+Static Analysis: PHPStan، PHPCS و WordPress Coding Standards.
+Browser Testing: Playwright؛ سناریوهای اصلی Frontend و Editor خودکارسازی شوند.
+Performance Testing: Lighthouse، k6، JMeter و Locust.
+Accessibility Testing: Pa11y، ابزارهای WCAG و تست دستی Keyboard و Screen Reader.
+Visual Regression: Screenshot Tests، Visual Comparison، Responsive Snapshots و RTL/LTR Snapshots.
+WordPress Validation: Theme Check، WP-CLI و WordPress Test Suite.
+
+۱۸.۲. پوشش تست
+هدف پوشش حداقل ۸۰ درصد برای منطق اصلی پروژه است؛ اما درصد Coverage به‌تنهایی معیار کیفیت نیست. سناریوهای بحرانی باید پوشش نزدیک به کامل داشته باشند:
+- Authentication
+- Authorization
+- Data Validation
+- Payments در صورت وجود
+- WooCommerce Checkout
+- Data Persistence
+- Migrations
+- REST Security
+- Feature Dependencies
+- Cache Isolation
+- User Privacy
+
+۱۸.۳. Definition of Done
+هر قابلیت فقط زمانی تکمیل‌شده است که:
+1) کدنویسی انجام شده باشد.
+2) منطق عملکردی کار کند.
+3) UI نهایی شده باشد.
+4) Responsive تست شده باشد.
+5) RTL/LTR تست شده باشد.
+6) Accessibility بررسی شده باشد.
+7) Security بررسی شده باشد.
+8) Performance بررسی شده باشد.
+9) Unit و Integration Tests اجرا شده باشند.
+10) مستندات نوشته شده باشند.
+11) وابستگی‌ها مشخص شده باشند.
+12) Feature Manager در صورت نیاز آن را کنترل کند.
+13) خطای بحرانی باقی نمانده باشد.
+
+================================================================
+بخش ۱۹ ـ توسعه و انتشار تجاری
+================================================================
+
+۱۹.۱. ThemeForest
+در صورت عرضه بین‌المللی:
+- رعایت قوانین رسمی WordPress و الزامات مارکت مقصد.
+- رعایت استانداردهای کدنویسی.
+- مستندات نصب، تنظیمات و Demo Import.
+- مستندات سازگاری.
+- لایسنس صحیح منابع.
+- عدم استفاده غیرمجاز از فونت، تصویر یا کد.
+- بسته‌بندی استاندارد.
+- حذف فایل‌های توسعه غیرضروری از نسخه انتشار.
+
+۱۹.۲. مارکت‌های ایرانی
+برای ژاکت، راست‌چین یا فروش مستقل:
+- نصب آسان.
+- راهنمای فارسی و مستندات کامل.
+- Demo Import.
+- راهنمای Elementor، تنظیمات و WooCommerce.
+- راهنمای افزونه‌های مورد نیاز.
+- سیاست به‌روزرسانی.
+- اطلاعات پشتیبانی.
+- ثبت نسخه و تغییرات.
+
+۱۹.۳. مستندات هر پروژه
+- Installation Guide
+- Configuration Guide
+- Elementor Guide
+- Widget Catalog
+- Feature Manager Guide
+- WooCommerce Guide
+- Translation Guide
+- Developer Guide
+- API Reference
+- Changelog
+- Compatibility Matrix
+- Troubleshooting Guide
+- Release Notes
+
+================================================================
+بخش ۲۰ ـ Roadmap اجرایی توسعه
+================================================================
+
+فاز صفر ـ تحلیل نیازمندی
+خروجی‌ها: Project Brief، Feature List، Target Audience، Design Direction، Plugin Dependencies، Supported Versions، Performance Goals، SEO Requirements، Widget Requirements و Compatibility Requirements.
+معیار تحویل: نیازمندی‌ها قابل ارزیابی و اولویت‌بندی باشند.
+
+فاز یک ـ طراحی سیستم بصری
+خروجی‌ها: Brand Direction، Design Tokens، Typography System، Color System، Spacing System، Responsive Rules، Component Library، UI States و RTL/LTR Design.
+معیار تحویل: هویت بصری پیش از توسعه کامل ویجت‌ها مشخص باشد.
+
+فاز دو ـ زیرساخت معماری
+خروجی‌ها: Theme Skeleton، Companion Plugin Skeleton، Autoloading، Core Services، Feature Registry، Dependency Resolver، Redux Integration، TGMPA Integration، Asset Management، Cache Infrastructure و Test Infrastructure.
+معیار تحویل: ساختار پایه قابل اجرا، تست و توسعه باشد.
+
+فاز سه ـ زیرساخت Elementor و Gutenberg
+خروجی‌ها: Elementor Integration، Theme Locations، Widget Registration، Dynamic Tags، Editor Styles، Frontend Styles، Gutenberg theme.json، Block Styles و RTL/LTR Support.
+معیار تحویل: هر دو محیط ویرایش صحیح کار کنند.
+
+فاز چهار ـ اختصاصی‌سازی تمام ویجت‌ها
+خروجی‌ها: Elementor Core Widget Matrix، Elementor Pro Widget Matrix، WooCommerce Widget Matrix، Elementor Styling Layer، Widget CSS Modules، هماهنگی بصری Editor/Frontend، Responsive Styling، Interaction States و Visual Regression Tests.
+معیار تحویل: هیچ ویجت پشتیبانی‌شده‌ای بدون وضعیت مشخص و استایل اختصاصی باقی نماند.
+
+فاز پنج ـ توسعه قابلیت‌های اختصاصی
+خروجی‌ها: Header، Footer، Blog، Marketing، Landing Page، Dynamic Content، WooCommerce Extensions، Forms، Navigation، Utility و Data Visualization Widgets.
+معیار تحویل: ویجت‌ها با Design System، Feature Manager و Elementor هماهنگ باشند.
+
+فاز شش ـ Integrationها
+خروجی‌ها: WPML Adapter، Polylang Adapter، Yoast Integration، Rank Math Integration، WooCommerce Integration، Redux Settings و TGMPA Dependencies.
+معیار تحویل: Integrationها با نسخه‌های هدف تست شده باشند.
+
+فاز هفت ـ SEO، Performance و Security
+خروجی‌ها: SEO Validation، Structured Data Validation، Core Web Vitals Tests، CSS/JS Optimization، Query Optimization، Cache Optimization، Security Review و Accessibility Review.
+معیار تحویل: مشکل بحرانی در تست‌های مورد توافق باقی نماند.
+
+فاز هشت ـ تست و انتشار
+خروجی‌ها: Unit Tests، Integration Tests، Browser Tests، Visual Regression، Load Tests، Compatibility Matrix، Documentation، Release Package و Changelog.
+معیار تحویل: تمام معیارهای انتشار تأیید شده باشند.
+
+================================================================
+بخش ۲۱ ـ اولویت‌بندی و مدیریت Backlog
+================================================================
+
+۲۱.۱. سطح اولویت
+- P0 — Critical: مانع انتشار یا دارای ریسک امنیتی و خرابی جدی.
+- P1 — High: قابلیت اصلی پروژه.
+- P2 — Medium: قابلیت تکمیلی مهم.
+- P3 — Low: بهبود اختیاری یا جزئی.
+
+۲۱.۲. ساختار هر Task
+Task ID:
+Title:
+Description:
+Priority:
+Module:
+Dependencies:
+Acceptance Criteria:
+Test Cases:
+Documentation:
+Estimated Effort:
+Status:
+
+۲۱.۳. وضعیت Task
+- Backlog
+- Ready
+- In Progress
+- Code Review
+- Testing
+- Blocked
+- Approved
+- Released
+
+۲۱.۴. قواعد توسعه مرحله‌ای
+- هر Task خروجی قابل ارزیابی داشته باشد.
+- Taskهای بزرگ به واحدهای مستقل تقسیم شوند.
+- وابستگی‌ها پیش از شروع مشخص شوند.
+- کد بدون تست وارد نسخه انتشار نشود.
+- تغییرات معماری مستند شوند.
+- تغییرات Feature Registry با تست همراه باشند.
+- تغییرات Elementor، Widget Coverage Matrix را به‌روزرسانی کنند.
+
+================================================================
+بخش ۲۲ ـ استاندارد استفاده از هوش مصنوعی در توسعه
+================================================================
+
+۲۲.۱. رفتار مورد انتظار مدل
+مدل باید پیش از کدنویسی نیازمندی‌ها را بررسی کند، ابهام‌های مؤثر را شناسایی کند، معماری را بی‌دلیل تغییر ندهد، از تصمیمات این Skill پیروی کند، کد کامل و قابل اجرا ارائه دهد، فایل‌های لازم را ایجاد کند، از Placeholder در خروجی نهایی خودداری کند، تست‌ها را بنویسد و اجرا کند، خطاها و فرضیات را شفاف گزارش دهد و محدودیت‌های واقعی محیط را اعلام کند.
+
+۲۲.۲. ممنوعیت‌های توسعه
+- ساخت API خیالی.
+- استفاده از Hook ناموجود.
+- استفاده از کلاس یا متد غیرواقعی.
+- استفاده از ساختار داخلی مستندنشده افزونه‌ها.
+- کپی کد دارای محدودیت لایسنس.
+- ایجاد قابلیت ظاهری بدون عملکرد واقعی.
+- ادعای تست بدون اجرای واقعی.
+- ادعای سازگاری بدون بررسی نسخه هدف.
+- تولید Schema جعلی.
+- استفاده از داده ساختگی به‌عنوان داده واقعی.
+- حذف تنظیمات کاربر بدون تأیید.
+- تغییر مستقیم Core وردپرس و افزونه‌ها.
+
+۲۲.۳. شیوه تحویل کد
+در هر تحویل مشخص شود:
+- نام و مسیر فایل.
+- هدف فایل.
+- وابستگی‌ها.
+- کد کامل.
+- نحوه نصب.
+- نحوه تست.
+- نتیجه تست‌های واقعاً اجراشده.
+- محدودیت‌های باقی‌مانده.
+
+اگر چند فایل به یکدیگر وابسته‌اند، همه فایل‌های لازم ارائه شوند.
+
+================================================================
+بخش ۲۳ ـ Release Gate و معیار نهایی پذیرش
+================================================================
+
+قالب فقط زمانی قابل انتشار است که موارد زیر بررسی و تأیید شده باشند:
+
+معماری:
+[ ] Theme و Companion Plugin تفکیک شده‌اند.
+[ ] Feature Registry فعال است.
+[ ] Dependency و Conflict Management تست شده است.
+[ ] ساختار فایل‌ها مستند است.
+
+Elementor:
+[ ] تمام ویجت‌های Core نسخه هدف بررسی شده‌اند.
+[ ] تمام ویجت‌های Pro نسخه هدف بررسی شده‌اند.
+[ ] تمام ویجت‌های WooCommerce مورد پشتیبانی بررسی شده‌اند.
+[ ] برای تمام ویجت‌های پشتیبانی‌شده استایل اختصاصی وجود دارد.
+[ ] Elementor Editor تست شده است.
+[ ] Frontend تست شده است.
+[ ] RTL/LTR تست شده است.
+[ ] Responsive تست شده است.
+[ ] Widget Coverage Matrix تکمیل شده است.
+
+Gutenberg:
+[ ] theme.json معتبر است.
+[ ] Editor Styles صحیح هستند.
+[ ] Block Styles بررسی شده‌اند.
+[ ] همزیستی Gutenberg و Elementor تست شده است.
+
+WooCommerce:
+[ ] صفحات فروشگاه تست شده‌اند.
+[ ] Cart و Checkout تست شده‌اند.
+[ ] HPOS بررسی شده است.
+[ ] Cart/Checkout Blocks بررسی شده‌اند.
+[ ] Template Overrides مستند شده‌اند.
+
+Localization:
+[ ] POT موجود است.
+[ ] PO/MO قابل تولید و استفاده هستند.
+[ ] رشته‌های ثابت ترجمه‌پذیر هستند.
+[ ] WPML تست شده است.
+[ ] Polylang در صورت ادعای پشتیبانی تست شده است.
+[ ] RTL/LTR واقعی است.
+
+SEO:
+[ ] Metadata تکراری وجود ندارد.
+[ ] Canonical بررسی شده است.
+[ ] Sitemap سازگار است.
+[ ] Schema معتبر است.
+[ ] صفحات قابل ایندکس صحیح هستند.
+[ ] Structured Data جعلی وجود ندارد.
+
+Performance:
+[ ] CSS/JS غیرضروری بارگذاری نمی‌شوند.
+[ ] Queryهای مهم بهینه هستند.
+[ ] Cache درست کار می‌کند.
+[ ] Core Web Vitals اندازه‌گیری شده‌اند.
+[ ] CLS و LCP و INP بررسی شده‌اند.
+
+Security:
+[ ] Nonce بررسی شده است.
+[ ] Capability Checks وجود دارند.
+[ ] ورودی‌ها اعتبارسنجی شده‌اند.
+[ ] خروجی‌ها Escape شده‌اند.
+[ ] Queryها امن هستند.
+[ ] REST API بررسی شده است.
+
+Accessibility:
+[ ] Keyboard Navigation تست شده است.
+[ ] Focus Visibility صحیح است.
+[ ] Contrast بررسی شده است.
+[ ] Form Labels صحیح هستند.
+[ ] WCAG 2.2 AA ارزیابی شده است.
+
+انتشار:
+[ ] مستندات کامل هستند.
+[ ] Changelog آماده است.
+[ ] Compatibility Matrix تکمیل شده است.
+[ ] Demo Import تست شده است.
+[ ] بسته انتشار بررسی شده است.
+
+================================================================
+بخش ۲۴ ـ سیاست ادعاها و تضمین کیفیت
+================================================================
+
+SEO:
+قالب می‌تواند زیرساخت فنی مناسب SEO فراهم کند؛ اما رتبه اول گوگل یا رتبه مشخص در موتورهای جستجو تضمین‌پذیر نیست. نتیجه به کیفیت محتوا، رقابت، اعتبار دامنه، سرور، لینک‌ها، رفتار کاربران، وضعیت فنی و استراتژی بازاریابی وابسته است.
+
+Performance:
+هدف قالب عملکرد بسیار خوب است؛ اما امتیاز ۱۰۰ در GTmetrix یا Lighthouse تضمین نمی‌شود. افزونه‌های جانبی، هاست، CDN، حجم محتوا و تنظیمات سایت مؤثرند.
+
+Scalability:
+هدف معماری آمادگی برای ۱۰۰ هزار حساب و ۱۰۰ هزار کاربر هم‌زمان است. پشتیبانی عملی از ۱۰۰ هزار کاربر هم‌زمان فقط پس از تست بار مستند روی زیرساخت مشخص قابل تأیید است.
+
+================================================================
+بخش ۲۵ ـ قواعد نهایی و مرجعیت سند
+================================================================
+
+۲۵.۱. ترتیب اولویت تصمیمات
+در صورت تعارض:
+1) الزامات امنیتی و قوانین رسمی پلتفرم.
+2) تصمیمات قطعی این Skill.
+3) نیازمندی‌های اختصاصی پروژه.
+4) استانداردهای رسمی وردپرس و افزونه‌های مورد استفاده.
+5) تصمیمات پیاده‌سازی و جزئیات فنی.
+
+هر تغییر در تصمیمات قطعی باید صریحاً ثبت و نسخه سند به‌روزرسانی شود.
+
+۲۵.۲. سیاست نسخه‌بندی
+- تغییرات جزئی و اصلاحی: Patch Version.
+- افزودن قابلیت یا استاندارد جدید بدون شکستن قراردادهای قبلی: Minor Version.
+- تغییرات معماری یا قراردادهای اصلی: Major Version.
+تمام تغییرات در Changelog ثبت شوند.
+
+۲۵.۳. اصل نهایی زرین کد
+هر قالب وردپرسی که با این Skill تولید می‌شود باید یک محصول نرم‌افزاری مستقل، حرفه‌ای، قابل نگهداری و آماده توسعه تجاری باشد. هیچ قالبی صرفاً به دلیل زیبا بودن کامل محسوب نمی‌شود.
+
+کامل بودن یعنی:
+- طراحی اختصاصی و منسجم.
+- پوشش تمام ویجت‌های استاندارد Elementor و Elementor Pro.
+- امکانات اختصاصی و ماژولار.
+- معماری اصولی.
+- عملکرد واقعی.
+- امنیت.
+- سرعت.
+- SEO فنی.
+- دسترس‌پذیری.
+- چندزبانگی استاندارد.
+- سازگاری با WooCommerce.
+- تست کامل.
+- مستندات قابل استفاده.
+- قابلیت نگهداری و توسعه در آینده.
+
+استاندارد زرین کد: قالبی بساز که هم از نظر طراحی متمایز باشد و هم از نظر مهندسی، قابل اعتماد، توسعه‌پذیر و آماده عرضه تجاری باشد.
+
+================================================================
+پایان سند اصلی
+ZarinCode WordPress Theme Engineering Skill — Version 2.0.0
+================================================================

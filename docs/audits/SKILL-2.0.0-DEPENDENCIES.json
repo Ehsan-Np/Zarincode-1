@@ -1,0 +1,106 @@
+[
+  {
+    "file": "elementor-pro.zip",
+    "bytes": 3424786,
+    "sha256": "e92fd30ae96386094bf36632aa62e94e3c29b6dceb108dafb115410b4a7939ed",
+    "headers": [
+      {
+        "file": "elementor-pro/elementor-pro.php",
+        "name": "Elementor Pro",
+        "version": "4.3.0",
+        "requires_php": "7.4"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "elementor.4.3.2.zip",
+    "bytes": 23604020,
+    "sha256": "8b3eee68425e5fd90007dc84b37ffea844c0db44b6d342968f33c76187a94371",
+    "headers": [
+      {
+        "file": "elementor/elementor.php",
+        "name": "Elementor",
+        "version": "4.3.2",
+        "requires_php": "7.4"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "redux-framework.zip",
+    "bytes": 2830455,
+    "sha256": "cff2ca729eae799471ab6f9bcf3afac38054315b9d09d30e8f3f8783c2fdecd8",
+    "headers": [
+      {
+        "file": "redux-framework/redux-framework.php",
+        "name": "Redux Framework",
+        "version": "4.5.15",
+        "requires_php": "7.4"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "sitepress-multilingual-cms.zip",
+    "bytes": 16705316,
+    "sha256": "4b1a6277542e7875dc438d659268f769aaf19aa8b3ae18c8fa476a1026209a41",
+    "headers": [
+      {
+        "file": "sitepress-multilingual-cms/sitepress.php",
+        "name": "WPML Multilingual CMS",
+        "version": "4.8.2",
+        "requires_php": "unspecified"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "webfonts.zip",
+    "bytes": 7043498,
+    "sha256": "fc37ec3527fd5f285e5c8014cd4efdbfae36bfcd2388bce180e2ac83c45a7887",
+    "headers": [],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "woocommerce.11.2.0.zip",
+    "bytes": 18061703,
+    "sha256": "66e91b45b057b64c73d4521111cea5bdc78c4c89de8fa2ca4b18b9422706d722",
+    "headers": [
+      {
+        "file": "woocommerce/woocommerce.php",
+        "name": "WooCommerce",
+        "version": "11.2.0"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "wordpress-seo-premium.zip",
+    "bytes": 1392120,
+    "sha256": "b5231a54f5520476848f4db9a82a12adb85261402a333146637c0369b91aa690",
+    "headers": [
+      {
+        "file": "wordpress-seo-premium/wp-seo-premium.php",
+        "name": "Yoast SEO Premium Actived By CodeXinh.com",
+        "version": "28.5"
+      }
+    ],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  },
+  {
+    "file": "css.zip",
+    "bytes": 233210,
+    "sha256": "bb5320b2f75383d9c2efb935327baf267180b4757914ad13b4b9ca2b4c40573e",
+    "headers": [],
+    "source_commit": "55aec3a16b505f4cc977ad5c6d4834cb1ba6c583",
+    "archive_integrity": "passed; not authenticity verification"
+  }
+]
