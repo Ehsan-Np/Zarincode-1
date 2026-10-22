@@ -4,7 +4,7 @@
  *
  * Uses direct GitHub repository links (Ehsan-Np/afzoneha & Ehsan-Np/Zarincode-1) and
  * the official WordPress.org Plugin Repository without bundling heavy ZIP files inside the theme.
- * Also supports direct on-the-fly provisioning of zarincode-core from the theme's EmbeddedCore.
+ * Companion updates are explicit; the theme never copies or overwrites plugin source.
  *
  * @package Zarincode\Theme\Plugins
  */
@@ -30,7 +30,6 @@ class Plugin_Manager {
         add_action( 'admin_menu', [ $this, 'register_plugin_installer_menus' ], 9 );
         add_action( 'admin_notices', [ $this, 'render_missing_plugins_notice' ] );
         add_action( 'wp_ajax_zarincode_plugin_action', [ $this, 'ajax_handle_plugin_action' ] );
-        add_action( 'after_switch_theme', [ $this, 'auto_install_bundled_core_plugins' ] );
     }
 
     /**
@@ -47,9 +46,9 @@ class Plugin_Manager {
                 'file'        => 'zarincode-core/zarincode-core.php',
                 'required'    => true,
                 'badge'       => 'اجباری • هسته قالب',
-                'version'     => '3.2.0',
-                'source_type' => 'هسته داخلی قالب + مخزن گیت‌هاب Zarincode-1',
-                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/packages/zarincode-core.zip',
+                'version'     => '4.0.0-rc.1',
+                'source_type' => 'افزونه مستقل؛ نصب و بروزرسانی صریح از بسته پروژه',
+                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/packages/candidates/4.0.0-rc.1/zarincode-core.zip',
                 'description' => 'افزونه هسته قالب شامل ۲۰ ویجت با امکانات ویرایش محتوا المنتور (Crextio + Webinex)، پست‌تایپ‌های خدمات و پروژه‌ها، هدر و فوترساز و درون‌ریز هوشمند دمو.',
                 'icon'        => 'dashicons-superhero',
             ],
@@ -96,11 +95,10 @@ class Plugin_Manager {
                 'slug'        => 'elementor-pro',
                 'name'        => 'المنتور پرو (Elementor Pro)',
                 'file'        => 'elementor-pro/elementor-pro.php',
-                'required'    => true,
-                'badge'       => 'اجباری • امکانات حرفه‌ای',
+                'required'    => false,
+                'badge'       => 'اختیاری • نیازمند مجوز معتبر',
                 'version'     => '3.20+',
-                'source_type' => 'مخزن گیت‌هاب (Ehsan-Np/afzoneha)',
-                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/elementor-pro.zip',
+                'source_type' => 'نصب دستی نسخه اصلی توسط دارنده مجوز',
                 'description' => 'امکانات پیشرفته صفحه‌ساز المنتور، قالب‌ساز پویا، پاپ‌آپ‌ها و فرم‌های اختصاصی سفارش پروژه زرین کد.',
                 'icon'        => 'dashicons-star-filled',
             ],
@@ -119,7 +117,7 @@ class Plugin_Manager {
             ],
             'wordpress-seo-premium' => [
                 'slug'        => 'wordpress-seo-premium',
-                'name'        => 'یوست سئو پرمیوم (Yoast SEO Premium)',
+                'name'        => 'Yoast SEO (نسخه رایگان رسمی؛ تشخیص نسخه پرمیوم نصب‌شده)' ,
                 'file'        => 'wordpress-seo-premium/wp-seo-premium.php',
                 'alt_files'   => [
                     'wordpress-seo-premium/wp-seo-premium.php',
@@ -129,7 +127,6 @@ class Plugin_Manager {
                 'badge'       => 'پیشنهادی • سئو و اسکیما',
                 'version'     => '22.0+',
                 'source_type' => 'مخزن گیت‌هاب (afzoneha) + مخزن رسمی وردپرس',
-                'remote_zip'  => 'https://raw.githubusercontent.com/Ehsan-Np/afzoneha/main/wordpress-seo-premium.zip',
                 'wp_org_zip'  => 'https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip',
                 'description' => 'بهینه‌سازی کامل متاتگ‌ها، نقشه سایت XML، اسکیما مارک‌آپ خدمات و محصولات و سئو تکنیکال سایت زرین کد.',
                 'icon'        => 'dashicons-chart-line',
@@ -225,64 +222,17 @@ class Plugin_Manager {
     }
 
     /**
-     * Automatically provision zarincode-core when theme is activated
-     */
-    public function auto_install_bundled_core_plugins(): void {
-        self::install_and_activate_plugin( 'zarincode-core' );
-    }
-
-    /**
-     * Provision or update wp-content/plugins/zarincode-core directly from ZARINCODE_DIR . '/inc/EmbeddedCore/'
-     */
-    public static function provision_core_plugin_from_theme(): bool {
-        $theme_inc = ZARINCODE_DIR . '/inc/EmbeddedCore';
-        if ( ! is_dir( $theme_inc ) ) {
-            return false;
-        }
-
-        $target_root = WP_PLUGIN_DIR . '/zarincode-core';
-        $target_inc  = $target_root . '/includes';
-        if ( ! is_dir( $target_inc ) ) {
-            if ( ! wp_mkdir_p( $target_inc ) ) { return false; }
-        }
-
-        // Write main zarincode-core.php bootstrap file
-        $bootstrap_code = file_get_contents( ZARINCODE_DIR . '/inc/core-bootstrap.php' );
-        if ( false === $bootstrap_code || false === file_put_contents( $target_root . '/zarincode-core.php', $bootstrap_code ) ) { return false; }
-
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator( $theme_inc, \RecursiveDirectoryIterator::SKIP_DOTS ),
-            \RecursiveIteratorIterator::SELF_FIRST
-        );
-
-        foreach ( $iterator as $item ) {
-            $rel_path = substr( $item->getPathname(), strlen( $theme_inc ) );
-            $dest     = $target_inc . $rel_path;
-            if ( $item->isDir() ) {
-                if ( ! is_dir( $dest ) ) {
-                    if ( ! wp_mkdir_p( $dest ) ) { return false; }
-                }
-            } elseif ( $item->isFile() ) {
-                $dest_dir = dirname( $dest );
-                if ( ! is_dir( $dest_dir ) ) {
-                    if ( ! wp_mkdir_p( $dest_dir ) ) { return false; }
-                }
-                if ( ! copy( $item->getPathname(), $dest ) ) { return false; }
-                if ( function_exists( 'opcache_invalidate' ) ) { opcache_invalidate( $dest, true ); }
-            }
-        }
-
-        return file_exists( $target_root . '/zarincode-core.php' );
-    }
-
-    /**
-     * Install (from EmbeddedCore, GitHub repository, or WordPress.org) and Activate a plugin
+     * Install (from the project repository or WordPress.org) and Activate a plugin
      *
      * @param string $slug   Plugin slug.
      * @param string $action 'install_activate', 'activate', or 'deactivate'.
      * @return array{success:bool,status:string,message:string}
      */
     public static function install_and_activate_plugin( string $slug, string $action = 'install_activate' ): array {
+        $capability = 'deactivate' === $action || 'activate' === $action ? 'activate_plugins' : 'install_plugins';
+        if ( ! in_array( $action, [ 'install_activate', 'activate', 'deactivate' ], true ) || ! current_user_can( $capability ) || ( 'install_activate' === $action && ! current_user_can('activate_plugins') ) ) {
+            return [ 'success' => false, 'status' => 'forbidden', 'message' => 'مجوز انجام این عملیات وجود ندارد.' ];
+        }
         $manifest = self::get_plugins_manifest();
         if ( ! isset( $manifest[ $slug ] ) ) {
             return [
@@ -309,14 +259,9 @@ class Plugin_Manager {
             ];
         }
 
-        // For zarincode-core, always sync/provision the latest files from theme EmbeddedCore first
-        if ( 'zarincode-core' === $slug ) {
-            if ( self::provision_core_plugin_from_theme() ) {
-                wp_clean_plugins_cache( true );
-                $status = self::get_plugin_status( $plugin );
-            }
+        if ( 'not_installed' === $status && 'activate' === $action ) {
+            return [ 'success' => false, 'status' => 'not_installed', 'message' => 'ابتدا افزونه را نصب کنید.' ];
         }
-
         // If not installed yet, download from GitHub or WordPress.org
         if ( 'not_installed' === $status ) {
             WP_Filesystem();
@@ -328,6 +273,9 @@ class Plugin_Manager {
                 $plugin['remote_zip'] ?? '',
             ] );
 
+            if ( ! $download_urls ) {
+                return [ 'success' => false, 'status' => 'not_installed', 'message' => 'این افزونه تجاری است؛ نسخه اصلی را با مجوز معتبر از بخش افزونه‌های وردپرس بارگذاری کنید.' ];
+            }
             foreach ( $download_urls as $url ) {
                 $downloaded = download_url( $url, 90 );
                 if ( ! is_wp_error( $downloaded ) && file_exists( $downloaded ) ) {

@@ -65,7 +65,7 @@ try {
     $check('theme_json_palette',count(wp_get_global_settings(['color','palette','theme']))===3);
     switch_to_locale('en_US'); $check('english_not_rtl',!is_rtl());
     $attrs=apply_filters('language_attributes','lang="en-US"'); $check('english_no_forced_rtl',!str_contains($attrs,'dir="rtl"')); restore_previous_locale();
-    $report=['environment'=>['wordpress'=>get_bloginfo('version'),'php'=>PHP_VERSION,'elementor'=>ELEMENTOR_VERSION,'elementor_pro'=>ELEMENTOR_PRO_VERSION,'woocommerce'=>WC_VERSION,'redux'=>defined('REDUX_VERSION')?REDUX_VERSION:'loaded','database'=>$GLOBALS['wpdb']->db_version()],'checks'=>$checks,'installed_widget_inventory'=>$inventory,'limitations'=>['Inventory is not visual/editor/a11y coverage.','Not a full Skill-compliance test or 80% coverage evidence.','WPML add-ons and Polylang runtime not tested.']];
+    $report=['environment'=>['wordpress'=>get_bloginfo('version'),'php'=>PHP_VERSION,'elementor'=>ELEMENTOR_VERSION,'elementor_pro'=>defined('ELEMENTOR_PRO_VERSION')?ELEMENTOR_PRO_VERSION:'not_installed','woocommerce'=>defined('WC_VERSION')?WC_VERSION:'not_installed','redux'=>defined('REDUX_VERSION')?REDUX_VERSION:'loaded','database'=>$GLOBALS['wpdb']->db_version()],'checks'=>$checks,'installed_widget_inventory'=>$inventory,'limitations'=>['Inventory is not visual/editor/a11y coverage.','Not a full Skill-compliance test or 80% coverage evidence.','WPML add-ons and Polylang runtime not tested.']];
     file_put_contents(getenv('ZC_QA_REPORT') ?: '/tmp/zc-skill-runtime/foundations.json',wp_json_encode($report,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
     echo count($checks).' foundation assertions passed; '.count($inventory).' widget types inventoried.'.PHP_EOL;
 } finally {

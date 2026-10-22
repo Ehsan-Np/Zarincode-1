@@ -1,6 +1,0 @@
-/* Panel-only presentation. Never enqueue in the frontend or preview iframe. */
-.zc-editor-field.zc-editor-filtered{display:none!important}
-.zc-editor-help{font-size:11px;line-height:1.8;color:var(--e-a-color-txt-muted,#777)}
-.zc-editor-part-picker{padding-bottom:8px!important}
-.zc-editor-field-search{padding-top:4px!important;padding-bottom:8px!important}
-.zc-editor-plan-filtered{display:none!important}.zc-pricing-manager{position:sticky;top:0;z-index:15;background:var(--e-a-bg-default,#fff);border-bottom:2px solid #fdd05b;padding:14px;font-size:12px}.zc-pricing-manager label{display:grid;gap:8px;font-weight:700}.zc-pricing-manager select{width:100%;font:inherit;padding:8px;border-radius:6px}.zc-pricing-manager p{font-size:10px;line-height:1.8;margin:8px 0 0;opacity:.7}

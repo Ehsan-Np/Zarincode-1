@@ -13,7 +13,7 @@ final class Registry {
                 'plugins' => [ 'elementor' ], 'conflicts' => [], 'capability' => 'manage_options',
                 'css' => [], 'js' => [], 'services' => [], 'widgets' => [],
                 'settings' => 'feature_' . $id, 'translation' => 'zarincode-core',
-                'cache_groups' => [ 'elementor-css' ], 'version' => '3.9.0-dev',
+                'cache_groups' => [ 'elementor-css' ], 'version' => '4.0.0-rc.1',
                 'migration' => 'No destructive migration. Missing option preserves enabled state.',
                 'tests' => [ 'feature-resolver', 'disabled-widget-output', 'disabled-widget-assets' ],
             ];

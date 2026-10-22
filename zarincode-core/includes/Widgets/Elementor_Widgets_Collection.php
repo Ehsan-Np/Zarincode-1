@@ -20,6 +20,7 @@ require_once __DIR__.'/Hero_Layout.php';
 require_once __DIR__.'/Native_Design.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
+    use \Zarincode\Runtime260\Elementor\Widget_Contract;
     abstract protected function kind(): string;
     public function get_name(): string { return 'zarincode_'.$this->kind(); }
     public function get_title(): string { return Widget_Schema::definitions()[$this->kind()][1]; }
@@ -143,7 +144,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->start_controls_section('records',['label'=>'کارت‌ها / منو / پلن‌ها / نظرات']);
         if (in_array($kind,['products','blog','portfolio','services'],true)) {
             $this->field('source','منبع کارت‌ها',C::SELECT,in_array($kind,['products','blog','portfolio'],true)?'query':'manual',['options'=>['manual'=>'کارت‌های دستی (ویرایش همه جزئیات)','query'=>'محتوای پویا از وردپرس']]);
-            $this->field('show_all','نمایش تمام موارد منتشرشده',C::SWITCHER,'',['return_value'=>'yes']);
+            $this->field('show_all','نمایش گسترده (حداکثر ۱۰۰ مورد منتشرشده)',C::SWITCHER,'',['return_value'=>'yes']);
             $this->field('count','تعداد نتایج',C::NUMBER,8,['min'=>1,'max'=>100,'condition'=>['show_all'=>'']]);
             $this->field('include_ids','شناسه نوشته‌ها (با کاما)',C::TEXT,'');
             $this->field('category_ids','شناسه دسته‌ها (با کاما)',C::TEXT,'');

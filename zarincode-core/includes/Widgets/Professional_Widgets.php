@@ -19,6 +19,7 @@ defined('ABSPATH') || exit;
 require_once __DIR__.'/Repeater_Identity.php';
 
 abstract class Professional_Widget extends Widget_Base {
+    use \Zarincode\Runtime260\Elementor\Widget_Contract;
     abstract protected function type(): string;
     public static function catalog(): array {
         return [

@@ -6,6 +6,7 @@ use Elementor\Controls_Manager as C;
 use Elementor\Repeater;
 defined('ABSPATH') || exit;
 abstract class Studio_Widget extends Widget_Base {
+    use \Zarincode\Runtime260\Elementor\Widget_Contract;
     public function get_categories():array{return ['zarincode-professional'];}
     public function get_style_depends():array{return ['zarincode-studio'];}
     public function get_script_depends():array{return ['zarincode-studio'];}

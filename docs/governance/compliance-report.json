@@ -1,0 +1,27 @@
+{
+  "product_name": "ZarinCode",
+  "version": "4.0.0-rc.1",
+  "git_commit": "Recorded by BUILD-MANIFEST.json at build time",
+  "build_id": "zc-4.0.0-rc.1-skill3-20261022",
+  "release_date": "2026-10-22",
+  "distribution": "Evaluation candidate only",
+  "compatibility_manifest": "docs/governance/asset-provenance.json",
+  "test_summary": "docs/audits/skill-v3/test-summary.json",
+  "security_summary": "Scoped settings/installer checks executed; full audit not verified.",
+  "accessibility_summary": "Skip link and baseline browser presence checks only; WCAG 2.2 AA not certified.",
+  "performance_summary": "Query bound and disabled assets checked; field CWV/load targets not measured.",
+  "widget_coverage": "220 installed types inventoried; official per-widget approval not completed.",
+  "visual_regression_results": "Not executed; appearance file byte-integrity checks are not visual regression.",
+  "known_issues": [
+    "Pro notes table missing during final fixture cleanup",
+    "Elementor PHP 8.4 deprecations",
+    "Commercial font/media redistribution not certified"
+  ],
+  "technical_debt": "docs/governance/skill-v3-tasks.json",
+  "approved_exceptions": [],
+  "release_approval": {
+    "commercial": false,
+    "status": "BLOCKED",
+    "authority": "No approval has been granted"
+  }
+}

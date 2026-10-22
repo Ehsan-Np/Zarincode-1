@@ -1,0 +1,18 @@
+name: Engineering checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  foundations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP syntax
+        run: find zarincode zarincode-core -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Pure contract and schema tests
+        run: php tools/qa-skill-v3-unit.php
+      - name: Scoped architecture rules
+        run: python3 tools/qa-skill-v3-architecture.py
+      - name: Build and validate evaluation packages
+        run: python3 tools/build-release.py --output /tmp/zarincode-evaluation
+      # Deliberately no publication job. Full compatibility, quality, licensing and approval gates remain open.

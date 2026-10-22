@@ -1,0 +1,30 @@
+{
+  "zarincode/header.php": {
+    "identical_to_previous_commit": true,
+    "sha256": "5ca1b5c0f6790c631181c13b3fed2ca93adbf3a634e22ff086b1bf0a84f50ef0"
+  },
+  "zarincode/footer.php": {
+    "identical_to_previous_commit": true,
+    "sha256": "bddd9027011a962242e4c89fb34924703a885adac838b145b5896382c8916159"
+  },
+  "zarincode/single-product.php": {
+    "identical_to_previous_commit": true,
+    "sha256": "495bd81b8be16a283dd3fd34b42439b42c4845515579fb2a4aee8f9b9f5c2d38"
+  },
+  "zarincode/assets/css/zarincode-main.css": {
+    "identical_to_previous_commit": true,
+    "sha256": "2fa7d74e1bab604abdcfd05b1846e44d252e77df3784082123680803fb68a8ad"
+  },
+  "zarincode/assets/css/responsive.css": {
+    "identical_to_previous_commit": true,
+    "sha256": "e481bac5ce45c308d3823364dc34b7b5e453ba3fb9fabc1a16bed97b81eeabc0"
+  },
+  "zarincode/assets/css/product-reference.css": {
+    "identical_to_previous_commit": true,
+    "sha256": "409cd9309f40aea98196fac141afe2ede949a66f168deac33502200ff951eadb"
+  },
+  "zarincode/assets/js/zarincode-main.js": {
+    "identical_to_previous_commit": true,
+    "sha256": "ccf509c6be0da9a2c13e79504f493fca6c375e17ccca1dc7671bdbd2ae21d719"
+  }
+}

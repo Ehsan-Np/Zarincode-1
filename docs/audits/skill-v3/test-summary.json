@@ -1,0 +1,11 @@
+{
+  "php_files_linted": 71,
+  "pure_assertions": 94,
+  "integration_assertions": 40,
+  "foundation_assertions": 24,
+  "scoped_architecture_rules": 9,
+  "browser_combinations": 24,
+  "browser_failures": 0,
+  "commercial_guard": "rejected as required",
+  "warning": "Final Pro-enabled fixture cleanup emitted a missing wp_e_notes table error; Pro installation/migration is not certified. Assertions preceding cleanup passed; this is not a clean full integration pass."
+}

@@ -6,6 +6,7 @@ final class Admin_Hub {
     public static function tools(): array {
         return [
             'settings'=>['تنظیمات قالب',null],
+            'diagnostics'=>['سلامت و عیب‌یابی',['Zarincode\\Runtime260\\Support\\Diagnostics','page']],
             'demo'=>['درون‌ریزی دمو',['Zarincode\\Runtime260\\Demo\\Demo_Seeder','render_admin_page']],
             'plugins'=>['افزونه‌های موردنیاز',['Zarincode\\Theme\\Plugins\\Plugin_Manager','render_plugin_manager_page']],
             'socials'=>['شبکه‌های اجتماعی',[Social_Manager::class,'page']],
