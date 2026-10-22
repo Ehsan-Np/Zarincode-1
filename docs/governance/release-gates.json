@@ -2,7 +2,20 @@
   "specification": "ZC-WP-ENG-SKILL-001 v3.0.0",
   "version": "4.0.0-rc.2",
   "commercial_approved": false,
-  "approved_exceptions": [],
+  "approved_exceptions": [
+    {
+      "id": "WPML-OUT-OF-SCOPE",
+      "approved_by": "user",
+      "date": "2026-10-22",
+      "scope": "WPML implementation, validation and compatibility certification excluded from this version by explicit user instruction.",
+      "evidence": "docs/prompts/2026-10-22-wpml-scope-change.md",
+      "restrictions": [
+        "No WPML compatibility claim.",
+        "No deletion of stored translations.",
+        "WordPress gettext and RTL/LTR remain in scope."
+      ]
+    }
+  ],
   "gates": {
     "scoped_architecture_rules": "passed",
     "pure_contract_tests": "passed",
@@ -15,11 +28,12 @@
     "WCAG_22_AA": "not_verified",
     "PHPStan_WPCS_JS_CSS_quality": "not_verified",
     "critical_logic_coverage_80": "partially_measured: 59/59 lines in 3 critical files; whole critical-logic inventory not complete",
-    "WPML_Polylang": "not_verified",
     "Woo_HPOS_blocks_payments": "not_verified",
     "full_feature_registry_migration": "incomplete",
     "commercial_asset_licenses": "user_owns_license_and_will_add_file; independent redistribution review not verified",
-    "human_release_approval": "pending"
+    "human_release_approval": "pending",
+    "WPML": "out_of_scope_by_explicit_user_instruction",
+    "Polylang": "not_verified"
   },
   "development_evidence": {
     "article_rating_ownership": "docs/architecture/ADR-ARTICLE-RATING-OWNERSHIP.md",

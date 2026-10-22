@@ -23,5 +23,6 @@
     "commercial": false,
     "status": "BLOCKED",
     "authority": "No approval has been granted"
-  }
+  },
+  "wpml_scope": "Excluded from this version by explicit user instruction; not a release blocker and no compatibility certification is claimed. See docs/prompts/2026-10-22-wpml-scope-change.md."
 }
