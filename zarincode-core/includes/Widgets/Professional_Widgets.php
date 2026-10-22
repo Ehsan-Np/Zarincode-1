@@ -38,10 +38,15 @@ abstract class Professional_Widget extends Widget_Base {
     public function get_style_depends(): array{return ['zarincode-professional'];}
     public function get_script_depends(): array{return ['zarincode-professional'];}
     public function add_control($id,array $args,$options=[]){
+        $args=Icon_Compatibility::control($args);
         if(($args['type']??'')===C::REPEATER&&isset($args['default']))$args['default']=Repeater_Identity::rows($args['default'],$this->get_name().'.'.$id,$args['fields']??[]);
         return parent::add_control($id,$args,$options);
     }
     protected function get_init_settings(){return Repeater_Identity::settings(parent::get_init_settings(),$this->get_controls(),$this->get_name().'.'.$this->get_id());}
+    public function get_raw_data($with_html_content=false) {
+        $data=parent::get_raw_data($with_html_content);
+        $data['settings']=Repeater_Identity::settings($data['settings'],$this->get_controls(),$this->get_name().'.'.$this->get_id());return $data;
+    }
     protected function control(string $id,string $label,string $type=C::TEXT,$default='',array $extra=[]): void {
         $this->add_control($id,array_merge(['label'=>$label,'type'=>$type,'default'=>$default,'dynamic'=>['active'=>in_array($type,[C::TEXT,C::TEXTAREA,C::WYSIWYG,C::URL,C::MEDIA],true)]],$extra));
     }
@@ -109,7 +114,14 @@ abstract class Professional_Widget extends Widget_Base {
             $r->add_control('highlight',['label'=>'آیتم ویژه','type'=>C::SWITCHER]);
             foreach(['background'=>'پس‌زمینه','text_color'=>'رنگ متن','accent'=>'رنگ تأکیدی'] as $key=>$label)$r->add_control($key,['label'=>$label,'type'=>C::COLOR,'selectors'=>['{{WRAPPER}} {{CURRENT_ITEM}}'=>$key==='background'?'background: {{VALUE}};':($key==='accent'?'--zc-pro-accent: {{VALUE}};':'color: {{VALUE}};')]]);
             $r->add_control('padding',['label'=>'فاصله داخلی','type'=>C::DIMENSIONS,'size_units'=>['px','em','%'],'selectors'=>['{{WRAPPER}} {{CURRENT_ITEM}}'.($type==='service_matrix'?' > *':'')=>'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};']]);
-            $this->add_control('records',['label'=>'افزودن / حذف / تکثیر / جابه‌جایی','type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>$this->defaults(),'title_field'=>'{{{ title }}}']);
+            $definitions=$r->get_controls();$r=new Repeater();$r->start_controls_tabs('zc_record_tabs');
+            foreach(['content'=>'محتوا','media'=>'رسانه','links'=>'پیوند','style'=>'ظاهر'] as $tab=>$label){$r->start_controls_tab('zc_record_'.$tab,['label'=>$label]);
+                foreach($definitions as $field=>$args){if($field==='_id')continue;
+                    $typeName=$args['type']??'';$category=in_array($typeName,[C::COLOR,C::DIMENSIONS,C::SWITCHER],true)?'style':(in_array($typeName,[C::MEDIA,C::ICONS],true)||$field==='alt'?'media':($typeName===C::URL||$field==='button'||strpos($field,'_label')!==false?'links':'content'));
+                    if($category===$tab){unset($args['name']);$r->add_control($field,$args);}
+                }$r->end_controls_tab();
+            }$r->end_controls_tabs();
+            $this->add_control('records',['label'=>'افزودن / حذف / تکثیر / جابه‌جایی','type'=>C::REPEATER,'fields'=>$r->get_controls(),'prevent_empty'=>false,'default'=>$this->defaults(),'title_field'=>'{{{ title }}}']);
             if($type!=='service_matrix')$this->control('show_icons','نمایش آیکون‌ها',C::SWITCHER,'yes');
             if($type!=='service_matrix')$this->control('show_buttons','نمایش دکمه‌ها',C::SWITCHER,'yes');
             if(in_array($type,['service_spotlight','team_experts'],true))$this->control('show_images','نمایش تصاویر',C::SWITCHER,'yes');
@@ -146,7 +158,7 @@ abstract class Professional_Widget extends Widget_Base {
             foreach(['normal'=>'عادی','hover'=>'هاور'] as $state=>$name){
                 $this->start_controls_tab($id.'_'.$state,['label'=>$name]);$selector=$target.($state==='hover'?':hover':'');
                 if(!in_array($id,['image','track','fill','divider','compare'],true))$this->control($id.'_'.$state.'_color','رنگ متن',C::COLOR,'',['selectors'=>[$selector=>'color:{{VALUE}};']]);
-                if(in_array($id,['section','card'],true))$this->add_group_control(Group_Control_Background::get_type(),['name'=>$id.'_'.$state.'_bg','types'=>['classic','gradient'],'selector'=>$selector]);
+                if(in_array($id,['section','card'],true))$this->add_group_control(Group_Control_Background::get_type(),['name'=>$id.'_'.$state.'_bg','types'=>['classic','gradient'],'exclude'=>Editor_Controls::BACKGROUND_EXCLUDE,'selector'=>$selector]);
                 else $this->control($id.'_'.$state.'_bg','رنگ پس‌زمینه',C::COLOR,'',['selectors'=>[$selector=>'background-color:{{VALUE}};']]);
                 $this->add_group_control(Group_Control_Border::get_type(),['name'=>$id.'_'.$state.'_border','selector'=>$selector]);
                 $this->add_group_control(Group_Control_Box_Shadow::get_type(),['name'=>$id.'_'.$state.'_shadow','selector'=>$selector]);
@@ -179,7 +191,7 @@ abstract class Professional_Widget extends Widget_Base {
         $this->set_render_attribute($key,'class',$class);
         return '<'.$tag.' '.$this->inline($key,$rich?'advanced':'none').'>'.($rich?wp_kses_post($value):esc_html($value)).'</'.$tag.'>';
     }
-    private function icon(array $icon): string {if(empty($icon['value']))return '';ob_start();\Elementor\Icons_Manager::render_icon($icon,['aria-hidden'=>'true']);return '<span class="zc-pro-icon">'.ob_get_clean().'</span>';}
+    private function icon(array $icon): string {if(empty($icon['value']))return '';return '<span class="zc-pro-icon">'.Icon_Compatibility::render($icon,['aria-hidden'=>'true']).'</span>';}
     private function image(array $image,string $alt,string $class,string $size='full'):string {
         $attrs=['class'=>$class,'alt'=>$alt,'loading'=>'lazy','decoding'=>'async'];
         if(!empty($image['id']))return wp_get_attachment_image(absint($image['id']),in_array($size,['thumbnail','medium','large','full'],true)?$size:'full',false,$attrs);

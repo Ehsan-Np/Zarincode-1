@@ -1,0 +1,87 @@
+{
+    "seconds": 0.7426300048828125,
+    "memory": 255655936,
+    "total_bytes": 34422378,
+    "widgets": {
+        "zarincode_service_spotlight": {
+            "controls": 822,
+            "bytes": 420287
+        },
+        "zarincode_project_roadmap": {
+            "controls": 765,
+            "bytes": 393207
+        },
+        "zarincode_seo_audit": {
+            "controls": 841,
+            "bytes": 424891
+        },
+        "zarincode_before_after": {
+            "controls": 591,
+            "bytes": 300749
+        },
+        "zarincode_team_experts": {
+            "controls": 822,
+            "bytes": 418526
+        },
+        "zarincode_service_matrix": {
+            "controls": 772,
+            "bytes": 397705
+        },
+        "zarincode_header": {
+            "controls": 3377,
+            "bytes": 2128242
+        },
+        "zarincode_footer": {
+            "controls": 3350,
+            "bytes": 2112620
+        },
+        "zarincode_hero": {
+            "controls": 3498,
+            "bytes": 2233553
+        },
+        "zarincode_brands": {
+            "controls": 3352,
+            "bytes": 2118886
+        },
+        "zarincode_services": {
+            "controls": 3382,
+            "bytes": 2193533
+        },
+        "zarincode_products": {
+            "controls": 3379,
+            "bytes": 2222980
+        },
+        "zarincode_portfolio": {
+            "controls": 3380,
+            "bytes": 2208018
+        },
+        "zarincode_why_us": {
+            "controls": 3396,
+            "bytes": 2184351
+        },
+        "zarincode_pricing": {
+            "controls": 3385,
+            "bytes": 2415059
+        },
+        "zarincode_promo": {
+            "controls": 3374,
+            "bytes": 2153519
+        },
+        "zarincode_steps": {
+            "controls": 3356,
+            "bytes": 2158121
+        },
+        "zarincode_testimonials": {
+            "controls": 3359,
+            "bytes": 2170627
+        },
+        "zarincode_blog": {
+            "controls": 3380,
+            "bytes": 2180161
+        },
+        "zarincode_page_section": {
+            "controls": 4005,
+            "bytes": 3587343
+        }
+    }
+}

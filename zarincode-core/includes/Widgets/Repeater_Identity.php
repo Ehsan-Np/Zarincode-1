@@ -2,6 +2,8 @@
 /** Stable identities for Elementor repeaters, including previously saved data. */
 namespace Zarincode\Runtime260\Widgets;
 defined('ABSPATH') || exit;
+require_once __DIR__.'/Icon_Compatibility.php';
+require_once __DIR__.'/Editor_Controls.php';
 final class Repeater_Identity {
     public static function rows(array $rows, string $scope, array $fields=[]): array {
         $result=[]; $seen=[];
@@ -20,6 +22,7 @@ final class Repeater_Identity {
     }
     public static function settings(array $settings,array $controls,string $scope): array {
         foreach($controls as $key=>$control) {
+            if(($control['type']??'')==='icons'){$name=$control['name']??$key;if(array_key_exists($name,$settings))$settings[$name]=Icon_Compatibility::value($settings[$name]);continue;}
             if(($control['type']??'')!=='repeater') continue;
             $name=$control['name']??$key;
             if(isset($settings[$name])&&is_array($settings[$name])) {

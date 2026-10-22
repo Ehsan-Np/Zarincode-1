@@ -28,6 +28,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     public function get_keywords(): array { return ['zarincode','زرین کد','bento']; }
     /** Normalize defaults before Elementor builds style_fields for {{CURRENT_ITEM}}. */
     public function add_control($id,array $args,$options=[]) {
+        $args=Icon_Compatibility::control($args);
         if(($args['type']??'')===C::REPEATER && isset($args['default']) && is_array($args['default'])) {
             $args['default']=Repeater_Identity::rows($args['default'],$this->get_name().'.'.$id,$args['fields']??[]);
         }
@@ -42,6 +43,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     public function get_raw_data($with_html_content=false) {
         $data=parent::get_raw_data($with_html_content);
         $data['settings']=Native_Design::migrate($data['settings'],$data['settings'],$this->kind());
+        $data['settings']=Repeater_Identity::settings($data['settings'],$this->get_controls(),$this->get_name().'.'.$this->get_id());
         return $data;
     }
     public function inline_attributes(string $key,string $toolbar='none'): array {
@@ -61,9 +63,9 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->start_controls_section('main_content',['label'=>'محتوا و هویت بخش']);
         $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'همان طرح اصلی از کنترل‌های مستقل ساخته می‌شود. متن، آیکون، تصویر، پیوند، آیتم‌ها و استایل اجزا در بخش‌های طراحی اصلی قابل ویرایش‌اند؛ طرح سفارشی قدیمی نیز حفظ شده است.']);
         if ($kind==='page_section') {
-            $this->field('page_cards_source','منبع کارت‌های صفحه',C::SELECT,'auto',['options'=>['auto'=>'خودکار مطابق نوع صفحه','manual'=>'کارت‌های دستی زیر']]);
+            $this->field('page_cards_source','منبع کارت‌های صفحه',C::SELECT,'auto',['options'=>['auto'=>'خودکار مطابق نوع صفحه','manual'=>'کارت‌های دستی زیر'],'condition'=>['design_mode'=>'custom']]);
             $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
-            $this->field('page_content','محتوای کامل صفحه (جایگزین الگو)',C::WYSIWYG,'',['description'=>'برای شخصی‌سازی کامل متن حقوقی، محتوای خود را اینجا وارد کنید. متن الگو صرفاً نمونه است و باید بازبینی حقوقی شود.']);
+            $this->field('page_content','محتوای کامل صفحه (جایگزین الگو)',C::WYSIWYG,'',['condition'=>['design_mode'=>'custom'],'description'=>'برای شخصی‌سازی کامل متن حقوقی، محتوای خود را اینجا وارد کنید. متن الگو صرفاً نمونه است و باید بازبینی حقوقی شود.']);
         }
         $this->end_controls_section();
         $this->start_controls_section('custom_main',['label'=>'محتوای چیدمان سفارشی']);
@@ -169,7 +171,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
             $allowed=['title','image_alt','icon','image','link','visible','background','color','accent','padding','radius','item_icon_color','item_icon_size','item_image_height'];
             $item_fields=array_filter($item_fields,static fn($field,$key)=>in_array($key,$allowed,true),ARRAY_FILTER_USE_BOTH);
         }
-        $this->add_control('items',['label'=>'آیتم‌ها (افزودن، حذف، تکثیر و جابه‌جایی)','type'=>C::REPEATER,'fields'=>$item_fields,'default'=>Widget_Schema::items($kind),'title_field'=>'{{{ title }}}']);
+        $this->add_control('items',['label'=>'آیتم‌ها (افزودن، حذف، تکثیر و جابه‌جایی)','type'=>C::REPEATER,'fields'=>$item_fields,'prevent_empty'=>false,'default'=>Widget_Schema::items($kind),'title_field'=>'{{{ title }}}']);
         $this->field('show_filters','نمایش فیلتر گروه‌ها',C::SWITCHER,in_array($kind,['pricing','portfolio'],true)?'yes':'');
         $this->field('show_search','نمایش جستجوی کارت‌ها',C::SWITCHER,'');
         $this->end_controls_section();
@@ -206,7 +208,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
                 $this->start_controls_tab($id.'_'.$state,['label'=>$state_label]);
                 $sel=$target.($state==='hover'?':hover':'');
                 $this->field($id.'_'.$state.'_color','رنگ متن',C::COLOR,'',['selectors'=>[$sel=>'color: {{VALUE}};']]);
-                $this->add_group_control(Group_Control_Background::get_type(),['name'=>$id.'_'.$state.'_background','types'=>['classic','gradient'],'selector'=>$sel]);
+                $this->add_group_control(Group_Control_Background::get_type(),['name'=>$id.'_'.$state.'_background','types'=>['classic','gradient'],'exclude'=>Editor_Controls::BACKGROUND_EXCLUDE,'selector'=>$sel]);
                 $this->add_group_control(Group_Control_Border::get_type(),['name'=>$id.'_'.$state.'_border','selector'=>$sel]);
                 $this->add_group_control(Group_Control_Box_Shadow::get_type(),['name'=>$id.'_'.$state.'_shadow','selector'=>$sel]);
                 $this->end_controls_tab();

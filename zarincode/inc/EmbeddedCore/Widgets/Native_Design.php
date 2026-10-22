@@ -15,12 +15,34 @@ final class Native_Design {
     public static function model(string $kind,string $section='about-page'):array {
         static $cache=[];$key=$kind.($kind==='page_section'?'_'.str_replace('-','_',$section):'');
         if(!preg_match('/^[a-z_]+$/D',$key))return [];
-        if(!isset($cache[$key])){$path=__DIR__.'/models/'.$key.'.json';$cache[$key]=is_file($path)?json_decode(file_get_contents($path),true):[];}
-        return self::portable($cache[$key]?:[]);
+        $urls=[get_template_directory_uri(),untrailingslashit(home_url())];$cacheKey=$key.'|'.implode('|',$urls);
+        if(!array_key_exists($cacheKey,$cache)){$path=__DIR__.'/models/'.$key.'.json';$raw=is_file($path)?json_decode(file_get_contents($path),true):[];$cache[$cacheKey]=self::portable($raw?:[],$urls);}
+        return $cache[$cacheKey];
     }
-    private static function portable($value){if(is_array($value))return array_map([self::class,'portable'],$value);return is_string($value)?str_replace(['{{THEME}}','{{HOME}}'],[get_template_directory_uri(),untrailingslashit(home_url())],$value):$value;}
+    private static function portable($value,array $urls){if(is_array($value)){foreach($value as $k=>$v)$value[$k]=self::portable($v,$urls);return $value;}return is_string($value)?str_replace(['{{THEME}}','{{HOME}}'],$urls,$value):$value;}
+    /** Panel-only grouping. Never use visibility conditions for this UI filter: they discard active settings. */
+    public static function editor_groups(array $m):array {
+        $map=[];$labels=['general'=>'کلی'];
+        $walk=function(array $nodes,string $group='general')use(&$walk,&$map,&$labels,$m){foreach($nodes as $node){
+            if(isset($node['repeat']))continue;
+            $classes=preg_split('/\s+/', $node['attrs']['class']??'');
+            foreach($classes as $class)if(strpos($class,'zc-')===0&&!preg_match('/(?:container|grid|layout|white-card|glass-panel)$/',$class)){$group=$node['part']??$group;$labels[$group]=$m['parts'][$group]['label']??$class;break;}
+            foreach(['text','rich','icon','image','alt','size','visible','heading_tag','action','action_target'] as $field)if(isset($node[$field])&&isset($m['fields'][$node[$field]]))$map[$node[$field]]=$group;
+            foreach($node['bindings']??[] as $field)if(isset($m['fields'][$field]))$map[$field]=$group;
+            if(isset($node['children']))$walk($node['children'],$group);
+        }};$walk($m['tree']);
+        $used=[];foreach($m['fields'] as $key=>$def){$g=$map[$key]??'general';$map[$key]=$g;$used[$g]=$labels[$g]??'کلی';}
+        $default=array_key_first($used);foreach($map as $key=>$group)if(preg_match('/(?:hero_title|heading|brand_name).*text/',$key)){$default=$group;break;}
+        return ['map'=>$map,'labels'=>$used,'default'=>$default];
+    }
+    private static function editor_tab(string $key,array $def):string {
+        if($def['type']==='switcher'||$def['type']==='select'||preg_match('/_(?:target|data_[a-z_]+|name)$/',$key))return 'options';
+        if(in_array($def['type'],['icons','media'],true))return 'media';
+        if($def['type']==='url')return 'links';return 'content';
+    }
     private static function args(array $d):array {
-        $a=['label'=>$d['label'],'type'=>$d['type'],'default'=>$d['default']];
+        $label=$d['label'];if($d['type']==='wysiwyg')$label='توضیحات';elseif(($d['purpose']??'')==='title')$label='عنوان';elseif(($d['purpose']??'')==='price')$label='قیمت';elseif(($d['purpose']??'')==='currency')$label='واحد پول';elseif($d['type']==='url'&&($d['purpose']??'')==='demo_link')$label='پیوند پیش‌نمایش';elseif(mb_strlen($label)>44)$label=mb_substr($label,0,42).'…';
+        $a=['label'=>$label,'type'=>$d['type'],'default'=>$d['default']];
         if(isset($d['options']))$a['options']=$d['options'];
         if(in_array($d['type'],['text','textarea','wysiwyg','media','url'],true))$a['dynamic']=['active'=>true];
         if($d['type']==='switcher')$a['return_value']='yes';
@@ -31,24 +53,6 @@ final class Native_Design {
         foreach($sections as $section=>$name){
             $m=self::model($kind,$section);if(!$m)continue;
             $condition=['design_mode'=>'original'];if($kind==='page_section')$condition['section_key']=$section;
-            $families=['text'=>'متن‌ها و برچسب‌ها','wysiwyg'=>'توضیحات','icons'=>'آیکون‌ها و نمادها','media'=>'تصاویر','url'=>'پیوندها','select'=>'تگ‌ها، اندازه تصاویر و رفتار دکمه‌ها','switcher'=>'نمایش و مخفی‌سازی اجزا'];
-            foreach($families as $type=>$label){$defs=array_filter($m['fields'],static fn($d)=>$d['type']===$type);if(!$defs)continue;
-                $widget->start_controls_section(self::id($m,'section_'.$type),['label'=>$name.' — '.$label,'condition'=>$condition]);
-                foreach($defs as $key=>$d)$widget->add_control(self::id($m,$key),self::args($d));
-                $widget->end_controls_section();
-            }
-            foreach($m['repeaters'] as $key=>$rep){
-                $widget->start_controls_section(self::id($m,'section_'.$key),['label'=>$rep['label'],'condition'=>$condition]);
-                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]='ساختار '.substr($v,1);
-                $r->add_control('_variant',['label'=>'ساختار آیتم','type'=>C::SELECT,'options'=>$options,'default'=>array_key_first($options),'description'=>'ساختارهای موجود همان کارت‌های طرح اصلی هستند؛ محتوا و نمایش هر جزء مستقل است.']);
-                $r->add_control('_enabled',['label'=>'نمایش آیتم','type'=>C::SWITCHER,'default'=>'yes','return_value'=>'yes']);
-                foreach($rep['fields'] as $field=>$d){$a=self::args($d);$a['condition']=['_variant'=>$d['variants']??array_keys($options)];$r->add_control($field,$a);}
-                foreach(['item_background'=>'پس‌زمینه آیتم','item_color'=>'رنگ متن آیتم'] as $f=>$label)$r->add_control($f,['label'=>$label,'type'=>C::COLOR,'selectors'=>['{{WRAPPER}} .zc-native-layout {{CURRENT_ITEM}}'=>($f==='item_color'?'color':'background-color').':{{VALUE}};']]);
-                $r->add_responsive_control('item_padding',['label'=>'فاصله داخلی آیتم','type'=>C::DIMENSIONS,'selectors'=>['{{WRAPPER}} .zc-native-layout {{CURRENT_ITEM}}'=>'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};']]);
-                $title='';foreach($rep['fields'] as $f=>$d)if($d['type']==='text'&&strpos($f,'text')!==false){$title=$f;if(strpos($f,'title')!==false||strpos($f,'heading')!==false)break;}
-                $widget->add_control(self::id($m,$key),['label'=>$rep['label'],'type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>$rep['default'],'prevent_empty'=>false,'title_field'=>$title?'{{{ '.$title.' }}}':'آیتم']);
-                $widget->end_controls_section();
-            }
             if(in_array($kind,['services','products','portfolio','blog'],true)){
                 $widget->start_controls_section(self::id($m,'source_section'),['label'=>'منبع کارت‌های طراحی اصلی','condition'=>$condition]);
                 $widget->add_control(self::id($m,'source'),['label'=>'منبع داده','type'=>C::SELECT,'default'=>'manual','options'=>['manual'=>'آیتم‌های دستی همین طرح','query'=>'نوشته‌ها / محصولات / خدمات سایت']]);
@@ -58,6 +62,41 @@ final class Native_Design {
                 $widget->add_control(self::id($m,'orderby'),['label'=>'مرتب‌سازی بر اساس','type'=>C::SELECT,'default'=>'date','options'=>['date'=>'تاریخ','title'=>'عنوان','menu_order'=>'ترتیب دستی','rand'=>'تصادفی'],'condition'=>[self::id($m,'source')=>'query']]);
                 $widget->add_control(self::id($m,'order'),['label'=>'جهت مرتب‌سازی','type'=>C::SELECT,'default'=>'DESC','options'=>['DESC'=>'نزولی','ASC'=>'صعودی'],'condition'=>[self::id($m,'source')=>'query']]);
                 $widget->add_control(self::id($m,'query_help'),['type'=>C::RAW_HTML,'raw'=>'در حالت خودکار عنوان، توضیح، پیوند، دسته و قیمت از رکوردهای سایت خوانده می‌شوند؛ برای ویرایش آن‌ها همان محصول/نوشته را ویرایش کنید. اولین کارت دستی الگوی ظاهر نتایج است.','condition'=>[self::id($m,'source')=>'query']]);
+                $widget->end_controls_section();
+            }
+            $groups=self::editor_groups($m);
+            $widget->start_controls_section(self::id($m,'section_content'),['label'=>$name.' — ویرایش محتوا','condition'=>$condition]);
+            $widget->add_control(self::id($m,'editor_part'),['label'=>'کدام قسمت را ویرایش می‌کنید؟','type'=>C::SELECT2,'options'=>array_merge(['__all__'=>'همه اجزا'],$groups['labels']),'default'=>$groups['default'],'render_type'=>'none','classes'=>'zc-editor-part-picker zc-editor-model-'.$m['name'],'label_block'=>true]);
+            $widget->add_control(self::id($m,'editor_search'),['label'=>'جستجوی کنترل','type'=>C::TEXT,'default'=>'','render_type'=>'none','classes'=>'zc-editor-field-search zc-editor-model-'.$m['name'],'placeholder'=>'جستجو در نام کنترل‌های این بخش']);
+            $widget->add_control(self::id($m,'editor_help'),['type'=>C::RAW_HTML,'raw'=>'قسمت را انتخاب و متن یا رسانه دلخواه خود را جایگزین کنید. فیلتر فقط پنل را خلوت می‌کند؛ چیزی از محتوا حذف نمی‌شود.','content_classes'=>'zc-editor-help']);
+            $widget->start_controls_tabs(self::id($m,'content_tabs'));
+            foreach(['content'=>'متن','media'=>'رسانه و نماد','links'=>'پیوند','options'=>'پیشرفته'] as $tab=>$label){
+                $widget->start_controls_tab(self::id($m,'tab_'.$tab),['label'=>$label]);
+                foreach($m['fields'] as $key=>$d)if(self::editor_tab($key,$d)===$tab){$args=self::args($d);$args['classes']='zc-editor-field zc-editor-model-'.$m['name'].' zc-editor-tab-'.$tab.' zc-editor-group-'.sanitize_html_class($groups['map'][$key]);$widget->add_control(self::id($m,$key),$args);}
+                $widget->end_controls_tab();
+            }
+            $widget->end_controls_tabs();$widget->end_controls_section();
+            foreach($m['repeaters'] as $key=>$rep){
+                $widget->start_controls_section(self::id($m,'section_'.$key),['label'=>$rep['label'],'condition'=>$condition]);
+                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]='ساختار '.substr($v,1);
+                $r->start_controls_tabs('zc_row_tabs');
+                foreach(['content'=>'محتوا','media'=>'رسانه و نماد','links'=>'پیوند','options'=>'پیشرفته'] as $tab=>$label){
+                    $r->start_controls_tab('zc_row_'.$tab,['label'=>$label]);
+                    if($tab==='options'){
+                        $r->add_control('_variant',['label'=>'ساختار آیتم','type'=>C::SELECT,'options'=>$options,'default'=>array_key_first($options)]);
+                        $r->add_control('_enabled',['label'=>'نمایش آیتم','type'=>C::SWITCHER,'default'=>'yes','return_value'=>'yes']);
+                    }
+                    foreach($rep['fields'] as $field=>$d)if(self::editor_tab($field,$d)===$tab){$a=self::args($d);if(count($d['variants']??[])!==count($options))$a['condition']=['_variant'=>$d['variants']??array_keys($options)];$r->add_control($field,$a);}
+                    if($tab==='options'){
+                foreach(['item_background'=>'پس‌زمینه آیتم','item_color'=>'رنگ متن آیتم'] as $f=>$label)$r->add_control($f,['label'=>$label,'type'=>C::COLOR,'selectors'=>['{{WRAPPER}} .zc-native-layout {{CURRENT_ITEM}}'=>($f==='item_color'?'color':'background-color').':{{VALUE}};']]);
+                $r->add_responsive_control('item_padding',['label'=>'فاصله داخلی آیتم','type'=>C::DIMENSIONS,'selectors'=>['{{WRAPPER}} .zc-native-layout {{CURRENT_ITEM}}'=>'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};']]);
+                    }
+                    $r->end_controls_tab();
+                }
+                $r->end_controls_tabs();
+                $title='';foreach($rep['fields'] as $f=>$d)if($d['type']==='text'&&strpos($f,'text')!==false){$title=$f;if(($d['purpose']??'')==='title'||strpos($f,'title')!==false||strpos($f,'heading')!==false)break;}
+                foreach($rep['fields'] as $f=>$d)if(($d['purpose']??'')==='title'){$title=$f;break;}
+                $widget->add_control(self::id($m,$key),['label'=>$rep['label'],'type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>$rep['default'],'prevent_empty'=>false,'title_field'=>$title?'{{{ '.$title.' }}}':'آیتم']);
                 $widget->end_controls_section();
             }
             if(!empty($m['has_form'])){
@@ -76,13 +115,18 @@ final class Native_Design {
         $r->add_control('target',['label'=>'جزء موردنظر','type'=>C::SELECT2,'options'=>$parts,'default'=>array_key_first($parts)]);
         $r->add_control('item',['label'=>'شماره آیتم (۰ = همه)','type'=>C::NUMBER,'min'=>0,'default'=>0]);
         $selector='{{WRAPPER}} .zc-native-layout {{CURRENT_ITEM}}';
-        $r->add_group_control(Group_Control_Typography::get_type(),['name'=>'font','selector'=>$selector,'condition'=>['target'=>$text]]);
+        $r->start_controls_tabs('zc_style_tabs');$r->start_controls_tab('zc_style_text',['label'=>'متن']);
+        $r->add_group_control(Group_Control_Typography::get_type(),['name'=>'font','selector'=>$selector]);
         foreach(['normal'=>'عادی','hover'=>'هاور'] as $state=>$label){$sel=$selector.($state==='hover'?':hover':'');
-            $r->add_control($state.'_color',['label'=>'رنگ متن — '.$label,'type'=>C::COLOR,'condition'=>['target'=>$text],'selectors'=>[$sel=>'color:{{VALUE}};']]);
-            $r->add_group_control(Group_Control_Background::get_type(),['name'=>$state.'_background','types'=>['classic','gradient'],'selector'=>$sel]);
+            $r->add_control($state.'_color',['label'=>'رنگ متن — '.$label,'type'=>C::COLOR,'selectors'=>[$sel=>'color:{{VALUE}};']]);
+        }
+        $r->end_controls_tab();$r->start_controls_tab('zc_style_appearance',['label'=>'ظاهر']);
+        foreach(['normal'=>'عادی','hover'=>'هاور'] as $state=>$label){$sel=$selector.($state==='hover'?':hover':'');
+            $r->add_group_control(Group_Control_Background::get_type(),['name'=>$state.'_background','types'=>['classic','gradient'],'exclude'=>Editor_Controls::BACKGROUND_EXCLUDE,'selector'=>$sel]);
             $r->add_group_control(Group_Control_Border::get_type(),['name'=>$state.'_border','selector'=>$sel]);
             $r->add_group_control(Group_Control_Box_Shadow::get_type(),['name'=>$state.'_shadow','selector'=>$sel]);
         }
+        $r->end_controls_tab();$r->start_controls_tab('zc_style_layout',['label'=>'چیدمان']);
         foreach(['padding'=>'فاصله داخلی','margin'=>'فاصله بیرونی','border-radius'=>'گردی'] as $prop=>$label)$r->add_responsive_control(str_replace('-','_',$prop),['label'=>$label,'type'=>C::DIMENSIONS,'size_units'=>['px','em','%'],'selectors'=>[$selector=>$prop.':{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};']]);
         foreach(['width'=>'عرض','height'=>'ارتفاع','font-size'=>'اندازه متن/آیکون','gap'=>'فاصله فرزندان'] as $prop=>$label)$r->add_responsive_control(str_replace('-','_',$prop),['label'=>$label,'type'=>C::SLIDER,'size_units'=>['px','%','em','vw'],'range'=>['px'=>['min'=>0,'max'=>1500]],'selectors'=>[$selector=>$prop.':{{SIZE}}{{UNIT}};']]);
         $r->add_responsive_control('align',['label'=>'تراز متن','type'=>C::SELECT,'options'=>['right'=>'راست','center'=>'وسط','left'=>'چپ'],'selectors'=>[$selector=>'text-align:{{VALUE}};']]);
@@ -92,7 +136,8 @@ final class Native_Design {
         $r->add_responsive_control('position',['label'=>'موقعیت','type'=>C::SELECT,'options'=>['static'=>'عادی','relative'=>'نسبی','absolute'=>'مطلق','sticky'=>'چسبان'],'selectors'=>[$selector=>'position:{{VALUE}};']]);
         foreach(['top'=>'بالا','right'=>'راست','bottom'=>'پایین','left'=>'چپ'] as $edge=>$label)$r->add_responsive_control('offset_'.$edge,['label'=>'فاصله از '.$label,'type'=>C::SLIDER,'size_units'=>['px','%','em'],'selectors'=>[$selector=>$edge.':{{SIZE}}{{UNIT}};']]);
         $r->add_control('z_index',['label'=>'ترتیب لایه','type'=>C::NUMBER,'selectors'=>[$selector=>'z-index:{{VALUE}};']]);
-        if($images)$r->add_control('fit',['label'=>'قرارگیری تصویر','type'=>C::SELECT,'options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن','fill'=>'کشیده','none'=>'اصلی'],'condition'=>['target'=>$images],'selectors'=>[$selector=>'object-fit:{{VALUE}};']]);
+        if($images)$r->add_control('fit',['label'=>'قرارگیری تصویر','type'=>C::SELECT,'options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن','fill'=>'کشیده','none'=>'اصلی'],'selectors'=>[$selector=>'object-fit:{{VALUE}};']]);
+        $r->end_controls_tab();$r->end_controls_tabs();
         $widget->add_control(self::id($m,'styles'),['label'=>'قوانین استایل اجزا','type'=>C::REPEATER,'fields'=>$r->get_controls(),'default'=>[],'prevent_empty'=>false,'title_field'=>'{{{ target }}}']);
         $widget->end_controls_section();
     }
@@ -148,7 +193,7 @@ final class Native_Design {
             }
             if($tag==='form'&&$formShortcode!=='')return do_shortcode($formShortcode);
             foreach(['data-zc-tabs','href','aria-controls','for'] as $a)if(isset($attrs[$a])&&is_string($attrs[$a])){foreach($idMap as $old=>$new){if($attrs[$a]==='#'.$old)$attrs[$a]='#'.$new;elseif($attrs[$a]===$old)$attrs[$a]=$new;}}
-            if(isset($node['icon'])){if(($data[$node['icon']]['value']??'')==='')return '';ob_start();\Elementor\Icons_Manager::render_icon($data[$node['icon']],$attrs);return ob_get_clean();}
+            if(isset($node['icon'])){if(($data[$node['icon']]['value']??'')==='')return '';return Icon_Compatibility::render($data[$node['icon']],$attrs);}
             if(isset($node['image'])){$image=$data[$node['image']]??[];$attrs['alt']=$data[$node['alt']]??'';if(!empty($image['id']))return wp_get_attachment_image(absint($image['id']),$data[$node['size']]??'full',false,$attrs);if(empty($image['url']))return '';$attrs['src']=esc_url($image['url']);return '<img'.self::attrs($attrs).'>';}
             $html='';if(isset($node['rich'])){$key=$node['rich'];$inline=$queryActive&&$prefix!==''?[]:self::inline($widget,$prefix!==''?$prefix.$key:self::id($m,$key),'basic');foreach($inline as $a=>$vals)$attrs[$a]=trim(($attrs[$a]??'').' '.implode(' ',$vals));$richValue=is_scalar($data[$key]??'')?(string)($data[$key]??''):'';$richValue=preg_replace('/<\/(p|div)>\s*<(p|div)(?:\s[^>]*)?>/i','<br><br>',$richValue);$html=wp_kses($richValue,['strong'=>[],'b'=>[],'em'=>[],'i'=>[],'u'=>[],'s'=>[],'code'=>[],'br'=>[],'span'=>['style'=>true],'a'=>['href'=>true,'target'=>true,'rel'=>true]]);}
             else foreach($node['children']??[] as $child)$html.=$draw($child,$data,$prefix,$index,$variant);

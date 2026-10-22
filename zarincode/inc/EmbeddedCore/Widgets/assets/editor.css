@@ -1,0 +1,5 @@
+/* Panel-only presentation. Never enqueue in the frontend or preview iframe. */
+.zc-editor-field.zc-editor-filtered{display:none!important}
+.zc-editor-help{font-size:11px;line-height:1.8;color:var(--e-a-color-txt-muted,#777)}
+.zc-editor-part-picker{padding-bottom:8px!important}
+.zc-editor-field-search{padding-top:4px!important;padding-bottom:8px!important}

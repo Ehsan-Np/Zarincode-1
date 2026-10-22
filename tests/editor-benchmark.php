@@ -1,0 +1,2 @@
+<?php
+define('WP_ADMIN',true);Elementor\Plugin::instance()->editor->set_edit_mode(true);$t=microtime(true);$out=[];foreach(Elementor\Plugin::instance()->widgets_manager->get_widget_types() as $name=>$w){if(strpos($name,'zarincode_')!==0)continue;$c=$w->get_controls();$out[$name]=['controls'=>count($c),'bytes'=>strlen(wp_json_encode($c))];}echo wp_json_encode(['seconds'=>microtime(true)-$t,'memory'=>memory_get_peak_usage(true),'total_bytes'=>array_sum(array_column($out,'bytes')),'widgets'=>$out],JSON_PRETTY_PRINT)."\n";

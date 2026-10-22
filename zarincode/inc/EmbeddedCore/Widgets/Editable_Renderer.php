@@ -8,9 +8,7 @@ final class Editable_Renderer {
     private static function url($v): string { return esc_url(is_array($v)?($v['url']??''):(string)$v); }
     private static function icon($v): string {
         if(empty($v['value'])) return '';
-        ob_start();
-        \Elementor\Icons_Manager::render_icon($v,['aria-hidden'=>'true']);
-        return '<span class="zc-edit-icon">'.ob_get_clean().'</span>';
+        return '<span class="zc-edit-icon">'.Icon_Compatibility::render($v,['aria-hidden'=>'true']).'</span>';
     }
     private static function attrs($link): string {
         if(!is_array($link)) $link=['url'=>$link];

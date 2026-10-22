@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.0.0
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 3.1.0 =
+* Safe Font Awesome SVG data validation, native editor component filtering and tabs.
+* Smaller controls payload; preserves original design and saved field identities.
 = 3.0.0 =
 Settings-driven original layouts (23 models), native repeaters and component styles;
 legacy saved-text migration; scoped frontend handlers; query sources; contact-form shortcode.
@@ -30,4 +34,4 @@ widgets; optional professional Elementor JSON kit; optional upstream Xpro instal
 No upstream Xpro runtime or assets are bundled; see includes/Widgets/THIRD-PARTY-NOTICES.md.
 
 == Documentation ==
-https://github.com/Ehsan-Np/Zarincode-1/blob/main/RELEASE-3.0.0.md
+https://github.com/Ehsan-Np/Zarincode-1/blob/main/RELEASE-3.1.0.md
