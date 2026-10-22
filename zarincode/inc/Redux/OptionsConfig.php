@@ -77,6 +77,7 @@ class OptionsConfig {
                     [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت', 'default' => '' ],
                     [ 'id' => 'logo_width',            'type' => 'number', 'title' => 'حداکثر عرض لوگو (پیکسل)', 'default' => 155 ],
                     [ 'id' => 'container_max_width',   'type' => 'select', 'title' => 'حداکثر عرض کانتینر اصلی صفحات', 'options' => [ '1280px' => '۱۲۸۰ پیکسل (کلاسیک)', '1360px' => '۱۳۶۰ پیکسل (استاندارد Crextio)', '1440px' => '۱۴۴۰ پیکسل (عریض مدرن)', '1600px' => '۱۶۰۰ پیکسل (فول‌ویدث استودیویی)' ], 'default' => '1360px' ],
+                    ['id'=>'layout_width_scale','type'=>'select','title'=>'مقیاس عرض سراسری','options'=>['100'=>'عرض پایه','108'=>'۸٪ عریض‌تر (پیش‌فرض)'],'default'=>'108','subtitle'=>'عرض پایه حفظ می‌شود؛ افزایش فقط یک بار محاسبه شده و در موبایل به اندازه نمایشگر محدود است.'],
                     [ 'id' => 'bento_border_radius',   'type' => 'select', 'title' => 'میزان گردی گوشه‌های کارت‌های بنتو', 'options' => [ '16px' => '۱۶ پیکسل (ملایم)', '24px' => '۲۴ پیکسل (مدرن)', '28px' => '۲۸ پیکسل (استاندارد Crextio)', '36px' => '۳۶ پیکسل (کپسولی فوق‌گرد)' ], 'default' => '28px' ],
                     [ 'id' => 'enable_preloader',      'type' => 'switch', 'title' => 'فعال‌سازی پیش‌بارگذار صفحه', 'default' => false ],
                     [ 'id' => 'preloader_text',        'type' => 'text',   'title' => 'متن نمایشی پیش‌بارگذار', 'default' => 'زرین کد | Zarincode.com' ],
@@ -1007,7 +1008,7 @@ class OptionsConfig {
         $bg_to        = zarincode_get_option( 'bg_gradient_to', '#FFF5D1' );
         $dark_from    = zarincode_get_option( 'dark_bg_from', '#15171C' );
         $dark_to      = zarincode_get_option( 'dark_bg_to', '#1F1B14' );
-        $container_w  = zarincode_get_option( 'container_max_width', '1360px' );
+        $container_w  = \Zarincode\Theme\Core\Layout::width(zarincode_get_option('container_max_width','1360px'),zarincode_get_option('layout_width_scale',108));
         $radius       = zarincode_get_option( 'bento_border_radius', '28px' );
         $blur         = (int) zarincode_get_option( 'glass_blur_px', 14 );
         $font_size    = (int) zarincode_get_option( 'body_font_size', 15 );

@@ -55,6 +55,8 @@ class Assets {
             wp_enqueue_style('zarincode-product-reference', ZARINCODE_URI . '/assets/css/product-reference.css', ['zarincode-main'], ZARINCODE_VERSION);
         }
 
+        wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION);
+
         // 4. RTL Native Stylesheet
         wp_enqueue_style(
             'zarincode-rtl',

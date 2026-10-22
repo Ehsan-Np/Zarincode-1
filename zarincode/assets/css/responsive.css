@@ -1,0 +1,40 @@
+/* Shared width and intrinsic sizing. Clipping is only a last guard for decorative/off-canvas layers. */
+html{overflow-x:clip}body{overflow-x:clip;min-width:0;width:100%}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
+.zc-container,.zc-publication-shell{width:100%;box-sizing:border-box}
+:is(main,.zc-single-product-main,.zc-single-product-sidebar,.zc-publication-main,.zc-publication-sidebar,.elementor-widget-container,.e-con,.e-con-inner){min-width:0}
+:is(.zc-services-grid,.zc-products-grid,.zc-portfolio-grid,.zc-blog-grid,.zc-footer-grid,.zc-edit-grid,.zc-pro-grid)>*{min-width:0}
+:is(.zc-native-layout,.zc-edit,.zc-pro,.entry-content,.zc-editorial-body,.zc-prod-tab-pane){overflow-wrap:anywhere}
+:is(main,.zc-native-layout,.entry-content) :is(img,video,iframe){max-width:100%}
+.zc-mobile-drawer-backdrop{overflow:hidden}.zc-mobile-drawer{max-width:100%;overflow-x:hidden;overscroll-behavior:contain;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+.zc-mobile-drawer-head>*{min-width:0}.zc-mobile-drawer :is(a,button){overflow-wrap:anywhere}
+details:not([open])>:not(summary){display:none}
+.zc-floating-socials>div{max-width:calc(100vw - 48px);box-sizing:border-box}
+.zc-edit,.zc-pro{padding-inline:var(--zc-site-gutter,24px)}
+@media(max-width:1180px){.zc-header-pill,.zc-header-actions,.zc-brand{min-width:0}.zc-header-actions{flex-shrink:1}}
+@media(max-width:767px){
+ :root{--zc-site-gutter:16px}
+ .zc-header-pill{gap:6px;padding:8px}.zc-header-actions{gap:4px;flex-wrap:nowrap}.zc-brand{gap:6px;flex-shrink:1}.zc-brand-text{min-width:0}.zc-brand-sub{display:none}.zc-brand-name{font-size:13px}
+ .zc-header-actions .zc-icon-btn{width:40px;height:40px;flex-shrink:0}.zc-header-actions .zc-header-account{width:40px;min-width:40px;padding:0;justify-content:center}.zc-header-account>span{display:none}
+ .zc-topbar-inner,.zc-topbar-items{min-width:0;flex-wrap:wrap}.zc-topbar-item{min-width:0;font-size:12px}
+ .zc-single-product-grid{grid-template-columns:minmax(0,1fr)!important}
+ :is(.zc-single-product-main,.zc-single-product-sidebar)>.zc-glass-panel,:is(.zc-single-product-main,.zc-single-product-sidebar)>.zc-dark-card{padding:20px!important}
+ .zc-single-product-wrap .zc-prod-tab-pane>div[style*="minmax"]{grid-template-columns:minmax(0,1fr)!important}
+ .zc-prod-tabs-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}.zc-prod-tab-btn{min-width:0;white-space:normal;line-height:1.9}
+ .zc-breadcrumb-bar{padding:12px!important;gap:10px!important}.zc-breadcrumb-bar>div{min-width:0;max-width:100%;font-size:12px!important;line-height:1.9}.zc-breadcrumb-bar>div:last-child{flex-wrap:wrap}
+ .zc-native-layout :is(.zc-section-title,.zc-service-title,.zc-product-title){overflow-wrap:anywhere;line-height:1.7}.zc-section-desc,.zc-edit-description,.zc-pro-text{font-size:14px;line-height:2}
+ .zc-footer-bento{padding:24px 18px}.zc-footer-grid{gap:24px}.zc-footer-grid>*{min-width:0}
+ .entry-content :is(pre,table),.zc-editorial-body :is(pre,table){display:block;max-width:100%;overflow-x:auto}.entry-content pre,.zc-editorial-body pre{white-space:pre-wrap;overflow-wrap:anywhere}
+ .zc-product-reference-info .zc-prod-kpi-strip>div>div:first-child{font-size:14px!important}.zc-product-reference-info .zc-prod-kpi-strip>div>div:last-child{font-size:11px!important}
+ .zc-product-reference-info .zc-product-media-meta>span{font-size:11px}
+ .zc-story-share,.zc-share-studio,.zc-author-box,.zc-story-navigation,.zc-related-grid{min-width:0;max-width:100%}
+ .zc-share-link-control input{min-width:0}.zc-share-linkbar{min-width:0}.zc-share-link-control{max-width:100%}
+}
+@media(max-width:380px){:root{--zc-site-gutter:12px}.zc-header-actions .zc-icon-btn,.zc-header-actions .zc-header-account{width:32px;min-width:32px;height:36px}.zc-brand-logo-box{width:30px;height:30px}.zc-brand-name{font-size:12px}.zc-header-actions{gap:3px}}
+@media(prefers-reduced-motion:reduce){.zc-mobile-drawer,.zc-mobile-drawer-backdrop{transition:none}}
+/* Pricing's old 1fr tracks retained intrinsic text widths and pushed the tablet page sideways. */
+.zc-pricing-grid>*{min-width:0}.zc-pricing-card{overflow-wrap:anywhere}
+@media(min-width:992px){.zc-pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:768px) and (max-width:1100px){.zc-pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){.zc-pricing-card{padding:24px 20px!important}}
+@media(max-width:767px){.zc-form-control,.woocommerce form input:not([type=checkbox]):not([type=radio]):not([type=submit]),.woocommerce form select,.woocommerce form textarea{font-size:16px;min-width:0;max-width:100%}.zc-modal-dialog{max-width:100%;max-height:calc(100dvh - 32px);overflow-y:auto}.zc-modal-dialog form>div[style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}.zc-modal-dialog .zc-form-group{min-width:0}}

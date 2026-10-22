@@ -1,0 +1,5 @@
+PASS drawer, Escape, consultation modal, specifications and floating details 320
+PASS drawer, Escape, consultation modal, specifications and floating details 390
+PASS drawer, Escape, consultation modal, specifications and floating details 768
+PASS shared 108% width {"width":"1469px","header":{"x":257.5,"w":1405},"main":{"x":257.5,"w":1405},"footer":{"x":257.5,"w":1405}}
+PASS zero browser errors
