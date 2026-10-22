@@ -16,12 +16,12 @@
     existing user on the site or to create a new user.
  7. WordPress will then import each of the posts, pages, comments, categories, etc.
     contained in this file into your site.
---><!-- generator="WordPress/7.1.3" created="2026-10-22 01:51" --><rss xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/" version="2.0">
+--><!-- generator="WordPress/7.1.3" created="2026-10-22 02:35" --><rss xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/" version="2.0">
   <channel>
 <title>Zarincode</title>
 <link>https://zarincode.com</link>
 <description/>
-<pubDate>Thu, 22 Oct 2026 01:51:31 +0000</pubDate>
+<pubDate>Thu, 22 Oct 2026 02:35:24 +0000</pubDate>
 <language>en-US</language>
 <wp:wxr_version>1.2</wp:wxr_version>
 <wp:base_site_url>https://zarincode.com</wp:base_site_url>
@@ -34,12 +34,14 @@
   <wp:author_first_name><![CDATA[Ehsan]]></wp:author_first_name>
   <wp:author_last_name><![CDATA[NaderiPanah]]></wp:author_last_name>
 </wp:author>
-<wp:category>
-  <wp:term_id>1</wp:term_id>
-  <wp:category_nicename>uncategorized</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Uncategorized]]></wp:cat_name>
-</wp:category>
+<wp:author>
+  <wp:author_id>2</wp:author_id>
+  <wp:author_login><![CDATA[zarincode]]></wp:author_login>
+  <wp:author_email><![CDATA[info@zarincode.com]]></wp:author_email>
+  <wp:author_display_name><![CDATA[Ehsan NaderiPanah]]></wp:author_display_name>
+  <wp:author_first_name><![CDATA[Ehsan]]></wp:author_first_name>
+  <wp:author_last_name><![CDATA[NaderiPanah]]></wp:author_last_name>
+</wp:author>
 <wp:term>
   <wp:term_id>12</wp:term_id>
   <wp:term_taxonomy>nav_menu</wp:term_taxonomy>
@@ -51,202 +53,6 @@
   <wp:term_taxonomy>nav_menu</wp:term_taxonomy>
   <wp:term_slug>%d9%85%d9%86%d9%88%db%8c-%d9%82%d9%88%d8%a7%d9%86%db%8c%d9%86-%d9%88-%d8%a7%d8%b3%d9%86%d8%a7%d8%af-%d8%ad%d9%82%d9%88%d9%82%db%8c-%d8%b2%d8%b1%db%8c%d9%86-%da%a9%d8%af</wp:term_slug>
   <wp:term_name><![CDATA[منوی قوانین و اسناد حقوقی زرین کد]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>19</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>exclude-from-catalog</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[exclude-from-catalog]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>18</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>exclude-from-search</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[exclude-from-search]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>17</wp:term_id>
-  <wp:term_taxonomy>product_type</wp:term_taxonomy>
-  <wp:term_slug>external</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[external]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>20</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>featured</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[featured]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>15</wp:term_id>
-  <wp:term_taxonomy>product_type</wp:term_taxonomy>
-  <wp:term_slug>grouped</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[grouped]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>21</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>outofstock</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[outofstock]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>28</wp:term_id>
-  <wp:term_taxonomy>elementor_library_type</wp:term_taxonomy>
-  <wp:term_slug>page</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[page]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>22</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>rated-1</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[rated-1]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>23</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>rated-2</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[rated-2]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>24</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>rated-3</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[rated-3]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>25</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>rated-4</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[rated-4]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>26</wp:term_id>
-  <wp:term_taxonomy>product_visibility</wp:term_taxonomy>
-  <wp:term_slug>rated-5</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[rated-5]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>14</wp:term_id>
-  <wp:term_taxonomy>product_type</wp:term_taxonomy>
-  <wp:term_slug>simple</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[simple]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>27</wp:term_id>
-  <wp:term_taxonomy>product_cat</wp:term_taxonomy>
-  <wp:term_slug>uncategorized</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[Uncategorized]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>16</wp:term_id>
-  <wp:term_taxonomy>product_type</wp:term_taxonomy>
-  <wp:term_slug>variable</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[variable]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>40</wp:term_id>
-  <wp:term_taxonomy>product_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%a7%d9%81%d8%b2%d9%88%d9%86%d9%87-%d9%88%d8%b1%d8%af%d9%be%d8%b1%d8%b3</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[افزونه وردپرس]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>6</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%aa%d9%88%d9%84%db%8c%d8%af-%d9%85%d8%ad%d8%aa%d9%88%d8%a7-%d9%88-%d8%a8%d8%b1%d9%86%d8%af%db%8c%d9%86%da%af</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[تولید محتوا و برندینگ]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>4</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%b3%d8%a6%d9%88-%d9%88-%d8%a8%d9%87%db%8c%d9%86%d9%87%d8%b3%d8%a7%d8%b2%db%8c-%d9%85%d9%88%d8%aa%d9%88%d8%b1-%d8%ac%d8%b3%d8%aa%d8%ac%d9%88</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[سئو و بهینه‌سازی موتور جستجو]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>5</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%b3%d8%a6%d9%88-%d9%88-%d8%b1%d8%b4%d8%af-%d8%b4%d8%a8%da%a9%d9%87%d9%87%d8%a7%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[سئو و رشد شبکه‌های اجتماعی]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>11</wp:term_id>
-  <wp:term_taxonomy>zc_project_cat</wp:term_taxonomy>
-  <wp:term_slug>seo</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[سئو و محتوا]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>41</wp:term_id>
-  <wp:term_taxonomy>product_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%b3%d9%88%d8%b1%d8%b3%da%a9%d8%af-%d9%86%d8%b1%d9%85%d8%a7%d9%81%d8%b2%d8%a7%d8%b1</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[سورس‌کد نرم‌افزار]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>8</wp:term_id>
-  <wp:term_taxonomy>zc_project_cat</wp:term_taxonomy>
-  <wp:term_slug>web</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[طراحی سایت و فروشگاهی]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>2</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d9%88%d8%a8-%d9%88-%d8%b1%d8%a7%d8%a8%d8%b7-%da%a9%d8%a7%d8%b1%d8%a8%d8%b1%db%8c</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[طراحی وب و رابط کاربری]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>9</wp:term_id>
-  <wp:term_taxonomy>zc_project_cat</wp:term_taxonomy>
-  <wp:term_slug>ecommerce</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[فروشگاهی]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>39</wp:term_id>
-  <wp:term_taxonomy>product_cat</wp:term_taxonomy>
-  <wp:term_slug>%d9%82%d8%a7%d9%84%d8%a8-%d9%88%d8%b1%d8%af%d9%be%d8%b1%d8%b3</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[قالب وردپرس]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>7</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8%a7%d8%aa-%d8%af%db%8c%d8%ac%db%8c%d8%aa%d8%a7%d9%84-%d8%a2%d9%85%d8%a7%d8%af%d9%87</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[محصولات دیجیتال آماده]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>3</wp:term_id>
-  <wp:term_taxonomy>zc_service_cat</wp:term_taxonomy>
-  <wp:term_slug>%d9%85%d9%87%d9%86%d8%af%d8%b3%db%8c-%d9%86%d8%b1%d9%85%d8%a7%d9%81%d8%b2%d8%a7%d8%b1-%d9%88-%d8%b3%d8%a7%d9%85%d8%a7%d9%86%d9%87</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[مهندسی نرم‌افزار و سامانه]]></wp:term_name>
-</wp:term>
-<wp:term>
-  <wp:term_id>10</wp:term_id>
-  <wp:term_taxonomy>zc_project_cat</wp:term_taxonomy>
-  <wp:term_slug>software</wp:term_slug>
-  <wp:term_parent/>
-  <wp:term_name><![CDATA[نرم‌افزار اختصاصی]]></wp:term_name>
 </wp:term>
 <generator>https://wordpress.org/?v=7.1.3</generator>
 <item>
@@ -261,8 +67,8 @@
   <wp:post_id>3</wp:post_id>
   <wp:post_date>2026-10-22 00:29:33</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:29:33</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>open</wp:ping_status>
   <wp:post_name>privacy-policy</wp:post_name>
@@ -290,7 +96,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"808c1cb","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"6cc15d5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e1a071d","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"privacy"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"3514b88","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"df05a81","elType":"column","settings":{"_column_size":100},"elements":[{"id":"81da98f","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"privacy"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -313,8 +119,8 @@
   <wp:post_id>6</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-main-header</wp:post_name>
@@ -338,7 +144,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"7d63c2a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"324dbab","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f5dc744","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"زریــن کـد","brand_subtitle":"Zarincode Studio","dev_name":"احسان نادری پناه","phone":"09024561001","cta_text":"درخواست مشاوره"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"a449121","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f581688","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c132a7b","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"زریــن کـد","brand_subtitle":"Zarincode Studio","dev_name":"احسان نادری پناه","phone":"09024561001","cta_text":"درخواست مشاوره"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_zc_hf_type</wp:meta_key>
@@ -365,8 +171,8 @@
   <wp:post_id>7</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-main-header-el</wp:post_name>
@@ -390,7 +196,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"7d63c2a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"324dbab","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f5dc744","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"زریــن کـد","brand_subtitle":"Zarincode Studio","dev_name":"احسان نادری پناه","phone":"09024561001","cta_text":"درخواست مشاوره"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"a449121","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f581688","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c132a7b","elType":"widget","widgetType":"zarincode_header","settings":{"brand_title":"زریــن کـد","brand_subtitle":"Zarincode Studio","dev_name":"احسان نادری پناه","phone":"09024561001","cta_text":"درخواست مشاوره"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -413,8 +219,8 @@
   <wp:post_id>8</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-main-footer</wp:post_name>
@@ -438,7 +244,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"534fc42","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b2939ac","elType":"column","settings":{"_column_size":100},"elements":[{"id":"da04496","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟","phone":"09024561001","dev_name":"احسان نادری پناه (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"73ae957","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c213b68","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e824d45","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟","phone":"09024561001","dev_name":"احسان نادری پناه (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_zc_hf_type</wp:meta_key>
@@ -465,8 +271,8 @@
   <wp:post_id>9</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-main-footer-el</wp:post_name>
@@ -490,7 +296,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"534fc42","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b2939ac","elType":"column","settings":{"_column_size":100},"elements":[{"id":"da04496","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟","phone":"09024561001","dev_name":"احسان نادری پناه (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"73ae957","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c213b68","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e824d45","elType":"widget","widgetType":"zarincode_footer","settings":{"cta_heading":"برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟","phone":"09024561001","dev_name":"احسان نادری پناه (Ehsan NaderiPanah)"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -513,8 +319,8 @@
   <wp:post_id>10</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-services-megamenu</wp:post_name>
@@ -538,7 +344,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"a70f9ce","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4ff4598","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0c50c0c","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"5920bf2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fec0964","elType":"column","settings":{"_column_size":100},"elements":[{"id":"1b32b22","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_zc_hf_type</wp:meta_key>
@@ -565,8 +371,8 @@
   <wp:post_id>11</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-services-megamenu-el</wp:post_name>
@@ -590,7 +396,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"a70f9ce","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4ff4598","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0c50c0c","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"5920bf2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fec0964","elType":"column","settings":{"_column_size":100},"elements":[{"id":"1b32b22","elType":"widget","widgetType":"zarincode_services","settings":{"count":6}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -613,8 +419,8 @@
   <wp:post_id>12</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-consultation-popup</wp:post_name>
@@ -638,7 +444,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"80db9f0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"085bc3f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"768a913","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"0bcd1ed","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7b6f280","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f0189ff","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_zc_hf_type</wp:meta_key>
@@ -665,8 +471,8 @@
   <wp:post_id>13</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-consultation-popup-el</wp:post_name>
@@ -690,7 +496,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"80db9f0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"085bc3f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"768a913","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"0bcd1ed","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7b6f280","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f0189ff","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -713,8 +519,8 @@
   <wp:post_id>14</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>website-design</wp:post_name>
@@ -798,8 +604,8 @@
   <wp:post_id>15</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>software-development</wp:post_name>
@@ -883,8 +689,8 @@
   <wp:post_id>16</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>website-seo</wp:post_name>
@@ -968,8 +774,8 @@
   <wp:post_id>17</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>social-media-seo</wp:post_name>
@@ -1053,8 +859,8 @@
   <wp:post_id>18</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>content-creation</wp:post_name>
@@ -1138,8 +944,8 @@
   <wp:post_id>19</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>ready-made-products</wp:post_name>
@@ -1223,8 +1029,8 @@
   <wp:post_id>20</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>tech-marketplace-design</wp:post_name>
@@ -1289,8 +1095,8 @@
   <wp:post_id>21</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>crextio-cloud-hrm-software</wp:post_name>
@@ -1354,8 +1160,8 @@
   <wp:post_id>22</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>tebgostar-medical-seo</wp:post_name>
@@ -1419,8 +1225,8 @@
   <wp:post_id>23</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>cloud-hosting-portal-design</wp:post_name>
@@ -1485,8 +1291,8 @@
   <wp:post_id>24</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:38</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:38</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>stylemode-fashion-ecommerce</wp:post_name>
@@ -1551,8 +1357,8 @@
   <wp:post_id>25</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>fintech-magazine-content-seo</wp:post_name>
@@ -1617,8 +1423,8 @@
   <wp:post_id>26</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>bartar-clinic-booking-software</wp:post_name>
@@ -1683,8 +1489,8 @@
   <wp:post_id>27</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>arad-holding-social-seo-campaign</wp:post_name>
@@ -1748,8 +1554,8 @@
   <wp:post_id>28</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincode-pro-wordpress-theme</wp:post_name>
@@ -1902,8 +1708,8 @@
   <wp:post_id>29</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarinseo-booster-plugin</wp:post_name>
@@ -2056,8 +1862,8 @@
   <wp:post_id>30</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarinyar-crm-full-source-code</wp:post_name>
@@ -2210,8 +2016,8 @@
   <wp:post_id>31</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarindigits-otp-auth-plugin</wp:post_name>
@@ -2364,8 +2170,8 @@
   <wp:post_id>32</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarinmart-woocommerce-theme</wp:post_name>
@@ -2518,8 +2324,8 @@
   <wp:post_id>33</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarinsocial-ai-platform-source</wp:post_name>
@@ -2672,8 +2478,8 @@
   <wp:post_id>34</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarincontent-ai-writer-plugin</wp:post_name>
@@ -2826,8 +2632,8 @@
   <wp:post_id>35</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>zarinlms-pro-online-academy-source</wp:post_name>
@@ -2989,8 +2795,8 @@
   <wp:post_id>36</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>home</wp:post_name>
@@ -3018,7 +2824,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"d156a286","elType":"container","settings":{"content_width":"full","css_classes":"zc-hero-composition","flex_direction":"row","flex_direction_mobile":"column"},"elements":[{"id":"0d306675","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_intro"},{"id":"1b6c0040","elType":"container","settings":{"content_width":"full","css_classes":"zc-hero-side","flex_direction":"column"},"elements":[{"id":"205130a0","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_profile"},{"id":"c05c7874","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_cta"}]}]},{"id":"ec2b747","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2e700e4","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7fc4a35","elType":"widget","widgetType":"zarincode_brands","settings":[]}]}]},{"id":"a8d65a4","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b635cfa","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fe5ade6","elType":"widget","widgetType":"zarincode_services","settings":{"n_services_source":"query","n_services_count":8}}]}]},{"id":"66d8f72","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"d6d0786","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7d72456","elType":"widget","widgetType":"zarincode_products","settings":{"n_products_source":"query","n_products_count":8}}]}]},{"id":"d0a01f9","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7f9ffc9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"cf8cc7f","elType":"widget","widgetType":"zarincode_portfolio","settings":{"n_portfolio_source":"query","n_portfolio_count":8}}]}]},{"id":"6100cf8","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9d4f6e7","elType":"column","settings":{"_column_size":100},"elements":[{"id":"a287d55","elType":"widget","widgetType":"zarincode_why_us","settings":[]}]}]},{"id":"b6e6516","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7896d30","elType":"column","settings":{"_column_size":100},"elements":[{"id":"d3a9d9c","elType":"widget","widgetType":"zarincode_pricing","settings":{"n_pricing_pricing_grid_items_1":[{"_id":"925febdd","_variant":"v1","_enabled":"yes","heading_text_1":"پلن نقره‌ای (طراحی سایت)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۱۵ تا ۲۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۰ تا ۱۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"طراحی المنتوری مدرن با استایل Crextio","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"شامل ۱۰ صفحه کاربردی و استاندارد","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"۳ بار ویرایش و بازبینی رایگان","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"هاست پرسرعت ۵ گیگ یک‌ساله رایگان","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"ثبت دامنه .ir رایگان به نام کارفرما","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"امنیت کامل و سئو تکنیکال پایه","span_6_visible":"yes","list_item_6_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_7":"۶ ماه گارانتی و پشتیبانی فنی رایگان","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"925febdd","features_source":"icon_list"},{"_id":"91aba46a","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن طلایی (فروشگاهی و شرکتی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل از ۲۵ تا ۳۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۰ تا ۳۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"طراحی اختصاصی UI/UX و ویجت‌های المنتوری","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"شامل ۱۵ صفحه + فروشگاه کامل ووکامرس","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"اتصال به درگاه بانکی، پیامک و فاکتور رسمی","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"هاست VIP هشت گیگ + دامنه .com و .ir رایگان","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"بهینه‌سازی سرعت (نمره بالای ۹۵ در گوگل)","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"سئو داخلی و ساختار اسکیما پیشرفته","span_6_visible":"yes","list_item_6_visible":"yes","icon_9_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_9_visible":"yes","span_text_7":"۱ سال گارانتی و پشتیبانی VIP رایگان","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_10_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_10_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"91aba46a","features_source":"icon_list"},{"_id":"7b931227","_variant":"v3","_enabled":"yes","heading_text_1":"پلن الماسی (فول اختصاصی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۳۵ تا ۵۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۳۵ تا ۶۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"کدنویسی ۱۰۰٪ اختصاصی قالب و افزونه‌های مورد نیاز","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"طراحی تمامی صفحات بدون محدودیت","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"مگامنوساز، فیلتر ایجکس و پنل کاربری اختصاصی","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"سرور ابری اختصاصی یک‌ساله + دامنه بین‌المللی","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پکیج امنیت سازمانی و ضد حملات DDoS","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"استراتژی کامل سئو و ۵ مقاله تخصصی رایگان","span_6_visible":"yes","list_item_6_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_7":"۱ سال گارانتی طلایی + آموزش کامل ویدئویی","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"7b931227","features_source":"icon_list"}],"n_pricing_pricing_grid_items_2":[{"_id":"9b627c60","_variant":"v1","_enabled":"yes","heading_text_1":"پلن MVP استارتاپی","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۳۰ تا ۴۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۵ تا ۴۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"تحلیل سیستم و طراحی دیتابیس استاندارد","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"توسعه بک‌اند با PHP/Laravel یا Node.js","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"داشبورد مدیریتی مدرن با رابط Crextio","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"احراز هویت پیامکی و سطوح دسترسی کاربران","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"مستندسازی کامل API و سورس‌کد باز","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"۶ ماه گارانتی رفع باگ رایگان","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"9b627c60","features_source":"icon_list"},{"_id":"eef1ec80","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن سامانه سازمانی و پلتفرم","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل از ۴۵ تا ۶۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۴۵ تا ۸۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"معماری ماژولار و مقیاس‌پذیر (Micro-ready)","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"رابط کاربری SPA با React / Next.js","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"سیستم مالی، کیف پول، فاکتور و گزارش‌گیری","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"پنل مدیریت پیشرفته + وب‌سرویس موبایل","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"تست‌های امنیتی (PenTest) و بهینه‌سازی کوئری‌ها","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"۱ سال گارانتی و پشتیبانی مستقیم احسان نادری پناه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"eef1ec80","features_source":"icon_list"},{"_id":"e3076218","_variant":"v3","_enabled":"yes","heading_text_1":"پلن سوپراپ و اینترپرایز","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۶۰ تا ۹۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۸۵ تا ۱۵۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"توسعه وب‌اپلیکیشن + اپلیکیشن موبایل (iOS/Android)","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"زیرساخت ابری Docker و CI/CD خودکار","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"هوش مصنوعی اختصاصی و پردازش بلادرنگ","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"قرارداد رسمی NDA و انتقال ۱۰۰٪ مالکیت سورس‌کد","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پشتیبانی فنی اختصاصی ۲۴/۷ یک‌ساله","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"آموزش حضوری یا آنلاین تیم فنی کارفرما","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"e3076218","features_source":"icon_list"}],"n_pricing_pricing_grid_items_3":[{"_id":"1104edc5","_variant":"v1","_enabled":"yes","heading_text_1":"پلن اقتصادی (سئو و شبکه اجتماعی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"دوره تمدید: ۳۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۲ تا ۱۸ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"کیورد ریسرچ و تدوین استراتژی سئو سایت","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"رفع خطاهای تکنیکال Search Console","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"بهینه‌سازی سرعت لود و Core Web Vitals","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"بهینه‌سازی بایو، هایلایت و سئو پیج اینستاگرام","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"تولید ۸ محتوای سئو شده در ماه","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"گزارش‌دهی شفاف ماهانه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"1104edc5","features_source":"icon_list"},{"_id":"073af0f4","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن استاندارد (رشد گوگل + اکسپلور)","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"دوره تمدید: ۳۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۲ تا ۳۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"سئو جامع سایت برای کلمات کلیدی پول‌ساز","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"سئو الگوریتمی اینستاگرام، لینکدین و یوتیوب","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"لینک‌سازی خارجی و رپورتاژ آگهی هدفمند","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"تولید ۱۶ مقاله تخصصی + سناریوی ریلز اکسپلوری","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"بهینه‌سازی نرخ تبدیل (CRO) صفحات فرود","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"ضمانت رشد ورودی ارگانیک در قرارداد","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"073af0f4","features_source":"icon_list"},{"_id":"d17e8137","_variant":"v3","_enabled":"yes","heading_text_1":"پلن اختصاصی (تسلط کامل بر بازار)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"دوره تمدید: ۶۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۴۵ تا ۷۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"رقابت روی سخت‌ترین کلمات کلیدی صنعتی و فروشگاهی","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"مدیریت کامل سئو سایت + تمامی شبکه‌های اجتماعی","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"کمپین‌های روابط عمومی و رپورتاژ در رسانه‌های برتر","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"تولید محتوای روزانه متنی، گرافیکی و ویدئویی","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"داشبورد اختصاصی رصد لحظه‌ای رتبه‌ها","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"جلسات استراتژی هفتگی با احسان نادری پناه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"d17e8137","features_source":"icon_list"}],"n_pricing_pricing_grid_items_4":[{"_id":"e04410f9","_variant":"v1","_enabled":"yes","heading_text_1":"پکیج محتوای متنی و سئو وبلاگ","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل ماهانه (۲۰ مقاله)","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۸ تا ۱۲ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"۲۰ مقاله تخصصی ۱۵۰۰ تا ۲۵۰۰ کلمه‌ای","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"رعایت کامل اصول سئو (Yoast / RankMath سبز)","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"طراحی تصویر شاخص اختصاصی برای هر مقاله","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"لینک‌سازی داخلی هوشمند و اسکیما FAQ","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"تضمین ۱۰۰٪ یونیک بودن و عدم کپی","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_7_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_7_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"e04410f9","features_source":"icon_list"},{"_id":"ec3f7a42","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پکیج جامع محتوای سایت و اینستاگرام","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل ماهانه کامل","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۶ تا ۲۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"تقویم محتوایی ۳۰ روزه هدفمند","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"۱۲ مقاله تخصصی سئو شده برای سایت","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"۱۲ پست و ریلز حرفه‌ای اینستاگرام + کاور اختصاصی","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"کپشن‌نویسی سئو شده با هشتگ‌های ترند","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"طراحی ۴ بنر اسلایدر صفحه اصلی سایت","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"ec3f7a42","features_source":"icon_list"},{"_id":"f45c3c7b","_variant":"v3","_enabled":"yes","heading_text_1":"پکیج برندینگ و تولید محتوای VIP","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"مدیریت کامل محتوایی برند","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۳۰ تا ۴۸ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"تولید محتوای کامل سایت، اینستاگرام، لینکدین و یوتیوب","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"نگارش صفحات محصول و لندینگ‌پیج‌های فروشنده‌ساز","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"تدوین ویدئوهای معرفی محصول و موشن‌گرافیک","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"مدیریت و بارگذاری کامل در وردپرس و شبکه‌ها","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پشتیبانی و ویرایش نامحدود محتوایی","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_7_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_7_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"f45c3c7b","features_source":"icon_list"}]}}]}]},{"id":"7b517c4","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"eb15194","elType":"column","settings":{"_column_size":100},"elements":[{"id":"100aef8","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"268bb6c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"907a122","elType":"column","settings":{"_column_size":100},"elements":[{"id":"cd95da8","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]},{"id":"24c65f1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"48d8a90","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e5b26d1","elType":"widget","widgetType":"zarincode_testimonials","settings":{"n_testimonials_services_grid_items_1":[{"_id":"42176d9f","_variant":"v1","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «طراحی سایت و پنل نرم‌افزاری که جناب احسان نادری پناه در زرین کد برای مجموعه ما انجام دادند، سرعت بارگذاری و نرخ تبدیل فروش ما را ۳ برابر کرد. پشتیبانی واقعاً بی‌نظیر است.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"مهندس مهدی ابراهیمی","div_7_visible":"yes","div_text_2":"بنیان‌گذار پلتفرم پیامک‌پرو","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}},{"_id":"8303fcce","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «سئو سایت و سئو پیج اینستاگرام خودمان را به تیم زرین کد سپردیم. در کمتر از ۳ ماه روی کلیدواژه‌های اصلی به رتبه ۱ گوگل رسیدیم و ورودی اکسپلور ما فوق‌العاده شد.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"سرکار خانم مونا عبدالهی","div_7_visible":"yes","div_text_2":"مدیرعامل شرکت بازرگانی معدن‌گستران","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}},{"_id":"3e9ca80e","_variant":"v3","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «چندین افزونه وردپرس و سورس‌کد آماده را از فروشگاه زرین کد خریداری کردیم. کیفیت کدنویسی، رعایت استانداردهای امنیتی و مستندات فنی کاملاً در تراز تم‌فارست است.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"جناب آقای علی محمودی","div_7_visible":"yes","div_text_2":"مدیر فنی فروشگاه دیجیتال‌مارکت","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}}]}}]}]},{"id":"a5d90b8","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"75c3b17","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0941352","elType":"widget","widgetType":"zarincode_blog","settings":{"n_blog_source":"query","n_blog_count":8}}]}]},{"id":"f25ab93","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"6060cdc","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ff40aae","elType":"widget","widgetType":"zarincode_service_spotlight","settings":[]}]}]},{"id":"923c132","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f0dce25","elType":"column","settings":{"_column_size":100},"elements":[{"id":"9499c61","elType":"widget","widgetType":"zarincode_before_after","settings":{"before_image":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-service-cover.jpg"},"after_image":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-project-cover.jpg"},"caption":"نمونه نمایشی رابط مقایسه؛ تصاویر واقعی قبل و بعد پروژه را جایگزین کنید."}}]}]},{"id":"c98711c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4ed6fa8","elType":"column","settings":{"_column_size":100},"elements":[{"id":"e441d67","elType":"widget","widgetType":"zarincode_seo_audit","settings":[]}]}]},{"id":"7f77795","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"56a1f96","elType":"column","settings":{"_column_size":100},"elements":[{"id":"92c02d1","elType":"widget","widgetType":"zarincode_project_roadmap","settings":[]}]}]},{"id":"a42178c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3826ccc","elType":"column","settings":{"_column_size":100},"elements":[{"id":"765dfdd","elType":"widget","widgetType":"zarincode_team_experts","settings":[]}]}]},{"id":"54a8e7a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b4dd6cc","elType":"column","settings":{"_column_size":100},"elements":[{"id":"31e23ed","elType":"widget","widgetType":"zarincode_service_matrix","settings":[]}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"b70e4a5d","elType":"container","settings":{"content_width":"full","css_classes":"zc-hero-composition","flex_direction":"row","flex_direction_mobile":"column"},"elements":[{"id":"5b1613ff","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_intro"},{"id":"0f938ba3","elType":"container","settings":{"content_width":"full","css_classes":"zc-hero-side","flex_direction":"column"},"elements":[{"id":"ed4b4e60","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_profile"},{"id":"b98ee6fb","elType":"widget","settings":{"design_mode":"original"},"elements":[],"widgetType":"zarincode_hero_cta"}]}]},{"id":"ce81e0a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"62f54d0","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7ed4678","elType":"widget","widgetType":"zarincode_brands","settings":{"n_brands_marquee_track_items_1":[{"_id":"83090bc9","_variant":"v1","_enabled":"yes","icon_1_icon":{"value":"fab fa-wordpress","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"WordPress &amp; Elementor","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-wordpress-elementor/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"b445f2e5","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fab fa-php","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"PHP 8.4 &amp; Laravel","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-php-8-4-laravel/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"529df379","_variant":"v3","_enabled":"yes","icon_1_icon":{"value":"fab fa-react","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"React &amp; Next.js","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-react-next-js/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"1aeaa96a","_variant":"v4","_enabled":"yes","icon_1_icon":{"value":"fab fa-node-js","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"Node.js &amp; Microservices","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-node-js-microservices/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."}]}}]}]},{"id":"6b73bfe","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"928e4af","elType":"column","settings":{"_column_size":100},"elements":[{"id":"6d5f58a","elType":"widget","widgetType":"zarincode_services","settings":{"n_services_source":"query","n_services_count":8}}]}]},{"id":"1308a36","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"cb8f113","elType":"column","settings":{"_column_size":100},"elements":[{"id":"956a7f2","elType":"widget","widgetType":"zarincode_products","settings":{"n_products_source":"query","n_products_count":8}}]}]},{"id":"d4acb13","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3211fa5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8bd68ef","elType":"widget","widgetType":"zarincode_portfolio","settings":{"n_portfolio_source":"query","n_portfolio_count":8}}]}]},{"id":"d40921b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"aaec7bd","elType":"column","settings":{"_column_size":100},"elements":[{"id":"bb6f3ee","elType":"widget","widgetType":"zarincode_why_us","settings":[]}]}]},{"id":"0828b8a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"df7ed2f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"994f4ab","elType":"widget","widgetType":"zarincode_pricing","settings":{"n_pricing_pricing_grid_items_1":[{"_id":"925febdd","_variant":"v1","_enabled":"yes","heading_text_1":"پلن نقره‌ای (طراحی سایت)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۱۵ تا ۲۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۰ تا ۱۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"طراحی المنتوری مدرن با استایل Crextio","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"شامل ۱۰ صفحه کاربردی و استاندارد","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"۳ بار ویرایش و بازبینی رایگان","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"هاست پرسرعت ۵ گیگ یک‌ساله رایگان","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"ثبت دامنه .ir رایگان به نام کارفرما","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"امنیت کامل و سئو تکنیکال پایه","span_6_visible":"yes","list_item_6_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_7":"۶ ماه گارانتی و پشتیبانی فنی رایگان","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"925febdd","features_source":"icon_list"},{"_id":"91aba46a","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن طلایی (فروشگاهی و شرکتی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل از ۲۵ تا ۳۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۰ تا ۳۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"طراحی اختصاصی UI/UX و ویجت‌های المنتوری","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"شامل ۱۵ صفحه + فروشگاه کامل ووکامرس","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"اتصال به درگاه بانکی، پیامک و فاکتور رسمی","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"هاست VIP هشت گیگ + دامنه .com و .ir رایگان","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"بهینه‌سازی سرعت (نمره بالای ۹۵ در گوگل)","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"سئو داخلی و ساختار اسکیما پیشرفته","span_6_visible":"yes","list_item_6_visible":"yes","icon_9_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_9_visible":"yes","span_text_7":"۱ سال گارانتی و پشتیبانی VIP رایگان","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_10_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_10_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"91aba46a","features_source":"icon_list"},{"_id":"7b931227","_variant":"v3","_enabled":"yes","heading_text_1":"پلن الماسی (فول اختصاصی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۳۵ تا ۵۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۳۵ تا ۶۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"کدنویسی ۱۰۰٪ اختصاصی قالب و افزونه‌های مورد نیاز","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"طراحی تمامی صفحات بدون محدودیت","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"مگامنوساز، فیلتر ایجکس و پنل کاربری اختصاصی","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"سرور ابری اختصاصی یک‌ساله + دامنه بین‌المللی","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پکیج امنیت سازمانی و ضد حملات DDoS","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"استراتژی کامل سئو و ۵ مقاله تخصصی رایگان","span_6_visible":"yes","list_item_6_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_7":"۱ سال گارانتی طلایی + آموزش کامل ویدئویی","span_7_visible":"yes","list_item_7_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"7b931227","features_source":"icon_list"}],"n_pricing_pricing_grid_items_2":[{"_id":"9b627c60","_variant":"v1","_enabled":"yes","heading_text_1":"پلن MVP استارتاپی","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۳۰ تا ۴۵ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۵ تا ۴۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"تحلیل سیستم و طراحی دیتابیس استاندارد","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"توسعه بک‌اند با PHP/Laravel یا Node.js","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"داشبورد مدیریتی مدرن با رابط Crextio","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"احراز هویت پیامکی و سطوح دسترسی کاربران","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"مستندسازی کامل API و سورس‌کد باز","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"۶ ماه گارانتی رفع باگ رایگان","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"9b627c60","features_source":"icon_list"},{"_id":"eef1ec80","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن سامانه سازمانی و پلتفرم","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل از ۴۵ تا ۶۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۴۵ تا ۸۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"معماری ماژولار و مقیاس‌پذیر (Micro-ready)","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"رابط کاربری SPA با React / Next.js","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"سیستم مالی، کیف پول، فاکتور و گزارش‌گیری","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"پنل مدیریت پیشرفته + وب‌سرویس موبایل","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"تست‌های امنیتی (PenTest) و بهینه‌سازی کوئری‌ها","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"۱ سال گارانتی و پشتیبانی مستقیم احسان نادری پناه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"eef1ec80","features_source":"icon_list"},{"_id":"e3076218","_variant":"v3","_enabled":"yes","heading_text_1":"پلن سوپراپ و اینترپرایز","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل از ۶۰ تا ۹۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۸۵ تا ۱۵۰ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"توسعه وب‌اپلیکیشن + اپلیکیشن موبایل (iOS/Android)","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"زیرساخت ابری Docker و CI/CD خودکار","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"هوش مصنوعی اختصاصی و پردازش بلادرنگ","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"قرارداد رسمی NDA و انتقال ۱۰۰٪ مالکیت سورس‌کد","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پشتیبانی فنی اختصاصی ۲۴/۷ یک‌ساله","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"آموزش حضوری یا آنلاین تیم فنی کارفرما","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"e3076218","features_source":"icon_list"}],"n_pricing_pricing_grid_items_3":[{"_id":"1104edc5","_variant":"v1","_enabled":"yes","heading_text_1":"پلن اقتصادی (سئو و شبکه اجتماعی)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"دوره تمدید: ۳۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۲ تا ۱۸ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"کیورد ریسرچ و تدوین استراتژی سئو سایت","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"رفع خطاهای تکنیکال Search Console","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"بهینه‌سازی سرعت لود و Core Web Vitals","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"بهینه‌سازی بایو، هایلایت و سئو پیج اینستاگرام","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"تولید ۸ محتوای سئو شده در ماه","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"گزارش‌دهی شفاف ماهانه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"1104edc5","features_source":"icon_list"},{"_id":"073af0f4","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پلن استاندارد (رشد گوگل + اکسپلور)","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"دوره تمدید: ۳۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۲۲ تا ۳۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"سئو جامع سایت برای کلمات کلیدی پول‌ساز","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"سئو الگوریتمی اینستاگرام، لینکدین و یوتیوب","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"لینک‌سازی خارجی و رپورتاژ آگهی هدفمند","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"تولید ۱۶ مقاله تخصصی + سناریوی ریلز اکسپلوری","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"بهینه‌سازی نرخ تبدیل (CRO) صفحات فرود","span_5_visible":"yes","list_item_5_visible":"yes","icon_8_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_8_visible":"yes","span_text_6":"ضمانت رشد ورودی ارگانیک در قرارداد","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_9_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_9_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"073af0f4","features_source":"icon_list"},{"_id":"d17e8137","_variant":"v3","_enabled":"yes","heading_text_1":"پلن اختصاصی (تسلط کامل بر بازار)","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"دوره تمدید: ۶۰ روز کاری","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۴۵ تا ۷۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"رقابت روی سخت‌ترین کلمات کلیدی صنعتی و فروشگاهی","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"مدیریت کامل سئو سایت + تمامی شبکه‌های اجتماعی","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"کمپین‌های روابط عمومی و رپورتاژ در رسانه‌های برتر","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"تولید محتوای روزانه متنی، گرافیکی و ویدئویی","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"داشبورد اختصاصی رصد لحظه‌ای رتبه‌ها","span_5_visible":"yes","list_item_5_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_6":"جلسات استراتژی هفتگی با احسان نادری پناه","span_6_visible":"yes","list_item_6_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"d17e8137","features_source":"icon_list"}],"n_pricing_pricing_grid_items_4":[{"_id":"e04410f9","_variant":"v1","_enabled":"yes","heading_text_1":"پکیج محتوای متنی و سئو وبلاگ","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"تحویل ماهانه (۲۰ مقاله)","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۸ تا ۱۲ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"۲۰ مقاله تخصصی ۱۵۰۰ تا ۲۵۰۰ کلمه‌ای","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"رعایت کامل اصول سئو (Yoast / RankMath سبز)","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"طراحی تصویر شاخص اختصاصی برای هر مقاله","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"لینک‌سازی داخلی هوشمند و اسکیما FAQ","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"تضمین ۱۰۰٪ یونیک بودن و عدم کپی","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_7_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_7_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"e04410f9","features_source":"icon_list"},{"_id":"ec3f7a42","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-crown","library":"fa-solid"},"icon_1_visible":"yes","popular_ribbon_text_1":"پیشنهادی زرین کد","popular_ribbon_1_visible":"yes","heading_text_1":"پکیج جامع محتوای سایت و اینستاگرام","heading_1_tag":"h3","heading_1_visible":"yes","icon_2_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_2_visible":"yes","div_text_1":"تحویل ماهانه کامل","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۱۶ تا ۲۵ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_1":"تقویم محتوایی ۳۰ روزه هدفمند","span_1_visible":"yes","list_item_1_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_2":"۱۲ مقاله تخصصی سئو شده برای سایت","span_2_visible":"yes","list_item_2_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_3":"۱۲ پست و ریلز حرفه‌ای اینستاگرام + کاور اختصاصی","span_3_visible":"yes","list_item_3_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_4":"کپشن‌نویسی سئو شده با هشتگ‌های ترند","span_4_visible":"yes","list_item_4_visible":"yes","icon_7_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_7_visible":"yes","span_text_5":"طراحی ۴ بنر اسلایدر صفحه اصلی سایت","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_yellow_1_action":"modal","btn_yellow_1_target":"zc-consult-modal","btn_yellow_1_href":{"url":""},"btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش","icon_8_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_8_visible":"yes","btn_yellow_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"ec3f7a42","features_source":"icon_list"},{"_id":"f45c3c7b","_variant":"v3","_enabled":"yes","heading_text_1":"پکیج برندینگ و تولید محتوای VIP","heading_1_tag":"h3","heading_1_visible":"yes","icon_1_icon":{"value":"far fa-clock","library":"fa-regular"},"icon_1_visible":"yes","div_text_1":"مدیریت کامل محتوایی برند","div_2_visible":"yes","div_text_2":"بازه سرمایه‌گذاری:","div_4_visible":"yes","div_text_3":"۳۰ تا ۴۸ میلیون تومان","div_5_visible":"yes","div_3_visible":"yes","icon_2_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_2_visible":"yes","span_text_1":"تولید محتوای کامل سایت، اینستاگرام، لینکدین و یوتیوب","span_1_visible":"yes","list_item_1_visible":"yes","icon_3_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_3_visible":"yes","span_text_2":"نگارش صفحات محصول و لندینگ‌پیج‌های فروشنده‌ساز","span_2_visible":"yes","list_item_2_visible":"yes","icon_4_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_4_visible":"yes","span_text_3":"تدوین ویدئوهای معرفی محصول و موشن‌گرافیک","span_3_visible":"yes","list_item_3_visible":"yes","icon_5_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_5_visible":"yes","span_text_4":"مدیریت و بارگذاری کامل در وردپرس و شبکه‌ها","span_4_visible":"yes","list_item_4_visible":"yes","icon_6_icon":{"value":"fas fa-check","library":"fa-solid"},"icon_6_visible":"yes","span_text_5":"پشتیبانی و ویرایش نامحدود محتوایی","span_5_visible":"yes","list_item_5_visible":"yes","pricing_features_1_visible":"yes","div_1_visible":"yes","btn_dark_1_action":"modal","btn_dark_1_target":"zc-consult-modal","btn_dark_1_href":{"url":""},"btn_dark_text_1":"مشاوره رایگان و ثبت سفارش","icon_7_icon":{"value":"fas fa-arrow-left","library":"fa-solid"},"icon_7_visible":"yes","btn_dark_1_visible":"yes","pricing_card_1_visible":"yes","plan_key":"f45c3c7b","features_source":"icon_list"}]}}]}]},{"id":"18c4662","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"864a79f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3828b3e","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"19e6c92","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9e7f593","elType":"column","settings":{"_column_size":100},"elements":[{"id":"70113e6","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]},{"id":"8ea003e","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"145c101","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3207ab3","elType":"widget","widgetType":"zarincode_testimonials","settings":{"n_testimonials_services_grid_items_1":[{"_id":"42176d9f","_variant":"v1","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «طراحی سایت و پنل نرم‌افزاری که جناب احسان نادری پناه در زرین کد برای مجموعه ما انجام دادند، سرعت بارگذاری و نرخ تبدیل فروش ما را ۳ برابر کرد. پشتیبانی واقعاً بی‌نظیر است.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"مهندس مهدی ابراهیمی","div_7_visible":"yes","div_text_2":"بنیان‌گذار پلتفرم پیامک‌پرو","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}},{"_id":"8303fcce","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «سئو سایت و سئو پیج اینستاگرام خودمان را به تیم زرین کد سپردیم. در کمتر از ۳ ماه روی کلیدواژه‌های اصلی به رتبه ۱ گوگل رسیدیم و ورودی اکسپلور ما فوق‌العاده شد.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"سرکار خانم مونا عبدالهی","div_7_visible":"yes","div_text_2":"مدیرعامل شرکت بازرگانی معدن‌گستران","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}},{"_id":"3e9ca80e","_variant":"v3","_enabled":"yes","icon_1_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_1_visible":"yes","icon_2_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_2_visible":"yes","icon_3_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_3_visible":"yes","icon_4_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_4_visible":"yes","icon_5_icon":{"value":"fas fa-star","library":"fa-solid"},"icon_5_visible":"yes","div_3_visible":"yes","description_1_body":"\n                                    «چندین افزونه وردپرس و سورس‌کد آماده را از فروشگاه زرین کد خریداری کردیم. کیفیت کدنویسی، رعایت استانداردهای امنیتی و مستندات فنی کاملاً در تراز تم‌فارست است.»\n                                ","description_1_visible":"yes","div_2_visible":"yes","icon_6_icon":{"value":"fas fa-user-check","library":"fa-solid"},"icon_6_visible":"yes","div_5_visible":"yes","div_text_1":"جناب آقای علی محمودی","div_7_visible":"yes","div_text_2":"مدیر فنی فروشگاه دیجیتال‌مارکت","div_8_visible":"yes","div_6_visible":"yes","div_4_visible":"yes","div_1_visible":"yes","customer_photo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-customer-avatar.jpg","id":0}}]}}]}]},{"id":"b88bb3b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"d368a91","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2c58bb7","elType":"widget","widgetType":"zarincode_blog","settings":{"n_blog_source":"query","n_blog_count":8}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3041,8 +2847,8 @@
   <wp:post_id>37</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>services</wp:post_name>
@@ -3070,7 +2876,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"48503f0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"bbee726","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0140714","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"services-page"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"877faf5","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1c8cbf5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2a80e88","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"services-page"}}]}]},{"id":"aed5a22","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f5ec943","elType":"column","settings":{"_column_size":100},"elements":[{"id":"419c1f6","elType":"widget","widgetType":"zarincode_service_spotlight","settings":[]}]}]},{"id":"2fa9f3f","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c28bbf9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0cff308","elType":"widget","widgetType":"zarincode_project_roadmap","settings":[]}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3093,8 +2899,8 @@
   <wp:post_id>38</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>projects-portfolio</wp:post_name>
@@ -3122,7 +2928,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"7b41b32","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2c614ab","elType":"column","settings":{"_column_size":100},"elements":[{"id":"215a4e8","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"projects-page"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"522c758","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"d0c6746","elType":"column","settings":{"_column_size":100},"elements":[{"id":"620c12e","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"projects-page"}}]}]},{"id":"e08536d","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"e457dba","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3d1b137","elType":"widget","widgetType":"zarincode_before_after","settings":{"before_image":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-service-cover.jpg"},"after_image":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-project-cover.jpg"},"caption":"نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید."}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3145,8 +2951,8 @@
   <wp:post_id>39</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>about-us</wp:post_name>
@@ -3174,7 +2980,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"b880901","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1fd9418","elType":"column","settings":{"_column_size":100},"elements":[{"id":"94a0399","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"about-page"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"6a195ae","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"92adc8e","elType":"column","settings":{"_column_size":100},"elements":[{"id":"4cc270a","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"about-page"}}]}]},{"id":"7dadcb1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"06a209c","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c2000c9","elType":"widget","widgetType":"zarincode_team_experts","settings":[]}]}]},{"id":"4f7b26b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3105708","elType":"column","settings":{"_column_size":100},"elements":[{"id":"7e05ffa","elType":"widget","widgetType":"zarincode_client_logos","settings":{"title":"همراه برندهای پیشرو","description":"لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.","clients":[{"name":"لوگوی مشتری شما — نمونه 1","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-1.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}},{"name":"لوگوی مشتری شما — نمونه 2","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-2.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}},{"name":"لوگوی مشتری شما — نمونه 3","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-3.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}},{"name":"لوگوی مشتری شما — نمونه 4","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-4.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}},{"name":"لوگوی مشتری شما — نمونه 5","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-5.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}},{"name":"لوگوی مشتری شما — نمونه 6","logo":{"url":"https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/demo-client-6.png"},"alt":"لوگوی نمایشی قابل جایگزینی","service":"نمونه چیدمان همکاری","link":{"url":"https://zarincode.com/projects-portfolio/"}}]}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3197,8 +3003,8 @@
   <wp:post_id>40</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>contact-us</wp:post_name>
@@ -3226,7 +3032,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"f45226d","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"ddcefb5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"cc0bbe8","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"contact-page"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"e3dff54","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"c8cbb2d","elType":"column","settings":{"_column_size":100},"elements":[{"id":"9adf69e","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"contact-page"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3249,8 +3055,8 @@
   <wp:post_id>41</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>terms-and-conditions</wp:post_name>
@@ -3278,7 +3084,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"866d839","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"bc96e44","elType":"column","settings":{"_column_size":100},"elements":[{"id":"33975ac","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"terms"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"89d4ddb","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"5e90aae","elType":"column","settings":{"_column_size":100},"elements":[{"id":"59478e1","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"terms"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3301,8 +3107,8 @@
   <wp:post_id>42</wp:post_id>
   <wp:post_date>2026-10-22 00:40:49</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:49</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>warranty-policy</wp:post_name>
@@ -3330,7 +3136,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"9742b73","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2e1d362","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8cfa29a","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"warranty"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"655c5e1","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"11bdbe9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"61b0157","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"warranty"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3353,8 +3159,8 @@
   <wp:post_id>44</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>refund-policy</wp:post_name>
@@ -3382,7 +3188,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"8aa9500","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"687bdb6","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ae31d3e","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"refund"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"cc7e5e2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"8bc6d0e","elType":"column","settings":{"_column_size":100},"elements":[{"id":"cc8fef7","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"refund"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3405,8 +3211,8 @@
   <wp:post_id>45</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>gdpr-compliance</wp:post_name>
@@ -3434,7 +3240,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"68b9a09","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"e1e6643","elType":"column","settings":{"_column_size":100},"elements":[{"id":"58e8246","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"gdpr"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"a994758","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"92d1c16","elType":"column","settings":{"_column_size":100},"elements":[{"id":"c74ca8d","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"gdpr"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3457,8 +3263,8 @@
   <wp:post_id>46</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>dmca-policy</wp:post_name>
@@ -3486,7 +3292,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"abc3cd4","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"66060f5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fea5cee","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"dmca"}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"0f91052","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"e976d5a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"376fe38","elType":"widget","widgetType":"zarincode_page_section","settings":{"section_key":"dmca"}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3509,8 +3315,8 @@
   <wp:post_id>47</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>shop</wp:post_name>
@@ -3538,7 +3344,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"77244d2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"a7b282a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b36a897","elType":"widget","widgetType":"zarincode_products","settings":{"n_products_source":"query","n_products_count":8}}]}]},{"id":"dbce171","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3c96534","elType":"column","settings":{"_column_size":100},"elements":[{"id":"d5600b3","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"4815b4b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b302622","elType":"column","settings":{"_column_size":100},"elements":[{"id":"1bd4703","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"f6c6633","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"58e1526","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fe6b1c0","elType":"widget","widgetType":"zarincode_products","settings":{"n_products_source":"query","n_products_count":8}}]}]},{"id":"056c3b6","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"b2b04fa","elType":"column","settings":{"_column_size":100},"elements":[{"id":"d52da49","elType":"widget","widgetType":"zarincode_promo","settings":[]}]}]},{"id":"6e2c88a","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"026709a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ecf1f13","elType":"widget","widgetType":"zarincode_steps","settings":[]}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3561,8 +3367,8 @@
   <wp:post_id>48</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>blog</wp:post_name>
@@ -3590,7 +3396,7 @@
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_data</wp:meta_key>
-    <wp:meta_value><![CDATA[[{"id":"74fe588","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"21c2bcc","elType":"column","settings":{"_column_size":100},"elements":[{"id":"40fd493","elType":"widget","widgetType":"zarincode_blog","settings":{"n_blog_source":"query","n_blog_count":8}}]}]}]]]></wp:meta_value>
+    <wp:meta_value><![CDATA[[{"id":"cdbfbdd","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"1238037","elType":"column","settings":{"_column_size":100},"elements":[{"id":"2123475","elType":"widget","widgetType":"zarincode_blog","settings":{"n_blog_source":"query","n_blog_count":8}}]}]}]]]></wp:meta_value>
   </wp:postmeta>
   <wp:postmeta>
     <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
@@ -3613,8 +3419,8 @@
   <wp:post_id>49</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>open</wp:ping_status>
   <wp:post_name>elementor-based-wordpress-theme-architecture</wp:post_name>
@@ -3646,8 +3452,8 @@
   <wp:post_id>50</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>open</wp:ping_status>
   <wp:post_name>website-and-social-media-seo-strategy-2026</wp:post_name>
@@ -3679,8 +3485,8 @@
   <wp:post_id>51</wp:post_id>
   <wp:post_date>2026-10-22 00:40:50</wp:post_date>
   <wp:post_date_gmt>2026-10-22 00:40:50</wp:post_date_gmt>
-  <wp:post_modified>2026-10-22 01:45:35</wp:post_modified>
-  <wp:post_modified_gmt>2026-10-22 01:45:35</wp:post_modified_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
   <wp:comment_status>open</wp:comment_status>
   <wp:ping_status>open</wp:ping_status>
   <wp:post_name>ready-made-software-source-codes-benefits</wp:post_name>
@@ -4587,6 +4393,578 @@
   <wp:postmeta>
     <wp:meta_key>_wp_attachment_image_alt</wp:meta_key>
     <wp:meta_value><![CDATA[تصویر نمایشی خدمات دیجیتال زرین کد]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[WordPress & Elementor — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=588</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=588</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>588</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-wordpress-elementor</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"7c1259b","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7c26832","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3fe37d4","elType":"widget","widgetType":"heading","settings":{"title":"WordPress &amp; Elementor","header_size":"h1"}}]}]},{"id":"2255474","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"0cac014","elType":"column","settings":{"_column_size":100},"elements":[{"id":"6c4e0e9","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از WordPress &amp; Elementor، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"0980203","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"638bada","elType":"column","settings":{"_column_size":100},"elements":[{"id":"87c7574","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[PHP 8.4 & Laravel — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=589</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=589</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>589</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-php-8-4-laravel</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"97e8c01","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"19cd2fa","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f0ffa42","elType":"widget","widgetType":"heading","settings":{"title":"PHP 8.4 &amp; Laravel","header_size":"h1"}}]}]},{"id":"c0a5ac5","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"325116b","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ae7beb9","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از PHP 8.4 &amp; Laravel، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"5d1ec53","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"03e32c5","elType":"column","settings":{"_column_size":100},"elements":[{"id":"4b7e151","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[React & Next.js — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=590</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=590</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>590</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-react-next-js</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"97660f5","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"341c19d","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3463503","elType":"widget","widgetType":"heading","settings":{"title":"React &amp; Next.js","header_size":"h1"}}]}]},{"id":"d421264","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"52f0509","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b44395d","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از React &amp; Next.js، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"0496936","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3f530aa","elType":"column","settings":{"_column_size":100},"elements":[{"id":"a1a0b25","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Node.js & Microservices — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=591</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=591</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>591</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-node-js-microservices</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"acb16bc","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"eefd245","elType":"column","settings":{"_column_size":100},"elements":[{"id":"b037357","elType":"widget","widgetType":"heading","settings":{"title":"Node.js &amp; Microservices","header_size":"h1"}}]}]},{"id":"cd528fa","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f7653ed","elType":"column","settings":{"_column_size":100},"elements":[{"id":"61cf26d","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از Node.js &amp; Microservices، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"da70a8f","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"99c5b0d","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f4b5d6b","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Google Technical SEO — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=592</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=592</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>592</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-google-technical-seo</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"51bcacc","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"3cd0df8","elType":"column","settings":{"_column_size":100},"elements":[{"id":"de63232","elType":"widget","widgetType":"heading","settings":{"title":"Google Technical SEO","header_size":"h1"}}]}]},{"id":"2e3b5dd","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fca7af1","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8f61e04","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از Google Technical SEO، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"be7360c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"fc7c174","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8d660b2","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Social Media SEO — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=593</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=593</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>593</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-social-media-seo</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"7555e2c","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"918490f","elType":"column","settings":{"_column_size":100},"elements":[{"id":"00278e5","elType":"widget","widgetType":"heading","settings":{"title":"Social Media SEO","header_size":"h1"}}]}]},{"id":"7d2b254","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"dd2773a","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0b49682","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از Social Media SEO، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"f046701","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"f150cc9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"06420d7","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[WooCommerce Pro — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=594</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=594</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>594</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-woocommerce-pro</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"b87c0c0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"6a78df9","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fac9249","elType":"widget","widgetType":"heading","settings":{"title":"WooCommerce Pro","header_size":"h1"}}]}]},{"id":"1c48d56","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"bf868d1","elType":"column","settings":{"_column_size":100},"elements":[{"id":"96074c5","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از WooCommerce Pro، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"dad9aff","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2d45b81","elType":"column","settings":{"_column_size":100},"elements":[{"id":"f28d874","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[ThemeForest & Zhaket Standard — تخصص زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=595</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=595</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>595</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technology-themeforest-zhaket-standard</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"e2b8045","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2b95930","elType":"column","settings":{"_column_size":100},"elements":[{"id":"70abdc6","elType":"widget","widgetType":"heading","settings":{"title":"ThemeForest &amp; Zhaket Standard","header_size":"h1"}}]}]},{"id":"da42b15","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"4f31894","elType":"column","settings":{"_column_size":100},"elements":[{"id":"bac5f34","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از ThemeForest &amp; Zhaket Standard، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>"}}]}]},{"id":"8c21cd8","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2f3285d","elType":"column","settings":{"_column_size":100},"elements":[{"id":"3e3c208","elType":"widget","widgetType":"zarincode_service_spotlight","settings":{"title":"راهکار متناسب با پروژه شما"}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[تعرفه خدمات و انتخاب پلن]]></title>
+  <link>https://zarincode.com/?page_id=596</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=596</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>596</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>pricing</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"ba91625","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"2ae0ee2","elType":"column","settings":{"_column_size":100},"elements":[{"id":"fd2196d","elType":"widget","widgetType":"heading","settings":{"title":"سرمایه‌گذاری شفاف برای رشد دیجیتال","header_size":"h1"}}]}]},{"id":"cfd61f9","elType":"container","settings":{"content_width":"full","css_classes":"zc-pricing-composition"},"elements":[{"id":"756f8e1","elType":"widget","widgetType":"zarincode_pricing_plan","settings":{"eyebrow":"طراحی وب‌سایت","title":"پلن نقره‌ای (طراحی سایت)","price":"۱۰ تا ۱۵ میلیون تومان","description":"تحویل از ۱۵ تا ۲۵ روز کاری","features":[{"text":"طراحی المنتوری مدرن با استایل Crextio","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"شامل ۱۰ صفحه کاربردی و استاندارد","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"۳ بار ویرایش و بازبینی رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"هاست پرسرعت ۵ گیگ یک‌ساله رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"ثبت دامنه .ir رایگان به نام کارفرما","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"امنیت کامل و سئو تکنیکال پایه","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"۶ ماه گارانتی و پشتیبانی فنی رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"}],"skin":"editorial","featured":"","link":{"url":"https://zarincode.com/contact-us/"}},"elements":[]},{"id":"6c61fe9","elType":"widget","widgetType":"zarincode_pricing_plan","settings":{"eyebrow":"طراحی وب‌سایت","title":"پلن طلایی (فروشگاهی و شرکتی)","price":"۲۰ تا ۳۰ میلیون تومان","description":"تحویل از ۲۵ تا ۳۵ روز کاری","features":[{"text":"طراحی اختصاصی UI/UX و ویجت‌های المنتوری","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"شامل ۱۵ صفحه + فروشگاه کامل ووکامرس","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"اتصال به درگاه بانکی، پیامک و فاکتور رسمی","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"هاست VIP هشت گیگ + دامنه .com و .ir رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"بهینه‌سازی سرعت (نمره بالای ۹۵ در گوگل)","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"سئو داخلی و ساختار اسکیما پیشرفته","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"۱ سال گارانتی و پشتیبانی VIP رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"}],"skin":"night","featured":"yes","link":{"url":"https://zarincode.com/contact-us/"}},"elements":[]},{"id":"de59266","elType":"widget","widgetType":"zarincode_pricing_plan","settings":{"eyebrow":"طراحی وب‌سایت","title":"پلن الماسی (فول اختصاصی)","price":"۳۵ تا ۶۵ میلیون تومان","description":"تحویل از ۳۵ تا ۵۰ روز کاری","features":[{"text":"کدنویسی ۱۰۰٪ اختصاصی قالب و افزونه‌های مورد نیاز","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"طراحی تمامی صفحات بدون محدودیت","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"مگامنوساز، فیلتر ایجکس و پنل کاربری اختصاصی","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"سرور ابری اختصاصی یک‌ساله + دامنه بین‌المللی","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"پکیج امنیت سازمانی و ضد حملات DDoS","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"استراتژی کامل سئو و ۵ مقاله تخصصی رایگان","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"},{"text":"۱ سال گارانتی طلایی + آموزش کامل ویدئویی","icon":{"value":"fas fa-check","library":"fa-solid"},"included":"yes"}],"skin":"editorial","featured":"","link":{"url":"https://zarincode.com/contact-us/"}},"elements":[]}]},{"id":"8c307d2","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9095ffc","elType":"column","settings":{"_column_size":100},"elements":[{"id":"cda46a6","elType":"widget","widgetType":"zarincode_service_matrix","settings":[]}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+  </item>
+<item>
+  <title><![CDATA[سئو و بهبود عملکرد]]></title>
+  <link>https://zarincode.com/?page_id=597</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=597</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>597</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>seo-performance</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"0d138b0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"7d5f279","elType":"column","settings":{"_column_size":100},"elements":[{"id":"8b3803c","elType":"widget","widgetType":"heading","settings":{"title":"تخصص سئو؛ از تحلیل تا رشد پایدار","header_size":"h1"}}]}]},{"id":"b4840e0","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"cbf73c7","elType":"column","settings":{"_column_size":100},"elements":[{"id":"6a5c85b","elType":"widget","widgetType":"zarincode_seo_audit","settings":[]}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[فناوری‌ها و تخصص تیم زرین کد]]></title>
+  <link>https://zarincode.com/?page_id=606</link>
+  <pubDate>Thu, 22 Oct 2026 02:22:33 +0000</pubDate>
+  <dc:creator><![CDATA[zarincode]]></dc:creator>
+  <guid isPermaLink="false">https://zarincode.com/?page_id=606</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>606</wp:post_id>
+  <wp:post_date>2026-10-22 02:22:33</wp:post_date>
+  <wp:post_date_gmt>2026-10-22 02:22:33</wp:post_date_gmt>
+  <wp:post_modified>2026-10-22 02:34:39</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-22 02:34:39</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>technologies</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_zarincode_seeded</wp:meta_key>
+    <wp:meta_value><![CDATA[1]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[template-elementor-canvas.php]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_edit_mode</wp:meta_key>
+    <wp:meta_value><![CDATA[builder]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_template_type</wp:meta_key>
+    <wp:meta_value><![CDATA[wp-page]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_version</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_data</wp:meta_key>
+    <wp:meta_value><![CDATA[[{"id":"ea60557","elType":"section","settings":{"layout":"full_width","gap":"no"},"elements":[{"id":"9e11b83","elType":"column","settings":{"_column_size":100},"elements":[{"id":"ef27e60","elType":"widget","widgetType":"zarincode_brands","settings":{"n_brands_marquee_track_items_1":[{"_id":"83090bc9","_variant":"v1","_enabled":"yes","icon_1_icon":{"value":"fab fa-wordpress","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"WordPress &amp; Elementor","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-wordpress-elementor/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"b445f2e5","_variant":"v2","_enabled":"yes","icon_1_icon":{"value":"fab fa-php","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"PHP 8.4 &amp; Laravel","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-php-8-4-laravel/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"529df379","_variant":"v3","_enabled":"yes","icon_1_icon":{"value":"fab fa-react","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"React &amp; Next.js","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-react-next-js/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"1aeaa96a","_variant":"v4","_enabled":"yes","icon_1_icon":{"value":"fab fa-node-js","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"Node.js &amp; Microservices","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-node-js-microservices/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"0c01f011","_variant":"v5","_enabled":"yes","icon_1_icon":{"value":"fab fa-google","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"Google Technical SEO","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-google-technical-seo/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"df052846","_variant":"v6","_enabled":"yes","icon_1_icon":{"value":"fab fa-instagram","library":"fa-brands"},"icon_1_visible":"yes","span_text_1":"Social Media SEO","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-social-media-seo/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"fe62ead4","_variant":"v7","_enabled":"yes","icon_1_icon":{"value":"fas fa-cart-shopping","library":"fa-solid"},"icon_1_visible":"yes","span_text_1":"WooCommerce Pro","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-woocommerce-pro/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."},{"_id":"128e389b","_variant":"v8","_enabled":"yes","icon_1_icon":{"value":"fas fa-shield-alt","library":"fa-solid"},"icon_1_visible":"yes","span_text_1":"ThemeForest &amp; Zhaket Standard","span_1_visible":"yes","partner_pill_1_visible":"yes","brand_link":{"url":"https://zarincode.com/technology-themeforest-zhaket-standard/"},"brand_description":"معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری."}]}}]}]}]]]></wp:meta_value>
+  </wp:postmeta>
+  <wp:postmeta>
+    <wp:meta_key>_elementor_migrations_state_d2a1</wp:meta_key>
+    <wp:meta_value><![CDATA[4.3.5:4619a43acdb71a3fd22ba7518aa0a7ef]]></wp:meta_value>
   </wp:postmeta>
 </item>
   </channel>

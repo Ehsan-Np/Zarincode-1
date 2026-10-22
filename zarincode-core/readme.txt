@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.2.0
+Stable tag: 3.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,12 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 3.3.0 =
+* Shared single-content discussion/share/author/navigation/related tools; WooCommerce native reviews.
+* Uploaded client-logo carousel and independent pricing-plan cards.
+* Distinct native card skins, in-place testimonial photos, linked technology cards.
+* Purposeful demo distribution and explicit backup-first layout relocation tool.
 
 = 3.2.0 =
 * Three independent hero widgets with explicit backed-up conversion.

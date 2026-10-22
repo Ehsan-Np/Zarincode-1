@@ -56,3 +56,30 @@ for g,r in m['repeaters'].items():
     for value in child.values():
      if isinstance(value,str) and value in r['fields']:r['fields'][value]['legacy_feature']=True
 save('pricing',m)
+# 3.3: keep the avatar inside the original identity row; replace its icon, not the card structure.
+m=load('testimonials');r=m['repeaters']['services_grid_items_1']
+for template in r['variants'].values():
+ template['children']=[n for n in template['children'] if not (isinstance(n,dict) and n.get('image')=='customer_photo')]
+ for parent in walk([template]):
+  for i,node in enumerate(parent.get('children',[])):
+   if node.get('icon')=='icon_6_icon' or (node.get('image')=='customer_photo' and node.get('fallback_icon')=='icon_6_icon'):
+    parent.setdefault('attrs',{})['class']='zc-testimonial-avatar'
+    parent['attrs']['style']=re.sub(r'width:2.8rem;','width:var(--zc-avatar-size,2.8rem);',parent['attrs'].get('style',''))
+    parent['attrs']['style']=re.sub(r'height:2.8rem;','height:var(--zc-avatar-size,2.8rem);',parent['attrs']['style'])
+    image={'tag':'img','attrs':{'class':'zc-customer-photo','loading':'lazy','decoding':'async'},'part':node['part'],'image':'customer_photo','fallback_icon':'icon_6_icon','fallback_visible':'icon_6_visible','image_preset':'zarincode-avatar','alt':'div_text_1'}
+    parent['children'][i]=image
+save('testimonials',m)
+m=load('brands');r=m['repeaters']['marquee_track_items_1'];vs=list(r['variants'])
+r['fields']['brand_link']={'type':'url','default':{'url':''},'label':'صفحه اختصاصی فناوری','variants':vs}
+r['fields']['brand_description']={'type':'textarea','default':'','label':'معرفی تخصص و تجربه','variants':vs}
+r['fields']['brand_logo']={'type':'media','default':{'url':''},'label':'لوگوی برند یا فناوری','variants':vs}
+r['fields']['span_text_1']['label']='نام برند یا فناوری'
+for template in r['variants'].values():
+ template['optional_link']='brand_link'
+ for node in walk([template]):
+  if node.get('icon')=='icon_1_icon':
+   node['fallback_icon']='icon_1_icon';del node['icon'];node['image']='brand_logo';node['image_preset']='thumbnail';node['alt']='span_text_1';node['tag']='img';node['attrs']={'class':'zc-tech-logo','loading':'lazy','decoding':'async'}
+ if not any(n.get('part')=='brand_description' for n in walk([template])):template['children'].append({'tag':'p','attrs':{'class':'zc-tech-desc'},'part':'brand_description','children':[{'text':'brand_description','part':'brand_description_text'}]})
+m['parts']['brand_description']={'label':'توضیحات فناوری','type':'box'}
+m['parts']['brand_description_text']={'label':'متن معرفی فناوری','type':'text'}
+save('brands',m)

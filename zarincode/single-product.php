@@ -76,7 +76,7 @@ while ( have_posts() ) :
                     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:1rem;">
                         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;">
                             <span class="zc-badge-pill" style="margin-bottom:0;"><i class="fa-solid fa-award"></i> <?php echo esc_html( $cat_badge ); ?></span>
-                            <span class="zc-trust-pill" style="padding:0.25rem 0.75rem;font-size:0.76rem;"><i class="fa-solid fa-star" style="color:#F59E0B;"></i> امتیاز ۵.۰ از ۵.۰ (رضایت ۱۰۰٪ خریداران)</span>
+                            <span class="zc-trust-pill" style="padding:0.25rem 0.75rem;font-size:0.76rem;"><?php $review_product=function_exists("wc_get_product")?wc_get_product($post_id):null;if($review_product&&$review_product->get_rating_count()){echo wp_kses_post(wc_get_rating_html($review_product->get_average_rating(),$review_product->get_rating_count()));echo esc_html(sprintf("%s دیدگاه",number_format_i18n($review_product->get_review_count())));}else echo "هنوز امتیازی ثبت نشده است"; ?></span>
                         </div>
                         <span style="font-size:0.8rem;color:var(--zc-text-muted);font-weight:700;">
                             <i class="fa-regular fa-calendar-check"></i> آخرین بروزرسانی: <?php echo esc_html( $updated_date ); ?>
@@ -431,20 +431,7 @@ while ( have_posts() ) :
             </aside>
         </div>
 
-        <!-- Related Digital Products -->
-        <section style="margin-top:3.5rem;">
-            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
-                <h2 style="font-size:1.4rem;font-weight:900;margin:0;">سایر محصولات آماده و سورس‌کدهای <span class="zc-highlight">زرین کد</span></h2>
-                <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="zc-btn zc-btn-dark" style="padding:0.5rem 1.2rem;font-size:0.82rem;">
-                    مشاهده همه محصولات فروشگاه <i class="fa-solid fa-arrow-left"></i>
-                </a>
-            </div>
-            <?php
-            if ( class_exists( '\Zarincode\Runtime260\Widgets\Renderer' ) ) {
-                echo \Zarincode\Runtime260\Widgets\Renderer::render_products_marketplace( [ 'count' => 4, 'hide_header' => true ] );
-            }
-            ?>
-        </section>
+        <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
     </main>
 
     <script>

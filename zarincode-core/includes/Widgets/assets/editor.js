@@ -25,10 +25,46 @@
         const root = panel.$el[0];
         let queued = false;
         let alive = true;
+        let selectedPlan = "__all__";
+        let planSignature = "";
         function apply() {
             queued = false;
             if (!alive) return;
             bindPreview();
+            if (type === 'zarincode_pricing') {
+                const settings = model.get('settings');
+                const groups = ['pricing_grid_items_1','pricing_grid_items_2','pricing_grid_items_3','pricing_grid_items_4'];
+                const array = value => value?.toJSON ? value.toJSON() : (Array.isArray(value) ? value : []);
+                const plans = groups.flatMap(group => array(settings.get('n_pricing_' + group)).map((row,index) => ({group,index,id:row._id,key:row.plan_key||row._id,title:row.heading_text_1||'پلن بدون عنوان'})));
+                let bar = root.querySelector('.zc-pricing-manager');
+                if (!bar) {
+                    bar = document.createElement('div'); bar.className='zc-pricing-manager';
+                    const label=document.createElement('label');label.textContent='مدیریت متمرکز پلن‌ها';
+                    const select=document.createElement('select');select.setAttribute('aria-label','انتخاب پلن برای ویرایش');label.append(select);bar.append(label);
+                    const help=document.createElement('p');help.textContent='با انتخاب پلن، فقط کارت و امکانات همان پلن در پنل دیده می‌شود؛ داده‌ای حذف نمی‌شود. برای چیدمان جدید از «کارت تعرفه مستقل» استفاده کنید.';bar.append(help);
+                    (root.querySelector('#elementor-controls')||root).prepend(bar);
+                }
+                const signature=JSON.stringify(plans.map(p=>[p.group,p.id,p.title]));
+                const select=bar.querySelector('select');
+                if(signature!==planSignature){
+                    planSignature=signature; select.replaceChildren(new Option('همه پلن‌ها', '__all__'));
+                    plans.forEach(p=>select.add(new Option(p.title,p.group+'|'+p.id)));
+                    if(!plans.some(p=>p.group+'|'+p.id===selectedPlan))selectedPlan='__all__';select.value=selectedPlan;
+                }
+                const plan=plans.find(p=>p.group+'|'+p.id===selectedPlan);
+                const filter=(el,hidden)=>{if(el)el.classList.toggle('zc-editor-plan-filtered',!!hidden);};
+                groups.forEach(group=>{
+                    filter(root.querySelector('.elementor-control-n_pricing_section_'+group),plan&&plan.group!==group);
+                    const control=root.querySelector('.elementor-control-n_pricing_'+group);filter(control,plan&&plan.group!==group);
+                    control?.querySelectorAll('.elementor-repeater-fields').forEach((row,index)=>filter(row,plan&&(plan.group!==group||plan.index!==index)));
+                });
+                const features=array(settings.get('n_pricing_features'));
+                root.querySelectorAll('.elementor-control-n_pricing_features .elementor-repeater-fields').forEach((row,index)=>{
+                    const value=features[index]||{};const key=value.plan_key==='__custom__'?value.custom_plan_key:value.plan_key;
+                    filter(row,plan&&key!==plan.key&&String(value.text||'').trim()!=='');
+                });
+            }
+
             if (pendingKey && !pendingKey.includes('.')) {
                 const field = root.querySelector('.elementor-control-' + CSS.escape(pendingKey));
                 if (field && field.classList.contains('zc-editor-field')) {
@@ -65,6 +101,7 @@
         observer.observe(root, { childList: true, subtree: true });
         $(root).on('change.zcNativePanel input.zcNativePanel', '.zc-editor-part-picker select,.zc-editor-field-search input', schedule);
         $(root).on('click.zcNativePanel', '.elementor-control-type-tab,.elementor-control-type-section', schedule);
+        $(root).on('change.zcNativePanel','.zc-pricing-manager select',function(){selectedPlan=this.value;schedule();});
         currentApply = schedule;
         cleanup = () => { alive = false; observer.disconnect(); $(root).off('.zcNativePanel'); currentApply = () => {}; };
         schedule();

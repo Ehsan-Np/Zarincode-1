@@ -1,37 +1,14 @@
 <?php
-/**
- * Single Post / Service / Project Template
- *
- * @package Zarincode
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
+/** Editorial single view: author identity comes from WordPress, never fixed demo copy. */
+defined('ABSPATH') || exit;
 get_header();
-?>
-
-<main id="primary" class="zc-container" style="padding-top:2.5rem;padding-bottom:4rem;" role="main">
-    <?php
-    while ( have_posts() ) :
-        the_post();
-        ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class( 'zc-glass-panel' ); ?> style="padding:2.5rem;">
-            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:1rem;">
-                <span class="zc-badge-pill" style="margin-bottom:0;">ZARINCODE OFFICIAL ARTICLE</span>
-                <span class="zc-meta-tag"><i class="fa-solid fa-user-tie"></i> نویسنده: احسان نادری پناه</span>
-                <span class="zc-meta-tag"><i class="fa-solid fa-phone"></i> مشاوره: 09024561001</span>
-            </div>
-            <h1 class="zc-section-title"><?php the_title(); ?></h1>
-            <div class="entry-content" style="line-height:2;font-size:1.02rem;">
-                <?php the_content(); ?>
-            </div>
-        </article>
-        <?php
-    endwhile;
-    ?>
+while(have_posts()):the_post(); ?>
+<main id="primary" class="zc-editorial">
+ <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+ <header class="zc-editorial-header"><span class="zc-badge-pill">مجله و دانش زرین کد</span><h1><?php the_title(); ?></h1><div class="zc-editorial-meta"><a href="<?php echo esc_url(get_author_posts_url((int)get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time><span><?php echo esc_html(number_format_i18n(max(1,(int)ceil(count(preg_split('/\s+/u',trim(wp_strip_all_tags(get_the_content())), -1, PREG_SPLIT_NO_EMPTY))/200)))); ?> دقیقه مطالعه</span></div></header>
+ <?php if(has_post_thumbnail()&&!post_password_required())the_post_thumbnail('large',['class'=>'zc-editorial-cover']); ?>
+ <div class="entry-content zc-editorial-body"><?php the_content();wp_link_pages(['before'=>'<nav class="page-links">','after'=>'</nav>']); ?></div>
+ </article>
+ <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
 </main>
-
-<?php
-get_footer();
+<?php endwhile;get_footer();

@@ -524,17 +524,6 @@
                     "part": "services_grid_items_1_div_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-customer-photo",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_customer_photo",
-                            "image": "customer_photo",
-                            "image_preset": "zarincode-avatar"
-                        },
-                        {
                             "literal": "\n                            "
                         },
                         {
@@ -630,7 +619,8 @@
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "width:2.8rem;height:2.8rem;border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;"
+                                        "style": "width:var(--zc-avatar-size,2.8rem);height:var(--zc-avatar-size,2.8rem);border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;",
+                                        "class": "zc-testimonial-avatar"
                                     },
                                     "part": "services_grid_items_1_div_5",
                                     "children": [
@@ -638,11 +628,18 @@
                                             "literal": "\n                                    "
                                         },
                                         {
-                                            "tag": "i",
-                                            "attrs": [],
+                                            "tag": "img",
+                                            "attrs": {
+                                                "class": "zc-customer-photo",
+                                                "loading": "lazy",
+                                                "decoding": "async"
+                                            },
                                             "part": "services_grid_items_1_icon_6",
-                                            "icon": "icon_6_icon",
-                                            "visible": "icon_6_visible"
+                                            "image": "customer_photo",
+                                            "fallback_icon": "icon_6_icon",
+                                            "fallback_visible": "icon_6_visible",
+                                            "image_preset": "zarincode-avatar",
+                                            "alt": "div_text_1"
                                         },
                                         {
                                             "literal": "\n                                "
@@ -725,17 +722,6 @@
                     "part": "services_grid_items_1_div_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-customer-photo",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_customer_photo",
-                            "image": "customer_photo",
-                            "image_preset": "zarincode-avatar"
-                        },
-                        {
                             "literal": "\n                            "
                         },
                         {
@@ -831,7 +817,8 @@
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "width:2.8rem;height:2.8rem;border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;"
+                                        "style": "width:var(--zc-avatar-size,2.8rem);height:var(--zc-avatar-size,2.8rem);border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;",
+                                        "class": "zc-testimonial-avatar"
                                     },
                                     "part": "services_grid_items_1_div_5",
                                     "children": [
@@ -839,11 +826,18 @@
                                             "literal": "\n                                    "
                                         },
                                         {
-                                            "tag": "i",
-                                            "attrs": [],
+                                            "tag": "img",
+                                            "attrs": {
+                                                "class": "zc-customer-photo",
+                                                "loading": "lazy",
+                                                "decoding": "async"
+                                            },
                                             "part": "services_grid_items_1_icon_6",
-                                            "icon": "icon_6_icon",
-                                            "visible": "icon_6_visible"
+                                            "image": "customer_photo",
+                                            "fallback_icon": "icon_6_icon",
+                                            "fallback_visible": "icon_6_visible",
+                                            "image_preset": "zarincode-avatar",
+                                            "alt": "div_text_1"
                                         },
                                         {
                                             "literal": "\n                                "
@@ -926,17 +920,6 @@
                     "part": "services_grid_items_1_div_1",
                     "children": [
                         {
-                            "tag": "img",
-                            "attrs": {
-                                "class": "zc-customer-photo",
-                                "loading": "lazy",
-                                "decoding": "async"
-                            },
-                            "part": "services_grid_items_1_customer_photo",
-                            "image": "customer_photo",
-                            "image_preset": "zarincode-avatar"
-                        },
-                        {
                             "literal": "\n                            "
                         },
                         {
@@ -1032,7 +1015,8 @@
                                 {
                                     "tag": "div",
                                     "attrs": {
-                                        "style": "width:2.8rem;height:2.8rem;border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;"
+                                        "style": "width:var(--zc-avatar-size,2.8rem);height:var(--zc-avatar-size,2.8rem);border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:800;",
+                                        "class": "zc-testimonial-avatar"
                                     },
                                     "part": "services_grid_items_1_div_5",
                                     "children": [
@@ -1040,11 +1024,18 @@
                                             "literal": "\n                                    "
                                         },
                                         {
-                                            "tag": "i",
-                                            "attrs": [],
+                                            "tag": "img",
+                                            "attrs": {
+                                                "class": "zc-customer-photo",
+                                                "loading": "lazy",
+                                                "decoding": "async"
+                                            },
                                             "part": "services_grid_items_1_icon_6",
-                                            "icon": "icon_6_icon",
-                                            "visible": "icon_6_visible"
+                                            "image": "customer_photo",
+                                            "fallback_icon": "icon_6_icon",
+                                            "fallback_visible": "icon_6_visible",
+                                            "image_preset": "zarincode-avatar",
+                                            "alt": "div_text_1"
                                         },
                                         {
                                             "literal": "\n                                "

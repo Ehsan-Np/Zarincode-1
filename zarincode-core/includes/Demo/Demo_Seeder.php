@@ -922,6 +922,7 @@ class Demo_Seeder {
                 $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');
                 foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['features_source']='icon_list';unset($row);$settings['n_pricing_'.$key]=$rows;}
             }
+            if($kind==='brands')$settings=self::demo_technologies(4);
             if($kind==='testimonials'){
                 $m=\Zarincode\Runtime260\Widgets\Native_Design::model('testimonials');
                 foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.jpg','id'=>0];unset($row);$settings['n_testimonials_'.$key]=$rows;}
@@ -930,11 +931,6 @@ class Demo_Seeder {
             $home_shortcodes[] = $hw['sc'];
         }
 
-        foreach(['service_spotlight','before_after','seo_audit','project_roadmap','team_experts','service_matrix'] as $professional){
-            $settings=[];
-            if($professional==='before_after')$settings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی رابط مقایسه؛ تصاویر واقعی قبل و بعد پروژه را جایگزین کنید.'];
-            $home_tree[]=self::make_elementor_section('zarincode_'.$professional,$settings);
-        }
         $home_id = self::upsert_post_with_elementor(
             'page',
             'home',
@@ -945,6 +941,8 @@ class Demo_Seeder {
 
         update_option( 'show_on_front', 'page' );
         update_option( 'page_on_front', $home_id );
+
+        self::seed_studio_pages();
 
         $inner_pages = [
             'services'             => [ 'title' => 'خدمات تخصصی زرین کد',                       'key' => 'services-page' ],
@@ -961,6 +959,14 @@ class Demo_Seeder {
 
         foreach ( $inner_pages as $slug => $cfg ) {
             $tree = [ self::make_elementor_section( 'zarincode_page_section', [ 'section_key' => $cfg['key'] ] ) ];
+            $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos']][$slug]??[];
+            foreach($extras as $extra){
+                $extraSettings=[];
+                if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
+                if($extra==='client_logos')$extraSettings=self::demo_clients();
+                $tree[]=self::make_elementor_section('zarincode_'.$extra,$extraSettings);
+            }
+
             $sc   = '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
             $pid  = self::upsert_post_with_elementor( 'page', $slug, $cfg['title'], $tree, $sc );
             if ( 'privacy-policy' === $slug ) {
@@ -1123,6 +1129,30 @@ class Demo_Seeder {
     /**
      * SEED EVERYTHING IN ONE CALL
      */
+    private static function demo_clients():array {
+        $clients=[];for($i=1;$i<=6;$i++)$clients[]=['name'=>'لوگوی مشتری شما — نمونه '.$i,'logo'=>['url'=>get_template_directory_uri().'/assets/images/demo-client-'.$i.'.png'],'alt'=>'لوگوی نمایشی قابل جایگزینی','service'=>'نمونه چیدمان همکاری','link'=>['url'=>home_url('/projects-portfolio/')]];
+        return ['title'=>'همراه برندهای پیشرو','description'=>'لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.','clients'=>$clients];
+    }
+    private static function demo_technologies(int $limit=8):array {
+        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('brands');$rows=$m['repeaters']['marquee_track_items_1']['default'];
+        foreach($rows as &$row){$slug='technology-'.sanitize_title($row['span_text_1']);$row['brand_link']=['url'=>home_url('/'.$slug.'/')];$row['brand_description']='معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری.';
+            $tree=[self::make_elementor_section('heading',['title'=>$row['span_text_1'],'header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از '.esc_html($row['span_text_1']).'، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>']),self::make_elementor_section('zarincode_service_spotlight',['title'=>'راهکار متناسب با پروژه شما'])];
+            self::upsert_post_with_elementor('page',$slug,$row['span_text_1'].' — تخصص زرین کد',$tree,'');
+        }unset($row);
+        return ['n_brands_marquee_track_items_1'=>array_slice($rows,0,$limit)];
+    }
+    private static function seed_studio_pages():void {
+        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=\Zarincode\Runtime260\Widgets\Pricing_Features::defaults($m);$cards=[];
+        foreach($m['repeaters']['pricing_grid_items_1']['default'] as $i=>$plan){
+            $items=[];foreach($features as $feature)if($feature['plan_key']===($plan['plan_key']??$plan['_id']))$items[]=['text'=>$feature['text'],'icon'=>$feature['icon'],'included'=>'yes'];
+            $cards[]=['id'=>self::gen_id(),'elType'=>'widget','widgetType'=>'zarincode_pricing_plan','settings'=>['eyebrow'=>'طراحی وب‌سایت','title'=>$plan['heading_text_1'],'price'=>$plan['div_text_3']??'با مشاوره','description'=>$plan['div_text_1']??'','features'=>$items,'skin'=>$i===1?'night':'editorial','featured'=>$i===1?'yes':'','link'=>['url'=>home_url('/contact-us/')]],'elements'=>[]];
+        }
+        $grid=['id'=>self::gen_id(),'elType'=>'container','settings'=>['content_width'=>'full','css_classes'=>'zc-pricing-composition'],'elements'=>$cards];
+        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',[self::make_elementor_section('heading',['title'=>'سرمایه‌گذاری شفاف برای رشد دیجیتال','header_size'=>'h1']),$grid,self::make_elementor_section('zarincode_service_matrix',[])],'');
+        self::upsert_post_with_elementor('page','seo-performance','سئو و بهبود عملکرد',[self::make_elementor_section('heading',['title'=>'تخصص سئو؛ از تحلیل تا رشد پایدار','header_size'=>'h1']),self::make_elementor_section('zarincode_seo_audit',[])],'');
+        self::upsert_post_with_elementor('page','technologies','فناوری‌ها و تخصص تیم زرین کد',[self::make_elementor_section('zarincode_brands',self::demo_technologies())],'');
+    }
+
     /** Only explicit demo import calls this; existing custom thumbnails are never replaced. */
     public static function seed_featured_images():void {
         require_once ABSPATH.'wp-admin/includes/image.php';

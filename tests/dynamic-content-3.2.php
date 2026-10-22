@@ -68,7 +68,7 @@ try {
     $tm=N::model('testimonials');$g=array_key_first($tm['repeaters']);$rows=$tm['repeaters'][$g]['default'];$rows[0]['customer_photo']=['id'=>$thumb,'url'=>wp_get_attachment_url($thumb)];
     $check(strpos($render($make('testimonials',['n_testimonials_'.$g=>$rows])),'zc-customer-photo')!==false,'customer image is native media and renders');
     $sizes=wp_get_additional_image_sizes();$check($sizes['zarincode-card']['width']===960&&$sizes['zarincode-card']['height']===600&&$sizes['zarincode-card']['crop'],'standard 960 by 600 hard crop registered');
-    $home=get_page_by_path('home');$data=json_decode(get_post_meta($home->ID,'_elementor_data',true),true);$flat=[];$walk($data);$used=array_column($flat,'widgetType');
+    $home=get_page_by_path('home');$data=json_decode(get_post_meta($home->ID,'_elementor_data',true),true);$flat=[];$walk($data);foreach(get_posts(['post_type'=>'page','post_status'=>'publish','posts_per_page'=>-1,'meta_key'=>'_zarincode_seeded','meta_value'=>'1']) as $demoPage){$tree=json_decode(get_post_meta($demoPage->ID,'_elementor_data',true),true);if(is_array($tree))$walk($tree);}$used=array_column($flat,'widgetType');
     foreach(['hero_intro','hero_profile','hero_cta','services','products','portfolio','blog','pricing','testimonials','brands','steps','why_us','promo','service_spotlight','project_roadmap','seo_audit','before_after','team_experts','service_matrix'] as $kind)$check(in_array('zarincode_'.$kind,$used,true),'complete demo uses '.$kind);
     $check(!in_array('zarincode_hero',$used,true),'new demo does not use monolithic hero');
     echo "TOTAL $n dynamic-content 3.2 checks passed\n";

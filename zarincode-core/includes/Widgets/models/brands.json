@@ -104,7 +104,7 @@
                 "span_text_1": {
                     "type": "text",
                     "default": "ThemeForest & Zhaket Standard",
-                    "label": "متن: ThemeForest & Zhaket Standard",
+                    "label": "نام برند یا فناوری",
                     "variants": [
                         "v1",
                         "v2",
@@ -135,6 +135,55 @@
                     "type": "switcher",
                     "default": "yes",
                     "label": "نمایش: ThemeForest & Zhaket Standard",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "brand_link": {
+                    "type": "url",
+                    "default": {
+                        "url": ""
+                    },
+                    "label": "صفحه اختصاصی فناوری",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "brand_description": {
+                    "type": "textarea",
+                    "default": "",
+                    "label": "معرفی تخصص و تجربه",
+                    "variants": [
+                        "v1",
+                        "v2",
+                        "v3",
+                        "v4",
+                        "v5",
+                        "v6",
+                        "v7",
+                        "v8"
+                    ]
+                },
+                "brand_logo": {
+                    "type": "media",
+                    "default": {
+                        "url": ""
+                    },
+                    "label": "لوگوی برند یا فناوری",
                     "variants": [
                         "v1",
                         "v2",
@@ -265,13 +314,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -293,9 +347,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v2": {
                     "tag": "div",
@@ -308,13 +376,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -336,9 +409,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v3": {
                     "tag": "div",
@@ -351,13 +438,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -379,9 +471,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v4": {
                     "tag": "div",
@@ -394,13 +500,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -422,9 +533,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v5": {
                     "tag": "div",
@@ -437,13 +562,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -465,9 +595,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v6": {
                     "tag": "div",
@@ -480,13 +624,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -508,9 +657,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v7": {
                     "tag": "div",
@@ -523,13 +686,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -551,9 +719,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 },
                 "v8": {
                     "tag": "div",
@@ -566,13 +748,18 @@
                             "literal": "\n                                "
                         },
                         {
-                            "tag": "i",
+                            "tag": "img",
                             "attrs": {
-                                "style": "color:var(--zc-dark);font-size:1.15rem;"
+                                "class": "zc-tech-logo",
+                                "loading": "lazy",
+                                "decoding": "async"
                             },
                             "part": "marquee_track_items_1_icon_1",
-                            "icon": "icon_1_icon",
-                            "visible": "icon_1_visible"
+                            "visible": "icon_1_visible",
+                            "fallback_icon": "icon_1_icon",
+                            "image": "brand_logo",
+                            "image_preset": "thumbnail",
+                            "alt": "span_text_1"
                         },
                         {
                             "literal": "\n                                "
@@ -594,9 +781,23 @@
                         },
                         {
                             "literal": "\n                            "
+                        },
+                        {
+                            "tag": "p",
+                            "attrs": {
+                                "class": "zc-tech-desc"
+                            },
+                            "part": "brand_description",
+                            "children": [
+                                {
+                                    "text": "brand_description",
+                                    "part": "brand_description_text"
+                                }
+                            ]
                         }
                     ],
-                    "visible": "partner_pill_1_visible"
+                    "visible": "partner_pill_1_visible",
+                    "optional_link": "brand_link"
                 }
             }
         }
@@ -652,6 +853,14 @@
         },
         "marquee_track_items_1_span_text_1": {
             "label": "متن: ThemeForest & Zhaket Standard",
+            "type": "text"
+        },
+        "brand_description": {
+            "label": "توضیحات فناوری",
+            "type": "box"
+        },
+        "brand_description_text": {
+            "label": "متن معرفی فناوری",
             "type": "text"
         }
     },

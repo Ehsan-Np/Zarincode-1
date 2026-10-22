@@ -71,6 +71,8 @@ final class Native_Design {
         if($d['type']==='url')$label='پیوند '.self::part_label(preg_replace('/_href$/','',$key));
         if(strpos($key,'_data_filter')!==false)$label='کلید فیلتر دسته‌بندی';
         if(strpos($key,'_data_category')!==false)$label='کلید دسته‌بندی کارت';
+        if($key==='icon_6_visible')$label='نمایش آیکون جایگزین در نبود تصویر';
+        if($key==='brand_link')$label='صفحه اختصاصی برند یا فناوری';
         if($d['label']==='تصویر مشتری'||$d['label']==='تصویر شاخص')$label=$d['label'];
         $a=['label'=>$label,'type'=>$d['type'],'default'=>$d['default']];
         if(isset($d['description']))$a['description']=$d['description'];
@@ -111,7 +113,7 @@ final class Native_Design {
             $widget->end_controls_tabs();$widget->end_controls_section();
             foreach($m['repeaters'] as $key=>$rep){
                 $widget->start_controls_section(self::id($m,'section_'.$key),['label'=>self::repeater_label($kind,$key),'condition'=>$condition]);
-                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]='ساختار '.substr($v,1);
+                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]=(['v1'=>'تحریریه روشن','v2'=>'تیره و طلایی','v3'=>'خطی مینیمال','v4'=>'افقی و فشرده','v5'=>'زرد شاخص','v6'=>'شیشه‌ای','v7'=>'پوستر','v8'=>'گرادیان مرزی'][$v]??'چیدمان '.substr($v,1));
                 $r->start_controls_tabs('zc_row_tabs');
                 foreach(['content'=>'محتوا','media'=>'رسانه و نماد','links'=>'پیوند','options'=>'پیشرفته'] as $tab=>$label){
                     $r->start_controls_tab('zc_row_'.$tab,['label'=>$label]);
@@ -141,7 +143,7 @@ final class Native_Design {
             }
             if($queryKind!==''||$kind==='testimonials'){
                 $widget->start_controls_section(self::id($m,'image_style'),['label'=>'تصاویر و برش استاندارد','tab'=>C::TAB_STYLE,'condition'=>$condition]);
-                if($kind==='testimonials')$widget->add_responsive_control(self::id($m,'avatar_size'),['label'=>'اندازه تصویر مشتری','type'=>C::SLIDER,'range'=>['px'=>['min'=>32,'max'=>160]],'default'=>['size'=>64,'unit'=>'px'],'selectors'=>['{{WRAPPER}} .zc-customer-photo'=>'width:{{SIZE}}px;height:{{SIZE}}px;']]);
+                if($kind==='testimonials')$widget->add_responsive_control(self::id($m,'avatar_size'),['label'=>'اندازه تصویر مشتری','type'=>C::SLIDER,'range'=>['px'=>['min'=>32,'max'=>160]],'default'=>['size'=>44,'unit'=>'px'],'selectors'=>['{{WRAPPER}} .zc-native-layout'=>'--zc-avatar-size:{{SIZE}}px;']]);
                 else {
                     $widget->add_control(self::id($m,'image_ratio'),['label'=>'نسبت ابعاد تصویر شاخص','type'=>C::SELECT,'default'=>'8/5','options'=>['8/5'=>'استاندارد ۹۶۰ × ۶۰۰','16/9'=>'عریض ۱۶:۹','4/3'=>'کلاسیک ۴:۳','1/1'=>'مربع ۱:۱'],'selectors'=>['{{WRAPPER}} .zc-record-image'=>'aspect-ratio:{{VALUE}};']]);
                     $widget->add_control(self::id($m,'image_fit'),['label'=>'شیوه نمایش تصویر','type'=>C::SELECT,'default'=>'cover','options'=>['cover'=>'پوشش بدون تغییر تناسب','contain'=>'نمایش کامل بدون برش'],'selectors'=>['{{WRAPPER}} .zc-record-image'=>'object-fit:{{VALUE}};']]);
@@ -223,8 +225,15 @@ final class Native_Design {
             if(($data[$node['visible']??'']??'yes')!=='yes')return '';
             $tag=$node['tag'];if(isset($node['heading_tag'])){$selected=$data[$node['heading_tag']]??$tag;if(in_array($selected,['h1','h2','h3','h4','h5','h6','div'],true))$tag=$selected;}
             $attrs=$node['attrs'];$style=$attrs['style']??'';unset($attrs['style']);
+            if(strpos($variant,'grid_items')!==false&&preg_match('/-v(?:2|6|7|8)$/',$variant))$style=preg_replace('/(?:^|;)color\s*:(?![^;]*--color-accent)[^;]*/i','',$style);
             if($variant!==''){$classes[]='zc-v-'.$variant;}if($recordId!=='')$classes[]='elementor-repeater-item-'.sanitize_html_class($recordId);
             $attrs['class']=trim(($attrs['class']??'').' '.implode(' ',$classes));
+            if($recordId!==''&&strpos($variant,'grid_items')!==false){
+                preg_match('/-v(\d+)$/',$variant,$match);$skin=['editorial','night','outline','horizontal','sunshine','glass','poster','gradient'][((int)($match[1]??1)-1)%8];$attrs['data-zc-card-skin']=$skin;
+                $style=preg_replace('/(?:^|;)(?:background(?:-color)?|color|border(?:-radius)?|box-shadow)\s*:[^;]*/i','',$style);
+            }
+            if(isset($node['optional_link'])){$optional=$data[$node['optional_link']]??[];if(is_array($optional)&&!empty($optional['url'])){$tag='a';$attrs=array_merge($attrs,self::link($widget,$optional));}else $tag='div';}
+
             if($style!==''){$selector=$scope.($variant!==''?' .zc-v-'.$variant:'').' .zc-part-'.$part;$rootSelector=$scope.' .zc-part-'.$part.($variant!==''?'.zc-v-'.$variant:'');$css[$selector.','.$rootSelector]=$style;}
             // Namespace only local targets; shared theme modals remain shared by design.
             if(isset($attrs['id'])){$attrs['data-zc-original-id']=$attrs['id'];$attrs['id']='zc-'.$instance.'-'.$attrs['id'];}
@@ -245,7 +254,7 @@ final class Native_Design {
             if($tag==='form'&&$formShortcode!=='')return do_shortcode($formShortcode);
             foreach(['data-zc-tabs','href','aria-controls','for'] as $a)if(isset($attrs[$a])&&is_string($attrs[$a])){foreach($idMap as $old=>$new){if($attrs[$a]==='#'.$old)$attrs[$a]='#'.$new;elseif($attrs[$a]===$old)$attrs[$a]=$new;}}
             if(isset($node['icon'])){if(($data[$node['icon']]['value']??'')==='')return '';return Icon_Compatibility::render($data[$node['icon']],$attrs);}
-            if(isset($node['image'])){$image=$data[$node['image']]??[];$attrs['alt']=$data[$node['alt']??'']??($image['alt']??(!empty($image['id'])?get_post_meta(absint($image['id']),'_wp_attachment_image_alt',true):''));if(!empty($image['id']))return wp_get_attachment_image(absint($image['id']),$node['image_preset']??($data[$node['size']??'']??'full'),false,$attrs);if(empty($image['url']))return '';$attrs['src']=esc_url($image['url']);return '<img'.self::attrs($attrs).'>';}
+            if(isset($node['image'])){$image=$data[$node['image']]??[];if(empty($image['id'])&&empty($image['url'])&&isset($node['fallback_icon'])){if(isset($node['fallback_visible'])&&($data[$node['fallback_visible']]??'yes')!=='yes')return ''; unset($attrs['src']);$attrs['class']=trim(str_replace(['zc-customer-photo','zc-tech-logo'],'',$attrs['class']));return Icon_Compatibility::render($data[$node['fallback_icon']]??[],$attrs);}$attrs['alt']=$data[$node['alt']??'']??($image['alt']??(!empty($image['id'])?get_post_meta(absint($image['id']),'_wp_attachment_image_alt',true):''));if(!empty($image['id']))return wp_get_attachment_image(absint($image['id']),$node['image_preset']??($data[$node['size']??'']??'full'),false,$attrs);if(empty($image['url']))return '';$attrs['src']=esc_url($image['url']);return '<img'.self::attrs($attrs).'>';}
             $html='';if(isset($node['rich'])){$key=$node['rich'];$inline=$queryActive&&$prefix!==''?[]:self::inline($widget,$prefix!==''?$prefix.$key:self::id($m,$key),'basic');foreach($inline as $a=>$vals)$attrs[$a]=trim(($attrs[$a]??'').' '.implode(' ',$vals));$richValue=is_scalar($data[$key]??'')?(string)($data[$key]??''):'';$richValue=preg_replace('/<\/(p|div)>\s*<(p|div)(?:\s[^>]*)?>/i','<br><br>',$richValue);$html=wp_kses($richValue,['strong'=>[],'b'=>[],'em'=>[],'i'=>[],'u'=>[],'s'=>[],'code'=>[],'br'=>[],'span'=>['style'=>true],'a'=>['href'=>true,'target'=>true,'rel'=>true]]);}
             else foreach($node['children']??[] as $child)$html.=$draw($child,$data,$prefix,$index,$variant);
             if($tag==='form')$html.='<div class="zc-form-feedback" role="status" data-native-form-message hidden>'.esc_html($formNotice).'</div>';

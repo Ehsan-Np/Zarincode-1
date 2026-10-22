@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.2.0' );
+define( 'ZARINCODE_VERSION', '3.3.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -103,10 +103,11 @@ function zarincode_fa_digits( $input ): string {
 // Initialize Theme Core Classes, Plugin Installer & Advanced Settings Panel
 \Zarincode\Theme\Core\Setup::instance();
 \Zarincode\Theme\Core\Assets::instance();
+\Zarincode\Theme\Core\Single_Experience::boot();
 \Zarincode\Theme\Plugins\Plugin_Manager::instance();
 \Zarincode\Theme\Redux\OptionsConfig::instance();
 
-// Initialize Embedded Core Engine (CPTs, 20 Elementor Widgets, Header/Footer & Demo Importer)
+// Initialize Embedded Core Engine (CPTs, 25 Elementor Widgets (legacy Hero retained), Header/Footer & Demo Importer)
 // Works seamlessly whether zarincode-core plugin is active or theme is installed standalone.
 add_action( 'after_setup_theme', function () {
     if ( class_exists( '\Zarincode\Runtime260\PostTypes\CPT_Manager' ) ) {

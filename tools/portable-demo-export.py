@@ -16,7 +16,7 @@ def portable(v):
 for item in root.findall('.//item'):
  for meta in item.findall('wp:postmeta',ns):
   key=meta.findtext('wp:meta_key',namespaces=ns);value=meta.find('wp:meta_value',ns)
-  if key in ['_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last']:
+  if (key or '').startswith(('_zc_layout_backup_','_zc_hero_backup_')) or key in ['_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last']:
    item.remove(meta);continue
   if value is not None and value.text:
    if key=='_elementor_data':value.text=E.CDATA(json.dumps(portable(json.loads(value.text)),ensure_ascii=False,separators=(',',':')))

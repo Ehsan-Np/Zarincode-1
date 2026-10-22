@@ -40,23 +40,7 @@ while ( have_posts() ) :
                         <?php echo wp_kses_post( has_excerpt() ? get_the_excerpt() : wp_trim_words( get_the_content(), 55 ) ); ?>
                     </div>
 
-                    <!-- Rating & Stats Pills (Webinex 5.0 Rating + 3700 Projects) -->
-                    <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.75rem;">
-                        <div class="zc-white-card" style="padding:0.85rem 1.35rem;display:flex;align-items:center;gap:0.75rem;">
-                            <div style="width:2.6rem;height:2.6rem;border-radius:50%;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;font-weight:900;">۵.۰</div>
-                            <div>
-                                <div style="font-weight:800;font-size:0.9rem;">امتیاز کامل رضایت</div>
-                                <div style="font-size:0.75rem;color:var(--zc-text-muted);">از ۸۴۰+ نظر ثبت شده</div>
-                            </div>
-                        </div>
-                        <div class="zc-white-card" style="padding:0.85rem 1.35rem;display:flex;align-items:center;gap:0.75rem;">
-                            <div style="width:2.6rem;height:2.6rem;border-radius:50%;background:var(--zc-dark);color:var(--color-accent);display:flex;align-items:center;justify-content:center;font-weight:900;">+۴۲۰</div>
-                            <div>
-                                <div style="font-weight:800;font-size:0.9rem;">پروژه موفق اجرا شده</div>
-                                <div style="font-size:0.75rem;color:var(--zc-text-muted);">توسط احسان نادری پناه</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="zc-service-discussion-summary"><a href="#comments"><?php echo esc_html(sprintf('%s دیدگاه و پرسش',number_format_i18n(get_comments_number()))); ?></a></div>
 
                     <!-- Pricing & Discount Strip -->
                     <div class="zc-dark-card" style="padding:1.5rem 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
@@ -124,6 +108,7 @@ while ( have_posts() ) :
         <article class="zc-glass-panel" style="padding:2.5rem;margin-bottom:2.5rem;line-height:2;">
             <?php the_content(); ?>
         </article>
+        <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
     </main>
     <?php
 endwhile;
