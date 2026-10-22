@@ -9,3 +9,16 @@ node_modules/
 .config/
 .wp-cli/
 uploads/
+
+# Ephemeral development / test environments
+.venv/
+venv/
+.pytest_cache/
+.playwright/
+playwright-report/
+test-results/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
