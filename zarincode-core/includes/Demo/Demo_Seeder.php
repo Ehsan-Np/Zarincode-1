@@ -1142,6 +1142,8 @@ class Demo_Seeder {
         return ['n_brands_marquee_track_items_1'=>array_slice($rows,0,$limit)];
     }
     private static function seed_studio_pages():void {
+        self::upsert_post_with_elementor('page','trust-and-credentials','اعتبارنامه‌ها و شفافیت کسب‌وکار',[self::make_elementor_section('heading',['title'=>'اعتبار، با امکان استعلام','header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>نشان‌های این بخش تنها پس از صدور برای دامنه شما و ثبت کد رسمی در ویجت اعتبارنامه‌ها نمایش داده می‌شوند. خالی بودن بخش به معنی دریافت مجوز نیست.</p>']),self::make_elementor_section('zarincode_trust_badges',[])],'');
+
         $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=\Zarincode\Runtime260\Widgets\Pricing_Features::defaults($m);$cards=[];
         foreach($m['repeaters']['pricing_grid_items_1']['default'] as $i=>$plan){
             $items=[];foreach($features as $feature)if($feature['plan_key']===($plan['plan_key']??$plan['_id']))$items[]=['text'=>$feature['text'],'icon'=>$feature['icon'],'included'=>'yes'];

@@ -1917,3 +1917,5 @@ html.dark .zc-project-info-pills span {
     }
 }
 
+/* Configured brand profiles; independent from article share actions. */
+.zc-social-profiles{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.zc-social-profiles a{display:inline-flex;gap:.4rem;align-items:center;padding:.5rem .65rem;border:1px solid #8884;border-radius:8px;font-size:.7rem}.zc-social-profiles img{width:18px;height:18px;background:#fff;border-radius:3px;padding:2px;box-sizing:content-box}.zc-social-profiles a:hover{border-color:#fdd05b}

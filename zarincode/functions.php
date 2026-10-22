@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.3.0' );
+define( 'ZARINCODE_VERSION', '3.4.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -104,10 +104,11 @@ function zarincode_fa_digits( $input ): string {
 \Zarincode\Theme\Core\Setup::instance();
 \Zarincode\Theme\Core\Assets::instance();
 \Zarincode\Theme\Core\Single_Experience::boot();
+\Zarincode\Theme\Core\Article_Toc::boot();
 \Zarincode\Theme\Plugins\Plugin_Manager::instance();
 \Zarincode\Theme\Redux\OptionsConfig::instance();
 
-// Initialize Embedded Core Engine (CPTs, 25 Elementor Widgets (legacy Hero retained), Header/Footer & Demo Importer)
+// Initialize Embedded Core Engine (CPTs, 26 Elementor Widgets (legacy Hero retained), Header/Footer & Demo Importer)
 // Works seamlessly whether zarincode-core plugin is active or theme is installed standalone.
 add_action( 'after_setup_theme', function () {
     if ( class_exists( '\Zarincode\Runtime260\PostTypes\CPT_Manager' ) ) {
@@ -154,3 +155,13 @@ function zarincode_builder_part( string $type ): string {
         $rendering = false;
     }
 }
+
+// Register early; load badge CSS only when a configured footer needs it.
+add_action('wp_enqueue_scripts',static function(){
+    if(!class_exists('\Zarincode\Runtime260\Widgets\Trust_Badges'))return;
+    foreach(['footer_enamad_html','footer_samandehi_html','footer_zarinpal_html','footer_gateway_html'] as $key)if(zarincode_get_option($key,'')){
+        \Zarincode\Runtime260\Widgets\Trust_Badges::register_style();wp_enqueue_style('zarincode-trust');break;
+    }
+},20);
+/** For custom Elementor headers/footers: use the native Shortcode widget. */
+add_shortcode('zarincode_social_links',static fn()=>\Zarincode\Theme\Core\Social_Links::profiles());

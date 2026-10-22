@@ -60,12 +60,12 @@ class OptionsConfig {
     public static function get_sections_schema(): array {
         return [
             'general_branding' => [
-                'title' => '۱. هویت برند، لوگو و عمومی',
+                'title' => '۱. هویت بصری و تنظیمات عمومی',
                 'icon'  => 'dashicons-admin-home',
                 'redux' => 'el el-home',
                 'desc'  => 'مدیریت نام برند، مشخصات توسعه‌دهنده، لوگو، ابعاد کانتینر، پریلودر و تنظیمات پایه قالب زرین کد.',
                 'fields' => [
-                    [ 'id' => 'demo_design', 'type' => 'select', 'title' => 'طراحی دمو', 'options' => [ 'original' => 'طراحی اصلی و قبلی زرین کد (پیش‌فرض)', 'custom' => 'هدر و فوتر سفارشی المنتور' ], 'default' => 'original' ],
+                    [ 'id' => 'demo_design', 'type' => 'select', 'title' => 'طراحی دمو', 'options' => [ 'original' => 'طراحی اصلی زرین کد', 'custom' => 'هدر و فوتر سفارشی المنتور' ], 'default' => 'original' ],
                     [ 'id' => 'brand_name',            'type' => 'text',   'title' => 'نام برند فارسی', 'subtitle' => 'نمایش در هدر، فوتر و عنوان‌های اصلی', 'default' => 'زرین کد' ],
                     [ 'id' => 'brand_en_name',         'type' => 'text',   'title' => 'نام برند انگلیسی / زیرعنوان لوگو', 'default' => 'Zarincode Studio' ],
                     [ 'id' => 'brand_slogan',          'type' => 'text',   'title' => 'شعار رسمی برند', 'default' => 'آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده' ],
@@ -74,66 +74,66 @@ class OptionsConfig {
                     [ 'id' => 'logo_monogram',         'type' => 'text',   'title' => 'حرف مونوگرام دایره‌ای لوگو', 'subtitle' => 'در صورت عدم انتخاب تصویر لوگو نمایش داده می‌شود', 'default' => 'Z' ],
                     [ 'id' => 'logo_light',            'type' => 'media',  'title' => 'تصویر لوگو (حالت روشن)', 'subtitle' => 'فرمت PNG یا SVG شفاف پیشنهاد می‌شود', 'default' => '' ],
                     [ 'id' => 'logo_dark',             'type' => 'media',  'title' => 'تصویر لوگو (حالت تیره / فوتر)', 'default' => '' ],
-                    [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت (Favicon)', 'default' => '' ],
+                    [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت', 'default' => '' ],
                     [ 'id' => 'logo_width',            'type' => 'number', 'title' => 'حداکثر عرض لوگو (پیکسل)', 'default' => 155 ],
                     [ 'id' => 'container_max_width',   'type' => 'select', 'title' => 'حداکثر عرض کانتینر اصلی صفحات', 'options' => [ '1280px' => '۱۲۸۰ پیکسل (کلاسیک)', '1360px' => '۱۳۶۰ پیکسل (استاندارد Crextio)', '1440px' => '۱۴۴۰ پیکسل (عریض مدرن)', '1600px' => '۱۶۰۰ پیکسل (فول‌ویدث استودیویی)' ], 'default' => '1360px' ],
-                    [ 'id' => 'bento_border_radius',   'type' => 'select', 'title' => 'میزان گردی گوشه‌های کارت‌های بنتو (Border Radius)', 'options' => [ '16px' => '۱۶ پیکسل (ملایم)', '24px' => '۲۴ پیکسل (مدرن)', '28px' => '۲۸ پیکسل (استاندارد Crextio)', '36px' => '۳۶ پیکسل (کپسولی فوق‌گرد)' ], 'default' => '28px' ],
-                    [ 'id' => 'enable_preloader',      'type' => 'switch', 'title' => 'فعال‌سازی پیش‌بارگذار صفحه (Preloader)', 'default' => false ],
+                    [ 'id' => 'bento_border_radius',   'type' => 'select', 'title' => 'میزان گردی گوشه‌های کارت‌های بنتو', 'options' => [ '16px' => '۱۶ پیکسل (ملایم)', '24px' => '۲۴ پیکسل (مدرن)', '28px' => '۲۸ پیکسل (استاندارد Crextio)', '36px' => '۳۶ پیکسل (کپسولی فوق‌گرد)' ], 'default' => '28px' ],
+                    [ 'id' => 'enable_preloader',      'type' => 'switch', 'title' => 'فعال‌سازی پیش‌بارگذار صفحه', 'default' => false ],
                     [ 'id' => 'preloader_text',        'type' => 'text',   'title' => 'متن نمایشی پیش‌بارگذار', 'default' => 'زرین کد | Zarincode.com' ],
-                    [ 'id' => 'enable_scroll_progress','type' => 'switch', 'title' => 'نوار پیشرفت اسکرول در بالای صفحه (Scroll Progress Bar)', 'default' => true ],
-                    [ 'id' => 'enable_back_to_top',    'type' => 'switch', 'title' => 'دکمه شناور بازگشت به بالای صفحه (Back to Top)', 'default' => true ],
+                    [ 'id' => 'enable_scroll_progress','type' => 'switch', 'title' => 'نوار پیشرفت اسکرول در بالای صفحه', 'default' => true ],
+                    [ 'id' => 'enable_back_to_top',    'type' => 'switch', 'title' => 'دکمه شناور بازگشت به بالای صفحه', 'default' => true ],
                 ],
             ],
 
             'crextio_colors' => [
-                'title' => '۲. رنگ‌بندی زرد سانشاین و پالت Crextio',
+                'title' => '۲. رنگ‌ها و حالت نمایش',
                 'icon'  => 'dashicons-art',
                 'redux' => 'el el-brush',
-                'desc'  => 'شخصی‌سازی کامل رنگ زرد سانشاین Crextio (#FDD05B)، کارت‌های تیره بنتو (#2A2C31)، گرادینت پس‌زمینه، شفافیت پنل‌های شیشه‌ای و حالت شب/روز.',
+                'desc'  => 'رنگ اصلی برند، سطوح روشن و تیره، پس‌زمینه و حالت نمایش را انتخاب کنید.',
                 'fields' => [
-                    [ 'id' => 'default_color_preset',  'type' => 'select', 'title' => 'پالت رنگی پیش‌فرض قالب (Crextio Presets)', 'options' => [
+                    [ 'id' => 'default_color_preset',  'type' => 'select', 'title' => 'پالت رنگی پیش‌فرض قالب', 'options' => [
                         'sunshine' => 'Sunshine Yellow — زرد سانشاین اصلی Crextio (#FDD05B)',
                         'emerald'  => 'Emerald Mint — سبز زمردی فین‌تک (#34D399)',
                         'royal'    => 'Royal Sky — آبی رویال استارتاپی (#60A5FA)',
                         'sunset'   => 'Warm Coral — نارنجی مرجانی خلاقانه (#FB923C)',
                         'amethyst' => 'Amethyst — بنفش نئونی هوش مصنوعی (#C084FC)',
                     ], 'default' => 'sunshine' ],
-                    [ 'id' => 'accent_color',          'type' => 'color',  'title' => 'رنگ اصلی برند (Primary Accent Color)', 'subtitle' => 'کد استاندارد زرد سانشاین Crextio: #FDD05B', 'default' => '#FDD05B' ],
+                    [ 'id' => 'accent_color',          'type' => 'color',  'title' => 'رنگ اصلی برند', 'subtitle' => 'رنگ پیشنهادی زرین کد: #FDD05B', 'default' => '#FDD05B' ],
                     [ 'id' => 'accent_hover_color',    'type' => 'color',  'title' => 'رنگ هاور دکمه‌های اصلی', 'default' => '#F5C038' ],
-                    [ 'id' => 'accent_contrast_color', 'type' => 'color',  'title' => 'رنگ متن روی دکمه‌های زرد (Contrast Text)', 'default' => '#2A2C31' ],
-                    [ 'id' => 'dark_surface_color',    'type' => 'color',  'title' => 'رنگ کارت‌های تیره بنتو (Crextio Dark Surface)', 'subtitle' => 'کد استاندارد: #2A2C31', 'default' => '#2A2C31' ],
-                    [ 'id' => 'bg_gradient_from',      'type' => 'color',  'title' => 'شروع گرادینت پس‌زمینه حالت روشن (Warm Cream)', 'default' => '#F8F6F0' ],
-                    [ 'id' => 'bg_gradient_to',        'type' => 'color',  'title' => 'پایان گرادینت پس‌زمینه حالت روشن (Sunshine Tint)', 'default' => '#FFF5D1' ],
-                    [ 'id' => 'dark_bg_from',          'type' => 'color',  'title' => 'شروع گرادینت پس‌زمینه حالت تیره (Dark Mode)', 'default' => '#15171C' ],
-                    [ 'id' => 'dark_bg_to',            'type' => 'color',  'title' => 'پایان گرادینت پس‌زمینه حالت تیره (Dark Mode)', 'default' => '#1F1B14' ],
+                    [ 'id' => 'accent_contrast_color', 'type' => 'color',  'title' => 'رنگ متن روی دکمه‌های زرد', 'default' => '#2A2C31' ],
+                    [ 'id' => 'dark_surface_color',    'type' => 'color',  'title' => 'رنگ کارت‌های تیره بنتو', 'subtitle' => 'کد استاندارد: #2A2C31', 'default' => '#2A2C31' ],
+                    [ 'id' => 'bg_gradient_from',      'type' => 'color',  'title' => 'شروع گرادینت پس‌زمینه حالت روشن', 'default' => '#F8F6F0' ],
+                    [ 'id' => 'bg_gradient_to',        'type' => 'color',  'title' => 'پایان گرادینت پس‌زمینه حالت روشن', 'default' => '#FFF5D1' ],
+                    [ 'id' => 'dark_bg_from',          'type' => 'color',  'title' => 'شروع گرادینت پس‌زمینه حالت تیره', 'default' => '#15171C' ],
+                    [ 'id' => 'dark_bg_to',            'type' => 'color',  'title' => 'پایان گرادینت پس‌زمینه حالت تیره', 'default' => '#1F1B14' ],
                     [ 'id' => 'default_theme_mode',    'type' => 'select', 'title' => 'حالت نمایش پیش‌فرض سایت برای کاربران جدید', 'options' => [ 'light' => 'حالت روشن گرم (Crextio Warm Light)', 'dark' => 'حالت تیره بنتو (Crextio Dark Mode)' ], 'default' => 'light' ],
-                    [ 'id' => 'glass_blur_px',         'type' => 'number', 'title' => 'شدت ماتی پنل‌های شیشه‌ای (Backdrop Blur بر حسب پیکسل)', 'default' => 14 ],
+                    [ 'id' => 'glass_blur_px',         'type' => 'number', 'title' => 'شدت ماتی پنل‌های شیشه‌ای', 'default' => 14 ],
                     [ 'id' => 'enable_color_switcher', 'type' => 'switch', 'title' => 'نمایش ابزارک شناور تغییر رنگ و حالت شب/روز در فرانت‌اند', 'default' => true ],
                 ],
             ],
 
             'typography_settings' => [
-                'title' => '۳. تایپوگرافی و فونت وزیرمتن',
+                'title' => '۳. تایپوگرافی',
                 'icon'  => 'dashicons-editor-spellcheck',
                 'redux' => 'el el-font',
                 'desc'  => 'تنظیمات فونت فارسی وزیرمتن (Vazirmatn)، سایز و وزن تیترها، فاصله خطوط و تبدیل خودکار اعداد به فارسی.',
                 'fields' => [
                     [ 'id' => 'primary_font',          'type' => 'select', 'title' => 'فونت اصلی متون و رابط کاربری', 'options' => [ 'Vazirmatn' => 'فونت وزیرمتن (Vazirmatn — نسخه کامل WOFF2 داخلی)' ], 'default' => 'Vazirmatn' ],
-                    [ 'id' => 'heading_font',          'type' => 'select', 'title' => 'فونت تیترها و عناوین (H1 تا H6)', 'options' => [ 'Vazirmatn' => 'فونت وزیرمتن ضخیم (Vazirmatn ExtraBold/Black)' ], 'default' => 'Vazirmatn' ],
+                    [ 'id' => 'heading_font',          'type' => 'select', 'title' => 'فونت تیترها و عناوین', 'options' => [ 'Vazirmatn' => 'فونت وزیرمتن ضخیم (Vazirmatn ExtraBold/Black)' ], 'default' => 'Vazirmatn' ],
                     [ 'id' => 'body_font_size',        'type' => 'number', 'title' => 'اندازه فونت پایه متون سایت (پیکسل)', 'default' => 15 ],
-                    [ 'id' => 'body_line_height',      'type' => 'text',   'title' => 'ارتفاع خط متون (Line Height)', 'default' => '1.9' ],
+                    [ 'id' => 'body_line_height',      'type' => 'text',   'title' => 'ارتفاع خط متون', 'default' => '1.9' ],
                     [ 'id' => 'heading_weight',        'type' => 'select', 'title' => 'وزن فونت تیترهای اصلی', 'options' => [ '700' => '۷۰۰ (Bold)', '800' => '۸۰۰ (ExtraBold)', '900' => '۹۰۰ (Black — استاندارد زرین کد)' ], 'default' => '900' ],
                     [ 'id' => 'persian_digits',        'type' => 'switch', 'title' => 'تبدیل خودکار اعداد انگلیسی به فارسی در قیمت‌ها و آمارها', 'default' => true ],
                 ],
             ],
 
             'topbar_settings' => [
-                'title' => '۴. نوار بالایی هدر (Topbar)',
+                'title' => '۴. نوار اطلاع‌رسانی',
                 'icon'  => 'dashicons-megaphone',
                 'redux' => 'el el-bullhorn',
                 'desc'  => 'مدیریت نوار اعلان بالای سایت، نمایش نام توسعه‌دهنده، شماره تماس مستقیم و لینک‌های سریع صفحات قوانین.',
                 'fields' => [
-                    [ 'id' => 'enable_topbar',            'type' => 'switch', 'title' => 'نمایش نوار بالایی هدر (Topbar)', 'default' => true ],
+                    [ 'id' => 'enable_topbar',            'type' => 'switch', 'title' => 'نمایش نوار بالایی هدر', 'default' => true ],
                     [ 'id' => 'topbar_show_dev',          'type' => 'switch', 'title' => 'نمایش نام توسعه‌دهنده در نوار بالایی', 'default' => true ],
                     [ 'id' => 'topbar_show_phone',        'type' => 'switch', 'title' => 'نمایش شماره تماس مستقیم در نوار بالایی', 'default' => true ],
                     [ 'id' => 'topbar_show_legal_links',  'type' => 'switch', 'title' => 'نمایش لینک‌های سریع قوانین (قوانین ایران، گارانتی، بازگشت وجه، GDPR، DMCA)', 'default' => true ],
@@ -143,14 +143,14 @@ class OptionsConfig {
             ],
 
             'header_navigation' => [
-                'title' => '۵. هدر کپسولی، مگامنو و ناوبری',
+                'title' => '۵. سربرگ و ناوبری',
                 'icon'  => 'dashicons-menu-alt3',
                 'redux' => 'el el-lines',
                 'desc'  => 'انتخاب هدر پیش‌فرض یا هدر المنتوری، تنظیمات چسبان بودن هدر، مگامنو، دکمه جستجو، سبد خرید و دکمه مشاوره.',
                 'fields' => [
                     [ 'id' => 'header_source',            'type' => 'select', 'title' => 'منبع رندر هدر سایت', 'options' => [ 'default_pill' => 'هدر کپسولی استاندارد زرین کد (Crextio Pill Header)', 'elementor_hf' => 'استفاده از قالب هدر ساخته شده در المنتور (zc_hf_template)' ], 'default' => 'default_pill' ],
-                    [ 'id' => 'enable_sticky_header',     'type' => 'switch', 'title' => 'چسبان بودن هدر هنگام اسکرول (Sticky Header)', 'default' => true ],
-                    [ 'id' => 'header_show_search',       'type' => 'switch', 'title' => 'نمایش دکمه مودال جستجوی سریع (Ctrl + K)', 'default' => true ],
+                    [ 'id' => 'enable_sticky_header',     'type' => 'switch', 'title' => 'چسبان بودن هدر هنگام اسکرول', 'default' => true ],
+                    [ 'id' => 'header_show_search',       'type' => 'switch', 'title' => 'نمایش دکمه مودال جستجوی سریع', 'default' => true ],
                     [ 'id' => 'header_show_dark_toggle',  'type' => 'switch', 'title' => 'نمایش دکمه تغییر حالت روشن / تیره در هدر', 'default' => true ],
                     [ 'id' => 'header_show_cart',         'type' => 'switch', 'title' => 'نمایش آیکون سبد خرید و شمارنده محصولات در هدر', 'default' => true ],
                     [ 'id' => 'header_show_cta',          'type' => 'switch', 'title' => 'نمایش دکمه زرد فراخوان مشاوره در هدر', 'default' => true ],
@@ -161,7 +161,7 @@ class OptionsConfig {
             ],
 
             'hero_homepage' => [
-                'title' => '۶. هیرو سکشن و صفحه اصلی',
+                'title' => '۶. معرفی اصلی و صفحه نخست',
                 'icon'  => 'dashicons-welcome-view-site',
                 'redux' => 'el el-screen',
                 'desc'  => 'مدیریت متون، بج‌ها، تیکر چرخشی، دکمه‌های فراخوان و آمارهای کارت بنتو در هیرو سکشن صفحه اصلی.',
@@ -178,7 +178,7 @@ class OptionsConfig {
             ],
 
             'services_department' => [
-                'title' => '۷. دپارتمان ۶ خدمت تخصصی و SLA',
+                'title' => '۷. خدمات و شرایط همکاری',
                 'icon'  => 'dashicons-awards',
                 'redux' => 'el el-briefcase',
                 'desc'  => 'تنظیمات نمایش ۶ خدمت اصلی (طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت، سئو شبکه اجتماعی، تولید محتوا، محصولات آماده) و جدول ۱۲ شرط انجام پروژه.',
@@ -209,7 +209,7 @@ class OptionsConfig {
             ],
 
             'pricing_plans' => [
-                'title' => '۹. جداول تعرفه و پلن‌های قیمت‌گذاری',
+                'title' => '۹. تعرفه خدمات',
                 'icon'  => 'dashicons-money-alt',
                 'redux' => 'el el-usd',
                 'desc'  => 'مدیریت جداول تعرفه تب‌دار (طراحی سایت، سئو، نرم‌افزار، تولید محتوا)، بج‌های تخفیف و مودال مقایسه امکانات.',
@@ -222,7 +222,7 @@ class OptionsConfig {
             ],
 
             'woocommerce_store' => [
-                'title' => '۱۰. فروشگاه محصولات آماده (ووکامرس)',
+                'title' => '۱۰. فروشگاه و محصولات',
                 'icon'  => 'dashicons-cart',
                 'redux' => 'el el-shopping-cart',
                 'desc'  => 'تنظیمات مارکت‌پلیس فروش قالب‌های وردپرس، افزونه‌ها و سورس‌کدهای نرم‌افزار، تعداد ستون‌ها و بج‌های ضمانت.',
@@ -233,12 +233,12 @@ class OptionsConfig {
                     [ 'id' => 'shop_columns',             'type' => 'select', 'title' => 'تعداد ستون محصولات در صفحه فروشگاه', 'options' => [ '3' => '۳ ستون در هر ردیف', '4' => '۴ ستون در هر ردیف (استاندارد مارکت‌پلیس)' ], 'default' => '4' ],
                     [ 'id' => 'shop_per_page',            'type' => 'number', 'title' => 'تعداد محصولات در هر صفحه فروشگاه', 'default' => 8 ],
                     [ 'id' => 'shop_show_instant_badge',  'type' => 'switch', 'title' => 'نمایش بج «تحویل و دانلود آنی پس از پرداخت» روی کارت محصولات', 'default' => true ],
-                    [ 'id' => 'shop_show_source_badge',   'type' => 'switch', 'title' => 'نمایش بج «سورس باز و بدون قفل (Open Source)»', 'default' => true ],
+                    [ 'id' => 'shop_show_source_badge',   'type' => 'switch', 'title' => 'نمایش بج «سورس باز و بدون قفل»', 'default' => true ],
                 ],
             ],
 
             'blog_settings' => [
-                'title' => '۱۱. وبلاگ و مقالات آموزشی',
+                'title' => '۱۱. مجله و مقالات',
                 'icon'  => 'dashicons-welcome-write-blog',
                 'redux' => 'el el-pencil',
                 'desc'  => 'مدیریت چیدمان آرشیو وبلاگ، کارت‌های مقالات، زمان مطالعه و باکس نویسنده در تک‌نوشته.',
@@ -251,23 +251,33 @@ class OptionsConfig {
             ],
 
             'footer_bento' => [
-                'title' => '۱۲. فوتر بنتو دارک، نمادها و کپی‌رایت',
+                'title' => '۱۲. پابرگ و اعتبارنامه‌های کسب‌وکار',
                 'icon'  => 'dashicons-table-row-after',
                 'redux' => 'el el-website',
-                'desc'  => 'شخصی‌سازی فوتر بنتو تیره Crextio، بنر فراخوان بالای فوتر، کد ای‌نماد و ساماندهی و متن کپی‌رایت.',
+                'desc'  => 'ساختار پابرگ، فراخوان همکاری، اعتبارنامه‌های صادرشده و حقوق نشر را مدیریت کنید.',
                 'fields' => [
-                    [ 'id' => 'footer_source',            'type' => 'select',   'title' => 'منبع رندر فوتر سایت', 'options' => [ 'default_bento' => 'فوتر بنتو دارک استاندارد زرین کد (Crextio Dark Bento)', 'elementor_hf' => 'استفاده از قالب فوتر ساخته شده در المنتور (zc_hf_template)' ], 'default' => 'default_bento' ],
-                    [ 'id' => 'footer_show_cta_strip',    'type' => 'switch',   'title' => 'نمایش نوار فراخوان عمل (CTA Strip) در بالای فوتر', 'default' => true ],
+                    [ 'id' => 'footer_source',            'type' => 'select',   'title' => 'ساختار پابرگ', 'options' => [ 'default_bento' => 'پابرگ اصلی زرین کد', 'elementor_hf' => 'قالب پابرگ طراحی‌شده با المنتور' ], 'default' => 'default_bento' ],
+                    [ 'id' => 'footer_show_cta_strip',    'type' => 'switch',   'title' => 'نمایش فراخوان همکاری در پابرگ', 'default' => true ],
                     [ 'id' => 'footer_cta_heading',       'type' => 'text',     'title' => 'عنوان نوار فراخوان بالای فوتر', 'default' => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟' ],
                     [ 'id' => 'footer_about_text',        'type' => 'textarea', 'title' => 'متن معرفی آژانس زرین کد در ستون اول فوتر', 'default' => 'زرین کد با مدیریت و کدنویسی مستقیم احسان نادری پناه، ارائه‌دهنده خدمات فوق‌تخصصی طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و مارکت‌پلیس افزونه‌ها، قالب‌های وردپرس و سورس‌کدهای آماده تجاری است.' ],
-                    [ 'id' => 'footer_enamad_html',       'type' => 'textarea', 'title' => 'کد HTML نماد اعتماد الکترونیکی (ای‌نماد)', 'subtitle' => 'در صورت خالی بودن، نشان گرافیکی پیش‌فرض نمایش داده می‌شود', 'default' => '' ],
+                    [ 'id' => 'footer_enamad_html',       'type' => 'textarea', 'title' => 'کد HTML نماد اعتماد الکترونیکی (ای‌نماد)', 'subtitle' => 'فقط کد نشان صادرشده برای همین دامنه را وارد کنید؛ ورودی خالی هیچ نشان تأییدی نمایش نمی‌دهد.', 'default' => '' ],
                     [ 'id' => 'footer_samandehi_html',    'type' => 'textarea', 'title' => 'کد HTML نشان ملی ثبت (ساماندهی)', 'default' => '' ],
+                    [ 'id'=>'footer_zarinpal_html','type'=>'textarea','title'=>'کد نشان رسمی زرین‌پال','subtitle'=>'کد رسمی TrustCode یا HTML صادرشده را درج کنید. خروجی به تصویر و پیوند استعلام رسمی تبدیل می‌شود؛ اسکریپت اجرا نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'footer_gateway_provider','type'=>'select','title'=>'صادرکننده نشان پرداخت تکمیلی','options'=>['zibal'=>'زیبال','idpay'=>'آیدی‌پی','payir'=>'پی‌دات‌آی‌آر','payping'=>'پی‌پینگ','vandar'=>'وندار','nextpay'=>'نکست‌پی','bitpay'=>'بیت‌پی'],'default'=>'zibal' ],
+                    [ 'id'=>'footer_gateway_html','type'=>'textarea','title'=>'کد HTML نشان پرداخت تکمیلی','subtitle'=>'کد دارای تصویر و پیوند HTTPS استعلام را از پنل درگاه دریافت کنید. کد صرفاً اسکریپتی را در ویجت اعتبارنامه با تصویر و پیوند رسمی پیکربندی کنید.','default'=>'' ],
                     [ 'id' => 'footer_copyright_text',    'type' => 'textarea', 'title' => 'متن کپی‌رایت پایین فوتر', 'default' => 'تمامی حقوق مادی و معنوی این قالب و محصولات متعلق به زرین کد (Zarincode.com) و احسان نادری پناه (Ehsan NaderiPanah) می‌باشد.' ],
                 ],
             ],
 
+            'article_experience' => [
+                'title'=>'تجربه مطالعه و اشتراک‌گذاری','icon'=>'dashicons-welcome-write-blog','redux'=>'el el-book','desc'=>'فهرست مطالب مقاله و راه‌های انتشار محتوا را تنظیم کنید. پیوند حساب‌های برند در بخش ارتباط با مشتری ثبت می‌شود.',
+                'fields'=>[
+                    ['id'=>'blog_toc_enabled','type'=>'switch','title'=>'نمایش فهرست مطالب مقاله','subtitle'=>'فهرست خودکار برای نوشته‌های دارای دست‌کم دو عنوان ساخته می‌شود؛ تیترهای H2 تا H6 پشتیبانی می‌شوند.','default'=>true],
+                    ['id'=>'blog_toc_columns','type'=>'select','title'=>'ستون‌های فهرست مطالب در دسکتاپ','options'=>['1'=>'یک ستون','2'=>'دو ستون','3'=>'سه ستون','4'=>'چهار ستون'],'subtitle'=>'در تبلت حداکثر دو ستون و در تلفن همراه یک ستون نمایش داده می‌شود.','default'=>'2'],
+                ],
+            ],
             'contact_socials' => [
-                'title' => '۱۳. اطلاعات تماس، شبکه‌های اجتماعی و دکمه شناور',
+                'title' => '۱۳. ارتباط با مشتری و شبکه‌های اجتماعی',
                 'icon'  => 'dashicons-phone',
                 'redux' => 'el el-phone',
                 'desc'  => 'مدیریت شماره تماس، آدرس، لینک شبکه‌های اجتماعی و دکمه شناور تماس سریع / مشاوره در گوشه پایین صفحه.',
@@ -276,10 +286,19 @@ class OptionsConfig {
                     [ 'id' => 'contact_email',            'type' => 'text',   'title' => 'ایمیل رسمی پشتیبانی و فروش', 'default' => 'info@zarincode.com' ],
                     [ 'id' => 'contact_address',          'type' => 'text',   'title' => 'آدرس دفتر مرکزی', 'default' => 'تهران، مرکز نوآوری و مهندسی نرم‌افزار زرین کد (پشتیبانی آنلاین و تلفنی ۷ روز هفته)' ],
                     [ 'id' => 'contact_working_hours',    'type' => 'text',   'title' => 'ساعات پاسخگویی و پشتیبانی', 'default' => 'شنبه تا جمعه — ۹ صبح الی ۱۱ شب (پشتیبانی تیکت ۲۴ ساعته)' ],
-                    [ 'id' => 'social_github',            'type' => 'text',   'title' => 'آدرس گیت‌هاب رسمی (GitHub)', 'default' => 'https://github.com/Ehsan-Np' ],
+                    [ 'id' => 'social_github',            'type' => 'text',   'title' => 'آدرس گیت‌هاب رسمی', 'default' => 'https://github.com/Ehsan-Np' ],
                     [ 'id' => 'social_telegram',          'type' => 'text',   'title' => 'آدرس تلگرام پشتیبانی', 'default' => 'https://t.me/zarincode' ],
                     [ 'id' => 'social_whatsapp',          'type' => 'text',   'title' => 'لینک واتساپ ارتباط مستقیم', 'default' => 'https://wa.me/989024561001' ],
                     [ 'id' => 'social_instagram',         'type' => 'text',   'title' => 'آدرس پیج اینستاگرام', 'default' => 'https://instagram.com/zarincode' ],
+                    [ 'id'=>'social_eitaa','type'=>'text','title'=>'پیوند رسمی ایتا','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_bale','type'=>'text','title'=>'پیوند رسمی بله','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_rubika','type'=>'text','title'=>'پیوند رسمی روبیکا','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_soroush','type'=>'text','title'=>'پیوند رسمی سروش پلاس','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_gap','type'=>'text','title'=>'پیوند رسمی گپ','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_igap','type'=>'text','title'=>'پیوند رسمی آی‌گپ','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_shad','type'=>'text','title'=>'پیوند رسمی شاد','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_x','type'=>'text','title'=>'پیوند رسمی ایکس','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_facebook','type'=>'text','title'=>'پیوند رسمی فیسبوک','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id' => 'social_linkedin',          'type' => 'text',   'title' => 'آدرس لینکدین رسمی', 'default' => 'https://linkedin.com/company/zarincode' ],
                     [ 'id' => 'enable_floating_contact',  'type' => 'switch', 'title' => 'نمایش دکمه شناور مشاوره و تماس مستقیم (09024561001) در پایین صفحات', 'default' => true ],
                     [ 'id' => 'floating_contact_label',   'type' => 'text',   'title' => 'متن دکمه شناور مشاوره سریع', 'default' => 'مشاوره فوری: 09024561001' ],
@@ -287,7 +306,7 @@ class OptionsConfig {
             ],
 
             'modals_forms' => [
-                'title' => '۱۴. پاپ‌آپ مشاوره و فرم‌های ثبت سفارش',
+                'title' => '۱۴. فرم‌ها و درخواست مشاوره',
                 'icon'  => 'dashicons-email-alt',
                 'redux' => 'el el-envelope',
                 'desc'  => 'تنظیمات مودال درخواست مشاوره رایگان، پیام‌های تایید فرم و ایمیل دریافت‌کننده سفارش‌ها.',
@@ -300,32 +319,32 @@ class OptionsConfig {
             ],
 
             'legal_compliance' => [
-                'title' => '۱۵. قوانین ایران، گارانتی، GDPR و DMCA',
+                'title' => '۱۵. سیاست‌ها و حقوق کاربران',
                 'icon'  => 'dashicons-shield-alt',
                 'redux' => 'el el-lock',
                 'desc'  => 'مدیریت متغیرهای حقوقی در ۶ برگه قانونی (قوانین تجارت الکترونیک ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA انگلیسی) و نوار کوکی.',
                 'fields' => [
-                    [ 'id' => 'legal_dpo_name',           'type' => 'text',   'title' => 'نام مدیر مسئول، نماینده حقوقی DMCA و افسر حفاظت داده (DPO)', 'default' => 'احسان نادری پناه (Ehsan NaderiPanah)' ],
+                    [ 'id' => 'legal_dpo_name',           'type' => 'text',   'title' => 'نام مدیر مسئول، نماینده حقوقی DMCA و افسر حفاظت داده', 'default' => 'احسان نادری پناه (Ehsan NaderiPanah)' ],
                     [ 'id' => 'legal_phone',              'type' => 'text',   'title' => 'شماره تماس واحد حقوقی و قراردادها', 'default' => '09024561001' ],
                     [ 'id' => 'legal_jurisdiction',       'type' => 'text',   'title' => 'مرجع قانونی حل اختلاف قراردادها', 'default' => 'قوانین تجارت الکترونیک و جرایم رایانه‌ای جمهوری اسلامی ایران و شورای انتظامی نظام صنفی رایانه‌ای' ],
                     [ 'id' => 'legal_warranty_days',      'type' => 'text',   'title' => 'مدت گارانتی رسمی پروژه‌ها و محصولات', 'default' => '۳۶۵ روز گارانتی پروژه‌های اختصاصی و ۶ ماه پشتیبانی رایگان محصولات آماده' ],
-                    [ 'id' => 'enable_gdpr_cookie_bar',   'type' => 'switch', 'title' => 'نمایش نوار اطلاع‌رسانی کوکی و حریم خصوصی (GDPR Consent Bar)', 'default' => false ],
+                    [ 'id' => 'enable_gdpr_cookie_bar',   'type' => 'switch', 'title' => 'نمایش نوار اطلاع‌رسانی کوکی و حریم خصوصی', 'default' => false ],
                     [ 'id' => 'gdpr_cookie_text',         'type' => 'text',   'title' => 'متن نوار کوکی و حریم خصوصی', 'default' => 'وب‌سایت زرین کد برای ارائه تجربه کاربری بهتر و مطابق قوانین حریم خصوصی و GDPR از کوکی‌ها استفاده می‌کند.' ],
                 ],
             ],
 
             'performance_advanced' => [
-                'title' => '۱۶. بهینه‌سازی سرعت، سئو، حالت تعمیر و کدهای سفارشی',
+                'title' => '۱۶. سئو، عملکرد و تنظیمات فنی',
                 'icon'  => 'dashicons-performance',
                 'redux' => 'el el-cogs',
                 'desc'  => 'تنظیمات اسکیما JSON-LD، بهینه‌سازی سرعت وردپرس، حالت تعمیر (Maintenance Mode) و درج کدهای سفارشی CSS و JS.',
                 'fields' => [
                     [ 'id' => 'enable_schema_markup',     'type' => 'switch',   'title' => 'تولید خودکار اسکیما JSON-LD سازمان و خدمات برای گوگل', 'default' => true ],
                     [ 'id' => 'optimize_wp_head',         'type' => 'switch',   'title' => 'حذف اسکریپت‌های ایموجی و متاتگ‌های اضافی وردپرس جهت افزایش سرعت', 'default' => true ],
-                    [ 'id' => 'enable_maintenance_mode',  'type' => 'switch',   'title' => 'فعال‌سازی حالت بروزرسانی / به زودی (Maintenance Mode برای کاربران مهمان)', 'default' => false ],
+                    [ 'id' => 'enable_maintenance_mode',  'type' => 'switch',   'title' => 'فعال‌سازی حالت بروزرسانی / به زودی', 'default' => false ],
                     [ 'id' => 'maintenance_title',        'type' => 'text',     'title' => 'عنوان صفحه حالت بروزرسانی', 'default' => 'وب‌سایت زرین کد در حال بروزرسانی است' ],
                     [ 'id' => 'maintenance_message',      'type' => 'textarea', 'title' => 'توضیحات صفحه حالت بروزرسانی', 'default' => 'در حال ارتقای زیرساخت و افزودن امکانات جدید هستیم. برای سفارش فوری با شماره 09024561001 (احسان نادری پناه) تماس بگیرید.' ],
-                    [ 'id' => 'custom_css',               'type' => 'code',     'title' => 'کدهای CSS سفارشی (Custom CSS)', 'subtitle' => 'در انتهای wp_head بارگذاری می‌شود', 'default' => '' ],
+                    [ 'id' => 'custom_css',               'type' => 'code',     'title' => 'کدهای CSS سفارشی', 'subtitle' => 'در انتهای wp_head بارگذاری می‌شود', 'default' => '' ],
                     [ 'id' => 'custom_head_js',           'type' => 'code',     'title' => 'کدهای اسکریپت یا متاتگ در هدر (قبل از </head>)', 'default' => '' ],
                     [ 'id' => 'custom_footer_js',         'type' => 'code',     'title' => 'کدهای جاوااسکریپت یا آنالیتیکس در فوتر (قبل از </body>)', 'default' => '' ],
                 ],
@@ -456,7 +475,7 @@ class OptionsConfig {
         add_submenu_page(
             'zarincode-theme-options',
             'پنل تنظیمات پیشرفته قالب زرین کد',
-            '⚙️ تنظیمات پیشرفته قالب',
+            'تنظیمات قالب',
             'manage_options',
             'zarincode-theme-options',
             [ $this, 'render_native_options_panel' ]
@@ -465,7 +484,7 @@ class OptionsConfig {
         add_submenu_page(
             'zarincode-theme-options',
             'نصب افزونه‌های مورد نیاز قالب',
-            '🔌 نصب افزونه‌های قالب',
+            'افزونه‌های موردنیاز',
             'manage_options',
             'themes.php?page=zarincode-install-plugins'
         );
@@ -473,7 +492,7 @@ class OptionsConfig {
         add_submenu_page(
             'zarincode-theme-options',
             'درون‌ریز هوشمند دموی زرین کد',
-            '🚀 درون‌ریز دمو با یک کلیک',
+            'درون‌ریزی دمو',
             'manage_options',
             'admin.php?page=zarincode-demo-importer'
         );
@@ -481,7 +500,7 @@ class OptionsConfig {
         add_submenu_page(
             'zarincode-theme-options',
             'مدیریت هدر و فوتر المنتوری',
-            '🎨 هدر و فوتر المنتور',
+            'سربرگ و پابرگ المنتور',
             'manage_options',
             'edit.php?post_type=zc_hf_template'
         );
@@ -496,13 +515,13 @@ class OptionsConfig {
         }
         $wp_admin_bar->add_node( [
             'id'    => 'zarincode-hub',
-            'title' => '⚡ تنظیمات و مدیریت زرین کد',
+            'title' => 'مدیریت زرین کد',
             'href'  => admin_url( 'admin.php?page=zarincode-theme-options' ),
         ] );
         $wp_admin_bar->add_node( [
             'id'     => 'zarincode-hub-options',
             'parent' => 'zarincode-hub',
-            'title'  => '⚙️ پنل تنظیمات پیشرفته قالب (۱۶ بخش)',
+            'title'  => '⚙️ تنظیمات قالب زرین کد',
             'href'   => admin_url( 'admin.php?page=zarincode-theme-options' ),
         ] );
         $wp_admin_bar->add_node( [
@@ -679,16 +698,16 @@ class OptionsConfig {
                     <div>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
                             <span style="background:#FDD05B;color:#2A2C31;padding:3px 12px;border-radius:999px;font-weight:900;font-size:11.5px;">ZARINCODE CONTROL CENTER v<?php echo esc_html( ZARINCODE_VERSION ); ?></span>
-                            <span style="color:#9CA3AF;font-size:12px;">• ۱۶ دپارتمان مدیریتی و بیش از ۱۲۰ قابلیت شخصی‌سازی زنده</span>
+                            <span style="color:#9CA3AF;font-size:12px;">هویت بصری، محتوا و ارتباط با مشتری در یک پنل</span>
                         </div>
-                        <h1 style="color:#fff;font-size:22px;margin:0 0 4px;font-weight:900;">پنل تنظیمات حرفه‌ای و جامع قالب «زرین کد (Zarincode)»</h1>
+                        <h1 style="color:#fff;font-size:22px;margin:0 0 4px;font-weight:900;">تنظیمات قالب زرین کد</h1>
                         <div style="color:#D1D5DB;font-size:12.5px;">
                             طراحی و توسعه: <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> | پشتیبانی مستقیم: <strong dir="ltr" style="color:#FDD05B;">09024561001</strong> | <a href="https://zarincode.com" target="_blank" style="color:#FDD05B;">Zarincode.com</a>
                         </div>
                     </div>
 
                     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                        <input type="search" id="zc-options-live-search" placeholder="🔍 جستجوی سریع در بین ۱۲۰ تنظیم..." style="padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;min-width:230px;font-size:12.5px;">
+                        <input type="search" id="zc-options-live-search" placeholder="جست‌وجوی تنظیمات…" style="padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;min-width:230px;font-size:12.5px;">
                         <button type="submit" class="button button-primary button-hero" style="background:#FDD05B;border-color:#FDD05B;color:#2A2C31;font-weight:900;border-radius:999px;padding:4px 26px;box-shadow:0 8px 20px rgba(253,208,91,0.35);">
                             💾 ذخیره تمام تنظیمات
                         </button>
@@ -701,7 +720,7 @@ class OptionsConfig {
                 <!-- Quick Access Strip -->
                 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
                     <a href="<?php echo esc_url( admin_url( 'themes.php?page=zarincode-install-plugins' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🔌 نصب و مدیریت افزونه‌های قالب</a>
-                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-demo-importer' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🚀 درون‌ریز دمو با یک کلیک</a>
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-demo-importer' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">درون‌ریزی دمو</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_hf_template' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🎨 مدیریت هدر و فوتر المنتوری</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_service' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🏆 مدیریت ۶ خدمت تخصصی</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_project' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">💼 مدیریت نمونه‌کارها</a>
@@ -812,7 +831,7 @@ class OptionsConfig {
                         <section id="zc-sec-backup" class="zc-opt-panel">
                             <h2 style="margin:0 0 8px;font-size:19px;font-weight:900;">۱۷. پشتیبان‌گیری، برون‌ریزی (Export) و درون‌ریزی (Import) تنظیمات قالب</h2>
                             <p style="color:#6B7280;font-size:13px;margin-bottom:20px;">
-                                می‌توانید از تمامی ۱۲۰+ تنظیم فعلی قالب کپی پشتیبان (JSON) تهیه کنید یا تنظیمات ذخیره شده قبلی را درون‌ریزی نمایید.
+                                از تنظیمات فعلی پشتیبان JSON بگیرید یا فایل پشتیبان قبلی را بازیابی کنید.
                             </p>
                             <div style="margin-bottom:22px;">
                                 <label style="font-weight:bold;display:block;margin-bottom:8px;">کد پشتیبان تنظیمات فعلی (Export JSON — کپی کنید):</label>

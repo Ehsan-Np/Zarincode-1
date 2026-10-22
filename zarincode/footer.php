@@ -72,6 +72,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
                         <div><i class="fa-solid fa-phone" style="color:var(--color-accent);width:1.4rem;"></i> خط ویژه مشاوره: <a href="tel:<?php echo esc_attr( $phone ); ?>" dir="ltr" style="color:var(--color-accent);font-weight:800;"><?php echo esc_html( $phone ); ?></a></div>
                         <div><i class="fa-solid fa-globe" style="color:var(--color-accent);width:1.4rem;"></i> وب‌سایت رسمی: <a href="<?php echo esc_url( zarincode_get_option( 'official_website', 'https://zarincode.com' ) ); ?>" style="color:#fff;">Zarincode.com</a></div>
                     </div>
+                    <?php echo \Zarincode\Theme\Core\Social_Links::profiles(); ?>
                 </div>
 
                 <!-- Col 2: Core Services -->
@@ -102,27 +103,11 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 
                 <!-- Col 4: Trust Badges & Quick Links -->
                 <div>
-                    <h4 class="zc-footer-title">مجوزها و ضمانت‌های رسمی</h4>
-                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1.25rem;">
-                        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:0.85rem;text-align:center;">
-                            <?php if ( ! empty( $enamad_html ) ) : ?>
-                                <?php echo wp_kses_post( $enamad_html ); ?>
-                            <?php else : ?>
-                                <i class="fa-solid fa-award" style="font-size:1.6rem;color:var(--color-accent);margin-bottom:0.35rem;"></i>
-                                <div style="font-size:0.76rem;font-weight:700;color:#fff;">نماد اعتماد و ساماندهی</div>
-                                <div style="font-size:0.68rem;color:#9CA3AF;">مطابق قوانین ج.ا.ایران</div>
-                            <?php endif; ?>
-                        </div>
-                        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:0.85rem;text-align:center;">
-                            <?php if ( ! empty( $samandehi_html ) ) : ?>
-                                <?php echo wp_kses_post( $samandehi_html ); ?>
-                            <?php else : ?>
-                                <i class="fa-solid fa-medal" style="font-size:1.6rem;color:var(--color-accent);margin-bottom:0.35rem;"></i>
-                                <div style="font-size:0.76rem;font-weight:700;color:#fff;">ضمانت ۱۰۰٪ بازگشت وجه</div>
-                                <div style="font-size:0.68rem;color:#9CA3AF;">گارانتی یک‌ساله زرین کد</div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                    <h4 class="zc-footer-title">اعتبارنامه‌ها و راه‌های ارتباطی</h4>
+                    <?php
+                    $badges=[['provider'=>'enamad','code'=>$enamad_html],['provider'=>'samandehi','code'=>$samandehi_html],['provider'=>'zarinpal','code'=>zarincode_get_option('footer_zarinpal_html','')],['provider'=>zarincode_get_option('footer_gateway_provider','zibal'),'code'=>zarincode_get_option('footer_gateway_html','')]];
+                    if(class_exists('\Zarincode\Runtime260\Widgets\Trust_Badges'))echo \Zarincode\Runtime260\Widgets\Trust_Badges::html($badges);
+                    ?>
                     <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
                         <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" class="zc-btn" style="padding:0.45rem 0.95rem;font-size:0.8rem;background:rgba(255,255,255,0.08);color:#fff;">درباره زرین کد</a>
                         <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>" class="zc-btn" style="padding:0.45rem 0.95rem;font-size:0.8rem;background:rgba(255,255,255,0.08);color:#fff;">نمونه‌کارها</a>

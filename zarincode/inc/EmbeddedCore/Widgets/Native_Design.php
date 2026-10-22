@@ -99,6 +99,11 @@ final class Native_Design {
                 $widget->add_control(self::id($m,'query_help'),['type'=>C::RAW_HTML,'raw'=>'در حالت خودکار عنوان، توضیح، پیوند، دسته و قیمت از رکوردهای سایت خوانده می‌شوند؛ برای ویرایش آن‌ها همان محصول/نوشته را ویرایش کنید. اولین کارت دستی الگوی ظاهر نتایج است.','condition'=>[self::id($m,'source')=>'query']]);
                 $widget->end_controls_section();
             }
+            foreach(array_keys($m['repeaters']) as $gridKey)if(strpos($gridKey,'grid_items')!==false){
+                $widget->start_controls_section(self::id($m,'card_design_section'),['label'=>'طراحی یکپارچه کارت‌ها','tab'=>C::TAB_STYLE,'condition'=>$condition]);
+                $widget->add_control(self::id($m,'card_skin'),['label'=>'طرح تمام کارت‌های این بخش','type'=>C::SELECT,'default'=>'original','options'=>['original'=>'طراحی اصلی زرین کد','editorial'=>'۱. روشن تحریریه‌ای','night'=>'۲. تیره و طلایی','outline'=>'۳. خطی مینیمال','horizontal'=>'۴. افقی','sunshine'=>'۵. زرد شاخص','glass'=>'۶. شیشه‌ای'],'description'=>'این انتخاب روی همه کارت‌های این ویجت اعمال می‌شود. ساختار محتوایی هر ردیف مستقل است و طرح دمو را تغییر نمی‌دهد.']);
+                $widget->end_controls_section();break;
+            }
             $groups=self::editor_groups($m);
             $widget->start_controls_section(self::id($m,'section_content'),['label'=>$name.' — ویرایش محتوا','condition'=>$condition]);
             $widget->add_control(self::id($m,'editor_part'),['label'=>'کدام قسمت را ویرایش می‌کنید؟','type'=>C::SELECT2,'options'=>array_merge(['__all__'=>'همه اجزا'],$groups['labels']),'default'=>$groups['default'],'render_type'=>'none','classes'=>'zc-editor-part-picker zc-editor-model-'.$m['name'],'label_block'=>true]);
@@ -113,7 +118,7 @@ final class Native_Design {
             $widget->end_controls_tabs();$widget->end_controls_section();
             foreach($m['repeaters'] as $key=>$rep){
                 $widget->start_controls_section(self::id($m,'section_'.$key),['label'=>self::repeater_label($kind,$key),'condition'=>$condition]);
-                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]=(['v1'=>'تحریریه روشن','v2'=>'تیره و طلایی','v3'=>'خطی مینیمال','v4'=>'افقی و فشرده','v5'=>'زرد شاخص','v6'=>'شیشه‌ای','v7'=>'پوستر','v8'=>'گرادیان مرزی'][$v]??'چیدمان '.substr($v,1));
+                $r=new Repeater();$options=[];foreach($rep['variants'] as $v=>$template)$options[$v]='ساختار محتوایی '.substr($v,1);
                 $r->start_controls_tabs('zc_row_tabs');
                 foreach(['content'=>'محتوا','media'=>'رسانه و نماد','links'=>'پیوند','options'=>'پیشرفته'] as $tab=>$label){
                     $r->start_controls_tab('zc_row_'.$tab,['label'=>$label]);
@@ -215,7 +220,8 @@ final class Native_Design {
         $reps=[];foreach($m['repeaters'] as $key=>$rep)$reps[$key]=array_key_exists(self::id($m,$key),$settings)?(is_array($settings[self::id($m,$key)])?$settings[self::id($m,$key)]:[]):$rep['default'];
         if(($settings[self::id($m,'source')]??'manual')==='query')$reps=self::query($m,$reps,$settings);
         $formShortcode=$settings[self::id($m,'form_shortcode')]??'';$formNotice=$settings[self::id($m,'form_notice')]??'این فرم نمایشی است؛ برای ارسال واقعی، شورت‌کد فرم را در تنظیمات ویجت وارد کنید.';$queryActive=($settings[self::id($m,'source')]??'manual')==='query';$rules=is_array($settings[self::id($m,'styles')]??null)?$settings[self::id($m,'styles')]:[];$css=[];$instance=sanitize_html_class($widget->get_id());$idMap=[];$collect=function($nodes)use(&$collect,&$idMap,$instance){foreach($nodes as $n){if(isset($n['attrs']['id']))$idMap[$n['attrs']['id']]='zc-'.$instance.'-'.$n['attrs']['id'];if(isset($n['children']))$collect($n['children']);}};$collect($m['tree']);foreach($m['repeaters'] as $rep)$collect(array_values($rep['variants']));$scope='.zc-native-'.esc_attr($m['name']).'[data-zc-native-id="'.$instance.'"]';
-        $draw=function(array $node,array $data,string $prefix='',int $index=0,string $variant='',string $recordId='')use(&$draw,$widget,$m,$reps,$rules,&$css,$scope,$instance,$idMap,$queryActive,$formShortcode,$formNotice,$settings):string{
+        $skin=$settings[self::id($m,'card_skin')]??'original';if(!in_array($skin,['original','editorial','night','outline','horizontal','sunshine','glass'],true))$skin='original';
+        $draw=function(array $node,array $data,string $prefix='',int $index=0,string $variant='',string $recordId='')use(&$draw,$widget,$m,$reps,$rules,&$css,$scope,$instance,$idMap,$queryActive,$formShortcode,$formNotice,$settings,$skin):string{
             if(isset($node['feature_list'])&&($data['features_source']??'legacy')==='icon_list')return Pricing_Features::render($widget,$m,$settings??[],(string)(($data['plan_key']??'')?:($data['_id']??'')));
             if(!empty($node['fallback_image_for'])&&!empty($data[$node['fallback_image_for']]['url']))return '';
             if(isset($node['literal']))return $node['literal'];
@@ -225,11 +231,11 @@ final class Native_Design {
             if(($data[$node['visible']??'']??'yes')!=='yes')return '';
             $tag=$node['tag'];if(isset($node['heading_tag'])){$selected=$data[$node['heading_tag']]??$tag;if(in_array($selected,['h1','h2','h3','h4','h5','h6','div'],true))$tag=$selected;}
             $attrs=$node['attrs'];$style=$attrs['style']??'';unset($attrs['style']);
-            if(strpos($variant,'grid_items')!==false&&preg_match('/-v(?:2|6|7|8)$/',$variant))$style=preg_replace('/(?:^|;)color\s*:(?![^;]*--color-accent)[^;]*/i','',$style);
+            if($skin!=='original'&&strpos($variant,'grid_items')!==false)$style=preg_replace('/(?:^|;)color\s*:(?![^;]*--color-accent)[^;]*/i','',$style);
             if($variant!==''){$classes[]='zc-v-'.$variant;}if($recordId!=='')$classes[]='elementor-repeater-item-'.sanitize_html_class($recordId);
             $attrs['class']=trim(($attrs['class']??'').' '.implode(' ',$classes));
-            if($recordId!==''&&strpos($variant,'grid_items')!==false){
-                preg_match('/-v(\d+)$/',$variant,$match);$skin=['editorial','night','outline','horizontal','sunshine','glass','poster','gradient'][((int)($match[1]??1)-1)%8];$attrs['data-zc-card-skin']=$skin;
+            if($skin!=='original'&&$recordId!==''&&strpos($variant,'grid_items')!==false){
+                $attrs['data-zc-card-skin']=$skin;
                 $style=preg_replace('/(?:^|;)(?:background(?:-color)?|color|border(?:-radius)?|box-shadow)\s*:[^;]*/i','',$style);
             }
             if(isset($node['optional_link'])){$optional=$data[$node['optional_link']]??[];if(is_array($optional)&&!empty($optional['url'])){$tag='a';$attrs=array_merge($attrs,self::link($widget,$optional));}else $tag='div';}

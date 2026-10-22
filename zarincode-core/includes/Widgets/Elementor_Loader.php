@@ -42,31 +42,32 @@ class Elementor_Loader {
     }
 
     public function refresh_generated_css(): void {
-        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.3.0') return;
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='3.4.0') return;
         if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
-            update_option('zarincode_css_identity_release','3.3.0',false);
+            update_option('zarincode_css_identity_release','3.4.0',false);
         }
     }
 
     public function register_assets(): void {
+        Trust_Badges::register_style();
         $base = strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( get_template_directory() ) . '/' ) === 0
             ? get_template_directory_uri() . '/inc/EmbeddedCore/Widgets/assets/'
             : plugin_dir_url( __FILE__ ) . 'assets/';
-        wp_register_style('zarincode-studio',$base.'studio.css',[],'3.3.0');
-        wp_register_script('zarincode-studio',$base.'studio.js',['elementor-frontend'],'3.3.0',true);
-        wp_register_style('zarincode-native',$base.'native.css',[],'3.3.0');
-        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.3.0',true);
-        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.3.0');
-        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.3.0',true);
-        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.3.0' );
-        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.3.0', true );
+        wp_register_style('zarincode-studio',$base.'studio.css',[],'3.4.0');
+        wp_register_script('zarincode-studio',$base.'studio.js',['elementor-frontend'],'3.4.0',true);
+        wp_register_style('zarincode-native',$base.'native.css',[],'3.4.0');
+        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'3.4.0',true);
+        wp_register_style('zarincode-professional',$base.'professional.css',[],'3.4.0');
+        wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'3.4.0',true);
+        wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '3.4.0' );
+        wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '3.4.0', true );
     }
 
     public function editor_assets():void {
         $base=strpos(wp_normalize_path(__DIR__),wp_normalize_path(get_template_directory()).'/')===0?get_template_directory_uri().'/inc/EmbeddedCore/Widgets/assets/':plugin_dir_url(__FILE__).'assets/';
-        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.3.0',true);
-        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.3.0');
+        wp_enqueue_script('zarincode-editor',$base.'editor.js',['elementor-editor'],'3.4.0',true);
+        wp_enqueue_style('zarincode-editor',$base.'editor.css',[],'3.4.0');
     }
 
     public function register_category( $elements_manager ): void {
@@ -84,8 +85,10 @@ class Elementor_Loader {
         require_once __DIR__ . '/Elementor_Widgets_Collection.php';
         require_once __DIR__ . '/Professional_Widgets.php';
         require_once __DIR__.'/Studio_Widgets.php';
+        require_once __DIR__.'/Widget_Trust_Badges.php';
 
         $widget_classes = [
+            Widget_Trust_Badges::class,
             Widget_Client_Logos::class,
             Widget_Pricing_Plan::class,
             Widget_Service_Spotlight::class,

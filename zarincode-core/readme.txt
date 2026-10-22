@@ -4,12 +4,12 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.3.0
+Stable tag: 3.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Companion engine for the Zarincode theme, with 14 existing Elementor widgets and
-six optional professional widgets. Native content, icons, media, URL objects, repeaters and scoped component styles
+Companion engine for the Zarincode theme, with native design widgets, independent
+Hero components, six agency tools, client logos, pricing cards and Iranian credentials. Native content, icons, media, URL objects, repeaters and scoped component styles
 preserve the original layout. The theme includes a synchronized engine for legacy-plugin isolation.
 The original-layout runtime renders native settings without PHP DOM.
 The legacy custom-layout inline adapter may use DOM; panel controls remain available. Elementor is required for widget editing.
@@ -21,6 +21,12 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 3.4.0 =
+* Restore original homepage card design; six uniform opt-in section-level skins.
+* Editorial reading layout, server-side TOC with 1–4 columns, illustrated adjacent/related cards.
+* Commerce-specific author/review design; Iranian social icons and brand profile links.
+* Native Iranian credentials widget: strict HTML compiler, no arbitrary provider scripts.
 
 = 3.3.0 =
 * Shared single-content discussion/share/author/navigation/related tools; WooCommerce native reviews.
