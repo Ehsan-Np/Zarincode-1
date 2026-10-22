@@ -3,7 +3,7 @@
 defined('ABSPATH') || exit;
 get_header();
 while(have_posts()):the_post();$author=(int)get_the_author_meta('ID');$sides=\Zarincode\Theme\Core\Article_Layout::sides();$words=preg_split('/\s+/u',trim(wp_strip_all_tags(get_the_content())), -1,PREG_SPLIT_NO_EMPTY); ?>
-<main id="primary" class="zc-editorial zc-magazine zc-publication"><div class="zc-publication-shell <?php echo $sides['right']?'has-right ':'';echo $sides['left']?'has-left':''; ?>"><div class="zc-publication-main">
+<main id="primary" class="zc-editorial zc-magazine zc-publication zc-container"><div class="zc-publication-shell <?php echo $sides['right']?'has-right ':'';echo $sides['left']?'has-left':''; ?>"><div class="zc-publication-main">
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
  <header class="zc-editorial-header">
   <nav class="zc-article-breadcrumb" aria-label="مسیر مقاله"><a href="<?php echo esc_url(home_url('/')); ?>">زرین کد</a><span aria-hidden="true">/</span><a href="<?php echo esc_url(get_post_type_archive_link('post')?:home_url('/?post_type=post')); ?>">مجله</a><span aria-hidden="true">/</span><span>خواندن مقاله</span></nav>

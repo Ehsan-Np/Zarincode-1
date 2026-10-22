@@ -42,6 +42,7 @@ get_header();
             </div>
             <?php
         endif;
+        if(comments_open()||get_comments_number()){echo '<div class="zc-container zc-page-discussion">';comments_template();echo '</div>';}
     endwhile;
     ?>
 </main>

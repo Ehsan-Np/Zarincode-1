@@ -6,9 +6,11 @@
         }
         const field = input || document.createElement('textarea');
         if (!input) { field.value = value; field.style.cssText = 'position:fixed;opacity:0;inset:0;pointer-events:none'; document.body.append(field); }
+        const previous = document.activeElement;
         field.focus(); field.select();
         const copied = document.execCommand('copy');
         if (!input) field.remove();
+        previous?.focus({preventScroll:true});
         if (!copied) throw new Error('copy-unavailable');
     }
     document.addEventListener('click', async event => {
@@ -26,7 +28,11 @@
                 catch (error) { if (error.name === 'AbortError') return; }
             }
             await copyText(value, input);
+            if(copy){copy.classList.add('is-copied');const label=copy.querySelector('span');if(label){copy.dataset.zcOriginalLabel ||= label.textContent;label.textContent='کپی شد';clearTimeout(copy._zcCopyTimer);copy._zcCopyTimer=setTimeout(()=>{label.textContent=copy.dataset.zcOriginalLabel;copy.classList.remove('is-copied')},2500)}}
             status.textContent = share?.dataset.zcNetwork ? `لینک کپی شد؛ در ${share.dataset.zcNetwork} جای‌گذاری کنید.` : 'لینک کپی شد.';
         } catch (_) { status.textContent = 'کپی خودکار ممکن نشد؛ نشانی کوتاه را انتخاب و کپی کنید.'; }
     });
 })();
+/* Keep WP's native reply/cancel movement. Remove the whole rating control while answering,
+ * including Woo's generated stars, so Woo's root-review validation cannot block a reply. */
+(()=>{'use strict';const form=document.getElementById('commentform');if(!form)return;const parent=form.querySelector('#comment_parent');if(!parent)return;const controls=[...form.querySelectorAll('.comment-form-rating,.zc-rating-input')].map(node=>({node,anchor:document.createComment('zc-rating-home')}));controls.forEach(({node,anchor})=>node.before(anchor));const button=form.querySelector('[type=submit]');const original=button?.value;const sync=()=>{const replying=Number(parent.value)>0;controls.forEach(({node,anchor})=>{if(replying)node.remove();else if(!node.isConnected)anchor.after(node)});if(button){button.value=replying?'ارسال پاسخ':original;if(button.dataset.zcReplyOnly)button.disabled=!replying;}form.classList.toggle('zc-is-replying',replying)};document.addEventListener('click',e=>{if(e.target.closest('.comment-reply-link,#cancel-comment-reply-link'))queueMicrotask(sync)});sync()})();

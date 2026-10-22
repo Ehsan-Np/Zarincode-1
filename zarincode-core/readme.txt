@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.5.0
+Stable tag: 3.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 3.6.0 =
+* Theme: native threaded discussion across products, posts, services, projects and pages.
+* Theme: unified header/content/footer geometry and new Share Studio interface.
 
 = 3.5.0 =
 * Explicit-import-only service-first copy, six long articles and editable legal drafts.

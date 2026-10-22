@@ -51,6 +51,7 @@ while ( have_posts() ) :
                 </a>
             </div>
         </div>
+        <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
     </main>
     <?php
 endwhile;
