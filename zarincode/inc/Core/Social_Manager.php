@@ -1,0 +1,40 @@
+<?php
+namespace Zarincode\Theme\Core;
+defined('ABSPATH') || exit;
+/** Bounded custom links. SVG is sanitized markup, never a global upload permission. */
+final class Social_Manager {
+    public static function boot():void {
+        add_action('admin_menu',static function(){add_theme_page('شبکه‌های اجتماعی دلخواه','شبکه‌های اجتماعی','manage_options','zarincode-socials',[self::class,'page']);});
+        add_action('admin_enqueue_scripts',static function($hook){if(strpos($hook,'zarincode-socials')===false)return;wp_enqueue_media();wp_enqueue_style('zc-social-admin-icons',get_template_directory_uri().'/assets/fontawesome/css/all.min.css',[],ZARINCODE_VERSION);wp_enqueue_script('zc-social-manager',get_template_directory_uri().'/assets/js/social-manager.js',['jquery'],ZARINCODE_VERSION,true);});
+    }
+    public static function svg($raw):string {
+        if(!is_string($raw)||trim($raw)===''||strlen($raw)>50000||stripos($raw,'<!DOCTYPE')!==false||stripos($raw,'<!ENTITY')!==false||!class_exists('DOMDocument'))return '';
+        $dom=new \DOMDocument();$previous=libxml_use_internal_errors(true);try{$valid=$dom->loadXML($raw,LIBXML_NONET);}finally{libxml_clear_errors();libxml_use_internal_errors($previous);}if(!$valid||!$dom->documentElement||$dom->documentElement->localName!=='svg')return '';
+        $tags=['svg','g','path','circle','rect','line','polyline','polygon','ellipse'];$attrs=['viewBox','d','fill','stroke','stroke-width','stroke-linecap','stroke-linejoin','fill-rule','clip-rule','opacity','fill-opacity','stroke-opacity','cx','cy','r','rx','ry','x','y','x1','x2','y1','y2','width','height','points','transform'];
+        $clean=function($node)use(&$clean,$tags,$attrs){foreach(iterator_to_array($node->childNodes) as $child){if($child->nodeType!==XML_ELEMENT_NODE||!in_array($child->localName,$tags,true)){$node->removeChild($child);continue;}$clean($child);}if(!$node->hasAttributes())return;foreach(iterator_to_array($node->attributes) as $a){$v=$a->value;$allowed=in_array($a->name,$attrs,true)&&!preg_match('/url\s*\(|javascript|data:|[<>"\']/i',$v);if(in_array($a->name,['fill','stroke'],true))$allowed=$allowed&&(bool)preg_match('/^(?:#[a-f0-9]{3,8}|none|currentColor|transparent|black|white)$/i',$v);if(!$allowed)$node->removeAttributeNode($a);}};$clean($dom->documentElement);
+        $dom->documentElement->setAttribute('width','24');$dom->documentElement->setAttribute('height','24');$dom->documentElement->setAttribute('aria-hidden','true');$dom->documentElement->setAttribute('focusable','false');return $dom->saveXML($dom->documentElement);
+    }
+    public static function url($raw):string {if(!is_string($raw))return '';return in_array(wp_parse_url($raw,PHP_URL_SCHEME),['http','https'],true)?esc_url_raw($raw):'';}
+    public static function template($raw):string {
+        if(!is_string($raw)||strlen($raw)>2048)return '';$tokens=['{url}','{title}','{text}'];$safe=['ZCSHAREURL','ZCSHARETITLE','ZCSHARETEXT'];$v=self::url(str_replace($tokens,$safe,$raw));return str_replace($safe,$tokens,$v);
+    }
+    public static function sanitize($rows):array {
+        $out=[];$seen=[];if(!is_array($rows))return [];foreach(array_slice($rows,0,30) as $row){if(!is_array($row))continue;$name=sanitize_text_field(is_scalar($row['name']??null)?$row['name']:'');if($name==='')continue;
+            $key=sanitize_key(is_scalar($row['id']??null)?$row['id']:'');if(!$key||isset($seen[$key]))$key=wp_generate_uuid4();$seen[$key]=true;
+            $out[]=['id'=>$key,'name'=>$name,'url'=>self::url($row['url']??''),'share_template'=>self::template($row['share_template']??''),'type'=>in_array($row['type']??'',['font','svg','image'],true)?$row['type']:'font','font'=>preg_match('/^(?:fa[sbrldt]?|fa-(?:solid|regular|brands|light|thin|duotone))\s+fa-[a-z0-9-]+$/D',(is_string($row['font']??null)?$row['font']:''))?$row['font']:'fa-solid fa-link','svg'=>self::svg($row['svg']??''),'image'=>absint($row['image']??0),'enabled'=>!empty($row['enabled'])];
+        }return $out;
+    }
+    public static function rows():array {static $cache=[];$raw=get_option('zarincode_custom_socials',[]);$key=md5(serialize($raw));return $cache[$key]??($cache[$key]=array_values(array_filter(self::sanitize($raw),static fn($r)=>$r['enabled'])));}
+    public static function icon(array $r):string {
+        if($r['type']==='svg'&&$r['svg'])return $r['svg'];if($r['type']==='image'&&$r['image'])return wp_get_attachment_image($r['image'],[24,24],false,['alt'=>'','aria-hidden'=>'true','loading'=>'lazy']);return '<i aria-hidden="true" class="'.esc_attr($r['font']).'"></i>';
+    }
+    public static function row(array $row,$index):void {
+        $name='zc_socials['.$index.']';echo '<fieldset class="zc-social-admin-row" style="padding:18px;border:1px solid #ccd0d4;border-radius:10px;margin:15px 0;background:white"><input type="hidden" name="'.esc_attr($name).'[id]" value="'.esc_attr($row['id']??wp_generate_uuid4()).'"><p><label><input type="checkbox" name="'.esc_attr($name).'[enabled]" value="1" '.checked($row['enabled']??true,true,false).'> نمایش این شبکه</label></p>';
+        foreach(['name'=>'نام شبکه','url'=>'پیوند حساب یا پشتیبانی','share_template'=>'الگوی اختیاری اشتراک: https://example.com/share?url={url}&text={title}'] as $key=>$label)echo '<p><label>'.esc_html($label).'<input class="widefat" name="'.esc_attr($name).'['.$key.']" value="'.esc_attr($row[$key]??'').'" '.($key!=='name'?'dir="ltr"':'').'></label></p>';
+        echo '<p><label>نوع آیکون <select name="'.esc_attr($name).'[type]">';foreach(['font'=>'فونت آیکون','svg'=>'فایل یا کد SVG ایمن','image'=>'تصویر کتابخانه رسانه'] as $v=>$t)echo '<option value="'.$v.'" '.selected($row['type']??'font',$v,false).'>'.$t.'</option>';echo '</select></label></p><p><label>کلاس Font Awesome <input dir="ltr" list="zc-social-fonts" name="'.esc_attr($name).'[font]" value="'.esc_attr($row['font']??'fa-solid fa-link').'"></label></p><p><label>کد SVG <textarea class="widefat" rows="3" dir="ltr" name="'.esc_attr($name).'[svg]">'.esc_textarea($row['svg']??'').'</textarea></label><input class="zc-social-svg-file" type="file" accept=".svg,image/svg+xml" aria-label="انتخاب فایل SVG"></p><p><input type="hidden" class="zc-social-image-id" name="'.esc_attr($name).'[image]" value="'.esc_attr($row['image']??0).'"><button type="button" class="button zc-social-image">انتخاب PNG / تصویر</button> <span class="zc-social-image-label">'.esc_html($row['image']??'').'</span></p><button type="button" class="button zc-social-up">↑ جابه‌جایی بالا</button> <button type="button" class="button zc-social-remove">حذف شبکه</button></fieldset>';
+    }
+    public static function page():void {
+        if(!current_user_can('manage_options'))return;if(isset($_POST['zc_social_save'])){check_admin_referer('zc_socials');update_option('zarincode_custom_socials',self::sanitize(wp_unslash($_POST['zc_socials']??[])),false);echo '<div class="notice notice-success"><p>شبکه‌ها ذخیره شدند.</p></div>';}
+        echo '<div class="wrap"><h1>شبکه‌های اجتماعی دلخواه</h1><p>واتساپ، تلگرام و شبکه‌های شناخته‌شده در تنظیمات قالب باقی‌اند. اینجا شبکه‌های تکمیلی را با آیکون اختصاصی اضافه کنید. الگوی اشتراک فقط باید از مستندات رسمی مقصد گرفته شود؛ خالی یعنی فقط حساب ارتباطی. SVG بارگذاری عمومی نمی‌شود و فقط شکل‌های ایمن نگه داشته می‌شوند.</p><form method="post">';wp_nonce_field('zc_socials');echo '<div id="zc-social-admin-list">';foreach(get_option('zarincode_custom_socials',[]) as $i=>$row)if(is_array($row))self::row($row,$i);echo '</div><template id="zc-social-row-template">';self::row([],'__INDEX__');echo '</template><datalist id="zc-social-fonts">';foreach(['fa-brands fa-whatsapp','fa-brands fa-telegram','fa-brands fa-instagram','fa-brands fa-youtube','fa-brands fa-discord','fa-brands fa-pinterest','fa-solid fa-link','fa-solid fa-comments'] as $f)echo '<option value="'.esc_attr($f).'">';echo '</datalist><button type="button" id="zc-social-add" class="button">افزودن شبکه</button>';submit_button('ذخیره شبکه‌ها','primary','zc_social_save');echo '</form></div>';
+    }
+}

@@ -110,6 +110,7 @@ class Demo_Seeder {
     }
 
     public function render_admin_page(): void {
+        if(!current_user_can('manage_options'))return;
         $message = '';
         if ( isset( $_POST['zarincode_run_seeder'] ) && check_admin_referer( 'zarincode_seed_nonce' ) ) {
             $scope = sanitize_text_field( wp_unslash( $_POST['zarincode_seed_scope'] ?? 'all' ) );
@@ -131,7 +132,7 @@ class Demo_Seeder {
                 case 'shop_blog':
                     self::seed_woocommerce_products();
                     self::seed_blog_posts();
-                    $message = '۸ محصول دیجیتال فروشگاه ووکامرس و ۶ مقاله تخصصی وبلاگ با موفقیت درون‌ریزی شدند!';
+                    $message = '۸ محصول دیجیتال فروشگاه ووکامرس و ۶ راهنمای کاربردی وبلاگ با موفقیت درون‌ریزی شدند!';
                     break;
                 default:
                     self::seed_all();
@@ -187,10 +188,10 @@ class Demo_Seeder {
         </style>
         <div class="wrap zc-demo-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
             <h1 class="screen-reader-text">پنل درون‌ریز هوشمند قالب زرین کد</h1>
-            <hr class="wp-header-end">
+            <hr class="wp-header-end"><div class="notice notice-warning inline"><p><strong>بازنویسی صریح دمو:</strong> درون‌ریزی، نوشته‌های هم‌نام دمو و تنظیمات قالب را بازسازی می‌کند. روی سایت عملیاتی ابتدا پشتیبان بگیرید و در محیط آزمایشی اجرا کنید. به‌روزرسانی قالب به‌تنهایی دمو را وارد نمی‌کند.</p></div>
             <div style="background:linear-gradient(135deg,#2A2C31 0%,#18191D 100%);color:#fff;padding:30px 34px;border-radius:24px;margin-bottom:24px;border:2px solid #FDD05B;box-shadow:0 15px 40px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;width:100%;box-sizing:border-box;">
                 <div>
-                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE ONE-CLICK DEMO IMPORTER v2.6</span>
+                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE SERVICE DEMO 3.5</span>
                     <h1 style="color:#fff;font-size:24px;margin:12px 0 8px;">پنل درون‌ریز هوشمند و یک‌کلیکی قالب «زرین کد (Zarincode)»</h1>
                     <p style="color:#D1D5DB;font-size:14px;margin:0;">
                         طراحی و توسعه توسط <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> | شماره تماس: <strong dir="ltr" style="color:#FDD05B;">09024561001</strong> | وب‌سایت: <a href="https://zarincode.com" target="_blank" style="color:#FDD05B;">Zarincode.com</a>
@@ -260,7 +261,7 @@ class Demo_Seeder {
                     <?php wp_nonce_field( 'zarincode_seed_nonce' ); ?>
                     <h2 style="margin-top:0;font-size:19px;font-weight:900;color:#111827;">انتخاب نحوه درون‌ریزی دمو (تلفیق Webinex + رنگ‌بندی زرد سانشاین Crextio)</h2>
                     <p style="color:#4B5563;font-size:13.5px;line-height:1.8;">
-                        پیش از درون‌ریزی نسخه پشتیبان تهیه کنید. محتوای برگه‌ها و تنظیمات دمو با اجرای مجدد جایگزین می‌شوند؛ سایر نوشته‌ها حذف نمی‌شوند و صفحه اصلی، هدر، فوتر، منوها و صفحات قوانین به صورت خودکار با ۱۴ ویجت ۱۰۰٪ قابل ویرایش المنتور تنظیم می‌گردند:
+                        پیش از درون‌ریزی نسخه پشتیبان تهیه کنید. محتوای برگه‌ها و تنظیمات دمو با اجرای مجدد جایگزین می‌شوند؛ سایر نوشته‌ها حذف نمی‌شوند و صفحه اصلی، هدر، فوتر، منوها و صفحات قوانین به صورت خودکار با ۱۴ ویجت قابل ویرایش المنتور تنظیم می‌گردند:
                     </p>
 
                     <div style="margin:18px 0;">
@@ -300,8 +301,8 @@ class Demo_Seeder {
                     <h3 style="margin:0 0 12px;font-size:17px;color:#FDD05B;font-weight:900;">محتویات پکیج دمو و ۱۴ ویجت اختصاصی المنتور</h3>
                     <ul style="margin:0 0 18px;padding:0 18px 0 0;font-size:13px;line-height:1.95;color:#E5E7EB;">
                         <li><strong>هدر و فوترساز المنتوری:</strong> ویجت‌های `zarincode_header` و `zarincode_footer` با قابلیت ویرایش کامل لوگو، منو، دکمه‌ها و بج‌های اعتماد.</li>
-                        <li><strong>صفحه اصلی بنتو (Crextio + Webinex):</strong> چیده شده با ۱۱ ویجت اختصاصی المنتور (هیرو، اسلایدر تکنولوژی‌ها، ۶ خدمت، مارکت‌پلیس محصولات، نمونه‌کارها، چرا زرین کد، جدول تعرفه ۴ تبه، بنر تخفیف ۵۰٪، مراحل اجرا، نظرات مشتریان و وبلاگ).</li>
-                        <li><strong>۱۰۰٪ قابل ویرایش در المنتور:</strong> تمامی متن‌ها، کارت‌ها (Repeaters)، آیکون‌ها، تصاویر، لینک‌ها، بج‌ها، رنگ‌ها و تایپوگرافی هر ۱۴ ویجت مستقیماً از پنل المنتور قابل تغییرند.</li>
+                        <li><strong>صفحه اصلی بنتو (Crextio + Webinex):</strong> چیده شده با ۱۱ ویجت اختصاصی المنتور (هیرو، اسلایدر تکنولوژی‌ها، ۶ خدمت، مارکت‌پلیس محصولات، نمونه‌کارها، چرا زرین کد، جدول تعرفه ۴ تبه، دعوت به شرح پروژه، مراحل اجرا، نظرات مشتریان و وبلاگ).</li>
+                        <li><strong>قابل ویرایش در المنتور:</strong> تمامی متن‌ها، کارت‌ها (Repeaters)، آیکون‌ها، تصاویر، لینک‌ها، بج‌ها، رنگ‌ها و تایپوگرافی هر ۱۴ ویجت مستقیماً از پنل المنتور قابل تغییرند.</li>
                         <li><strong>مارکت‌پلیس محصولات ووکامرس:</strong> ۸ محصول آماده به همراه فیلد اختصاصی <strong>«لینک پیش‌نمایش زنده دمو»</strong> و آکاردئون حرفه‌ای گارانتی و سوالات متداول.</li>
                         <li><strong>۶ برگه حقوقی کامل:</strong> قوانین و مقررات، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA (انگلیسی).</li>
                     </ul>
@@ -319,6 +320,7 @@ class Demo_Seeder {
     }
 
     private static function make_elementor_section( string $widget_type, array $settings = [] ): array {
+        $settings=Service_Demo::settings($widget_type,$settings);
         return [
             'id'       => self::gen_id(),
             'elType'   => 'section',
@@ -539,7 +541,8 @@ class Demo_Seeder {
             ],
         ];
 
-        foreach ( $services_data as $srv ) {
+        foreach ( $services_data as $i=>$srv ) {
+            $srv=Service_Demo::record($srv,'service',$i);
             $term = term_exists( $srv['cat'], 'zc_service_cat' );
             if ( ! $term ) {
                 $term = wp_insert_term( $srv['cat'], 'zc_service_cat' );
@@ -556,10 +559,10 @@ class Demo_Seeder {
                     '_zc_srv_icon'              => $srv['icon'],
                     '_zc_srv_price_range'       => $srv['price'],
                     '_zc_srv_old_price'         => $srv['old_p'],
-                    '_zc_srv_discount'          => '50%',
+                    '_zc_srv_discount'          => '',
                     '_zc_srv_delivery_mode'     => 'دورکاری و قرارداد رسمی',
-                    '_zc_srv_refund_guarantee'  => 'دارد (۱۰۰٪ تضمینی)',
-                    '_zc_srv_quality_guarantee' => 'دارد (استاندارد ژاکت و تم‌فارست)',
+                    '_zc_srv_refund_guarantee'  => 'طبق توافق و سیاست منتشرشده',
+                    '_zc_srv_quality_guarantee' => 'معیار پذیرش مندرج در توافق',
                     '_zc_srv_prepayment'        => '50%',
                     '_zc_srv_duration'          => $srv['duration'],
                     '_zc_srv_reports_count'     => '۵ بار در روند پروژه',
@@ -693,7 +696,8 @@ class Demo_Seeder {
             ],
         ];
 
-        foreach ( $projects as $prj ) {
+        foreach ( $projects as $i=>$prj ) {
+            $prj=Service_Demo::record($prj,'project',$i);
             $post_id = self::upsert_post_with_elementor(
                 'zc_project',
                 $prj['slug'],
@@ -852,7 +856,8 @@ class Demo_Seeder {
             ],
         ];
 
-        foreach ( $items as $it ) {
+        foreach ( $items as $i=>$it ) {
+            $it=Service_Demo::record($it,'product',$i);
             $product_id=self::upsert_post_with_elementor(
                 'product',
                 $it['slug'],
@@ -899,20 +904,17 @@ class Demo_Seeder {
      */
     public static function seed_elementor_pages(): void {
         $home_widgets = [
-            [ 'widget' => 'zarincode_brands',       'sc' => '[zarincode_widget type="brands"]' ],
-            [ 'widget' => 'zarincode_services',     'sc' => '[zarincode_widget type="services"]' ],
-            [ 'widget' => 'zarincode_products',     'sc' => '[zarincode_widget type="products"]' ],
-            [ 'widget' => 'zarincode_portfolio',    'sc' => '[zarincode_widget type="portfolio"]' ],
-            [ 'widget' => 'zarincode_why_us',       'sc' => '[zarincode_widget type="why_us"]' ],
-            [ 'widget' => 'zarincode_pricing',      'sc' => '[zarincode_widget type="pricing"]' ],
-            [ 'widget' => 'zarincode_promo',        'sc' => '[zarincode_widget type="promo"]' ],
-            [ 'widget' => 'zarincode_steps',        'sc' => '[zarincode_widget type="steps"]' ],
-            [ 'widget' => 'zarincode_testimonials', 'sc' => '[zarincode_widget type="testimonials"]' ],
-            [ 'widget' => 'zarincode_blog',         'sc' => '[zarincode_widget type="blog"]' ],
+            ['widget'=>'zarincode_brands','sc'=>'[zarincode_widget type="brands"]'],
+            ['widget'=>'zarincode_services','sc'=>'[zarincode_widget type="services"]'],
+            ['widget'=>'zarincode_steps','sc'=>'[zarincode_widget type="steps"]'],
+            ['widget'=>'zarincode_portfolio','sc'=>'[zarincode_widget type="portfolio"]'],
+            ['widget'=>'zarincode_why_us','sc'=>'[zarincode_widget type="why_us"]'],
+            ['widget'=>'zarincode_blog','sc'=>'[zarincode_widget type="blog"]'],
+            ['widget'=>'zarincode_promo','sc'=>'[zarincode_widget type="promo"]'],
         ];
 
         require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
-        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition()];
+        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition(Service_Demo::hero())];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
             $kind=substr($hw['widget'],strlen('zarincode_'));
@@ -948,9 +950,9 @@ class Demo_Seeder {
             'services'             => [ 'title' => 'خدمات تخصصی زرین کد',                       'key' => 'services-page' ],
             'projects-portfolio'   => [ 'title' => 'نمونه‌کارها و پروژه‌های موفق زرین کد',       'key' => 'projects-page' ],
             'about-us'             => [ 'title' => 'درباره آژانس زرین کد و احسان نادری پناه',    'key' => 'about-page' ],
-            'contact-us'           => [ 'title' => 'تماس با ما و ثبت سفارش (09024561001)',       'key' => 'contact-page' ],
+            'contact-us'           => [ 'title' => 'شرح پروژه و ارتباط با زرین کد',       'key' => 'contact-page' ],
             'terms-and-conditions' => [ 'title' => 'قوانین و شرایط و مقررات حاکم بر کشور ایران', 'key' => 'terms' ],
-            'warranty-policy'      => [ 'title' => 'شرایط گارانتی و پشتیبانی فنی یک‌ساله',       'key' => 'warranty' ],
+            'warranty-policy'      => [ 'title' => 'شرایط پشتیبانی و گارانتی',       'key' => 'warranty' ],
             'privacy-policy'       => [ 'title' => 'سیاست حفظ حریم خصوصی کاربران',               'key' => 'privacy' ],
             'refund-policy'        => [ 'title' => 'شرایط و ضوابط ضمانت بازگشت وجه',             'key' => 'refund' ],
             'gdpr-compliance'      => [ 'title' => 'قوانین حفاظت از داده‌های عمومی (GDPR)',      'key' => 'gdpr' ],
@@ -958,8 +960,8 @@ class Demo_Seeder {
         ];
 
         foreach ( $inner_pages as $slug => $cfg ) {
-            $tree = [ self::make_elementor_section( 'zarincode_page_section', [ 'section_key' => $cfg['key'] ] ) ];
-            $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos']][$slug]??[];
+            $tree = Service_Demo::legal($slug) ?: [ self::make_elementor_section( 'zarincode_page_section', [ 'section_key' => $cfg['key'] ] ) ];
+            $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos','testimonials']][$slug]??[];
             foreach($extras as $extra){
                 $extraSettings=[];
                 if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
@@ -967,7 +969,7 @@ class Demo_Seeder {
                 $tree[]=self::make_elementor_section('zarincode_'.$extra,$extraSettings);
             }
 
-            $sc   = '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
+            $sc   = Service_Demo::legal_content($slug) ?: '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
             $pid  = self::upsert_post_with_elementor( 'page', $slug, $cfg['title'], $tree, $sc );
             if ( 'privacy-policy' === $slug ) {
                 update_option( 'wp_page_for_privacy_policy', $pid );
@@ -1003,33 +1005,18 @@ class Demo_Seeder {
      * 6. SEED BLOG ARTICLES
      */
     public static function seed_blog_posts(): void {
-        $blog_posts = [
-            [
-                'slug'    => 'elementor-based-wordpress-theme-architecture',
-                'title'   => 'معماری قالب‌های وردپرس المنتور بیس مطابق استاندارد ژاکت و تم‌فارست',
-                'content' => '<p>در این مقاله تخصصی به قلم <strong>احسان نادری پناه (Zarincode.com - 09024561001)</strong> بررسی می‌کنیم که چگونه با تفکیک وظایف قالب و افزونه هسته (Plugin Territory)، استفاده از پنل Redux Framework و کدنویسی ویجت‌های اختصاصی المنتور می‌توان یک قالب فروشگاهی و شرکتی فوق‌حرفه‌ای با رنگ‌بندی زرد سانشاین Crextio طراحی کرد.</p>',
-            ],
-            [
-                'slug'    => 'website-and-social-media-seo-strategy-2026',
-                'title'   => 'راهنمای جامع سئو سایت و سئو شبکه‌های اجتماعی برای افزایش ۳ برابری فروش',
-                'content' => '<p>ترکیب سئوی تکنیکال گوگل و سئوی الگوریتمی شبکه‌های اجتماعی (اینستاگرام، لینکدین و یوتیوب) رمز موفقیت برندهای پیشرو در سال ۲۰۲۶ است. تیم زرین کد با استراتژی داده‌محور، مسیر رسیدن به رتبه اول گوگل و اکسپلور را هموار می‌کند.</p>',
-            ],
-            [
-                'slug'    => 'ready-made-software-source-codes-benefits',
-                'title'   => 'مزایای استفاده از افزونه‌ها و سورس‌کدهای آماده استاندارد در پروژه‌های نرم‌افزاری',
-                'content' => '<p>سورس‌کدها، قالب‌ها و افزونه‌های آماده کدنویسی‌شده توسط احسان نادری پناه در فروشگاه زرین کد با داشتن مستندات کامل، کدهای تمیز PHP/JS و ۶ ماه گارانتی رایگان، زمان و هزینه راه‌اندازی کسب‌وکار آنلاین شما را تا ۷۰ درصد کاهش می‌دهند.</p>',
-            ],
-        ];
+        $blog_posts = Service_Demo::blog();
 
         foreach ( $blog_posts as $bp ) {
-            self::upsert_post_with_elementor(
+            $post_id=self::upsert_post_with_elementor(
                 'post',
                 $bp['slug'],
                 $bp['title'],
                 [],
                 $bp['content'],
-                wp_strip_all_tags( $bp['content'] )
+                wp_trim_words(wp_strip_all_tags( $bp['content'] ),34)
             );
+            wp_update_post(['ID'=>$post_id,'comment_status'=>'open']);$term=term_exists('راهنمای تصمیم و اجرا','category');if(!$term)$term=wp_insert_term('راهنمای تصمیم و اجرا','category');if(!is_wp_error($term))wp_set_post_terms($post_id,[(int)(is_array($term)?$term['term_id']:$term)],'category');
         }
     }
 
@@ -1120,8 +1107,9 @@ class Demo_Seeder {
             'enable_color_switcher'  => true,
             'primary_font'           => 'Vazirmatn',
             'persian_digits'         => true,
-            'shop_hero_title'        => 'مارکت‌پلیس اختصاصی افزونه، قالب وردپرس و سورس‌کدهای آماده زرین کد',
-            'product_warranty_badge' => 'کدنویسی اختصاصی توسط احسان نادری پناه + آپدیت مادام‌العمر و ۶ ماه پشتیبانی رایگان',
+            'shop_hero_title'        => 'ابزارهای مکمل اجرای پروژه — کاتالوگ نمایشی',
+            'product_warranty_badge' => 'پیش‌نیازها و شرایط پشتیبانی هر محصول را پیش از خرید بررسی کنید',
+            'social_whatsapp'=>'https://wa.me/989024561001','social_github'=>'https://github.com/Ehsan-Np','logo_monogram'=>'ZC','floating_contact_action'=>'socials','floating_contact_label'=>'راه‌های ارتباطی','topbar_show_phone'=>false,'topbar_show_dev'=>false,'enable_topbar'=>false,'blog_sidebar_layout'=>'both','blog_article_ratings'=>true,
         ];
         update_option( 'zarincode_opt', $defaults );
     }
@@ -1131,7 +1119,7 @@ class Demo_Seeder {
      */
     private static function demo_clients():array {
         $clients=[];for($i=1;$i<=6;$i++)$clients[]=['name'=>'لوگوی مشتری شما — نمونه '.$i,'logo'=>['url'=>get_template_directory_uri().'/assets/images/demo-client-'.$i.'.png'],'alt'=>'لوگوی نمایشی قابل جایگزینی','service'=>'نمونه چیدمان همکاری','link'=>['url'=>home_url('/projects-portfolio/')]];
-        return ['title'=>'همراه برندهای پیشرو','description'=>'لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.','clients'=>$clients];
+        return ['title'=>'نمونه چیدمان همکاری‌های شما','description'=>'لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.','clients'=>$clients];
     }
     private static function demo_technologies(int $limit=8):array {
         $m=\Zarincode\Runtime260\Widgets\Native_Design::model('brands');$rows=$m['repeaters']['marquee_track_items_1']['default'];
@@ -1144,13 +1132,13 @@ class Demo_Seeder {
     private static function seed_studio_pages():void {
         self::upsert_post_with_elementor('page','trust-and-credentials','اعتبارنامه‌ها و شفافیت کسب‌وکار',[self::make_elementor_section('heading',['title'=>'اعتبار، با امکان استعلام','header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>نشان‌های این بخش تنها پس از صدور برای دامنه شما و ثبت کد رسمی در ویجت اعتبارنامه‌ها نمایش داده می‌شوند. خالی بودن بخش به معنی دریافت مجوز نیست.</p>']),self::make_elementor_section('zarincode_trust_badges',[])],'');
 
-        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=\Zarincode\Runtime260\Widgets\Pricing_Features::defaults($m);$cards=[];
+        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=Service_Demo::pricing_features($m);$cards=[];
         foreach($m['repeaters']['pricing_grid_items_1']['default'] as $i=>$plan){
             $items=[];foreach($features as $feature)if($feature['plan_key']===($plan['plan_key']??$plan['_id']))$items[]=['text'=>$feature['text'],'icon'=>$feature['icon'],'included'=>'yes'];
             $cards[]=['id'=>self::gen_id(),'elType'=>'widget','widgetType'=>'zarincode_pricing_plan','settings'=>['eyebrow'=>'طراحی وب‌سایت','title'=>$plan['heading_text_1'],'price'=>$plan['div_text_3']??'با مشاوره','description'=>$plan['div_text_1']??'','features'=>$items,'skin'=>$i===1?'night':'editorial','featured'=>$i===1?'yes':'','link'=>['url'=>home_url('/contact-us/')]],'elements'=>[]];
         }
         $grid=['id'=>self::gen_id(),'elType'=>'container','settings'=>['content_width'=>'full','css_classes'=>'zc-pricing-composition'],'elements'=>$cards];
-        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',[self::make_elementor_section('heading',['title'=>'سرمایه‌گذاری شفاف برای رشد دیجیتال','header_size'=>'h1']),$grid,self::make_elementor_section('zarincode_service_matrix',[])],'');
+        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',[self::make_elementor_section('heading',['title'=>'تعرفه خدمات؛ برآورد نهایی پس از نیازسنجی','header_size'=>'h1']),self::make_elementor_section('zarincode_pricing',[]),$grid,self::make_elementor_section('zarincode_service_matrix',[])],'');
         self::upsert_post_with_elementor('page','seo-performance','سئو و بهبود عملکرد',[self::make_elementor_section('heading',['title'=>'تخصص سئو؛ از تحلیل تا رشد پایدار','header_size'=>'h1']),self::make_elementor_section('zarincode_seo_audit',[])],'');
         self::upsert_post_with_elementor('page','technologies','فناوری‌ها و تخصص تیم زرین کد',[self::make_elementor_section('zarincode_brands',self::demo_technologies())],'');
     }
@@ -1192,6 +1180,7 @@ class Demo_Seeder {
         self::seed_blog_posts();
         self::seed_featured_images();
         self::seed_navigation_menus();
+        Service_Demo::sidebars();
         if(class_exists('Elementor\\Plugin'))\Elementor\Plugin::instance()->files_manager->clear_cache();
         flush_rewrite_rules( false );
     }

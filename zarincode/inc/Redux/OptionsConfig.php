@@ -71,7 +71,7 @@ class OptionsConfig {
                     [ 'id' => 'brand_slogan',          'type' => 'text',   'title' => 'شعار رسمی برند', 'default' => 'آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده' ],
                     [ 'id' => 'developer_name',        'type' => 'text',   'title' => 'نام توسعه‌دهنده و مدیر فنی', 'default' => 'احسان نادری پناه (Ehsan NaderiPanah)' ],
                     [ 'id' => 'official_website',      'type' => 'text',   'title' => 'آدرس وب‌سایت رسمی برند', 'default' => 'https://zarincode.com' ],
-                    [ 'id' => 'logo_monogram',         'type' => 'text',   'title' => 'حرف مونوگرام دایره‌ای لوگو', 'subtitle' => 'در صورت عدم انتخاب تصویر لوگو نمایش داده می‌شود', 'default' => 'Z' ],
+                    [ 'id' => 'logo_monogram',         'type' => 'text',   'title' => 'حرف مونوگرام دایره‌ای لوگو', 'subtitle' => 'در صورت عدم انتخاب تصویر لوگو نمایش داده می‌شود', 'default' => 'ZC' ],
                     [ 'id' => 'logo_light',            'type' => 'media',  'title' => 'تصویر لوگو (حالت روشن)', 'subtitle' => 'فرمت PNG یا SVG شفاف پیشنهاد می‌شود', 'default' => '' ],
                     [ 'id' => 'logo_dark',             'type' => 'media',  'title' => 'تصویر لوگو (حالت تیره / فوتر)', 'default' => '' ],
                     [ 'id' => 'favicon_url',           'type' => 'media',  'title' => 'فاوآیکون اختصاصی سایت', 'default' => '' ],
@@ -272,6 +272,8 @@ class OptionsConfig {
             'article_experience' => [
                 'title'=>'تجربه مطالعه و اشتراک‌گذاری','icon'=>'dashicons-welcome-write-blog','redux'=>'el el-book','desc'=>'فهرست مطالب مقاله و راه‌های انتشار محتوا را تنظیم کنید. پیوند حساب‌های برند در بخش ارتباط با مشتری ثبت می‌شود.',
                 'fields'=>[
+                    ['id'=>'blog_sidebar_layout','type'=>'select','title'=>'ستون‌های کناری مقاله','options'=>['none'=>'بدون ستون کناری','right'=>'ستون راست','left'=>'ستون چپ','both'=>'دو ستون در دو طرف'],'subtitle'=>'از نمایش ← ابزارک‌ها، ستون وبلاگ (راست) و مقالات — ستون چپ را مدیریت کنید. ستون خالی پنهان می‌ماند.','default'=>'right'],
+                    ['id'=>'blog_article_ratings','type'=>'switch','title'=>'امتیاز اختیاری همراه دیدگاه مقاله','subtitle'=>'فقط امتیاز دیدگاه‌های تأییدشده محاسبه می‌شود. Article واجد تضمین نمایش ستاره گوگل نیست.','default'=>true],
                     ['id'=>'blog_toc_enabled','type'=>'switch','title'=>'نمایش فهرست مطالب مقاله','subtitle'=>'فهرست خودکار برای نوشته‌های دارای دست‌کم دو عنوان ساخته می‌شود؛ تیترهای H2 تا H6 پشتیبانی می‌شوند.','default'=>true],
                     ['id'=>'blog_toc_columns','type'=>'select','title'=>'ستون‌های فهرست مطالب در دسکتاپ','options'=>['1'=>'یک ستون','2'=>'دو ستون','3'=>'سه ستون','4'=>'چهار ستون'],'subtitle'=>'در تبلت حداکثر دو ستون و در تلفن همراه یک ستون نمایش داده می‌شود.','default'=>'2'],
                 ],
@@ -300,8 +302,10 @@ class OptionsConfig {
                     [ 'id'=>'social_x','type'=>'text','title'=>'پیوند رسمی ایکس','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id'=>'social_facebook','type'=>'text','title'=>'پیوند رسمی فیسبوک','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id' => 'social_linkedin',          'type' => 'text',   'title' => 'آدرس لینکدین رسمی', 'default' => 'https://linkedin.com/company/zarincode' ],
-                    [ 'id' => 'enable_floating_contact',  'type' => 'switch', 'title' => 'نمایش دکمه شناور مشاوره و تماس مستقیم (09024561001) در پایین صفحات', 'default' => true ],
-                    [ 'id' => 'floating_contact_label',   'type' => 'text',   'title' => 'متن دکمه شناور مشاوره سریع', 'default' => 'مشاوره فوری: 09024561001' ],
+                    [ 'id'=>'floating_contact_action','type'=>'select','title'=>'عملکرد دکمه شناور','options'=>['socials'=>'فهرست شبکه‌های اجتماعی','whatsapp'=>'واتساپ','telegram'=>'تلگرام','phone'=>'تماس تلفنی','custom'=>'پیوند دلخواه'],'subtitle'=>'برای شبکه‌ها ابتدا پیوند حساب را تنظیم کنید. شبکه‌های تکمیلی از نمایش ← شبکه‌های اجتماعی اضافه می‌شوند.','default'=>'socials' ],
+                    [ 'id'=>'floating_contact_url','type'=>'text','title'=>'پیوند دلخواه دکمه شناور','default'=>'' ],
+                    [ 'id' => 'enable_floating_contact',  'type' => 'switch', 'title' => 'نمایش راه ارتباطی شناور', 'default' => true ],
+                    [ 'id' => 'floating_contact_label',   'type' => 'text',   'title' => 'متن دکمه شناور مشاوره سریع', 'default' => 'راه‌های ارتباطی' ],
                 ],
             ],
 
@@ -1106,21 +1110,12 @@ class OptionsConfig {
     public function output_footer_utilities(): void {
         $phone = zarincode_get_option( 'contact_phone', '09024561001' );
 
-        // 1. Floating Quick Contact & Consultation Button
-        if ( zarincode_get_option( 'enable_floating_contact', true ) ) :
-            $label = zarincode_get_option( 'floating_contact_label', 'مشاوره فوری: 09024561001' );
-            ?>
-            <div class="zc-floating-quick-contact" style="position:fixed;bottom:22px;right:22px;z-index:9980;display:flex;flex-direction:column;align-items:center;gap:10px;">
-                <?php if ( zarincode_get_option( 'enable_back_to_top', true ) ) : ?>
-                    <button type="button" id="zc-back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="بازگشت به بالای صفحه" style="width:42px;height:42px;border-radius:50%;background:#2A2C31;color:#FDD05B;border:2px solid rgba(253,208,91,0.65);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.22);transition:transform 0.2s ease;">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                <?php endif; ?>
-                <a href="tel:<?php echo esc_attr( $phone ); ?>" title="<?php echo esc_attr( $label ); ?>" aria-label="<?php echo esc_attr( $label ); ?>" class="zc-floating-phone-btn" style="width:46px;height:46px;border-radius:50%;background:var(--color-accent);color:#2A2C31;border:2px solid #2A2C31;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 10px 24px rgba(42,44,49,0.25);text-decoration:none;transition:transform 0.2s ease;">
-                    <i class="fa-solid fa-phone-volume"></i>
-                </a>
-            </div>
-        <?php endif;
+        // Independent visibility: turning off contact does not disable back-to-top.
+        if(zarincode_get_option('enable_floating_contact',true)||zarincode_get_option('enable_back_to_top',true)){
+            echo '<div class="zc-floating-quick-contact">';
+            if(zarincode_get_option('enable_back_to_top',true))echo '<button type="button" id="zc-back-to-top-btn" aria-label="بازگشت به بالای صفحه" onclick="window.scrollTo({top:0,behavior:matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches?&quot;instant&quot;:&quot;smooth&quot;});"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>';
+            if(zarincode_get_option('enable_floating_contact',true))echo \Zarincode\Theme\Core\Social_Links::floating();echo '</div>';
+        }
 
         // 2. GDPR Cookie Consent Bar
         if ( zarincode_get_option( 'enable_gdpr_cookie_bar', false ) ) :

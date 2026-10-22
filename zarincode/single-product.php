@@ -19,6 +19,8 @@ get_header();
 while ( have_posts() ) :
     the_post();
     $post_id      = get_the_ID();
+    $zc_wc_product=function_exists('wc_get_product')?wc_get_product($post_id):null;
+    $changelog=get_post_meta($post_id,'_zc_product_changelog',true);
     $slug         = get_post_field( 'post_name', $post_id );
     $title        = get_the_title();
     $phone        = zarincode_get_option( 'contact_phone', '09024561001' );
@@ -28,18 +30,18 @@ while ( have_posts() ) :
     // Product metadata with rich defaults
     $raw_price    = get_post_meta( $post_id, '_zc_prod_price_display', true );
     if ( ! $raw_price ) {
-        $wc_price  = get_post_meta( $post_id, '_regular_price', true ) ?: '2490000';
+        $wc_price  = get_post_meta( $post_id, '_regular_price', true ) ?: '0';
         $raw_price = zarincode_fa_digits( number_format( (int) $wc_price ) );
     }
-    $old_price    = get_post_meta( $post_id, '_zc_prod_old_price', true ) ?: '۳,۹۰۰,۰۰۰';
-    $version      = get_post_meta( $post_id, '_zc_prod_version', true ) ?: 'v2.5.0';
+    $old_price    = get_post_meta( $post_id, '_zc_prod_old_price', true ) ?: '';
+    $version      = get_post_meta( $post_id, '_zc_prod_version', true ) ?: 'اعلام نشده';
     $cat_badge    = get_post_meta( $post_id, '_zc_prod_cat_badge', true ) ?: 'محصول دیجیتال آماده';
-    $sales_cnt    = get_post_meta( $post_id, '_zc_prod_sales_count', true ) ?: '+۳۸۰ فروش موفق';
-    $compat       = get_post_meta( $post_id, '_zc_prod_compat', true ) ?: 'WordPress 6.x / 7.x • PHP 8.1 - 8.4 • Elementor & WooCommerce';
+    $sales_cnt    = $zc_wc_product ? number_format_i18n($zc_wc_product->get_total_sales()) : '—';
+    $compat       = get_post_meta( $post_id, '_zc_prod_compat', true ) ?: 'پیش‌نیازها را در توضیحات محصول بررسی کنید';
     $icon_class   = get_post_meta( $post_id, '_zc_prod_icon', true ) ?: 'fa-solid fa-Layer-group';
-    $tags_str     = get_post_meta( $post_id, '_zc_prod_tags', true ) ?: 'PHP 8.4,Elementor,WooCommerce,Open Source,RTL Ready';
+    $tags_str     = get_post_meta( $post_id, '_zc_prod_tags', true ) ?: '';
     $tags         = array_map( 'trim', explode( ',', $tags_str ) );
-    $updated_date = get_post_meta( $post_id, '_zc_prod_updated', true ) ?: 'مهر ۱۴۰۵';
+    $updated_date = get_post_meta( $post_id, '_zc_prod_updated', true ) ?: get_the_modified_date();
     $demo_url     = get_post_meta( $post_id, '_zc_prod_demo_url', true );
     if ( ! $demo_url ) {
         $demo_url = get_post_meta( $post_id, 'demo_url', true ) ?: home_url( '/?demo_preview=' . $slug );
@@ -62,7 +64,7 @@ while ( have_posts() ) :
                 <span style="font-weight:800;color:var(--zc-text-primary);"><?php echo esc_html( $title ); ?></span>
             </div>
             <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;">
-                <span style="color:#059669;font-weight:800;"><i class="fa-solid fa-circle-check"></i> اورجینال و تست‌شده در آزمایشگاه فنی زرین کد</span>
+                <span style="color:#059669;font-weight:800;"><i class="fa-solid fa-circle-check"></i> مشخصات و شرایط را پیش از خرید بررسی کنید</span>
                 <span class="zc-meta-tag" dir="ltr"><?php echo esc_html( $version ); ?></span>
             </div>
         </nav>
@@ -95,7 +97,7 @@ while ( have_posts() ) :
                                     <i class="fa-solid fa-code"></i> ZARINCODE OFFICIAL COMMERCIAL RELEASE • <?php echo esc_html( $version ); ?>
                                 </div>
                                 <h2 style="font-size:1.12rem;font-weight:900;color:#fff;margin:0 0 0.65rem;line-height:1.55;">
-                                    معماری استاندارد شیءگرا (OOP)، سرعت فوق‌العاده و سورس‌کد ۱۰۰٪ باز
+                                    بررسی ویژگی‌ها، پیش‌نیازها و شرایط محصول
                                 </h2>
                                 <p style="color:#D1D5DB;font-size:0.9rem;line-height:1.85;margin:0 0 1.25rem;">
                                     <?php echo wp_kses_post( get_the_excerpt() ?: get_the_content() ); ?>
@@ -120,19 +122,19 @@ while ( have_posts() ) :
                         <div class="zc-prod-kpi-strip" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-top:1.75rem;padding-top:1.35rem;border-top:1px solid rgba(255,255,255,0.1);">
                             <div style="background:rgba(255,255,255,0.05);padding:0.85rem;border-radius:1rem;text-align:center;">
                                 <div style="font-size:1.05rem;font-weight:900;color:var(--color-accent);"><?php echo esc_html( $sales_cnt ); ?></div>
-                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">تعداد فروش و نصب فعال</div>
+                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">فروش ثبت‌شده ووکامرس</div>
                             </div>
                             <div style="background:rgba(255,255,255,0.05);padding:0.85rem;border-radius:1rem;text-align:center;">
-                                <div style="font-size:1.05rem;font-weight:900;color:#34D399;">۱۰۰٪ سورس باز</div>
-                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">بدون IonCube یا قفل</div>
+                                <div style="font-size:1.05rem;font-weight:900;color:#34D399;">مجوز استفاده</div>
+                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">مطابق مشخصات محصول</div>
                             </div>
                             <div style="background:rgba(255,255,255,0.05);padding:0.85rem;border-radius:1rem;text-align:center;">
                                 <div style="font-size:1.05rem;font-weight:900;color:#fff;" dir="ltr"><?php echo esc_html( $version ); ?></div>
-                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">نسخه پایدار و نهایی</div>
+                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">نسخه اعلام‌شده محصول</div>
                             </div>
                             <div style="background:rgba(255,255,255,0.05);padding:0.85rem;border-radius:1rem;text-align:center;">
-                                <div style="font-size:1.05rem;font-weight:900;color:var(--color-accent);">آپدیت دائمی</div>
-                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">+ ۶ ماه پشتیبانی رایگان</div>
+                                <div style="font-size:1.05rem;font-weight:900;color:var(--color-accent);">پشتیبانی شفاف</div>
+                                <div style="font-size:0.74rem;color:#9CA3AF;margin-top:0.2rem;">مطابق سیاست این محصول</div>
                             </div>
                         </div>
                     </div>
@@ -142,7 +144,7 @@ while ( have_posts() ) :
                         <div style="display:flex;align-items:center;gap:0.75rem;">
                             <i class="fa-solid fa-bolt" style="font-size:1.35rem;color:var(--color-accent-contrast);background:var(--color-accent);width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></i>
                             <div>
-                                <div style="font-weight:900;font-size:0.9rem;">فایل کامل محصول + مستندات فارسی + درون‌ریز خودکار آماده دانلود است</div>
+                                <div style="font-weight:900;font-size:0.9rem;">پیش از سفارش، توضیحات و شیوه تحویل محصول را بررسی کنید</div>
                                 <div style="font-size:0.77rem;color:var(--zc-text-secondary);">بلافاصله پس از تکمیل سفارش، لینک دانلود مستقیم در پنل کاربری و ایمیل شما فعال می‌شود.</div>
                             </div>
                         </div>
@@ -168,35 +170,31 @@ while ( have_posts() ) :
                         <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-specs" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
                             <i class="fa-solid fa-sliders"></i> مشخصات فنی
                         </button>
-                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-changelog" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                        <?php if($changelog): ?><button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-changelog" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
                             <i class="fa-solid fa-code-commit"></i> لیست تغییرات
-                        </button>
-                        <button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-faq" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
+                        </button><?php endif; ?>
+                        <?php if(\Zarincode\Theme\Core\Product_Policies::get($post_id)): ?><button type="button" class="zc-btn zc-btn-glass zc-prod-tab-btn" data-prod-tab="tab-faq" style="padding:0.55rem 0.65rem;font-size:0.78rem;width:100%;">
                             <i class="fa-solid fa-shield-halved"></i> گارانتی و سوالات
-                        </button>
+                        </button><?php endif; ?>
                     </div>
 
                     <!-- TAB 1: Overview & Key Features -->
                     <div id="tab-overview" class="zc-prod-tab-pane" style="display:block;">
                         <div style="font-size:0.96rem;line-height:2;color:var(--zc-text-primary);margin-bottom:2rem;">
                             <?php the_content(); ?>
-                            <p>
-                                این محصول در واحد مهندسی نرم‌افزار <strong>زرین کد (Zarincode.com)</strong> توسط <strong>احسان نادری پناه</strong> با رعایت دقیق‌ترین استانداردهای امنیتی، بهینه‌سازی کوئری‌ها و معماری ماژولار کدنویسی شده است. تمامی بخش‌ها به صورت فارسی و راست‌چین استاندارد (RTL) با فونت وزیرمتن طراحی شده‌اند و هیچ‌گونه وابستگی به سرورهای خارجی یا لایسنس‌های قفل‌شده ندارند.
-                            </p>
+
                         </div>
 
                         <h3 style="font-size:1.2rem;font-weight:900;margin:0 0 1.25rem;">
-                            <i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> قابلیت‌ها و مزیت‌های رقابتی این محصول
+                            <i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> پیش از انتخاب بررسی کنید
                         </h3>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-bottom:1.5rem;">
                             <?php
                             $highlights = [
-                                [ 'icon' => 'fa-solid fa-code', 'title' => 'سورس‌کد ۱۰۰٪ باز و تمیز (Clean OOP Code)', 'desc' => 'کدنویسی شیءگرا و استاندارد بدون هیچ‌گونه رمزنگاری IonCube جهت توسعه آسان.' ],
-                                [ 'icon' => 'fa-solid fa-gauge-high', 'title' => 'بهینه‌سازی شده برای سرعت زیر ۱ ثانیه', 'desc' => 'کسب نمره بالای ۹۵ در GTmetrix و Google PageSpeed Insights.' ],
-                                [ 'icon' => 'fa-solid fa-mobile-screen', 'title' => 'واکنش‌گرایی ۱۰۰٪ (فول ریسپانسیو)', 'desc' => 'نمایش بی‌نقص در موبایل، تبلت، لپ‌تاپ و مانیتورهای عریض.' ],
-                                [ 'icon' => 'fa-solid fa-wand-magic-sparkles', 'title' => 'نصب و درون‌ریزی دمو با یک کلیک', 'desc' => 'راه‌اندازی کامل محصول دقیقاً مشابه پیش‌نمایش در کمتر از ۳ دقیقه.' ],
-                                [ 'icon' => 'fa-solid fa-shield-halved', 'title' => 'امنیت چندلایه و استاندارد', 'desc' => 'ایمن‌سازی شده در برابر حملات XSS، CSRF و SQL Injection با Nonceهای استاندارد.' ],
-                                [ 'icon' => 'fa-solid fa-headset', 'title' => 'پشتیبانی مستقیم احسان نادری پناه', 'desc' => '۶ ماه پشتیبانی فنی رایگان و پاسخگویی مستقیم تلفنی و تیکتی (09024561001).' ],
+                                ['icon'=>'fa-solid fa-list-check','title'=>'ویژگی‌های مورد نیاز','desc'=>'قابلیت‌های درج‌شده در توضیحات را با نیاز واقعی پروژه مقایسه کنید.'],
+                                ['icon'=>'fa-solid fa-server','title'=>'سازگاری و پیش‌نیازها','desc'=>'نسخه‌ها، زیرساخت و وابستگی‌های لازم را پیش از سفارش بررسی کنید.'],
+                                ['icon'=>'fa-solid fa-file-contract','title'=>'مجوز استفاده','desc'=>'نوع مجوز و محدودیت استفاده یا توسعه را از مشخصات محصول بخوانید.'],
+                                ['icon'=>'fa-solid fa-headset','title'=>'پشتیبانی و تحویل','desc'=>'روش تحویل و تعهدات پشتیبانی مطابق سیاست این محصول است.'],
                             ];
                             foreach ( $highlights as $hl ) :
                                 ?>
@@ -218,18 +216,7 @@ while ( have_posts() ) :
                         <h3 style="font-size:1.15rem;font-weight:900;margin:0 0 1.25rem;">جدول مشخصات فنی و پیش‌نیازهای سرور</h3>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.85rem;">
                             <?php
-                            $specs = [
-                                'نام محصول'                => $title,
-                                'نسخه فعلی منتشر شده'      => $version . ' (نسخه نهایی و پایدار)',
-                                'توسعه‌دهنده و مالک سورس'  => 'احسان نادری پناه (Zarincode.com)',
-                                'سازگاری فنی'              => $compat,
-                                'نسخه PHP مورد نیاز'       => 'PHP 8.0 / 8.1 / 8.2 / 8.3 / 8.4',
-                                'تایپوگرافی و زبان'        => 'فارسی (RTL استاندارد) + فونت وزیرمتن (Vazirmatn)',
-                                'نوع لایسنس عرضه شده'      => 'اورجینال، سورس باز (Open Source) و بدون محدودیت دامنه',
-                                'نحوه تحویل فایل‌ها'       => 'تحویل و دانلود آنی بلافاصله پس از پرداخت',
-                                'مستندات و فایل راهنما'    => 'دارای مستندات کامل فارسی گام‌به‌گام',
-                                'پشتیبانی و بروزرسانی'     => '۶ ماه پشتیبانی رایگان + آپدیت مادام‌العمر',
-                            ];
+                            $specs = ['نام محصول'=>$title,'نسخه اعلام‌شده'=>$version,'پیش‌نیازها'=>$compat,'آخرین ویرایش اطلاعات'=>$updated_date,'پشتیبانی و مجوز'=>'مطابق توضیحات و سیاست این محصول'];
                             foreach ( $specs as $sk => $sv ) :
                                 ?>
                                 <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:0.95rem 1.15rem;background:rgba(255,255,255,0.8);border:1px solid var(--zc-border-subtle);border-radius:0.95rem;font-size:0.86rem;">
@@ -241,111 +228,11 @@ while ( have_posts() ) :
                     </div>
 
                     <!-- TAB 3: Changelog -->
-                    <div id="tab-changelog" class="zc-prod-tab-pane" style="display:none;">
-                        <h3 style="font-size:1.15rem;font-weight:900;margin:0 0 1.25rem;">تاریخچه بروزرسانی‌ها و تغییرات نسخه (Changelog)</h3>
-                        <div style="display:flex;flex-direction:column;gap:1rem;">
-                            <div class="zc-white-card" style="padding:1.35rem;border-right:4px solid var(--color-accent);">
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
-                                    <strong style="font-size:0.98rem;">نسخه <?php echo esc_html( $version ); ?> — بروزرسانی بزرگ هسته و رابط کاربری Crextio</strong>
-                                    <span class="zc-badge-pill" style="margin:0;">مهر ۱۴۰۵</span>
-                                </div>
-                                <ul style="margin:0;padding-right:1.2rem;font-size:0.86rem;color:var(--zc-text-secondary);line-height:1.9;">
-                                    <li>سازگاری کامل با آخرین نسخه PHP 8.4 و وردپرس 7.x</li>
-                                    <li>ارتقای پنل تنظیمات پیشرفته ۱۶ بخشی و نصب خودکار ایجکس افزونه‌ها</li>
-                                    <li>بهینه‌سازی کامل استایل‌های واکنش‌گرا (موبایل و تبلت) و سرعت بارگذاری</li>
-                                </ul>
-                            </div>
-                            <div class="zc-white-card" style="padding:1.35rem;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
-                                    <strong style="font-size:0.98rem;">نسخه v2.0.0 — افزودن ماژول‌های پیشرفته و درون‌ریز خودکار</strong>
-                                    <span class="zc-meta-tag">تیر ۱۴۰۵</span>
-                                </div>
-                                <ul style="margin:0;padding-right:1.2rem;font-size:0.86rem;color:var(--zc-text-secondary);line-height:1.9;">
-                                    <li>افزودن درون‌ریز یک‌کلیکی دمو و قالب‌های آماده المنتوری</li>
-                                    <li>بهبود امنیت فرم‌های ایجکس و یکپارچگی با درگاه‌های پرداخت شاپرک</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="tab-changelog" class="zc-prod-tab-pane" style="display:none;"><?php echo wpautop(wp_kses_post($changelog)); ?></div>
 
                     <!-- TAB 4: Guarantee & FAQ (Redesigned Professional Crextio Accordion) -->
                     <div id="tab-faq" class="zc-prod-tab-pane" style="display:none;">
-                        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.35rem;">
-                            <div>
-                                <span class="zc-badge-pill" style="margin-bottom:0.35rem;"><i class="fa-solid fa-shield-halved"></i> WARRANTY &amp; BUYER FAQ</span>
-                                <h3 style="font-size:1.2rem;font-weight:900;margin:0;">شرایط گارانتی، بازگشت وجه و سوالات متداول خریداران</h3>
-                            </div>
-                            <a href="<?php echo esc_url( home_url( '/warranty-policy/' ) ); ?>" class="zc-btn zc-btn-glass" style="padding:0.45rem 1rem;font-size:0.8rem;">
-                                مطالعه کامل قوانین گارانتی <i class="fa-solid fa-arrow-left"></i>
-                            </a>
-                        </div>
-
-                        <div class="zc-faq-list">
-                            <div class="zc-faq-item is-open">
-                                <button type="button" class="zc-faq-btn">
-                                    <span class="zc-faq-q-wrap">
-                                        <span class="zc-faq-num">۰۱</span>
-                                        <span>آیا سورس‌کد این محصول کاملاً باز است یا روی دامنه قفل می‌شود؟</span>
-                                    </span>
-                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                                </button>
-                                <div class="zc-faq-body">
-                                    تمامی محصولات عرضه شده در مارکت‌پلیس زرین کد دارای <strong>سورس‌کد ۱۰۰٪ باز (Open Source)</strong> و بدون هیچ‌گونه قفل دامنه، لایسنس محدودکننده یا کدهای رمزنگاری شده (IonCube) هستند تا بتوانید با خیال راحت روی دامنه‌های خود نصب، توسعه و سفارشی‌سازی کنید.
-                                </div>
-                            </div>
-
-                            <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-btn">
-                                    <span class="zc-faq-q-wrap">
-                                        <span class="zc-faq-num">۰۲</span>
-                                        <span>نحوه دریافت فایل‌ها، نصب دمو و پشتیبانی فنی پس از خرید چگونه است؟</span>
-                                    </span>
-                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                                </button>
-                                <div class="zc-faq-body">
-                                    بلافاصله پس از پرداخت آنلاین، لینک دانلود پکیج کامل (شامل فایل اصلی محصول، افزونه‌های همراه، بسته درون‌ریز خودکار دمو و مستندات فارسی) در حساب کاربری شما فعال می‌شود. همچنین به مدت <strong>۶ ماه از پشتیبانی فنی رایگان و مستقیم احسان نادری پناه (09024561001)</strong> برخوردار خواهید بود.
-                                </div>
-                            </div>
-
-                            <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-btn">
-                                    <span class="zc-faq-q-wrap">
-                                        <span class="zc-faq-num">۰۳</span>
-                                        <span>آیا امکان نصب و راه‌اندازی رایگان دمو توسط تیم زرین کد وجود دارد؟</span>
-                                    </span>
-                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                                </button>
-                                <div class="zc-faq-body">
-                                    بله! در صورت تمایل، پس از خرید می‌توانید تیکت ارسال کنید یا با شماره پشتیبانی تماس بگیرید تا نصب اولیه و درون‌ریزی کامل دمو دقیقاً مشابه پیش‌نمایش آنلاین، به صورت <strong>۱۰۰٪ رایگان</strong> توسط کارشناسان فنی زرین کد برای شما انجام شود.
-                                </div>
-                            </div>
-
-                            <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-btn">
-                                    <span class="zc-faq-q-wrap">
-                                        <span class="zc-faq-num">۰۴</span>
-                                        <span>شرایط گارانتی ۱۰۰٪ بازگشت وجه در چه مواردی شامل خریدار می‌شود؟</span>
-                                    </span>
-                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                                </button>
-                                <div class="zc-faq-body">
-                                    در صورتی که محصول خریداری‌شده دارای مغایرت فنی با امکانات درج‌شده در صفحه معرفی و پیش‌نمایش دمو باشد و تیم فنی زرین کد ظرف ۴۸ ساعت کاری قادر به رفع مشکل نباشد، <strong>۱۰۰٪ مبلغ پرداختی بدون هیچ‌گونه کسری</strong> طبق ضوابط صفحه <a href="<?php echo esc_url( home_url( '/refund-policy/' ) ); ?>" style="color:var(--zc-text-main);font-weight:800;text-decoration:underline;">شرایط بازگشت وجه</a> به حساب شما عودت داده می‌شود.
-                                </div>
-                            </div>
-
-                            <div class="zc-faq-item">
-                                <button type="button" class="zc-faq-btn">
-                                    <span class="zc-faq-q-wrap">
-                                        <span class="zc-faq-num">۰۵</span>
-                                        <span>آپدیت‌های بعدی محصول چگونه و با چه هزینه‌ای در اختیار خریداران قرار می‌گیرد؟</span>
-                                    </span>
-                                    <span class="zc-faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
-                                </button>
-                                <div class="zc-faq-body">
-                                    تمامی بروزرسانی‌های آینده این محصول (شامل قابلیت‌های جدید، سازگاری با نسخه‌های جدید وردپرس/PHP و بهینه‌سازی‌های امنیتی) به صورت <strong>مادام‌العمر و کاملاً رایگان</strong> در پنل کاربری شما قابل دانلود خواهد بود.
-                                </div>
-                            </div>
-                        </div>
+                        <?php \Zarincode\Theme\Core\Product_Policies::render($post_id); ?>
                     </div>
                 </div>
             </div>
@@ -360,7 +247,7 @@ while ( have_posts() ) :
                     </div>
 
                     <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:1.25rem;padding:1.15rem;text-align:center;margin-bottom:1.35rem;">
-                        <div style="font-size:0.78rem;color:#D1D5DB;margin-bottom:0.25rem;">سرمایه‌گذاری خرید محصول (لایسنس دائمی):</div>
+                        <div style="font-size:0.78rem;color:#D1D5DB;margin-bottom:0.25rem;">قیمت محصول:</div>
                         <div style="font-size:2rem;font-weight:900;color:var(--color-accent);line-height:1.2;">
                             <?php echo esc_html( $raw_price ); ?>
                             <span style="font-size:0.9rem;font-weight:700;color:#fff;">تومان</span>
@@ -371,22 +258,22 @@ while ( have_posts() ) :
                     <div style="margin-bottom:1.25rem;display:flex;flex-direction:column;gap:0.6rem;">
                         <label style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem 0.95rem;background:rgba(253,208,91,0.14);border:1px solid var(--color-accent);border-radius:0.9rem;cursor:pointer;font-size:0.82rem;font-weight:700;color:#fff;">
                             <input type="radio" name="zc_license_type" checked style="accent-color:var(--color-accent);">
-                            <span>لایسنس استاندارد نامحدود + آپدیت دائمی</span>
+                            <span>لایسنس استاندارد نامحدود + پشتیبانی شفاف</span>
                         </label>
                         <label style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem 0.95rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:0.9rem;cursor:pointer;font-size:0.82rem;color:#D1D5DB;">
                             <input type="radio" name="zc_license_type" style="accent-color:var(--color-accent);">
-                            <span>همراه با نصب و راه‌اندازی کامل دمو (رایگان)</span>
+                            <span>خدمات نصب فقط در صورت درج در مشخصات</span>
                         </label>
                     </div>
 
                     <!-- 6 SLA & Guarantee Checkmarks -->
                     <ul style="list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:0.65rem;font-size:0.83rem;color:#E5E7EB;">
                         <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> کدنویسی اختصاصی احسان نادری پناه</li>
-                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> سورس ۱۰۰٪ باز (بدون قفل دامنه)</li>
-                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> ۶ ماه پشتیبانی فنی رایگان و مستقیم</li>
-                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> بروزرسانی رایگان مادام‌العمر</li>
+                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> مجوز و محدودیت‌های استفاده را بررسی کنید</li>
+                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> محدوده پشتیبانی طبق سیاست محصول</li>
+                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> شرایط به‌روزرسانی طبق توضیحات فروشنده</li>
                         <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> شامل مستندات فارسی و فایل درون‌ریز دمو</li>
-                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:#34D399;"></i> ضمانت ۱۰۰٪ بازگشت وجه طبق قوانین سایت</li>
+                        <li style="display:flex;align-items:center;gap:0.55rem;"><i class="fa-solid fa-circle-check" style="color:#34D399;"></i> شرایط پشتیبانی مطابق سیاست این محصول</li>
                     </ul>
 
                     <!-- Primary Purchase CTA Buttons -->
@@ -404,8 +291,8 @@ while ( have_posts() ) :
                         <button type="button" class="zc-btn <?php echo function_exists( 'WC' ) ? 'zc-btn-glass' : 'zc-btn-yellow'; ?>" style="width:100%;padding:0.85rem;font-size:0.88rem;<?php echo function_exists( 'WC' ) ? 'background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);' : ''; ?>" data-zc-modal-open="zc-consult-modal">
                             <i class="fa-solid fa-bolt"></i> خرید سریع / سفارش سفارشی‌سازی
                         </button>
-                        <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn" style="width:100%;padding:0.75rem;font-size:0.84rem;background:rgba(255,255,255,0.06);color:#FDD05B;border:1px solid rgba(253,208,91,0.3);">
-                            <i class="fa-solid fa-phone-volume"></i> مشاوره تلفنی پیش از خرید: <span dir="ltr"><?php echo esc_html( $phone ); ?></span>
+                        <a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="zc-btn" style="width:100%;padding:0.75rem;font-size:0.84rem;background:rgba(255,255,255,0.06);color:#FDD05B;border:1px solid rgba(253,208,91,0.3);">
+                            <i class="fa-regular fa-comments"></i> پرسش پیش از خرید
                         </a>
                     </div>
                 </div>
@@ -421,7 +308,7 @@ while ( have_posts() ) :
                         </div>
                     </div>
                     <p style="font-size:0.82rem;color:var(--zc-text-secondary);line-height:1.8;margin:0 0 1rem;">
-                        تمامی سورس‌کدها، قالب‌ها و افزونه‌های زرین کد مستقیماً توسط احسان نادری پناه کدنویسی، تست امنیتی و پشتیبانی می‌شوند.
+                        برای شناخت ارائه‌دهنده و شیوه همکاری، صفحه معرفی را ببینید. شرایط هر محصول در توضیحات و سیاست مربوط به همان محصول مشخص می‌شود.
                     </p>
                     <div style="display:flex;gap:0.5rem;">
                         <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" class="zc-btn zc-btn-dark" style="flex:1;padding:0.5rem;font-size:0.78rem;">رزومه توسعه‌دهنده</a>

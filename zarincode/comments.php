@@ -3,7 +3,8 @@
 defined('ABSPATH') || exit;
 if(post_password_required())return;
 ?>
-<section id="comments" class="zc-discussion">
+<section id="comments" class="zc-discussion zc-editorial-discussion">
+ <?php if(get_post_type()==='post')\Zarincode\Theme\Core\Article_Ratings::summary(get_the_ID()); ?>
  <div class="zc-story-heading"><span class="zc-story-kicker">گفت‌وگو با زرین کد</span><h2>دیدگاه‌ها و پرسش‌ها</h2></div>
  <?php if(have_comments()): ?>
  <ol class="comment-list"><?php wp_list_comments(['style'=>'ol','short_ping'=>true,'avatar_size'=>48]); ?></ol>

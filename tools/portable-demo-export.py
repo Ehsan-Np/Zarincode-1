@@ -13,10 +13,29 @@ def portable(v):
  if isinstance(v,str):
   return v.replace('http://localhost:8080/wp-content/themes/zarincode/assets/images/',base).replace('http://localhost:8080','https://zarincode.com')
  return v
+# Export includes every site taxonomy, even with --post__in. Keep only used terms
+# and their ancestors so disposable QA taxonomies never enter the release.
+channel=root.getroot().find('channel')
+used={(c.get('domain'),c.get('nicename')) for item in root.findall('.//item') for c in item.findall('category')}
+terms=[]
+for node in list(channel):
+ local=E.QName(node).localname
+ if E.QName(node).namespace!=ns['wp'] or local not in ['category','tag','term']:continue
+ tax='category' if local=='category' else 'post_tag' if local=='tag' else node.findtext('wp:term_taxonomy',namespaces=ns)
+ slug=node.findtext('wp:'+{'category':'category_nicename','tag':'tag_slug','term':'term_slug'}[local],namespaces=ns)
+ parent=node.findtext('wp:'+('category_parent' if local=='category' else 'term_parent'),namespaces=ns) if local!='tag' else ''
+ terms.append((node,tax,slug,parent))
+changed=True
+while changed:
+ changed=False
+ for node,tax,slug,parent in terms:
+  if (tax,slug) in used and parent and (tax,parent) not in used:used.add((tax,parent));changed=True
+for node,tax,slug,parent in terms:
+ if (tax,slug) not in used:channel.remove(node)
 for item in root.findall('.//item'):
  for meta in item.findall('wp:postmeta',ns):
   key=meta.findtext('wp:meta_key',namespaces=ns);value=meta.find('wp:meta_value',ns)
-  if (key or '').startswith(('_zc_layout_backup_','_zc_hero_backup_')) or key in ['_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last']:
+  if (key or '').startswith(('_zc_layout_backup_','_zc_hero_backup_')) or key in ['_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last','_wc_average_rating','_wc_review_count','_wc_rating_count','total_sales']:
    item.remove(meta);continue
   if value is not None and value.text:
    if key=='_elementor_data':value.text=E.CDATA(json.dumps(portable(json.loads(value.text)),ensure_ascii=False,separators=(',',':')))

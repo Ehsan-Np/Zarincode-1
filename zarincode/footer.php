@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $phone           = zarincode_get_option( 'contact_phone', '09024561001' );
 $dev_name        = zarincode_get_option( 'developer_name', 'احسان نادری پناه (Ehsan NaderiPanah)' );
 $brand_name      = zarincode_get_option( 'brand_name', 'آژانس و استودیو زرین کد' );
-$logo_monogram   = zarincode_get_option( 'logo_monogram', 'Z' );
+$logo_monogram   = zarincode_get_option( 'logo_monogram', 'ZC' );
 $logo_dark       = zarincode_get_option( 'logo_dark', '' );
 $show_cta_strip  = (bool) zarincode_get_option( 'footer_show_cta_strip', true );
 $cta_heading     = zarincode_get_option( 'footer_cta_heading', 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟' );

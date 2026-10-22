@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'ZARINCODE_VERSION', '3.4.0' );
+define( 'ZARINCODE_VERSION', '3.5.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -105,6 +105,10 @@ function zarincode_fa_digits( $input ): string {
 \Zarincode\Theme\Core\Assets::instance();
 \Zarincode\Theme\Core\Single_Experience::boot();
 \Zarincode\Theme\Core\Article_Toc::boot();
+\Zarincode\Theme\Core\Article_Layout::boot();
+\Zarincode\Theme\Core\Article_Ratings::boot();
+\Zarincode\Theme\Core\Social_Manager::boot();
+\Zarincode\Theme\Core\Product_Policies::boot();
 \Zarincode\Theme\Plugins\Plugin_Manager::instance();
 \Zarincode\Theme\Redux\OptionsConfig::instance();
 
@@ -165,3 +169,8 @@ add_action('wp_enqueue_scripts',static function(){
 },20);
 /** For custom Elementor headers/footers: use the native Shortcode widget. */
 add_shortcode('zarincode_social_links',static fn()=>\Zarincode\Theme\Core\Social_Links::profiles());
+
+// Replace only the historical default monogram, not a custom customer logo.
+add_action('after_setup_theme',static function(){
+    $options=get_option('zarincode_opt',[]);if(is_array($options)&&($options['logo_monogram']??'')==='Z'){$options['logo_monogram']='ZC';update_option('zarincode_opt',$options);global $zarincode_opt;$zarincode_opt=$options;}
+},30);

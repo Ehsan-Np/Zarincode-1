@@ -2,8 +2,8 @@
 /** Original magazine composition inspired by editorial reading patterns, not third-party template code. */
 defined('ABSPATH') || exit;
 get_header();
-while(have_posts()):the_post();$author=(int)get_the_author_meta('ID');$words=preg_split('/\s+/u',trim(wp_strip_all_tags(get_the_content())), -1,PREG_SPLIT_NO_EMPTY); ?>
-<main id="primary" class="zc-editorial zc-magazine">
+while(have_posts()):the_post();$author=(int)get_the_author_meta('ID');$sides=\Zarincode\Theme\Core\Article_Layout::sides();$words=preg_split('/\s+/u',trim(wp_strip_all_tags(get_the_content())), -1,PREG_SPLIT_NO_EMPTY); ?>
+<main id="primary" class="zc-editorial zc-magazine zc-publication"><div class="zc-publication-shell <?php echo $sides['right']?'has-right ':'';echo $sides['left']?'has-left':''; ?>"><div class="zc-publication-main">
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
  <header class="zc-editorial-header">
   <nav class="zc-article-breadcrumb" aria-label="مسیر مقاله"><a href="<?php echo esc_url(home_url('/')); ?>">زرین کد</a><span aria-hidden="true">/</span><a href="<?php echo esc_url(get_post_type_archive_link('post')?:home_url('/?post_type=post')); ?>">مجله</a><span aria-hidden="true">/</span><span>خواندن مقاله</span></nav>
@@ -15,5 +15,5 @@ while(have_posts()):the_post();$author=(int)get_the_author_meta('ID');$words=pre
  <div class="zc-reading-layout"><aside class="zc-reading-rail" aria-label="ابزار مطالعه"><span>مطالعه</span><a href="#zc-article-discussion" aria-label="دیدگاه‌های مقاله"><i class="fa-regular fa-comment" aria-hidden="true"></i></a><a href="#zc-article-share" aria-label="اشتراک‌گذاری مقاله"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></a></aside><div class="entry-content zc-editorial-body"><?php the_content();wp_link_pages(['before'=>'<nav class="page-links">','after'=>'</nav>']); ?></div></div>
  </article>
  <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
-</main>
+</div><?php if($sides['right']): ?><aside class="zc-publication-sidebar is-right" aria-label="ستون راست مقاله"><?php dynamic_sidebar('sidebar-blog'); ?></aside><?php endif;if($sides['left']): ?><aside class="zc-publication-sidebar is-left" aria-label="ستون چپ مقاله"><?php dynamic_sidebar('sidebar-blog-left'); ?></aside><?php endif; ?></div></main>
 <?php endwhile;get_footer();
