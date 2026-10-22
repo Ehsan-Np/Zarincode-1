@@ -1,0 +1,79 @@
+{
+  "scope": "Real browser guest checkout with offline COD only. No money moved or live gateway integration.",
+  "results": [
+    {
+      "mode": "classic",
+      "cartContainsProduct": true,
+      "orderReceived": true,
+      "passed": true
+    },
+    {
+      "mode": "block",
+      "cartContainsProduct": true,
+      "formValues": [
+        {
+          "id": "email",
+          "type": "email",
+          "value": "qa@example.test"
+        },
+        {
+          "id": "billing-first_name",
+          "type": "text",
+          "value": "QA"
+        },
+        {
+          "id": "billing-last_name",
+          "type": "text",
+          "value": "Buyer"
+        },
+        {
+          "id": "billing-address_1",
+          "type": "text",
+          "value": "1 Market Street"
+        },
+        {
+          "id": "billing-address_2",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "id": "billing-city",
+          "type": "text",
+          "value": "San Francisco"
+        },
+        {
+          "id": "billing-postcode",
+          "type": "text",
+          "value": "94107"
+        },
+        {
+          "id": "billing-phone",
+          "type": "tel",
+          "value": "4155550100"
+        },
+        {
+          "id": "checkbox-control-0",
+          "type": "checkbox",
+          "value": ""
+        },
+        {
+          "id": "zc-consult-name",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "id": "zc-consult-phone",
+          "type": "tel",
+          "value": ""
+        },
+        {
+          "id": "",
+          "type": "search",
+          "value": ""
+        }
+      ],
+      "orderReceived": true,
+      "passed": true
+    }
+  ]
+}

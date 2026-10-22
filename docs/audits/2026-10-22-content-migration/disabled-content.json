@@ -1,0 +1,13 @@
+{
+    "checks": {
+        "disabled_product_policies": true,
+        "disabled_social_profiles": true,
+        "disabled_threaded_discussion": true,
+        "no_policy_save_hook": true,
+        "no_social_save_hook": true,
+        "no_discussion_filter": true,
+        "policies_retained": true,
+        "profiles_retained": true
+    },
+    "passed": true
+}

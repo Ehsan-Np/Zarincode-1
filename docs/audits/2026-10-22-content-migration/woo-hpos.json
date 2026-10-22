@@ -1,0 +1,19 @@
+{
+    "woocommerce": "11.2.0",
+    "hpos": true,
+    "backend": "Automattic\\WooCommerce\\Internal\\DataStores\\Orders\\OrdersTableDataStore",
+    "checks": {
+        "actual_store_mode": true,
+        "create_order": true,
+        "read_order": true,
+        "total": true,
+        "no_permission_before_payment": true,
+        "owner_download_allowed": true,
+        "other_customer_no_download": true,
+        "orders_owner_query": true,
+        "other_orders_empty": true,
+        "refund_created": true,
+        "refund_amount": true
+    },
+    "scope": "Real order/refund/entitlement CRUD. No real gateway charge, external payment sandbox, email deliverability or WCML certification."
+}

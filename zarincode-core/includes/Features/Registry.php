@@ -44,6 +44,18 @@ final class Registry {
             'services'=>['comment_rating_validation','comment_rating_persistence'],
             'tests'=>['rating-nonce','rating-validation','rating-duplicates','rating-moderation','theme-switch-rating'],
         ]);
+        $features['product_policies']=array_replace($features['article_ratings'],[
+            'id'=>'product_policies','name'=>'Product policies and changelog','settings'=>'feature_product_policies',
+            'services'=>['product_policy_persistence','product_policy_admin'],'tests'=>['policy-permissions','policy-nonce','policy-schema','policy-theme-switch'],
+        ]);
+        $features['threaded_discussion']=array_replace($features['article_ratings'],[
+            'id'=>'threaded_discussion','name'=>'Native threaded discussion validation','settings'=>'feature_threaded_discussion',
+            'services'=>['comment_parent_validation','review_reply_integrity'],'tests'=>['parent-post-binding','reply-depth','reply-vote-removal','verified-buyer'],
+        ]);
+        $features['social_profiles']=array_replace($features['article_ratings'],[
+            'id'=>'social_profiles','name'=>'Social profile persistence and sanitization','settings'=>'feature_social_profiles',
+            'services'=>['social_profile_store','bounded_svg_sanitizer'],'tests'=>['social-xss','social-nonce','social-theme-switch','social-schema'],
+        ]);
         return (array) apply_filters( 'zarincode_feature_registry', $features );
     }
 }

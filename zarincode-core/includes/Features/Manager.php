@@ -38,7 +38,8 @@ final class Manager {
             if (($old[$key]??$feature['default']) !== ($new[$key]??$feature['default']) || self::resolve($id,$registry,$old,$available)!==self::resolve($id,$registry,$new,$available)) {$changed[]=$id;}
         }
         if (!$changed) {return;}
-        if (class_exists('\\Elementor\\Plugin')) {
+        $needs_elementor_css=false;foreach($changed as $id){if(in_array('elementor-css',$registry[$id]['cache_groups']??[],true)){$needs_elementor_css=true;break;}}
+        if ($needs_elementor_css && class_exists('\\Elementor\\Plugin')) {
             $plugin=\Elementor\Plugin::instance();
             if (isset($plugin->files_manager)) {$plugin->files_manager->clear_cache();}
         }

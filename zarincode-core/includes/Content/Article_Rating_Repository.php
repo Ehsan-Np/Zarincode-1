@@ -42,7 +42,7 @@ final class Article_Rating_Repository {
                     FROM %i r
                     INNER JOIN %i c ON c.comment_ID = r.comment_id
                     WHERE c.comment_post_ID = %d AND c.comment_approved = '1'
-                    AND c.comment_type IN ('','comment')
+                    AND c.comment_parent = 0 AND c.comment_type IN ('','comment')
                     AND r.meta_key = 'zc_article_rating' AND r.meta_value IN ('1','2','3','4','5')
                     GROUP BY r.comment_id
                 ) v INNER JOIN %i m ON m.meta_id = v.canonical_id",

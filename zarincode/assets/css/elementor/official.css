@@ -17,3 +17,12 @@
 .elementor-widget-price-table .elementor-price-table,.elementor-widget-call-to-action .elementor-cta{border-radius:var(--zc-radius-bento,28px);overflow:hidden}
 .elementor-widget :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.elementor-widget-button .elementor-button{transition:none}}
+/* Native generated per-widget settings remain more specific than these defaults. */
+.elementor .elementor-widget-form .elementor-field-group .elementor-field,
+.elementor .elementor-widget-login .elementor-field-group .elementor-field,
+.elementor .elementor-widget-search-form .elementor-search-form__input{color:var(--zc-text-primary,#2a2c31)}
+.elementor .elementor-widget-price-table .elementor-price-table__features-list{color:var(--zc-text-primary,#2a2c31)}
+.elementor .swiper-pagination-bullet{min-width:24px;min-height:24px;background-clip:content-box;border:8px solid transparent;box-sizing:border-box}
+.elementor .show-password-input{min-width:24px;min-height:24px}
+.elementor .elementor-widget-wc-add-to-cart .elementor-button{background:var(--color-accent,#fdd05b);color:#202227}
+.elementor .elementor-widget-woocommerce-my-account .woocommerce-LostPassword a{color:var(--zc-text-primary,#2a2c31)}

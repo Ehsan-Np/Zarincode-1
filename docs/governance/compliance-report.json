@@ -6,19 +6,21 @@
   "release_date": "2026-10-22",
   "distribution": "Evaluation candidate only",
   "compatibility_manifest": "docs/governance/asset-provenance.json",
-  "test_summary": "docs/audits/rc2/summary.json",
+  "test_summary": "docs/audits/2026-10-22-content-migration/summary.json",
   "security_summary": "Scoped settings/installer checks executed; full audit not verified.",
-  "accessibility_summary": "9 Chromium dialog keyboard assertions passed; full WCAG audit not completed",
+  "accessibility_summary": "438 automated cases: 90 axe violation records, 0 horizontal overflow; 52 custom-widget cases without axe violations. 27 keyboard checks passed. Full WCAG not approved.",
   "performance_summary": "Query bound and disabled assets checked; field CWV/load targets not measured.",
-  "widget_coverage": "192 installed types inventoried this revision; 26 custom widgets control-schema checked; complete official coverage not approved",
+  "widget_coverage": "220 installed types inventoried, 216 insertable types tested in two locales plus 6 page cases. Baseline context only, no complete editor-parity certification.",
   "visual_regression_results": "Not executed; appearance file byte-integrity checks are not visual regression.",
   "known_issues": [
-    "Elementor PHP 8.4 deprecation warning",
-    "Pro and real multilingual plugins not retested this revision",
-    "Commercial font/media redistribution not certified"
+    "90 axe violation records in official/generic widget fixtures remain unresolved",
+    "28 official-widget cases reported JavaScript errors; baseline prerequisites/context need review",
+    "Full security, visual regression, performance budgets, Z-WQI and real Polylang validation incomplete"
   ],
   "technical_debt": "docs/governance/skill-v3-tasks.json",
-  "approved_exceptions": [],
+  "approved_exceptions": [
+    "WPML-OUT-OF-SCOPE"
+  ],
   "release_approval": {
     "commercial": false,
     "status": "BLOCKED",

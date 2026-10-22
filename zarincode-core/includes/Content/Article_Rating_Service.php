@@ -68,7 +68,7 @@ final class Article_Rating_Service {
 			return;
 		}
 		$comment = get_comment( $comment_id );
-		if ( ! $comment instanceof \WP_Comment || 'post' !== get_post_type( (int) $comment->comment_post_ID ) ) {
+		if ( ! $comment instanceof \WP_Comment || (int) $comment->comment_parent > 0 || 'post' !== get_post_type( (int) $comment->comment_post_ID ) ) {
 			return;
 		}
 		$rating = self::submitted( (int) $comment->comment_post_ID );

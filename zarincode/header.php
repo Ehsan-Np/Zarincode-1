@@ -117,7 +117,7 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
             </a>
 
             <!-- Main Pill Navigation with Mega Dropdowns -->
-            <ul class="zc-nav-pill" role="navigation" aria-label="منوی اصلی">
+            <ul class="zc-nav-pill" aria-label="منوی اصلی">
                 <li class="<?php echo is_front_page() ? 'current-menu-item' : ''; ?>">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
                         <i class="fa-solid fa-house"></i> صفحه اصلی

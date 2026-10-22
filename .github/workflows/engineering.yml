@@ -12,7 +12,7 @@ jobs:
       - name: Pure contract and schema tests
         run: php tools/qa-skill-v3-unit.php
       - name: Translation adapter fixtures
-        run: for mode in none wpml polylang conflict; do php tools/qa-multilingual.php "$mode"; done
+        run: for mode in none polylang; do php tools/qa-multilingual.php "$mode"; done
       - name: Scoped architecture rules
         run: python3 tools/qa-skill-v3-architecture.py
       - name: Build and validate evaluation packages

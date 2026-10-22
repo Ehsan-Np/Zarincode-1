@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-22",
+  "source_commit": "See delivered BUILD-MANIFEST.json; code and evidence committed before packaging.",
+  "environment": {
+    "wordpress": "7.1.3",
+    "php": "8.4.27",
+    "elementor": "4.3.2",
+    "pro": "4.3.0",
+    "woocommerce": "11.2.0"
+  },
+  "phpunit": {
+    "tests": 30,
+    "assertions": 155,
+    "passed": true,
+    "scoped_files": 7,
+    "covered_lines": 313,
+    "executable_lines": 342,
+    "line_coverage_percent": 91.52,
+    "limitation": "Scope is Content, Admin and Settings_Schema, not whole project critical-logic inventory. Admin controller alone: 67.07%."
+  },
+  "static": {
+    "phpstan_level": 10,
+    "phpstan_errors": 0,
+    "wpcs_errors": 0,
+    "wpcs_warnings": 0,
+    "scope": "Content, Admin and Settings_Schema only"
+  },
+  "php_lint_files": 81,
+  "widgets": {
+    "cases": 438,
+    "insertable_types": 216,
+    "internal_control_providers_excluded": 4,
+    "custom_widget_cases": 52,
+    "http_failures": 0,
+    "axe_violation_records": 90,
+    "cases_with_axe_violations": 77,
+    "custom_axe_violations": 0,
+    "cases_with_js_errors": 28,
+    "custom_cases_with_js_errors": 0,
+    "horizontal_overflow_cases": 0,
+    "wrong_direction_cases": 0,
+    "runner_exit_code": 1,
+    "approved": false,
+    "violation_types": {
+      "aria-valid-attr-value": 6,
+      "color-contrast": 32,
+      "link-name": 10,
+      "target-size": 11,
+      "aria-required-children": 4,
+      "aria-allowed-attr": 2,
+      "label": 14,
+      "select-name": 2,
+      "role-img-alt": 4,
+      "aria-prohibited-attr": 2,
+      "scrollable-region-focusable": 1,
+      "nested-interactive": 2
+    },
+    "limitations": [
+      "Baseline settings and generic page context, not comprehensive authoring/editor parity tests.",
+      "Automatic axe passes do not establish WCAG 2.2 AA.",
+      "Vendor, author-data and context-related findings require individual resolution; not silently excluded."
+    ]
+  },
+  "disabled_modules": {
+    "checks": 8,
+    "passed": true,
+    "fresh_request": true
+  },
+  "admin_editors": {
+    "checks": 8,
+    "passed": true,
+    "script_evaluations_each": 2
+  },
+  "keyboard": {
+    "checks": 27,
+    "passed": true,
+    "manual_screenreader_tested": false
+  },
+  "commerce": {
+    "classic_crud_checks": 11,
+    "hpos_crud_checks": 11,
+    "classic_guest_cod_checkout": true,
+    "blocks_guest_cod_checkout": true,
+    "live_payment_tested": false
+  },
+  "wpml": "Excluded by explicit user instruction; not a blocker and not certified.",
+  "polylang": "Six adapter-fixture assertions only; full real plugin runtime not certified.",
+  "final_skill3_approved": false
+}

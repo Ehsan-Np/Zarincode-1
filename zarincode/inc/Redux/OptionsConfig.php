@@ -366,6 +366,9 @@ class OptionsConfig {
             'feature_modules'=>[
                 'title'=>esc_html__('Optional widget modules','zarincode'),'icon'=>'dashicons-admin-plugins','desc'=>esc_html__('Disabling a family preserves saved widget settings. Dependent families require native widgets and Elementor.','zarincode'),
                 'fields'=>[
+                    ['id'=>'feature_product_policies','type'=>'switch','title'=>esc_html__('Product policy data services','zarincode'),'default'=>true],
+                    ['id'=>'feature_threaded_discussion','type'=>'switch','title'=>esc_html__('Threaded comment integrity','zarincode'),'default'=>true],
+                    ['id'=>'feature_social_profiles','type'=>'switch','title'=>esc_html__('Social profile data services','zarincode'),'default'=>true],
                     ['id'=>'feature_public_dynamic_tags','type'=>'switch','title'=>esc_html__('Public content Dynamic Tags','zarincode'),'default'=>true],
                     ['id'=>'feature_official_widget_styles','type'=>'switch','title'=>esc_html__('Theme styles for reviewed official Elementor families','zarincode'),'default'=>true],
                     ['id'=>'feature_native_widgets','type'=>'switch','title'=>esc_html__('Native Elementor widgets','zarincode'),'default'=>true],

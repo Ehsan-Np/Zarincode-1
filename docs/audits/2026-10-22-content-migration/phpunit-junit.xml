@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="30" assertions="155" errors="0" warnings="0" failures="0" skipped="0" time="2.416397">
+    <testsuite name="Critical content and migration services" tests="30" assertions="155" errors="0" warnings="0" failures="0" skipped="0" time="2.416397">
+      <testsuite name="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" tests="20" assertions="70" errors="0" warnings="0" failures="0" skipped="0" time="1.298670">
+        <testcase name="testCanonicalVotesAndModeration" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="36" assertions="7" time="0.095656"/>
+        <testcase name="testValidNonceAndUniqueCapture" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="51" assertions="7" time="0.055599"/>
+        <testsuite name="CriticalServicesTest::testInvalidRequestsNeverPersist" tests="10" assertions="30" errors="0" warnings="0" failures="0" skipped="0" time="0.529873">
+          <testcase name="testInvalidRequestsNeverPersist with data set #0" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.043248"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #1" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.059409"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #2" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.046873"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #3" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.047231"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #4" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.046119"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #5" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.044214"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #6" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.049986"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #7" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.083009"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #8" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.051565"/>
+          <testcase name="testInvalidRequestsNeverPersist with data set #9" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="66" assertions="3" time="0.058219"/>
+        </testsuite>
+        <testcase name="testNonceBoundToPostAndNonArticleIgnored" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="77" assertions="4" time="0.070855"/>
+        <testcase name="testForgedNonceStopsRealWordPressSubmissionBeforeInsert" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="86" assertions="3" time="0.038172"/>
+        <testcase name="testSchemaPreservesUnknownAndRejectsFuture" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="96" assertions="4" time="0.062453"/>
+        <testsuite name="CriticalServicesTest::testInvalidSchemaVersions" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.385408">
+          <testcase name="testInvalidSchemaVersions with data set #0" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="105" assertions="2" time="0.126657"/>
+          <testcase name="testInvalidSchemaVersions with data set #1" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="105" assertions="2" time="0.155814"/>
+          <testcase name="testInvalidSchemaVersions with data set #2" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="105" assertions="2" time="0.061722"/>
+          <testcase name="testInvalidSchemaVersions with data set #3" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="105" assertions="2" time="0.041214"/>
+        </testsuite>
+        <testcase name="testLifecycleDoesNotNeedElementorOrTheme" class="CriticalServicesTest" classname="CriticalServicesTest" file="/home/user/tools/quality/CriticalServicesTest.php" line="110" assertions="7" time="0.060654"/>
+      </testsuite>
+      <testsuite name="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" tests="10" assertions="85" errors="0" warnings="0" failures="0" skipped="0" time="1.117727">
+        <testcase name="testMetadataPreservedAcrossModesAndPartialUpdates" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="27" assertions="13" time="0.134616"/>
+        <testcase name="testPolicySecurityAndFutureSchemaFailClosed" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="43" assertions="4" time="0.123858"/>
+        <testcase name="testPolicySanitizerBoundsAndMalformedRows" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="52" assertions="10" time="0.087150"/>
+        <testcase name="testSocialSanitizationAndIndependentPersistence" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="60" assertions="12" time="0.096452"/>
+        <testcase name="testSocialMarkupBoundsAndInvalidTypes" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="74" assertions="16" time="0.078636"/>
+        <testcase name="testSharedPolicyAdminSaveAndEscapedViews" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="81" assertions="9" time="0.124944"/>
+        <testcase name="testAllRowsCanBeDeletedWithoutLosingUnsubmittedPartialData" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="95" assertions="5" time="0.093087"/>
+        <testcase name="testCommentRelationsAndReplyVotes" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="109" assertions="12" time="0.089808"/>
+        <testcase name="testWooVerifiedBuyerExceptionIsLimitedToValidStaffReplies" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="119" assertions="2" time="0.204218"/>
+        <testcase name="testStaffCannotBypassCrossProductParentValidation" class="ContentServicesTest" classname="ContentServicesTest" file="/home/user/tools/quality/ContentServicesTest.php" line="129" assertions="2" time="0.084959"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
