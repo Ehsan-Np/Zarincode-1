@@ -1,8 +1,8 @@
 {
   "product_name": "ZarinCode",
   "version": "4.0.0-rc.1",
-  "git_commit": "Recorded by BUILD-MANIFEST.json at build time",
-  "build_id": "zc-4.0.0-rc.1-skill3-20261022",
+  "git_commit": "1931879",
+  "build_id": "zc-4.0.0-rc.1-1931879-20261022",
   "release_date": "2026-10-22",
   "distribution": "Evaluation candidate only",
   "compatibility_manifest": "docs/governance/asset-provenance.json",
