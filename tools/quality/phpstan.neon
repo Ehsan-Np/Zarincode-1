@@ -13,3 +13,4 @@ parameters:
         - ../../zarincode-core/includes/Content
         - ../../zarincode-core/includes/Admin
         - ../../zarincode-core/includes/Features
+        - ../../zarincode/inc/Elementor/Kit_Defaults.php

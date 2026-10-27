@@ -6,6 +6,7 @@
   <file>../../zarincode-core/includes/Content</file>
   <file>../../zarincode-core/includes/Admin</file>
   <file>../../zarincode-core/includes/Features</file>
+  <file>../../zarincode/inc/Elementor/Kit_Defaults.php</file>
   <rule ref="WordPress.WP.Capabilities"><properties><property name="custom_capabilities" type="array"><element value="manage_woocommerce"/></property></properties></rule>
   <!-- PHP DOM extension property identifiers, not project naming exceptions. -->
   <rule ref="WordPress.NamingConventions.ValidVariableName"><properties><property name="allowed_custom_properties" type="array"><element value="documentElement"/><element value="localName"/><element value="childNodes"/></property></properties></rule>
