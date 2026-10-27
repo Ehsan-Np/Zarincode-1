@@ -1,0 +1,6 @@
+{
+    "suite": "skill-v3-pure-contracts",
+    "assertions": 94,
+    "passed": true,
+    "coverage_percent": null
+}

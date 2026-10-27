@@ -18,6 +18,7 @@ try{for(const mode of ['classic','block']){
   if(await page.locator('#terms').count())await page.locator('#terms').check();
   await page.locator('#place_order').click();
  }else{
+  await page.locator('#email').waitFor({state:'visible',timeout:20000}); // Block checkout hydrates fields through the Store API.
   const fields={'#email':'qa@example.test','#billing-first_name':'QA','#billing-last_name':'Buyer','#billing-address_1':'1 Market Street','#billing-city':'San Francisco','#billing-postcode':'94107','#billing-phone':'4155550100'};
   for(const [selector,value]of Object.entries(fields)){const f=page.locator(selector);if(await f.count())await f.fill(value);}
   const country=page.locator('#billing-country');if(await country.count())await country.selectOption('US');const state=page.locator('#billing-state');if(await state.count())await state.selectOption('CA');
@@ -28,7 +29,7 @@ try{for(const mode of ['classic','block']){
  }
  await page.waitForFunction(()=>/order-received/.test(location.href)||!!document.querySelector('.woocommerce-order-received'),{timeout:30000});
  r.orderReceived=/order-received/.test(page.url())||await page.locator('.woocommerce-order-received').count()>0;r.passed=r.cartContainsProduct&&r.orderReceived;
- }catch(e){r.error=String(e);r.visibleErrors=await page.locator('.woocommerce-error,.wc-block-components-notice-banner').allTextContents().catch(()=>[]);r.passed=false;await page.screenshot({path:root+'/checkout-'+mode+'.png',fullPage:true});}
+ }catch(e){r.error=String(e);r.visibleErrors=await page.locator('.woocommerce-error,.wc-block-components-notice-banner,[role=alert]').allTextContents().catch(()=>[]);r.passed=false;await page.screenshot({path:root+'/checkout-'+mode+'.png',fullPage:true});}
  results.push(r);await context.close();fs.writeFileSync(root+'/commerce-browser.json',JSON.stringify({scope:'Real browser guest checkout with offline COD only. No money moved or live gateway integration.',results},null,2));console.log(r);
 }}finally{await browser.close();}if(results.some(r=>!r.passed))process.exitCode=1;
 })().catch(e=>{console.error(e);process.exit(1)});

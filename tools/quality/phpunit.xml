@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <phpunit bootstrap="bootstrap.php" colors="false" failOnWarning="true">
-  <testsuites><testsuite name="Critical content and migration services"><file>CriticalServicesTest.php</file><file>ContentServicesTest.php</file></testsuite></testsuites>
+  <testsuites><testsuite name="Critical content and migration services"><file>CriticalServicesTest.php</file><file>ContentServicesTest.php</file><file>FeatureManagerTest.php</file></testsuite></testsuites>
   <coverage processUncoveredFiles="true"><include>
     <file>../../zarincode-core/includes/Support/Settings_Schema.php</file>
-    <directory>../../zarincode-core/includes/Content</directory><directory>../../zarincode-core/includes/Admin</directory>
+    <directory>../../zarincode-core/includes/Content</directory><directory>../../zarincode-core/includes/Admin</directory><directory>../../zarincode-core/includes/Features</directory>
   </include></coverage>
 </phpunit>

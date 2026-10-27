@@ -9,12 +9,25 @@ jobs:
       - uses: actions/checkout@v4
       - name: PHP syntax
         run: find zarincode zarincode-core -name '*.php' -print0 | xargs -0 -n1 php -l
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Locked browser quality tools
+        run: npm ci --prefix tools/browser --ignore-scripts
+      - name: Chromium with system dependencies
+        run: npm exec --prefix tools/browser -- playwright install --with-deps chromium --only-shell
+      - name: Product contrast regressions
+        run: npm --prefix tools/browser run test:contrast
+      - name: Audit accounting regression tests
+        run: node --test tools/widget-audit-contract.test.cjs
       - name: Pure contract and schema tests
         run: php tools/qa-skill-v3-unit.php
       - name: Translation adapter fixtures
         run: for mode in none polylang; do php tools/qa-multilingual.php "$mode"; done
       - name: Scoped architecture rules
         run: python3 tools/qa-skill-v3-architecture.py
+      - name: Release packaging guard regressions
+        run: python3 tools/test-build-release.py -v
       - name: Build and validate evaluation packages
         run: python3 tools/build-release.py --output /tmp/zarincode-evaluation
       # Deliberately no publication job. Full compatibility, quality, licensing and approval gates remain open.
@@ -35,7 +48,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: mysqli
+          extensions: mysqli, dom, mbstring, xml, zip
           coverage: xdebug
           tools: composer, wp-cli
       - name: Locked development tools
@@ -53,6 +66,7 @@ jobs:
           wp config set --path=/tmp/zc-ci WP_ENVIRONMENT_TYPE local
           wp config set --path=/tmp/zc-ci ZARINCODE_DISPOSABLE_QA true --raw
           ln -s "$GITHUB_WORKSPACE/zarincode-core" /tmp/zc-ci/wp-content/plugins/zarincode-core
+          wp plugin install woocommerce --version=11.2.0 --activate --path=/tmp/zc-ci
           wp plugin activate --path=/tmp/zc-ci zarincode-core
       - name: Critical service tests and measured coverage
         env:
@@ -61,6 +75,13 @@ jobs:
         run: |
           tools/quality/vendor/bin/phpunit -c tools/quality/phpunit.xml --coverage-clover /tmp/zc-coverage.xml
           python3 tools/quality/check-coverage.py /tmp/zc-coverage.xml 80
+      - name: Upload measured evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: critical-content-evidence
+          path: /tmp/zc-coverage.xml
+          if-no-files-found: ignore
       - name: Cleanup disposable fixture
         if: always()
         run: rm -rf /tmp/zc-ci

@@ -1,0 +1,74 @@
+{
+  "scope": "Isolated regression of two previously failing product-review text colors using production CSS. Not a full product-page, visual-regression or WCAG certification.",
+  "results": [
+    {
+      "width": 320,
+      "locale": "en_US",
+      "colors": [
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(246, 242, 229)"
+        },
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(247, 245, 237)"
+        }
+      ],
+      "violations": [],
+      "incomplete": [],
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "fa_IR",
+      "colors": [
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(246, 242, 229)"
+        },
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(247, 245, 237)"
+        }
+      ],
+      "violations": [],
+      "incomplete": [],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "locale": "en_US",
+      "colors": [
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(246, 242, 229)"
+        },
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(247, 245, 237)"
+        }
+      ],
+      "violations": [],
+      "incomplete": [],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "locale": "fa_IR",
+      "colors": [
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(246, 242, 229)"
+        },
+        {
+          "color": "rgb(100, 104, 115)",
+          "background": "rgb(247, 245, 237)"
+        }
+      ],
+      "violations": [],
+      "incomplete": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,18 @@
+{
+    "checks": {
+        "disabled_product_policies": true,
+        "disabled_social_profiles": true,
+        "disabled_threaded_discussion": true,
+        "no_policy_save_hook": true,
+        "no_social_save_hook": true,
+        "no_discussion_filter": true,
+        "policies_retained": true,
+        "profiles_retained": true
+    },
+    "passed": true
+}
+PHP: 2026-10-27 15:39:52 [notice X 0][/tmp/zc-oct27/wordpress/wp-content/plugins/elementor/modules/global-classes/atomic-global-styles.php::410] Elementor\Modules\GlobalClasses\Atomic_Global_Styles::get_cache_root_key(): Implicitly marking parameter $key as nullable is deprecated, the explicit nullable type must be used instead [array (
+  'trace' => '
+#0: Elementor\Core\Logger\Manager -> shutdown()
+',
+)]

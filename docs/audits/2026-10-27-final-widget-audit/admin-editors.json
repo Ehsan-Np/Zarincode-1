@@ -1,0 +1,14 @@
+{
+  "scope": "Real server-rendered fields and twice-evaluated production scripts. Media picker not covered.",
+  "checks": {
+    "policy_single_add": true,
+    "policy_reordered": true,
+    "policy_id_preserved": true,
+    "social_single_add": true,
+    "social_reordered": true,
+    "social_id_preserved": true,
+    "policy_empty_submission": true,
+    "social_empty_submission": true
+  },
+  "passed": true
+}

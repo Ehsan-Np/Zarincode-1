@@ -2,20 +2,20 @@
   "product_name": "ZarinCode",
   "version": "4.0.0-rc.2",
   "git_commit": "See candidate BUILD-MANIFEST.json for exact source commit",
-  "build_id": "zc-4.0.0-rc.2-20261022",
-  "release_date": "2026-10-22",
+  "build_id": "zc-4.0.0-rc.2-20261027",
+  "release_date": "2026-10-27",
   "distribution": "Evaluation candidate only",
   "compatibility_manifest": "docs/governance/asset-provenance.json",
-  "test_summary": "docs/audits/2026-10-22-content-migration/summary.json",
+  "test_summary": "docs/audits/2026-10-27-final-widget-audit/summary.json",
   "security_summary": "Scoped settings/installer checks executed; full audit not verified.",
-  "accessibility_summary": "438 automated cases: 90 axe violation records, 0 horizontal overflow; 52 custom-widget cases without axe violations. 27 keyboard checks passed. Full WCAG not approved.",
+  "accessibility_summary": "Fresh 438-case rerun 2026-10-27: 416 pass / 22 fail; 26 axe records remain, all in Elementor/Woo vendor markup (dispositions.md); 0 contrast, JS, HTTP, RTL or overflow failures; 52/52 custom-widget cases pass; 27 keyboard checks pass. Full WCAG not approved.",
   "performance_summary": "Query bound and disabled assets checked; field CWV/load targets not measured.",
-  "widget_coverage": "220 installed types inventoried, 216 insertable types tested in two locales plus 6 page cases. Baseline context only, no complete editor-parity certification.",
+  "widget_coverage": "220 installed types inventoried, 216 insertable types x 2 locales + 6 page cases rerun fresh on 2026-10-27; baseline context only, no complete editor-parity certification.",
   "visual_regression_results": "Not executed; appearance file byte-integrity checks are not visual regression.",
   "known_issues": [
-    "90 axe violation records in official/generic widget fixtures remain unresolved",
-    "28 official-widget cases reported JavaScript errors; baseline prerequisites/context need review",
-    "Full security, visual regression, performance budgets, Z-WQI and real Polylang validation incomplete"
+    "26 axe records (22 cases) in official/vendor widget markup remain unresolved; Zarincode widgets contribute zero records",
+    "Full WCAG 2.2 AA, Z-WQI, visual regression, whole-project critical-logic coverage, full security audit, live gateway, full Polylang runtime, remote CI proof and human approval remain open",
+    "WPML excluded by explicit user instruction; no compatibility claim"
   ],
   "technical_debt": "docs/governance/skill-v3-tasks.json",
   "approved_exceptions": [
@@ -26,5 +26,6 @@
     "status": "BLOCKED",
     "authority": "No approval has been granted"
   },
-  "wpml_scope": "Excluded from this version by explicit user instruction; not a release blocker and no compatibility certification is claimed. See docs/prompts/2026-10-22-wpml-scope-change.md."
+  "wpml_scope": "Excluded from this version by explicit user instruction; not a release blocker and no compatibility certification is claimed. See docs/prompts/2026-10-22-wpml-scope-change.md.",
+  "test_summary_note": null
 }

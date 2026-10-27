@@ -1,4 +1,4 @@
-> **آخرین کد و شواهد — ۲۰۲۶/۱۰/۲۲:** انتقال سیاست محصول، اعتبارسنجی پاسخ‌ها و پروفایل‌های اجتماعی به افزونه؛ ۳۰ تست / ۱۵۵ assertion پاس. اسکن ۴۳۸ حالت کامل شد، اما ۹۰ رکورد axe باز است و انتشار نهایی Skill 3 تأیید نشده. WPML خارج از دامنه است. [گزارش تحویل و نصب](docs/releases/2026-10-22-DELIVERY-FA.md).
+> **آخرین کد و شواهد — ۲۰۲۶/۱۰/۲۷:** بازنویسی و تکمیل چرخهٔ کیفیت: مهاجرت پالت پیش‌فرض Elementor، رفع کنتراست/RTL/JS/برخورد شناورها، اتصال label اتمیک، قرارداد شکست-بستهٔ اسکن؛ PHPUnit ۳۴/۱۹۴ با پوشش ۹۳٫۷۶٪، WPCS/PHPStan صفر خطا؛ اسکن تازهٔ ۴۳۸ حالت: ۴۱۶ پاس و ۲۲ شکست که همگی ۲۶ رکورد axe در مارکاپ فروشنده است (بدون تخلف زرین‌کد). انتشار نهایی Skill 3 تأیید نشده. WPML خارج از دامنه است. [به‌روزرسانی تحویل](docs/releases/2026-10-27-COMPLETION-UPDATE-FA.md) • [گزارش ۲۰۲۶/۱۰/۲۲](docs/releases/2026-10-22-DELIVERY-FA.md).
 
 > **Skill 3.0.0 — 4.0.0-rc.2:** independent companion-runtime architecture and scoped tests implemented. This is an evaluation candidate, **not an approved commercial final release**. [Installation, migration and open gates](docs/releases/4.0.0-rc.2-FA.md). Stable 3.7.5 ZIPs are not replaced.
 

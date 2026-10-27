@@ -1,0 +1,56 @@
+{
+  "scope": "Automated keyboard traversal at three widths/locales; not manual screen-reader certification.",
+  "combos": 3,
+  "checks": 27,
+  "passed": true,
+  "results": [
+    {
+      "width": 320,
+      "locale": "fa_IR",
+      "checks": {
+        "skip_link_focused": true,
+        "skip_targets_main": true,
+        "search_open": true,
+        "focus_inside": true,
+        "reverse_trap": true,
+        "forward_trap": true,
+        "escape_closes": true,
+        "no_inert_leak": true,
+        "no_x_overflow": true
+      },
+      "passed": true
+    },
+    {
+      "width": 768,
+      "locale": "en_US",
+      "checks": {
+        "skip_link_focused": true,
+        "skip_targets_main": true,
+        "search_open": true,
+        "focus_inside": true,
+        "reverse_trap": true,
+        "forward_trap": true,
+        "escape_closes": true,
+        "no_inert_leak": true,
+        "no_x_overflow": true
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "locale": "fa_IR",
+      "checks": {
+        "skip_link_focused": true,
+        "skip_targets_main": true,
+        "search_open": true,
+        "focus_inside": true,
+        "reverse_trap": true,
+        "forward_trap": true,
+        "escape_closes": true,
+        "no_inert_leak": true,
+        "no_x_overflow": true
+      },
+      "passed": true
+    }
+  ]
+}

@@ -10,5 +10,6 @@ for(const [width,locale]of [[320,'fa_IR'],[768,'en_US'],[1440,'fa_IR']]){
  checks.no_x_overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth<=1);
  results.push({width,locale,checks,passed:Object.values(checks).every(Boolean)});
 }
-}finally{await browser.close();}fs.writeFileSync(root+'/keyboard.json',JSON.stringify({scope:'Chromium keyboard/skip-link/modal/reflow checks only. Not assistive-technology or complete WCAG conformance testing.',results},null,2));console.log(results);if(results.some(r=>!r.passed))process.exitCode=1;
+}finally{await browser.close();}fs.writeFileSync(root+'/keyboard.json',JSON.stringify({scope:'Chromium keyboard/skip-link/modal/reflow checks only. Not assistive-technology or complete WCAG conformance testing.',results},null,2));fs.writeFileSync(root+'/keyboard-report.json',JSON.stringify({scope:'Automated keyboard traversal at three widths/locales; not manual screen-reader certification.',combos:results.length,checks:results.reduce((a,r)=>a+Object.keys(r.checks).length,0),passed:results.every(r=>Object.values(r.checks).every(Boolean)),results},null,2));
+ console.log(results);if(results.some(r=>!r.passed))process.exitCode=1;
 })().catch(e=>{console.error(e);process.exit(1)});

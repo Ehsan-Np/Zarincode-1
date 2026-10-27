@@ -47,6 +47,7 @@ function zarincode_fa_digits( $input ): string {
 }
 
 // Initialize Theme Core Classes, Plugin Installer & Advanced Settings Panel
+\Zarincode\Theme\Elementor\Kit_Defaults::boot();
 \Zarincode\Theme\Core\Setup::instance();
 \Zarincode\Theme\Core\Assets::instance();
 \Zarincode\Theme\Core\Single_Experience::boot();

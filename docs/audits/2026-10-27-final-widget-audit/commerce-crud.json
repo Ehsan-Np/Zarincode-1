@@ -1,0 +1,36 @@
+{
+  "classic": {
+    "checks": {
+      "actual_store_mode": true,
+      "create_order": true,
+      "read_order": true,
+      "total": true,
+      "no_permission_before_payment": true,
+      "owner_download_allowed": true,
+      "other_customer_no_download": true,
+      "orders_owner_query": true,
+      "other_orders_empty": true,
+      "refund_created": true,
+      "refund_amount": true
+    },
+    "all_true": true,
+    "count": 11
+  },
+  "hpos": {
+    "checks": {
+      "actual_store_mode": true,
+      "create_order": true,
+      "read_order": true,
+      "total": true,
+      "no_permission_before_payment": true,
+      "owner_download_allowed": true,
+      "other_customer_no_download": true,
+      "orders_owner_query": true,
+      "other_orders_empty": true,
+      "refund_created": true,
+      "refund_amount": true
+    },
+    "all_true": true,
+    "count": 11
+  }
+}

@@ -1,0 +1,37 @@
+PHPUnit 9.6.38 by Sebastian Bergmann and contributors.
+
+..................................                                34 / 34 (100%)
+
+Time: 00:02.595, Memory: 111.00 MB
+
+OK (34 tests, 194 assertions)
+
+Generating code coverage report in Clover XML format ... done [00:00.005]
+
+
+Code Coverage Report:      
+  2026-10-27 15:35:37      
+                           
+ Summary:                  
+  Classes: 55.56% (5/9)    
+  Methods: 90.48% (38/42)  
+  Lines:   93.76% (496/529)
+
+Zarincode\Runtime260\Admin\Product_Policy_Admin
+  Methods:  85.71% ( 6/ 7)   Lines:  67.07% ( 55/ 82)
+Zarincode\Runtime260\Content\Article_Rating_Repository
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% ( 24/ 24)
+Zarincode\Runtime260\Content\Article_Rating_Service
+  Methods: 100.00% ( 4/ 4)   Lines: 100.00% ( 28/ 28)
+Zarincode\Runtime260\Content\Discussion_Service
+  Methods:  85.71% ( 6/ 7)   Lines:  97.37% ( 37/ 38)
+Zarincode\Runtime260\Content\Product_Policy_Store
+  Methods: 100.00% ( 7/ 7)   Lines: 100.00% ( 75/ 75)
+Zarincode\Runtime260\Content\Social_Profile_Store
+  Methods:  87.50% ( 7/ 8)   Lines:  98.85% ( 86/ 87)
+Zarincode\Runtime260\Features\Manager
+  Methods:  83.33% ( 5/ 6)   Lines:  94.67% ( 71/ 75)
+Zarincode\Runtime260\Features\Registry
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (112/112)
+Zarincode\Runtime260\Support\Settings_Schema
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  5/  5)

@@ -1,0 +1,2 @@
+{"fixture":"none","assertions":6,"passed":true}
+{"fixture":"polylang","assertions":6,"passed":true}

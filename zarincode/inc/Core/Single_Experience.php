@@ -46,7 +46,7 @@ final class Single_Experience {
         if($bio!=='')echo '<div class="zc-author-bio">'.wp_kses_post(wpautop($bio)).'</div>';
         echo '<div class="zc-author-actions"><a class="zc-author-archive" href="'.esc_url(get_author_posts_url($author)).'">'.($commerce?'آشنایی با ارائه‌دهنده':'مقالات بیشتر از این نویسنده').' <span aria-hidden="true">←</span></a>';
         if($commerce)echo '<a href="'.esc_url(home_url('/contact-us/')).'" class="zc-maker-contact">پرسش پیش از خرید <i class="fa-regular fa-comment" aria-hidden="true"></i></a>';
-        echo '</div></div><span class="zc-author-watermark" aria-hidden="true">ZC</span></section>';
+        echo '</div></div><span class="zc-author-watermark" aria-hidden="true"></span></section>';
     }
     private static function navigation(bool $commerce):void {
         $unit=['product'=>'محصول','zc_service'=>'خدمت','zc_project'=>'پروژه'][get_post_type()]??'نوشته';

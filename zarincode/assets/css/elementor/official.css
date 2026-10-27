@@ -26,3 +26,42 @@
 .elementor .show-password-input{min-width:24px;min-height:24px}
 .elementor .elementor-widget-wc-add-to-cart .elementor-button{background:var(--color-accent,#fdd05b);color:#202227}
 .elementor .elementor-widget-woocommerce-my-account .woocommerce-LostPassword a{color:var(--zc-text-primary,#2a2c31)}
+
+/* WCAG 2.2 AA: factory palette gaps outside the branded kit defaults.
+   Per-instance Elementor CSS keeps higher specificity, so explicit author choices still win. */
+/* Elementor Pro slides/flip-box ship a hardcoded teal surface behind white text. */
+.elementor .elementor-slide-heading,
+.elementor .elementor-slide-description,
+.elementor .elementor-slides .swiper-slide-inner .elementor-slide-button,
+.elementor .elementor-flip-box__layer__title,
+.elementor .elementor-flip-box__layer__description{color:#202227}
+/* Link-in-bio and contact-button factory blue/green surfaces need a darker label. */
+.elementor .e-link-in-bio__cta-text,
+.elementor .e-contact-buttons .e-contact-buttons__chat-button-text,
+.elementor .e-contact-buttons .e-contact-buttons__contact-title{color:#16181d}
+/* New core button widget pairs a bright blue surface with dark default text. */
+.elementor .e-button-base.e-default-button{color:#fff}
+/* Floating coupon bars print their code in light blue directly on white. */
+.elementor .e-floating-bars__coupon-text{color:#2f5fd0}
+/* Twitter-blue share action darkened so its white label passes 4.5:1. */
+.elementor .elementor-blockquote__tweet-label{background-color:#1565c0}
+/* Elementor Pro my-account tabs style the lost-password link with a failing blue. */
+.elementor .elementor-widget-woocommerce-my-account .e-my-account-tab:not(.e-my-account-tab__dashboard--custom) .woocommerce .woocommerce-LostPassword a{color:var(--zc-text-primary,#2a2c31)}
+/* Prism factory token colours on the light code surface. */
+.elementor .prismjs-default .token.function,
+.elementor .prismjs-default .token.class-name{color:#b3123c}
+.elementor .prismjs-default .token.comment,
+.elementor .prismjs-default .token.prolog,
+.elementor .prismjs-default .token.doctype,
+.elementor .prismjs-default .token.cdata{color:#5f6368}
+/* Prism string/number token colours on the light code surface. */
+.elementor .prismjs-default .token.string,
+.elementor .prismjs-default .token.attr-value,
+.elementor .prismjs-default .token.url,
+.elementor .prismjs-default .token.regex{color:#0f6b3f}
+.elementor .prismjs-default .token.boolean,
+.elementor .prismjs-default .token.number,
+.elementor .prismjs-default .token.constant,
+.elementor .prismjs-default .token.symbol{color:#0f5c8c}
+/* Keyboard affordance for scrollable code regions enhanced by theme scripts. */
+pre[tabindex]:focus-visible{outline:2px solid currentColor;outline-offset:2px}
