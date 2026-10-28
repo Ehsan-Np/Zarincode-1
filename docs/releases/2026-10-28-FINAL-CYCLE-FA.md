@@ -157,5 +157,8 @@ git fetch origin && git rev-parse --short HEAD origin/main
   سورس/مستندات/آپلودها ~۱۷MB؛ صفر فایل تست/کش/خروجی موقت.
 - محیط تست (فیکسچر، دیتابیس، سرور، افزونه‌های دانلودی) **کاملاً حذف‌شده**؛ بازتولید طبق
   `tools/quality/README.md` ممکن است.
+- مرجع‌های نهایی کاربر از `uploads/` (شامل `Untitled-2.png` ارجاع کارت نهایی و `image-1..3.png`) طبق قاعدهٔ
+  `docs/prompts/USER-REQUESTS.md` به `docs/archive/user-references/` منتقل و در گیت‌هاب ثبت شدند؛ متن مهارت‌ها
+  از قبل در `docs/standards/` آینه شده است (`docs/governance/skill-v3-provenance.json`).
 - محدودیت‌های باز: `commercial_approved=false`؛ تست مرورگری این چرخه اجرا نشد (آخرین رکورد ۲۰۲۶-۱۰-۲۷)؛
   `human_release_approval=pending`؛ WPML خارج از دامنه (تصمیم صریح کاربر).
