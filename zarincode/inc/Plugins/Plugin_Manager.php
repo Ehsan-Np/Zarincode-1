@@ -48,7 +48,7 @@ class Plugin_Manager {
                 'badge'       => 'اجباری • هسته قالب',
                 'version'     => '4.0.0-rc.3',
                 'source_type' => 'افزونه مستقل؛ نصب و بروزرسانی صریح از بسته پروژه',
-                'remote_zip'  => 'https://github.com/Ehsan-Np/Zarincode-1/releases/download/v4.0.0-rc.3/zarincode-core-4.0.0-rc.3.zip',
+                'remote_zip'  => 'https://github.com/Ehsan-Np/Zarincode-1/raw/refs/tags/v4.0.0-rc.3/packages/candidates/webp-4.0.0-rc.3/zarincode-core-4.0.0-rc.3.zip',
                 'description' => 'افزونه هسته قالب شامل ۲۰ ویجت با امکانات ویرایش محتوا المنتور (Crextio + Webinex)، پست‌تایپ‌های خدمات و پروژه‌ها، هدر و فوترساز و درون‌ریز هوشمند دمو.',
                 'icon'        => 'dashicons-superhero',
             ],
