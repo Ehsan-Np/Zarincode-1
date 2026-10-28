@@ -58,7 +58,7 @@ class Elementor_Loader {
         wp_register_style('zarincode-studio',$base.'studio.css',[],'4.0.0-rc.2');
         wp_register_script('zarincode-studio',$base.'studio.js',['elementor-frontend'],'4.0.0-rc.2',true);
         wp_register_style('zarincode-native',$base.'native.css',[],'4.0.0-rc.2');
-        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'4.0.0-rc.2',true);
+        wp_register_script('zarincode-native',$base.'native.js',['elementor-frontend'],'4.0.0-rc.2-'.filemtime(__DIR__.'/assets/native.js'),true);
         wp_register_style('zarincode-professional',$base.'professional.css',[],'4.0.0-rc.2');
         wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'4.0.0-rc.2',true);
         wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '4.0.0-rc.2' );

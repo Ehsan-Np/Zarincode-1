@@ -37,7 +37,7 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
 <html <?php language_attributes(); ?> class="<?php echo 'dark' === zarincode_get_option( 'default_theme_mode', 'light' ) ? 'dark' : ''; ?>">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="author" content="Ehsan NaderiPanah - Zarincode.com">
     <?php wp_head(); ?>
 </head>
@@ -249,7 +249,7 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
                 <?php endif; ?>
 
                 <!-- Mobile Hamburger Menu Toggle (Visible on Tablet & Mobile) -->
-                <button type="button" class="zc-icon-btn zc-mobile-menu-toggle" data-zc-drawer-open="zc-mobile-drawer" aria-label="باز کردن منوی موبایل" title="منوی اصلی">
+                <button type="button" class="zc-icon-btn zc-mobile-menu-toggle" data-zc-drawer-open="zc-mobile-drawer" aria-controls="zc-mobile-drawer" aria-expanded="false" aria-label="باز کردن منوی موبایل" title="منوی اصلی">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
@@ -258,8 +258,8 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
 </header>
 
 <!-- Responsive Mobile & Tablet Navigation Drawer -->
-<div id="zc-mobile-drawer" class="zc-mobile-drawer-backdrop" aria-hidden="true">
-    <aside class="zc-mobile-drawer" aria-label="منوی موبایل زرین کد">
+<div id="zc-mobile-drawer" class="zc-mobile-drawer-backdrop" aria-hidden="true" inert>
+    <aside class="zc-mobile-drawer" role="dialog" aria-modal="true" tabindex="-1" aria-label="منوی موبایل زرین کد">
         <div class="zc-mobile-drawer-head">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="zc-brand" style="border:none;padding:0;background:transparent;">
                 <span class="zc-brand-logo-box"><?php echo esc_html( $logo_monogram ); ?></span>

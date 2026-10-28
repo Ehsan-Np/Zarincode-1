@@ -49,6 +49,7 @@ final class Zarincode_Core_Plugin_260 {
     }
 
     private function __construct() {
+        \Zarincode\Runtime260\PWA\App::boot();
         \Zarincode\Runtime260\Integrations\Multilingual::boot();
         add_action('elementor/element/after_section_end',[\Zarincode\Runtime260\Elementor\Shared_Controls::class,'register'],10,2);
         add_action('elementor/dynamic_tags/register',static function($manager){

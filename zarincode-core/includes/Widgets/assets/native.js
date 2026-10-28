@@ -23,6 +23,8 @@
             onClick(event) {
                 const button = event.target.closest('[data-filter],[data-pricing-target],.zc-faq-btn,.zc-faq-trigger,[data-zc-modal-open],[data-zc-drawer-open]');
                 if (!button || !this.root.contains(button)) return;
+                // Shared theme controller owns drawer focus, scroll and ARIA state.
+                if (button.hasAttribute('data-zc-drawer-open')) return;
                 if (elementorFrontend.isEditMode() && event.target.closest('.elementor-inline-editing')) return;
                 if (button.hasAttribute('data-filter')) {
                     const group = button.closest('[data-zc-tabs]');

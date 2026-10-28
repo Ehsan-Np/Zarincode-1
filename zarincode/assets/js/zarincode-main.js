@@ -130,61 +130,7 @@
 
         // Dialog interactions are managed by the delegated, focus-safe dialogs module.
 
-        // Mobile Navigation Drawer Open / Close / Submenu Accordion
-        legacyNodes('[data-zc-drawer-open]').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                const id = btn.getAttribute('data-zc-drawer-open');
-                const drawer = document.getElementById(id);
-                if (drawer) {
-                    drawer.classList.add('is-open');
-                    drawer.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-
-        legacyNodes('[data-zc-drawer-close]').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const drawer = btn.closest('.zc-mobile-drawer-backdrop') || document.getElementById('zc-mobile-drawer');
-                if (drawer) {
-                    drawer.classList.remove('is-open');
-                    drawer.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-        legacyNodes('.zc-mobile-drawer-backdrop').forEach(function (backdrop) {
-            backdrop.addEventListener('click', function (e) {
-                if (e.target === backdrop) {
-                    backdrop.classList.remove('is-open');
-                    backdrop.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-        legacyNodes('[data-zc-mobile-sub-toggle]').forEach(function (subBtn) {
-            subBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                const parentLi = subBtn.closest('.zc-mobile-has-sub');
-                if (parentLi) {
-                    parentLi.classList.toggle('is-open');
-                }
-            });
-        });
-
-        // Ctrl+K shortcut for search modal
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                legacyNodes('.zc-mobile-drawer-backdrop.is-open').forEach(d => {
-                    d.classList.remove('is-open');
-                    d.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                });
-            }
-        });
+        // Mobile navigation is owned by mobile-navigation.js (including native headers).
 
         // Consultation Form Submission Toast
         legacyNodes('.zc-Ajax-form').forEach(function (form) {

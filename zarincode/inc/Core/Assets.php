@@ -91,6 +91,7 @@ class Assets {
     }
 
     public function enqueue_frontend_assets(): void {
+        wp_enqueue_script( 'zarincode-mobile-navigation', ZARINCODE_URI . '/assets/js/mobile-navigation.js', [], ZARINCODE_VERSION . '-' . filemtime( ZARINCODE_DIR . '/assets/js/mobile-navigation.js' ), true );
         wp_enqueue_script('zarincode-dialogs',ZARINCODE_URI.'/assets/js/dialogs.js',[],ZARINCODE_VERSION,true);
         // 1. Local Vazirmatn Font
         wp_enqueue_style(
@@ -120,7 +121,7 @@ class Assets {
             wp_enqueue_style('zarincode-product-reference', ZARINCODE_URI . '/assets/css/product-reference.css', ['zarincode-main'], ZARINCODE_VERSION);
         }
 
-        wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION);
+        wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION . '-' . filemtime( ZARINCODE_DIR . '/assets/css/responsive.css' ));
 
         // 4. RTL Native Stylesheet
         wp_enqueue_style(
@@ -149,8 +150,8 @@ class Assets {
         wp_enqueue_script(
             'zarincode-main',
             ZARINCODE_URI . '/assets/js/zarincode-main.js',
-            [],
-            ZARINCODE_VERSION,
+            [ 'zarincode-mobile-navigation' ],
+            ZARINCODE_VERSION . '-' . filemtime( ZARINCODE_DIR . '/assets/js/zarincode-main.js' ),
             true
         );
 

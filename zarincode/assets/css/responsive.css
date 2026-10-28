@@ -76,3 +76,70 @@ details:not([open])>:not(summary){display:none}
 
 .zc-skip-link{position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:100000;background:#fff;color:#111;padding:12px 18px;border:2px solid #111;border-radius:8px;transform:translateY(-160%)}.zc-skip-link:focus{transform:none;outline:3px solid #111;outline-offset:3px}
 html[dir=ltr] body{direction:ltr;text-align:left}html[dir=ltr] :is(.zc-card-cover-title,.zc-breadcrumb-bar){text-align:start}
+
+/* Mobile completion: safe areas, accessible controls and commerce reflow.
+   Scoped to theme surfaces: do not override arbitrary Elementor column designs. */
+:root{--zc-safe-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-block-start:110px}
+.zc-mobile-drawer{box-sizing:border-box;max-height:100vh;max-height:100dvh;padding-top:max(20px,env(safe-area-inset-top));padding-bottom:max(20px,env(safe-area-inset-bottom))}
+.zc-mobile-drawer>:is(.zc-mobile-drawer-head,.zc-mobile-drawer-foot){flex-shrink:0}
+.zc-mobile-nav-wrap{flex:1 0 auto}
+.zc-mobile-sub-list[hidden]{display:none!important}
+.zc-mobile-drawer :is(button,.zc-mobile-nav-list a){min-height:44px}
+.zc-mobile-drawer :is(a,button):focus-visible,.zc-header-pill :is(a,button):focus-visible{outline:3px solid var(--color-accent,#fdd05b);outline-offset:3px}
+html[dir=ltr] .zc-mobile-drawer{right:auto;left:0;transform:translateX(-100%);border-left:0;border-right:1px solid var(--zc-border-subtle)}
+html[dir=ltr] .zc-mobile-drawer-backdrop.is-open .zc-mobile-drawer{transform:translateX(0)}
+@media(max-width:1024px){
+ .zc-container{padding-inline-start:max(var(--zc-site-gutter,16px),env(safe-area-inset-left));padding-inline-end:max(var(--zc-site-gutter,16px),env(safe-area-inset-right))}
+ .zc-single-product-sidebar{position:static!important;top:auto!important}
+ .woocommerce :is(.cart-collaterals .cart_totals,.col2-set,.col2-set .col-1,.col2-set .col-2){float:none;width:100%;min-width:0}
+ .woocommerce :is(.cart-collaterals,.woocommerce-checkout,.woocommerce-cart-form){min-width:0;max-width:100%}
+}
+@media(max-width:767px){
+ .zc-header-actions :is(.zc-icon-btn,.zc-header-account){width:44px;min-width:44px;height:44px}
+ .zc-header-pill .zc-brand>img{max-width:min(120px,26vw)!important;object-fit:contain}
+ .zc-topbar-legal{display:none}
+ .zc-topbar-item{white-space:normal;line-height:1.9}
+ .zc-container :is(.zc-section-header,.zc-section-head){flex-wrap:wrap;gap:16px}
+ .zc-container :is(.zc-section-header,.zc-section-head)>*{min-width:0;max-width:100%}
+ .zc-filter-tabs{max-width:100%;display:flex;flex-wrap:wrap;gap:8px}
+ .zc-filter-tabs :is(button,a),.zc-prod-tab-btn{min-height:44px}
+ .zc-container .zc-btn{min-height:44px;white-space:normal;text-align:center;overflow-wrap:anywhere}
+ .zc-modal-dialog{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));overscroll-behavior:contain;scroll-padding-block:20px}
+ .zc-modal-dialog :is(input,select,textarea),.zc-editorial-discussion :is(input:not([type=checkbox]):not([type=radio]),textarea),.zc-form-control{font-size:16px!important}
+ .woocommerce form :is(input.input-text,select,textarea){font-size:16px!important;min-height:44px;box-sizing:border-box}
+ .woocommerce form :is(.form-row-first,.form-row-last){float:none;width:100%}
+ .woocommerce .select2-container{max-width:100%;min-width:0}
+ .woocommerce .select2-container .select2-selection--single{min-height:44px}
+ .woocommerce :is(.woocommerce-checkout-review-order,.woocommerce-order-details,.woocommerce-order-downloads){max-width:100%;overflow-x:auto}
+ .woocommerce table.shop_table{width:100%;table-layout:auto;overflow-wrap:anywhere}
+ .woocommerce table.shop_table :is(td,th){padding:12px 8px;white-space:normal}
+ .woocommerce table.cart td.actions :is(.coupon,input.input-text,.button){float:none;max-width:100%;box-sizing:border-box}
+ .woocommerce table.cart td.actions .coupon{display:flex;flex-wrap:wrap;gap:10px;width:100%;margin-bottom:12px}
+ .woocommerce table.cart td.actions .coupon input.input-text{flex:1 1 140px;width:auto}
+ .woocommerce :is(button.button,a.button,input.button){min-height:44px;white-space:normal;line-height:1.7}
+ .woocommerce ul.order_details{display:flex;flex-wrap:wrap;gap:16px;padding:0}
+ .woocommerce ul.order_details li{float:none;margin:0;max-width:100%;overflow-wrap:anywhere}
+ .zc-account-layout,.zc-account-heading,.zc-account-auth{min-width:0;max-width:100%;overflow-wrap:anywhere}
+ .zc-account-layout .woocommerce-MyAccount-content{overflow-x:auto}
+ .zc-footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ #zarincode-crextio-switcher{left:max(12px,env(safe-area-inset-left))!important;bottom:max(12px,env(safe-area-inset-bottom))}
+ #zc-ccs-panel{max-width:calc(100vw - 32px);max-height:calc(100dvh - 110px);overflow-y:auto;box-sizing:border-box}
+}
+@media(max-width:380px){
+ .zc-header-pill .zc-brand-text{display:none}
+ .zc-header-pill{gap:4px;padding:6px}
+ .zc-header-actions{gap:2px}
+ .zc-header-actions :is(.zc-icon-btn,.zc-header-account){width:44px;min-width:44px;height:44px}
+ .zc-header-pill:has(.zc-account-label-always){flex-wrap:wrap}
+ .zc-header-pill:has(.zc-account-label-always) .zc-header-actions{flex:1 1 100%;justify-content:space-between}
+ .zc-header-actions .zc-account-label-always{width:auto;min-width:44px;max-width:88px;padding-inline:6px}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .zc-header-wrap{position:relative!important;top:auto!important}
+ .zc-mobile-founder-card{display:none}
+ .zc-mobile-drawer-head{margin-bottom:12px}
+}
+@media(hover:none){.zc-cover-card:hover,.zc-pro-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.zc-header-pill *,.zc-mobile-drawer *{transition:none!important;animation:none!important}}
+@media print{.zc-mobile-drawer-backdrop,.zc-pwa-offer,#zarincode-crextio-switcher,.zc-floating-quick-contact{display:none!important}}
