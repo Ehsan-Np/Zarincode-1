@@ -363,6 +363,17 @@ class OptionsConfig {
                     [ 'id' => 'custom_footer_js',         'type' => 'code',     'title' => 'کدهای جاوااسکریپت یا آنالیتیکس در فوتر (قبل از </body>)', 'default' => '' ],
                 ],
             ],
+            'media_optimization' => [
+                'title' => 'بهینه‌سازی تصاویر WebP', 'icon' => 'dashicons-format-image',
+                'desc' => 'تبدیل آپلودهای جدید و ثابتِ قابل پشتیبانی سرور، پیش از ایجاد رسانه. در حالت پیش‌فرض فقط خروجی کوچک‌تر جایگزین فایل ورودی می‌شود. تصاویر قدیمی، SVG و تصاویر متحرک دست‌نخورده می‌مانند. تبدیل موفق فایل اصلی را جایگزین می‌کند؛ پیش از فعال‌سازی نسخه پشتیبان داشته باشید.',
+                'fields' => [
+                    [ 'id' => 'feature_webp_uploads', 'type' => 'switch', 'title' => 'تبدیل خودکار آپلودهای جدید به WebP', 'default' => true ],
+                    [ 'id' => 'webp_quality', 'type' => 'number', 'title' => 'کیفیت WebP (۵۰ تا ۱۰۰)', 'min' => 50, 'max' => 100, 'step' => 1, 'default' => 82, 'subtitle' => '۸۲ تعادل پیش‌فرض حجم و کیفیت است؛ ۱۰۰ الزاماً lossless نیست و ممکن است حجم را بیشتر کند.' ],
+                    [ 'id' => 'webp_only_smaller', 'type' => 'switch', 'title' => 'جایگزینی فقط اگر WebP از فایل ورودی کوچک‌تر باشد', 'default' => true ],
+                    [ 'id' => 'webp_max_megabytes', 'type' => 'number', 'title' => 'حد حجم ورودی برای تبدیل (مگابایت)', 'min' => 1, 'max' => 100, 'step' => 1, 'default' => 25 ],
+                    [ 'id' => 'webp_max_megapixels', 'type' => 'number', 'title' => 'حد تعداد پیکسل ورودی (مگاپیکسل)', 'min' => 1, 'max' => 80, 'step' => 1, 'default' => 40 ],
+                ],
+            ],
             'feature_modules'=>[
                 'title'=>esc_html__('Optional widget modules','zarincode'),'icon'=>'dashicons-admin-plugins','desc'=>esc_html__('Disabling a family preserves saved widget settings. Dependent families require native widgets and Elementor.','zarincode'),
                 'fields'=>[

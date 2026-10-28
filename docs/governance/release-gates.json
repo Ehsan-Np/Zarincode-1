@@ -1,6 +1,6 @@
 {
   "specification": "ZC-WP-ENG-SKILL-001 v3.0.0",
-  "version": "4.0.0-rc.2",
+  "version": "4.0.0-rc.3",
   "commercial_approved": false,
   "approved_exceptions": [
     {
@@ -51,6 +51,19 @@
     "seo_schema_audit": "docs/audits/2026-10-28-seo-schema-audit/README.md; new Zarincode\\Theme\\Core\\Seo_Meta (description/archive-canonical/robots-noindex/OG/Twitter/WebSite+SearchAction/robots.txt sitemap), BlogPosting publisher+inLanguage; all gated by SEO::has_owner()",
     "article_demo_package": "zarincode/demo-data/zarincode-articles.xml (71 articles, 6 categories, quotas 10/10/5/12/22/12, security guarantee line in all 22) + tools/build-articles.py + tools/build_articles_data.py; second OCDI entry without Redux",
     "multilingual_adapter_fixtures": "none 6/6 and polylang 6/6 fresh 2026-10-28 (WPML remains out of scope)",
-    "php_lint": "0 errors across 83 PHP files (fresh 2026-10-28)"
+    "php_lint": "0 errors across 83 PHP files (fresh 2026-10-28)",
+    "webp_uploads_rc3": {
+      "report": "docs/audits/2026-10-28-WEBP-FA.md",
+      "real_gd_assertions": 145,
+      "real_wordpress_assertions_per_install": 21,
+      "wordpress_versions": [
+        "6.8.3",
+        "7.2-beta2-64871"
+      ],
+      "database_fixture": "SQLite, not MySQL",
+      "php_contract_assertions": 308,
+      "runtime_php_syntax_files": 86,
+      "limitations": "No Imagick/browser multipart/live site/PageSpeed certification. New media files not included in previous scoped PHPStan/WPCS/coverage measurements."
+    }
   }
 }

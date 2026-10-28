@@ -39,7 +39,7 @@ final class Registry {
 				'settings'     => 'feature_' . $id,
 				'translation'  => 'zarincode-core',
 				'cache_groups' => array( 'elementor-css' ),
-				'version'      => '4.0.0-rc.2',
+				'version'      => '4.0.0-rc.3',
 				'migration'    => 'No destructive migration. Missing option preserves enabled state.',
 				'tests'        => array( 'feature-resolver', 'disabled-widget-output', 'disabled-widget-assets' ),
 			);
@@ -128,6 +128,17 @@ final class Registry {
 				'tests'    => array( 'social-xss', 'social-nonce', 'social-theme-switch', 'social-schema' ),
 			)
 		);
+        $features['webp_uploads'] = array_replace(
+            $features['article_ratings'],
+            [
+                'id' => 'webp_uploads', 'name' => 'Automatic WebP uploads',
+                'description' => 'Safe conversion of supported new local raster uploads; originals replaced only after validation.',
+                'migration' => 'No bulk migration. Successful future uploads replace their source; failures preserve it.',
+                'settings' => 'feature_webp_uploads', 'category' => 'media',
+                'services' => [ 'safe_local_webp_upload_conversion' ],
+                'tests' => [ 'webp-real-codec', 'webp-animation', 'webp-failover', 'webp-collision', 'webp-resource-limits' ],
+            ]
+        );
 		return (array) apply_filters( 'zarincode_feature_registry', $features );
 	}
 }

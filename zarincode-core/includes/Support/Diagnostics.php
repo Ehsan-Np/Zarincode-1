@@ -11,7 +11,8 @@ final class Diagnostics {
         return [ 'translation_engine'=>\Zarincode\Runtime260\Integrations\Multilingual::engine(), 'core' => ZARINCODE_CORE_VERSION, 'php' => PHP_VERSION,
             'elementor' => defined('ELEMENTOR_VERSION') ? ELEMENTOR_VERSION : 'absent',
             'elementor_pro' => defined('ELEMENTOR_PRO_VERSION') ? ELEMENTOR_PRO_VERSION : 'absent',
-            'woocommerce' => defined('WC_VERSION') ? WC_VERSION : 'absent', 'features' => $features ];
+            'woocommerce' => defined('WC_VERSION') ? WC_VERSION : 'absent', 'features' => $features,
+            'webp_uploads' => \Zarincode\Runtime260\Media\WebP_Uploads::status() ];
     }
     public static function page(): void {
         if ( ! current_user_can('manage_options') ) { wp_die(esc_html__('Insufficient permissions.','zarincode-core')); }
@@ -20,6 +21,7 @@ final class Diagnostics {
     public static function site_health( array $info ): array {
         $info['zarincode-core'] = [ 'label' => 'ZarinCode Core', 'fields' => [
             'version' => [ 'label' => 'Version', 'value' => ZARINCODE_CORE_VERSION ],
+            'webp' => [ 'label' => 'WebP uploads', 'value' => wp_json_encode( \Zarincode\Runtime260\Media\WebP_Uploads::status() ) ],
             'provider' => [ 'label' => 'Runtime owner', 'value' => 'Companion plugin' ],
         ] ];
         return $info;

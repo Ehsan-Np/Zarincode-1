@@ -28,7 +28,7 @@ final class Settings_Security {
                 } elseif ( 'media' === $field['type'] ) {
                     $value[$key] = esc_url_raw( (string) $value[$key], [ 'http', 'https' ] );
                 } elseif ( 'number' === $field['type'] && ! isset( Layout::RANGES[$key] ) ) {
-                    $ranges = [ 'logo_width' => [32, 400], 'body_font_size' => [12, 24], 'glass_blur_px' => [0, 30], 'portfolio_per_page' => [1, 48], 'shop_per_page' => [1, 96] ];
+                    $ranges = [ 'logo_width' => [32, 400], 'body_font_size' => [12, 24], 'glass_blur_px' => [0, 30], 'portfolio_per_page' => [1, 48], 'shop_per_page' => [1, 96], 'webp_quality' => [50, 100], 'webp_max_megabytes' => [1, 100], 'webp_max_megapixels' => [1, 80] ];
                     [ $min, $max ] = $ranges[$key] ?? [ (int) ($field['min'] ?? 0), (int) ($field['max'] ?? 1000) ];
                     $value[$key] = is_numeric( $value[$key] ) ? max( $min, min( $max, (int) $value[$key] ) ) : $fallback;
                 } elseif ( 'body_line_height' === $key ) {

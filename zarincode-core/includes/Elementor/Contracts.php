@@ -17,7 +17,7 @@ final class Contracts {
                     'budget' => [ 'max_query_records' => 100, 'css_target_bytes' => 65536, 'js_target_bytes' => 32768 ],
                     'budget_status' => 'target_not_measurement',
                     'compatibility' => 'See version-specific compatibility manifest; no universal compatibility claim.',
-                    'documentation' => 'docs/releases/4.0.0-rc.2-FA.md',
+                    'documentation' => 'docs/releases/4.0.0-rc.3-FA.md',
                     'tests' => [ 'controls', 'editor', 'frontend', 'responsive', 'direction', 'a11y', 'visual', 'migration' ],
                     'status' => 'Not Reviewed', 'z_wqi' => null,
                 ];
