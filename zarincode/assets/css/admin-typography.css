@@ -1,0 +1,6 @@
+/* Local text font throughout WP admin. Do not override icon faces or code editors. */
+body.wp-admin,body.wp-admin :is(h1,h2,h3,h4,h5,h6,p,a,button,input,select,textarea,label,li,th,td,legend,.notice,.redux-container,.zc-options-fullwidth-wrap,.zc-demo-fullwidth-wrap,.zc-plugins-fullwidth-wrap):not([class*="fa-"]):not(.fa):not(.dashicons):not(.ab-icon):not([class*="eicon"]){font-family:'Vazirmatn',Tahoma,sans-serif!important}
+body.wp-admin :is(.zc-admin-hub,.zc-options-fullwidth-wrap,.zc-demo-fullwidth-wrap,.zc-plugins-fullwidth-wrap,.redux-container) :is(span,div):not([class*="fa-"]):not(.dashicons):not([class*="el-icon"]):not(.el){font-family:'Vazirmatn',Tahoma,sans-serif!important}
+body.wp-admin :is(pre,code,kbd,samp,.CodeMirror,.CodeMirror *,.monaco-editor,.monaco-editor *){font-family:ui-monospace,monospace!important}
+body.wp-admin :is(.notice-dismiss,.dashicons,.ab-icon,.wp-menu-image):before{font-family:dashicons!important}
+.zc-notice-dismiss-form{margin-top:12px}

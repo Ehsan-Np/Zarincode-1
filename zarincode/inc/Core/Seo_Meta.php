@@ -18,6 +18,8 @@ final class Seo_Meta {
 	public static function boot(): void {
 		add_action( 'wp_head', [ self::class, 'meta' ], 5 );
 		add_action( 'wp_head', [ self::class, 'website_schema' ], 45 );
+		add_filter( 'wp_robots', [ self::class, 'robots' ] );
+		add_action( 'wp_head', [ self::class, 'content_schema' ], 46 );
 		add_filter( 'robots_txt', [ self::class, 'robots_txt' ], 10, 2 );
 	}
 
@@ -26,13 +28,22 @@ final class Seo_Meta {
 		return \Zarincode\Theme\Compatibility\SEO::has_owner();
 	}
 
-	/** Pages that must stay out of the index: search results and 404s. */
+	/** Search/error, protected and transactional pages must stay out of the index. */
 	private static function noindex(): bool {
-		return is_404() || is_search();
+		return is_404() || is_search() || ( is_singular() && post_password_required() )
+            || ( function_exists( 'is_cart' ) && is_cart() )
+            || ( function_exists( 'is_checkout' ) && is_checkout() )
+            || ( function_exists( 'is_account_page' ) && is_account_page() );
 	}
 
-	/** Canonical URL of the current request without pagination. */
+	/** Self-referencing canonicals; never collapse archive page 2 onto page 1. */
 	private static function self_url(): string {
+        if ( is_paged() ) { return (string) get_pagenum_link( max( 1, (int) get_query_var( 'paged' ) ) ); }
+        if ( is_home() && get_option( 'page_for_posts' ) ) { return (string) get_permalink( (int) get_option( 'page_for_posts' ) ); }
+        if ( function_exists( 'is_shop' ) && is_shop() ) { return (string) get_permalink( wc_get_page_id( 'shop' ) ); }
+        if ( is_day() ) { return get_day_link( (int) get_query_var( 'year' ), (int) get_query_var( 'monthnum' ), (int) get_query_var( 'day' ) ); }
+        if ( is_month() ) { return get_month_link( (int) get_query_var( 'year' ), (int) get_query_var( 'monthnum' ) ); }
+        if ( is_year() ) { return get_year_link( (int) get_query_var( 'year' ) ); }
 		if ( is_singular() ) {
 			return (string) get_permalink();
 		}
@@ -44,7 +55,7 @@ final class Seo_Meta {
 			return (string) get_author_posts_url( (int) get_queried_object_id() );
 		}
 		if ( is_post_type_archive() ) {
-			$link = get_post_type_archive_link( (string) get_query_var( 'post_type' ) );
+			$link = get_post_type_archive_link( (string) ( is_array( get_query_var( 'post_type' ) ) ? ( array_values( get_query_var( 'post_type' ) )[0] ?? '' ) : get_query_var( 'post_type' ) ) );
 			return $link ? (string) $link : home_url( '/' );
 		}
 		return home_url( '/' );
@@ -78,11 +89,11 @@ final class Seo_Meta {
 			$term = get_queried_object();
 			$text = $term && ! is_wp_error( $term ) ? (string) ( $term->description ?? '' ) : '';
 		}
-		$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $text ) ) ?? '' );
+		$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( strip_shortcodes( (string) $text ) ) ) ?? '' );
 		if ( '' === $text ) {
-			$text = (string) zarincode_get_option( 'brand_slogan', 'طراحی سایت، سئو، توسعه نرم‌افزار و تولید محتوای حرفه‌ای با تضمین امنیت تا سقف ۹۹٪' );
+			$text = (string) zarincode_get_option( 'brand_slogan', 'طراحی سایت، سئو، توسعه نرم‌افزار و تولید محتوای حرفه‌ای' );
 		}
-		if ( 160 < mb_strlen( $text ) ) {
+		if ( function_exists( 'mb_strlen' ) && 160 < mb_strlen( $text ) ) {
 			$text = mb_substr( $text, 0, 157 ) . '…';
 		}
 		return $text;
@@ -109,13 +120,15 @@ final class Seo_Meta {
 			return;
 		}
 		$noindex = self::noindex();
+        // Never expose a protected page's excerpt in document metadata.
+        if ( is_singular() && post_password_required() ) { return; }
 
 		if ( ! is_404() ) {
 			$desc = self::description();
 			echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
 			echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
 			echo '<meta property="og:locale" content="' . esc_attr( str_replace( '-', '_', (string) get_bloginfo( 'language' ) ) ?: 'fa_IR' ) . '" />' . "\n";
-			$canonical = is_singular() ? (string) get_permalink() : self::self_url();
+			$canonical = is_singular() ? (string) ( wp_get_canonical_url() ?: get_permalink() ) : self::self_url();
 			if ( ! $noindex ) {
 				// Core rel_canonical() covers singular requests only.
 				if ( ! is_singular() ) {
@@ -142,9 +155,6 @@ final class Seo_Meta {
 				}
 			}
 		}
-		if ( $noindex ) {
-			echo '<meta name="robots" content="noindex, follow" />' . "\n";
-		}
 	}
 
 	/** Site-level WebSite graph on the front page when no plugin owns schema. */
@@ -161,19 +171,46 @@ final class Seo_Meta {
 			'@id'         => home_url( '/' ) . '#website',
 			'url'         => home_url( '/' ),
 			'name'        => get_bloginfo( 'name' ),
-			'inLanguage'  => str_replace( '-', '_', (string) get_bloginfo( 'language' ) ) ?: 'fa_IR',
-			'potentialAction' => [
-				'@type'      => 'SearchAction',
-				'target'     => home_url( '/?s={search_term_string}' ),
-				'query-input' => 'required name=search_term_string',
-			],
+            'publisher'   => [ '@id' => home_url( '/' ) . '#organization' ],
+			'inLanguage'  => (string) get_bloginfo( 'language' ) ?: 'fa-IR',
+
 		];
 		echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 	}
 
+    /** Merge with core's single robots tag instead of emitting a second conflicting tag. */
+    public static function robots( array $robots ): array {
+        if ( ! self::owned() && self::noindex() ) {
+            unset( $robots['index'] );
+            $robots['noindex'] = true;
+        }
+        return $robots;
+    }
+
+    /** Service/project entities use published content only, with no invented offers or ratings. */
+    public static function content_schema(): void {
+        if ( self::owned() || ! \Zarincode\Theme\Compatibility\SEO::theme_schema_allowed()
+            || ! zarincode_get_option( 'enable_schema_markup', true ) || self::noindex()
+            || ! is_singular( [ 'zc_service', 'zc_project' ] ) ) { return; }
+        $id = (int) get_queried_object_id();
+        $url = (string) get_permalink( $id );
+        $service = 'zc_service' === get_post_type( $id );
+        $data = [
+            '@context' => 'https://schema.org', '@type' => $service ? 'Service' : 'CreativeWork',
+            '@id' => $url . '#entity', 'url' => $url, 'name' => wp_strip_all_tags( get_the_title( $id ) ),
+            'description' => self::description(), 'inLanguage' => get_bloginfo( 'language' ),
+            'mainEntityOfPage' => $url,
+            $service ? 'provider' : 'creator' => [ '@id' => home_url( '/' ) . '#organization' ],
+        ];
+        $image = get_the_post_thumbnail_url( $id, 'full' );
+        if ( $image ) { $data['image'] = $image; }
+        echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+    }
+
 	/** Advertise the core sitemap to crawlers via the virtual robots.txt. */
-	public static function robots_txt( string $output, string $path ): string {
-		unset( $path );
+	public static function robots_txt( string $output, bool $public ): string {
+		if ( ! $public ) { return $output; }
+        if ( self::owned() || ! get_option( 'blog_public' ) || ! apply_filters( 'wp_sitemaps_enabled', true ) ) { return $output; }
 		$sitemap = home_url( '/wp-sitemap.xml' );
 		if ( false !== strpos( $output, $sitemap ) ) {
 			return $output;

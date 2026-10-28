@@ -519,9 +519,8 @@ class OptionsConfig {
     }
 
     public function enqueue_admin_assets( string $hook ): void {
-        if ( strpos( $hook, 'zarincode' ) !== false ) {
-            wp_enqueue_media();
-        }
+        if ( strpos( $hook, 'zarincode' ) === false ) { return; }
+        wp_enqueue_media();
         add_action( 'admin_head', static function () {
             echo '<style id="zarincode-admin-fullwidth-css">
                 #wpbody-content > .wrap.zc-options-fullwidth-wrap,
@@ -565,8 +564,8 @@ class OptionsConfig {
                 $options = $defaults;
                 update_option( $this->opt_name, $options );
                 $feedback = '🔄 تمامی تنظیمات قالب زرین کد به مقادیر استاندارد اولیه (Crextio Sunshine) بازنشانی شدند.';
-            } elseif ( 'import_json' === $act && ! empty( $_POST['zarincode_import_json_raw'] ) ) {
-                $raw_json = wp_unslash( $_POST['zarincode_import_json_raw'] );
+            } elseif ( 'import_json' === $act ) {
+                $raw_json = isset( $_POST['zarincode_import_json_raw'] ) && is_string( $_POST['zarincode_import_json_raw'] ) ? wp_unslash( $_POST['zarincode_import_json_raw'] ) : '';
                 $decoded  = json_decode( $raw_json, true );
                 if ( is_array( $decoded ) ) {
                     $options = \Zarincode\Theme\Core\Settings_Security::sanitize(array_merge( $defaults, $decoded ), $saved);
@@ -575,7 +574,7 @@ class OptionsConfig {
                 } else {
                     $feedback = '❌ خطا: ساختار کد JSON وارد شده معتبر نیست.';
                 }
-            } else {
+            } elseif ( 'save' === $act ) {
                 $posted = isset( $_POST['zc_opt'] ) && is_array( $_POST['zc_opt'] ) ? wp_unslash( $_POST['zc_opt'] ) : [];
                 foreach($posted as $key=>$value)if(!is_scalar($value)&&null!==$value)$posted[$key]=$options[$key]??'';
                 $new_options = $options;
@@ -613,7 +612,7 @@ class OptionsConfig {
 
                 $options = \Zarincode\Theme\Core\Settings_Security::sanitize($new_options, $saved);
                 update_option( $this->opt_name, $options );
-                $feedback = '✅ تمامی تغییرات شما در پنل تنظیمات پیشرفته قالب زرین کد با موفقیت ذخیره و در سایت اعمال شدند!';
+                $feedback = '✅ تنظیمات ذخیره شد. نتیجه را در بخش مرتبط بررسی کنید؛ تنظیمات اختصاصی هر ویجت المنتور می‌تواند بر تنظیمات عمومی اولویت داشته باشد.';
             }
         }
 
@@ -944,6 +943,8 @@ class OptionsConfig {
         $msg   = zarincode_get_option( 'maintenance_message', 'در حال ارتقای زیرساخت هستیم. تماس مستقیم: 09024561001' );
         $phone = zarincode_get_option( 'contact_phone', '09024561001' );
         status_header( 503 );
+        nocache_headers();
+        header( 'Retry-After: 3600' );
         ?>
         <!DOCTYPE html>
         <html lang="fa" dir="rtl">
@@ -951,8 +952,9 @@ class OptionsConfig {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?php echo esc_html( $title ); ?></title>
+            <link rel="stylesheet" href="<?php echo esc_url( ZARINCODE_URI . '/assets/css/vazirmatn.css' ); ?>">
             <style>
-                body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#15171C 0%,#2A2C31 100%); color:#fff; font-family:Tahoma,system-ui,sans-serif; padding:20px; text-align:center; }
+                body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#15171C 0%,#2A2C31 100%); color:#fff; font-family:'Vazirmatn',Tahoma,sans-serif; padding:20px; text-align:center; }
                 .box { max-width:600px; background:rgba(255,255,255,0.06); border:2px solid #FDD05B; border-radius:28px; padding:42px 32px; backdrop-filter:blur(14px); }
                 .badge { display:inline-block; background:#FDD05B; color:#2A2C31; padding:6px 18px; border-radius:999px; font-weight:900; font-size:12px; margin-bottom:16px; }
                 h1 { font-size:26px; margin:0 0 14px; color:#FDD05B; }
@@ -977,6 +979,8 @@ class OptionsConfig {
      * Output Dynamic CSS Variables, Favicon, Custom CSS/JS & Schema.org JSON-LD in wp_head
      */
     public function output_dynamic_styles_and_schema(): void {
+        $safe_options = \Zarincode\Theme\Core\Settings_Security::sanitize( (array) get_option( $this->opt_name, [] ), (array) get_option( $this->opt_name, [] ) );
+        $GLOBALS['zarincode_opt'] = array_merge( self::get_all_defaults(), $safe_options );
         $accent       = zarincode_get_option( 'accent_color', '#FDD05B' );
         $accent_hover = zarincode_get_option( 'accent_hover_color', '#F5C038' );
         $contrast     = zarincode_get_option( 'accent_contrast_color', '#2A2C31' );
@@ -991,6 +995,9 @@ class OptionsConfig {
         $blur         = (int) zarincode_get_option( 'glass_blur_px', 14 );
         $font_size    = (int) zarincode_get_option( 'body_font_size', 15 );
         $line_height  = zarincode_get_option( 'body_line_height', '1.9' );
+        $font_families = [ 'Vazirmatn' => 'Vazirmatn' ];
+        $primary_font = $font_families[zarincode_get_option( 'primary_font', 'Vazirmatn' )] ?? 'Vazirmatn';
+        $heading_font = $font_families[zarincode_get_option( 'heading_font', 'Vazirmatn' )] ?? 'Vazirmatn';
         $h_weight     = zarincode_get_option( 'heading_weight', '900' );
         $topbar_bg    = zarincode_get_option( 'topbar_bg_color', '#2A2C31' );
         $favicon      = zarincode_get_option( 'favicon_url', '' );
@@ -1007,6 +1014,10 @@ class OptionsConfig {
                 --zc-dark-card: <?php echo esc_attr( $dark_surf ); ?>;
                 --zc-bg-from: <?php echo esc_attr( $bg_from ); ?>;
                 --zc-bg-to: <?php echo esc_attr( $bg_to ); ?>;
+                --zc-font-family: <?php echo esc_attr( $primary_font ); ?>, Tahoma, sans-serif;
+                --zc-heading-font-family: <?php echo esc_attr( $heading_font ); ?>, Tahoma, sans-serif;
+                --zc-services-columns: <?php echo (int) zarincode_get_option( 'services_grid_columns', 3 ); ?>;
+                --zc-blog-columns: <?php echo (int) zarincode_get_option( 'blog_grid_columns', 3 ); ?>;
                 --zc-container-width: <?php echo esc_attr( $container_w ); ?>;
                 --zc-site-gutter: <?php echo esc_attr($layout['gutter'].'px'); ?>;
                 --zc-radius-bento: <?php echo esc_attr( $radius ); ?>;
@@ -1048,7 +1059,8 @@ class OptionsConfig {
         if ( zarincode_get_option( 'enable_schema_markup', true ) && \Zarincode\Theme\Compatibility\SEO::theme_schema_allowed() ) {
             $schema_data = [
                 '@context'    => 'https://schema.org',
-                '@type'       => 'ProfessionalService',
+                '@type'       => 'Organization',
+                '@id'         => home_url( '/' ) . '#organization',
                 'name'        => zarincode_get_option( 'brand_name', 'زرین کد' ) . ' | ' . zarincode_get_option( 'brand_en_name', 'Zarincode' ),
                 'url'         => home_url( '/' ),
                 'telephone'   => zarincode_get_option( 'contact_phone', '09024561001' ),

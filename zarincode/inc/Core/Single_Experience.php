@@ -71,6 +71,8 @@ final class Single_Experience {
     public static function render():void {
         $id=get_the_ID();if(!$id||post_password_required($id))return;
         $type=get_post_type($id);$commerce=$type==='product';$settings=[];foreach(['share','author','navigation','related','comments'] as $key)$settings[$key]=(bool)get_theme_mod('zc_single_'.$key,true);
+        if($type==='post')$settings['author']=$settings['author']&&(bool)zarincode_get_option('blog_show_author_box',true);
+        if($type==='zc_service')$settings['related']=$settings['related']&&(bool)zarincode_get_option('service_single_show_related',true);
         $settings=apply_filters('zarincode_single_sections',$settings,$type,$id);
         echo '<div class="zc-single-tools'.($commerce?' zc-commerce-tools':'').'">';
         if(!empty($settings['share']))self::share($id);

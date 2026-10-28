@@ -24,6 +24,8 @@ class Assets {
 
     private function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ], 20 );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_fonts' ] );
+        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_admin_fonts' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'drop_core_block_styles_on_plain_pages' ], 99 );
         add_action( 'wp_head', [ $this, 'preload_critical_fonts' ], 1 );
         add_filter( 'style_loader_tag', [ $this, 'make_fontawesome_non_blocking' ], 10, 4 );
@@ -39,7 +41,7 @@ class Assets {
         if ( is_admin() || is_feed() || wp_doing_ajax() ) {
             return;
         }
-        foreach ( [ 'Vazirmatn-Regular.woff2', 'Vazirmatn-Bold.woff2' ] as $font ) {
+        foreach ( [ 'Vazirmatn-Regular.woff2' ] as $font ) {
             printf(
                 '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin />' . "\n",
                 esc_url( ZARINCODE_URI . '/assets/fonts/vazirmatn/' . $font )
@@ -90,6 +92,12 @@ class Assets {
         wp_dequeue_script( 'wp-block-library' );
     }
 
+    /** Share locally bundled text faces with settings, notices and the builder editor. */
+    public function enqueue_admin_fonts(): void {
+        wp_enqueue_style( 'zarincode-vazirmatn', ZARINCODE_URI . '/assets/css/vazirmatn.css', [], ZARINCODE_VERSION );
+        wp_enqueue_style( 'zarincode-admin-typography', ZARINCODE_URI . '/assets/css/admin-typography.css', [ 'zarincode-vazirmatn' ], (string) filemtime( ZARINCODE_DIR . '/assets/css/admin-typography.css' ) );
+    }
+
     public function enqueue_frontend_assets(): void {
         wp_enqueue_script( 'zarincode-mobile-navigation', ZARINCODE_URI . '/assets/js/mobile-navigation.js', [], ZARINCODE_VERSION . '-' . filemtime( ZARINCODE_DIR . '/assets/js/mobile-navigation.js' ), true );
         wp_enqueue_script('zarincode-dialogs',ZARINCODE_URI.'/assets/js/dialogs.js',[],ZARINCODE_VERSION,true);
@@ -122,6 +130,8 @@ class Assets {
         }
 
         wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION . '-' . filemtime( ZARINCODE_DIR . '/assets/css/responsive.css' ));
+
+        wp_enqueue_style( 'zarincode-site-contract', ZARINCODE_URI . '/assets/css/site-contract.css', [ 'zarincode-responsive' ], (string) filemtime( ZARINCODE_DIR . '/assets/css/site-contract.css' ) );
 
         // 4. RTL Native Stylesheet
         wp_enqueue_style(
@@ -161,6 +171,16 @@ class Assets {
             [
                 'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
                 'siteUrl'   => home_url( '/' ),
+                'defaultMode' => zarincode_get_option( 'default_theme_mode', 'light' ),
+                'sitePalette' => [
+                    'id' => 'site', 'label' => 'رنگ‌بندی تنظیمات سایت',
+                    'accent' => $accent_color,
+                    'accentText' => sanitize_hex_color( zarincode_get_option( 'accent_contrast_color', '#2A2C31' ) ) ?: '#2A2C31',
+                    'bgFrom' => $bg_from, 'bgTo' => $bg_to,
+                    'darkFrom' => sanitize_hex_color( zarincode_get_option( 'dark_bg_from', '#15171C' ) ) ?: '#15171C',
+                    'darkTo' => sanitize_hex_color( zarincode_get_option( 'dark_bg_to', '#1F1B14' ) ) ?: '#1F1B14',
+                ],
+                'colorSwitcher' => (bool) zarincode_get_option( 'enable_color_switcher', true ),
                 'devName'   => ZARINCODE_DEV_NAME,
                 'devPhone'  => ZARINCODE_DEV_PHONE,
                 'devSite'   => ZARINCODE_DEV_SITE,

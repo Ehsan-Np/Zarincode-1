@@ -39,6 +39,9 @@ class Demo_Seeder {
         add_action( 'admin_menu', [ $this, 'register_demo_admin_menus' ] );
         // Prominent Admin Notice Banner with 1-Click Import button
         add_action( 'admin_notices', [ $this, 'render_admin_notice_banner' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'notice_assets' ] );
+        add_action( 'wp_ajax_zc_dismiss_demo_notice', [ $this, 'dismiss_notice_ajax' ] );
+        add_action( 'admin_post_zc_dismiss_demo_notice', [ $this, 'dismiss_notice_post' ] );
         // Auto-import on theme switch or first run so the user never sees an empty site
         // Demo import is explicit; never overwrite an existing site on activation.
 
@@ -67,17 +70,39 @@ class Demo_Seeder {
 
     }
 
+    public function notice_assets(): void {
+        if ( ! current_user_can( 'manage_options' ) || get_user_meta( get_current_user_id(), 'zc_demo_notice_dismissed', true ) ) { return; }
+        wp_enqueue_script( 'zc-demo-notice', ZARINCODE_CORE_URL . 'assets/admin/demo-notice.js', [], (string) filemtime( ZARINCODE_CORE_PATH . 'assets/admin/demo-notice.js' ), true );
+        wp_localize_script( 'zc-demo-notice', 'ZarincodeDemoNotice', [ 'url' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce( 'zc_dismiss_demo_notice' ), 'retry' => __( 'ذخیره وضعیت بستن اعلان انجام نشد؛ از دکمه «دیگر نمایش نده» استفاده کنید.', 'zarincode-core' ) ] );
+    }
+
+    public function dismiss_notice_ajax(): void {
+        if ( ! current_user_can( 'manage_options' ) ) { wp_send_json_error( null, 403 ); return; }
+        check_ajax_referer( 'zc_dismiss_demo_notice', 'nonce' );
+        update_user_meta( get_current_user_id(), 'zc_demo_notice_dismissed', '1' );
+        wp_send_json_success();
+    }
+
+    public function dismiss_notice_post(): void {
+        if ( ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'دسترسی مجاز نیست.', 'zarincode-core' ), '', [ 'response' => 403 ] ); }
+        check_admin_referer( 'zc_dismiss_demo_notice' );
+        update_user_meta( get_current_user_id(), 'zc_demo_notice_dismissed', '1' );
+        wp_safe_redirect( wp_get_referer() ?: admin_url() );
+        exit;
+    }
+
     public function render_admin_notice_banner(): void {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
+        if ( get_user_meta( get_current_user_id(), 'zc_demo_notice_dismissed', true ) ) { return; }
         $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
         if ( $screen && strpos( $screen->id, 'zarincode' ) !== false ) {
             return;
         }
         $import_url = admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=demo' );
         ?>
-        <div class="notice notice-warning is-dismissible" style="border-right:5px solid #FDD05B;background:#FFFDF5;padding:16px 20px;direction:rtl;font-family:Tahoma,system-ui,sans-serif;">
+        <div id="zc-demo-install-notice" class="notice notice-warning is-dismissible" style="border-right:5px solid #FDD05B;background:#FFFDF5;padding:16px 20px;direction:rtl;font-family:Tahoma,system-ui,sans-serif;">
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
                 <div>
                     <h3 style="margin:0 0 6px;font-size:15px;color:#2A2C31;">
@@ -91,6 +116,11 @@ class Demo_Seeder {
                     🚀 ورود به پنل درون‌ریز دمو زرین کد
                 </a>
             </div>
+            <form class="zc-notice-dismiss-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+                <input type="hidden" name="action" value="zc_dismiss_demo_notice">
+                <?php wp_nonce_field( 'zc_dismiss_demo_notice' ); ?>
+                <button type="submit" class="button">دیگر نمایش نده</button>
+            </form>
         </div>
         <?php
     }

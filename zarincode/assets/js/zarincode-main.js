@@ -19,13 +19,17 @@
         { id: 'graphite', label: 'گرافیتی رسمی',         accent: '#B8BCC4', accentText: '#1E1E20', bgFrom: '#F2F2F4', bgTo: '#DCDEE3', darkFrom: '#16171A', darkTo: '#1E1F23' }
     ];
 
+    const sitePalette = window.ZarincodeData?.sitePalette;
+    if (sitePalette) PRESETS.unshift(sitePalette);
+
     function getMode() {
-        try { return localStorage.getItem(MODE_KEY) === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; }
+        const fallback = window.ZarincodeData?.defaultMode === 'dark' || document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        try { const saved = localStorage.getItem(MODE_KEY); return ['dark', 'light'].includes(saved) ? saved : fallback; } catch (e) { return fallback; }
     }
 
     function getPreset() {
         try {
-            const id = localStorage.getItem(COLOR_KEY);
+            const id = window.ZarincodeData?.colorSwitcher === false ? null : localStorage.getItem(COLOR_KEY);
             return PRESETS.find(p => p.id === id) || PRESETS[0];
         } catch (e) {
             return PRESETS[0];
@@ -161,7 +165,7 @@
         }
 
         // Build Floating Crextio Switcher
-        buildCrextioSwitcher();
+        if (window.ZarincodeData?.colorSwitcher !== false) buildCrextioSwitcher();
     });
 
     function legacyNodes(selector) { return Array.from(document.querySelectorAll(selector)).filter(el => !el.closest('.zc-native-layout')); }

@@ -1,0 +1,27 @@
+/* One outer geometry. Inner cards/sidebars keep their own intentional spacing. */
+:root{--zc-container-width:1469px;--zc-site-gutter:32px;--zc-font-family:'Vazirmatn',Tahoma,sans-serif;--zc-heading-font-family:'Vazirmatn',Tahoma,sans-serif}
+body.zarincode-theme :is(.zc-container,.zc-edit,.zc-pro,.zc-hero-composition.e-con){box-sizing:border-box;width:100%;max-width:var(--zc-container-width)!important;margin-inline:auto;padding-inline-start:max(var(--zc-site-gutter),env(safe-area-inset-left));padding-inline-end:max(var(--zc-site-gutter),env(safe-area-inset-right))}
+/* Hero's children already sit inside the outer hero shell. No double gutters. */
+body.zarincode-theme .zc-hero-composition :is(.zc-container,.zc-edit,.zc-pro){max-width:none!important;padding-inline:0!important}
+/* Shared native sections embedded in another site shell must not add a second shell. */
+body.zarincode-theme .zc-container :is(.zc-container,.zc-edit,.zc-pro){max-width:none!important;padding-inline:0}
+/* Elementor boxed ancestors otherwise constrain native widgets before our shell can size itself.
+   Only ancestors hosting ZarinCode's owned layout sections are normalized. Full-bleed widgets are untouched. */
+body.zarincode-theme .elementor-section.elementor-section-boxed:has(.zc-native-layout)>.elementor-container{max-width:none;width:100%}
+body.zarincode-theme .e-con-boxed:has(>.e-con-inner>.elementor-widget :is(.zc-native-layout,.zc-edit,.zc-pro)){--content-width:100%;--container-max-width:100%}
+body.zarincode-theme :is(.elementor-widget-zarincode_header,.elementor-widget-zarincode_footer) .zc-container{padding-inline-start:max(var(--zc-site-gutter),env(safe-area-inset-left))!important;padding-inline-end:max(var(--zc-site-gutter),env(safe-area-inset-right))!important}
+/* Text faces, including Elementor's generated typography. Icon fonts and code are excluded. */
+body.zarincode-theme,body.zarincode-theme :is(p,a,button,input,textarea,select,label,li,dt,dd,th,td,blockquote,figcaption,summary,zc-text,em,strong,small,b):not([class*="fa-"]):not(.fa):not(.dashicons):not([class*="eicon"]){font-family:var(--zc-font-family)!important}
+body.zarincode-theme :is(h1,h2,h3,h4,h5,h6,.elementor-heading-title){font-family:var(--zc-heading-font-family)!important}
+body.zarincode-theme :is(span,div):not([class*="fa-"]):not(.fa):not([class*="eicon"]):not(.dashicons):not(.ab-icon):not(.ab-item):not(.wp-menu-image):not([class*="language-"]){font-family:var(--zc-font-family)!important}
+body.zarincode-theme :is(pre,code,kbd,samp),body.zarincode-theme :is(pre,code,kbd,samp) *{font-family:ui-monospace,monospace!important}
+@media(max-width:1199px){:root{--zc-site-gutter:24px}}
+@media(max-width:767px){:root{--zc-site-gutter:16px}}
+@media(max-width:380px){:root{--zc-site-gutter:12px}}
+
+@media(min-width:1200px){body.zarincode-theme .zc-services-grid{grid-template-columns:repeat(var(--zc-services-columns,3),minmax(0,1fr))}body.zarincode-theme .zc-blog-grid{grid-template-columns:repeat(var(--zc-blog-columns,3),minmax(0,1fr))}}
+/* Classic column-wrap and flex inner padding must not add 10px around a site shell.
+   Match direct owned-widget hosts, not every column/container on the page. */
+body.zarincode-theme .elementor-widget-wrap:has(>.elementor-widget>.elementor-widget-container>:is(.zc-native-layout,.zc-edit,.zc-pro)){padding-inline:0!important}
+body.zarincode-theme .e-con-boxed:has(>.e-con-inner>.elementor-widget :is(.zc-native-layout,.zc-edit,.zc-pro)),
+body.zarincode-theme .e-con-boxed>.e-con-inner:has(>.elementor-widget :is(.zc-native-layout,.zc-edit,.zc-pro)){padding-inline:0!important;--padding-left:0px;--padding-right:0px}
