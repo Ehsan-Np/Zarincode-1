@@ -165,6 +165,15 @@ def build() -> str:
 def main() -> None:
     doc = build()
     OUT.write_text(doc, encoding="utf-8")
+    # The native importer must work without the optional OCDI/XML extensions.
+    import json
+    import xml.etree.ElementTree as ET
+    ns = {'wp': 'http://wordpress.org/export/1.2/', 'content': 'http://purl.org/rss/1.0/modules/content/', 'excerpt': 'http://wordpress.org/export/1.2/excerpt/'}
+    root = ET.fromstring(doc)
+    records = [{'slug': i.findtext('wp:post_name', namespaces=ns), 'title': i.findtext('title'),
+                'content': i.findtext('content:encoded', namespaces=ns), 'excerpt': i.findtext('excerpt:encoded', namespaces=ns),
+                'category': i.find('category').get('nicename')} for i in root.findall('./channel/item')]
+    OUT.with_suffix('.json').write_text(json.dumps({'categories': CATEGORIES, 'articles': records}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     import xml.dom.minidom
     xml.dom.minidom.parse(str(OUT))  # well-formedness gate
     counts = {}

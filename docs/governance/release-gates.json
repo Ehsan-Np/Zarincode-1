@@ -1,6 +1,6 @@
 {
   "specification": "ZC-WP-ENG-SKILL-001 v3.0.0",
-  "version": "4.0.0-rc.3",
+  "version": "4.0.0-rc.4",
   "commercial_approved": false,
   "approved_exceptions": [
     {
@@ -64,6 +64,13 @@
       "php_contract_assertions": 308,
       "runtime_php_syntax_files": 86,
       "limitations": "No Imagick/browser multipart/live site/PageSpeed certification. New media files not included in previous scoped PHPStan/WPCS/coverage measurements."
+    },
+    "demo_repair_rc4": {
+      "report": "docs/audits/2026-10-28-DEMO-REPAIR-FA.md",
+      "real_wordpress_assertions": 587,
+      "php_contract_assertions": 308,
+      "runtime_php_syntax_files": 87,
+      "limitations": "SQLite/GD with active theme/core. No actual OCDI AJAX/parser, Elementor, WooCommerce, MySQL or browser certification."
     }
   }
 }

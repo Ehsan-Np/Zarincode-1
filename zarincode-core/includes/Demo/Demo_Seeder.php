@@ -8,7 +8,7 @@
  * 3. 8 Portfolio Case Studies (zc_project CPT + zc_project_cat taxonomy + Project Meta Fields)
  * 4. 8 Ready-Made Digital Products in WooCommerce (Themes, Plugins, Software Source Codes)
  * 5. 13 Complete Elementor Pages (Homepage, Services, Portfolio, Shop, About, Contact, Blog + 6 Legal Pages)
- * 6. 6 Educational Blog Posts + Categories
+ * 6. 71 Categorized Magazine Articles + Local Featured Images
  * 7. 3 WordPress Navigation Menus (Header Pill Menu, Legal Menu, Footer Quick Links)
  * 8. Redux Framework Options (zarincode_opt) + Reading Settings (Front Page & Blog Page)
  * 9. OCDI (One Click Demo Import) plugin integration filters
@@ -139,194 +139,53 @@ class Demo_Seeder {
                 case 'services_projects':
                     self::seed_services_cpt();
                     self::seed_projects_cpt();
+                    self::seed_featured_images();
                     $message = '۶ خدمت تخصصی و ۸ نمونه‌کار به همراه دسته‌بندی‌ها و متاباکس‌های SLA با موفقیت درون‌ریزی شدند!';
                     break;
                 case 'pages_legal':
                     self::seed_elementor_pages();
                     $message = 'تمامی ۱۳ برگه المنتوری (صفحه اصلی، خدمات، نمونه‌کارها، درباره ما، تماس با ما و ۶ صفحه قوانین) با موفقیت درون‌ریزی شدند!';
                     break;
+                case 'articles':
+                    self::seed_blog_posts();
+                    $message = 'درون‌ریزی مقالات و تصاویر شاخص انجام شد.';
+                    break;
                 case 'shop_blog':
                     self::seed_woocommerce_products();
                     self::seed_blog_posts();
-                    $message = '۸ محصول دیجیتال فروشگاه ووکامرس و ۶ راهنمای کاربردی وبلاگ با موفقیت درون‌ریزی شدند!';
+                    self::seed_featured_images();
+                    $message = 'محصولات فروشگاه و ۷۱ مقاله تخصصی همراه با تصاویر شاخص با موفقیت درون‌ریزی شدند!';
                     break;
                 default:
                     self::seed_all();
-                    update_option( 'zarincode_demo_imported_v25', 'yes' );
+                    if (empty(Article_Importer::$last_result['errors'])) update_option( 'zarincode_demo_imported_v25', 'yes' );
                     $message = 'تمامی بخش‌های دموی زرین کد (هدر، فوتر، ۶ خدمت، ۸ نمونه‌کار، ۸ محصول فروشگاه، ۱۳ برگه المنتوری و قوانین، فهرست‌ها و تنظیمات Redux) به طور کامل درون‌ریزی و فعال شدند!';
                     break;
             }
         }
 
-        $cnt_hf       = wp_count_posts( 'zc_hf_template' )->publish ?? 0;
-        $cnt_services = wp_count_posts( 'zc_service' )->publish ?? 0;
-        $cnt_projects = wp_count_posts( 'zc_project' )->publish ?? 0;
-        $cnt_pages    = wp_count_posts( 'page' )->publish ?? 0;
-        $cnt_posts    = wp_count_posts( 'post' )->publish ?? 0;
-        $cnt_products = post_type_exists( 'product' ) ? ( wp_count_posts( 'product' )->publish ?? 0 ) : 0;
+        $failed = !empty(Article_Importer::$last_result['errors']);
+        if ($failed) $message = 'درون‌ریزی کامل نشد: '.implode('؛ ', array_unique(Article_Importer::$last_result['errors']));
         ?>
-        <style>
-            #wpcontent {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-            #wpbody,
-            #wpbody-content {
-                width: 100% !important;
-                max-width: 100% !important;
-                float: none !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-            #wpbody-content > .wrap.zc-demo-fullwidth-wrap,
-            .wrap.zc-demo-fullwidth-wrap {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 18px 24px 36px 24px !important;
-                box-sizing: border-box !important;
-                direction: rtl !important;
-                text-align: right !important;
-            }
-            .zc-demo-main-grid {
-                display: grid;
-                grid-template-columns: 1.55fr 1fr;
-                gap: 22px;
-                width: 100%;
-                box-sizing: border-box;
-                align-items: start;
-            }
-            @media (max-width: 1100px) {
-                .zc-demo-main-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-        <div class="wrap zc-demo-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
-            <h1 class="screen-reader-text">پنل درون‌ریز هوشمند قالب زرین کد</h1>
-            <hr class="wp-header-end"><div class="notice notice-warning inline"><p><strong>بازنویسی صریح دمو:</strong> درون‌ریزی، نوشته‌های هم‌نام دمو و تنظیمات قالب را بازسازی می‌کند. روی سایت عملیاتی ابتدا پشتیبان بگیرید و در محیط آزمایشی اجرا کنید. به‌روزرسانی قالب به‌تنهایی دمو را وارد نمی‌کند.</p></div>
-            <div style="background:linear-gradient(135deg,#2A2C31 0%,#18191D 100%);color:#fff;padding:30px 34px;border-radius:24px;margin-bottom:24px;border:2px solid #FDD05B;box-shadow:0 15px 40px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;width:100%;box-sizing:border-box;">
-                <div>
-                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE SERVICE DEMO 3.5</span>
-                    <h1 style="color:#fff;font-size:24px;margin:12px 0 8px;">پنل درون‌ریز هوشمند و یک‌کلیکی قالب «زرین کد (Zarincode)»</h1>
-                    <p style="color:#D1D5DB;font-size:14px;margin:0;">
-                        طراحی و توسعه توسط <strong>احسان نادری پناه (Ehsan NaderiPanah)</strong> | شماره تماس: <strong dir="ltr" style="color:#FDD05B;">09024561001</strong> | وب‌سایت: <a href="https://zarincode.com" target="_blank" style="color:#FDD05B;">Zarincode.com</a>
-                    </p>
-                </div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=plugins' ) ); ?>" class="button button-hero" style="border-radius:999px;background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.25);">
-                        🔌 مدیریت افزونه‌های قالب
-                    </a>
-                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options' ) ); ?>" class="button button-hero" style="border-radius:999px;background:#FDD05B;color:#2A2C31;border-color:#FDD05B;font-weight:bold;">
-                        ⚙️ پنل تنظیمات پیشرفته قالب
-                    </a>
-                </div>
-            </div>
-
-            <?php if ( $message ) : ?>
-                <div style="background:#ECFDF5;border:2px solid #10B981;color:#065F46;padding:18px 22px;border-radius:16px;margin-bottom:24px;font-weight:bold;font-size:14px;width:100%;box-sizing:border-box;">
-                    ✅ <?php echo esc_html( $message ); ?>
-                    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" target="_blank" class="button button-primary">مشاهده صفحه اصلی سایت</a>
-                        <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" target="_blank" class="button">مشاهده صفحه خدمات</a>
-                        <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>" target="_blank" class="button">مشاهده نمونه‌کارها</a>
-                        <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" target="_blank" class="button">مشاهده فروشگاه</a>
-                        <a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>" target="_blank" class="button">مشاهده صفحات قوانین</a>
-                    </div>
-                </div>
+        <div class="wrap">
+            <h1>درون‌ریزی دمو</h1>
+            <p>برای راه‌اندازی محتوای نمونه، بخش موردنظر را انتخاب کنید. پیش از درون‌ریزی از سایت پشتیبان بگیرید؛ محتوای دمو و تنظیمات بخش انتخاب‌شده ممکن است بازنویسی شوند.</p>
+            <?php if ($message): ?>
+                <div class="notice <?php echo $failed ? 'notice-error' : 'notice-success'; ?> inline"><p><?php echo esc_html($message); ?></p></div>
             <?php endif; ?>
-
-            <!-- Live Status Cards (Full-Width 6-Column Strip) -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px;width:100%;box-sizing:border-box;">
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_hf; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">هدر، فوتر و مگامنوی المنتور</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_hf_template' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت هدر و فوتر ←</a>
-                </div>
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_services; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">خدمات تخصصی (پست‌تایپ)</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_service' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت خدمات ←</a>
-                </div>
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_projects; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">نمونه‌کارها و پروژه‌ها</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_project' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت نمونه‌کارها ←</a>
-                </div>
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_pages; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">برگه‌های المنتوری و قوانین</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=page' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت برگه‌ها ←</a>
-                </div>
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_products; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">محصولات آماده ووکامرس</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=product' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت محصولات ←</a>
-                </div>
-                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_posts; ?></div>
-                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">مقالات آموزشی وبلاگ</div>
-                    <a href="<?php echo esc_url( admin_url( 'edit.php' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت نوشته‌ها ←</a>
-                </div>
-            </div>
-
-            <!-- Full-Width 2-Column Main Grid -->
-            <div class="zc-demo-main-grid">
-                <!-- Right Column: Import Form -->
-                <form method="post" style="background:#fff;padding:30px 32px;border-radius:24px;border:1px solid #E5E7EB;box-shadow:0 10px 30px rgba(0,0,0,0.04);box-sizing:border-box;">
-                    <?php wp_nonce_field( 'zarincode_seed_nonce' ); ?>
-                    <h2 style="margin-top:0;font-size:19px;font-weight:900;color:#111827;">انتخاب نحوه درون‌ریزی دمو (تلفیق Webinex + رنگ‌بندی زرد سانشاین Crextio)</h2>
-                    <p style="color:#4B5563;font-size:13.5px;line-height:1.8;">
-                        پیش از درون‌ریزی نسخه پشتیبان تهیه کنید. محتوای برگه‌ها و تنظیمات دمو با اجرای مجدد جایگزین می‌شوند؛ سایر نوشته‌ها حذف نمی‌شوند و صفحه اصلی، هدر، فوتر، منوها و صفحات قوانین به صورت خودکار با ۱۴ ویجت قابل ویرایش المنتور تنظیم می‌گردند:
-                    </p>
-
-                    <div style="margin:18px 0;">
-                        <label style="display:block;padding:14px 18px;background:#FFFBEB;border:2px solid #FDD05B;border-radius:14px;margin-bottom:10px;cursor:pointer;font-weight:bold;color:#1F2937;">
-                            <input type="radio" name="zarincode_seed_scope" value="all" checked>
-                            🌟 درون‌ریزی کامل همه بخش‌ها با یک کلیک (پیشنهادی: هدر و فوتر + ۶ خدمت + ۸ نمونه‌کار + ۸ محصول فروشگاه + ۱۳ برگه المنتوری و قوانین + منوها + تنظیمات Redux)
-                        </label>
-                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
-                            <input type="radio" name="zarincode_seed_scope" value="header_footer">
-                            فقط درون‌ریزی هدر، فوتر، مگامنوی المنتوری و فهرست‌های منو (Header, Footer &amp; Menus)
-                        </label>
-                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
-                            <input type="radio" name="zarincode_seed_scope" value="services_projects">
-                            فقط درون‌ریزی ۶ خدمت تخصصی و ۸ نمونه‌کار (Services &amp; Portfolio CPTs)
-                        </label>
-                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
-                            <input type="radio" name="zarincode_seed_scope" value="pages_legal">
-                            فقط درون‌ریزی ۱۳ برگه المنتوری (صفحه اصلی، درباره ما، تماس با ما و ۶ صفحه قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA)
-                        </label>
-                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;cursor:pointer;">
-                            <input type="radio" name="zarincode_seed_scope" value="shop_blog">
-                            فقط درون‌ریزی محصولات فروشگاه ووکامرس (با دکمه پیش‌نمایش زنده دمو) و مقالات وبلاگ
-                        </label>
-                    </div>
-
-                    <button type="submit" name="zarincode_run_seeder" class="button button-primary button-hero" style="background:#FDD05B;border-color:#FDD05B;color:#2A2C31;font-weight:900;font-size:15px;padding:8px 34px;border-radius:999px;box-shadow:0 8px 20px rgba(253,208,91,0.45);">
-                        🚀 شروع درون‌ریزی خودکار دموی زرین کد
-                    </button>
-                </form>
-
-                <!-- Left Column: Detailed Content & Elementor Widget Manifest -->
-                <div style="background:#1E2025;color:#fff;padding:28px 30px;border-radius:24px;border:2px solid #FDD05B;box-shadow:0 12px 32px rgba(0,0,0,0.12);box-sizing:border-box;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-                        <span style="background:#FDD05B;color:#2A2C31;padding:3px 12px;border-radius:999px;font-size:11.5px;font-weight:900;">100% ELEMENTOR READY</span>
-                        <span style="font-size:12px;color:#9CA3AF;">نسخه 2.6.0</span>
-                    </div>
-                    <h3 style="margin:0 0 12px;font-size:17px;color:#FDD05B;font-weight:900;">محتویات پکیج دمو و ۱۴ ویجت اختصاصی المنتور</h3>
-                    <ul style="margin:0 0 18px;padding:0 18px 0 0;font-size:13px;line-height:1.95;color:#E5E7EB;">
-                        <li><strong>هدر و فوترساز المنتوری:</strong> ویجت‌های `zarincode_header` و `zarincode_footer` با قابلیت ویرایش کامل لوگو، منو، دکمه‌ها و بج‌های اعتماد.</li>
-                        <li><strong>صفحه اصلی بنتو (Crextio + Webinex):</strong> چیده شده با ۱۱ ویجت اختصاصی المنتور (هیرو، اسلایدر تکنولوژی‌ها، ۶ خدمت، مارکت‌پلیس محصولات، نمونه‌کارها، چرا زرین کد، جدول تعرفه ۴ تبه، دعوت به شرح پروژه، مراحل اجرا، نظرات مشتریان و وبلاگ).</li>
-                        <li><strong>قابل ویرایش در المنتور:</strong> تمامی متن‌ها، کارت‌ها (Repeaters)، آیکون‌ها، تصاویر، لینک‌ها، بج‌ها، رنگ‌ها و تایپوگرافی هر ۱۴ ویجت مستقیماً از پنل المنتور قابل تغییرند.</li>
-                        <li><strong>مارکت‌پلیس محصولات ووکامرس:</strong> ۸ محصول آماده به همراه فیلد اختصاصی <strong>«لینک پیش‌نمایش زنده دمو»</strong> و آکاردئون حرفه‌ای گارانتی و سوالات متداول.</li>
-                        <li><strong>۶ برگه حقوقی کامل:</strong> قوانین و مقررات، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA (انگلیسی).</li>
-                    </ul>
-                    <div style="background:rgba(253,208,91,0.1);border:1px solid rgba(253,208,91,0.35);padding:12px 16px;border-radius:14px;font-size:12.5px;color:#FDE68A;line-height:1.7;">
-                        💡 <strong>نکته:</strong> پس از درون‌ریزی دمو، می‌توانید هر برگه را با «ویرایش با المنتور» باز کرده و روی هر بخش کلیک کنید تا تنظیمات محتوا و استایل آن را ویرایش نمایید.
-                    </div>
-                </div>
-            </div>
+            <form method="post">
+                <?php wp_nonce_field('zarincode_seed_nonce'); ?>
+                <label for="zarincode-seed-scope">بخش موردنظر</label>
+                <select id="zarincode-seed-scope" name="zarincode_seed_scope">
+                    <option value="all">دموی کامل</option>
+                    <option value="articles">مقالات و تصاویر شاخص</option>
+                    <option value="header_footer">هدر، فوتر و فهرست‌ها</option>
+                    <option value="services_projects">خدمات و نمونه‌کارها</option>
+                    <option value="pages_legal">برگه‌ها و صفحات قوانین</option>
+                    <option value="shop_blog">محصولات و مقالات</option>
+                </select>
+                <?php submit_button('درون‌ریزی دمو', 'primary', 'zarincode_run_seeder'); ?>
+            </form>
         </div>
         <?php
     }
@@ -929,7 +788,8 @@ class Demo_Seeder {
             ['widget'=>'zarincode_promo','sc'=>'[zarincode_widget type="promo"]'],
         ];
 
-        require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
+        // Data models autoload independently; importing content must not load
+        // Elementor widget subclasses when Elementor is inactive.
         $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition(Service_Demo::hero(), Service_Demo::settings('zarincode_products_slider'))];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
@@ -1018,22 +878,10 @@ class Demo_Seeder {
     }
 
     /**
-     * 6. SEED BLOG ARTICLES
+     * 6. SEED THE COMPLETE MAGAZINE
      */
     public static function seed_blog_posts(): void {
-        $blog_posts = Service_Demo::blog();
-
-        foreach ( $blog_posts as $bp ) {
-            $post_id=self::upsert_post_with_elementor(
-                'post',
-                $bp['slug'],
-                $bp['title'],
-                [],
-                $bp['content'],
-                wp_trim_words(wp_strip_all_tags( $bp['content'] ),34)
-            );
-            wp_update_post(['ID'=>$post_id,'comment_status'=>'open']);$term=term_exists('راهنمای تصمیم و اجرا','category');if(!$term)$term=wp_insert_term('راهنمای تصمیم و اجرا','category');if(!is_wp_error($term))wp_set_post_terms($post_id,[(int)(is_array($term)?$term['term_id']:$term)],'category');
-        }
+        Article_Importer::run();
     }
 
     /**
@@ -1161,22 +1009,12 @@ class Demo_Seeder {
 
     /** Only explicit demo import calls this; existing custom thumbnails are never replaced. */
     public static function seed_featured_images():void {
-        require_once ABSPATH.'wp-admin/includes/image.php';
-        foreach(['product'=>'product','zc_service'=>'service','zc_project'=>'project','post'=>'post'] as $type=>$asset){
-            $file=get_template_directory().'/assets/images/demo-'.$asset.'-cover.jpg';
-            if(!is_file($file))continue;
-            $option='zarincode_demo_cover_'.$asset;$attachment=absint(get_option($option));
-            if(!$attachment||get_post_type($attachment)!=='attachment'){
-                $upload=wp_upload_bits('zarincode-demo-'.$asset.'.jpg',null,file_get_contents($file));
-                if(!empty($upload['error']))continue;
-                $attachment=wp_insert_attachment(['post_mime_type'=>'image/jpeg','post_title'=>'تصویر نمایشی زرین کد — '.$asset,'post_status'=>'inherit'],$upload['file']);
-                if(is_wp_error($attachment)||!$attachment)continue;
-                wp_update_attachment_metadata($attachment,wp_generate_attachment_metadata($attachment,$upload['file']));
-                update_post_meta($attachment,'_wp_attachment_image_alt','تصویر نمایشی خدمات دیجیتال زرین کد');update_option($option,$attachment,false);
+        foreach (['product'=>3, 'zc_service'=>2, 'zc_project'=>1, 'post'=>0] as $type=>$index) {
+            $ids = get_posts(['post_type'=>$type,'post_status'=>'publish','posts_per_page'=>-1,'fields'=>'ids',
+                'meta_key'=>'_zarincode_seeded','meta_value'=>'1']);
+            foreach ($ids as $id) if (!Article_Importer::assign_cover((int)$id, $index)) {
+                Article_Importer::$last_result['errors'][] = 'ثبت تصویر نمونه دمو انجام نشد.';
             }
-            $ids=get_posts(['post_type'=>$type,'post_status'=>'publish','posts_per_page'=>-1,'fields'=>'ids','meta_key'=>'_zarincode_seeded','meta_value'=>'1']);
-            // Match only explicit demo records using their seeder marker (not customer content).
-            foreach($ids as $id)if(!has_post_thumbnail($id))set_post_thumbnail($id,$attachment);
         }
     }
 
@@ -1207,7 +1045,7 @@ class Demo_Seeder {
     public function ocdi_import_files(): array {
         return [
             [
-                'import_file_name'           => 'دموی اصلی زرین کد (تلفیق Webinex + رنگ‌بندی زرد سانشاین Crextio)',
+                'import_file_name'           => 'دموی اصلی زرین کد',
                 'categories'                 => [ 'فروشگاهی', 'شرکتی و آژانسی', 'نرم‌افزار و سئو' ],
                 'local_import_file'          => get_template_directory() . '/demo-data/zarincode-demo-content.xml',
                 'local_import_redux'         => [
@@ -1218,7 +1056,7 @@ class Demo_Seeder {
                 ],
                 'import_preview_image_url'   => get_template_directory_uri() . '/screenshot.png',
                 'preview_url'                => 'https://zarincode.com',
-                'import_notice'              => 'با کلیک روی دکمه درون‌ریزی، تمامی صفحات المنتوری، هدر، فوتر، ۶ خدمت، ۸ نمونه‌کار، ۸ محصول آماده، منوها و صفحات قوانین ایران، گارانتی، بازگشت وجه، GDPR و DMCA به صورت کامل ساخته می‌شوند.',
+                'import_notice'              => 'درون‌ریزی برگه‌ها، مقالات، تصاویر و تنظیمات دمو. پیش از شروع از سایت پشتیبان بگیرید.',
             ],
             [
                 'import_file_name'           => 'مقالات تخصصی زرین کد (سئو، امنیت، وردپرس، سرعت و طراحی سایت)',
@@ -1226,93 +1064,23 @@ class Demo_Seeder {
                 'local_import_file'          => get_template_directory() . '/demo-data/zarincode-articles.xml',
                 'import_preview_image_url'   => get_template_directory_uri() . '/screenshot.png',
                 'preview_url'                => 'https://zarincode.com/blog/',
-                'import_notice'              => 'با کلیک روی دکمه درون‌ریزی، ۷۱ مقاله فارسی در ۶ دسته تخصصی (طراحی سایت، سئو، تولید محتوا، آموزش وردپرس، امنیت وب‌سایت و سرعت و بهینه‌سازی) همراه با دسته‌بندی‌ها، خلاصه‌ها و تصاویر شاخص ساخته می‌شوند؛ تنظیمات دمو تغییری نمی‌کند.',
+                'import_notice'              => 'درون‌ریزی ۷۱ مقاله در ۶ دسته همراه با تصاویر شاخص، بدون تغییر تنظیمات قالب.',
             ],
         ];
     }
 
-    public function ocdi_after_import_setup(): void {
-        self::seed_all();
-        self::assign_demo_article_covers();
+    public function ocdi_after_import_setup(array $selected_import = []): void {
+        $article_file = basename($selected_import['local_import_file'] ?? '');
+        if ($article_file === 'zarincode-articles.xml') self::seed_blog_posts();
+        else self::seed_all();
+        if (!empty(Article_Importer::$last_result['errors'])) {
+            throw new \RuntimeException(implode('؛ ', array_unique(Article_Importer::$last_result['errors'])));
+        }
     }
 
-    /**
-     * Attach rotating theme demo covers to imported magazine articles
-     * (posts marked with the _zc_demo_article meta by the WXR package)
-     * so blog cards render with imagery right after demo import.
-     */
     public static function assign_demo_article_covers(): void {
-        $ids = get_posts( [
-            'post_type'      => 'post',
-            'post_status'    => 'any',
-            'posts_per_page' => -1,
-            'fields'         => 'ids',
-            'meta_key'       => '_zc_demo_article',
-            'meta_value'     => '1',
-        ] );
-        if ( ! $ids ) {
-            return;
-        }
-        $covers = array_values( array_filter( [
-            get_template_directory() . '/assets/images/demo-post-cover.jpg',
-            get_template_directory() . '/assets/images/demo-project-cover.jpg',
-            get_template_directory() . '/assets/images/demo-service-cover.jpg',
-            get_template_directory() . '/assets/images/demo-product-cover.jpg',
-        ], 'file_exists' ) );
-        if ( ! $covers ) {
-            return;
-        }
-        $made = [];
-        foreach ( $ids as $i => $post_id ) {
-            if ( get_post_thumbnail_id( $post_id ) ) {
-                continue;
-            }
-            $src = $covers[ $i % count( $covers ) ];
-            if ( ! isset( $made[ $src ] ) ) {
-                $made[ $src ] = self::sideload_demo_image( $src );
-            }
-            if ( $made[ $src ] ) {
-                set_post_thumbnail( $post_id, (int) $made[ $src ] );
-            }
-        }
-    }
-
-    /**
-     * Copy a local theme image into the uploads library once and return
-     * the new attachment id (0 on failure).
-     */
-    private static function sideload_demo_image( string $src ): int {
-        static $done = [];
-        if ( isset( $done[ $src ] ) ) {
-            return $done[ $src ];
-        }
-        $done[ $src ] = 0;
-        $uploads      = wp_upload_dir();
-        if ( ! empty( $uploads['error'] ) || ! is_readable( $src ) ) {
-            return 0;
-        }
-        $dest = trailingslashit( $uploads['path'] ) . 'zc-' . basename( $src );
-        if ( ! @copy( $src, $dest ) ) {
-            return 0;
-        }
-        $attach_id = wp_insert_attachment(
-            [
-                'post_mime_type' => 'image/jpeg',
-                'post_title'     => sanitize_file_name( basename( $src ) ),
-                'post_status'    => 'inherit',
-            ],
-            $dest,
-            0
-        );
-        if ( ! $attach_id || is_wp_error( $attach_id ) ) {
-            return 0;
-        }
-        require_once ABSPATH . 'wp-admin/includes/image.php';
-        $meta = wp_generate_attachment_metadata( (int) $attach_id, $dest );
-        if ( $meta ) {
-            wp_update_attachment_metadata( (int) $attach_id, $meta );
-        }
-        $done[ $src ] = (int) $attach_id;
-        return $done[ $src ];
+        $ids = get_posts(['post_type'=>'post','post_status'=>'any','posts_per_page'=>-1,'fields'=>'ids',
+            'meta_key'=>'_zc_demo_article','meta_value'=>'1','orderby'=>'ID','order'=>'ASC']);
+        foreach ($ids as $index=>$id) Article_Importer::assign_cover((int)$id, $index);
     }
 }
