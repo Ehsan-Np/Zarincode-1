@@ -39,6 +39,7 @@ $expect(get_option('zarincode_opt')===$settings,'Article-only OCDI does not rese
 $expect(wp_count_posts('page')->publish===$pages,'Article-only OCDI does not reseed pages');
 $expect(count($ids())===71,'OCDI callback is idempotent');
 $_POST=[];ob_start();Seeder::instance()->render_admin_page();$ui=ob_get_clean();
-$expect(substr_count($ui,'<form')===1 && str_contains($ui,'value="articles"'),'Simple importer with article repair scope');
+$expect(substr_count($ui,'<form')===1 && str_contains($ui,'value="articles"'),'Original importer with article repair scope');
+$expect(str_contains($ui,'zc-demo-main-grid') && str_contains($ui,'zc-demo-fullwidth-wrap'),'Original importer layout retained');
 $expect(!str_contains($ui,'100% ELEMENTOR READY')&&!str_contains($ui,'Crextio'),'No obsolete marketing description');
 echo "PASS: $checks real WordPress demo assertions.\n";

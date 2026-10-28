@@ -166,26 +166,179 @@ class Demo_Seeder {
 
         $failed = !empty(Article_Importer::$last_result['errors']);
         if ($failed) $message = 'درون‌ریزی کامل نشد: '.implode('؛ ', array_unique(Article_Importer::$last_result['errors']));
+        $cnt_hf       = wp_count_posts( 'zc_hf_template' )->publish ?? 0;
+        $cnt_services = wp_count_posts( 'zc_service' )->publish ?? 0;
+        $cnt_projects = wp_count_posts( 'zc_project' )->publish ?? 0;
+        $cnt_pages    = wp_count_posts( 'page' )->publish ?? 0;
+        $cnt_posts    = wp_count_posts( 'post' )->publish ?? 0;
+        $cnt_products = post_type_exists( 'product' ) ? ( wp_count_posts( 'product' )->publish ?? 0 ) : 0;
         ?>
-        <div class="wrap">
-            <h1>درون‌ریزی دمو</h1>
-            <p>برای راه‌اندازی محتوای نمونه، بخش موردنظر را انتخاب کنید. پیش از درون‌ریزی از سایت پشتیبان بگیرید؛ محتوای دمو و تنظیمات بخش انتخاب‌شده ممکن است بازنویسی شوند.</p>
-            <?php if ($message): ?>
-                <div class="notice <?php echo $failed ? 'notice-error' : 'notice-success'; ?> inline"><p><?php echo esc_html($message); ?></p></div>
+        <style>
+            #wpcontent {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            #wpbody,
+            #wpbody-content {
+                width: 100% !important;
+                max-width: 100% !important;
+                float: none !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            #wpbody-content > .wrap.zc-demo-fullwidth-wrap,
+            .wrap.zc-demo-fullwidth-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 18px 24px 36px 24px !important;
+                box-sizing: border-box !important;
+                direction: rtl !important;
+                text-align: right !important;
+            }
+            .zc-demo-main-grid {
+                display: grid;
+                grid-template-columns: 1.55fr 1fr;
+                gap: 22px;
+                width: 100%;
+                box-sizing: border-box;
+                align-items: start;
+            }
+            @media (max-width: 1100px) {
+                .zc-demo-main-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <div class="wrap zc-demo-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
+            <h1 class="screen-reader-text">درون‌ریزی دموی زرین کد</h1>
+            <hr class="wp-header-end"><div class="notice notice-warning inline"><p><strong>پیش از درون‌ریزی:</strong> از سایت پشتیبان بگیرید. محتوای دمو و تنظیمات بخش انتخاب‌شده ممکن است بازنویسی شوند.</p></div>
+            <div style="background:linear-gradient(135deg,#2A2C31 0%,#18191D 100%);color:#fff;padding:30px 34px;border-radius:24px;margin-bottom:24px;border:2px solid #FDD05B;box-shadow:0 15px 40px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;width:100%;box-sizing:border-box;">
+                <div>
+                    <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE DEMO</span>
+                    <h1 style="color:#fff;font-size:24px;margin:12px 0 8px;">درون‌ریزی دموی زرین کد</h1>
+                    <p style="color:#D1D5DB;font-size:14px;margin:0;">
+                        <strong style="color:#FDD05B;">محتوای نمونه</strong> برای راه‌اندازی اولیه سایت
+                    </p>
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options&zc_tool=plugins' ) ); ?>" class="button button-hero" style="border-radius:999px;background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.25);">
+                        🔌 مدیریت افزونه‌های قالب
+                    </a>
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=zarincode-theme-options' ) ); ?>" class="button button-hero" style="border-radius:999px;background:#FDD05B;color:#2A2C31;border-color:#FDD05B;font-weight:bold;">
+                        ⚙️ پنل تنظیمات پیشرفته قالب
+                    </a>
+                </div>
+            </div>
+
+            <?php if ( $message ) : ?>
+                <div style="background:#ECFDF5;border:2px solid #10B981;color:#065F46;padding:18px 22px;border-radius:16px;margin-bottom:24px;font-weight:bold;font-size:14px;width:100%;box-sizing:border-box;">
+                    <?php echo esc_html( $message ); ?>
+                    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" target="_blank" class="button button-primary">مشاهده صفحه اصلی سایت</a>
+                        <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" target="_blank" class="button">مشاهده صفحه خدمات</a>
+                        <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>" target="_blank" class="button">مشاهده نمونه‌کارها</a>
+                        <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" target="_blank" class="button">مشاهده فروشگاه</a>
+                        <a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>" target="_blank" class="button">مشاهده صفحات قوانین</a>
+                    </div>
+                </div>
             <?php endif; ?>
-            <form method="post">
-                <?php wp_nonce_field('zarincode_seed_nonce'); ?>
-                <label for="zarincode-seed-scope">بخش موردنظر</label>
-                <select id="zarincode-seed-scope" name="zarincode_seed_scope">
-                    <option value="all">دموی کامل</option>
-                    <option value="articles">مقالات و تصاویر شاخص</option>
-                    <option value="header_footer">هدر، فوتر و فهرست‌ها</option>
-                    <option value="services_projects">خدمات و نمونه‌کارها</option>
-                    <option value="pages_legal">برگه‌ها و صفحات قوانین</option>
-                    <option value="shop_blog">محصولات و مقالات</option>
-                </select>
-                <?php submit_button('درون‌ریزی دمو', 'primary', 'zarincode_run_seeder'); ?>
-            </form>
+
+            <!-- Live Status Cards (Full-Width 6-Column Strip) -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px;width:100%;box-sizing:border-box;">
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_hf; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">هدر، فوتر و مگامنوی المنتور</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_hf_template' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت هدر و فوتر ←</a>
+                </div>
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_services; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">خدمات تخصصی (پست‌تایپ)</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_service' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت خدمات ←</a>
+                </div>
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_projects; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">نمونه‌کارها و پروژه‌ها</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_project' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت نمونه‌کارها ←</a>
+                </div>
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_pages; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">برگه‌های المنتوری و قوانین</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=page' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت برگه‌ها ←</a>
+                </div>
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_products; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">محصولات آماده ووکامرس</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=product' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت محصولات ←</a>
+                </div>
+                <div style="background:#fff;padding:20px;border-radius:18px;border:1px solid #E5E7EB;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+                    <div style="font-size:28px;font-weight:900;color:#2A2C31;"><?php echo (int) $cnt_posts; ?></div>
+                    <div style="font-size:13px;color:#6B7280;margin-top:4px;font-weight:bold;">مقالات آموزشی وبلاگ</div>
+                    <a href="<?php echo esc_url( admin_url( 'edit.php' ) ); ?>" style="font-size:12px;display:inline-block;margin-top:6px;">مدیریت نوشته‌ها ←</a>
+                </div>
+            </div>
+
+            <!-- Full-Width 2-Column Main Grid -->
+            <div class="zc-demo-main-grid">
+                <!-- Right Column: Import Form -->
+                <form method="post" style="background:#fff;padding:30px 32px;border-radius:24px;border:1px solid #E5E7EB;box-shadow:0 10px 30px rgba(0,0,0,0.04);box-sizing:border-box;">
+                    <?php wp_nonce_field( 'zarincode_seed_nonce' ); ?>
+                    <h2 style="margin-top:0;font-size:19px;font-weight:900;color:#111827;">انتخاب بخش موردنظر</h2>
+                    <p style="color:#4B5563;font-size:13.5px;line-height:1.8;">
+                        برای درون‌ریزی، یکی از گزینه‌های زیر را انتخاب کنید.
+                    </p>
+
+                    <div style="margin:18px 0;">
+                        <label style="display:block;padding:14px 18px;background:#FFFBEB;border:2px solid #FDD05B;border-radius:14px;margin-bottom:10px;cursor:pointer;font-weight:bold;color:#1F2937;">
+                            <input type="radio" name="zarincode_seed_scope" value="all" checked>
+                            درون‌ریزی کامل دمو
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="articles">
+                            مقالات و تصاویر شاخص
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="header_footer">
+                            هدر، فوتر و فهرست‌ها
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="services_projects">
+                            خدمات و نمونه‌کارها
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="pages_legal">
+                            برگه‌ها و صفحات قوانین
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="shop_blog">
+                            محصولات و مقالات
+                        </label>
+                    </div>
+
+                    <button type="submit" name="zarincode_run_seeder" class="button button-primary button-hero" style="background:#FDD05B;border-color:#FDD05B;color:#2A2C31;font-weight:900;font-size:15px;padding:8px 34px;border-radius:999px;box-shadow:0 8px 20px rgba(253,208,91,0.45);">
+                        شروع درون‌ریزی دمو
+                    </button>
+                </form>
+
+                <!-- Left Column: Detailed Content & Elementor Widget Manifest -->
+                <div style="background:#1E2025;color:#fff;padding:28px 30px;border-radius:24px;border:2px solid #FDD05B;box-shadow:0 12px 32px rgba(0,0,0,0.12);box-sizing:border-box;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                        <span style="background:#FDD05B;color:#2A2C31;padding:3px 12px;border-radius:999px;font-size:11.5px;font-weight:900;">محتوای نمونه</span>
+                        <span style="font-size:12px;color:#9CA3AF;">زرین کد</span>
+                    </div>
+                    <h3 style="margin:0 0 12px;font-size:17px;color:#FDD05B;font-weight:900;">محتوای دمو</h3>
+                    <ul style="margin:0 0 18px;padding:0 18px 0 0;font-size:13px;line-height:1.95;color:#E5E7EB;">
+                        <li><strong>هدر و فوترساز المنتوری:</strong> هدر، فوتر و فهرست‌های قابل ویرایش.</li>
+                        <li><strong>صفحه اصلی:</strong> بخش‌های معرفی، خدمات، محصولات، نمونه‌کارها و وبلاگ.</li>
+                        <li><strong>قابل ویرایش در المنتور:</strong> محتوا و ظاهر برگه‌های دمو از پنل المنتور قابل تنظیم است.</li>
+                        <li><strong>محصولات فروشگاه:</strong> محصولات نمونه برای نمایش ساختار فروشگاه ووکامرس.</li>
+                        <li><strong>صفحات قوانین:</strong> صفحات نمونه قابل ویرایش متناسب با سیاست‌های کسب‌وکار.</li>
+                    </ul>
+                    <div style="background:rgba(253,208,91,0.1);border:1px solid rgba(253,208,91,0.35);padding:12px 16px;border-radius:14px;font-size:12.5px;color:#FDE68A;line-height:1.7;">
+                        <strong>مقالات:</strong> ۷۱ مقاله در ۶ دسته، همراه با تصاویر شاخص.
+                    </div>
+                </div>
+            </div>
         </div>
         <?php
     }
