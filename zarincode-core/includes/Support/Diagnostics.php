@@ -12,6 +12,7 @@ final class Diagnostics {
             'elementor' => defined('ELEMENTOR_VERSION') ? ELEMENTOR_VERSION : 'absent',
             'elementor_pro' => defined('ELEMENTOR_PRO_VERSION') ? ELEMENTOR_PRO_VERSION : 'absent',
             'woocommerce' => defined('WC_VERSION') ? WC_VERSION : 'absent', 'features' => $features,
+            'lazy_images' => \Zarincode\Runtime260\Media\Lazy_Images::enabled(),
             'webp_uploads' => \Zarincode\Runtime260\Media\WebP_Uploads::status() ];
     }
     public static function page(): void {
@@ -21,6 +22,7 @@ final class Diagnostics {
     public static function site_health( array $info ): array {
         $info['zarincode-core'] = [ 'label' => 'ZarinCode Core', 'fields' => [
             'version' => [ 'label' => 'Version', 'value' => ZARINCODE_CORE_VERSION ],
+            'lazy_images' => [ 'label' => 'Native image lazy loading', 'value' => \Zarincode\Runtime260\Media\Lazy_Images::enabled() ? 'Enabled (critical/eager images excluded)' : 'Disabled' ],
             'webp' => [ 'label' => 'WebP uploads', 'value' => wp_json_encode( \Zarincode\Runtime260\Media\WebP_Uploads::status() ) ],
             'provider' => [ 'label' => 'Runtime owner', 'value' => 'Companion plugin' ],
         ] ];

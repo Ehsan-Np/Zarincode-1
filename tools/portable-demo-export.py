@@ -6,12 +6,13 @@ source=sys.argv[1] if len(sys.argv)>1 else "zarincode-demo.xml"
 project=Path(__file__).resolve().parents[1]
 p=E.XMLParser(strip_cdata=False);root=E.parse(source,p)
 ns={'wp':'http://wordpress.org/export/1.2/','dc':'http://purl.org/dc/elements/1.1/'}
-base='https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/'
+# Bundled rasters are imported locally by the companion, never fetched from GitHub.
+base='{{THEME}}/assets/images/'
 def portable(v):
  if isinstance(v,dict):return {k:portable(x) for k,x in v.items()}
  if isinstance(v,list):return [portable(x) for x in v]
  if isinstance(v,str):
-  return v.replace('http://localhost:8080/wp-content/themes/zarincode/assets/images/',base).replace('http://localhost:8080','https://zarincode.com')
+  return v.replace('https://raw.githubusercontent.com/Ehsan-Np/Zarincode-1/main/zarincode/assets/images/',base).replace('http://localhost:8080/wp-content/themes/zarincode/assets/images/',base).replace('http://localhost:8080','https://zarincode.com')
  return v
 # Export includes every site taxonomy, even with --post__in. Keep only used terms
 # and their ancestors so disposable QA taxonomies never enter the release.
@@ -33,9 +34,11 @@ while changed:
 for node,tax,slug,parent in terms:
  if (tax,slug) not in used:channel.remove(node)
 for item in root.findall('.//item'):
+ if item.findtext('wp:post_type',namespaces=ns)=='attachment':
+  channel.remove(item);continue
  for meta in item.findall('wp:postmeta',ns):
   key=meta.findtext('wp:meta_key',namespaces=ns);value=meta.find('wp:meta_value',ns)
-  if (key or '').startswith(('_zc_layout_backup_','_zc_hero_backup_')) or key in ['_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last','_wc_average_rating','_wc_review_count','_wc_rating_count','total_sales']:
+  if (key or '').startswith(('_zc_layout_backup_','_zc_hero_backup_')) or key in ['_thumbnail_id','_elementor_css','_elementor_element_cache','_elementor_page_assets','_edit_lock','_edit_last','_wc_average_rating','_wc_review_count','_wc_rating_count','total_sales']:
    item.remove(meta);continue
   if value is not None and value.text:
    if key=='_elementor_data':value.text=E.CDATA(json.dumps(portable(json.loads(value.text)),ensure_ascii=False,separators=(',',':')))
@@ -53,5 +56,5 @@ for node in root.iter():
 raw=E.tostring(root,encoding='UTF-8',xml_declaration=True)
 assert b'localhost' not in raw and b'zcadmin' not in raw and b'QA ' not in raw
 (project/'zarincode/demo-data/zarincode-demo-content.xml').write_bytes(raw)
-(project/'packages/zarincode-demo-content.xml').write_bytes(raw)
+# Historical delivery archives are immutable; only active theme source is regenerated.
 print('Portable WXR:',len(root.findall('.//item')),'items; no local host, QA records or test account')

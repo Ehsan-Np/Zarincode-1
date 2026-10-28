@@ -1,6 +1,6 @@
 {
   "specification": "ZC-WP-ENG-SKILL-001 v3.0.0",
-  "version": "4.0.0-rc.4",
+  "version": "4.0.0-rc.5",
   "commercial_approved": false,
   "approved_exceptions": [
     {
@@ -71,6 +71,20 @@
       "php_contract_assertions": 308,
       "runtime_php_syntax_files": 87,
       "limitations": "SQLite/GD with active theme/core. No actual OCDI AJAX/parser, Elementor, WooCommerce, MySQL or browser certification."
+    },
+    "demo_media_lazy_rc5": {
+      "report": "docs/audits/2026-10-28-DEMO-WEBP-LAZY-FA.md",
+      "real_wp_assertions": [
+        588,
+        146,
+        5
+      ],
+      "browser_network_assertions": 5,
+      "real_gd_assertions": 145,
+      "php_contract_assertions": 311,
+      "runtime_php_syntax_files": 89,
+      "package_contract_tests": 4,
+      "limits": "WP 6.8.3/GD/SQLite plus Chromium fixture. No live-host/MySQL/Imagick/actual OCDI UI or all third-party version certification."
     }
   }
 }

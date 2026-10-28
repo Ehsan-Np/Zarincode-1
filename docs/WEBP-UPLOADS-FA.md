@@ -66,3 +66,7 @@ wp --path=/tmp/disposable-wp eval-file /path/to/Zarincode-1/tools/qa-webp-wordpr
 این آزمون موقتاً تنظیمات را تغییر می‌دهد، PNG و WebP آزمایشی را با `media_handle_sideload` وارد می‌کند، attachment/MIME/metadata/subsizes/URL/srcset، خاموش‌سازی و عدم بازفشرده‌سازی WebP را بررسی می‌کند؛ در finally رسانه‌های ساخته‌شده را حذف و تنظیمات و کاربر را برمی‌گرداند. روی سایت واقعی اجرا نکنید. این آزمون UI مرورگر یا درخواست multipart از مرورگر نیست.
 
 نتیجه واقعی این چرخه و محدودیت‌ها: [گزارش آزمون](audits/2026-10-28-WEBP-FA.md).
+
+## تکمیل در rc.5: دمو و Lazy load
+
+تصاویر مدل‌های دمو اکنون توسط `Demo_Media` از همین هوک استاندارد وارد کتابخانه می‌شوند؛ مسیر مستقل کپی فایل با MIME ثابت استفاده نمی‌شود. قابلیت «ترمیم تصاویر دمو» فقط referenceهای تصویر در رکوردهای نشان‌دار را اصلاح می‌کند، نه چیدمان مشتری. Lazy load بومی IMG نیز به companion اضافه شده است؛ critical/eager استثنا هستند. [گزارش و راهنمای rc.5](audits/2026-10-28-DEMO-WEBP-LAZY-FA.md).

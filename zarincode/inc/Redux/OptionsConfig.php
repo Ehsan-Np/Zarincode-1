@@ -364,9 +364,10 @@ class OptionsConfig {
                 ],
             ],
             'media_optimization' => [
-                'title' => 'بهینه‌سازی تصاویر WebP', 'icon' => 'dashicons-format-image',
+                'title' => 'بهینه‌سازی تصاویر', 'icon' => 'dashicons-format-image',
                 'desc' => 'تبدیل آپلودهای جدید و ثابتِ قابل پشتیبانی سرور، پیش از ایجاد رسانه. در حالت پیش‌فرض فقط خروجی کوچک‌تر جایگزین فایل ورودی می‌شود. تصاویر قدیمی، SVG و تصاویر متحرک دست‌نخورده می‌مانند. تبدیل موفق فایل اصلی را جایگزین می‌کند؛ پیش از فعال‌سازی نسخه پشتیبان داشته باشید.',
                 'fields' => [
+                    [ 'id' => 'lazy_images', 'type' => 'switch', 'title' => 'بارگذاری تنبل تصاویر', 'default' => true, 'subtitle' => 'تصاویر معمولی با Lazy load بومی مرورگر بارگذاری می‌شوند؛ لوگو، تصاویر دارای اولویت بالا و موارد eager مستثنا هستند.' ],
                     [ 'id' => 'feature_webp_uploads', 'type' => 'switch', 'title' => 'تبدیل خودکار آپلودهای جدید به WebP', 'default' => true ],
                     [ 'id' => 'webp_quality', 'type' => 'number', 'title' => 'کیفیت WebP (۵۰ تا ۱۰۰)', 'min' => 50, 'max' => 100, 'step' => 1, 'default' => 82, 'subtitle' => '۸۲ تعادل پیش‌فرض حجم و کیفیت است؛ ۱۰۰ الزاماً lossless نیست و ممکن است حجم را بیشتر کند.' ],
                     [ 'id' => 'webp_only_smaller', 'type' => 'switch', 'title' => 'جایگزینی فقط اگر WebP از فایل ورودی کوچک‌تر باشد', 'default' => true ],

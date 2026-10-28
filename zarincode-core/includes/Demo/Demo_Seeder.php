@@ -146,6 +146,11 @@ class Demo_Seeder {
                     self::seed_elementor_pages();
                     $message = 'تمامی ۱۳ برگه المنتوری (صفحه اصلی، خدمات، نمونه‌کارها، درباره ما، تماس با ما و ۶ صفحه قوانین) با موفقیت درون‌ریزی شدند!';
                     break;
+                case 'images':
+                    $repair = Demo_Media::repair_seeded();
+                    Article_Importer::$last_result['errors'] = $repair['errors'];
+                    $message = 'ترمیم تصاویر دمو انجام شد.';
+                    break;
                 case 'articles':
                     self::seed_blog_posts();
                     $message = 'درون‌ریزی مقالات و تصاویر شاخص انجام شد.';
@@ -159,11 +164,12 @@ class Demo_Seeder {
                 default:
                     self::seed_all();
                     if (empty(Article_Importer::$last_result['errors'])) update_option( 'zarincode_demo_imported_v25', 'yes' );
-                    $message = 'تمامی بخش‌های دموی زرین کد (هدر، فوتر، ۶ خدمت، ۸ نمونه‌کار، ۸ محصول فروشگاه، ۱۳ برگه المنتوری و قوانین، فهرست‌ها و تنظیمات Redux) به طور کامل درون‌ریزی و فعال شدند!';
+                    $message = 'درون‌ریزی بخش‌های در دسترس دمو انجام شد.';
                     break;
             }
         }
 
+        Article_Importer::$last_result['errors'] = array_values(array_unique(array_merge(Article_Importer::$last_result['errors'] ?? [], Demo_Media::$errors)));
         $failed = !empty(Article_Importer::$last_result['errors']);
         if ($failed) $message = 'درون‌ریزی کامل نشد: '.implode('؛ ', array_unique(Article_Importer::$last_result['errors']));
         $cnt_hf       = wp_count_posts( 'zc_hf_template' )->publish ?? 0;
@@ -232,7 +238,7 @@ class Demo_Seeder {
             </div>
 
             <?php if ( $message ) : ?>
-                <div style="background:#ECFDF5;border:2px solid #10B981;color:#065F46;padding:18px 22px;border-radius:16px;margin-bottom:24px;font-weight:bold;font-size:14px;width:100%;box-sizing:border-box;">
+                <div role="<?php echo $failed ? 'alert' : 'status'; ?>" style="background:<?php echo $failed ? '#FEF2F2' : '#ECFDF5'; ?>;border:2px solid <?php echo $failed ? '#EF4444' : '#10B981'; ?>;color:<?php echo $failed ? '#991B1B' : '#065F46'; ?>;padding:18px 22px;border-radius:16px;margin-bottom:24px;font-weight:bold;font-size:14px;width:100%;box-sizing:border-box;">
                     <?php echo esc_html( $message ); ?>
                     <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" target="_blank" class="button button-primary">مشاهده صفحه اصلی سایت</a>
@@ -292,6 +298,10 @@ class Demo_Seeder {
                         <label style="display:block;padding:14px 18px;background:#FFFBEB;border:2px solid #FDD05B;border-radius:14px;margin-bottom:10px;cursor:pointer;font-weight:bold;color:#1F2937;">
                             <input type="radio" name="zarincode_seed_scope" value="all" checked>
                             درون‌ریزی کامل دمو
+                        </label>
+                        <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
+                            <input type="radio" name="zarincode_seed_scope" value="images">
+                            ترمیم تصاویر دمو
                         </label>
                         <label style="display:block;padding:12px 18px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;margin-bottom:8px;cursor:pointer;">
                             <input type="radio" name="zarincode_seed_scope" value="articles">
@@ -379,6 +389,8 @@ class Demo_Seeder {
         $prev_suppress = $wpdb->suppress_errors( true );
 
         $existing = get_page_by_path( $slug, OBJECT, $post_type );
+        $elementor_tree = Demo_Media::rewrite($elementor_tree);
+        $content = Demo_Media::rewrite($content);
         $post_data = [
             'post_title'   => $title,
             'post_name'    => $slug,
@@ -1128,7 +1140,12 @@ class Demo_Seeder {
             'product_warranty_badge' => 'پیش‌نیازها و شرایط پشتیبانی هر محصول را پیش از خرید بررسی کنید',
             'social_whatsapp'=>'https://wa.me/989024561001','social_github'=>'https://github.com/Ehsan-Np','logo_monogram'=>'ZC','floating_contact_action'=>'socials','floating_contact_label'=>'راه‌های ارتباطی','topbar_show_phone'=>false,'topbar_show_dev'=>false,'enable_topbar'=>false,'blog_sidebar_layout'=>'both','blog_article_ratings'=>true,
         ];
-        update_option( 'zarincode_opt', $defaults );
+        // Demo layout settings may reset, but image-engine policy belongs to the site owner.
+        $current = get_option('zarincode_opt', []);
+        foreach (['feature_webp_uploads','webp_quality','webp_only_smaller','webp_max_megabytes','webp_max_megapixels','lazy_images'] as $key) {
+            if (is_array($current) && array_key_exists($key, $current)) $defaults[$key] = $current[$key];
+        }
+        update_option( 'zarincode_opt', Demo_Media::rewrite($defaults) );
     }
 
     /**
@@ -1184,10 +1201,13 @@ class Demo_Seeder {
         self::seed_projects_cpt();
         self::seed_woocommerce_products();
         self::seed_elementor_pages();
+        $earlier_media_errors = Demo_Media::$errors;
         self::seed_blog_posts();
+        Demo_Media::$errors = array_merge($earlier_media_errors, Demo_Media::$errors);
         self::seed_featured_images();
         self::seed_navigation_menus();
         Service_Demo::sidebars();
+        Article_Importer::$last_result['errors'] = array_values(array_unique(array_merge(Article_Importer::$last_result['errors'] ?? [], Demo_Media::$errors)));
         if(class_exists('Elementor\\Plugin'))\Elementor\Plugin::instance()->files_manager->clear_cache();
         flush_rewrite_rules( false );
     }
@@ -1226,6 +1246,7 @@ class Demo_Seeder {
         $article_file = basename($selected_import['local_import_file'] ?? '');
         if ($article_file === 'zarincode-articles.xml') self::seed_blog_posts();
         else self::seed_all();
+        Article_Importer::$last_result['errors'] = array_values(array_unique(array_merge(Article_Importer::$last_result['errors'] ?? [], Demo_Media::$errors)));
         if (!empty(Article_Importer::$last_result['errors'])) {
             throw new \RuntimeException(implode('؛ ', array_unique(Article_Importer::$last_result['errors'])));
         }

@@ -3,7 +3,7 @@
  * Plugin Name: Zarincode Core (هسته و ویجت‌های المنتوری قالب زرین کد)
  * Plugin URI:  https://zarincode.com
  * Description: افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA).
- * Version:     4.0.0-rc.4
+ * Version:     4.0.0-rc.5
  * Author:      Ehsan NaderiPanah (احسان نادری پناه)
  * Author URI:  https://zarincode.com
  * Text Domain: zarincode-core
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-defined( 'ZARINCODE_CORE_VERSION' ) || define( 'ZARINCODE_CORE_VERSION', '4.0.0-rc.4' );
+defined( 'ZARINCODE_CORE_VERSION' ) || define( 'ZARINCODE_CORE_VERSION', '4.0.0-rc.5' );
 defined( 'ZARINCODE_CORE_PATH' ) || define( 'ZARINCODE_CORE_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'ZARINCODE_CORE_URL' ) || define( 'ZARINCODE_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -50,6 +50,7 @@ final class Zarincode_Core_Plugin_260 {
 
     private function __construct() {
         \Zarincode\Runtime260\Media\WebP_Uploads::boot();
+        \Zarincode\Runtime260\Media\Lazy_Images::boot();
         \Zarincode\Runtime260\PWA\App::boot();
         \Zarincode\Runtime260\Integrations\Multilingual::boot();
         add_action('elementor/element/after_section_end',[\Zarincode\Runtime260\Elementor\Shared_Controls::class,'register'],10,2);

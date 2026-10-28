@@ -1,6 +1,6 @@
 <?php
 /** Dependency-free contract tests. Run: php tools/qa-skill-v3-unit.php */
-define('ABSPATH',__DIR__.'/../'); define('ZARINCODE_CORE_VERSION','4.0.0-rc.4');
+define('ABSPATH',__DIR__.'/../'); define('ZARINCODE_CORE_VERSION','4.0.0-rc.5');
 function apply_filters($name,$value){return $value;}
 require ABSPATH.'zarincode-core/includes/Features/Registry.php';
 require ABSPATH.'zarincode-core/includes/Features/Manager.php';

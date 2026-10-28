@@ -1,0 +1,162 @@
+<?php
+/** Explicit local demo media import through the SAME WordPress/WebP upload pipeline. */
+namespace Zarincode\Runtime260\Demo;
+use Zarincode\Runtime260\Media\WebP_Uploads;
+defined('ABSPATH') || exit;
+
+final class Demo_Media {
+    private static array $cache = [];
+    public static array $errors = [];
+
+    public static function reset(): void { self::$cache = []; self::$errors = []; }
+
+    private static function fail(string $name, string $code, string $message) {
+        $error = new \WP_Error($code, $message);
+        self::$errors[$name] = $name.' ['.$code.']: '.$message;
+        return self::$cache[$name] = $error;
+    }
+
+    public static function policy(): string {
+        return hash('sha256', wp_json_encode([WebP_Uploads::settings(),
+            wp_image_editor_supports(['mime_type'=>'image/webp']), in_array('image/webp', get_allowed_mime_types(), true)]));
+    }
+
+    public static function valid(int $id): bool {
+        $file = get_attached_file($id);
+        return get_post_status($id) !== 'trash' && wp_attachment_is_image($id)
+            && is_string($file) && is_readable($file) && (bool)wp_get_image_mime($file);
+    }
+
+    public static function import(string $name) {
+        try { return self::import_local($name); }
+        catch (\Throwable $error) { return self::fail($name, 'demo_media_exception', wp_strip_all_tags($error->getMessage())); }
+    }
+
+    private static function import_local(string $name) {
+        if (isset(self::$cache[$name])) {
+            if (is_wp_error(self::$cache[$name]) || self::valid((int)self::$cache[$name])) return self::$cache[$name];
+            unset(self::$cache[$name]);
+        }
+        // Names come from bundled demo models, never arbitrary paths or remote URLs.
+        if ($name !== basename($name) || !preg_match('/\A[a-zA-Z0-9_-]+\.(?:jpe?g|png|webp|gif)\z/i', $name)) {
+            return self::fail($name, 'invalid_demo_asset', 'نام تصویر دمو معتبر نیست.');
+        }
+        $source = get_template_directory().'/assets/images/'.$name;
+        if (!is_readable($source)) return self::fail($name, 'demo_asset_missing', 'فایل تصویر در بسته قالب وجود ندارد یا خواندنی نیست؛ قالب را کامل به‌روز کنید.');
+        $hash = hash_file('sha256', $source);
+        $policy = self::policy();
+        $ids = get_posts(['post_type'=>'attachment','post_status'=>'inherit','numberposts'=>-1,'fields'=>'ids',
+            'meta_query'=>[['key'=>'_zc_demo_asset_hash','value'=>$hash],['key'=>'_zc_demo_asset_policy','value'=>$policy]]]);
+        foreach ($ids as $id) if (self::valid((int)$id)) return self::$cache[$name] = (int)$id;
+        require_once ABSPATH.'wp-admin/includes/file.php';
+        require_once ABSPATH.'wp-admin/includes/media.php';
+        require_once ABSPATH.'wp-admin/includes/image.php';
+        $uploads = wp_upload_dir();
+        if (!empty($uploads['error'])) return self::fail($name, 'demo_upload_directory', wp_strip_all_tags((string)$uploads['error']));
+        if (empty($uploads['path']) || !wp_is_writable($uploads['path'])) return self::fail($name, 'demo_upload_not_writable', 'پوشه uploads قابل نوشتن نیست؛ مجوزها و فضای دیسک میزبان را بررسی کنید.');
+        // Avoid a broken/open_basedir-restricted system temp directory and cross-volume moves.
+        $temporary = wp_tempnam($name, $uploads['path']);
+        if (!$temporary) return self::fail($name, 'demo_temp_failed', 'ساخت فایل موقت در uploads انجام نشد؛ فضای دیسک و مجوز پوشه را بررسی کنید.');
+        try {
+            if (!copy($source, $temporary)) return self::fail($name, 'demo_copy_failed', 'کپی فایل تصویر به uploads انجام نشد.');
+            $id = media_handle_sideload(['name'=>$name,'tmp_name'=>$temporary,'error'=>0,'size'=>filesize($temporary)], 0, 'تصویر نمونه دمو');
+            if (is_wp_error($id)) return self::fail($name, $id->get_error_code(), wp_strip_all_tags($id->get_error_message()));
+            if (!self::valid((int)$id)) {
+                if ((int)$id > 0) wp_delete_attachment((int)$id, true);
+                return self::fail($name, 'demo_invalid_attachment', 'رسانه ثبت شد اما فایل تصویر معتبر یا خواندنی نیست.');
+            }
+            update_post_meta($id, '_zc_demo_asset_hash', $hash);
+            update_post_meta($id, '_zc_demo_asset_policy', $policy);
+            update_post_meta($id, '_zc_demo_asset_name', $name);
+            update_post_meta($id, '_wp_attachment_image_alt', 'تصویر نمونه دمو');
+            return self::$cache[$name] = (int)$id;
+        } catch (\Throwable $error) {
+            return self::fail($name, 'demo_media_exception', wp_strip_all_tags($error->getMessage()));
+        } finally { if (is_file($temporary)) wp_delete_file($temporary); }
+    }
+
+    /** Preserve customer images. Refresh only known demo assets when policy changes. */
+    public static function assign(int $post_id, string $name): bool {
+        $current = (int)get_post_meta($post_id, '_thumbnail_id', true);
+        if (!$current) $current = (int)get_post_thumbnail_id($post_id);
+        if ($current && self::valid($current)) {
+            $demo = get_post_meta($current, '_zc_demo_asset_hash', true) || get_post_meta($current, '_zc_demo_cover_hash', true);
+            foreach (['post','project','service','product'] as $asset) {
+                if ((int)get_option('zarincode_demo_cover_'.$asset) === $current) $demo = true;
+            }
+            if (!$demo || get_post_meta($current, '_zc_demo_asset_policy', true) === self::policy()) return true;
+            $owned_name = get_post_meta($current, '_zc_demo_asset_name', true);
+            if (is_string($owned_name) && $owned_name !== '') $name = $owned_name;
+        }
+        $id = self::import($name);
+        if (is_wp_error($id)) return false;
+        // set_post_thumbnail() depends on rendered HTML and can return false under
+        // image/lazy/offload filters, even for a valid file. Verify the stored relationship,
+        // not an HTML renderer's return value or update_post_meta's "unchanged" false.
+        if ((int)get_post_meta($post_id, '_thumbnail_id', true) !== $id) update_post_meta($post_id, '_thumbnail_id', $id);
+        if ((int)get_post_meta($post_id, '_thumbnail_id', true) === $id) return true;
+        self::$errors[$name] = $name.' [demo_thumbnail_write_failed]: ذخیره ارتباط تصویر شاخص در پایگاه داده انجام نشد.';
+        return false;
+    }
+
+    /** Rewrite only bundled local demo URLs during an EXPLICIT import. */
+    public static function rewrite($value) {
+        if (is_array($value)) {
+            foreach ($value as &$child) $child = self::rewrite($child);
+            unset($child);
+            if (isset($value['id'], $value['url']) && is_scalar($value['id'])) {
+                $name = get_post_meta(absint($value['id']), '_zc_demo_asset_name', true);
+                if (is_string($name) && $name !== '') {
+                    $id = self::import($name);
+                    if (!is_wp_error($id)) { $value['id'] = $id; $value['url'] = wp_get_attachment_url($id); }
+                }
+            }
+            if (isset($value['url']) && is_string($value['url'])) {
+                foreach (self::$cache as $id) if (!is_wp_error($id) && wp_get_attachment_url($id) === $value['url']) { $value['id'] = $id; break; }
+            }
+            return $value;
+        }
+        if (!is_string($value)) return $value;
+        $base = preg_quote(get_template_directory_uri(), '~');
+        return preg_replace_callback('~(?:'.$base.'|\{\{THEME\}\})/assets/images/([a-zA-Z0-9_-]+\.(?:jpe?g|png|webp|gif))(?![a-zA-Z0-9_.-])~i', static function($match) {
+            $id = self::import($match[1]);
+            return is_wp_error($id) ? str_replace('{{THEME}}', get_template_directory_uri(), $match[0]) : wp_get_attachment_url($id);
+        }, $value);
+    }
+    /** Repair media references only, never regenerate customer-edited page layouts/options. */
+    public static function repair_seeded(): array {
+        self::reset();
+        $ids = get_posts(['post_type'=>['page','post','zc_hf_template','elementor_library','zc_service','zc_project','product'],
+            'post_status'=>'any','numberposts'=>-1,'fields'=>'ids','meta_query'=>['relation'=>'OR',
+                ['key'=>'_zarincode_seeded','value'=>'1'],['key'=>'_zc_demo_article','value'=>'1']]]);
+        $updated = 0;
+        foreach ($ids as $id) {
+            $raw = get_post_meta($id, '_elementor_data', true);
+            if (is_string($raw) && $raw !== '') {
+                $tree = json_decode($raw, true);
+                if (is_array($tree)) {
+                    $new = self::rewrite($tree);
+                    if ($new !== $tree) {
+                        $encoded = wp_json_encode($new);
+                        update_post_meta($id, '_elementor_data', wp_slash($encoded));
+                        if (get_post_meta($id, '_elementor_data', true) === $encoded) {
+                            delete_post_meta($id, '_elementor_css');
+                            ++$updated;
+                        } else self::$errors['record-'.$id] = '[demo_metadata_write_failed]: ذخیره نشانی تصاویر المنتوری انجام نشد.';
+                    }
+                } else self::$errors['record-'.$id] = '[demo_invalid_json]: اطلاعات المنتوری یک رکورد دمو معتبر نیست؛ بدون تغییر باقی ماند.';
+            }
+            $content = get_post_field('post_content', $id);
+            $new_content = self::rewrite($content);
+            if ($new_content !== $content) {
+                $result = wp_update_post(wp_slash(['ID'=>$id,'post_content'=>$new_content]), true);
+                if (is_wp_error($result)) self::$errors['record-'.$id] = $result->get_error_message();
+                else ++$updated;
+            }
+            $kind = ['post'=>'post','zc_service'=>'service','zc_project'=>'project','product'=>'product'][get_post_type($id)] ?? '';
+            if ($kind) self::assign((int)$id, 'demo-'.$kind.'-cover.jpg');
+        }
+        return ['updated'=>$updated,'errors'=>array_values(self::$errors)];
+    }
+
+}

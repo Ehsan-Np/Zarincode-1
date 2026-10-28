@@ -7,6 +7,7 @@ final class Article_Importer {
     public static array $last_result = [];
 
     public static function run(): array {
+        Demo_Media::reset();
         $result = ['posts'=>0, 'images'=>0, 'errors'=>[]];
         $file = get_template_directory().'/demo-data/zarincode-articles.json';
         $data = is_readable($file) ? json_decode(file_get_contents($file), true) : null;
@@ -42,39 +43,13 @@ final class Article_Importer {
             if (is_wp_error($assigned)) $result['errors'][] = $assigned->get_error_message();
             ++$result['posts'];
             if (self::assign_cover((int)$id, $i)) ++$result['images'];
-            else $result['errors'][] = 'ثبت تصویر شاخص مقاله انجام نشد: '.$article['title'];
+            else $result['errors'] = array_values(array_unique(array_merge($result['errors'], Demo_Media::$errors)));
         }
         return self::$last_result = $result;
     }
 
     public static function assign_cover(int $post_id, int $index): bool {
-        $thumbnail = get_post_thumbnail_id($post_id);
-        if ($thumbnail && self::valid_image((int)$thumbnail)) return true;
         $assets = ['post','project','service','product'];
-        $source = get_template_directory().'/assets/images/demo-'.$assets[$index % 4].'-cover.jpg';
-        if (!is_readable($source)) return false;
-        $hash = hash_file('sha256', $source);
-        $ids = get_posts(['post_type'=>'attachment','post_status'=>'inherit','numberposts'=>-1,'fields'=>'ids',
-            'meta_key'=>'_zc_demo_cover_hash','meta_value'=>$hash]);
-        foreach ($ids as $id) if (self::valid_image((int)$id)) return set_post_thumbnail($post_id, (int)$id) !== false;
-        require_once ABSPATH.'wp-admin/includes/file.php';
-        require_once ABSPATH.'wp-admin/includes/media.php';
-        require_once ABSPATH.'wp-admin/includes/image.php';
-        $temporary = wp_tempnam(basename($source));
-        if (!$temporary) return false;
-        try {
-            if (!copy($source, $temporary)) return false;
-            $id = media_handle_sideload(['name'=>basename($source),'tmp_name'=>$temporary,'type'=>'image/jpeg',
-                'error'=>0,'size'=>filesize($temporary)], 0, 'تصویر نمونه دمو');
-            if (is_wp_error($id)) return false;
-            update_post_meta($id, '_zc_demo_cover_hash', $hash);
-            update_post_meta($id, '_wp_attachment_image_alt', 'تصویر نمونه دمو');
-            return self::valid_image((int)$id) && set_post_thumbnail($post_id, (int)$id) !== false;
-        } finally { if (is_file($temporary)) wp_delete_file($temporary); }
-    }
-
-    private static function valid_image(int $id): bool {
-        $file = get_attached_file($id);
-        return get_post_status($id) !== 'trash' && wp_attachment_is_image($id) && is_string($file) && is_readable($file);
+        return Demo_Media::assign($post_id, 'demo-'.$assets[$index % 4].'-cover.jpg');
     }
 }

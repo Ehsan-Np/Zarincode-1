@@ -106,7 +106,7 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
             <!-- Brand Identity -->
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="zc-brand" title="<?php echo esc_attr( $brand_name . ' | ' . $brand_sub ); ?>">
                 <?php if ( ! empty( $logo_light ) ) : ?>
-                    <img src="<?php echo esc_url( $logo_light ); ?>" alt="<?php echo esc_attr( $brand_name ); ?>" style="max-width:<?php echo esc_attr( $logo_width . 'px' ); ?>;height:auto;">
+                    <img data-zc-eager src="<?php echo esc_url( $logo_light ); ?>" alt="<?php echo esc_attr( $brand_name ); ?>" style="max-width:<?php echo esc_attr( $logo_width . 'px' ); ?>;height:auto;">
                 <?php else : ?>
                     <span class="zc-brand-logo-box"><?php echo esc_html( $logo_monogram ); ?></span>
                     <span class="zc-brand-text">

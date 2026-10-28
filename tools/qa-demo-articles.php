@@ -10,8 +10,11 @@ $ids=static fn()=>get_posts(['post_type'=>'post','post_status'=>'any','numberpos
 $expect(!$ids(),'Start with an empty demo fixture');
 $admin=get_users(['role'=>'administrator','number'=>1,'fields'=>'ID']);wp_set_current_user((int)$admin[0]);
 $collision=wp_insert_post(['post_type'=>'post','post_status'=>'publish','post_title'=>'Customer article','post_name'=>'modern-web-design-principles','post_content'=>'Do not overwrite']);
+// A real third-party-style image HTML filter used to make every thumbnail fail.
+$hide_image=static fn()=>'';add_filter('wp_get_attachment_image',$hide_image,PHP_INT_MAX);
 // Exercise the actual full-demo entry point, not only the isolated article service.
 Seeder::seed_all();
+remove_filter('wp_get_attachment_image',$hide_image,PHP_INT_MAX);
 $expect(!Articles::$last_result['errors'],'Full demo has no article/image errors');
 $posts=$ids();$expect(count($posts)===71,'Full demo imports 71 marked magazine articles');
 $expect(get_post_field('post_content',$collision)==='Do not overwrite','Customer slug collision is preserved');
