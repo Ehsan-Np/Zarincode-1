@@ -10,7 +10,6 @@ final class Widget_Schema {
             'footer' => ['Widget_Footer_Crextio','فوتر زرین کد','eicon-footer','برای تحول دیجیتال آماده‌اید؟'],
             'hero' => ['Widget_Hero_Crextio','هیرو یکپارچه — نسخه قدیمی','eicon-banner','طراحی سایت، نرم‌افزار و سئو برای رشد کسب‌وکار شما'],
             'hero_intro' => ['Widget_Hero_Intro','معرفی اصلی آژانس','eicon-banner','آژانس طراحی سایت و نرم‌افزار زرین کد'],
-            'hero_profile' => ['Widget_Hero_Profile','معرفی مدیر و آمار عملکرد','eicon-person','احسان نادری پناه'],
             'hero_cta' => ['Widget_Hero_CTA','دعوت به شروع همکاری','eicon-call-to-action','برای شروع همکاری آماده‌اید؟'],
             'brands' => ['Widget_Brands_Marquee','برندها و تکنولوژی‌ها','eicon-carousel','تکنولوژی‌هایی که به آن‌ها اعتماد داریم'],
             'services' => ['Widget_Services_Bento','خدمات تخصصی','eicon-gallery-grid','خدمات تخصصی آژانس زرین کد'],

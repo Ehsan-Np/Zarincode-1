@@ -1,0 +1,78 @@
+{
+ "t1": {
+  "hero_profile": 0,
+  "slider_tracks": 1,
+  "live_timer": 0,
+  "studio_tracker": 0,
+  "slides": 6,
+  "hero_dark_card": true
+ },
+ "t2": {
+  "font_preloads": 3,
+  "fa_blocking_stylesheet": 0,
+  "fa_noscript_fallback": true,
+  "defer_scripts": 6,
+  "main_js_defer": true
+ },
+ "t3": {
+  "zc_feature_icon_markup": 36,
+  "main_css_linked": true,
+  "chip_rule_in_live_css": true
+ },
+ "t4": {
+  "h1_count": 1,
+  "keyword_h1": true,
+  "strong_intro": true,
+  "service_links": 29
+ },
+ "t5": {
+  "blog_grid_cards": 8,
+  "blog_upload_imgs": 7,
+  "cat_cards": 10,
+  "cat_pagination": true,
+  "sec_h1s": 1,
+  "sec_99_mark": 1,
+  "art_h1s": 1,
+  "art_zarincode_links": 4
+ },
+ "t6": {
+  "meta_description": {
+   "home": 1,
+   "post": 1,
+   "category": 1
+  },
+  "og_tags": {
+   "home": 7,
+   "post": 7
+  },
+  "twitter_tags": {
+   "post": 4
+  },
+  "canonical": {
+   "post": 1,
+   "category": 1,
+   "home": 1
+  },
+  "robots_noindex": {
+   "search": true,
+   "404": true,
+   "post_absent": true
+  },
+  "jsonld": {
+   "WebSite_SearchAction": true,
+   "BlogPosting": true,
+   "publisher": true,
+   "ProfessionalService": 1
+  },
+  "html_lang": [
+   "fa-IR"
+  ],
+  "dir": [
+   "rtl"
+  ],
+  "og_locale": [
+   "fa_IR"
+  ],
+  "robots_txt_sitemap": true
+ }
+}

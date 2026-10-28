@@ -1956,7 +1956,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -2466,7 +2467,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -2955,7 +2957,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -3465,7 +3468,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -3954,7 +3958,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -4443,7 +4448,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -4932,7 +4938,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "
@@ -5421,7 +5428,8 @@
                                             "visible": "heading_1_visible"
                                         }
                                     ],
-                                    "visible": "product_thumb_1_visible"
+                                    "visible": "product_thumb_1_visible",
+                                    "fallback_image_for": "featured_image"
                                 },
                                 {
                                     "literal": "\n\n                                "

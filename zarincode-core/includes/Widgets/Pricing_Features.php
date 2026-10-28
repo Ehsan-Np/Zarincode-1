@@ -48,7 +48,7 @@ final class Pricing_Features {
             if($target!==$plan)continue;
             $attributes=$widget->inline_attributes('n_pricing_features.'.$i.'.text');
             $attr='';foreach($attributes as $key=>$value)$attr.=' '.esc_attr($key).'="'.esc_attr(implode(' ',$value)).'"';
-            $html.='<li class="elementor-repeater-item-'.esc_attr($row['_id']??'').'"><span class="zc-feature-icon">'.Icon_Compatibility::render($row['icon']??[]).'</span><span'.$attr.'>'.esc_html($row['text']??'').'</span></li>';
+            $html.='<li class="elementor-repeater-item-'.esc_attr($row['_id']??'').'"><span class="zc-feature-icon">'.Icon_Compatibility::render($row['icon']??[],['aria-hidden'=>'true']).'</span><span'.$attr.'>'.esc_html($row['text']??'').'</span></li>';
         }
         return $html.'</ul>';
     }

@@ -10,7 +10,7 @@ def walk(nodes):
    yield from walk(n.get('children',[]))
 def cls(n):return n.get('attrs',{}).get('class','') if isinstance(n.get('attrs'),dict) else ''
 hero=load('hero')
-for kind,target in [('hero_intro','zc-hero-main-card'),('hero_profile','zc-dark-card'),('hero_cta','zc-yellow-card')]:
+for kind,target in [('hero_intro','zc-hero-main-card'),('hero_cta','zc-yellow-card')]:
  m=copy.deepcopy(hero);m['kind']=kind
  m['tree']=[copy.deepcopy(next(n for n in walk(hero['tree']) if target in cls(n).split()))]
  refs=set()

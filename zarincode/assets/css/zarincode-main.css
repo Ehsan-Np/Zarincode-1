@@ -1240,24 +1240,68 @@ html.dark .zc-project-info-pills span {
     align-items: center;
     gap: 0.65rem;
     font-size: 0.92rem;
+    line-height: 1.7;
 }
 
-.zc-pricing-features li :is(i,svg) {
-    color: var(--color-accent);
-    background: var(--zc-dark);
-    width: 1.45rem;
-    height: 1.45rem;
-    border-radius: 50%;
+/* Sunshine chip: shared by the native .zc-feature-icon span and the legacy bare <i>. */
+.zc-pricing-features li > i,
+.zc-pricing-features li > svg,
+.zc-pricing-features li .zc-feature-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
     flex-shrink: 0;
+    width: 1.95rem;
+    height: 1.95rem;
+    border-radius: 0.62rem;
+    font-size: 0.82rem;
+    color: var(--zc-dark, #2A2C31);
+    background: linear-gradient(150deg, #FFFAE9 0%, #FFEDB6 100%);
+    border: 1px solid rgba(253, 208, 91, 0.95);
+    box-shadow: 0 4px 10px rgba(253, 208, 91, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.zc-pricing-card.is-popular .zc-pricing-features li :is(i,svg) {
-    background: var(--color-accent);
-    color: var(--color-accent-contrast);
+/* Wrapper keeps the chip; the glyph inside follows currentColor. */
+.zc-pricing-features li .zc-feature-icon :is(i, svg) {
+    width: 1em;
+    height: 1em;
+    font-size: 0.95rem;
+    color: inherit;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.zc-pricing-card.is-popular .zc-pricing-features li > i,
+.zc-pricing-card.is-popular .zc-pricing-features li > svg,
+.zc-pricing-card.is-popular .zc-pricing-features li .zc-feature-icon {
+    background: linear-gradient(150deg, #FFDF85 0%, var(--color-accent) 100%);
+    border-color: var(--color-accent);
+    color: var(--color-accent-contrast, #2A2C31);
+    box-shadow: 0 6px 14px rgba(253, 208, 91, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.zc-pricing-features li:hover > i,
+.zc-pricing-features li:hover > svg,
+.zc-pricing-features li:hover .zc-feature-icon {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 8px 16px rgba(253, 208, 91, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zc-pricing-features li > i,
+    .zc-pricing-features li > svg,
+    .zc-pricing-features li .zc-feature-icon {
+        transition: none;
+    }
+
+    .zc-pricing-features li:hover > i,
+    .zc-pricing-features li:hover > svg,
+    .zc-pricing-features li:hover .zc-feature-icon {
+        transform: none;
+    }
 }
 
 /* ── Steps Timeline (4 Project Steps) ── */

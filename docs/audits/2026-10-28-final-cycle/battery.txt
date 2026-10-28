@@ -1,0 +1,38 @@
+# Zarincode final cycle battery — 2026-10-28 (Asia/Tehran)
+== environment ==
+PHP 8.4.27 (cli) (built: Oct 21 2026 07:53:46) (NTS)
+PHP version 8.4.27 (/usr/bin/php8.4)
+Composer version 2.8.8 2025-04-04 16:56:46
+Run the "diagnose" command to get more detailed diagnostics output.
+v20.20.2
+Python 3.13.16
+HEAD=8b89465 origin/main=8b89465
+== php -l (full tree) ==
+errors: 0
+files: 83
+== WPCS (composer standards) ==
+> phpcs --standard=phpcs.xml
+exit=0
+== PHPStan level 10 (composer analyse) ==
+ [OK] No errors                                                                 
+== PHPUnit + coverage ==
+OK (37 tests, 209 assertions)
+Critical-services line coverage: 507/573 (88.48%)
+coverage_exit=0
+== node contract ==
+# tests 6
+# pass 6
+# fail 0
+== multilingual adapters ==
+{"fixture":"none","assertions":6,"passed":true}
+{"fixture":"polylang","assertions":6,"passed":true}
+== skill-v3 unit ==
+{'assertions': 94, 'passed': True}
+== architecture guards ==
+exit=0
+== packaging guards ==
+
+OK
+== artifact validation ==
+json/xml OK: 4 json + 3 xml
+js OK

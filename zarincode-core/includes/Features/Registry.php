@@ -44,13 +44,13 @@ final class Registry {
 				'tests'        => array( 'feature-resolver', 'disabled-widget-output', 'disabled-widget-assets' ),
 			);
 		}
-		$features['native_widgets']['widgets']       = array_map( static fn( $id ) => 'zarincode_' . $id, array( 'header', 'footer', 'hero', 'hero_intro', 'hero_profile', 'hero_cta', 'brands', 'services', 'products', 'portfolio', 'why_us', 'pricing', 'promo', 'steps', 'testimonials', 'blog', 'page_section' ) );
+		$features['native_widgets']['widgets']       = array_map( static fn( $id ) => 'zarincode_' . $id, array( 'header', 'footer', 'hero', 'hero_intro', 'hero_cta', 'brands', 'services', 'products', 'portfolio', 'why_us', 'pricing', 'promo', 'steps', 'testimonials', 'blog', 'page_section' ) );
 		$features['native_widgets']['css']           = array( 'zarincode-editable-widgets', 'zarincode-native', 'zarincode-studio' );
 		$features['native_widgets']['js']            = array( 'zarincode-editable-widgets', 'zarincode-native' );
 		$features['studio_widgets']['widgets']       = array( 'zarincode_trust_badges', 'zarincode_client_logos', 'zarincode_pricing_plan' );
 		$features['studio_widgets']['css']           = array( 'zarincode-studio', 'zarincode-trust' );
 		$features['studio_widgets']['js']            = array( 'zarincode-studio' );
-		$features['professional_widgets']['widgets'] = array_map( static fn( $id ) => 'zarincode_' . $id, array( 'service_spotlight', 'project_roadmap', 'seo_audit', 'before_after', 'team_experts', 'service_matrix' ) );
+		$features['professional_widgets']['widgets'] = array_map( static fn( $id ) => 'zarincode_' . $id, array( 'service_spotlight', 'project_roadmap', 'seo_audit', 'before_after', 'team_experts', 'service_matrix', 'products_slider' ) );
 		$features['professional_widgets']['css']     = array( 'zarincode-professional' );
 		$features['professional_widgets']['js']      = array( 'zarincode-professional' );
 		$features['official_widget_styles']          = array_replace(

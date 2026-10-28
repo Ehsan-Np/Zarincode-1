@@ -38,6 +38,60 @@
                     listen(surface, 'dragstart', event => event.preventDefault());
                     update();
                 });
+                this.$element[0].querySelectorAll('[data-zc-slider]').forEach(root => {
+                    const track = root.querySelector('.zc-slider-track');
+                    if (!track) return;
+                    const slides = Array.from(track.querySelectorAll('.zc-slider-slide'));
+                    const nav = root.querySelector('.zc-slider-nav');
+                    if (slides.length < 2) { if (nav) nav.hidden = true; return; }
+                    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+                    const prev = root.querySelector('[data-zc-slider-prev]');
+                    const next = root.querySelector('[data-zc-slider-next]');
+                    const dots = Array.from(root.querySelectorAll('[data-zc-slider-dot]'));
+                    const listen = (target, name, fn, opts) => { target.addEventListener(name, fn, opts); this.listeners.push([target, name, fn]); };
+                    const rtl = () => getComputedStyle(track).direction === 'rtl';
+                    root.setAttribute('data-zc-dir', rtl() ? 'rtl' : 'ltr');
+                    let current = 0;
+                    let ticking = false;
+                    const mark = index => {
+                        current = index;
+                        dots.forEach((dot, i) => { if (i === current) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current'); });
+                    };
+                    const goTo = index => {
+                        const target = Math.max(0, Math.min(slides.length - 1, index));
+                        slides[target].scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', inline: 'start', block: 'nearest' });
+                        mark(target);
+                    };
+                    const nearest = () => {
+                        const box = track.getBoundingClientRect();
+                        let best = 0;
+                        let distance = Infinity;
+                        slides.forEach((slide, i) => {
+                            const rect = slide.getBoundingClientRect();
+                            const delta = Math.abs((rtl() ? rect.right : rect.left) - (rtl() ? box.right : box.left));
+                            if (delta < distance) { distance = delta; best = i; }
+                        });
+                        return best;
+                    };
+                    if (prev) listen(prev, 'click', () => goTo(current - 1));
+                    if (next) listen(next, 'click', () => goTo(current + 1));
+                    dots.forEach((dot, i) => listen(dot, 'click', () => goTo(i)));
+                    listen(track, 'scroll', () => {
+                        if (ticking) return;
+                        ticking = true;
+                        window.requestAnimationFrame(() => {
+                            ticking = false;
+                            const index = nearest();
+                            if (index !== current) mark(index);
+                        });
+                    }, { passive: true });
+                    listen(root, 'keydown', event => {
+                        if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(rtl() ? current + 1 : current - 1); }
+                        else if (event.key === 'ArrowRight') { event.preventDefault(); goTo(rtl() ? current - 1 : current + 1); }
+                        else if (event.key === 'Home') { event.preventDefault(); goTo(0); }
+                        else if (event.key === 'End') { event.preventDefault(); goTo(slides.length - 1); }
+                    });
+                });
             }
             onDestroy() {
                 (this.listeners || []).forEach(([target, name, fn]) => target.removeEventListener(name, fn));
@@ -45,7 +99,7 @@
                 super.onDestroy();
             }
         }
-        ['service_spotlight', 'project_roadmap', 'seo_audit', 'before_after', 'team_experts', 'service_matrix'].forEach(name => {
+        ['service_spotlight', 'project_roadmap', 'seo_audit', 'before_after', 'team_experts', 'service_matrix', 'products_slider'].forEach(name => {
             elementorFrontend.hooks.addAction('frontend/element_ready/zarincode_' + name + '.default', $element => elementorFrontend.elementsHandler.addHandler(ZarincodeProfessional, { $element }));
         });
     });

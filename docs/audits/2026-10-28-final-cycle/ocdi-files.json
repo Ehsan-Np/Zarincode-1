@@ -1,0 +1,14 @@
+[
+    {
+        "name": "دموی اصلی زرین کد (تلفیق Webinex + رنگ‌بندی زرد سانشاین Crextio)",
+        "file": "zarincode-demo-content.xml",
+        "redux": true,
+        "preview": "https:\/\/zarincode.com"
+    },
+    {
+        "name": "مقالات تخصصی زرین کد (سئو، امنیت، وردپرس، سرعت و طراحی سایت)",
+        "file": "zarincode-articles.xml",
+        "redux": false,
+        "preview": "https:\/\/zarincode.com\/blog\/"
+    }
+]

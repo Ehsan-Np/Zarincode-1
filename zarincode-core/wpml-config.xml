@@ -293,33 +293,6 @@
         <field type="ZarinCode: n_hero_hero_trust_list_items_1 / trust_pill_text_1" editor_type="LINE">trust_pill_text_1</field>
       </fields-in-item>
     </widget>
-    <widget name="zarincode_hero_profile">
-      <fields>
-        <field type="ZarinCode: n_hero_image_1_alt" editor_type="LINE">n_hero_image_1_alt</field>
-        <field type="ZarinCode: n_hero_span_text_3" editor_type="LINE">n_hero_span_text_3</field>
-        <field type="ZarinCode: n_hero_span_text_4" editor_type="LINE">n_hero_span_text_4</field>
-        <field type="ZarinCode: n_hero_div_text_5" editor_type="LINE">n_hero_div_text_5</field>
-        <field type="ZarinCode: n_hero_div_text_6" editor_type="LINE">n_hero_div_text_6</field>
-        <field type="ZarinCode: n_hero_prod_badge_text_1" editor_type="LINE">n_hero_prod_badge_text_1</field>
-        <field type="ZarinCode: n_hero_link_text_1" editor_type="LINE">n_hero_link_text_1</field>
-        <field type="ZarinCode: n_hero_div_text_7" editor_type="LINE">n_hero_div_text_7</field>
-        <field type="ZarinCode: n_hero_div_text_8" editor_type="LINE">n_hero_div_text_8</field>
-        <field type="ZarinCode: n_hero_span_text_5" editor_type="LINE">n_hero_span_text_5</field>
-        <field type="ZarinCode: n_hero_small_text_1" editor_type="LINE">n_hero_small_text_1</field>
-        <field type="ZarinCode: n_hero_small_text_2" editor_type="LINE">n_hero_small_text_2</field>
-        <field type="ZarinCode: n_hero_small_text_3" editor_type="LINE">n_hero_small_text_3</field>
-        <field type="ZarinCode: n_hero_small_text_4" editor_type="LINE">n_hero_small_text_4</field>
-        <field type="ZarinCode: n_hero_small_text_5" editor_type="LINE">n_hero_small_text_5</field>
-        <field type="ZarinCode: n_hero_small_text_6" editor_type="LINE">n_hero_small_text_6</field>
-        <field type="ZarinCode: n_hero_small_text_7" editor_type="LINE">n_hero_small_text_7</field>
-        <field type="ZarinCode: n_hero_div_text_9" editor_type="LINE">n_hero_div_text_9</field>
-        <field type="ZarinCode: n_hero_div_text_10" editor_type="LINE">n_hero_div_text_10</field>
-        <field type="ZarinCode: n_hero_div_text_11" editor_type="LINE">n_hero_div_text_11</field>
-        <field type="ZarinCode: n_hero_div_text_12" editor_type="LINE">n_hero_div_text_12</field>
-        <field type="ZarinCode: n_hero_div_text_13" editor_type="LINE">n_hero_div_text_13</field>
-        <field type="ZarinCode: n_hero_div_text_14" editor_type="LINE">n_hero_div_text_14</field>
-      </fields>
-    </widget>
     <widget name="zarincode_hero_cta">
       <fields>
         <field type="ZarinCode: n_hero_div_text_15" editor_type="LINE">n_hero_div_text_15</field>

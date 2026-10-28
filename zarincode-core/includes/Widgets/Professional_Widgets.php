@@ -29,6 +29,7 @@ abstract class Professional_Widget extends Widget_Base {
             'before_after'=>['مقایسه تصویری قبل و بعد','eicon-image-before-after','تفاوت را با چشم خود ببینید'],
             'team_experts'=>['تیم متخصص و مشاوران','eicon-person','متخصصان پشت موفقیت پروژه شما'],
             'service_matrix'=>['ماتریس مقایسه خدمات و پکیج‌ها','eicon-table','پکیج مناسب کسب‌وکار خود را انتخاب کنید'],
+            'products_slider'=>['اسلایدر محصولات ویژه زرین کد','eicon-carousel','محصولات منتخب و آماده فروش'],
         ];
     }
     public function get_name(): string{return 'zarincode_'.$this->type();}
@@ -67,6 +68,11 @@ abstract class Professional_Widget extends Widget_Base {
             case 'seo_audit':return [['title'=>'سلامت فنی','text'=>'اعداد این نمونه نمایشی‌اند؛ با داده‌های گزارش واقعی جایگزین کنید.','value'=>85,'meta'=>'Technical SEO'],['title'=>'کیفیت محتوا','text'=>'ارزیابی بر پایه نیاز مخاطب و ساختار محتوایی.','value'=>72,'meta'=>'Content'],['title'=>'تجربه کاربری','text'=>'بررسی دسترس‌پذیری، سرعت و مسیر تبدیل.','value'=>90,'meta'=>'User Experience']];
             case 'team_experts':return [['title'=>'احسان نادری پناه','text'=>'همراه شما در تحلیل، طراحی و توسعه راهکارهای دیجیتال.','meta'=>'بنیان‌گذار و معمار نرم‌افزار','badge'=>'ZARINCODE','image'=>['url'=>get_template_directory_uri().'/assets/images/ehsan-about-founder.jpg'],'alt'=>'احسان نادری پناه','button'=>'گفت‌وگو درباره پروژه','link'=>['url'=>home_url('/contact-us/')]]];
             case 'service_matrix':return [['title'=>'طراحی واکنش‌گرا','column_1'=>'دارد','column_2'=>'دارد','column_3'=>'دارد'],['title'=>'طراحی تجربه کاربری اختصاصی','column_1'=>'پایه','column_2'=>'پیشرفته','column_3'=>'کاملاً اختصاصی'],['title'=>'اتصال به سرویس‌های بیرونی','column_1'=>'اختیاری','column_2'=>'مطابق توافق','column_3'=>'مطابق نیاز پروژه'],['title'=>'پشتیبانی و آموزش','column_1'=>'مطابق قرارداد','column_2'=>'مطابق قرارداد','column_3'=>'مطابق قرارداد']];
+            case 'products_slider':return [
+                ['title'=>'قالب وردپرس شرکتی Crextio','text'=>'قالب آماده شرکتی با طراحی فارسی، سرعت بالا و بخش‌های قابل ویرایش در المنتور.','badge'=>'پرفروش','meta'=>'قالب وردپرس','price'=>'۸۹۰,۰۰۰ تومان','button'=>'مشاهده محصول','link'=>['url'=>home_url('/shop/')],'image'=>['url'=>get_template_directory_uri().'/assets/images/demo-product-cover.jpg'],'alt'=>'قالب وردپرس شرکتی Crextio'],
+                ['title'=>'افزونه رزرو و وقت‌دهی زرین کد','text'=>'صفحه اختصاصی، تقویم شمسی و اعلان پیامکی برای نوبت‌دهی آنلاین مشتریان.','badge'=>'محبوب','meta'=>'افزونه وردپرس','price'=>'۶۵۰,۰۰۰ تومان','button'=>'مشاهده محصول','link'=>['url'=>home_url('/shop/')],'image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'alt'=>'افزونه رزرو و وقت‌دهی زرین کد'],
+                ['title'=>'پکیج راه‌اندازی سئوی فنی','text'=>'ممیزی فنی، بهینه‌سازی سرعت و چک‌لیست اجرایی برای شروع رشد ارگانیک پایدار.','badge'=>'خدمت ویژه','meta'=>'بسته سرویس','price'=>'۱,۲۰۰,۰۰۰ تومان','button'=>'مشاهده محصول','link'=>['url'=>home_url('/shop/')],'image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'alt'=>'پکیج راه‌اندازی سئوی فنی'],
+            ];
         }
         return [];
     }
@@ -104,13 +110,14 @@ abstract class Professional_Widget extends Widget_Base {
                 foreach(['meta'=>'مرحله / تخصص / زیرعنوان','badge'=>'نشان','button'=>'متن دکمه'] as $key=>$label)$r->add_control($key,['label'=>$label,'type'=>C::TEXT,'dynamic'=>['active'=>true]]);
                 $r->add_control('link',['label'=>'پیوند','type'=>C::URL,'dynamic'=>['active'=>true]]);
                 $r->add_control('icon',['label'=>'آیکون (کتابخانه یا SVG)','type'=>C::ICONS]);
-                if(in_array($type,['service_spotlight','team_experts'],true)){
+                if(in_array($type,['service_spotlight','team_experts','products_slider'],true)){
                     $r->add_control('image',['label'=>'تصویر','type'=>C::MEDIA,'dynamic'=>['active'=>true]]);
                     $r->add_control('alt',['label'=>'متن جایگزین تصویر','type'=>C::TEXT,'dynamic'=>['active'=>true]]);
                 }
                 if($type==='service_spotlight')$r->add_control('features',['label'=>'مزایا و ویژگی‌ها','type'=>C::WYSIWYG]);
                 if($type==='team_experts')foreach(['linkedin'=>'LinkedIn','github'=>'GitHub','website'=>'وب‌سایت'] as $social=>$label){$r->add_control($social.'_label',['label'=>'متن '.$label,'type'=>C::TEXT,'default'=>$label]);$r->add_control($social.'_link',['label'=>'پیوند '.$label,'type'=>C::URL,'dynamic'=>['active'=>true]]);}
                 if($type==='seo_audit')$r->add_control('value',['label'=>'امتیاز از ۱۰۰','type'=>C::NUMBER,'min'=>0,'max'=>100,'default'=>75]);
+                if($type==='products_slider')$r->add_control('price',['label'=>'قیمت','type'=>C::TEXT,'dynamic'=>['active'=>true]]);
             }
             $r->add_control('highlight',['label'=>'آیتم ویژه','type'=>C::SWITCHER]);
             foreach(['background'=>'پس‌زمینه','text_color'=>'رنگ متن','accent'=>'رنگ تأکیدی'] as $key=>$label)$r->add_control($key,['label'=>$label,'type'=>C::COLOR,'selectors'=>['{{WRAPPER}} {{CURRENT_ITEM}}'=>$key==='background'?'background: {{VALUE}};':($key==='accent'?'--zc-pro-accent: {{VALUE}};':'color: {{VALUE}};')]]);
@@ -125,8 +132,25 @@ abstract class Professional_Widget extends Widget_Base {
             $this->add_control('records',['label'=>'افزودن / حذف / تکثیر / جابه‌جایی','type'=>C::REPEATER,'fields'=>$r->get_controls(),'prevent_empty'=>false,'default'=>$this->defaults(),'title_field'=>'{{{ title }}}']);
             if($type!=='service_matrix')$this->control('show_icons','نمایش آیکون‌ها',C::SWITCHER,'yes');
             if($type!=='service_matrix')$this->control('show_buttons','نمایش دکمه‌ها',C::SWITCHER,'yes');
-            if(in_array($type,['service_spotlight','team_experts'],true))$this->control('show_images','نمایش تصاویر',C::SWITCHER,'yes');
+            if(in_array($type,['service_spotlight','team_experts','products_slider'],true))$this->control('show_images','نمایش تصاویر',C::SWITCHER,'yes');
             if($type==='seo_audit')$this->control('show_values','نمایش امتیازها',C::SWITCHER,'yes');
+            $this->end_controls_section();
+        }
+        if($type==='products_slider'){
+            $this->start_controls_section('slider_options',['label'=>'اسلایدر محصولات']);
+            $this->control('source','منبع محصولات',C::SELECT,'query',['options'=>['query'=>'پویا از فروشگاه ووکامرس','manual'=>'آیتم‌های دستی بخش «آیتم‌ها و محتوای اختصاصی»']]);
+            $this->control('count','تعداد اسلایدها',C::NUMBER,8,['min'=>1,'max'=>48,'condition'=>['source'=>'query']]);
+            $this->control('orderby','مرتب‌سازی بر اساس',C::SELECT,'date',['options'=>['date'=>'تازه‌ترین','title'=>'عنوان','menu_order'=>'ترتیب نمایش','rand'=>'تصادفی'],'condition'=>['source'=>'query']]);
+            $this->control('order','جهت مرتب‌سازی',C::SELECT,'DESC',['options'=>['DESC'=>'نزولی','ASC'=>'صعودی'],'condition'=>['source'=>'query']]);
+            $this->control('category_ids','شناسه دسته‌های فروشگاه',C::TEXT,'',['condition'=>['source'=>'query'],'description'=>'شناسه‌ها را با ویرگول جدا کنید؛ خالی = همه دسته‌ها.']);
+            $this->control('include_ids','شناسه محصولات مشخص',C::TEXT,'',['condition'=>['source'=>'query'],'description'=>'برای نمایش چند محصول معین، شناسه‌ها را با ویرگول جدا کنید.']);
+            $this->control('read_more','متن دکمه محصول',C::TEXT,'مشاهده محصول',['condition'=>['source'=>'query']]);
+            $this->control('demo_label','متن دکمه دمو',C::TEXT,'',['condition'=>['source'=>'query'],'description'=>'فقط وقتی پیوند دموی محصول ثبت شده باشد نمایش داده می‌شود.']);
+            $this->control('excerpt_length','طول توضیحات',C::NUMBER,22,['min'=>4,'max'=>60,'condition'=>['source'=>'query']]);
+            $this->add_responsive_control('per_view',['label'=>'نمایش هم‌زمان','type'=>C::SELECT,'default'=>'3','tablet_default'=>'2','mobile_default'=>'1','options'=>['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],'selectors'=>['{{WRAPPER}} .zc-pro-slider'=>'--zc-per-view:{{VALUE}};']]);
+            $this->add_responsive_control('slider_gap',['label'=>'فاصله اسلایدها','type'=>C::SLIDER,'range'=>['px'=>['min'=>0,'max'=>80]],'selectors'=>['{{WRAPPER}} .zc-pro-slider'=>'--zc-slider-gap:{{SIZE}}{{UNIT}};']]);
+            $this->control('show_arrows','نمایش دکمه‌های قبلی / بعدی',C::SWITCHER,'yes');
+            $this->control('show_dots','نمایش نقطه‌های اسلایدر',C::SWITCHER,'yes');
             $this->end_controls_section();
         }
         if($type==='service_matrix'){
@@ -142,14 +166,14 @@ abstract class Professional_Widget extends Widget_Base {
             $this->end_controls_section();
         }
         $this->start_controls_section('layout',['label'=>'چیدمان و واکنش‌گرایی','tab'=>C::TAB_STYLE]);
-        if(!in_array($type,['before_after','service_matrix'],true))$this->add_responsive_control('columns',['label'=>'ستون‌ها','type'=>C::SELECT,'default'=>$type==='project_roadmap'?'4':'3','tablet_default'=>'2','mobile_default'=>'1','options'=>['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],'selectors'=>['{{WRAPPER}} .zc-pro-grid'=>'grid-template-columns:repeat({{VALUE}},minmax(0,1fr));']]);
-        if(!in_array($type,['before_after','service_matrix'],true))$this->add_responsive_control('gap',['label'=>'فاصله آیتم‌ها','type'=>C::SLIDER,'range'=>['px'=>['min'=>0,'max'=>100]],'selectors'=>['{{WRAPPER}} .zc-pro-grid'=>'gap:{{SIZE}}{{UNIT}};']]);
+        if(!in_array($type,['before_after','service_matrix','products_slider'],true))$this->add_responsive_control('columns',['label'=>'ستون‌ها','type'=>C::SELECT,'default'=>$type==='project_roadmap'?'4':'3','tablet_default'=>'2','mobile_default'=>'1','options'=>['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],'selectors'=>['{{WRAPPER}} .zc-pro-grid'=>'grid-template-columns:repeat({{VALUE}},minmax(0,1fr));']]);
+        if(!in_array($type,['before_after','service_matrix','products_slider'],true))$this->add_responsive_control('gap',['label'=>'فاصله آیتم‌ها','type'=>C::SLIDER,'range'=>['px'=>['min'=>0,'max'=>100]],'selectors'=>['{{WRAPPER}} .zc-pro-grid'=>'gap:{{SIZE}}{{UNIT}};']]);
         $this->add_responsive_control('alignment',['label'=>'تراز متن','type'=>C::SELECT,'options'=>['right'=>'راست','center'=>'وسط','left'=>'چپ'],'selectors'=>['{{WRAPPER}} .zc-pro'=>'text-align:{{VALUE}};']]);
         $this->control('direction','جهت',C::SELECT,'rtl',['options'=>['rtl'=>'راست به چپ','ltr'=>'چپ به راست'],'selectors'=>['{{WRAPPER}} .zc-pro'=>'direction:{{VALUE}};']]);
         $this->control('accent','رنگ تأکیدی',C::COLOR,'',['selectors'=>['{{WRAPPER}} .zc-pro'=>'--zc-pro-accent:{{VALUE}};']]);
         $this->end_controls_section();
-        $parts=['section'=>['کل بخش','.zc-pro'],'heading'=>['عنوان بخش','.zc-pro-heading'],'intro'=>['توضیحات بخش','.zc-pro-intro'],'eyebrow'=>['نشان بالای عنوان','.zc-pro-eyebrow'],'card'=>['آیتم‌ها','.zc-pro-card'],'title'=>['عنوان آیتم','.zc-pro-title'],'text'=>['متن آیتم','.zc-pro-text'],'meta'=>['زیرعنوان آیتم','.zc-pro-meta'],'badge'=>['نشان آیتم','.zc-pro-badge'],'button'=>['دکمه‌ها','.zc-pro-button'],'icon'=>['آیکون‌ها','.zc-pro-icon'],'image'=>['تصاویر','.zc-pro-image'],'feature'=>['مزایا','.zc-pro-features'],'track'=>['مسیر امتیاز','.zc-pro-track'],'fill'=>['نوار امتیاز','.zc-pro-fill'],'value'=>['عدد امتیاز','.zc-pro-value'],'table_head'=>['سرستون جدول','.zc-pro-table thead th'],'table_cell'=>['سلول جدول','.zc-pro-table tbody td'],'row_title'=>['عنوان ویژگی','.zc-pro-table tbody th'],'compare'=>['مقایسه تصویری','.zc-pro-compare'],'caption'=>['زیرنویس','.zc-pro-caption'],'compare_label'=>['برچسب تصاویر','.zc-pro-compare-label'],'divider'=>['جداکننده','.zc-pro-divider'],'social'=>['پیوندهای اجتماعی','.zc-pro-social a']];
-        $specific=['service_spotlight'=>['card','title','text','meta','badge','button','icon','image','feature'],'project_roadmap'=>['card','title','text','meta','badge','button','icon'],'seo_audit'=>['card','title','text','meta','badge','button','icon','track','fill','value'],'team_experts'=>['card','title','text','meta','badge','button','icon','image','social'],'service_matrix'=>['card','title','meta','button','table_head','table_cell','row_title'],'before_after'=>['compare','caption','compare_label','divider']];
+        $parts=['section'=>['کل بخش','.zc-pro'],'heading'=>['عنوان بخش','.zc-pro-heading'],'intro'=>['توضیحات بخش','.zc-pro-intro'],'eyebrow'=>['نشان بالای عنوان','.zc-pro-eyebrow'],'card'=>['آیتم‌ها','.zc-pro-card'],'title'=>['عنوان آیتم','.zc-pro-title'],'text'=>['متن آیتم','.zc-pro-text'],'meta'=>['زیرعنوان آیتم','.zc-pro-meta'],'badge'=>['نشان آیتم','.zc-pro-badge'],'button'=>['دکمه‌ها','.zc-pro-button'],'icon'=>['آیکون‌ها','.zc-pro-icon'],'image'=>['تصاویر','.zc-pro-image'],'feature'=>['مزایا','.zc-pro-features'],'track'=>['مسیر امتیاز','.zc-pro-track'],'fill'=>['نوار امتیاز','.zc-pro-fill'],'value'=>['عدد امتیاز','.zc-pro-value'],'table_head'=>['سرستون جدول','.zc-pro-table thead th'],'table_cell'=>['سلول جدول','.zc-pro-table tbody td'],'row_title'=>['عنوان ویژگی','.zc-pro-table tbody th'],'compare'=>['مقایسه تصویری','.zc-pro-compare'],'caption'=>['زیرنویس','.zc-pro-caption'],'compare_label'=>['برچسب تصاویر','.zc-pro-compare-label'],'divider'=>['جداکننده','.zc-pro-divider'],'social'=>['پیوندهای اجتماعی','.zc-pro-social a'],'price'=>['قیمت محصول','.zc-pro-price'],'slider_btn'=>['دکمه‌های اسلایدر','.zc-slider-btn'],'slider_dot'=>['نقطه‌های اسلایدر','.zc-slider-dot']];
+        $specific=['service_spotlight'=>['card','title','text','meta','badge','button','icon','image','feature'],'project_roadmap'=>['card','title','text','meta','badge','button','icon'],'seo_audit'=>['card','title','text','meta','badge','button','icon','track','fill','value'],'team_experts'=>['card','title','text','meta','badge','button','icon','image','social'],'service_matrix'=>['card','title','meta','button','table_head','table_cell','row_title'],'before_after'=>['compare','caption','compare_label','divider'],'products_slider'=>['card','title','text','meta','badge','button','icon','image','price','slider_btn','slider_dot']];
         if($type==='service_matrix'){$parts['card']=['سلول‌های ردیف‌ها','.zc-pro-table tbody tr > *'];$parts['title'][0]='عنوان پکیج';}
         $parts=array_intersect_key($parts,array_flip(array_merge(['section','heading','intro','eyebrow'],$specific[$type])));
         foreach($parts as $id=>[$label,$sel]){
@@ -174,8 +198,8 @@ abstract class Professional_Widget extends Widget_Base {
         $this->end_controls_section();}
         if($type!=='service_matrix'){
             $this->start_controls_section('sizes',['label'=>'ابعاد تصویر و آیکون','tab'=>C::TAB_STYLE]);
-            if(in_array($type,['service_spotlight','team_experts'],true))$this->add_responsive_control('image_height',['label'=>'ارتفاع تصویر','type'=>C::SLIDER,'range'=>['px'=>['min'=>30,'max'=>800]],'selectors'=>['{{WRAPPER}} .zc-pro-image'=>'height:{{SIZE}}{{UNIT}};']]);
-            if(in_array($type,['service_spotlight','team_experts','before_after'],true))$this->control('image_fit','قرارگیری تصویر',C::SELECT,'cover',['options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن'],'selectors'=>['{{WRAPPER}} '.($type==='before_after'?'.zc-pro-compare img':'.zc-pro-image')=>'object-fit:{{VALUE}};']]);
+            if(in_array($type,['service_spotlight','team_experts','products_slider'],true))$this->add_responsive_control('image_height',['label'=>'ارتفاع تصویر','type'=>C::SLIDER,'range'=>['px'=>['min'=>30,'max'=>800]],'selectors'=>['{{WRAPPER}} .zc-pro-image'=>'height:{{SIZE}}{{UNIT}};']]);
+            if(in_array($type,['service_spotlight','team_experts','before_after','products_slider'],true))$this->control('image_fit','قرارگیری تصویر',C::SELECT,'cover',['options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن'],'selectors'=>['{{WRAPPER}} '.($type==='before_after'?'.zc-pro-compare img':'.zc-pro-image')=>'object-fit:{{VALUE}};']]);
             if($type!=='before_after')$this->add_responsive_control('icon_size',['label'=>'اندازه آیکون','type'=>C::SLIDER,'range'=>['px'=>['min'=>10,'max'=>160]],'selectors'=>['{{WRAPPER}} .zc-pro-icon'=>'font-size:{{SIZE}}{{UNIT}};']]);
             if($type==='before_after')$this->add_responsive_control('comparison_height',['label'=>'ارتفاع مقایسه','type'=>C::SLIDER,'range'=>['px'=>['min'=>150,'max'=>1000]],'selectors'=>['{{WRAPPER}} .zc-pro-compare'=>'height:{{SIZE}}{{UNIT}};']]);
             $this->end_controls_section();
@@ -214,6 +238,7 @@ abstract class Professional_Widget extends Widget_Base {
         echo '</header>';
         if($type==='before_after')$this->comparison($s);
         elseif($type==='service_matrix')$this->matrix($s);
+        elseif($type==='products_slider')$this->slider($s);
         else{
             echo '<div class="zc-pro-grid">';
             foreach($s['records']??[] as $index=>$row){
@@ -245,6 +270,59 @@ abstract class Professional_Widget extends Widget_Base {
         }
         echo '</section>';
     }
+    /** Query-mode links render without inline-editing keys; manual rows keep native inline editing. */
+    private function raw_link(string $text,array $link,string $key,string $class='zc-pro-button'): string {
+        if(trim($text)===''||empty($link['url']))return '';
+        $this->remove_render_attribute($key);$this->add_link_attributes($key,$link);
+        $this->set_render_attribute($key,'class',$class);
+        return '<a '.$this->get_render_attribute_string($key).'>'.esc_html($text).'</a>';
+    }
+    /** Scroll-snap products slider: dynamic WooCommerce source with manual-records fallback. */
+    private function slider(array $s): void {
+        $manual=($s['source']??'query')==='manual';$rows=[];
+        if(!$manual){
+            foreach(Editable_Renderer::query_items('products',$s) as $item){
+                $rows[]=['_id'=>$item['_id'],'title'=>$item['title'],'text'=>$item['description']??'','badge'=>$item['category']??'','meta'=>'','price'=>wp_strip_all_tags($item['price_html']??''),'price_html'=>$item['price_html']??'','image'=>$item['image']??[],'alt'=>$item['image']['alt']??'','link'=>$item['link']??[],'button'=>$item['button_text']??'','demo_link'=>$item['demo_link']??[],'demo_text'=>$item['demo_text']??'','query'=>true];
+            }
+            if(!$rows){$manual=true;$rows=$s['records']??[];}
+        }else{$rows=$s['records']??[];}
+        $total=count($rows);$show_arrows=($s['show_arrows']??'yes')==='yes';$show_dots=($s['show_dots']??'yes')==='yes';
+        echo '<div class="zc-pro-slider" data-zc-slider>';
+        echo '<div class="zc-slider-viewport" role="region" aria-roledescription="carousel" aria-label="'.esc_attr(wp_strip_all_tags($s['title']??'محصولات')).'">';
+        echo '<div class="zc-slider-track">';
+        $i=0;
+        foreach($rows as $row){
+            $query=!empty($row['query']);$key=$manual?('records.'.$i.'.'):('slide.'.$i.'.');
+            echo '<article class="zc-pro-card zc-slider-slide elementor-repeater-item-'.esc_attr($row['_id']??('slide-'.$i)).(!empty($row['highlight'])?' is-highlighted':'').'" role="group" aria-roledescription="slide" aria-label="'.esc_attr(($i+1).' از '.$total).'">';
+            if(($s['show_images']??'yes')==='yes')echo $this->image($row['image']??[],$row['alt']??'','zc-pro-image',$s['media_size']??'full');
+            if(($s['show_icons']??'yes')==='yes')echo $this->icon($row['icon']??[]);
+            if(($row['badge']??'')!=='')echo $query?'<div class="zc-pro-badge">'.esc_html($row['badge']).'</div>':$this->field('div','zc-pro-badge',$row['badge'],$key.'badge');
+            if(($row['meta']??'')!=='')echo $query?'<div class="zc-pro-meta">'.esc_html($row['meta']).'</div>':$this->field('div','zc-pro-meta',$row['meta'],$key.'meta');
+            if(trim($row['price']??'')!=='')echo $query?'<div class="zc-pro-price">'.wp_kses_post($row['price_html']??$row['price']).'</div>':$this->field('div','zc-pro-price',$row['price'],$key.'price');
+            echo $query?'<h3 class="zc-pro-title">'.esc_html($row['title']??'').'</h3>':$this->field('h3','zc-pro-title',$row['title']??'',$key.'title');
+            echo $query?'<div class="zc-pro-text">'.wp_kses_post($row['text']??'').'</div>':$this->field('div','zc-pro-text',$row['text']??'',$key.'text',true);
+            if(($s['show_buttons']??'yes')==='yes'){
+                if($query){
+                    echo $this->raw_link($row['button']??'',$row['link']??[],'qbtn'.$i);
+                    echo $this->raw_link($row['demo_text']??'',$row['demo_link']??[],'qdemo'.$i,'zc-pro-button is-ghost');
+                }else echo $this->link($row['button']??'',$row['link']??[],$key.'button');
+            }
+            echo '</article>';$i++;
+        }
+        echo '</div></div>';
+        if($total>1&&($show_arrows||$show_dots)){
+            echo '<div class="zc-slider-nav">';
+            if($show_arrows)echo '<button type="button" class="zc-slider-btn zc-slider-prev" data-zc-slider-prev aria-label="اسلاید قبلی"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5L8 17l5-5-5-5z"/></svg></button>';
+            if($show_dots){
+                echo '<div class="zc-slider-dots" role="group" aria-label="فهرست اسلایدها">';
+                for($d=0;$d<$total;$d++)echo '<button type="button" class="zc-slider-dot" data-zc-slider-dot="'.$d.'" aria-label="اسلاید '.($d+1).'"'.($d===0?' aria-current="true"':'').'></button>';
+                echo '</div>';
+            }
+            if($show_arrows)echo '<button type="button" class="zc-slider-btn zc-slider-next" data-zc-slider-next aria-label="اسلاید بعدی"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8 12l6.5 6.5L16 17l-5.5-5 5.5-5z"/></svg></button>';
+            echo '</div>';
+        }
+        echo '</div>';
+    }
     private function comparison(array $s): void {
         $position=max(0,min(100,(float)($s['position']??50)));
         echo '<figure class="zc-pro-comparison"><div class="zc-pro-compare" style="--zc-split:'.esc_attr((string)$position).'%">';
@@ -268,3 +346,4 @@ class Widget_SEO_Audit extends Professional_Widget{protected function type(): st
 class Widget_Before_After extends Professional_Widget{protected function type(): string{return 'before_after';}}
 class Widget_Team_Experts extends Professional_Widget{protected function type(): string{return 'team_experts';}}
 class Widget_Service_Matrix extends Professional_Widget{protected function type(): string{return 'service_matrix';}}
+class Widget_Products_Slider extends Professional_Widget{protected function type(): string{return 'products_slider';}}

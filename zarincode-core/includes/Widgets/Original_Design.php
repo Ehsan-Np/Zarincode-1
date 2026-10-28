@@ -79,7 +79,6 @@ class Original_Design {
      */
     public static function render_hero( array $settings = [] ): string {
         $badge = $settings['badge'] ?? 'ZARINCODE - Your Trusted Digital Expert & Software Studio';
-        $phone = '09024561001';
         ob_start();
         ?>
         <section class="zc-hero-section">
@@ -149,68 +148,8 @@ class Original_Design {
                         </div>
                     </div>
 
-                    <!-- Right Column: Crextio Interactive Bento Dashboard Card with Real Founder Portrait -->
+                    <!-- Right Column: CTA pill card (profile/timer/stats widget removed from the project) -->
                     <div style="display:flex;flex-direction:column;gap:1.25rem;">
-                        <!-- Developer Profile & Live Studio Card (Crextio Dark Card + Authentic Portrait) -->
-                        <div class="zc-dark-card" style="padding:1.75rem;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-                            <div style="display:grid;grid-template-columns:125px 1fr;gap:1.15rem;align-items:center;position:relative;z-index:2;margin-bottom:1.1rem;" class="zc-hero-founder-row">
-                                <div style="position:relative;">
-                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/ehsan-hero-executive.jpg' ); ?>" alt="احسان نادری پناه - مدیر و موسس زرین کد" style="width:125px;height:145px;object-fit:cover;object-position:top center;border-radius:1.25rem;border:2px solid var(--color-accent);box-shadow:0 12px 28px rgba(0,0,0,0.35);display:block;">
-                                    <span style="position:absolute;bottom:-8px;right:8px;background:#10B981;color:#fff;font-size:0.66rem;font-weight:800;padding:0.15rem 0.55rem;border-radius:999px;border:2px solid #2A2C31;">● آنلاین</span>
-                                </div>
-                                <div>
-                                    <span style="display:inline-block;background:rgba(253,208,91,0.16);color:var(--color-accent);font-size:0.72rem;font-weight:800;padding:0.2rem 0.65rem;border-radius:999px;margin-bottom:0.4rem;">FOUNDER &amp; LEAD ARCHITECT</span>
-                                    <div style="font-weight:900;font-size:1.2rem;color:#FFFFFF;margin-bottom:0.2rem;">احسان نادری پناه</div>
-                                    <div style="font-size:0.8rem;color:#D1D5DB;margin-bottom:0.75rem;">معمار ارشد نرم‌افزار، طراح وب و متخصص سئو</div>
-                                    <div style="display:flex;flex-wrap:wrap;gap:0.45rem;">
-                                        <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-prod-badge" dir="ltr" style="font-size:0.8rem;padding:0.35rem 0.8rem;">
-                                            <i class="fa-solid fa-phone"></i> <?php echo esc_html( $phone ); ?>
-                                        </a>
-                                        <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>" style="font-size:0.76rem;color:#FDE68A;padding:0.35rem 0.7rem;background:rgba(255,255,255,0.08);border-radius:999px;">رزومه و درباره ما ←</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Crextio Weekly Progress & Time Tracker Simulation -->
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;padding:1.1rem;margin-bottom:1.1rem;position:relative;z-index:2;">
-                                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem;flex-wrap:wrap;gap:0.5rem;">
-                                    <div>
-                                        <div style="font-size:0.74rem;color:#9CA3AF;">پایش زنده پروژه‌ها و پشتیبانی (Crextio Studio Tracker)</div>
-                                        <div id="zc-live-timer" dir="ltr" style="font-size:1.45rem;font-weight:900;color:var(--color-accent);letter-spacing:0.04em;">02:35:00</div>
-                                    </div>
-                                    <span style="padding:0.3rem 0.75rem;border-radius:999px;background:rgba(16,185,129,0.2);color:#34D399;font-size:0.74rem;font-weight:800;">
-                                        ● تحویل ۱۰۰٪ مطابق قرارداد
-                                    </span>
-                                </div>
-                                <!-- 7-Day Activity Bars -->
-                                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0.45rem;align-items:end;height:54px;padding-top:0.35rem;">
-                                    <div style="text-align:center;"><div style="width:14px;height:22px;margin:0 auto 4px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ش</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:32px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ی</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:28px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">د</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:38px;margin:0 auto 4px;background:var(--color-accent);border-radius:999px;box-shadow:0 4px 10px rgba(253,208,91,0.35);"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">س</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:34px;margin:0 auto 4px;background:rgba(255,255,255,0.25);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">چ</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:42px;margin:0 auto 4px;background:var(--color-accent);border-radius:999px;box-shadow:0 4px 10px rgba(253,208,91,0.35);"></div><small style="font-size:0.65rem;color:var(--color-accent);font-weight:800;">پ</small></div>
-                                    <div style="text-align:center;"><div style="width:14px;height:26px;margin:0 auto 4px;background:rgba(255,255,255,0.2);border-radius:999px;"></div><small style="font-size:0.65rem;color:#9CA3AF;">ج</small></div>
-                                </div>
-                            </div>
-
-                            <!-- 3 Quick KPI Stat Boxes -->
-                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;position:relative;z-index:2;">
-                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
-                                    <div style="font-size:1.25rem;font-weight:900;color:var(--color-accent);">+۴۸۰</div>
-                                    <div style="font-size:0.72rem;color:#D1D5DB;">پروژه موفق</div>
-                                </div>
-                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
-                                    <div style="font-size:1.25rem;font-weight:900;color:#FFFFFF;">۹۹.۸٪</div>
-                                    <div style="font-size:0.72rem;color:#D1D5DB;">رضایت کارفرما</div>
-                                </div>
-                                <div style="background:rgba(255,255,255,0.06);padding:0.75rem;border-radius:1rem;text-align:center;">
-                                    <div style="font-size:1.25rem;font-weight:900;color:var(--color-accent);">+۳۵</div>
-                                    <div style="font-size:0.72rem;color:#D1D5DB;">قالب و سورس آماده</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Bottom Quick Service Pill Card -->
                         <div class="zc-yellow-card" style="padding:1.35rem 1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
                             <div>
@@ -1062,7 +1001,7 @@ class Original_Design {
                                     </div>
                                     <ul class="zc-pricing-features">
                                         <?php foreach ( $plan['features'] as $feat ) : ?>
-                                            <li><i class="fa-solid fa-check"></i> <span><?php echo esc_html( $feat ); ?></span></li>
+                                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> <span><?php echo esc_html( $feat ); ?></span></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>

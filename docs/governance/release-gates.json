@@ -26,8 +26,8 @@
     "all_custom_widget_ZWQI_90": "not_scored",
     "visual_regression": "not_verified",
     "WCAG_22_AA": "not_verified",
-    "PHPStan_WPCS_JS_CSS_quality": "scoped_10_files_passed_2026-10-27: PHPStan level 10 0/0, WPCS 0/0, 82 PHP files lint; whole-project JS/CSS/quality gate not verified",
-    "critical_logic_coverage_80": "partially_measured: 507/573 lines (88.48%) across 10 scoped files on 2026-10-27 (coverage denominator grew with the post-errata Kit_Defaults.php rewrite); whole-project critical-logic inventory incomplete",
+    "PHPStan_WPCS_JS_CSS_quality": "scoped_passed_fresh_2026-10-28: PHPStan level 10 0/0, WPCS 0/0, 83 PHP files lint 0 errors; JSON/XML/JS artifacts valid; whole-project JS/CSS/quality gate not verified",
+    "critical_logic_coverage_80": "measured_fresh_2026-10-28: 507/573 lines (88.48%) across 10 scoped files, floor 80 enforced by check-coverage.py; whole-project critical-logic inventory incomplete",
     "Woo_HPOS_blocks_payments": "2026-10-27 fresh: classic 11/11 and HPOS 11/11 CRUD with backend verification; classic and blocks guest COD checkout passed; live_gateway_not_verified",
     "full_feature_registry_migration": "incomplete: registry/manager fail-closed with regression tests; remaining legacy feature families not fully inventoried",
     "commercial_asset_licenses": "user_owns_license_and_will_add_file; independent redistribution review not verified",
@@ -40,12 +40,17 @@
     "scope": "Content, Admin, Features, Settings_Schema and theme Kit_Defaults (10 files); no blanket Skill 3 approval",
     "phpstan_level": 10,
     "wpcs_errors": 0,
-    "phpunit_tests": 37,
+    "phpunit_tests": "37 tests, 209 assertions fresh 2026-10-28",
     "phpunit_assertions": 209,
     "scoped_line_coverage_percent": 88.48,
     "audit_contract_tests": "6 node tests; fail-closed accounting in tools/widget-audit-contract.cjs",
     "packaging_guard_tests": "6 tests in tools/test-build-release.py (clean-source, secret/symlink/generated guards)",
     "elementor_kit_factory_colour_migration": "zarincode/inc/Elementor/Kit_Defaults.php; factory-default-only, idempotent, capability-free _elementor_page_settings meta storage, whole routine wrapped in catch(\\Throwable) — post-release errata 2026-10-27: the previous update_settings()-based version was reproduced fataling logged-out requests (Elementor ajax_before_save_settings \"Access denied.\") and was replaced; evidence docs/audits/2026-10-27-final-widget-audit/kit-defaults-fatal-fix.md",
-    "remote_ci_run": "not verified"
+    "remote_ci_run": "not verified",
+    "cycle_2026-10-28_six_user_requests": "docs/audits/2026-10-28-final-cycle/README.md (hero widget removal + products slider, speed, zc-feature-icon redesign, services content, 71-article demo import, SEO/schema work) with probes.json and battery.txt",
+    "seo_schema_audit": "docs/audits/2026-10-28-seo-schema-audit/README.md; new Zarincode\\Theme\\Core\\Seo_Meta (description/archive-canonical/robots-noindex/OG/Twitter/WebSite+SearchAction/robots.txt sitemap), BlogPosting publisher+inLanguage; all gated by SEO::has_owner()",
+    "article_demo_package": "zarincode/demo-data/zarincode-articles.xml (71 articles, 6 categories, quotas 10/10/5/12/22/12, security guarantee line in all 22) + tools/build-articles.py + tools/build_articles_data.py; second OCDI entry without Redux",
+    "multilingual_adapter_fixtures": "none 6/6 and polylang 6/6 fresh 2026-10-28 (WPML remains out of scope)",
+    "php_lint": "0 errors across 83 PHP files (fresh 2026-10-28)"
   }
 }

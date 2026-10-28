@@ -6,9 +6,10 @@ final class Hero_Layout {
     private static function node(string $type,array $settings,array $children=[]):array {
         return ['id'=>substr(wp_generate_uuid4(),0,8),'elType'=>$type,'settings'=>$settings,'elements'=>$children];
     }
-    public static function composition(array $settings=[]):array {
+    /** Side column = professional products slider + CTA; the retired profile widget is gone from the project. */
+    public static function composition(array $settings=[],array $slider=[]):array {
         $widgets=[];
-        foreach(['hero_intro','hero_profile','hero_cta'] as $kind){
+        foreach(['hero_intro','hero_cta'] as $kind){
             $m=Native_Design::model($kind);$allowed=['design_mode'=>true];
             foreach(array_keys($m['fields']) as $key)$allowed[Native_Design::id($m,$key)]=true;
             foreach(array_keys($m['repeaters']) as $key)$allowed[Native_Design::id($m,$key)]=true;
@@ -19,7 +20,8 @@ final class Hero_Layout {
             foreach($settings as $key=>$value)if(strpos($key,'_typography')===0)$s[$key]=$value;
             $widget=self::node('widget',$s);$widget['widgetType']='zarincode_'.$kind;$widgets[]=$widget;
         }
-        $side=self::node('container',['content_width'=>'full','css_classes'=>'zc-hero-side','flex_direction'=>'column'],[$widgets[1],$widgets[2]]);
+        $products=self::node('widget',$slider);$products['widgetType']='zarincode_products_slider';
+        $side=self::node('container',['content_width'=>'full','css_classes'=>'zc-hero-side','flex_direction'=>'column'],[$products,$widgets[1]]);
         return self::node('container',['content_width'=>'full','css_classes'=>'zc-hero-composition','flex_direction'=>'row','flex_direction_mobile'=>'column'],[$widgets[0],$side]);
     }
     public static function migrate_tree(array $tree,int &$changed):array {
@@ -28,7 +30,8 @@ final class Hero_Layout {
                 $settings=$node['settings']??[];
                 // Migrate legacy text fields before partitioning the settings.
                 $settings=Native_Design::migrate($settings,$settings,'hero');
-                $replacement=self::composition($settings);
+                $slider=class_exists(\Zarincode\Runtime260\Demo\Service_Demo::class)?\Zarincode\Runtime260\Demo\Service_Demo::settings('zarincode_products_slider'):[];
+                $replacement=self::composition($settings,$slider);
                 $replacement['id']=$node['id']??$replacement['id'];$node=$replacement;$changed++;
             }elseif(!empty($node['elements']))$node['elements']=self::migrate_tree($node['elements'],$changed);
         }unset($node);

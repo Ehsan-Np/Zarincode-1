@@ -5,7 +5,14 @@ defined('ABSPATH') || exit;
 final class Legal_And_Inner_Pages {
     public static function documents(): array {
         static $data;
-        if(null===$data) $data=json_decode(file_get_contents(__DIR__.'/documents.json'),true)?:[];
+        if(null===$data) {
+            $data=json_decode(file_get_contents(__DIR__.'/documents.json'),true)?:[];
+            $resolve=static function($value)use(&$resolve):string|array {
+                if(is_array($value))return array_map($resolve,$value);
+                return is_string($value)?str_replace(['{{HOME}}','{{THEME}}'],[untrailingslashit(home_url()),get_template_directory_uri()],$value):$value;
+            };
+            $data=$resolve($data);
+        }
         return $data;
     }
     public static function render(string $key): string {

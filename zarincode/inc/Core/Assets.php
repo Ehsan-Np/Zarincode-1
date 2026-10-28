@@ -24,6 +24,70 @@ class Assets {
 
     private function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ], 20 );
+        add_action( 'wp_enqueue_scripts', [ $this, 'drop_core_block_styles_on_plain_pages' ], 99 );
+        add_action( 'wp_head', [ $this, 'preload_critical_fonts' ], 1 );
+        add_filter( 'style_loader_tag', [ $this, 'make_fontawesome_non_blocking' ], 10, 4 );
+        add_filter( 'script_loader_tag', [ $this, 'defer_theme_scripts' ], 10, 3 );
+    }
+
+    /**
+     * Preload the two Vazirmatn faces used above the fold so text paints with
+     * the real font instead of the fallback (font requests are otherwise
+     * discovered only after the stylesheet is parsed).
+     */
+    public function preload_critical_fonts(): void {
+        if ( is_admin() || is_feed() || wp_doing_ajax() ) {
+            return;
+        }
+        foreach ( [ 'Vazirmatn-Regular.woff2', 'Vazirmatn-Bold.woff2' ] as $font ) {
+            printf(
+                '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin />' . "\n",
+                esc_url( ZARINCODE_URI . '/assets/fonts/vazirmatn/' . $font )
+            );
+        }
+    }
+
+    /**
+     * Font Awesome 7 ships a large render-blocking stylesheet; load it as an
+     * asynchronous style swap while keeping the original element id, with a
+     * noscript fallback for no-JS environments.
+     */
+    public function make_fontawesome_non_blocking( string $tag, string $handle, string $href, string $media ): string {
+        if ( 'zarincode-fontawesome' !== $handle || is_admin() ) {
+            return $tag;
+        }
+        $swap = "this.onload=null;this.rel='stylesheet'";
+        return '<link rel="preload" as="style" href="' . esc_url( $href ) . '" id="zarincode-fontawesome-css" onload="' . esc_attr( $swap ) . '">' . "\n"
+            . '<noscript><link rel="stylesheet" href="' . esc_url( $href ) . '"></noscript>' . "\n";
+    }
+
+    /**
+     * Defer the theme's own interaction scripts. Both bind delegated listeners
+     * and localize data as separate inline tags, so deferred execution before
+     * DOMContentLoaded stays behaviour-compatible.
+     */
+    public function defer_theme_scripts( string $tag, string $handle, string $src ): string {
+        if ( ! in_array( $handle, [ 'zarincode-main', 'zarincode-dialogs' ], true ) || is_admin() || false !== strpos( $tag, 'defer' ) ) {
+            return $tag;
+        }
+        return str_replace( '<script ', '<script defer ', $tag );
+    }
+
+    /**
+     * Core block-library CSS is only meaningful when the queried singular
+     * page actually contains block markup; WordPress already skips it for
+     * blockless content, and this keeps the guarantee explicit and resilient
+     * to plugins re-registering the handles.
+     */
+    public function drop_core_block_styles_on_plain_pages(): void {
+        if ( is_admin() || ! is_singular() || ! function_exists( 'has_blocks' ) || has_blocks() ) {
+            return;
+        }
+        foreach ( [ 'wp-block-library', 'wp-block-styles' ] as $style ) {
+            wp_dequeue_style( $style );
+            wp_deregister_style( $style );
+        }
+        wp_dequeue_script( 'wp-block-library' );
     }
 
     public function enqueue_frontend_assets(): void {

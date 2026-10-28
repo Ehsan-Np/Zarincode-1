@@ -54,7 +54,7 @@
                 super.onDestroy();
             }
         }
-        ['header','footer','hero','hero_intro','hero_profile','hero_cta','brands','services','products','portfolio','why_us','pricing','promo','steps','testimonials','blog','page_section'].forEach(name => {
+        ['header','footer','hero','hero_intro','hero_cta','brands','services','products','portfolio','why_us','pricing','promo','steps','testimonials','blog','page_section'].forEach(name => {
             elementorFrontend.hooks.addAction('frontend/element_ready/zarincode_' + name + '.default', $element => elementorFrontend.elementsHandler.addHandler(ZarincodeNative, { $element }));
         });
     }

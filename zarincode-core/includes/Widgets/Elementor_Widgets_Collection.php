@@ -63,7 +63,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     }
     protected function register_controls(): void {
         $kind=$this->kind();
-        if(in_array($kind,['hero_intro','hero_profile','hero_cta'],true)){
+        if(in_array($kind,['hero_intro','hero_cta'],true)){
             $this->start_controls_section('main_content',['label'=>'تنظیمات ویجت']);
             $this->add_control('design_mode',['type'=>C::HIDDEN,'default'=>'original']);
             $this->end_controls_section();Native_Design::register($this,$kind);return;
@@ -265,5 +265,4 @@ class Widget_Blog_Grid extends Abstract_Zarincode_Widget { protected function ki
 class Widget_Page_Content_Section extends Abstract_Zarincode_Widget { protected function kind(): string { return 'page_section'; } }
 
 class Widget_Hero_Intro extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_intro'; } }
-class Widget_Hero_Profile extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_profile'; } }
 class Widget_Hero_CTA extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_cta'; } }

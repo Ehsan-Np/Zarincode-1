@@ -4,3 +4,34 @@
 @media(prefers-reduced-motion:reduce){.zc-pro *{transition:none!important;animation:none!important}}
 
 .zc-pro-table tbody tr.is-highlighted th{border-inline-start:3px solid var(--zc-pro-accent)}
+
+/* zarincode_products_slider: scroll-snap product carousel */
+.zc-pro-products_slider .zc-pro-price{font-weight:900;color:var(--zc-pro-dark);font-size:1.05rem;margin-top:14px}.zc-pro-price .woocommerce-Price-amount{font-variant-numeric:tabular-nums}
+.zc-pro-slider{--zc-per-view:3;--zc-slider-gap:16px;min-width:0}
+.zc-slider-viewport{overflow:hidden;border-radius:26px;min-width:0}
+.zc-slider-track{display:flex;gap:var(--zc-slider-gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.zc-slider-track::-webkit-scrollbar{display:none}
+.zc-slider-slide{flex:0 0 calc((100% - (var(--zc-per-view) - 1) * var(--zc-slider-gap)) / var(--zc-per-view));scroll-snap-align:start;scroll-snap-stop:always;min-width:0;box-sizing:border-box}
+.zc-slider-slide .zc-pro-image{height:210px}
+.zc-slider-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.zc-slider-btn{width:44px;height:44px;border-radius:50%;border:1px solid #8884;background:var(--zc-surface,#fff);color:var(--zc-pro-dark);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .15s,background-color .15s,border-color .15s}
+.zc-slider-btn:hover{background:var(--zc-pro-accent);border-color:var(--zc-pro-accent);transform:translateY(-2px)}
+.zc-slider-btn svg{width:20px;height:20px;fill:currentColor;pointer-events:none}
+html[dir="ltr"] .zc-slider-btn svg{transform:scaleX(-1)}
+.zc-slider-dots{display:flex;align-items:center;gap:8px}
+.zc-slider-dot{width:9px;height:9px;border-radius:99px;border:0;padding:0;background:#8886;cursor:pointer;transition:width .2s,background-color .2s}
+.zc-slider-dot[aria-current="true"]{width:26px;background:var(--zc-pro-accent)}
+.dark .zc-slider-btn{background:#2a2c31;color:#f7f7f7;border-color:#8885}
+/* Hero side column: slider fills the column above the CTA card */
+.zc-hero-side .zc-pro{max-width:none;margin:0;padding:0;height:100%;display:flex;flex-direction:column}
+.zc-hero-side .zc-pro-header{margin-bottom:14px}
+.zc-hero-side .zc-pro-heading{font-size:clamp(1.2rem,2vw,1.6rem);margin:8px 0 0}
+.zc-hero-side .zc-pro-eyebrow{font-size:11px;padding:3px 12px}
+.zc-hero-side .zc-pro-slider{flex:1;display:flex;flex-direction:column;min-height:0}
+.zc-hero-side .zc-slider-viewport{flex:1;min-height:260px}
+.zc-hero-side .zc-slider-track{height:100%}
+.zc-hero-side .zc-slider-slide{flex:0 0 100%}
+.zc-hero-side .zc-pro-image{height:190px}
+.zc-hero-side .zc-pro-card{padding:22px}
+@media(max-width:767px){.zc-slider-slide .zc-pro-image{height:180px}.zc-hero-side .zc-slider-viewport{min-height:0}}
+@media(prefers-reduced-motion:reduce){.zc-slider-track{scroll-behavior:auto}}

@@ -900,7 +900,7 @@ class Demo_Seeder {
         ];
 
         require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
-        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition(Service_Demo::hero())];
+        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition(Service_Demo::hero(), Service_Demo::settings('zarincode_products_slider'))];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
             $kind=substr($hw['widget'],strlen('zarincode_'));
@@ -1190,10 +1190,99 @@ class Demo_Seeder {
                 'preview_url'                => 'https://zarincode.com',
                 'import_notice'              => 'با کلیک روی دکمه درون‌ریزی، تمامی صفحات المنتوری، هدر، فوتر، ۶ خدمت، ۸ نمونه‌کار، ۸ محصول آماده، منوها و صفحات قوانین ایران، گارانتی، بازگشت وجه، GDPR و DMCA به صورت کامل ساخته می‌شوند.',
             ],
+            [
+                'import_file_name'           => 'مقالات تخصصی زرین کد (سئو، امنیت، وردپرس، سرعت و طراحی سایت)',
+                'categories'                 => [ 'مقالات آموزشی' ],
+                'local_import_file'          => get_template_directory() . '/demo-data/zarincode-articles.xml',
+                'import_preview_image_url'   => get_template_directory_uri() . '/screenshot.png',
+                'preview_url'                => 'https://zarincode.com/blog/',
+                'import_notice'              => 'با کلیک روی دکمه درون‌ریزی، ۷۱ مقاله فارسی در ۶ دسته تخصصی (طراحی سایت، سئو، تولید محتوا، آموزش وردپرس، امنیت وب‌سایت و سرعت و بهینه‌سازی) همراه با دسته‌بندی‌ها، خلاصه‌ها و تصاویر شاخص ساخته می‌شوند؛ تنظیمات دمو تغییری نمی‌کند.',
+            ],
         ];
     }
 
     public function ocdi_after_import_setup(): void {
         self::seed_all();
+        self::assign_demo_article_covers();
+    }
+
+    /**
+     * Attach rotating theme demo covers to imported magazine articles
+     * (posts marked with the _zc_demo_article meta by the WXR package)
+     * so blog cards render with imagery right after demo import.
+     */
+    public static function assign_demo_article_covers(): void {
+        $ids = get_posts( [
+            'post_type'      => 'post',
+            'post_status'    => 'any',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'meta_key'       => '_zc_demo_article',
+            'meta_value'     => '1',
+        ] );
+        if ( ! $ids ) {
+            return;
+        }
+        $covers = array_values( array_filter( [
+            get_template_directory() . '/assets/images/demo-post-cover.jpg',
+            get_template_directory() . '/assets/images/demo-project-cover.jpg',
+            get_template_directory() . '/assets/images/demo-service-cover.jpg',
+            get_template_directory() . '/assets/images/demo-product-cover.jpg',
+        ], 'file_exists' ) );
+        if ( ! $covers ) {
+            return;
+        }
+        $made = [];
+        foreach ( $ids as $i => $post_id ) {
+            if ( get_post_thumbnail_id( $post_id ) ) {
+                continue;
+            }
+            $src = $covers[ $i % count( $covers ) ];
+            if ( ! isset( $made[ $src ] ) ) {
+                $made[ $src ] = self::sideload_demo_image( $src );
+            }
+            if ( $made[ $src ] ) {
+                set_post_thumbnail( $post_id, (int) $made[ $src ] );
+            }
+        }
+    }
+
+    /**
+     * Copy a local theme image into the uploads library once and return
+     * the new attachment id (0 on failure).
+     */
+    private static function sideload_demo_image( string $src ): int {
+        static $done = [];
+        if ( isset( $done[ $src ] ) ) {
+            return $done[ $src ];
+        }
+        $done[ $src ] = 0;
+        $uploads      = wp_upload_dir();
+        if ( ! empty( $uploads['error'] ) || ! is_readable( $src ) ) {
+            return 0;
+        }
+        $dest = trailingslashit( $uploads['path'] ) . 'zc-' . basename( $src );
+        if ( ! @copy( $src, $dest ) ) {
+            return 0;
+        }
+        $attach_id = wp_insert_attachment(
+            [
+                'post_mime_type' => 'image/jpeg',
+                'post_title'     => sanitize_file_name( basename( $src ) ),
+                'post_status'    => 'inherit',
+            ],
+            $dest,
+            0
+        );
+        if ( ! $attach_id || is_wp_error( $attach_id ) ) {
+            return 0;
+        }
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        $meta = wp_generate_attachment_metadata( (int) $attach_id, $dest );
+        if ( $meta ) {
+            wp_update_attachment_metadata( (int) $attach_id, $meta );
+        }
+        $done[ $src ] = (int) $attach_id;
+        return $done[ $src ];
     }
 }
