@@ -125,6 +125,9 @@ class Assets {
             ZARINCODE_VERSION
         );
 
+        if ( is_singular('zc_project') ) {
+            wp_enqueue_style('zarincode-project-reference', ZARINCODE_URI . '/assets/css/project-reference.css', ['zarincode-main'], (string) filemtime(ZARINCODE_DIR . '/assets/css/project-reference.css'));
+        }
         if ( is_singular('product') ) {
             wp_enqueue_style('zarincode-product-reference', ZARINCODE_URI . '/assets/css/product-reference.css', ['zarincode-main'], ZARINCODE_VERSION);
         }

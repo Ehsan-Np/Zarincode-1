@@ -25,3 +25,11 @@ body.zarincode-theme :is(pre,code,kbd,samp),body.zarincode-theme :is(pre,code,kb
 body.zarincode-theme .elementor-widget-wrap:has(>.elementor-widget>.elementor-widget-container>:is(.zc-native-layout,.zc-edit,.zc-pro)){padding-inline:0!important}
 body.zarincode-theme .e-con-boxed:has(>.e-con-inner>.elementor-widget :is(.zc-native-layout,.zc-edit,.zc-pro)),
 body.zarincode-theme .e-con-boxed>.e-con-inner:has(>.elementor-widget :is(.zc-native-layout,.zc-edit,.zc-pro)){padding-inline:0!important;--padding-left:0px;--padding-right:0px}
+
+/* Portfolio categories: one compact RTL rail on phones, never a giant wrapped oval. */
+@media(max-width:767px){
+ body.zarincode-theme :is(.zc-native-portfolio .zc-filter-tabs,.zc-filter-tabs[data-zc-tabs*="portfolio"]){display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:center;gap:6px!important;width:100%!important;max-width:100%!important;min-width:0;box-sizing:border-box;padding:6px!important;border-radius:16px!important;overflow-x:auto!important;overflow-y:hidden;overscroll-behavior-inline:contain;scroll-padding-inline:6px;scrollbar-width:thin;scrollbar-color:#d5d0c1 transparent;background:var(--zc-card-bg,#fff);border:1px solid var(--zc-border-subtle,#e7e4da);box-shadow:0 6px 20px rgb(42 44 49 / 4%)}
+ body.zarincode-theme :is(.zc-native-portfolio .zc-filter-tabs,.zc-filter-tabs[data-zc-tabs*="portfolio"]) .zc-filter-tab{flex:0 0 auto!important;min-height:44px;min-width:max-content;width:auto!important;margin:0!important;padding:10px 14px!important;white-space:nowrap;line-height:1.5;font-size:12px!important;border-radius:11px!important;box-shadow:none!important}
+ body.zarincode-theme :is(.zc-native-portfolio .zc-filter-tabs,.zc-filter-tabs[data-zc-tabs*="portfolio"]) .zc-filter-tab:is(.is-active,[aria-pressed="true"]){background:var(--color-accent,#fdd05b);color:var(--color-accent-contrast,#20252e);font-weight:800}
+ body.zarincode-theme :is(.zc-native-portfolio .zc-filter-tabs,.zc-filter-tabs[data-zc-tabs*="portfolio"]) .zc-filter-tab:focus-visible{outline:2px solid var(--zc-text-primary,#242830);outline-offset:-3px}
+}

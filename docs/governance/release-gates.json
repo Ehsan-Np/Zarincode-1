@@ -1,6 +1,6 @@
 {
   "specification": "ZC-WP-ENG-SKILL-001 v3.0.0",
-  "version": "4.0.0-rc.5",
+  "version": "4.0.0-rc.6",
   "commercial_approved": false,
   "approved_exceptions": [
     {
@@ -85,6 +85,22 @@
       "runtime_php_syntax_files": 89,
       "package_contract_tests": 4,
       "limits": "WP 6.8.3/GD/SQLite plus Chromium fixture. No live-host/MySQL/Imagick/actual OCDI UI or all third-party version certification."
+    },
+    "portfolio_rc6": {
+      "report": "docs/audits/2026-10-28-PORTFOLIO-FA.md",
+      "responsive_browser_assertions": 69,
+      "viewport_widths": [
+        320,
+        359,
+        390,
+        430,
+        768,
+        1024,
+        1440
+      ],
+      "php_contract_assertions": 311,
+      "runtime_php_lints": 89,
+      "limits": "WP APIs are doubles for template fixture. No full live WordPress/Elementor integration or universal visual certification."
     }
   }
 }

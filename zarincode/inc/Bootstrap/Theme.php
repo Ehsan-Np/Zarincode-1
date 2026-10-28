@@ -1,7 +1,7 @@
 <?php
 /** Theme presentation bootstrap and backwards-compatible public helper functions. */
 defined( 'ABSPATH' ) || exit;
-define( 'ZARINCODE_VERSION', '4.0.0-rc.5' );
+define( 'ZARINCODE_VERSION', '4.0.0-rc.6' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
