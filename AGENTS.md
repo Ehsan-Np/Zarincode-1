@@ -13,3 +13,12 @@
 
 ## محدودیت تاریخچه محلی
 نسخه محلی می‌تواند shallow و partial clone باشد تا تاریخچه بسته‌ها و تصاویر قدیمی فضای دیسک نگیرد. تاریخچه کامل در گیت‌هاب باقی می‌ماند. قبل از جایگزین کردن metadata محلی، همه تغییرات و منابع لازم باید در گیت‌هاب تأیید شده باشند.
+
+## ترمیم محیط گیت پس از بازیابی snapshot
+مسیرهای `.git/config` و مجوز فایل‌های `.ssh` در snapshot ذخیره نمی‌شوند و بعد از هر بازیابی باید بازسازی شوند:
+`chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519`؛ سپس remote SSH به `git@github.com:Ehsan-Np/Zarincode-1.git`،
+هویت `Ehsan NaderiPanah <info@zarincode.com>`، تنظیمات partial-clone (`remote.origin.promisor=true`,
+`partialclonefilter=blob:none`، `extensions.partialClone=origin`) و `core.sparseCheckout=true` (cone=false).
+راستی‌آزمایی: `ssh -o BatchMode=yes -T git@github.com` پاسخ `Hi Ehsan-Np` و برابری `HEAD`/`origin/main` پس از fetch.
+اگر `git add` روی `packages/` خطای sparse داد از `--sparse` استفاده شود و خطای ` D packages/…` با
+`git sparse-checkout reapply` برطرف گردد. جزئیات: `docs/releases/2026-10-28-FINAL-CYCLE-FA.md` بخش۶.
