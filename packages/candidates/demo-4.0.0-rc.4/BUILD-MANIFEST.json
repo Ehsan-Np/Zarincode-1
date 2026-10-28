@@ -1,0 +1,25 @@
+{
+  "product": "ZarinCode",
+  "version": "4.0.0-rc.4",
+  "source_commit": "ff2e289de8072f649c4fef987bae5b28a2babee7",
+  "source_tree_clean": true,
+  "commercial_approved": false,
+  "artifacts": [
+    {
+      "file": "zarincode-4.0.0-rc.4.zip",
+      "bytes": 10776618,
+      "members": 186,
+      "sha256": "d8eef28f54f09c8b1840716a95c756964269927542efc5c31954fdf58343bb9f",
+      "crc_and_source_parity": "passed"
+    },
+    {
+      "file": "zarincode-core-4.0.0-rc.4.zip",
+      "bytes": 445927,
+      "members": 99,
+      "sha256": "35beae4b25d5e3c52d04d0ec70ef05355e4a80890c6acd009bed1830ff0ebacc",
+      "crc_and_source_parity": "passed"
+    }
+  ],
+  "third_party_plugins_bundled": false,
+  "asset_rights": "Existing user-provided assets retained; commercial redistribution rights not certified."
+}
