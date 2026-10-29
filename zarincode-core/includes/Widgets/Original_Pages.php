@@ -190,9 +190,9 @@ class Original_Pages {
      * ABOUT US FULL PAGE (Featuring Ehsan NaderiPanah & Zarincode Team + Real Executive Photography)
      */
     private static function render_about_full_page(): string {
-        $founder_img = get_template_directory_uri() . '/assets/images/ehsan-about-founder.jpg';
-        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.jpg';
-        $studio_img  = get_template_directory_uri() . '/assets/images/ehsan-portrait.png';
+        $founder_img = get_template_directory_uri() . '/assets/images/ehsan-about-founder.webp';
+        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.webp';
+        $studio_img  = get_template_directory_uri() . '/assets/images/ehsan-portrait.webp';
         ob_start();
         ?>
         <div style="padding-top:2rem;padding-bottom:2rem;">
@@ -269,7 +269,7 @@ class Original_Pages {
      * CONTACT US FULL PAGE (Featuring Real Consultation Portrait of Ehsan NaderiPanah)
      */
     private static function render_contact_full_page(): string {
-        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
+        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.webp';
         ob_start();
         ?>
         <div class="zc-container" style="padding-top:2rem;padding-bottom:3rem;">

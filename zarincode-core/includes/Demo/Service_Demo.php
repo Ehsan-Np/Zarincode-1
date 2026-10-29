@@ -9,7 +9,7 @@ final class Service_Demo {
     public static function settings(string $widget,array $settings=[]):array {
         if(strpos($widget,'zarincode_')!==0)return $settings;$kind=substr($widget,10);$section=$settings['section_key']??'about-page';$m=N::model($kind,$section);if(!$m)return array_replace(self::urls(self::data()['widgets'][$kind]??[]),$settings);$key=$kind==='page_section'?$kind.'_'.str_replace('-','_',$section):$kind;$copy=self::data()['widgets'][$key]??[];$out=[];
         foreach($m['fields'] as $k=>$def)$out[N::id($m,$k)]=$copy[$k]??($def['default']??'');
-        foreach($m['repeaters'] as $k=>$def){$rows=$def['default'];$changes=self::data()['rows'][$key][$k]??[];foreach($rows as $i=>&$row){$row=array_replace($row,$changes[$i]??[]);if($kind==='testimonials')$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.jpg','id'=>0];}unset($row);$out[N::id($m,$k)]=$rows;}
+        foreach($m['repeaters'] as $k=>$def){$rows=$def['default'];$changes=self::data()['rows'][$key][$k]??[];foreach($rows as $i=>&$row){$row=array_replace($row,$changes[$i]??[]);if($kind==='testimonials')$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.webp','id'=>0];}unset($row);$out[N::id($m,$k)]=$rows;}
         if($kind==='pricing'){$out['n_pricing_features']=self::pricing_features($m);foreach($m['repeaters'] as $key=>$def)foreach($out[N::id($m,$key)] as &$plan)$plan['features_source']='icon_list';unset($plan);}
         $out['design_mode']='original';return array_replace(self::urls($out),$settings);
     }

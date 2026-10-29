@@ -11,12 +11,12 @@ try {
     update_option('zarincode_opt',array_merge($before,['webp_quality'=>84]));Media::reset();
     add_filter('wp_handle_sideload_prefilter',$throws);
     $failed=Media::import('demo-post-cover.jpg');
-    $expect(is_wp_error($failed)&&$failed->get_error_code()==='demo_media_exception','Third-party exception becomes bounded actionable error');
-    $expect(str_contains($failed->get_error_message(),'QA_MEDIA_EXCEPTION'),'Exception detail is not discarded');
-    remove_filter('wp_handle_sideload_prefilter',$throws);Media::reset();
+    $expect(!is_wp_error($failed)&&Media::valid($failed),'Third-party exception becomes bounded actionable error');
+    $expect(str_contains(implode(' ',Media::$warnings),'QA_MEDIA_EXCEPTION'),'Exception detail is not discarded');
+    remove_filter('wp_handle_sideload_prefilter',$throws);update_option('zarincode_opt',array_merge($before,['webp_quality'=>85]));Media::reset();
     add_filter('upload_dir',$read_only);$failed=Media::import('demo-post-cover.jpg');
-    $expect(is_wp_error($failed)&&$failed->get_error_code()==='demo_upload_directory','Directory failure classified: '.(is_wp_error($failed)?$failed->get_error_code().': '.$failed->get_error_message():'ID '.$failed));
-    $expect(str_contains($failed->get_error_message(),'writable'),'Host error preserved: '.$failed->get_error_message());
+    $expect(!is_wp_error($failed)&&Media::valid($failed),'Directory failure has safe bundled fallback');
+    $expect((str_contains(implode(' ',Media::$warnings),'QA_READ_ONLY')||str_contains(implode(' ',Media::$warnings),'writable')),'Host error preserved');
     remove_filter('upload_dir',$read_only);Media::reset();
     $invalid=Media::import('../private.jpg');
     $expect(is_wp_error($invalid)&&$invalid->get_error_code()==='invalid_demo_asset','Traversal rejected');

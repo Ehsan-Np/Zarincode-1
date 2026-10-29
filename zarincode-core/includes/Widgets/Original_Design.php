@@ -409,7 +409,7 @@ class Original_Design {
             [
                 'cat'     => 'source-code',
                 'cat_lbl' => 'سورس‌کد نرم‌افزار',
-                'ver'     => 'v4.0.0',
+                'ver'     => 'v4.0.1',
                 'icon'    => 'fa-solid fa-boxes-stacked',
                 'title'   => 'سورس‌کد سامانه جامع CRM، فاکتور و مدیریت مشتریان زرین‌یار',
                 'desc'    => 'سورس‌کد کامل PHP/Laravel + React با پنل حسابداری، تیکتینگ، پیامک و گزارش‌گیری پیشرفته.',
@@ -704,8 +704,8 @@ class Original_Design {
      * 6. WHY US & STATS COUNTERS WIDGET (Webinex ? WHY US + Crextio Bento Layout + Real Studio Photo)
      */
     public static function render_why_us_stats( array $settings = [] ): string {
-        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.jpg';
-        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
+        $office_img  = get_template_directory_uri() . '/assets/images/zarincode-luxury-office.webp';
+        $consult_img = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.webp';
         $hide_photos = ! empty( $settings['hide_photos'] );
         ob_start();
         ?>

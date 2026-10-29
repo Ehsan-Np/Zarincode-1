@@ -1,0 +1,114 @@
+{
+    "demo-client-1.webp": {
+        "legacy": "demo-client-1.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2750,
+        "sha256": "475aa6410ae7929255a8144a3f29e1de6ddc9e9388330857506fbbe872195832"
+    },
+    "demo-client-2.webp": {
+        "legacy": "demo-client-2.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2602,
+        "sha256": "4027f191952246936846d184326146cfbea13b3b264a52b87cc4619da6bd7314"
+    },
+    "demo-client-3.webp": {
+        "legacy": "demo-client-3.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2724,
+        "sha256": "477d580f5cf0fb22168a92e9ae4da485a471cfb87ebb74af8ff36bceacb34177"
+    },
+    "demo-client-4.webp": {
+        "legacy": "demo-client-4.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2790,
+        "sha256": "fbc73d6efb2de18e82a9cb6e42f45d16b045c5fdad8935d9525c666dd4d5f2fb"
+    },
+    "demo-client-5.webp": {
+        "legacy": "demo-client-5.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2594,
+        "sha256": "8969c161e71709566598f22c6140bace00716e96d20a7387d84b2155eb389315"
+    },
+    "demo-client-6.webp": {
+        "legacy": "demo-client-6.png",
+        "width": 320,
+        "height": 180,
+        "bytes": 2756,
+        "sha256": "7aae2817fb201fcfcee79a9a3f41281ac37b6012da017f90a02b46851a3fdc43"
+    },
+    "demo-customer-avatar.webp": {
+        "legacy": "demo-customer-avatar.jpg",
+        "width": 160,
+        "height": 160,
+        "bytes": 1934,
+        "sha256": "ef6f0b1ea53f38fe507532538d75dfb012c558f2470a28fd0cb4ebf20c0dd362"
+    },
+    "demo-post-cover.webp": {
+        "legacy": "demo-post-cover.jpg",
+        "width": 960,
+        "height": 600,
+        "bytes": 17016,
+        "sha256": "de1d96c546713b84710533cad9e6218efcd6d74345a976c2ebc1878fe8b9959a"
+    },
+    "demo-product-cover.webp": {
+        "legacy": "demo-product-cover.jpg",
+        "width": 960,
+        "height": 600,
+        "bytes": 17138,
+        "sha256": "80704d319842005b8e65d1e1b8d63753ac2fdae4979df1e20c314c9472a5c697"
+    },
+    "demo-project-cover.webp": {
+        "legacy": "demo-project-cover.jpg",
+        "width": 960,
+        "height": 600,
+        "bytes": 17364,
+        "sha256": "bffc307f33e1bc40e8719ae4e917dab0e516686c1b894b3118cc708c87cc23fc"
+    },
+    "demo-service-cover.webp": {
+        "legacy": "demo-service-cover.jpg",
+        "width": 960,
+        "height": 600,
+        "bytes": 17108,
+        "sha256": "e27e270d2df6ed6cea7d97bc8ad8a1377e273a1c876707c3a72aa4a5f75a8b2d"
+    },
+    "ehsan-about-founder.webp": {
+        "legacy": "ehsan-about-founder.jpg",
+        "width": 896,
+        "height": 1195,
+        "bytes": 75488,
+        "sha256": "2be2948ed676bff2099b97c7de21f021677cd69886804c6421bf93f19a48cd36"
+    },
+    "ehsan-contact-consultation.webp": {
+        "legacy": "ehsan-contact-consultation.jpg",
+        "width": 896,
+        "height": 780,
+        "bytes": 60554,
+        "sha256": "6a22aedfb0f319888af33f673923d8a4428637ede51966b34abccf29307fcb62"
+    },
+    "ehsan-hero-executive.webp": {
+        "legacy": "ehsan-hero-executive.jpg",
+        "width": 896,
+        "height": 1195,
+        "bytes": 108700,
+        "sha256": "219776f366a8a0f5b1242d0d1cf48b6643c3d281624f52fa1ac00c3991993c75"
+    },
+    "ehsan-portrait.webp": {
+        "legacy": "ehsan-portrait.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 126274,
+        "sha256": "06795186af64b199013a3fbb316789f166aa92844219120038e2210f2c518ebe"
+    },
+    "zarincode-luxury-office.webp": {
+        "legacy": "zarincode-luxury-office.jpg",
+        "width": 1376,
+        "height": 768,
+        "bytes": 216940,
+        "sha256": "9300ba4b098e8aa082c74ef939bf6f6de70a86f308be689955067774f4364bb7"
+    }
+}

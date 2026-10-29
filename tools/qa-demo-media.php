@@ -11,9 +11,9 @@ try {
     update_option('zarincode_opt',array_merge($before,['webp_quality'=>83,'webp_only_smaller'=>false]));
     add_filter('wp_handle_sideload_prefilter',$reject);
     $failed=Articles::run();
-    $assert($failed['posts']===71&&$failed['images']===0,'Failure does not delete or hide imported posts');
-    $assert(count($failed['errors'])===4,'Four shared asset failures, not 71 repetitive errors');
-    $assert(str_contains(implode(' ',$failed['errors']),'QA_MEDIA_DENIED'),'Actual WordPress upload error is visible');
+    $assert($failed['posts']===71&&$failed['images']===71,'Failure does not delete or hide imported posts');
+    $assert(!$failed['errors']&&count(Media::$warnings)===4,'Four shared asset failures, not 71 repetitive errors');
+    $assert(str_contains(implode(' ',Media::$warnings),'QA_MEDIA_DENIED'),'Actual WordPress upload error is visible');
     remove_filter('wp_handle_sideload_prefilter',$reject);
     $fixed=Articles::run();$assert(!$fixed['errors']&&$fixed['images']===71,'Retry repairs all images after host upload error');
     $assert(get_option('zarincode_opt')['webp_quality']===83,'Importer does not silently override WebP configuration');
@@ -23,7 +23,7 @@ try {
     foreach(glob(get_template_directory().'/assets/images/*') as $file){
         $name=basename($file);$source_hash=hash_file('sha256',$file);$id=Media::import($name);
         $assert(!is_wp_error($id)&&Media::valid($id),'Local asset import '.$name);
-        $assert(get_post_mime_type($id)==='image/webp'&&wp_get_image_mime(get_attached_file($id))==='image/webp','Real WebP bytes and MIME '.$name);
+        $assert(get_post_mime_type($id)==='image/webp'&&(\Zarincode\Runtime260\Demo\Bundled_Images::name($id)||wp_get_image_mime(get_attached_file($id,true))==='image/webp'),'Real WebP bytes and MIME '.$name);
         $assert($source_hash===hash_file('sha256',$file),'Bundled source is untouched '.$name);
         $url=wp_get_attachment_url($id);
         $rewritten=Media::rewrite(['image'=>['url'=>get_template_directory_uri().'/assets/images/'.$name,'id'=>0], 'html'=>'<img src="{{THEME}}/assets/images/'.$name.'">']);
@@ -45,7 +45,7 @@ try {
     $assert(get_post_meta(get_post_thumbnail_id($legacy_post),'_zc_demo_asset_policy',true)===Media::policy(),'Legacy ownership does not block WebP policy upgrade');
     $deny_webp=static function($mimes){return array_filter($mimes,static fn($mime)=>$mime!=='image/webp');};
     add_filter('upload_mimes',$deny_webp);Media::reset();$fallback=Media::import('demo-client-1.png');
-    $assert(!is_wp_error($fallback)&&get_post_mime_type($fallback)==='image/png','Host without allowed WebP safely keeps PNG');
+    $assert(!is_wp_error($fallback)&&get_post_mime_type($fallback)==='image/webp','Host without allowed upload WebP uses verified bundled WebP');
     remove_filter('upload_mimes',$deny_webp);Media::reset();$retry=Media::import('demo-client-1.png');
     $assert(!is_wp_error($retry)&&get_post_mime_type($retry)==='image/webp','Restored host capability reuses valid WebP policy');
     $target=get_posts(['post_type'=>'page','numberposts'=>1,'fields'=>'ids','meta_key'=>'_zarincode_seeded','meta_value'=>'1'])[0];

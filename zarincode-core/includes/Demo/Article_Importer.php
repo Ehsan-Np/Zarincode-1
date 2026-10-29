@@ -50,6 +50,6 @@ final class Article_Importer {
 
     public static function assign_cover(int $post_id, int $index): bool {
         $assets = ['post','project','service','product'];
-        return Demo_Media::assign($post_id, 'demo-'.$assets[$index % 4].'-cover.jpg');
+        return Demo_Media::assign($post_id, 'demo-'.$assets[$index % 4].'-cover.webp');
     }
 }

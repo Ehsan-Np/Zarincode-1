@@ -32,7 +32,7 @@ $cta_action       = zarincode_get_option( 'header_cta_action', 'modal' );
 $cta_custom_url   = zarincode_get_option( 'header_cta_custom_url', '/contact-us/' );
 $cart_url         = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/shop/' );
 $cart_cnt         = ( function_exists( 'WC' ) && WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
-$ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrait.png';
+$ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrait.webp';
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="<?php echo 'dark' === zarincode_get_option( 'default_theme_mode', 'light' ) ? 'dark' : ''; ?>">
 <head>

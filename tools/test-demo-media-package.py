@@ -1,4 +1,6 @@
 """Static delivery contracts; integration lives in qa-demo-media.php."""
+import hashlib
+import struct
 import json
 import re
 import unittest
@@ -38,6 +40,20 @@ class DemoMediaPackage(unittest.TestCase):
         self.assertTrue(names)
         for name in names:
             self.assertTrue((ROOT/'zarincode/assets/images'/name).is_file(), name)
+
+    def test_prebuilt_webp_manifest_matches_real_assets(self):
+        manifest = json.loads((ROOT/'zarincode/demo-data/media-manifest.json').read_text())
+        self.assertEqual(len(manifest), 16)
+        for name, meta in manifest.items():
+            data = (ROOT/'zarincode/assets/images'/name).read_bytes()
+            self.assertEqual(data[:4], b'RIFF')
+            self.assertEqual(data[8:12], b'WEBP')
+            self.assertEqual(struct.unpack('<I', data[4:8])[0] + 8, len(data))
+            self.assertEqual(hashlib.sha256(data).hexdigest(), meta['sha256'])
+            self.assertEqual(len(data), meta['bytes'])
+            self.assertGreater(meta['width'], 0)
+            self.assertGreater(meta['height'], 0)
+            self.assertTrue((ROOT/'zarincode/assets/images'/meta['legacy']).is_file())
 
     def test_original_importer_design_remains(self):
         source = (ROOT/'zarincode-core/includes/Demo/Demo_Seeder.php').read_text()

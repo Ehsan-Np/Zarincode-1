@@ -25,7 +25,7 @@ while ( have_posts() ) :
     $title        = get_the_title();
     $phone        = zarincode_get_option( 'contact_phone', '09024561001' );
     $dev_name     = zarincode_get_option( 'developer_name', 'احسان نادری پناه (Ehsan NaderiPanah)' );
-    $dev_img      = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.jpg';
+    $dev_img      = get_template_directory_uri() . '/assets/images/ehsan-contact-consultation.webp';
 
     // Product metadata with rich defaults
     $raw_price    = get_post_meta( $post_id, '_zc_prod_price_display', true );

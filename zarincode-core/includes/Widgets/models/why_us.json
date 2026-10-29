@@ -69,7 +69,7 @@
         "image_1_image": {
             "type": "media",
             "default": {
-                "url": "{{THEME}}/assets/images/zarincode-luxury-office.jpg",
+                "url": "{{THEME}}/assets/images/zarincode-luxury-office.webp",
                 "id": 0
             },
             "label": "تصویر: image"
@@ -131,7 +131,7 @@
         "image_2_image": {
             "type": "media",
             "default": {
-                "url": "{{THEME}}/assets/images/ehsan-contact-consultation.jpg",
+                "url": "{{THEME}}/assets/images/ehsan-contact-consultation.webp",
                 "id": 0
             },
             "label": "تصویر: image"

@@ -7,8 +7,9 @@ defined('ABSPATH') || exit;
 final class Demo_Media {
     private static array $cache = [];
     public static array $errors = [];
+    public static array $warnings = [];
 
-    public static function reset(): void { self::$cache = []; self::$errors = []; }
+    public static function reset(): void { self::$cache = []; self::$errors = []; self::$warnings = []; }
 
     private static function fail(string $name, string $code, string $message) {
         $error = new \WP_Error($code, $message);
@@ -22,13 +23,32 @@ final class Demo_Media {
     }
 
     public static function valid(int $id): bool {
-        $file = get_attached_file($id);
-        return get_post_status($id) !== 'trash' && wp_attachment_is_image($id)
+        if (Bundled_Images::name($id)) return get_post_type($id)==='attachment' && get_post_status($id)!=='trash';
+        $file = get_attached_file($id, true);
+        return get_post_status($id) !== 'trash' && get_post_type($id)==='attachment'
             && is_string($file) && is_readable($file) && (bool)wp_get_image_mime($file);
     }
 
     public static function import(string $name) {
-        try { return self::import_local($name); }
+        $name = Bundled_Images::canonical($name);
+        try { $result = self::import_local($name); }
+        catch (\Throwable $error) { $result = self::fail($name, 'demo_media_exception', wp_strip_all_tags($error->getMessage())); }
+        try {
+            if (!is_wp_error($result)) {
+                if (Bundled_Images::name((int)$result)) self::$warnings[$name] ??= '[demo_bundle_reused] رسانه از WebP فقط‌خواندنی همراه قالب نمایش داده می‌شود.';
+                return $result;
+            }
+            if (!Bundled_Images::asset($name)) return $result;
+            $fallback = Bundled_Images::register($name);
+            if (is_wp_error($fallback)) return self::fail($name,$fallback->get_error_code(),$fallback->get_error_message());
+            self::$warnings[$name] = '['.$result->get_error_code().'] '.$result->get_error_message();
+            unset(self::$errors[$name]);
+            $source=get_template_directory().'/assets/images/'.$name;
+            update_post_meta($fallback,'_zc_demo_asset_hash',hash_file('sha256',$source));
+            update_post_meta($fallback,'_zc_demo_asset_policy',self::policy());
+            update_post_meta($fallback,'_zc_demo_asset_name',$name);
+            return self::$cache[$name]=$fallback;
+        }
         catch (\Throwable $error) { return self::fail($name, 'demo_media_exception', wp_strip_all_tags($error->getMessage())); }
     }
 
@@ -59,11 +79,21 @@ final class Demo_Media {
         if (!$temporary) return self::fail($name, 'demo_temp_failed', 'ساخت فایل موقت در uploads انجام نشد؛ فضای دیسک و مجوز پوشه را بررسی کنید.');
         try {
             if (!copy($source, $temporary)) return self::fail($name, 'demo_copy_failed', 'کپی فایل تصویر به uploads انجام نشد.');
-            $id = media_handle_sideload(['name'=>$name,'tmp_name'=>$temporary,'error'=>0,'size'=>filesize($temporary)], 0, 'تصویر نمونه دمو');
+            $uploaded = [];
+            $capture = static function($value,$context) use (&$uploaded) {
+                if ($context==='sideload' && is_array($value)) $uploaded=$value;
+                return $value;
+            };
+            add_filter('wp_handle_upload',$capture,PHP_INT_MAX,2);
+            try { $id = media_handle_sideload(['name'=>$name,'tmp_name'=>$temporary,'error'=>0,'size'=>filesize($temporary)], 0, 'تصویر نمونه دمو'); }
+            finally { remove_filter('wp_handle_upload',$capture,PHP_INT_MAX); }
+            if (!is_wp_error($id) && !self::valid((int)$id)) self::repair_path((int)$id,$uploaded);
+
             if (is_wp_error($id)) return self::fail($name, $id->get_error_code(), wp_strip_all_tags($id->get_error_message()));
             if (!self::valid((int)$id)) {
-                if ((int)$id > 0) wp_delete_attachment((int)$id, true);
-                return self::fail($name, 'demo_invalid_attachment', 'رسانه ثبت شد اما فایل تصویر معتبر یا خواندنی نیست.');
+                // Do not delete a record with an untrusted path: filters may point it at customer/theme files.
+                if ((int)$id > 0) update_post_meta((int)$id,'_zc_demo_invalid_path',true);
+                return self::fail($name, 'demo_invalid_attachment', 'مسیر محلی یا رکورد رسانه پس از sideload معتبر نبود؛ از WebP همراه قالب استفاده می‌شود.');
             }
             update_post_meta($id, '_zc_demo_asset_hash', $hash);
             update_post_meta($id, '_zc_demo_asset_policy', $policy);
@@ -73,6 +103,26 @@ final class Demo_Media {
         } catch (\Throwable $error) {
             return self::fail($name, 'demo_media_exception', wp_strip_all_tags($error->getMessage()));
         } finally { if (is_file($temporary)) wp_delete_file($temporary); }
+    }
+
+    /** Recover only the known new upload, never an arbitrary path supplied by a renderer. */
+    private static function repair_path(int $id,array $uploaded): void {
+        if (get_post_type($id)!=='attachment') return;
+        $uploads=wp_get_upload_dir();$base=realpath($uploads['basedir']??'');
+        if (!$base || !empty($uploads['error'])) return;
+        $meta=wp_get_attachment_metadata($id);$candidates=[];
+        if (!empty($uploaded['file'])) $candidates[]=$uploaded['file'];
+        foreach($candidates as $candidate){
+            $file=realpath($candidate);$prefix=trailingslashit(wp_normalize_path($base));
+            if (!$file || !is_readable($file) || strpos(wp_normalize_path($file),$prefix)!==0) continue;
+            $mime=wp_get_image_mime($file);if (!$mime) continue;
+            $relative=substr(wp_normalize_path($file),strlen($prefix));
+            // Bypass update_attached_file filters only for our own captured, verified upload.
+            update_post_meta($id,'_wp_attached_file',$relative);
+            wp_update_post(['ID'=>$id,'post_mime_type'=>$mime]);
+            if (is_array($meta)) { $meta['file']=$relative;wp_update_attachment_metadata($id,$meta); }
+            return;
+        }
     }
 
     /** Preserve customer images. Refresh only known demo assets when policy changes. */
@@ -156,7 +206,7 @@ final class Demo_Media {
             $kind = ['post'=>'post','zc_service'=>'service','zc_project'=>'project','product'=>'product'][get_post_type($id)] ?? '';
             if ($kind) self::assign((int)$id, 'demo-'.$kind.'-cover.jpg');
         }
-        return ['updated'=>$updated,'errors'=>array_values(self::$errors)];
+        return ['updated'=>$updated,'errors'=>array_values(self::$errors),'warnings'=>self::$warnings];
     }
 
 }

@@ -83,7 +83,7 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->field('title_tag','تگ عنوان',C::SELECT,$kind==='hero'?'h1':'h2',['options'=>array_combine(['h1','h2','h3','h4','div'],['H1','H2','H3','H4','DIV'])]);
         $this->field('subtitle','زیرعنوان',C::TEXT,'');
         $this->field('description','توضیحات',C::WYSIWYG,$kind==='hero'?'طراحی وب، توسعه نرم‌افزار و بازاریابی دیجیتال؛ همراه کسب‌وکار شما از ایده تا رشد.':'');
-        $this->field('image','تصویر / لوگو اصلی',C::MEDIA,['url'=>in_array($kind,['hero','why_us'],true)?get_template_directory_uri().'/assets/images/ehsan-hero-executive.jpg':'']);
+        $this->field('image','تصویر / لوگو اصلی',C::MEDIA,['url'=>in_array($kind,['hero','why_us'],true)?get_template_directory_uri().'/assets/images/ehsan-hero-executive.webp':'']);
         $this->field('image_alt','توضیح تصویر',C::TEXT,'');
         $this->field('image_caption','زیرنویس تصویر',C::TEXT,'');
         $this->field('video_url','لینک ویدئو',C::URL,['url'=>'']);

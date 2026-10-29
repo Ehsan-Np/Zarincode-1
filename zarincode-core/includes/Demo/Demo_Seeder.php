@@ -172,6 +172,10 @@ class Demo_Seeder {
         Article_Importer::$last_result['errors'] = array_values(array_unique(array_merge(Article_Importer::$last_result['errors'] ?? [], Demo_Media::$errors)));
         $failed = !empty(Article_Importer::$last_result['errors']);
         if ($failed) $message = 'درون‌ریزی کامل نشد: '.implode('؛ ', array_unique(Article_Importer::$last_result['errors']));
+        if (Demo_Media::$warnings) {
+            $message .= ' — به‌دلیل محدودیت ثبت فایل در میزبان، '.count(Demo_Media::$warnings).' تصویر از WebP همراه قالب نمایش داده می‌شود؛ نیازی به فعال‌بودن تبدیل WebP نیست. جزئیات: ';
+            foreach (Demo_Media::$warnings as $asset=>$warning) $message .= $asset.' '.$warning.'؛ ';
+        }
         $cnt_hf       = wp_count_posts( 'zc_hf_template' )->publish ?? 0;
         $cnt_services = wp_count_posts( 'zc_service' )->publish ?? 0;
         $cnt_projects = wp_count_posts( 'zc_project' )->publish ?? 0;
@@ -816,7 +820,7 @@ class Demo_Seeder {
                 'price'       => '6900000',
                 'price_fa'    => '۶,۹۰۰,۰۰۰',
                 'old_price'   => '۹,۸۰۰,۰۰۰',
-                'ver'         => 'v4.0.0',
+                'ver'         => 'v4.0.1',
                 'cat_badge'   => 'سورس‌کد نرم‌افزار',
                 'sales'       => '+۱۹۵ فروش موفق',
                 'icon'        => 'fa-solid fa-boxes-stacked',
@@ -968,7 +972,7 @@ class Demo_Seeder {
             if($kind==='brands')$settings=self::demo_technologies(4);
             if($kind==='testimonials'){
                 $m=\Zarincode\Runtime260\Widgets\Native_Design::model('testimonials');
-                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.jpg','id'=>0];unset($row);$settings['n_testimonials_'.$key]=$rows;}
+                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.webp','id'=>0];unset($row);$settings['n_testimonials_'.$key]=$rows;}
             }
             $home_tree[] = self::make_elementor_section($hw['widget'],$settings);
             $home_shortcodes[] = $hw['sc'];
@@ -1005,7 +1009,7 @@ class Demo_Seeder {
             $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos','testimonials']][$slug]??[];
             foreach($extras as $extra){
                 $extraSettings=[];
-                if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
+                if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.webp'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.webp'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
                 if($extra==='client_logos')$extraSettings=self::demo_clients();
                 $tree[]=self::make_elementor_section('zarincode_'.$extra,$extraSettings);
             }
@@ -1152,7 +1156,7 @@ class Demo_Seeder {
      * SEED EVERYTHING IN ONE CALL
      */
     private static function demo_clients():array {
-        $clients=[];for($i=1;$i<=6;$i++)$clients[]=['name'=>'لوگوی مشتری شما — نمونه '.$i,'logo'=>['url'=>get_template_directory_uri().'/assets/images/demo-client-'.$i.'.png'],'alt'=>'لوگوی نمایشی قابل جایگزینی','service'=>'نمونه چیدمان همکاری','link'=>['url'=>home_url('/projects-portfolio/')]];
+        $clients=[];for($i=1;$i<=6;$i++)$clients[]=['name'=>'لوگوی مشتری شما — نمونه '.$i,'logo'=>['url'=>get_template_directory_uri().'/assets/images/demo-client-'.$i.'.webp'],'alt'=>'لوگوی نمایشی قابل جایگزینی','service'=>'نمونه چیدمان همکاری','link'=>['url'=>home_url('/projects-portfolio/')]];
         return ['title'=>'نمونه چیدمان همکاری‌های شما','description'=>'لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.','clients'=>$clients];
     }
     private static function demo_technologies(int $limit=8):array {
@@ -1202,8 +1206,10 @@ class Demo_Seeder {
         self::seed_woocommerce_products();
         self::seed_elementor_pages();
         $earlier_media_errors = Demo_Media::$errors;
+        $earlier_media_warnings = Demo_Media::$warnings;
         self::seed_blog_posts();
         Demo_Media::$errors = array_merge($earlier_media_errors, Demo_Media::$errors);
+        Demo_Media::$warnings = array_merge($earlier_media_warnings, Demo_Media::$warnings);
         self::seed_featured_images();
         self::seed_navigation_menus();
         Service_Demo::sidebars();
