@@ -6,9 +6,13 @@
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
-    "playwright": "1.64.1"
+    "@sparticuz/chromium": "133.0.0",
+    "playwright": "1.64.1",
+    "postcss": "8.5.32",
+    "postcss-selector-parser": "7.1.7"
   },
   "scripts": {
-    "test:contrast": "NODE_PATH=./node_modules node ../qa-product-contrast.cjs"
+    "test:contrast": "NODE_PATH=./node_modules node ../qa-product-contrast.cjs",
+    "test:native-widgets": "NODE_PATH=./node_modules node ../qa-native-widget-styles.cjs"
   }
 }

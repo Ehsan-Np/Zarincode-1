@@ -1,0 +1,16 @@
+/* Shared native-widget vocabulary. Theme/Redux tokens remain the source of truth. */
+body.zarincode-theme {
+ --zc-widget-accent:var(--color-accent,#fdd05b);
+ --zc-widget-ink:var(--zc-text-main,#1f2937);
+ --zc-widget-muted:var(--zc-text-secondary,#4b5563);
+ --zc-widget-surface:var(--zc-surface-solid,#fff);
+ --zc-widget-soft:var(--zc-bg-from,#f8f6f0);
+ --zc-widget-line:var(--zc-border-subtle,rgba(42,44,49,.12));
+ --zc-widget-radius:var(--zc-radius-xl,24px);
+ --zc-widget-control-radius:12px;
+ --zc-widget-shadow:var(--zc-shadow-sm,0 4px 20px rgb(42 44 49 / 4%));
+ --zc-widget-focus:var(--zc-text-main,#1f2937);
+ --zc-widget-success:#17653c;--zc-widget-error:#a02332;
+}
+html.dark body.zarincode-theme {--zc-widget-success:#89e0ae;--zc-widget-error:#ffabb5}
+/* A dark label is deliberate on the yellow accent, even in dark mode. */

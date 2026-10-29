@@ -1,0 +1,41 @@
+/* WordPress classic widgets + their native block replacements. No admin/editor chrome. */
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget {
+ min-inline-size:0;margin-block:0 24px;padding:clamp(18px,2vw,28px);color:var(--zc-widget-ink);
+ background:var(--zc-widget-surface);border:1px solid var(--zc-widget-line);border-radius:var(--zc-widget-radius);box-shadow:var(--zc-widget-shadow);overflow-wrap:anywhere;
+}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget-title,.widget .wp-block-heading) {display:flex;align-items:center;gap:10px;margin-block:0 20px;font-size:1.05rem;font-weight:800;line-height:1.7;color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget-title,.widget .wp-block-heading)::before {content:"";flex:0 0 5px;block-size:22px;background:var(--zc-widget-accent);border-radius:5px}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(ul,ol) {margin:0;padding-inline-start:20px}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_archive,.widget_categories,.widget_pages,.widget_meta,.widget_nav_menu,.widget_recent_entries,.widget_recent_comments,.widget_rss) :where(ul),
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.wp-block-categories-list,.wp-block-archives-list,.wp-block-latest-posts__list,.wp-block-latest-comments,.wp-block-page-list) {list-style:none;padding:0;margin:0}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(li) {padding-block:10px;border-block-end:1px solid var(--zc-widget-line);line-height:1.9}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(li:last-child) {border-block-end:0}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(li ul) {padding-inline-start:16px;margin-block-start:8px;border-inline-start:2px solid var(--zc-widget-line)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget,.wp-block-latest-posts,.wp-block-latest-comments,.wp-block-archives,.wp-block-categories) :where(a) {color:var(--zc-widget-ink);text-decoration-thickness:1px;text-underline-offset:4px}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(a:hover) {text-decoration:underline;text-decoration-color:var(--zc-widget-accent);text-decoration-thickness:2px}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.post-date,.rss-date,.wp-block-latest-posts__post-date,.wp-block-latest-posts__post-author,.wp-block-latest-comments__comment-date) {display:block;color:var(--zc-widget-muted);font-size:.78rem;margin-block-start:5px}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(img,video,iframe) {max-inline-size:100%}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(img,video) {block-size:auto;border-radius:14px}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_media_image,.widget_media_gallery) :where(figure) {margin:0}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(audio) {inline-size:100%;max-inline-size:100%}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(figcaption,.wp-caption-text) {color:var(--zc-widget-muted);font-size:.8rem;line-height:1.8;margin-block-start:8px}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget,.wp-block-search) :where(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=hidden]),select,textarea) {max-inline-size:100%;min-inline-size:0;min-block-size:46px;padding:11px 14px;font:inherit;color:var(--zc-widget-ink);background:var(--zc-widget-soft);border:1px solid var(--zc-widget-line);border-radius:var(--zc-widget-control-radius)}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(select) {inline-size:100%}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.search-form,.wp-block-search__inside-wrapper) {display:flex;align-items:stretch;gap:8px;min-inline-size:0;max-inline-size:100%;border-radius:14px}
+:where(body.zarincode-theme.zc-wp-widget-skin) .search-form label {flex:1;min-inline-size:0}
+:where(body.zarincode-theme.zc-wp-widget-skin) .search-form .search-field {inline-size:100%}
+:where(body.zarincode-theme.zc-wp-widget-skin) .wp-block-search__label {display:block;margin-block-end:10px;font-weight:700;color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget .search-submit,.wp-block-search__button,.widget input[type=submit]) {flex-shrink:0;min-block-size:46px;padding:10px 16px;border:1px solid transparent;border-radius:12px;background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);font:inherit;font-weight:800;cursor:pointer;margin:0}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.tagcloud,.wp-block-tag-cloud) {display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.tagcloud,.wp-block-tag-cloud) a {display:inline-flex;align-items:center;min-block-size:36px;padding:6px 12px;border:1px solid var(--zc-widget-line);background:var(--zc-widget-soft);color:var(--zc-widget-ink);border-radius:10px;line-height:1.6;text-decoration:none}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.tagcloud,.wp-block-tag-cloud) a:hover {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_calendar,.wp-block-calendar) table {inline-size:100%;table-layout:fixed;border-collapse:collapse;text-align:center;color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_calendar,.wp-block-calendar) :where(th,td) {padding:8px 2px;border:1px solid var(--zc-widget-line);background:transparent;font-size:.82rem;text-align:center}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_calendar,.wp-block-calendar) caption {font-weight:800;padding-block:0 14px;color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget_calendar,.wp-block-calendar) :is(#today,td a) {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-radius:6px;font-weight:800}
+:where(body.zarincode-theme.zc-wp-widget-skin) .wp-calendar-nav {display:flex;justify-content:space-between;gap:12px;margin-block-start:14px;font-size:.82rem}
+:where(body.zarincode-theme.zc-wp-widget-skin) .wp-block-latest-posts__featured-image img {border-radius:12px;object-fit:cover}
+:where(body.zarincode-theme.zc-wp-widget-skin) .widget :where(blockquote) {margin-inline:0;padding-inline-start:16px;border-inline-start:3px solid var(--zc-widget-accent)}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget,.wp-block-search) :where(a,button,input,select,textarea,[tabindex]):focus-visible {outline:2px solid var(--zc-widget-focus);outline-offset:3px}
+@media(max-width:480px){:where(body.zarincode-theme.zc-wp-widget-skin) .search-form{flex-wrap:wrap}:where(body.zarincode-theme.zc-wp-widget-skin) .search-form label{flex-basis:60%}}
+:where(body.zarincode-theme.zc-wp-widget-skin) :is(.widget,.wp-block-search) :where(input,textarea)::placeholder {color:var(--zc-widget-muted);opacity:1}

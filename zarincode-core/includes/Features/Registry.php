@@ -39,7 +39,7 @@ final class Registry {
 				'settings'     => 'feature_' . $id,
 				'translation'  => 'zarincode-core',
 				'cache_groups' => array( 'elementor-css' ),
-				'version'      => '4.0.1',
+				'version'      => '4.0.2',
 				'migration'    => 'No destructive migration. Missing option preserves enabled state.',
 				'tests'        => array( 'feature-resolver', 'disabled-widget-output', 'disabled-widget-assets' ),
 			);

@@ -820,7 +820,7 @@ class Demo_Seeder {
                 'price'       => '6900000',
                 'price_fa'    => '۶,۹۰۰,۰۰۰',
                 'old_price'   => '۹,۸۰۰,۰۰۰',
-                'ver'         => 'v4.0.1',
+                'ver'         => 'v4.0.2',
                 'cat_badge'   => 'سورس‌کد نرم‌افزار',
                 'sales'       => '+۱۹۵ فروش موفق',
                 'icon'        => 'fa-solid fa-boxes-stacked',

@@ -1,7 +1,7 @@
 <?php
 /** Theme presentation bootstrap and backwards-compatible public helper functions. */
 defined( 'ABSPATH' ) || exit;
-define( 'ZARINCODE_VERSION', '4.0.1' );
+define( 'ZARINCODE_VERSION', '4.0.2' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -113,4 +113,5 @@ add_action('after_setup_theme',static function(){
 \Zarincode\Theme\Core\Settings_Security::boot();
 \Zarincode\Theme\Compatibility\Editor::boot();
 
+\Zarincode\Theme\Compatibility\Native_Widget_Styles::boot();
 \Zarincode\Theme\Compatibility\Elementor_Styles::boot();

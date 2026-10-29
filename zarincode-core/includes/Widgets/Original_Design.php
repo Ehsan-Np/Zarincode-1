@@ -409,7 +409,7 @@ class Original_Design {
             [
                 'cat'     => 'source-code',
                 'cat_lbl' => 'سورس‌کد نرم‌افزار',
-                'ver'     => 'v4.0.1',
+                'ver'     => 'v4.0.2',
                 'icon'    => 'fa-solid fa-boxes-stacked',
                 'title'   => 'سورس‌کد سامانه جامع CRM، فاکتور و مدیریت مشتریان زرین‌یار',
                 'desc'    => 'سورس‌کد کامل PHP/Laravel + React با پنل حسابداری، تیکتینگ، پیامک و گزارش‌گیری پیشرفته.',

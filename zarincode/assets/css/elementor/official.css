@@ -1,67 +1,134 @@
-/* Reviewed families only. Not a certification of every installed Elementor/Pro widget. */
-.elementor-widget-heading .elementor-heading-title{font-family:inherit;color:var(--zc-text-primary,#2a2c31);overflow-wrap:anywhere}
-.elementor-widget-text-editor .elementor-widget-container{line-height:1.9;overflow-wrap:anywhere}
-.elementor-widget-button .elementor-button{border-radius:var(--zc-radius-pill,999px);background:var(--color-accent,#fdd05b);color:#202227;padding:.85em 1.5em;line-height:1.5}
-.elementor-widget-button .elementor-button:hover{filter:brightness(.96)}
-.elementor-widget-image img{max-inline-size:100%;height:auto}
-.elementor-widget-icon-box .elementor-icon-box-title,.elementor-widget-image-box .elementor-image-box-title{font-family:inherit}
-.elementor-widget-progress .elementor-progress-wrapper{border-radius:999px;overflow:hidden}
-.elementor-widget-progress .elementor-progress-bar{background:var(--color-accent,#fdd05b);color:#202227}
-.elementor-widget-accordion .elementor-accordion-item,.elementor-widget-toggle .elementor-toggle-item{border-color:var(--zc-border-subtle,#d9d9d9)}
-.elementor-widget-tabs .elementor-tab-title.elementor-active{color:var(--zc-text-primary,#2a2c31);border-color:var(--color-accent,#fdd05b)}
-.elementor-widget-form .elementor-field:not(.elementor-select-wrapper),.elementor-widget-search-form input{border-radius:var(--zc-radius-md,12px);min-inline-size:0;font:inherit}
-.elementor-widget-form .elementor-message{overflow-wrap:anywhere}
-.elementor-widget-divider .elementor-divider-separator{border-color:var(--zc-border-subtle,#d9d9d9)}
-.elementor-widget-social-icons .elementor-social-icon{border-radius:12px}
-.elementor-widget-testimonial .elementor-testimonial-content{line-height:1.9}
-.elementor-widget-price-table .elementor-price-table,.elementor-widget-call-to-action .elementor-cta{border-radius:var(--zc-radius-bento,28px);overflow:hidden}
-.elementor-widget :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){.elementor-widget-button .elementor-button{transition:none}}
-/* Native generated per-widget settings remain more specific than these defaults. */
-.elementor .elementor-widget-form .elementor-field-group .elementor-field,
-.elementor .elementor-widget-login .elementor-field-group .elementor-field,
-.elementor .elementor-widget-search-form .elementor-search-form__input{color:var(--zc-text-primary,#2a2c31)}
-.elementor .elementor-widget-price-table .elementor-price-table__features-list{color:var(--zc-text-primary,#2a2c31)}
-.elementor .swiper-pagination-bullet{min-width:24px;min-height:24px;background-clip:content-box;border:8px solid transparent;box-sizing:border-box}
-.elementor .show-password-input{min-width:24px;min-height:24px}
-.elementor .elementor-widget-wc-add-to-cart .elementor-button{background:var(--color-accent,#fdd05b);color:#202227}
-.elementor .elementor-widget-woocommerce-my-account .woocommerce-LostPassword a{color:var(--zc-text-primary,#2a2c31)}
+/* Native Elementor defaults: low specificity, no !important, no custom zc widget selectors.
+   Per-instance generated Elementor control CSS remains authoritative. Behaviour stays with Elementor. */
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-heading .elementor-heading-title {color:var(--zc-widget-ink);font-family:inherit;line-height:1.55;letter-spacing:-.02em;overflow-wrap:anywhere}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-text-editor {color:var(--zc-widget-muted);line-height:1.95;overflow-wrap:anywhere}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-text-editor :where(p:last-child) {margin-block-end:0}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-text-editor :where(a) {color:var(--zc-widget-ink);text-decoration:underline;text-decoration-color:var(--zc-widget-accent);text-underline-offset:5px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-text-editor :where(blockquote) {border-inline-start:4px solid var(--zc-widget-accent);padding:18px 22px;margin-inline:0;border-radius:12px;background:var(--zc-widget-soft);color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button {min-block-size:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:.85em 1.6em;line-height:1.5;font-weight:800;border:1px solid transparent;border-radius:var(--zc-radius-pill,9999px);background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);box-shadow:var(--zc-widget-shadow);transition:box-shadow .2s,transform .2s}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button:hover {box-shadow:var(--zc-shadow-md);transform:translateY(-2px)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button:active {transform:translateY(0)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image img {max-inline-size:100%;height:auto;border-radius:var(--zc-widget-radius)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image .widget-image-caption {color:var(--zc-widget-muted);font-size:.85rem;margin-block-start:12px;line-height:1.8}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-video .elementor-wrapper,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-google_maps iframe {border-radius:var(--zc-widget-radius);overflow:hidden}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-video .elementor-custom-embed-play i {color:var(--zc-widget-accent);text-shadow:0 2px 12px #0008}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-divider .elementor-divider {--divider-color:var(--zc-widget-line)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-divider .elementor-divider-separator {border-color:var(--zc-widget-line)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon .elementor-icon,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box .elementor-icon {color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon.elementor-view-stacked .elementor-icon,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box.elementor-view-stacked .elementor-icon {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon.elementor-view-framed .elementor-icon,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box.elementor-view-framed .elementor-icon {border-color:var(--zc-widget-accent);border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box > .elementor-widget-container,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-box > .elementor-widget-container,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-testimonial > .elementor-widget-container {padding:clamp(20px,3vw,32px);background:var(--zc-widget-surface);border:1px solid var(--zc-widget-line);border-radius:var(--zc-widget-radius);box-shadow:var(--zc-widget-shadow)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box .elementor-icon-box-title,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-box .elementor-image-box-title {color:var(--zc-widget-ink);font-weight:800;line-height:1.6}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-box .elementor-icon-box-description,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-box .elementor-image-box-description {color:var(--zc-widget-muted);line-height:1.9}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-box .elementor-image-box-img img {border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-list .elementor-icon-list-items {row-gap:12px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-list .elementor-icon-list-text {color:var(--zc-widget-ink);line-height:1.8}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-icon-list .elementor-icon-list-icon :is(i,svg) {color:var(--zc-widget-ink);fill:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-counter .elementor-counter-number-wrapper {color:var(--zc-widget-ink);font-weight:900;font-variant-numeric:tabular-nums;line-height:1.3}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-counter .elementor-counter-title {color:var(--zc-widget-muted);font-size:1rem;line-height:1.8;margin-block-start:8px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-progress .elementor-title {color:var(--zc-widget-ink);font-weight:700;line-height:1.8}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-progress .elementor-progress-wrapper {background:var(--zc-widget-soft);border:1px solid var(--zc-widget-line);border-radius:999px;overflow:hidden}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-progress .elementor-progress-bar {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);font-weight:800;min-block-size:30px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-progress .elementor-progress-percentage {padding-inline:12px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-star-rating .elementor-star-rating,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-rating .e-rating {--e-rating-icon-marked-color:var(--zc-widget-accent);--e-rating-icon-unmarked-color:var(--zc-widget-line);color:var(--zc-widget-accent)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-star-rating .elementor-star-rating__title {color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-testimonial .elementor-testimonial-content {color:var(--zc-widget-ink);font-size:1.05rem;line-height:2}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-testimonial .elementor-testimonial-name {color:var(--zc-widget-ink);font-weight:800}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-testimonial .elementor-testimonial-job {color:var(--zc-widget-muted)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-testimonial .elementor-testimonial-image img {border:3px solid var(--zc-widget-accent);border-radius:50%}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-accordion .elementor-accordion-item,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-toggle .elementor-toggle-item {margin-block-end:10px;border:1px solid var(--zc-widget-line);border-radius:16px;overflow:hidden}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-accordion .elementor-tab-title,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-toggle .elementor-tab-title {padding:20px;color:var(--zc-widget-ink);background:var(--zc-widget-surface);font-weight:800;line-height:1.7}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-accordion .elementor-tab-title.elementor-active,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-toggle .elementor-tab-title.elementor-active {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-accordion .elementor-tab-content,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-toggle .elementor-tab-content {padding:20px;color:var(--zc-widget-muted);background:var(--zc-widget-surface);border-color:var(--zc-widget-line);line-height:1.95}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-accordion .e-n-accordion-item {border:1px solid var(--zc-widget-line);border-radius:16px;background:var(--zc-widget-surface);margin-block-end:10px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-accordion .e-n-accordion-item-title {padding:20px;color:var(--zc-widget-ink);border-radius:15px;line-height:1.7}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-accordion .e-n-accordion-item[open] > .e-n-accordion-item-title {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-tabs .elementor-tabs-wrapper,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-tabs .e-n-tabs-heading {gap:8px;padding:6px;background:var(--zc-widget-soft);border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-tabs .elementor-tab-title,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-tabs .e-n-tab-title {color:var(--zc-widget-ink);border-radius:12px;border-color:transparent;line-height:1.7}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-tabs .elementor-tab-title.elementor-active,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-n-tabs .e-n-tab-title[aria-selected=true] {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-color:transparent}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-tabs .elementor-tab-content {padding:24px;border-color:var(--zc-widget-line);border-radius:16px;color:var(--zc-widget-ink);background:var(--zc-widget-surface);line-height:1.9}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-social-icons .elementor-social-icon {border-radius:12px;transition:transform .2s}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-social-icons .elementor-social-icon:hover {transform:translateY(-2px)}
+/* Social network brand colours and video/media aspect ratios intentionally stay native. */
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-carousel .swiper-slide-image,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-gallery .gallery-item img,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-gallery .e-gallery-image {border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-gallery .gallery-caption {color:var(--zc-widget-muted);line-height:1.8}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-carousel .elementor-swiper-button {color:var(--color-accent-contrast,#2a2c31);background:var(--zc-widget-accent);border-radius:50%;padding:8px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-image-carousel .swiper-pagination-bullet-active {background:var(--zc-widget-accent)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-alert .elementor-alert {border:1px solid var(--zc-widget-line);border-inline-start:4px solid var(--zc-widget-accent);border-radius:16px;padding:20px 24px;background:var(--zc-widget-surface);color:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-alert .elementor-alert-danger {border-inline-start-color:var(--zc-widget-error)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-alert .elementor-alert-success {border-inline-start-color:var(--zc-widget-success)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-alert .elementor-alert-dismiss {min-inline-size:32px;min-block-size:32px;color:inherit}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-alert .elementor-alert-description {line-height:1.9}
+/* Pro families are progressive presentation only; no Pro plugin is shipped or required. */
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-field:not(.elementor-select-wrapper),:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-login .elementor-field,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-search-form .elementor-search-form__input,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-search .e-search-input {min-inline-size:0;min-block-size:48px;padding:12px 16px;font:inherit;color:var(--zc-widget-ink);background:var(--zc-widget-soft);border:1px solid var(--zc-widget-line);border-radius:12px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-field-label,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-login .elementor-field-label {color:var(--zc-widget-ink);font-weight:700;line-height:1.8;margin-block-end:6px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-button,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-login .elementor-button,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-search-form .elementor-search-form__submit,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-search .e-search-submit {min-block-size:48px;padding:12px 24px;border-radius:12px;background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);font-weight:800;border:1px solid transparent}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-message {overflow-wrap:anywhere;line-height:1.8}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-message-danger {color:var(--zc-widget-error)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-form .elementor-message-success {color:var(--zc-widget-success)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-call-to-action .elementor-cta {border:1px solid var(--zc-widget-line);border-radius:var(--zc-widget-radius);overflow:hidden;background:var(--zc-widget-surface);box-shadow:var(--zc-widget-shadow)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__header {background:var(--zc-dark,#2a2c31);color:#fff;padding:28px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__heading {color:#fff}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__subheading {color:#e5e7eb}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__price,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__features-list {color:var(--zc-widget-ink);background:var(--zc-widget-surface)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__footer {background:var(--zc-widget-soft);color:var(--zc-widget-muted)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-table .elementor-price-table__button,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-call-to-action .elementor-cta__button {border-radius:999px;padding:12px 24px;background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-color:transparent}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-list .elementor-price-list-title,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-list .elementor-price-list-price {color:var(--zc-widget-ink);font-weight:800}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-list .elementor-price-list-description {color:var(--zc-widget-muted);line-height:1.9}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-price-list .elementor-price-list-separator {border-color:var(--zc-widget-line)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__card {border:1px solid var(--zc-widget-line);border-radius:var(--zc-widget-radius);background:var(--zc-widget-surface);box-shadow:var(--zc-widget-shadow);overflow:hidden}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__title,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__title a {color:var(--zc-widget-ink);line-height:1.7}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__excerpt p {color:var(--zc-widget-muted);line-height:1.9}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__read-more {color:var(--zc-widget-ink);font-weight:800;text-decoration:underline;text-decoration-color:var(--zc-widget-accent);text-underline-offset:5px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-posts .elementor-post__badge {background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-radius:999px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-countdown .elementor-countdown-item {padding:22px 14px;background:var(--zc-dark,#2a2c31);color:#fff;border-radius:16px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-countdown .elementor-countdown-digits {color:var(--zc-widget-accent);font-weight:900;font-variant-numeric:tabular-nums}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-countdown .elementor-countdown-label {color:#fff;line-height:1.8}
+/* Transparent utility widgets (HTML, shortcode, spacer, anchor, sidebar, inner section)
+   keep their layout; styling their arbitrary children would corrupt third-party output. */
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible {outline:2px solid var(--zc-widget-focus);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-social-icons .elementor-social-icon {transition:none;transform:none}}
 
 /* WCAG 2.2 AA: factory palette gaps outside the branded kit defaults.
    Per-instance Elementor CSS keeps higher specificity, so explicit author choices still win. */
 /* Elementor Pro slides/flip-box ship a hardcoded teal surface behind white text. */
-.elementor .elementor-slide-heading,
-.elementor .elementor-slide-description,
-.elementor .elementor-slides .swiper-slide-inner .elementor-slide-button,
-.elementor .elementor-flip-box__layer__title,
-.elementor .elementor-flip-box__layer__description{color:#202227}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-slide-heading,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-slide-description,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-slides .swiper-slide-inner .elementor-slide-button,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-flip-box__layer__title,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-flip-box__layer__description{color:#202227}
 /* Link-in-bio and contact-button factory blue/green surfaces need a darker label. */
-.elementor .e-link-in-bio__cta-text,
-.elementor .e-contact-buttons .e-contact-buttons__chat-button-text,
-.elementor .e-contact-buttons .e-contact-buttons__contact-title{color:#16181d}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .e-link-in-bio__cta-text,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .e-contact-buttons .e-contact-buttons__chat-button-text,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .e-contact-buttons .e-contact-buttons__contact-title{color:#16181d}
 /* New core button widget pairs a bright blue surface with dark default text. */
-.elementor .e-button-base.e-default-button{color:#fff}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .e-button-base.e-default-button{background:var(--zc-widget-accent);color:var(--color-accent-contrast,#2a2c31);border-radius:var(--zc-radius-pill,9999px)}
 /* Floating coupon bars print their code in light blue directly on white. */
-.elementor .e-floating-bars__coupon-text{color:#2f5fd0}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .e-floating-bars__coupon-text{color:#2f5fd0}
 /* Twitter-blue share action darkened so its white label passes 4.5:1. */
-.elementor .elementor-blockquote__tweet-label{background-color:#1565c0}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-blockquote__tweet-label{background-color:#1565c0}
 /* Elementor Pro my-account tabs style the lost-password link with a failing blue. */
-.elementor .elementor-widget-woocommerce-my-account .e-my-account-tab:not(.e-my-account-tab__dashboard--custom) .woocommerce .woocommerce-LostPassword a{color:var(--zc-text-primary,#2a2c31)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .elementor-widget-woocommerce-my-account .e-my-account-tab:not(.e-my-account-tab__dashboard--custom) .woocommerce .woocommerce-LostPassword a{color:var(--zc-widget-ink,#2a2c31)}
 /* Prism factory token colours on the light code surface. */
-.elementor .prismjs-default .token.function,
-.elementor .prismjs-default .token.class-name{color:#b3123c}
-.elementor .prismjs-default .token.comment,
-.elementor .prismjs-default .token.prolog,
-.elementor .prismjs-default .token.doctype,
-.elementor .prismjs-default .token.cdata{color:#5f6368}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.function,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.class-name{color:#b3123c}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.comment,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.prolog,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.doctype,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.cdata{color:#5f6368}
 /* Prism string/number token colours on the light code surface. */
-.elementor .prismjs-default .token.string,
-.elementor .prismjs-default .token.attr-value,
-.elementor .prismjs-default .token.url,
-.elementor .prismjs-default .token.regex{color:#0f6b3f}
-.elementor .prismjs-default .token.boolean,
-.elementor .prismjs-default .token.number,
-.elementor .prismjs-default .token.constant,
-.elementor .prismjs-default .token.symbol{color:#0f5c8c}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.string,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.attr-value,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.url,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.regex{color:#0f6b3f}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.boolean,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.number,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.constant,
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor .prismjs-default .token.symbol{color:#0f5c8c}
 /* Keyboard affordance for scrollable code regions enhanced by theme scripts. */
-pre[tabindex]:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+:where(body.zarincode-theme.zc-elementor-widget-skin) pre[tabindex]:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+@media(prefers-reduced-motion:reduce){:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button:hover,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-button .elementor-button:active,:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-social-icons .elementor-social-icon:hover{transform:none}}
+:where(body.zarincode-theme.zc-elementor-widget-skin) :is(.elementor-widget-form,.elementor-widget-login,.elementor-widget-search-form,.elementor-widget-search) :where(input,textarea)::placeholder {color:var(--zc-widget-muted);opacity:1}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-text-path text {fill:var(--zc-widget-ink)}
+:where(body.zarincode-theme.zc-elementor-widget-skin) .elementor-widget-soundcloud .elementor-widget-container {border-radius:var(--zc-widget-radius);overflow:hidden}
