@@ -53,7 +53,7 @@ final class App {
             $config = [
                 'enabled' => self::enabled(),
                 'prefix' => 'zarincode-pwa-' . substr( md5( home_url( '/' ) ), 0, 12 ) . '-',
-                'version' => ZARINCODE_CORE_VERSION . '-' . md5_file( ZARINCODE_CORE_PATH . 'assets/pwa/worker.js' ),
+                'version' => ZARINCODE_CORE_VERSION . '-' . md5_file( ZARINCODE_CORE_PATH . 'assets/pwa/worker.js' ) . '-' . (string)get_option('zarincode_cache_epoch','0'),
                 'offline' => self::url( 'offline' ),
                 'assets' => [ $base . 'icon-192.png', $base . 'icon-512.png', $base . 'icon-maskable-512.png' ],
             ];
