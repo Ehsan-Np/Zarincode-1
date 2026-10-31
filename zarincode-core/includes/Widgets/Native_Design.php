@@ -16,7 +16,15 @@ final class Native_Design {
         static $cache=[];$key=$kind.($kind==='page_section'?'_'.str_replace('-','_',$section):'');
         if(!preg_match('/^[a-z_]+$/D',$key))return [];
         $urls=[get_template_directory_uri(),untrailingslashit(home_url())];$cacheKey=$key.'|'.implode('|',$urls);
-        if(!array_key_exists($cacheKey,$cache)){$path=__DIR__.'/models/'.$key.'.json';$raw=is_file($path)?json_decode(file_get_contents($path),true):[];$cache[$cacheKey]=self::portable($raw?:[],$urls);foreach($cache[$cacheKey]['parts']??[] as $part=>$def)$cache[$cacheKey]['parts'][$part]['label']=self::part_label($part,$def);}
+        if(!array_key_exists($cacheKey,$cache)){$path=__DIR__.'/models/'.$key.'.json';$raw=is_file($path)?json_decode(file_get_contents($path),true):[];$cache[$cacheKey]=self::portable($raw?:[],$urls);$zc_seen=[];foreach($cache[$cacheKey]['parts']??[] as $part=>$def){
+                $auto=self::part_label($part,$def);
+                $raw=trim(preg_replace('/^(?:بخش|متن|عنوان|جزء):\s*/u','',(string)($def['label']??'')));
+                if(mb_strlen($raw)>46)$raw=mb_substr($raw,0,46).'…';
+                // نقش‌نگاری کوتاه وقتی معتبر است؛ وگرنه برچسب واقعی درخت (کوتاه‌شده) تا گزینه‌های تکراری «ناحیه چیدمان» از پنل حذف شود.
+                $label=in_array($auto,['تصویر','متن','آیکون','ناحیه چیدمان','جزء چیدمان'],true)&&$raw!=='' ? $raw : $auto;
+                if(isset($zc_seen[$label]))$label.=' ('.(++$zc_seen[$label]).')';else $zc_seen[$label]=1;
+                $cache[$cacheKey]['parts'][$part]['label']=$label;
+            }}
         return $cache[$cacheKey];
     }
     private static function portable($value,array $urls){if(is_array($value)){foreach($value as $k=>$v)$value[$k]=self::portable($v,$urls);return $value;}return is_string($value)?str_replace(['{{THEME}}','{{HOME}}'],$urls,$value):$value;}
