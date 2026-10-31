@@ -30,3 +30,4 @@ coverage/
 !tools/browser/package.json
 !tools/browser/package-lock.json
 !tools/browser/sbom.cdx.json
+/wpqa/
