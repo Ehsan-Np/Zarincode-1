@@ -895,6 +895,7 @@ class Demo_Seeder {
             ['widget'=>'zarincode_steps','sc'=>'[zarincode_widget type="steps"]'],
             ['widget'=>'zarincode_portfolio','sc'=>'[zarincode_widget type="portfolio"]'],
             ['widget'=>'zarincode_why_us','sc'=>'[zarincode_widget type="why_us"]'],
+            ['widget'=>'zarincode_pricing','sc'=>'[zarincode_widget type="pricing"]'],
             ['widget'=>'zarincode_blog','sc'=>'[zarincode_widget type="blog"]'],
             ['widget'=>'zarincode_promo','sc'=>'[zarincode_widget type="promo"]'],
         ];

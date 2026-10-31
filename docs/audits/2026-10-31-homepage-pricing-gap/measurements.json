@@ -1,0 +1,29 @@
+{
+ "date": "2026-10-31",
+ "viewport": "1440x1000 (desktop), 390x844 (mobile emulation)",
+ "before": {
+  "note": "native.css had padding:0 on .zc-hero-composition -> slider column could sit flush under a solid header",
+  "composition_padding_top_desktop": "0px",
+  "composition_padding_top_mobile": "0px",
+  "pricing_section_on_home": "absent (never present in shipped demo home)"
+ },
+ "after": {
+  "composition_padding_top_desktop": "2.5rem (40px, matches legacy .zc-hero-section rhythm)",
+  "composition_padding_top_mobile": "1.25rem (20px)",
+  "measured_slider_gap_from_floating_header_px_desktop": 30,
+  "measured_slider_gap_from_floating_header_px_mobile": "children pushed by 1.25rem; stacked order intro->slider unchanged",
+  "pricing_section_on_home": "zarincode_pricing between why_us and blog in seeder $home_widgets AND in demo WXR home elementor data",
+  "pricing_render": {
+   "pricing_cards": 12,
+   "feature_items": 72,
+   "features_source": "icon_list"
+  }
+ },
+ "render_evidence": [
+  "01-home-header-to-slider-gap-fixed.png",
+  "02-home-pricing-section-restored.png",
+  "03-home-mobile-gap.png",
+  "04-product-page-spacing-unchanged.png"
+ ],
+ "live_test": "fresh WP 7.1.4 + Elementor 4.3.2 + WooCommerce 11.2 + Redux; Demo_Seeder::seed_elementor_pages(); homepage page_on_front rebuilt with pricing; screenshots via Playwright Chromium"
+}
