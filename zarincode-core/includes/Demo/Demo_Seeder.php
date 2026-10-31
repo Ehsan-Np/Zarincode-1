@@ -908,8 +908,10 @@ class Demo_Seeder {
             $settings=[];
             if(in_array($kind,['products','services','portfolio','blog'],true))$settings=['n_'.$kind.'_source'=>'query','n_'.$kind.'_count'=>8];
             if($kind==='pricing'){
-                $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');
-                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['features_source']='icon_list';unset($row);$settings['n_pricing_'.$key]=$rows;}
+                // «شکل قبلی» جدول لیست قیمت = عین ترکیب صفحهٔ تعرفه خدمات (لیست پلن‌ها + کارت‌ها + ماتریس امکانات).
+                foreach(self::pricing_body_sections('h2') as $section)$home_tree[]=$section;
+                $home_shortcodes[]='[zarincode_widget type="pricing"]';
+                continue;
             }
             if($kind==='brands')$settings=self::demo_technologies(4);
             if($kind==='testimonials'){
@@ -1116,16 +1118,33 @@ class Demo_Seeder {
         }unset($row);
         return ['n_brands_marquee_track_items_1'=>array_slice($rows,0,$limit)];
     }
-    private static function seed_studio_pages():void {
-        self::upsert_post_with_elementor('page','trust-and-credentials','اعتبارنامه‌ها و شفافیت کسب‌وکار',[self::make_elementor_section('heading',['title'=>'اعتبار، با امکان استعلام','header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>نشان‌های این بخش تنها پس از صدور برای دامنه شما و ثبت کد رسمی در ویجت اعتبارنامه‌ها نمایش داده می‌شوند. خالی بودن بخش به معنی دریافت مجوز نیست.</p>']),self::make_elementor_section('zarincode_trust_badges',[])],'');
-
+    /** Canonical panel settings of the pricing list widget («شکل قبلی»): the exact 41 keys of the real pricing page. */
+    private static function pricing_widget_settings(): array {
+        static $cache=null;
+        if($cache===null)$cache=(array)json_decode((string)file_get_contents(__DIR__.'/fixtures/pricing-widget-settings.json'),true);
+        return $cache;
+    }
+    /**
+     * Exact body of the pricing page («شکل قبلی» جدول لیست قیمت): heading + list + plan cards + matrix.
+     * Shared verbatim by the pricing page (h1) and the homepage (h2) so both stay identical forever.
+     */
+    private static function pricing_body_sections(string $heading_tag): array {
         $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=Service_Demo::pricing_features($m);$cards=[];
         foreach($m['repeaters']['pricing_grid_items_1']['default'] as $i=>$plan){
             $items=[];foreach($features as $feature)if($feature['plan_key']===($plan['plan_key']??$plan['_id']))$items[]=['text'=>$feature['text'],'icon'=>$feature['icon'],'included'=>'yes'];
             $cards[]=['id'=>self::gen_id(),'elType'=>'widget','widgetType'=>'zarincode_pricing_plan','settings'=>['eyebrow'=>'طراحی وب‌سایت','title'=>$plan['heading_text_1'],'price'=>$plan['div_text_3']??'با مشاوره','description'=>$plan['div_text_1']??'','features'=>$items,'skin'=>$i===1?'night':'editorial','featured'=>$i===1?'yes':'','link'=>['url'=>home_url('/contact-us/')]],'elements'=>[]];
         }
         $grid=['id'=>self::gen_id(),'elType'=>'container','settings'=>['content_width'=>'full','css_classes'=>'zc-pricing-composition'],'elements'=>$cards];
-        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',[self::make_elementor_section('heading',['title'=>'تعرفه خدمات؛ برآورد نهایی پس از نیازسنجی','header_size'=>'h1']),self::make_elementor_section('zarincode_pricing',[]),$grid,self::make_elementor_section('zarincode_service_matrix',[])],'');
+        return [
+            self::make_elementor_section('heading',['title'=>'تعرفه خدمات؛ برآورد نهایی پس از نیازسنجی','header_size'=>$heading_tag]),
+            self::make_elementor_section('zarincode_pricing',self::pricing_widget_settings()),
+            $grid,
+            self::make_elementor_section('zarincode_service_matrix',[]),
+        ];
+    }
+    private static function seed_studio_pages():void {
+        self::upsert_post_with_elementor('page','trust-and-credentials','اعتبارنامه‌ها و شفافیت کسب‌وکار',[self::make_elementor_section('heading',['title'=>'اعتبار، با امکان استعلام','header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>نشان‌های این بخش تنها پس از صدور برای دامنه شما و ثبت کد رسمی در ویجت اعتبارنامه‌ها نمایش داده می‌شوند. خالی بودن بخش به معنی دریافت مجوز نیست.</p>']),self::make_elementor_section('zarincode_trust_badges',[])],'');
+        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',self::pricing_body_sections('h1'),'');
         self::upsert_post_with_elementor('page','seo-performance','سئو و بهبود عملکرد',[self::make_elementor_section('heading',['title'=>'تخصص سئو؛ از تحلیل تا رشد پایدار','header_size'=>'h1']),self::make_elementor_section('zarincode_seo_audit',[])],'');
         self::upsert_post_with_elementor('page','technologies','فناوری‌ها و تخصص تیم زرین کد',[self::make_elementor_section('zarincode_brands',self::demo_technologies())],'');
     }

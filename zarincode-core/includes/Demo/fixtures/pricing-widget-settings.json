@@ -1,0 +1,1423 @@
+{
+ "n_pricing_icon_1_icon":{
+  "value":"fas fa-tags",
+  "library":"fa-solid"
+ },
+ "n_pricing_icon_1_visible":"yes",
+ "n_pricing_badge_pill_text_1":"TRANSPARENT PRICING",
+ "n_pricing_badge_pill_1_visible":"yes",
+ "n_pricing_section_title_text_1":"تعرفه خدمات تخصصی",
+ "n_pricing_highlight_text_1":"زرین کد",
+ "n_pricing_highlight_1_visible":"yes",
+ "n_pricing_section_title_1_tag":"h2",
+ "n_pricing_section_title_1_visible":"yes",
+ "n_pricing_section_desc_1_body":"مبالغ و زمان‌های این دمو صرفاً برای نمایش ساختار پلن‌اند. پیشنهاد نهایی پس از بررسی دامنه و نیاز پروژه ارائه می‌شود.",
+ "n_pricing_section_desc_1_visible":"yes",
+ "n_pricing_filter_tab_1_data_pricing_target":"web-design",
+ "n_pricing_filter_tab_text_1":"طراحی سایت",
+ "n_pricing_filter_tab_1_visible":"yes",
+ "n_pricing_filter_tab_2_data_pricing_target":"software-dev",
+ "n_pricing_filter_tab_text_2":"برنامه‌نویسی نرم‌افزار",
+ "n_pricing_filter_tab_2_visible":"yes",
+ "n_pricing_filter_tab_3_data_pricing_target":"seo-social",
+ "n_pricing_filter_tab_text_3":"سئو سایت و شبکه‌های اجتماعی",
+ "n_pricing_filter_tab_3_visible":"yes",
+ "n_pricing_filter_tab_4_data_pricing_target":"content",
+ "n_pricing_filter_tab_text_4":"تولید محتوا",
+ "n_pricing_filter_tab_4_visible":"yes",
+ "n_pricing_filter_tabs_1_visible":"yes",
+ "n_pricing_section_head_1_visible":"yes",
+ "n_pricing_pricing_grid_1_data_pricing_panel":"web-design",
+ "n_pricing_pricing_grid_1_visible":"yes",
+ "n_pricing_pricing_grid_2_data_pricing_panel":"software-dev",
+ "n_pricing_pricing_grid_2_visible":"yes",
+ "n_pricing_pricing_grid_3_data_pricing_panel":"seo-social",
+ "n_pricing_pricing_grid_3_visible":"yes",
+ "n_pricing_pricing_grid_4_data_pricing_panel":"content",
+ "n_pricing_pricing_grid_4_visible":"yes",
+ "n_pricing_container_1_visible":"yes",
+ "n_pricing_pricing_section_1_visible":"yes",
+ "n_pricing_pricing_grid_items_1":[
+  {
+   "_id":"925febdd",
+   "_variant":"v1",
+   "_enabled":"yes",
+   "heading_text_1":"پلن نقره‌ای (طراحی سایت)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"تحویل از ۱۵ تا ۲۵ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۱۰ تا ۱۵ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"طراحی المنتوری مدرن با استایل Crextio",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"شامل ۱۰ صفحه کاربردی و استاندارد",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"۳ بار ویرایش و بازبینی رایگان",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"هاست پرسرعت ۵ گیگ یک‌ساله رایگان",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"ثبت دامنه .ir رایگان به نام کارفرما",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"امنیت کامل و سئو تکنیکال پایه",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "icon_8_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "span_text_7":"۶ ماه گارانتی و پشتیبانی فنی رایگان",
+   "span_7_visible":"yes",
+   "list_item_7_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_9_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_9_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"925febdd",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"91aba46a",
+   "_variant":"v2",
+   "_enabled":"yes",
+   "icon_1_icon":{
+    "value":"fas fa-crown",
+    "library":"fa-solid"
+   },
+   "icon_1_visible":"yes",
+   "popular_ribbon_text_1":"پیشنهادی زرین کد",
+   "popular_ribbon_1_visible":"yes",
+   "heading_text_1":"پلن طلایی (فروشگاهی و شرکتی)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_2_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_2_visible":"yes",
+   "div_text_1":"تحویل از ۲۵ تا ۳۵ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۲۰ تا ۳۰ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_1":"طراحی اختصاصی UI/UX و ویجت‌های المنتوری",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_2":"شامل ۱۵ صفحه + فروشگاه کامل ووکامرس",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_3":"اتصال به درگاه بانکی، پیامک و فاکتور رسمی",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_4":"هاست VIP هشت گیگ + دامنه .com و .ir رایگان",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_5":"بهینه‌سازی سرعت (نمره بالای ۹۵ در گوگل)",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_8_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "span_text_6":"سئو داخلی و ساختار اسکیما پیشرفته",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "icon_9_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_9_visible":"yes",
+   "span_text_7":"۱ سال گارانتی و پشتیبانی VIP رایگان",
+   "span_7_visible":"yes",
+   "list_item_7_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_yellow_1_action":"modal",
+   "btn_yellow_1_target":"zc-consult-modal",
+   "btn_yellow_1_href":{
+    "url":""
+   },
+   "btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_10_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_10_visible":"yes",
+   "btn_yellow_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"91aba46a",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"7b931227",
+   "_variant":"v3",
+   "_enabled":"yes",
+   "heading_text_1":"پلن الماسی (فول اختصاصی)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"تحویل از ۳۵ تا ۵۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۳۵ تا ۶۵ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"کدنویسی ۱۰۰٪ اختصاصی قالب و افزونه‌های مورد نیاز",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"طراحی تمامی صفحات بدون محدودیت",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"مگامنوساز، فیلتر ایجکس و پنل کاربری اختصاصی",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"سرور ابری اختصاصی یک‌ساله + دامنه بین‌المللی",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"پکیج امنیت سازمانی و ضد حملات DDoS",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"استراتژی کامل سئو و ۵ مقاله تخصصی رایگان",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "icon_8_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "span_text_7":"۱ سال گارانتی طلایی + آموزش کامل ویدئویی",
+   "span_7_visible":"yes",
+   "list_item_7_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_9_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_9_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"7b931227",
+   "features_source":"icon_list"
+  }
+ ],
+ "n_pricing_pricing_grid_items_2":[
+  {
+   "_id":"9b627c60",
+   "_variant":"v1",
+   "_enabled":"yes",
+   "heading_text_1":"پلن MVP استارتاپی",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"تحویل از ۳۰ تا ۴۵ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۲۵ تا ۴۰ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"تحلیل سیستم و طراحی دیتابیس استاندارد",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"توسعه بک‌اند با PHP/Laravel یا Node.js",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"داشبورد مدیریتی مدرن با رابط Crextio",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"احراز هویت پیامکی و سطوح دسترسی کاربران",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"مستندسازی کامل API و سورس‌کد باز",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"۶ ماه گارانتی رفع باگ رایگان",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_8_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"9b627c60",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"eef1ec80",
+   "_variant":"v2",
+   "_enabled":"yes",
+   "icon_1_icon":{
+    "value":"fas fa-crown",
+    "library":"fa-solid"
+   },
+   "icon_1_visible":"yes",
+   "popular_ribbon_text_1":"پیشنهادی زرین کد",
+   "popular_ribbon_1_visible":"yes",
+   "heading_text_1":"پلن سامانه سازمانی و پلتفرم",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_2_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_2_visible":"yes",
+   "div_text_1":"تحویل از ۴۵ تا ۶۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۴۵ تا ۸۰ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_1":"معماری ماژولار و مقیاس‌پذیر (Micro-ready)",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_2":"رابط کاربری SPA با React / Next.js",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_3":"سیستم مالی، کیف پول، فاکتور و گزارش‌گیری",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_4":"پنل مدیریت پیشرفته + وب‌سرویس موبایل",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_5":"تست‌های امنیتی (PenTest) و بهینه‌سازی کوئری‌ها",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_8_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "span_text_6":"۱ سال گارانتی و پشتیبانی مستقیم احسان نادری پناه",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_yellow_1_action":"modal",
+   "btn_yellow_1_target":"zc-consult-modal",
+   "btn_yellow_1_href":{
+    "url":""
+   },
+   "btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_9_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_9_visible":"yes",
+   "btn_yellow_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"eef1ec80",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"e3076218",
+   "_variant":"v3",
+   "_enabled":"yes",
+   "heading_text_1":"پلن سوپراپ و اینترپرایز",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"تحویل از ۶۰ تا ۹۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۸۵ تا ۱۵۰ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"توسعه وب‌اپلیکیشن + اپلیکیشن موبایل (iOS/Android)",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"زیرساخت ابری Docker و CI/CD خودکار",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"هوش مصنوعی اختصاصی و پردازش بلادرنگ",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"قرارداد رسمی NDA و انتقال ۱۰۰٪ مالکیت سورس‌کد",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"پشتیبانی فنی اختصاصی ۲۴/۷ یک‌ساله",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"آموزش حضوری یا آنلاین تیم فنی کارفرما",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_8_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"e3076218",
+   "features_source":"icon_list"
+  }
+ ],
+ "n_pricing_pricing_grid_items_3":[
+  {
+   "_id":"1104edc5",
+   "_variant":"v1",
+   "_enabled":"yes",
+   "heading_text_1":"پلن اقتصادی (سئو و شبکه اجتماعی)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"دوره تمدید: ۳۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۱۲ تا ۱۸ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"کیورد ریسرچ و تدوین استراتژی سئو سایت",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"رفع خطاهای تکنیکال Search Console",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"بهینه‌سازی سرعت لود و Core Web Vitals",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"بهینه‌سازی بایو، هایلایت و سئو پیج اینستاگرام",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"تولید ۸ محتوای سئو شده در ماه",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"گزارش‌دهی شفاف ماهانه",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_8_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"1104edc5",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"073af0f4",
+   "_variant":"v2",
+   "_enabled":"yes",
+   "icon_1_icon":{
+    "value":"fas fa-crown",
+    "library":"fa-solid"
+   },
+   "icon_1_visible":"yes",
+   "popular_ribbon_text_1":"پیشنهادی زرین کد",
+   "popular_ribbon_1_visible":"yes",
+   "heading_text_1":"پلن استاندارد (رشد گوگل + اکسپلور)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_2_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_2_visible":"yes",
+   "div_text_1":"دوره تمدید: ۳۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۲۲ تا ۳۵ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_1":"سئو جامع سایت برای کلمات کلیدی پول‌ساز",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_2":"سئو الگوریتمی اینستاگرام، لینکدین و یوتیوب",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_3":"لینک‌سازی خارجی و رپورتاژ آگهی هدفمند",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_4":"تولید ۱۶ مقاله تخصصی + سناریوی ریلز اکسپلوری",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_5":"بهینه‌سازی نرخ تبدیل (CRO) صفحات فرود",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_8_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "span_text_6":"ضمانت رشد ورودی ارگانیک در قرارداد",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_yellow_1_action":"modal",
+   "btn_yellow_1_target":"zc-consult-modal",
+   "btn_yellow_1_href":{
+    "url":""
+   },
+   "btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_9_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_9_visible":"yes",
+   "btn_yellow_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"073af0f4",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"d17e8137",
+   "_variant":"v3",
+   "_enabled":"yes",
+   "heading_text_1":"پلن اختصاصی (تسلط کامل بر بازار)",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"دوره تمدید: ۶۰ روز کاری",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۴۵ تا ۷۵ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"رقابت روی سخت‌ترین کلمات کلیدی صنعتی و فروشگاهی",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"مدیریت کامل سئو سایت + تمامی شبکه‌های اجتماعی",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"کمپین‌های روابط عمومی و رپورتاژ در رسانه‌های برتر",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"تولید محتوای روزانه متنی، گرافیکی و ویدئویی",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"داشبورد اختصاصی رصد لحظه‌ای رتبه‌ها",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_6":"جلسات استراتژی هفتگی با احسان نادری پناه",
+   "span_6_visible":"yes",
+   "list_item_6_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_8_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"d17e8137",
+   "features_source":"icon_list"
+  }
+ ],
+ "n_pricing_pricing_grid_items_4":[
+  {
+   "_id":"e04410f9",
+   "_variant":"v1",
+   "_enabled":"yes",
+   "heading_text_1":"پکیج محتوای متنی و سئو وبلاگ",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"تحویل ماهانه (۲۰ مقاله)",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۸ تا ۱۲ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"۲۰ مقاله تخصصی ۱۵۰۰ تا ۲۵۰۰ کلمه‌ای",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"رعایت کامل اصول سئو (Yoast / RankMath سبز)",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"طراحی تصویر شاخص اختصاصی برای هر مقاله",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"لینک‌سازی داخلی هوشمند و اسکیما FAQ",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"تضمین ۱۰۰٪ یونیک بودن و عدم کپی",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_7_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"e04410f9",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"ec3f7a42",
+   "_variant":"v2",
+   "_enabled":"yes",
+   "icon_1_icon":{
+    "value":"fas fa-crown",
+    "library":"fa-solid"
+   },
+   "icon_1_visible":"yes",
+   "popular_ribbon_text_1":"پیشنهادی زرین کد",
+   "popular_ribbon_1_visible":"yes",
+   "heading_text_1":"پکیج جامع محتوای سایت و اینستاگرام",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_2_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_2_visible":"yes",
+   "div_text_1":"تحویل ماهانه کامل",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۱۶ تا ۲۵ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_1":"تقویم محتوایی ۳۰ روزه هدفمند",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_2":"۱۲ مقاله تخصصی سئو شده برای سایت",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_3":"۱۲ پست و ریلز حرفه‌ای اینستاگرام + کاور اختصاصی",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_4":"کپشن‌نویسی سئو شده با هشتگ‌های ترند",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_7_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "span_text_5":"طراحی ۴ بنر اسلایدر صفحه اصلی سایت",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_yellow_1_action":"modal",
+   "btn_yellow_1_target":"zc-consult-modal",
+   "btn_yellow_1_href":{
+    "url":""
+   },
+   "btn_yellow_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_8_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_8_visible":"yes",
+   "btn_yellow_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"ec3f7a42",
+   "features_source":"icon_list"
+  },
+  {
+   "_id":"f45c3c7b",
+   "_variant":"v3",
+   "_enabled":"yes",
+   "heading_text_1":"پکیج برندینگ و تولید محتوای VIP",
+   "heading_1_tag":"h3",
+   "heading_1_visible":"yes",
+   "icon_1_icon":{
+    "value":"far fa-clock",
+    "library":"fa-regular"
+   },
+   "icon_1_visible":"yes",
+   "div_text_1":"مدیریت کامل محتوایی برند",
+   "div_2_visible":"yes",
+   "div_text_2":"بازه سرمایه‌گذاری:",
+   "div_4_visible":"yes",
+   "div_text_3":"۳۰ تا ۴۸ میلیون تومان",
+   "div_5_visible":"yes",
+   "div_3_visible":"yes",
+   "icon_2_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_2_visible":"yes",
+   "span_text_1":"تولید محتوای کامل سایت، اینستاگرام، لینکدین و یوتیوب",
+   "span_1_visible":"yes",
+   "list_item_1_visible":"yes",
+   "icon_3_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_3_visible":"yes",
+   "span_text_2":"نگارش صفحات محصول و لندینگ‌پیج‌های فروشنده‌ساز",
+   "span_2_visible":"yes",
+   "list_item_2_visible":"yes",
+   "icon_4_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_4_visible":"yes",
+   "span_text_3":"تدوین ویدئوهای معرفی محصول و موشن‌گرافیک",
+   "span_3_visible":"yes",
+   "list_item_3_visible":"yes",
+   "icon_5_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_5_visible":"yes",
+   "span_text_4":"مدیریت و بارگذاری کامل در وردپرس و شبکه‌ها",
+   "span_4_visible":"yes",
+   "list_item_4_visible":"yes",
+   "icon_6_icon":{
+    "value":"fas fa-check",
+    "library":"fa-solid"
+   },
+   "icon_6_visible":"yes",
+   "span_text_5":"پشتیبانی و ویرایش نامحدود محتوایی",
+   "span_5_visible":"yes",
+   "list_item_5_visible":"yes",
+   "pricing_features_1_visible":"yes",
+   "div_1_visible":"yes",
+   "btn_dark_1_action":"modal",
+   "btn_dark_1_target":"zc-consult-modal",
+   "btn_dark_1_href":{
+    "url":""
+   },
+   "btn_dark_text_1":"مشاوره رایگان و ثبت سفارش",
+   "icon_7_icon":{
+    "value":"fas fa-arrow-left",
+    "library":"fa-solid"
+   },
+   "icon_7_visible":"yes",
+   "btn_dark_1_visible":"yes",
+   "pricing_card_1_visible":"yes",
+   "plan_key":"f45c3c7b",
+   "features_source":"icon_list"
+  }
+ ],
+ "n_pricing_features":[
+  {
+   "_id":"f6928f3b",
+   "plan_key":"925febdd",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"9777eb64",
+   "plan_key":"925febdd",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"681d3fe1",
+   "plan_key":"925febdd",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"ba1ace27",
+   "plan_key":"91aba46a",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"2ac8bd5b",
+   "plan_key":"91aba46a",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"8838c367",
+   "plan_key":"91aba46a",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"a48b7e48",
+   "plan_key":"7b931227",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"cb6469c2",
+   "plan_key":"7b931227",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"218103fc",
+   "plan_key":"7b931227",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"d38bb8e4",
+   "plan_key":"9b627c60",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"c6c8e351",
+   "plan_key":"9b627c60",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"2ffca729",
+   "plan_key":"9b627c60",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"fd3896c7",
+   "plan_key":"eef1ec80",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"4f5dc63a",
+   "plan_key":"eef1ec80",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"11c70398",
+   "plan_key":"eef1ec80",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"32266d26",
+   "plan_key":"e3076218",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"05a58e8e",
+   "plan_key":"e3076218",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"2f9ea35a",
+   "plan_key":"e3076218",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"31a214fc",
+   "plan_key":"1104edc5",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"0c0e225d",
+   "plan_key":"1104edc5",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"ed19004a",
+   "plan_key":"1104edc5",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"e14d5485",
+   "plan_key":"073af0f4",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"4e56d1d0",
+   "plan_key":"073af0f4",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"c036326d",
+   "plan_key":"073af0f4",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"1811e3cc",
+   "plan_key":"d17e8137",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"07ac1059",
+   "plan_key":"d17e8137",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"5e76cb7b",
+   "plan_key":"d17e8137",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"d738bb54",
+   "plan_key":"e04410f9",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"0cc6e3c4",
+   "plan_key":"e04410f9",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"fbef5d41",
+   "plan_key":"e04410f9",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"ac7f4a5d",
+   "plan_key":"ec3f7a42",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"83bf5ef8",
+   "plan_key":"ec3f7a42",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"5410289c",
+   "plan_key":"ec3f7a42",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"330ac5b5",
+   "plan_key":"f45c3c7b",
+   "text":"نیازسنجی و تعریف خروجی",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"a80e038f",
+   "plan_key":"f45c3c7b",
+   "text":"بازبینی مرحله‌ای",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  },
+  {
+   "_id":"d4c91998",
+   "plan_key":"f45c3c7b",
+   "text":"تحویل و آموزش طبق توافق",
+   "icon":{
+    "value":"fas fa-check-circle",
+    "library":"fa-solid"
+   }
+  }
+ ],
+ "design_mode":"original"
+}
