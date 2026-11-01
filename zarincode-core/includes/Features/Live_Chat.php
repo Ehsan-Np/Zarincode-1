@@ -42,9 +42,12 @@ final class Live_Chat {
 		add_action( 'wp_ajax_nopriv_zc_chat_send', array( $this, 'ajax_send' ) );
 		add_action( 'wp_ajax_zc_chat_admin_read', array( $this, 'ajax_admin_read' ) );
 		add_action( 'wp_ajax_zc_chat_admin_poll', array( $this, 'ajax_admin_poll' ) );
+		add_action( 'wp_ajax_zc_chat_admin_send', array( $this, 'ajax_admin_send' ) );
+		add_action( 'wp_ajax_zc_chat_admin_fetch', array( $this, 'ajax_admin_fetch' ) );
 
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 8 );
 		add_action( 'admin_init', array( $this, 'maybe_save_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 30 );
 	}
 
@@ -584,6 +587,56 @@ final class Live_Chat {
 
 	/* ----------------------------------------------------------------- admin */
 
+	/* ------------------------------------------------------- admin assets */
+
+	/** Enqueue the admin chat CSS/JS only on the two chat screens. */
+	public function admin_assets( string $hook ): void {
+		if ( false === strpos( (string) $hook, 'zc-live-chat' ) ) {
+			return;
+		}
+		$plugin_base = plugin_dir_url( dirname( __DIR__, 2 ) . '/zarincode-core.php' );
+		wp_enqueue_style( 'zc-fa-admin', $plugin_base . 'assets/vendor/fontawesome/css/all.min.css', array(), '6.5.2' );
+		wp_enqueue_style( 'zc-live-chat-admin', $plugin_base . 'assets/css/live-chat-admin.css', array( 'zc-fa-admin' ), '1.1.0' );
+		wp_enqueue_script( 'zc-live-chat-admin', $plugin_base . 'assets/js/live-chat-admin.js', array(), '1.1.0', true );
+
+		$thread_id = ( isset( $_GET['page'] ) && 'zc-live-chat' === $_GET['page'] && isset( $_GET['zc_thread'] ) ) ? absint( $_GET['zc_thread'] ) : 0;
+		$mode      = 'zc-live-chat-settings' === ( $_GET['page'] ?? '' ) ? 'settings' : ( $thread_id ? 'thread' : 'list' );
+		$since     = 0;
+		if ( $thread_id ) {
+			$last = get_posts(
+				array(
+					'post_type'      => self::MESSAGE,
+					'post_status'    => 'any',
+					'posts_per_page' => 1,
+					'fields'         => 'ids',
+					'orderby'        => 'ID',
+					'order'          => 'DESC',
+					'meta_query'     => array( array( 'key' => '_zc_contact', 'value' => $thread_id ) ),
+				)
+			);
+			$since = $last ? (int) $last[0] : 0;
+		}
+		wp_localize_script(
+			'zc-live-chat-admin',
+			'ZarincodeChatAdmin',
+			array(
+				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( self::ADMIN_NONCE ),
+				'mode'     => $mode,
+				'contact'  => $thread_id,
+				'since'    => $since,
+				'pollMs'   => 8000,
+				'threadMs' => 5000,
+				'strings'  => array(
+					'title'         => 'پیام جدید گفتگوی زنده',
+					'bodyNew'       => 'یک بازدیدکننده پیام جدیدی ارسال کرده است؛ برای پاسخ روی اعلان یا منوی «گفتگوهای زنده» کلیک کنید.',
+					'error'         => 'خطا در ارتباط؛ دوباره تلاش کنید.',
+					'confirmDelete' => 'کل گفتگو برای همیشه حذف شود؟',
+				),
+			)
+		);
+	}
+
 	public function admin_menu(): void {
 		// WP 7+: menu_page_exists() was removed; menu_exists() checks top-level items.
 		if ( function_exists( '\\menu_exists' ) && ! \menu_exists( 'zc-inbox' ) ) {
@@ -620,90 +673,290 @@ final class Live_Chat {
 		$this->handle_admin_actions( $base );
 
 		$online = self::admin_online();
-		echo '<div class="wrap" dir="rtl"><h1>گفتگوهای زنده <span style="font-size:.72em;font-weight:400;color:#64748b;">— تاریخچهٔ کامل بر اساس شماره موبایل یا IP هر بازدیدکننده</span></h1>';
-		self::admin_nav( 'list' );
-		echo '<div class="notice notice-info"><p><strong>وضعیت شما:</strong> ' . ( $online ? '🟢 آنلاین — بازدیدکننده‌ها نشان سبز و اطلاع‌رسانی «پشتیبانی آنلاین است» را می‌بینند.' : '🔴 آفلاین — نشان قرمز نمایش داده می‌شود؛ پیام‌های جدید همچنان ثبت و اینجا خوانده می‌شوند.' ) . '</p></div>';
+		$zq     = (string) ( $_GET['zc_chat_q'] ?? '' );
+		$tab    = in_array( ( $_GET['zc_tab'] ?? 'all' ), array( 'all', 'unread', 'online' ), true ) ? (string) $_GET['zc_tab'] : 'all';
+		$paged  = max( 1, (int) ( $_GET['paged'] ?? 1 ) );
+		$per    = 20;
 
-		// Recent conversations = recent messages (one query), then their contacts.
+		// All contacts (capped) + last-activity map from recent messages.
+		$contact_ids = get_posts(
+			array(
+				'post_type'      => self::CONTACT,
+				'post_status'    => 'any',
+				'posts_per_page' => 200,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'fields'         => 'ids',
+			)
+		);
 		$recent = get_posts(
 			array(
 				'post_type'      => self::MESSAGE,
 				'post_status'    => 'any',
-				'posts_per_page' => 60,
+				'posts_per_page' => 300,
 				'orderby'        => 'date',
 				'order'          => 'DESC',
 				'fields'         => 'ids',
 			)
 		);
-		$order    = array();
 		$last_msg = array();
+		$activity = array();
 		foreach ( $recent as $mid ) {
-			$cid = (int) get_post_meta( $mid, '_zc_contact', true );
-			if ( $cid && ! isset( $last_msg[ $cid ] ) ) {
-				$last_msg[ $cid ] = $mid;
-				$order[]           = $cid;
-			}
-		}
-		$ids = array_slice( $order, 0, 30 );
-		// Contacts that never received a message still show up.
-		$fresh = get_posts(
-			array(
-				'post_type'      => self::CONTACT,
-				'post_status'    => 'any',
-				'posts_per_page' => 20,
-				'orderby'        => 'date',
-				'order'          => 'DESC',
-				'fields'         => 'ids',
-			)
-		);
-		foreach ( $fresh as $cid ) {
-			if ( ! in_array( $cid, $order, true ) ) {
-				$ids[] = $cid;
+			$mcid = (int) get_post_meta( $mid, '_zc_contact', true );
+			if ( $mcid && ! isset( $last_msg[ $mcid ] ) ) {
+				$last_msg[ $mcid ] = $mid;
+				$activity[ $mcid ] = (int) strtotime( (string) get_post_field( 'post_date', $mid ) );
 			}
 		}
 
-		echo '<table class="widefat striped" style="background:#fff;"><thead><tr><th>مخاطب</th><th>شماره موبایل</th><th>وبسایت</th><th>IP</th><th>وضعیت بازدیدکننده</th><th>آخرین پیام</th><th>خوانده‌نشده</th><th>آخرین فعالیت</th></tr></thead><tbody>';
-		if ( ! $ids ) {
-			echo '<tr><td colspan="8" style="padding:2rem;text-align:center;color:#64748b;">هنوز گفتگویی ثبت نشده است. با دکمهٔ شناور در سایت، یک گفتگو را امتحان کنید.</td></tr>';
-		}
-		foreach ( $ids as $cid ) {
-			$c       = get_post( $cid );
-			if ( ! $c ) {
-				continue;
-			}
-			$phone   = (string) get_post_meta( $cid, '_zc_phone', true );
-			$site    = (string) get_post_meta( $cid, '_zc_website', true );
-			$ip      = (string) get_post_meta( $cid, '_zc_ip', true );
-			$seen    = (int) get_post_meta( $cid, '_zc_last_seen', true );
-			$is_on   = $seen && ( time() - $seen ) < 180;
-			$last_id = $last_msg[ $cid ] ?? 0;
-			$preview = $last_id ? mb_strimwidth( (string) get_post_field( 'post_content', $last_id ), 0, 70, '…' ) : '—';
-			$unq     = new \WP_Query(
+		// Unread counts for ALL contacts in one query (real totals via found_posts).
+		$unread_total = 0;
+		$unread_map   = array();
+		if ( $contact_ids ) {
+			$uq = new \WP_Query(
 				array(
 					'post_type'      => self::MESSAGE,
 					'post_status'    => 'any',
-					'posts_per_page' => 1,
+					'posts_per_page' => -1,
 					'fields'         => 'ids',
 					'meta_query'     => array(
-						array( 'key' => '_zc_contact', 'value' => $cid ),
+						array( 'key' => '_zc_contact', 'value' => $contact_ids, 'compare' => 'IN' ),
 						array( 'key' => '_zc_dir', 'value' => 'in' ),
 						array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ),
 					),
+					'no_found_rows'  => false,
 				)
 			);
-			$unread = (int) $unq->found_posts; // real total (ppp=1 caps post_count)
+			$unread_total = (int) $uq->found_posts;
+			foreach ( $uq->posts as $uid ) {
+				$ucid = (int) get_post_meta( $uid, '_zc_contact', true );
+				$unread_map[ $ucid ] = ( $unread_map[ $ucid ] ?? 0 ) + 1;
+			}
+		}
+
+		// Build row models: filter (search + tab), then sort by activity.
+		$rows = array();
+		$online_count = 0;
+		$today        = 0;
+		foreach ( $contact_ids as $cid ) {
+			$c     = get_post( $cid );
+			if ( ! $c ) {
+				continue;
+			}
+			$phone = (string) get_post_meta( $cid, '_zc_phone', true );
+			$site  = (string) get_post_meta( $cid, '_zc_website', true );
+			$ip    = (string) get_post_meta( $cid, '_zc_ip', true );
+			$seen  = (int) get_post_meta( $cid, '_zc_last_seen', true );
+			$is_on = $seen && ( time() - $seen ) < 180;
+			if ( $is_on ) {
+				$online_count++;
+			}
+			$unread = (int) ( $unread_map[ $cid ] ?? 0 );
+			$mid    = (int) ( $last_msg[ $cid ] ?? 0 );
+			$prev   = $mid ? (string) get_post_field( 'post_content', $mid ) : '';
+			$prev_t = $mid ? (string) get_post_meta( $mid, '_zc_type', true ) : '';
+			$prev_d = $mid ? (string) get_post_meta( $mid, '_zc_dir', true ) : '';
+
+			if ( '' !== $zq ) {
+				$hay = mb_strtolower( $c->post_title . ' ' . $phone . ' ' . $site . ' ' . $ip . ' ' . $prev );
+				if ( false === mb_strpos( $hay, mb_strtolower( $zq ) ) ) {
+					continue;
+				}
+			}
+			if ( 'unread' === $tab && $unread < 1 ) {
+				continue;
+			}
+			if ( 'online' === $tab && ! $is_on ) {
+				continue;
+			}
+			$rows[] = array(
+				'id' => $cid, 'name' => $c->post_title, 'phone' => $phone, 'site' => $site, 'ip' => $ip,
+				'seen' => $seen, 'online' => $is_on, 'unread' => $unread, 'last' => $mid,
+				'preview' => $prev, 'ptype' => $prev_t, 'pdir' => $prev_d,
+				'activity' => (int) ( $activity[ $cid ] ?? strtotime( (string) $c->post_date ) ),
+			);
+		}
+		usort( $rows, static fn( $a, $b ) => $b['activity'] <=> $a['activity'] );
+		$total_rows = count( $rows );
+		$pages      = max( 1, (int) ceil( $total_rows / $per ) );
+		$paged      = min( $paged, $pages );
+		$page_rows  = array_slice( $rows, ( $paged - 1 ) * $per, $per );
+
+		$tq = new \WP_Query(
+			array(
+				'post_type'      => self::MESSAGE,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'date_query'     => array( array( 'after' => 'today 00:00', 'inclusive' => true ) ),
+			)
+		);
+		$today = (int) $tq->found_posts;
+
+		$this->print_admin_styles_marker();
+		echo '<div class="wrap zc-ladm" dir="rtl">';
+		echo '<div class="zc-ladm-top"><h1>گفتگوهای زنده<span class="zc-ladm-sub">تاریخچهٔ کامل بر اساس شماره موبایل یا IP هر بازدیدکننده — پاسخ‌ها همین‌جا ثبت می‌شود</span></h1>';
+		echo '<span class="zc-ladm-me' . ( $online ? ' is-online' : '' ) . '" title="' . esc_attr( $online ? 'بازدیدکننده‌ها نشان سبز و «پشتیبانی آنلاین است» را می‌بینند.' : 'پیام‌های جدید همچنان ثبت و اینجا خوانده می‌شوند.' ) . '"><i class="zc-ladm-dot"></i>' . ( $online ? 'شما آنلاین هستید' : 'شما آفلاین هستید' ) . '</span></div>';
+
+		// Tab bar (shared nav).
+		$cur_list = 'is-active';
+		echo '<div class="zc-ladm-tabs">';
+		echo '<a class="' . $cur_list . '" href="' . esc_url( $base ) . '"><i class="fa-regular fa-comments"></i> گفتگوها</a>';
+		echo '<a href="' . esc_url( admin_url( 'admin.php?page=zc-live-chat-settings' ) ) . '"><i class="fa-solid fa-sliders"></i> تنظیمات گفتگو</a>';
+		echo '<span class="zc-ladm-live' . ( $online ? '' : ' is-off' ) . '" id="zc-chat-live-dot" title="به‌روزرسانی خودکار هر ۸ ثانیه"><i></i> زنده</span>';
+		echo '</div>';
+
+		// Stats cards.
+		echo '<div class="zc-ladm-stats">';
+		echo '<div class="zc-ladm-stat is-slate"><i class="zc-ladm-stat-ic fa-solid fa-inbox"></i><div><b>' . esc_html( number_format_i18n( count( $contact_ids ) ) ) . '</b><span>کل گفتگوها</span></div></div>';
+		echo '<div class="zc-ladm-stat is-gold"><i class="zc-ladm-stat-ic fa-solid fa-envelope-open-text"></i><div><b>' . esc_html( number_format_i18n( $unread_total ) ) . '</b><span>پیام خوانده‌نشده</span></div></div>';
+		echo '<div class="zc-ladm-stat is-green"><i class="zc-ladm-stat-ic fa-solid fa-signal"></i><div><b>' . esc_html( number_format_i18n( $online_count ) ) . '</b><span>بازدیدکننده آنلاین (۳ دقیقه اخیر)</span></div></div>';
+		echo '<div class="zc-ladm-stat is-red"><i class="zc-ladm-stat-ic fa-regular fa-paper-plane"></i><div><b>' . esc_html( number_format_i18n( $today ) ) . '</b><span>پیام امروز</span></div></div>';
+		echo '</div>';
+
+		// Toolbar: search + tab filters.
+		$counts = array( 'all' => $total_rows, 'unread' => 0, 'online' => 0 );
+		foreach ( $rows as $r ) {
+			if ( $r['unread'] > 0 ) {
+				$counts['unread']++;
+			}
+			if ( $r['online'] ) {
+				$counts['online']++;
+			}
+		}
+		echo '<div class="zc-ladm-toolbar">';
+		echo '<form class="zc-ladm-search" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '">';
+		echo '<input type="hidden" name="page" value="zc-live-chat">';
+		if ( 'all' !== $tab ) {
+			echo '<input type="hidden" name="zc_tab" value="' . esc_attr( $tab ) . '">';
+		}
+		echo '<input type="search" name="zc_chat_q" value="' . esc_attr( $zq ) . '" placeholder="جستجو در نام، شماره، سایت، IP یا متن پیام…">';
+		echo '<button class="button button-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> جستجو</button>';
+		if ( '' !== $zq ) {
+			echo '<a class="button" href="' . esc_url( add_query_arg( 'zc_tab', $tab, $base ) ) . '">پاک کردن</a>';
+		}
+		echo '</form>';
+		echo '<nav class="zc-ladm-filters">';
+		foreach ( array( 'all' => 'همه', 'unread' => 'خوانده‌نشده', 'online' => 'آنلاین' ) as $k => $label ) {
+			$url    = add_query_arg( array_filter( array( 'zc_tab' => $k, 'zc_chat_q' => $zq ) ), $base );
+			$active = ( $tab === $k );
+			echo '<a class="' . ( $active ? 'is-active' : '' ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '<span class="cnt">' . esc_html( number_format_i18n( $counts[ $k ] ) ) . '</span></a>';
+		}
+		echo '</nav>';
+		echo '</div>';
+
+		// Conversations table.
+		echo '<div class="zc-ladm-panel"><table class="zc-ladm-table"><thead><tr>';
+		echo '<th>مخاطب</th><th>آخرین پیام</th><th>وضعیت</th><th>خوانده‌نشده</th><th>آخرین فعالیت</th><th>عملیات</th>';
+		echo '</tr></thead><tbody>';
+		if ( ! $page_rows ) {
+			if ( '' !== $zq || 'all' !== $tab ) {
+				echo '<tr><td colspan="6"><div class="zc-ladm-empty"><i class="fa-solid fa-magnifying-glass"></i><b>نتیجه‌ای پیدا نشد</b>عبارت جستجو یا فیلتر را ساده‌تر کنید.</div></td></tr>';
+			} else {
+				echo '<tr><td colspan="6"><div class="zc-ladm-empty"><i class="fa-regular fa-comments"></i><b>هنوز گفتگویی ثبت نشده است</b>با دکمهٔ شناور در سایت، یک گفتگو را امتحان کنید.</div></td></tr>';
+			}
+		}
+		foreach ( $page_rows as $r ) {
+			$thread_url = add_query_arg( 'zc_thread', $r['id'], $base );
+			$initial    = esc_html( mb_strimwidth( (string) $r['name'], 0, 1, '' ) ?: '؟' );
+			$dir_icon   = 'out' === $r['pdir'] ? '<span class="zc-ladm-dir is-out" title="پاسخ شما">↗</span>' : '<span class="zc-ladm-dir is-in" title="پیام بازدیدکننده">↙</span>';
+			$prev_text  = '' !== trim( (string) $r['preview'] ) ? esc_html( mb_strimwidth( $r['preview'], 0, 90, '…' ) ) : '<span class="zc-ladm-empty-txt">بدون پیام — فقط ثبت‌شده</span>';
+			if ( $r['last'] && 'text' !== $r['ptype'] && '' !== $r['ptype'] ) {
+				$type_fa   = 'photo' === $r['ptype'] ? 'fa-regular fa-image' : ( 'voice' === $r['ptype'] ? 'fa-solid fa-microphone' : 'fa-solid fa-video' );
+				$prev_text = '<i class="' . esc_attr( $type_fa ) . '"></i> ' . ( 'text' !== $r['ptype'] && '' === trim( (string) $r['preview'] ) ? 'ارسال فایل' : $prev_text );
+			}
 			echo '<tr>';
-			echo '<td><strong><a href="' . esc_url( add_query_arg( 'zc_thread', $cid, $base ) ) . '">' . esc_html( $c->post_title ) . '</a></strong></td>';
-			echo '<td dir="ltr" style="text-align:right;">' . esc_html( $phone ) . '</td>';
-			echo '<td>' . ( $site ? '<a href="' . esc_url( $site ) . '" target="_blank" rel="noopener">' . esc_html( mb_strimwidth( $site, 0, 40, '…' ) ) . '</a>' : '—' ) . '</td>';
-			echo '<td dir="ltr" style="text-align:right;color:#64748b;">' . esc_html( $ip ) . '</td>';
-			echo '<td>' . ( $is_on ? '🟢 آنلاین' : '⚪ آفلاین' ) . '</td>';
-			echo '<td style="max-width:240px;">' . esc_html( $preview ) . '</td>';
-			echo '<td>' . ( $unread ? '<span style="background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:999px;font-weight:700;font-size:11px;">' . $unread . ' خوانده‌نشده</span>' : '—' ) . '</td>';
-			echo '<td>' . ( $seen ? esc_html( human_time_diff( $seen ) . ' پیش' ) : '—' ) . '</td>';
+			echo '<td data-ladm-label="مخاطب"><div class="zc-ladm-who"><span class="zc-ladm-ava' . ( $r['online'] ? ' is-online' : '' ) . '">' . $initial . '<span class="zc-ladm-ava-on"></span></span><span><strong><a href="' . esc_url( $thread_url ) . '">' . esc_html( $r['name'] ) . '</a></strong><small>' . ( $r['phone'] ? '<b>' . esc_html( $r['phone'] ) . '</b>' : 'بدون شماره' ) . ( $r['ip'] ? ' · <b>' . esc_html( $r['ip'] ) . '</b>' : '' ) . '</small></span></div></td>';
+			echo '<td data-ladm-label="آخرین پیام"><div class="zc-ladm-preview">' . ( $r['last'] ? $dir_icon . $prev_text : $prev_text ) . '</div></td>';
+			echo '<td data-ladm-label="وضعیت">' . ( $r['online'] ? '<span class="zc-ladm-pill is-online">آنلاین</span>' : '<span class="zc-ladm-pill is-offline">آفلاین' . ( $r['seen'] ? ' · ' . esc_html( self::human_time_fa( $r['seen'] ) ) : '' ) . '</span>' ) . '</td>';
+			echo '<td data-ladm-label="خوانده‌نشده"><span class="zc-ladm-unread' . ( $r['unread'] ? '' : ' is-zero' ) . '">' . esc_html( $r['unread'] ? number_format_i18n( $r['unread'] ) : '—' ) . '</span></td>';
+			echo '<td data-ladm-label="آخرین فعالیت"><span class="zc-ladm-when" title="' . esc_attr( gmdate( 'Y/m/d H:i', $r['activity'] ) . ' UTC' ) . '">' . esc_html( $r['activity'] ? self::human_time_fa( $r['activity'] ) : '—' ) . '</span></td>';
+			echo '<td data-ladm-label="عملیات"><div class="zc-ladm-row-actions">';
+			echo '<a class="zc-ladm-btn is-primary" href="' . esc_url( $thread_url ) . '"><i class="fa-regular fa-comment-dots"></i> باز کردن</a>';
+			if ( $r['phone'] ) {
+				echo '<a class="zc-ladm-btn is-icon" href="tel:' . esc_attr( $r['phone'] ) . '" title="تماس"><i class="fa-solid fa-phone"></i></a>';
+			}
+			echo '</div></td>';
 			echo '</tr>';
 		}
-		echo '</tbody></table></div>';
+		echo '</tbody></table>';
+
+		if ( $pages > 1 ) {
+			echo '<div class="zc-ladm-pager">';
+			for ( $i = 1; $i <= $pages; $i++ ) {
+				$url = add_query_arg( array_filter( array( 'paged' => $i, 'zc_tab' => $tab, 'zc_chat_q' => $zq ) ), $base );
+				echo ( $i === $paged ) ? '<span class="current">' . $i . '</span>' : '<a href="' . esc_url( $url ) . '">' . $i . '</a>';
+			}
+			echo '</div>';
+		}
+		echo '</div>';
+		echo '</div>';
+	}
+
+	/** No-op hook kept for markup symmetry (styles ship via live-chat-admin.css). */
+	private function print_admin_styles_marker(): void {
+	}
+
+	/** Persian relative time ("۵ دقیقه پیش") — admin UI only. */
+	private static function human_time_fa( int $ts ): string {
+		if ( $ts <= 0 ) {
+			return '';
+		}
+		$d = time() - $ts;
+		if ( $d < 60 ) {
+			return 'چند لحظه پیش';
+		}
+		if ( $d < 3600 ) {
+			return (int) floor( $d / 60 ) . ' دقیقه پیش';
+		}
+		if ( $d < 86400 ) {
+			return (int) floor( $d / 3600 ) . ' ساعت پیش';
+		}
+		if ( $d < 86400 * 7 ) {
+			return (int) floor( $d / 86400 ) . ' روز پیش';
+		}
+		return gmdate( 'Y/m/d', $ts );
+	}
+
+	/** Shared bubble renderer (initial render + AJAX send/fetch responses). */
+	private function message_html( array $row, string $visitor, int $seen_ts ): string {
+		$mine   = 'out' === $row['dir'];
+		$stamp  = (int) strtotime( (string) ( $row['date'] ?? '' ) );
+		$initial = esc_html( mb_strimwidth( $visitor, 0, 1, '' ) ?: '؟' );
+		$ava    = $mine
+			? '<span class="zc-ladm-msg-ava" aria-hidden="true"><i class="fa-solid fa-headset" style="font-size:.7rem;"></i></span>'
+			: '<span class="zc-ladm-msg-ava" aria-hidden="true">' . $initial . '</span>';
+		$media  = '';
+		if ( 'text' !== $row['type'] && '' !== $row['file'] ) {
+			if ( 'photo' === $row['type'] ) {
+				$media = '<a href="' . esc_url( $row['file'] ) . '" target="_blank" rel="noopener"><img class="zc-ladm-photo" src="' . esc_url( $row['file'] ) . '" alt="" loading="lazy"></a>';
+			} elseif ( 'voice' === $row['type'] ) {
+				$media = '<audio controls preload="none" src="' . esc_url( $row['file'] ) . '"></audio>';
+			} else {
+				$media = '<video controls preload="metadata" src="' . esc_url( $row['file'] ) . '"></video>';
+			}
+		}
+		$text = '' !== $row['text'] ? '<div class="zc-ladm-b-text">' . nl2br( esc_html( $row['text'] ) ) . '</div>' : '';
+		$ticks = '';
+		if ( $mine && $stamp && $seen_ts >= $stamp ) {
+			$ticks = '<span class="zc-ladm-ticks" title="خوانده شده">✓✓</span>';
+		} elseif ( $mine ) {
+			$ticks = '<span class="zc-ladm-ticks" title="ارسال شد">✓</span>';
+		}
+		$who = $mine ? 'شما' : $visitor;
+		$meta = '<div class="zc-ladm-b-meta"><span>' . esc_html( $who ) . '</span><span>·</span><span>' . esc_html( (string) ( $row['at'] ?? '' ) ) . '</span>' . $ticks . '</div>';
+		return '<div class="zc-ladm-msg ' . ( $mine ? 'is-admin' : 'is-visitor' ) . '" data-mid="' . (int) ( $row['id'] ?? 0 ) . '">' . $ava . '<div class="zc-ladm-bubble">' . $media . $text . $meta . '</div></div>';
+	}
+
+	private function day_label( int $ts ): string {
+		$today = ( new \DateTime( 'today' ) )->getTimestamp();
+		if ( $ts >= $today ) {
+			return 'امروز';
+		}
+		if ( $ts >= $today - DAY_IN_SECONDS ) {
+			return 'دیروز';
+		}
+		return gmdate( 'Y/m/d', $ts );
 	}
 
 	private function render_thread( int $cid, string $base ): void {
@@ -715,7 +968,7 @@ final class Live_Chat {
 		$this->handle_admin_actions( $base );
 
 		// Opening the thread marks visitor messages as read.
-		$in_ids = get_posts(
+		foreach ( get_posts(
 			array(
 				'post_type'      => self::MESSAGE,
 				'post_status'    => 'any',
@@ -727,15 +980,17 @@ final class Live_Chat {
 					array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ),
 				),
 			)
-		);
-		foreach ( $in_ids as $mid ) {
+		) as $mid ) {
 			update_post_meta( $mid, '_zc_read', '1' );
 		}
 
-		$phone = (string) get_post_meta( $cid, '_zc_phone', true );
-		$ip    = (string) get_post_meta( $cid, '_zc_ip', true );
-		$seen  = (int) get_post_meta( $cid, '_zc_last_seen', true );
-		$msgs  = get_posts(
+		$phone   = (string) get_post_meta( $cid, '_zc_phone', true );
+		$site    = (string) get_post_meta( $cid, '_zc_website', true );
+		$ip      = (string) get_post_meta( $cid, '_zc_ip', true );
+		$seen    = (int) get_post_meta( $cid, '_zc_last_seen', true );
+		$is_on   = $seen && ( time() - $seen ) < 180;
+		$visitor = (string) $contact->post_title;
+		$msgs    = get_posts(
 			array(
 				'post_type'      => self::MESSAGE,
 				'post_status'    => 'any',
@@ -746,47 +1001,80 @@ final class Live_Chat {
 			)
 		);
 
-		echo '<div class="wrap zc-chat-admin" dir="rtl"><h1>گفتگوی ' . esc_html( $contact->post_title ) . ' ' . ( $seen && ( time() - $seen ) < 180 ? '🟢' : '' ) . '</h1>';
-		self::admin_nav( 'thread' );
-		echo '<p><a href="' . esc_url( $base ) . '">← بازگشت به فهرست</a> — <a href="tel:' . esc_attr( $phone ) . '" dir="ltr">' . esc_html( $phone ) . '</a> — IP: <code dir="ltr">' . esc_html( $ip ) . '</code> — آخرین حضور: ' . ( $seen ? esc_html( human_time_diff( $seen ) . ' پیش' ) : '—' ) . '</p>';
+		echo '<div class="wrap zc-ladm" dir="rtl">';
+		echo '<a class="zc-ladm-back" href="' . esc_url( $base ) . '"><i class="fa-solid fa-arrow-right"></i> بازگشت به فهرست گفتگوها</a>';
 
-		echo '<div class="zc-admin-thread" style="max-width:820px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;">';
-		if ( ! $msgs ) {
-			echo '<p style="text-align:center;color:#64748b;">هنوز پیامی در این گفتگو نیست.</p>';
+		// Contact header card.
+		$initial = esc_html( mb_strimwidth( $visitor, 0, 1, '' ) ?: '؟' );
+		echo '<div class="zc-ladm-chead"><div class="zc-ladm-chead-id">';
+		echo '<span class="zc-ladm-ava' . ( $is_on ? ' is-online' : '' ) . '">' . $initial . '<span class="zc-ladm-ava-on"></span></span>';
+		echo '<div><h2>' . esc_html( $visitor ) . ( $is_on ? ' <span class="zc-ladm-pill is-online">آنلاین</span>' : ' <span class="zc-ladm-pill is-offline">آفلاین</span>' ) . '</h2>';
+		echo '<div class="zc-ladm-chips">';
+		if ( $phone ) {
+			echo '<a class="zc-ladm-chip" href="tel:' . esc_attr( $phone ) . '"><i class="fa-solid fa-phone"></i> <b>' . esc_html( $phone ) . '</b></a>';
 		}
-		foreach ( $msgs as $m ) {
-			$row  = self::message_row( (int) $m->ID );
-			$mine = 'out' === $row['dir'];
-			$align = $mine ? 'margin-inline-start:auto;' : 'margin-inline-end:auto;';
-			$bg    = $mine ? 'background:#111827;color:#fff;' : 'background:#fff;color:#111827;border:1px solid #e2e8f0;';
-			echo '<div style="max-width:78%;' . esc_attr( $align ) . $bg . 'padding:10px 14px;border-radius:14px;font-size:.9rem;line-height:1.9;">';
-			$meta = '<div style="font-size:.65rem;opacity:.65;margin-top:4px;">' . esc_html( ( $mine ? 'شما' : $contact->post_title ) . ' — ' . $row['date'] ) . '</div>';
-			if ( 'text' !== $row['type'] && $row['file'] ) {
-				if ( 'photo' === $row['type'] ) {
-					echo '<img src="' . esc_url( $row['file'] ) . '" alt="" style="max-width:100%;border-radius:10px;display:block;margin-bottom:6px;">';
-				} elseif ( 'voice' === $row['type'] ) {
-					echo '<audio controls preload="none" src="' . esc_url( $row['file'] ) . '" style="max-width:100%;display:block;margin-bottom:6px;"></audio>';
-				} else {
-					echo '<video controls preload="metadata" src="' . esc_url( $row['file'] ) . '" style="max-width:100%;border-radius:10px;display:block;margin-bottom:6px;"></video>';
-				}
-			}
-			if ( '' !== $row['text'] ) {
-				echo nl2br( esc_html( $row['text'] ) );
-			}
-			echo $meta . '</div>';
+		if ( $site ) {
+			echo '<a class="zc-ladm-chip" href="' . esc_url( $site ) . '" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> ' . esc_html( mb_strimwidth( $site, 0, 34, '…' ) ) . '</a>';
 		}
-		echo '</div>';
-
-		echo '<form method="post" action="' . esc_url( $base . '&zc_thread=' . $cid ) . '" style="max-width:820px;margin-top:14px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;">';
+		if ( $ip ) {
+			echo '<button type="button" class="zc-ladm-chip" data-zc-copy="' . esc_attr( $ip ) . '" title="کپی IP"><i class="fa-regular fa-copy"></i> <b>' . esc_html( $ip ) . '</b></button>';
+		}
+		echo '<span class="zc-ladm-chip' . ( $is_on ? ' is-green' : '' ) . '"><i class="fa-regular fa-clock"></i> آخرین حضور: ' . esc_html( $seen ? self::human_time_fa( $seen ) : 'هرگز' ) . '</span>';
+		$msg_count_q = new \WP_Query(
+			array(
+				'post_type'      => self::MESSAGE,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'meta_query'     => array( array( 'key' => '_zc_contact', 'value' => $cid ) ),
+			)
+		);
+		$msg_count = (int) $msg_count_q->found_posts;
+		echo '<span class="zc-ladm-chip is-gold"><i class="fa-regular fa-envelope"></i> ' . esc_html( number_format_i18n( $msg_count ) ) . ' پیام</span>';
+		echo '</div></div></div>';
+		echo '<div class="zc-ladm-chead-actions">';
+		echo '<form method="post" id="zc-ladm-delete-form" action="' . esc_url( $base . '&zc_thread=' . $cid ) . '">';
 		wp_nonce_field( 'zc_chat_admin' );
 		echo '<input type="hidden" name="zc_id" value="' . (int) $cid . '">';
-		echo '<label style="font-weight:700;display:block;margin-bottom:6px;">پاسخ مدیر</label>';
-		echo '<textarea name="zc_admin_text" class="large-text" rows="3" placeholder="پاسخ خود را بنویسید…"></textarea>';
-		echo '<div style="display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap;">';
-		echo '<button class="button button-primary" name="zc_admin_send" value="1">ارسال پاسخ</button>';
-		echo '<label style="font-size:.8rem;">یا ارسال فایل (تصویر/ویدیو/صدا): <input type="file" name="zc_admin_file" accept="image/*,video/*,audio/*"></label>';
-		echo '<button class="button" name="zc_contact_delete" value="1" onclick="return confirm(\'کل گفتگو حذف شود؟\')" style="margin-inline-start:auto;color:#b91c1c;">حذف گفتگو</button>';
-		echo '</div></form></div>';
+		echo '<button class="zc-ladm-btn is-danger" name="zc_contact_delete" value="1"><i class="fa-regular fa-trash-can"></i> حذف گفتگو</button>';
+		echo '</form></div></div>';
+
+		// Thread + composer.
+		echo '<div class="zc-ladm-thread">';
+		echo '<div class="zc-ladm-msgs" id="zc-ladm-msgs">';
+		if ( ! $msgs ) {
+			echo '<div class="zc-ladm-empty"><i class="fa-regular fa-comment-dots"></i><b>هنوز پیامی در این گفتگو نیست</b>پاسخ شما از پایین ارسال می‌شود؛ پیام بازدیدکننده همین‌جا ظاهر می‌شود.</div>';
+		}
+		$last_day = '';
+		foreach ( $msgs as $m ) {
+			$row  = self::message_row( (int) $m->ID );
+			if ( ! $row ) {
+				continue;
+			}
+			$ts  = (int) strtotime( (string) $row['date'] );
+			$day = $this->day_label( $ts );
+			if ( $day !== $last_day ) {
+				echo '<div class="zc-ladm-daysep">' . esc_html( $day ) . '</div>';
+				$last_day = $day;
+			}
+			echo $this->message_html( $row, $visitor, $seen ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
+		}
+		echo '</div>';
+		echo '<button type="button" class="zc-ladm-jump" id="zc-ladm-jump" title="رفتن به انتها" aria-label="رفتن به انتها"><i class="fa-solid fa-arrow-down"></i></button>';
+
+		echo '<form class="zc-ladm-composer" id="zc-ladm-composer-form" method="post" action="' . esc_url( $base . '&zc_thread=' . $cid ) . '">';
+		wp_nonce_field( 'zc_chat_admin' );
+		echo '<input type="hidden" name="zc_id" value="' . (int) $cid . '">';
+		echo '<div class="zc-ladm-filechip" id="zc-ladm-filechip"><i class="fa-solid fa-paperclip"></i> <span class="zc-ladm-filechip-name" id="zc-ladm-filechip-name"></span><button type="button" id="zc-ladm-filechip-x" aria-label="حذف پیوست">&times;</button></div>';
+		echo '<div class="zc-ladm-composer-row">';
+		echo '<button type="button" class="zc-ladm-attach" id="zc-ladm-attach" title="ارسال فایل (تصویر/ویدیو/صدا)" aria-label="ارسال فایل"><i class="fa-solid fa-paperclip"></i></button>';
+		echo '<input type="file" id="zc-ladm-file" name="zc_admin_file" accept="image/*,video/*,audio/*" hidden>';
+		echo '<textarea id="zc-ladm-text" name="zc_admin_text" rows="1" placeholder="پاسخ خود را بنویسید… (Enter برای ارسال، Shift+Enter خط جدید)"></textarea>';
+		echo '<button type="submit" class="zc-ladm-send" id="zc-ladm-send" name="zc_admin_send" value="1"><i class="fa-solid fa-paper-plane"></i> ارسال</button>';
+		echo '</div>';
+		echo '<div class="zc-ladm-hint"><span><kbd>Enter</kbd> ارسال · <kbd>Shift</kbd>+<kbd>Enter</kbd> خط جدید — پاسخ فوری بدون رفرش ثبت می‌شود</span><span>حداکثر حجم فایل: ' . esc_html( number_format_i18n( (int) self::settings()['chat_max_mb'] ) ) . ' مگابایت</span></div>';
+		echo '</form></div>';
+		echo '</div>';
 	}
 
 	private function handle_admin_actions( string $base ): void {
@@ -882,37 +1170,112 @@ final class Live_Chat {
 		wp_send_json_success( array( 'ok' => true ) );
 	}
 
+	/** AJAX admin reply (text and/or file) — returns rendered bubble HTML. */
+	public function ajax_admin_send(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'forbidden' ), 403 );
+		}
+		check_ajax_referer( self::ADMIN_NONCE, 'nonce', false ) || wp_send_json_error( array( 'message' => 'bad nonce' ), 403 );
+		$cid     = absint( $_POST['contact'] ?? 0 );
+		$contact = $cid ? get_post( $cid ) : null;
+		if ( ! $contact || self::CONTACT !== $contact->post_type ) {
+			wp_send_json_error( array( 'message' => 'گفتگو یافت نشد.' ), 404 );
+		}
+		$text = sanitize_textarea_field( (string) ( $_POST['text'] ?? '' ) );
+		$file = '';
+		if ( ! empty( $_FILES['hc_file']['name'] ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			$received = $this->normalize_admin_upload( 'hc_file' );
+			if ( is_wp_error( $received ) ) {
+				wp_send_json_error( array( 'message' => $received->get_error_message() ), 422 );
+			}
+			$file = $received;
+		}
+		if ( '' === trim( $text ) && '' === $file ) {
+			wp_send_json_error( array( 'message' => 'متن پیام یا فایلی ارسال نکنید.' ), 422 );
+		}
+		$type = 'text';
+		if ( '' !== $file ) {
+			$ext  = strtolower( (string) pathinfo( (string) wp_parse_url( $file, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
+			$type = in_array( $ext, array( 'jpg', 'jpeg', 'png', 'gif', 'webp' ), true ) ? 'photo' : ( in_array( $ext, array( 'mp3', 'ogg', 'oga', 'wav', 'm4a', 'weba' ), true ) ? 'voice' : 'video' );
+		}
+		$id = $this->store_message( $cid, 'out', $type, $text, $file );
+		// Sending a reply marks the visitor side as fully read.
+		foreach ( get_posts( array( 'post_type' => self::MESSAGE, 'post_status' => 'any', 'posts_per_page' => -1, 'fields' => 'ids', 'meta_query' => array( array( 'key' => '_zc_contact', 'value' => $cid ), array( 'key' => '_zc_dir', 'value' => 'in' ), array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ) ) ) ) as $mid ) {
+			update_post_meta( $mid, '_zc_read', '1' );
+		}
+		$row  = self::message_row( $id );
+		$seen = (int) get_post_meta( $cid, '_zc_last_seen', true );
+		wp_send_json_success(
+			array(
+				'id'   => $id,
+				'dir'  => 'out',
+				'html' => $row ? $this->message_html( $row, (string) $contact->post_title, $seen ) : '',
+			)
+		);
+	}
+
+	/** AJAX: new messages in a thread after a given ID (append-only live view). */
+	public function ajax_admin_fetch(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'forbidden' ), 403 );
+		}
+		check_ajax_referer( self::ADMIN_NONCE, 'nonce', false ) || wp_send_json_error( array( 'message' => 'bad nonce' ), 403 );
+		$cid     = absint( $_POST['contact'] ?? 0 );
+		$contact = $cid ? get_post( $cid ) : null;
+		if ( ! $contact || self::CONTACT !== $contact->post_type ) {
+			wp_send_json_error( array( 'message' => 'گفتگو یافت نشد.' ), 404 );
+		}
+		$since = absint( $_POST['since'] ?? 0 );
+		$rows  = array();
+		$msgs  = get_posts(
+			array(
+				'post_type'      => self::MESSAGE,
+				'post_status'    => 'any',
+				'posts_per_page' => 60,
+				'orderby'        => 'ID',
+				'order'          => 'ASC',
+				'meta_query'     => array( array( 'key' => '_zc_contact', 'value' => $cid ) ),
+			)
+		);
+		$seen  = (int) get_post_meta( $cid, '_zc_last_seen', true );
+		$found = false;
+		foreach ( $msgs as $m ) {
+			if ( $since && (int) $m->ID <= $since ) {
+				continue;
+			}
+			$row = self::message_row( (int) $m->ID );
+			if ( ! $row ) {
+				continue;
+			}
+			$found = true;
+			$rows[] = array(
+				'id'   => (int) $m->ID,
+				'dir'  => $row['dir'],
+				'html' => $this->message_html( $row, (string) $contact->post_title, $seen ),
+			);
+		}
+		// Fresh visitor messages fetched while the thread is open count as read.
+		if ( $found ) {
+			foreach ( get_posts( array( 'post_type' => self::MESSAGE, 'post_status' => 'any', 'posts_per_page' => -1, 'fields' => 'ids', 'meta_query' => array( array( 'key' => '_zc_contact', 'value' => $cid ), array( 'key' => '_zc_dir', 'value' => 'in' ), array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ) ) ) ) as $mid ) {
+				update_post_meta( $mid, '_zc_read', '1' );
+			}
+		}
+		wp_send_json_success( array( 'rows' => $rows ) );
+	}
+
 	/* ------------------------------------------------- admin nav + live poll */
 
-	/** Tab bar + auto-refresh (live) for list/thread screens. */
+	/** Compact pill tab bar (live dot is fed by live-chat-admin.js). */
 	private static function admin_nav( string $view ): void {
-		$base   = admin_url( 'admin.php?page=zc-live-chat' );
-		$cur    = 'list' === $view ? '#292c32' : 'transparent';
-		$curSet = 'settings' === $view ? '#292c32' : 'transparent';
-		echo '<div style="display:flex;gap:8px;align-items:center;margin:0 0 14px;">';
-		echo '<a class="button" style="background:' . $cur . ';color:#fff;" href="' . esc_url( $base ) . '">گفتگوها</a>';
-		echo '<a class="button" style="background:' . $curSet . ';color:#fff;" href="' . esc_url( admin_url( 'admin.php?page=zc-live-chat-settings' ) ) . '">تنظیمات گفتگو</a>';
-		echo '<span id="zc-chat-live-dot" title="به‌روزرسانی خودکار" style="width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #22c55e33;"></span>';
-		echo '<span style="font-size:.75rem;color:#64748b;">تازه‌سازی خودکار هر ۸ ثانیه</span>';
+		$base     = admin_url( 'admin.php?page=zc-live-chat' );
+		$cur_list = 'list' === $view || 'thread' === $view ? ' is-active' : '';
+		$cur_set  = 'settings' === $view ? ' is-active' : '';
+		echo '<div class="zc-ladm-tabs">';
+		echo '<a class="zc-ladm-tab' . $cur_list . '" href="' . esc_url( $base ) . '"><i class="fa-regular fa-comments"></i> گفتگوها</a>';
+		echo '<a class="zc-ladm-tab' . $cur_set . '" href="' . esc_url( admin_url( 'admin.php?page=zc-live-chat-settings' ) ) . '"><i class="fa-solid fa-sliders"></i> تنظیمات گفتگو</a>';
+		echo '<span class="zc-ladm-live' . ( self::admin_online() ? '' : ' is-off' ) . '" id="zc-chat-live-dot" title="به‌روزرسانی خودکار"><i></i> زنده</span>';
 		echo '</div>';
-		// Live poller: reload on new activity; beep + browser notification + tab
-		// title flash so the admin notices incoming visitor messages immediately.
-		$nonce = wp_create_nonce( self::ADMIN_NONCE );
-		$mode  = 'thread' === $view ? 'thread' : 'list';
-		$strings = array(
-			'title'   => 'پیام جدید گفتگوی زنده',
-			'bodyNew' => 'یک بازدیدکننده پیام جدیدی ارسال کرده است؛ برای پاسخ روی اعلان یا منوی «گفتگوهای زنده» کلیک کنید.',
-		);
-		echo '<script>(function(){var m=' . wp_json_encode( $mode ) . ',n=' . wp_json_encode( $nonce ) . ',S=' . wp_json_encode( $strings ) . ',last=null,lastUnread=0,actx=null,dot=document.getElementById("zc-chat-live-dot"),origTitle=document.title;'
-			. 'function beep(){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx.state==="suspended")actx.resume();var t=actx.currentTime;[880,1174.7].forEach(function(f,i){var o=actx.createOscillator(),g=actx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(0.0001,t+i*0.14);g.gain.exponentialRampToValueAtTime(0.22,t+i*0.14+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+i*0.14+0.22);o.connect(g);g.connect(actx.destination);o.start(t+i*0.14);o.stop(t+i*0.14+0.24);});}catch(e){}}'
-			. 'function notify(unread){try{if(!("Notification" in window))return;if(Notification.permission==="granted"){new Notification(S.title,{body:S.bodyNew+" ("+unread+" خوانده‌نشده)",tag:"zc-chat"});}else if(Notification.permission==="default"){Notification.requestPermission();}}catch(e){}}'
-			. 'function tick(){fetch(adminurl,{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/x-www-form-urlencoded"},'
-			. 'body:"action=zc_chat_admin_poll&nonce="+n}).then(function(r){return r.json()}).then(function(j){'
-			. 'if(!j||!j.success||!j.data)return;var d=j.data;if(dot){dot.style.background=j.data.active?"#22c55e":"#94a3b8";}'
-			. 'var sig=d.unread+"|"+d.lastId+"|"+d.lastContact;if(last===null){last=sig;lastUnread=d.unread;return;}'
-			. 'if(sig!==last){if(d.unread>lastUnread||d.lastId){beep();if(document.hidden){notify(d.unread);document.title="("+d.unread+") "+origTitle;}}location.reload();}}).catch(function(){})}'
-			. 'document.addEventListener("click",function once(){try{if("Notification" in window&&Notification.permission==="default")Notification.requestPermission();}catch(e){}document.removeEventListener("click",once);});'
-			. 'setInterval(tick,8000);})();var adminurl=' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';</script>';
 	}
 
 	/** Lightweight activity feed for the admin poller. */
@@ -975,42 +1338,46 @@ final class Live_Chat {
 		$on  = function_exists( 'zarincode_get_option' ) ? (int) zarincode_get_option( 'enable_live_chat', true ) : 1;
 		$upd = isset( $_GET['zc-updated'] );
 
-		echo '<div class="wrap" dir="rtl"><h1>تنظیمات گفتگوی زنده</h1>';
+		echo '<div class="wrap zc-ladm zc-ladm-set" dir="rtl">';
+		echo '<div class="zc-ladm-top"><h1>تنظیمات گفتگوی زنده<span class="zc-ladm-sub">متن‌ها، فیلدهای فرم، امکانات ارسال فایل و اعلان‌ها — تغییرات بلافاصله روی پنل بازدیدکننده اعمال می‌شود</span></h1></div>';
 		self::admin_nav( 'settings' );
 		if ( $upd ) {
 			echo '<div class="notice notice-success is-dismissible"><p>تنظیمات گفتگوی زنده ذخیره شد.</p></div>';
 		}
-		echo '<form method="post" action="' . esc_url( admin_url( 'admin.php?page=zc-live-chat-settings' ) ) . '" style="max-width:760px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;">';
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin.php?page=zc-live-chat-settings' ) ) . '">';
 		wp_nonce_field( 'zc_chat_settings' );
 
-		echo '<h2 style="margin-top:0;border-bottom:1px solid #f1f5f9;padding-bottom:8px;">فعال‌سازی</h2>';
-		echo '<label style="display:flex;gap:8px;align-items:center;font-weight:700;"><input type="checkbox" name="enable_live_chat" value="1" ' . checked( 1, $on, false ) . '> چت زنده فعال باشد (دکمهٔ شناور و پنل روی همهٔ صفحات)</label>';
+		echo '<div class="zc-ladm-set-card"><h2><i class="fa-solid fa-toggle-on"></i> فعال‌سازی</h2>';
+		echo '<div class="zc-ladm-set-row"><label><input type="checkbox" name="enable_live_chat" value="1" ' . checked( 1, $on, false ) . '> چت زنده فعال باشد (دکمهٔ شناور و پنل روی همهٔ صفحات)</label></div></div>';
 
-		echo '<h2 style="border-bottom:1px solid #f1f5f9;padding-bottom:8px;">متن‌ها</h2>';
-		echo '<p><label>عنوان پنل چت<br><input type="text" name="chat_title" class="large-text" value="' . esc_attr( (string) $st['chat_title'] ) . '"></label></p>';
-		echo '<p><label>خوش‌آمدگویی (متن دروازهٔ ورود)<br><textarea name="chat_greeting" class="large-text" rows="2">' . esc_textarea( (string) $st['chat_greeting'] ) . '</textarea></label></p>';
-		echo '<p><label>پیام حالت آفلاین<br><textarea name="chat_offline_msg" class="large-text" rows="2">' . esc_textarea( (string) $st['chat_offline_msg'] ) . '</textarea></label></p>';
-		echo '<p><label>متن جعبهٔ نوشتن<br><input type="text" name="chat_placeholder" class="large-text" value="' . esc_attr( (string) $st['chat_placeholder'] ) . '"></label></p>';
-		echo '<p><label>رنگ تم چت (CSS)<br><input type="color" name="chat_accent" value="' . esc_attr( (string) $st['chat_accent'] ) . '" style="width:60px;height:36px;vertical-align:middle"> <span style="color:#64748b;font-size:.8rem;">دکمه‌ها و حباب‌های گفتگو</span></label></p>';
+		echo '<div class="zc-ladm-set-card"><h2><i class="fa-solid fa-font"></i> متن‌ها</h2>';
+		echo '<div class="zc-ladm-field"><span>عنوان پنل چت</span><input type="text" name="chat_title" value="' . esc_attr( (string) $st['chat_title'] ) . '"></div>';
+		echo '<div class="zc-ladm-field"><span>خوش‌آمدگویی (متن دروازهٔ ورود)</span><textarea name="chat_greeting" rows="2">' . esc_textarea( (string) $st['chat_greeting'] ) . '</textarea></div>';
+		echo '<div class="zc-ladm-field"><span>پیام حالت آفلاین</span><textarea name="chat_offline_msg" rows="2">' . esc_textarea( (string) $st['chat_offline_msg'] ) . '</textarea></div>';
+		echo '<div class="zc-ladm-field"><span>متن جعبهٔ نوشتن</span><input type="text" name="chat_placeholder" value="' . esc_attr( (string) $st['chat_placeholder'] ) . '"></div>';
+		echo '<div class="zc-ladm-field"><span>رنگ تم چت (CSS)</span><input type="color" name="chat_accent" value="' . esc_attr( (string) $st['chat_accent'] ) . '"> <span class="description">دکمه‌ها و حباب‌های گفتگو</span></div></div>';
 
-		echo '<h2 style="border-bottom:1px solid #f1f5f9;padding-bottom:8px;">فیلدهای فرم شروع گفتگو</h2>';
-		echo '<label style="display:block;margin:4px 0;"><input type="checkbox" name="chat_field_name" value="1" ' . checked( 1, $st['chat_field_name'], false ) . '> نام (در صورت غیرفعال، بازدیدکننده «مهمان» ثبت می‌شود)</label>';
-		echo '<label style="display:block;margin:4px 0;"><input type="checkbox" name="chat_field_phone" value="1" ' . checked( 1, $st['chat_field_phone'], false ) . '> شماره موبایل (تاریخچهٔ گفتگوها بر اساس آن یکپارچه می‌شود)</label>';
-		echo '<label style="display:block;margin:4px 0;"><input type="checkbox" name="chat_field_website" value="1" ' . checked( 1, $st['chat_field_website'], false ) . '> وبسایت (اختیاری)</label>';
+		echo '<div class="zc-ladm-set-card"><h2><i class="fa-solid fa-id-card"></i> فیلدهای فرم شروع گفتگو</h2><div class="zc-ladm-set-row">';
+		echo '<label><input type="checkbox" name="chat_field_name" value="1" ' . checked( 1, $st['chat_field_name'], false ) . '> نام (در صورت غیرفعال، «مهمان» ثبت می‌شود)</label>';
+		echo '<label><input type="checkbox" name="chat_field_phone" value="1" ' . checked( 1, $st['chat_field_phone'], false ) . '> شماره موبایل (تاریخچه یکپارچه می‌شود)</label>';
+		echo '<label><input type="checkbox" name="chat_field_website" value="1" ' . checked( 1, $st['chat_field_website'], false ) . '> وبسایت (اختیاری)</label>';
+		echo '</div></div>';
 
-		echo '<h2 style="border-bottom:1px solid #f1f5f9;padding-bottom:8px;">ارسال فایل</h2>';
-		echo '<label style="display:inline-block;margin:4px 12px 4px 0;"><input type="checkbox" name="chat_allow_photo" value="1" ' . checked( 1, $st['chat_allow_photo'], false ) . '> عکس</label>';
-		echo '<label style="display:inline-block;margin:4px 12px 4px 0;"><input type="checkbox" name="chat_allow_video" value="1" ' . checked( 1, $st['chat_allow_video'], false ) . '> ویدیو</label>';
-		echo '<label style="display:inline-block;margin:4px 12px 4px 0;"><input type="checkbox" name="chat_allow_voice" value="1" ' . checked( 1, $st['chat_allow_voice'], false ) . '> ویس (ضبط صدا)</label>';
-		echo '<p><label>حداکثر حجم هر فایل (مگابایت، ۱ تا ۶۴)<br><input type="number" name="chat_max_mb" min="1" max="64" value="' . (int) $st['chat_max_mb'] . '" style="width:90px;"></label></p>';
+		echo '<div class="zc-ladm-set-card"><h2><i class="fa-solid fa-paperclip"></i> ارسال فایل</h2><div class="zc-ladm-set-row">';
+		echo '<label><input type="checkbox" name="chat_allow_photo" value="1" ' . checked( 1, $st['chat_allow_photo'], false ) . '> عکس</label>';
+		echo '<label><input type="checkbox" name="chat_allow_video" value="1" ' . checked( 1, $st['chat_allow_video'], false ) . '> ویدیو</label>';
+		echo '<label><input type="checkbox" name="chat_allow_voice" value="1" ' . checked( 1, $st['chat_allow_voice'], false ) . '> ویس (ضبط صدا)</label>';
+		echo '</div>';
+		echo '<div class="zc-ladm-field" style="max-width:220px;"><span>حداکثر حجم هر فایل (۱ تا ۶۴ مگابایت)</span><input type="number" name="chat_max_mb" min="1" max="64" value="' . (int) $st['chat_max_mb'] . '"></div></div>';
 
-		echo '<h2 style="border-bottom:1px solid #f1f5f9;padding-bottom:8px;">اعلام‌ها و اعلان‌ها</h2>';
-		echo '<label style="display:block;margin:6px 0;font-weight:700;"><input type="checkbox" name="chat_sound" value="1" ' . checked( 1, $st['chat_sound'], false ) . '> صدای اعلان برای بازدیدکننده هنگام دریافت پاسخ پشتیبانی (با دکمهٔ زنگ در سربرگ پنل قابل بی‌صدا کردن است)</label>';
-		echo '<label style="display:block;margin:6px 0;font-weight:700;"><input type="checkbox" name="chat_notify_email" value="1" ' . checked( 1, $st['chat_notify_email'], false ) . '> ارسال ایمیل به مدیر برای هر پیام جدید گفتگو (حداکثر هر ۵ دقیقه یک ایمیل برای هر بازدیدکننده)</label>';
-		echo '<p class="description" style="margin:2px 0 0;">وقتی در پیشخوان هستید، روی پیام جدید زنگ پخش می‌شود و اعلان مرورگر (Notification) با درخواست دسترسی نمایش داده می‌شود؛ در تب‌های بسته عنوان تب هم با شمارنده پیام جدید چشمک می‌زند.</p>';
+		echo '<div class="zc-ladm-set-card"><h2><i class="fa-regular fa-bell"></i> اعلان‌ها</h2>';
+		echo '<div class="zc-ladm-set-row" style="flex-direction:column;align-items:flex-start;gap:8px;">';
+		echo '<label><input type="checkbox" name="chat_sound" value="1" ' . checked( 1, $st['chat_sound'], false ) . '> صدای اعلان برای بازدیدکننده هنگام دریافت پاسخ (با دکمهٔ زنگ در سربرگ پنل بی‌صدا می‌شود)</label>';
+		echo '<label><input type="checkbox" name="chat_notify_email" value="1" ' . checked( 1, $st['chat_notify_email'], false ) . '> ایمیل به مدیر برای هر پیام جدید (حداکثر هر ۵ دقیقه برای هر بازدیدکننده)</label>';
+		echo '</div>';
+		echo '<p class="description">در پیشخوان، روی پیام جدید زنگ پخش می‌شود و اعلان مرورگر نمایش داده می‌شود؛ در تب‌های بسته عنوان تب با شمارنده چشمک می‌زند. حضور شما (آنلاین/آفلاین) با ۹۰ ثانیه آخرین فعالیت در پیشخوان تشخیص داده می‌شود.</p></div>';
 
-		echo '<p class="description" style="margin-top:14px;">پیام‌های گفتگو در پیشخوان ← زرین‌پرس ← گفتگوهای زنده دریافت و پاسخ داده می‌شوند. حضور شما (آنلاین/آفلاین) با ۹۰ ثانیه آخرین فعالیت در پیشخوان تشخیص داده می‌شود.</p>';
-		echo '<p><button type="submit" name="zc_chat_settings_save" value="1" class="button button-primary">ذخیرهٔ تنظیمات</button></p>';
+		echo '<div class="zc-ladm-set-foot"><button type="submit" name="zc_chat_settings_save" value="1" class="button button-primary"><i class="fa-solid fa-check"></i> ذخیرهٔ تنظیمات</button><span class="description">پیام‌ها در پیشخوان ← زرین‌پرس ← گفتگوهای زنده پاسخ داده می‌شوند.</span></div>';
 		echo '</form></div>';
 	}
 }
