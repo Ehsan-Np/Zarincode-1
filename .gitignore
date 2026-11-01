@@ -8,7 +8,8 @@ node_modules/
 
 .config/
 .wp-cli/
-uploads/
+uploads/*
+!uploads/Zarincode-Theme-Skill-v3.txt
 
 # Ephemeral development / test environments
 .venv/
