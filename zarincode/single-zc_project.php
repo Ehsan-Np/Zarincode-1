@@ -1,11 +1,6 @@
 <?php
 /**
- * Single Portfolio Project — full case-study redesign (v4.2.0, 2026-11-01)
- *
- * Research-informed case-study anatomy:
- * back-link + dark hero (title, client line, result banner, live link) →
- * stat strip → two-column: narrative article + sticky fact sheet →
- * CTA band (similar project) → Single_Experience suite.
+ * Single Portfolio Project Template (Webinex Project Detail + Crextio Sunshine UI)
  *
  * @package Zarincode
  * @author  Ehsan NaderiPanah (09024561001 | https://zarincode.com)
@@ -14,8 +9,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
-wp_enqueue_style( 'zarincode-inner-pages', get_template_directory_uri() . '/assets/css/inner-pages.css', array(), ZARINCODE_VERSION );
 
 get_header();
 
@@ -30,124 +23,48 @@ while ( have_posts() ) :
     $plan     = get_post_meta( $post_id, '_zc_prj_plan', true ) ?: 'پلن الماسی + خدمات سئو';
     $metrics  = get_post_meta( $post_id, '_zc_prj_metrics', true ) ?: '+۳۲۰٪ رشد فروش آنلاین';
     $url      = get_post_meta( $post_id, '_zc_prj_url', true ) ?: 'https://zarincode.com';
-    $terms    = get_the_terms( $post_id, 'zc_project_cat' );
-    $term_name = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : 'نمونه‌کارها';
-    $portfolio_url = get_post_type_archive_link( 'zc_project' ) ?: home_url( '/projects-portfolio/' );
     ?>
-    <main id="primary" class="zc-container zc-inner-page" style="padding-top:2rem;padding-bottom:4rem;" role="main">
+    <main id="primary" class="zc-container" style="padding-top:2.5rem;padding-bottom:4rem;" role="main">
+        <nav aria-label="مسیر صفحه" style="font-size:.78rem;color:var(--zc-text-muted);margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:inherit;text-decoration:none;">خانه</a>
+            <i class="fa-solid fa-chevron-left" style="font-size:.55rem;opacity:.6;" aria-hidden="true"></i>
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'zc_project' ) ?: home_url( '/projects-portfolio/' ) ); ?>" style="color:inherit;text-decoration:none;">نمونه‌کارها</a>
+            <i class="fa-solid fa-chevron-left" style="font-size:.55rem;opacity:.6;" aria-hidden="true"></i>
+            <span aria-current="page" style="color:var(--zc-text-secondary);font-weight:700;"><?php the_title(); ?></span>
+        </nav>
+        <div class="zc-glass-panel" style="padding:2.75rem;margin-bottom:2.5rem;">
+            <span class="zc-badge-pill"><i class="fa-solid fa-briefcase"></i> ZARINCODE CASE STUDY</span>
+            <h1 class="zc-section-title"><?php the_title(); ?></h1>
 
-        <!-- ============================================================ HERO -->
-        <section class="zc-inner-hero zc-reveal" aria-labelledby="zc-prj-title">
-            <nav class="zc-eh-breadcrumb" aria-label="مسیر صفحه">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">خانه</a>
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                <a href="<?php echo esc_url( $portfolio_url ); ?>">نمونه‌کارها</a>
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                <span><?php echo esc_html( $term_name ); ?></span>
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                <span aria-current="page"><?php the_title(); ?></span>
-            </nav>
-
-            <span class="zc-eh-kicker"><i class="fa-solid fa-briefcase"></i> ZARINCODE CASE STUDY — مطالعهٔ موردی</span>
-            <h1 class="zc-eh-title" id="zc-prj-title"><?php the_title(); ?></h1>
-            <p class="zc-eh-lead">
-                پروژه‌ای اجراشده توسط <strong style="color:#fdd05b;"><?php echo esc_html( $agency ); ?></strong>
-                برای <strong style="color:#fdd05b;"><?php echo esc_html( $client ); ?></strong> —
-                بازهٔ اجرا <?php echo esc_html( $date . ' • ' . $duration ); ?>.
-            </p>
-
-            <div class="zc-eh-chips" aria-label="خلاصهٔ مشخصات پروژه">
-                <span class="zc-eh-chip"><i class="fa-solid fa-layer-group"></i> <?php echo esc_html( $cms ); ?></span>
-                <span class="zc-eh-chip"><i class="fa-solid fa-gem"></i> <?php echo esc_html( $plan ); ?></span>
-                <span class="zc-eh-chip"><i class="fa-regular fa-calendar"></i> <?php echo esc_html( $date ); ?></span>
-                <span class="zc-eh-chip"><i class="fa-regular fa-clock"></i> <?php echo esc_html( $duration ); ?></span>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.75rem 0;">
+                <div class="zc-white-card" style="padding:1.2rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-building" style="color:var(--color-accent);" aria-hidden="true"></i>کارفرما / برند:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $client ); ?></div></div>
+                <div class="zc-white-card" style="padding:1.2rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-user-tie" style="color:var(--color-accent);" aria-hidden="true"></i>مجری پروژه:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $agency ); ?></div></div>
+                <div class="zc-white-card" style="padding:1.2rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-regular fa-calendar" style="color:var(--color-accent);" aria-hidden="true"></i>تاریخ و زمان اجرا:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $date . ' • ' . $duration ); ?></div></div>
+                <div class="zc-white-card" style="padding:1.2rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-layer-group" style="color:var(--color-accent);" aria-hidden="true"></i>تکنولوژی / CMS:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $cms ); ?></div></div>
+                <div class="zc-white-card" style="padding:1.2rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-gem" style="color:var(--color-accent);" aria-hidden="true"></i>پلن اجرایی:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $plan ); ?></div></div>
+                <div class="zc-yellow-card" style="padding:1.2rem;"><small style="font-weight:700;display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-chart-line" aria-hidden="true"></i>نتیجه و دستاورد:</small><div style="font-weight:900;margin-top:0.25rem;"><?php echo esc_html( $metrics ); ?></div></div>
             </div>
 
-            <!-- flagship result banner -->
-            <div class="zc-case-result" role="note" aria-label="نتیجهٔ شاخص پروژه">
-                <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                <div>
-                    <small>نتیجه و دستاورد کلیدی</small>
-                    <strong><?php echo esc_html( $metrics ); ?></strong>
-                </div>
-            </div>
-
-            <div class="zc-eh-actions" style="margin-top:1.4rem;">
-                <button type="button" class="zc-eh-btn zc-eh-btn-gold" data-zc-modal-open="zc-consult-modal">
-                    <i class="fa-solid fa-rocket"></i> سفارش پروژهٔ مشابه برای کسب‌وکار شما
-                </button>
-                <a href="<?php echo esc_url( $url ); ?>" class="zc-eh-btn zc-eh-btn-ghost" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهدهٔ زندهٔ پروژه
-                </a>
-                <a href="<?php echo esc_url( $portfolio_url ); ?>" class="zc-eh-btn zc-eh-btn-ghost" style="border-style:dashed;">
-                    <i class="fa-solid fa-arrow-right"></i> سایر نمونه‌کارها
-                </a>
-            </div>
-        </section>
-
-        <!-- ============================================ fact sheet + story -->
-        <section class="zc-case-layout" style="margin-top:1.5rem;" aria-label="جزئیات و روایت پروژه">
-            <article class="zc-inner-article zc-reveal zc-reveal-d1" aria-label="شرح کامل پروژه">
-                <span class="zc-sec-kicker"><i class="fa-solid fa-feather-pointed"></i> THE CHALLENGE &amp; SOLUTION</span>
-                <h2 style="margin-top:.4rem;">داستان پروژه</h2>
+            <div style="line-height:2;font-size:1.02rem;color:var(--zc-text-secondary);margin-bottom:2rem;">
                 <?php the_content(); ?>
-            </article>
-
-            <aside class="zc-case-side zc-reveal zc-reveal-d2" aria-label="مشخصات فنی پروژه">
-                <div class="zc-sec-head" style="margin-bottom:.8rem;">
-                    <div>
-                        <span class="zc-sec-kicker"><i class="fa-solid fa-clipboard-list"></i> PROJECT FACT SHEET</span>
-                        <h2 style="font-size:1.15rem;">مشخصات پروژه</h2>
-                    </div>
-                </div>
-                <ul class="zc-case-facts">
-                    <li><small>کارفرما / برند</small><strong><?php echo esc_html( $client ); ?></strong></li>
-                    <li><small>مجری پروژه</small><strong><?php echo esc_html( $agency ); ?></strong></li>
-                    <li><small>تاریخ اجرا</small><strong><?php echo esc_html( $date ); ?></strong></li>
-                    <li><small>مدت اجرا</small><strong><?php echo esc_html( $duration ); ?></strong></li>
-                    <li><small>تکنولوژی / CMS</small><strong><?php echo esc_html( $cms ); ?></strong></li>
-                    <li><small>پلن اجرایی</small><strong><?php echo esc_html( $plan ); ?></strong></li>
-                    <li style="background:#fdd05b1f;"><small>نتیجه</small><strong style="color:#a16207;"><?php echo esc_html( $metrics ); ?></strong></li>
-                </ul>
-                <div style="margin-top:.9rem;display:grid;gap:.55rem;">
-                    <a href="<?php echo esc_url( $url ); ?>" class="zc-eh-btn zc-eh-btn-dark" target="_blank" rel="noopener noreferrer" style="width:100%;">
-                        <i class="fa-solid fa-globe"></i> بازدید از وب‌سایت پروژه
-                    </a>
-                    <button type="button" class="zc-eh-btn zc-eh-btn-gold" data-zc-modal-open="zc-consult-modal" style="width:100%;">
-                        <i class="fa-solid fa-paper-plane"></i> سفارش پروژهٔ مشابه
-                    </button>
-                </div>
-            </aside>
-        </section>
-
-        <!-- =============================================== CTA band -->
-        <section class="zc-cta-band" style="margin-top:1.5rem;" aria-label="دعوت به شروع پروژه مشابه">
-            <div>
-                <h2>پروژه‌ای مشابه «<?php the_title(); ?>» در ذهن دارید؟</h2>
-                <p>از ایده تا اجرا کنار شما هستیم؛ مشاورهٔ رایگان بگیرید و نقشهٔ راه کسب‌وکارتان را در همان جلسه بشناسید.</p>
             </div>
-            <div class="zc-eh-actions">
-                <button type="button" class="zc-eh-btn zc-eh-btn-gold" data-zc-modal-open="zc-consult-modal">
-                    <i class="fa-solid fa-comments"></i> درخواست مشاورهٔ رایگان
+
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+                <button type="button" class="zc-btn zc-btn-yellow" data-zc-modal-open="zc-consult-modal">
+                    <i class="fa-solid fa-rocket"></i> سفارش پروژه مشابه برای کسب‌وکار شما
                 </button>
-                <a href="tel:09024561001" class="zc-eh-btn zc-eh-btn-ghost"><i class="fa-solid fa-phone"></i> ۰۹۰۲۴۵۶۱۰۰۱</a>
+                <?php if ( $url && $url !== 'https://zarincode.com' ) : ?>
+                    <a href="<?php echo esc_url( $url ); ?>" class="zc-btn zc-btn-dark" target="_blank" rel="noopener noreferrer">
+                        مشاهده زنده پروژه <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                <?php endif; ?>
+                <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>" class="zc-btn zc-btn-dark">
+                    مشاهده سایر نمونه‌کارها <i class="fa-solid fa-arrow-left"></i>
+                </a>
             </div>
-        </section>
-
+        </div>
         <?php \Zarincode\Theme\Core\Single_Experience::render(); ?>
     </main>
-
-    <!-- mobile sticky bar -->
-    <div class="zc-inner-mobilebar" role="region" aria-label="نوار سریع">
-        <div>
-            <strong><?php echo esc_html( $metrics ); ?></strong>
-            <small>نتیجهٔ پروژه • مشاورهٔ رایگان</small>
-        </div>
-        <div style="display:flex;gap:.45rem;">
-            <button type="button" class="zc-eh-btn zc-eh-btn-gold" data-zc-modal-open="zc-consult-modal"><i class="fa-solid fa-rocket"></i> پروژهٔ مشابه</button>
-            <a href="<?php echo esc_url( $portfolio_url ); ?>" class="zc-eh-btn zc-eh-btn-ghost"><i class="fa-solid fa-images"></i> نمونه‌کارها</a>
-        </div>
-    </div>
     <?php
 endwhile;
 

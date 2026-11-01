@@ -2527,3 +2527,11 @@ Conditional inner-pages.css (RTL-first, dark-mode, reduced-motion, no extra JS).
 All meta fields, AJAX form fields/honeypot, zc-consult-modal and Single_Experience
 preserved. Verified in live env (6 services + 8 projects seeded): full render, zero
 warnings, desktop+mobile screenshots in docs/audits/2026-11-01-inner-pages-redesign.
+
+== UPDATE 2026-11-01 — v4.2.1 (user feedback: revert inner-page redesign) ==
+v4.2.0 redesign reverted: both single templates restored byte-identical to the
+approved 602f96b design; additive-only polish kept (breadcrumb, small gold icons
+on condition/meta cards, live-project button from unused _zc_prj_url meta).
+Fixed share bug: bale.svg was fill=white on a white tile (invisible icon) →
+fill #292c31; verified visually. inner-pages.css removed. Verified in env:
+service/project/share/home screenshots all clean.
