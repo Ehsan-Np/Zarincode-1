@@ -2535,3 +2535,23 @@ on condition/meta cards, live-project button from unused _zc_prj_url meta).
 Fixed share bug: bale.svg was fill=white on a white tile (invisible icon) →
 fill #292c31; verified visually. inner-pages.css removed. Verified in env:
 service/project/share/home screenshots all clean.
+
+== UPDATE 2026-11-01 — v4.3.0 (share compact + product-pattern project page + pro live chat + inbox redesign) ==
+Share studio compacted per user request (54px grid / 60px tiles / 30px icons,
+tighter header, linkbar and bold TG/Bale tiles — bale icon verified visible).
+single-zc_project.php rewritten to the approved single-product.php anatomy
+(breadcrumb bar, hero glass panel + media row + dark 4-KPI card, 3 tabs:
+overview/specs/results with inline JS, sticky gold sidebar fact-sheet + dev
+card); product-reference.css now enqueues on zc_project singles too; mobile
+verified. Live chat pro: visitor WebAudio ding + mute toggle + unread badge +
+title flash on admin reply; admin poller plays beep + browser Notification API
++ throttled wp_mail (5 min/contact) with new settings chat_sound /
+chat_notify_email; panel restyled (gradient head, accent top border, admin
+avatar bubbles). Consultation inbox redesigned: stats cards, zc_q search
+(name/phone/details meta OR), zc_msg notices, quick row actions (tel + nonce'd
+GET status), status-change redirect, preserved-filter pagination, single
+handle_actions entry, two-column detail. Fixed found_posts counters that capped
+inbox/chat menu badges at 1. Verified live: project desktop+mobile, product
+neighbor, share, chat panel+settings, inbox list+detail screenshots; PHP+JS
+sweep 0 errors; smoke all-200. Zips: zarincode-4.3.0.zip
+(fcf5274e…178d2) + zarincode-core-4.3.0.zip (c77edd40…7ba29).
