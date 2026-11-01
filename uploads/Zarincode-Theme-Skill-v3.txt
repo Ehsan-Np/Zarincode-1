@@ -2501,3 +2501,19 @@ Every new version must record architectural changes, compatibility impact, migra
 ---
 
 **END OF ZARINCODE WORDPRESS THEME ENGINEERING SKILL v3.0.0**
+== UPDATE 2026-11-01 — v4.1.1 (research → needs-analysis → code cycle) ==
+Live chat: full admin settings (enable/title/greeting/offline/placeholder/accent,
+field toggles name+phone+website, file toggles photo+video+voice, max MB) + admin
+live polling (8s) with «گفتگوها | تنظیمات گفتگو» tabs; verified end-to-end in a
+fresh WP env (start→send→poll→reply→poll; save roundtrip; phone-off IP fallback).
+FIX floating socials layout break on open (plugin position:relative override
+removed; theme absolute popup restored — env evidence).
+Elementor editor performance (research-based, developers.elementor.com): seeds
+Optimized Markup + Inline Font Icons (3.x) / Improved Asset Loading + Optimized
+Control Loading (4.x) as active defaults unless the admin already chose; guidance
+on rocket page (Element Manager for unused widgets; widgets load CSS/JS
+conditionally via get_*_depends).
+Researches admin KB rebuilt after snapshot-restore wiped untracked files (lesson
+in AGENTS.md: commit every new file in the same message). Docs: needs-analysis
+2026-11-01-needs-analysis-admin-management. Deliverables: zarincode-4.1.1.zip
+(9f8ec85c…2a5d7) + zarincode-core-4.1.1.zip (4f16ab19…7cd31).

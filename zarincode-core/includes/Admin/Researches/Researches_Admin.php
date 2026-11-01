@@ -2,6 +2,10 @@
 namespace Zarincode\Runtime260\Admin\Researches;
 \defined( 'ABSPATH' ) || exit;
 
+// ZarinPal_Research lives in rocket.php (historic filename); load it for the
+// PSR-4 autoloader which maps this namespace to same-named files only.
+require_once __DIR__ . '/rocket.php';
+
 /**
  * Single admin surface for every third-party research entry.
  *
@@ -15,6 +19,8 @@ final class Researches_Admin {
 
 	public static function register(): void {
 		add_menu_page( 'بانک تحقیقات', 'تحقیقات بازار', 'manage_options', 'zc-rocket', array( __CLASS__, 'render' ), 'dashicons-rocket', 29 );
+		add_submenu_page( 'zc-rocket', 'ZarinPal — درگاه پرداخت', 'ZarinPal', 'manage_options', 'zc-rocket-zarinpal', array( ZarinPal_Research::class, 'render' ) );
+		add_submenu_page( 'zc-rocket', 'ZarinPal Sandbox — محیط تست', 'سندباکس ZarinPal', 'manage_options', 'zc-rocket-zarinpal-sandbox', array( ZarinPal_Research::class, 'render' ) );
 	}
 
 	private static function entries(): array {
