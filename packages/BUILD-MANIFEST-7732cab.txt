@@ -1,0 +1,10 @@
+cycle            : 2026-11-01 (consultation inbox + live chat + Iranian socials + visual polish)
+git-sha          : 7732cab
+built-at         : 2026-11-01T00:02:29+00:00
+wp-env-verified  : WordPress 7.1.4 / PHP 8.4.27 / Elementor 4.3.5 / Redux 4.5.16 (wordpress.org — afzoneha down this cycle)
+php-lint         : 0 errors (all touched files)
+node-check       : 0 errors (zarincode-main.js, single-experience.js, live-chat.js)
+functional       : consultation submit/honeypot/rate-limit/inbox/detail OK; chat start/text/photo/voice/poll/
+                   bad-token/admin-reply/read-mark/presence OK; settings sections removed (grep 0/0);
+                   8 networks in share studio, bale+telegram bold; pricing shape regression OK
+version          : 4.0.0-rc.2 (rc.2 — NOT final; commercial_approved=false)
