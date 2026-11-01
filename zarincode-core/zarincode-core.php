@@ -60,6 +60,9 @@ final class Zarincode_Core_Plugin_260 {
         add_action('init',static function(){if(\Zarincode\Runtime260\Features\Manager::enabled('product_policies'))\Zarincode\Runtime260\Admin\Product_Policy_Admin::boot();});
         add_action('init',static function(){if(\Zarincode\Runtime260\Features\Manager::enabled('threaded_discussion'))\Zarincode\Runtime260\Content\Discussion_Service::boot();});
         add_action('init',static function(){if(\Zarincode\Runtime260\Features\Manager::enabled('social_profiles'))\Zarincode\Runtime260\Content\Social_Profile_Store::boot();});
+        // صندوق ورودی مشاوره + گفتگوی زنده: همیشه فعال (الزام محصول).
+        add_action('init',static function(){\Zarincode\Runtime260\Features\Consultation_Inbox::boot();});
+        add_action('init',static function(){if(!function_exists('zarincode_get_option')||zarincode_get_option('enable_live_chat',true))\Zarincode\Runtime260\Features\Live_Chat::boot();});
         add_filter('debug_information', [\Zarincode\Runtime260\Support\Diagnostics::class,'site_health']);
         add_action('init',static function(){load_plugin_textdomain('zarincode-core',false,dirname(plugin_basename(__FILE__)).'/languages');});
         \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();

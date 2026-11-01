@@ -31,7 +31,6 @@ class Elementor_Loader {
     private function __construct() {
 
         add_action('update_option_zarincode_opt', [\Zarincode\Runtime260\Features\Manager::class,'invalidate'], 10, 2);
-        add_action('admin_menu',static function(){add_submenu_page(null,'ساماندهی دمو','ساماندهی دمو','edit_theme_options','zarincode-demo-layout',[Demo_Composition::class,'page']);add_submenu_page(null,'تفکیک هیرو','تفکیک هیرو','edit_theme_options','zarincode-split-hero',[Hero_Layout::class,'page']);});
         add_action('admin_notices',[Icon_Compatibility::class,'notice']);
         add_action('elementor/editor/after_enqueue_scripts',[$this,'editor_assets']);
         add_action( 'admin_init', [ $this, 'refresh_generated_css' ] );

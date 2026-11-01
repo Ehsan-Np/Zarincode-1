@@ -1,0 +1,89 @@
+/* Zarincode live chat — launcher (in the floating dock), panel, thread, composer. */
+.zc-floating-dock{display:flex;flex-direction:column;gap:10px;align-items:center;width:100%}
+.zc-chat-launcher{position:relative;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;border:1px solid #e1b643;background:#292c32;color:#fdd05b;box-shadow:0 8px 25px #292c3233;cursor:pointer;transition:transform .2s,box-shadow .2s;padding:0}
+.zc-floating-quick-contact .zc-chat-launcher{width:48px;height:48px}
+.zc-chat-launcher:hover{transform:translateY(-2px);box-shadow:0 12px 30px #292c3240}
+.zc-chat-launcher i{font-size:22px;width:24px;height:24px}
+.zc-chat-launcher.is-active{background:#fdd05b;color:#292c32}
+.zc-chat-launcher-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#ef4444;border:2px solid #fffdf7;box-shadow:0 0 0 2px #ef444433;transition:background .3s,box-shadow .3s}
+.zc-chat-launcher-dot.is-online{background:#22c55e;box-shadow:0 0 0 2px #22c55e4d;animation:zc-dot-pulse 1.6s ease-out infinite}
+@keyframes zc-dot-pulse{0%{box-shadow:0 0 0 2px #22c55e55}70%{box-shadow:0 0 0 10px #22c55e00}100%{box-shadow:0 0 0 2px #22c55e00}}
+.zc-chat-launcher-ribbon{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;font-size:.58rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px #16a34a44;pointer-events:none}
+.zc-floating-dock .zc-floating-socials>div,.zc-floating-dock .zc-floating-channel{position:relative}
+.zc-floating-dock .zc-floating-socials>div{bottom:0;transform:translateY(calc(-100% - 74px));z-index:60}
+
+/* ------------------------------------------------------------------ panel */
+.zc-chat-panel{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(84px,calc(env(safe-area-inset-bottom) + 74px));width:min(372px,calc(100vw - 28px));height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fffdf7;border:1px solid #e3d9bd;border-radius:22px;box-shadow:0 24px 70px #292c3240;overflow:hidden;z-index:1200;opacity:0;transform:translateY(14px) scale(.98);transition:opacity .22s,transform .22s}
+.zc-chat-panel.is-open{opacity:1;transform:none}
+.zc-chat-panel[hidden]{display:none}
+.zc-chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:#292c32;color:#fff}
+.zc-chat-head-title{display:grid;gap:3px;min-width:0}
+.zc-chat-head-title strong{font-size:.86rem;font-weight:900}
+.zc-chat-status{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;color:#c9cbd1}
+.zc-chat-status i{width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0}
+.zc-chat-status.is-online i{background:#22c55e;animation:zc-dot-pulse 1.6s ease-out infinite}
+.zc-chat-status em{font-style:normal}
+.zc-chat-status.is-online em{color:#4ade80;font-weight:700}
+.zc-chat-close{width:32px;height:32px;border-radius:50%;border:0;background:#ffffff1a;color:#fff;font-size:1.15rem;cursor:pointer;line-height:1}
+.zc-chat-close:hover{background:#ffffff33}
+
+.zc-chat-body{flex:1;min-height:0;display:flex;flex-direction:column;background:linear-gradient(180deg,#f7f3e9,#fffdf7)}
+.zc-chat-prechat{display:grid;gap:12px;padding:20px 18px;align-content:start;overflow:auto}
+.zc-chat-prechat[hidden]{display:none}
+.zc-chat-welcome{margin:0;font-size:.8rem;line-height:2;color:#4b5563;background:#fde9a826;border:1px solid #e8dcae;border-radius:12px;padding:10px 12px}
+.zc-chat-field{display:grid;gap:5px}
+.zc-chat-field span{font-size:.72rem;font-weight:800;color:#374151}
+.zc-chat-field input{border:1px solid #ddd6c3;border-radius:11px;padding:11px 12px;font:inherit;font-size:.85rem;background:#fff;color:#111827;outline:none;transition:border-color .2s,box-shadow .2s}
+.zc-chat-field input:focus{border-color:#d9a93b;box-shadow:0 0 0 3px #fdd05b33}
+.zc-chat-error{margin:0;font-size:.74rem;font-weight:700;color:#b91c1c;background:#fee2e2;border-radius:10px;padding:8px 10px}
+.zc-chat-error[hidden]{display:none}
+.zc-chat-start{border:0;border-radius:13px;background:#fdd05b;color:#292c32;font:inherit;font-weight:900;font-size:.88rem;padding:13px;cursor:pointer;box-shadow:0 6px 18px #fdd05b55;transition:transform .15s,box-shadow .15s}
+.zc-chat-start:hover{transform:translateY(-1px);box-shadow:0 10px 22px #fdd05b66}
+.zc-chat-start:disabled{opacity:.65;cursor:wait;transform:none}
+
+.zc-chat-thread{flex:1;min-height:0;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:9px;scroll-behavior:smooth}
+.zc-chat-thread[hidden]{display:none}
+.zc-msg{max-width:82%;display:grid;gap:4px;padding:9px 12px;border-radius:16px;font-size:.84rem;line-height:1.95;box-shadow:0 2px 8px #292c320d;animation:zc-msg-in .18s ease}
+@keyframes zc-msg-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.zc-msg.is-mine{align-self:flex-start;background:#292c32;color:#fff;border-bottom-right-radius:6px}
+.zc-msg.is-theirs{align-self:flex-end;background:#fff;border:1px solid #e7dfc9;color:#111827;border-bottom-left-radius:6px}
+.zc-msg img,.zc-msg video{max-width:100%;border-radius:10px;display:block}
+.zc-msg audio{max-width:230px;height:36px}
+.zc-msg time{font-size:.58rem;opacity:.6;text-align:left;direction:ltr}
+.zc-msg.is-mine time{text-align:left;color:#fcd34d}
+.zc-chat-system{align-self:center;background:#eef7ee;color:#166534;border:1px dashed #86c99a;font-size:.68rem;font-weight:700;padding:5px 12px;border-radius:999px}
+
+.zc-chat-composer{border-top:1px solid #e7dfc9;background:#fffef9;padding:10px 12px 12px;display:grid;gap:8px}
+.zc-chat-composer[hidden]{display:none}
+.zc-chat-tools{display:flex;gap:8px}
+.zc-tool{width:38px;height:38px;border-radius:12px;border:1px solid #e3d9bd;background:#fff;color:#4b5563;display:grid;place-items:center;cursor:pointer;font-size:1rem;transition:background .15s,border-color .15s,transform .15s}
+.zc-tool:hover{background:#fdf3d0;border-color:#d9a93b;transform:translateY(-1px)}
+.zc-tool.is-recording{background:#fee2e2;border-color:#ef4444;color:#b91c1c;animation:zc-rec 1s ease-in-out infinite}
+@keyframes zc-rec{50%{box-shadow:0 0 0 6px #ef444422}}
+.zc-chat-input{display:flex;gap:8px;align-items:center}
+.zc-chat-input input{flex:1;min-width:0;border:1px solid #ddd6c3;border-radius:999px;padding:11px 15px;font:inherit;font-size:.85rem;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.zc-chat-input input:focus{border-color:#d9a93b;box-shadow:0 0 0 3px #fdd05b33}
+.zc-chat-send{width:44px;height:44px;flex-shrink:0;border:0;border-radius:50%;background:#fdd05b;color:#292c32;cursor:pointer;font-size:1rem;display:grid;place-items:center;box-shadow:0 4px 14px #fdd05b66;transition:transform .15s}
+.zc-chat-send:hover{transform:scale(1.06)}
+
+.zc-chat-toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-80px);background:#111827;color:#fff;border:1px solid #fdd05b66;padding:12px 18px;border-radius:14px;font-size:.82rem;font-weight:700;box-shadow:0 16px 40px #00000055;z-index:1300;opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;max-width:min(420px,calc(100vw - 32px))}
+.zc-chat-toast i{color:#fdd05b;margin-inline-end:6px}
+.zc-chat-toast.is-show{transform:translate(-50%,0);opacity:1}
+
+@media(max-width:600px){
+    .zc-chat-panel{right:10px;left:10px;bottom:calc(env(safe-area-inset-bottom) + 76px);width:auto;height:min(74vh,560px)}
+    .zc-chat-launcher-ribbon{font-size:.52rem;padding:2px 6px}
+}
+@media(prefers-reduced-motion:reduce){
+    .zc-chat-panel,.zc-msg,.zc-chat-launcher,.zc-chat-toast{transition:none;animation:none}
+    .zc-chat-launcher-dot.is-online,.zc-chat-status.is-online i,.zc-tool.is-recording{animation:none}
+}
+html.dark .zc-chat-panel{background:#202227;border-color:#3a3d44}
+html.dark .zc-chat-body{background:linear-gradient(180deg,#23252b,#1c1e22)}
+html.dark .zc-chat-prechat{color:#e5e7eb}
+html.dark .zc-chat-field span,html.dark .zc-chat-welcome{color:#d1d5db}
+html.dark .zc-chat-field input,html.dark .zc-chat-input input{background:#2a2d33;color:#f3f4f6;border-color:#454a52}
+html.dark .zc-chat-composer{background:#26282e;border-color:#3a3d44}
+html.dark .zc-tool{background:#30333a;border-color:#454a52;color:#d1d5db}
+html.dark .zc-msg.is-theirs{background:#2f323a;border-color:#454a52;color:#f3f4f6}
+html.dark .zc-chat-welcome{background:#3a352466;border-color:#57503d}
