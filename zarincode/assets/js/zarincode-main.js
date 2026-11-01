@@ -186,16 +186,41 @@
             }
         });
 
-        // Consultation Form Submission Toast
+        // Consultation forms → real submission into the wp-admin inbox (admin-ajax)
         legacyNodes('.zc-Ajax-form').forEach(function (form) {
-            form.addEventListener('submit', function (e) {
+            if (form.dataset.zcBound) return;
+            form.dataset.zcBound = '1';
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 const msgBox = form.querySelector('.zc-form-feedback');
-                if (msgBox) {
+                const btn = form.querySelector('[type="submit"]');
+                const data = window.ZarincodeData || {};
+                const show = (html, ok) => {
+                    if (!msgBox) return;
                     msgBox.style.display = 'block';
-                    msgBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> درخواست شما با موفقیت ثبت شد! احسان نادری پناه و تیم زرین کد (09024561001) در سریع‌ترین زمان با شما تماس می‌گیرند.';
+                    msgBox.innerHTML = html;
+                    msgBox.style.background = ok ? 'var(--color-accent)' : '#fee2e2';
+                    msgBox.style.color = ok ? 'var(--color-accent-contrast)' : '#991b1b';
+                };
+                const fd = new FormData(form);
+                fd.append('action', 'zc_consult_submit');
+                fd.append('zc_consult_nonce', data.consultNonce || '');
+                fd.append('zc_page', location.href);
+                if (btn) { btn.disabled = true; btn.dataset.zcHtml = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> در حال ثبت درخواست…'; }
+                try {
+                    const res = await fetch(data.ajaxUrl || '/wp-admin/admin-ajax.php', { method: 'POST', body: fd, credentials: 'same-origin' });
+                    const json = await res.json();
+                    if (json && json.success) {
+                        show('<i class="fa-solid fa-circle-check"></i> ' + (json.data && json.data.message ? json.data.message : 'درخواست شما با موفقیت ثبت شد!'), true);
+                        form.reset();
+                    } else {
+                        show('<i class="fa-solid fa-circle-exclamation"></i> ' + (json && json.data && json.data.message ? json.data.message : 'ثبت درخواست ناموفق بود؛ لطفاً دوباره تلاش کنید.'), false);
+                    }
+                } catch (err) {
+                    show('<i class="fa-solid fa-circle-exclamation"></i> ارتباط با سرور برقرار نشد؛ اینترنت خود را بررسی و دوباره تلاش کنید.', false);
+                } finally {
+                    if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.zcHtml || btn.innerHTML; }
                 }
-                form.reset();
             });
         });
 

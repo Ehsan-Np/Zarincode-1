@@ -147,6 +147,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
             <?php echo esc_html( $modal_desc ); ?>
         </p>
         <form class="zc-Ajax-form">
+            <input type="text" name="zc_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-10000px!important;width:1px;height:1px;opacity:0;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
                 <div class="zc-form-group">
                     <label class="zc-form-label" for="zc-consult-name">نام و نام خانوادگی *</label>

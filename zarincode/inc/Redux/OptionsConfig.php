@@ -309,6 +309,8 @@ class OptionsConfig {
                     [ 'id'=>'social_gap','type'=>'text','title'=>'پیوند رسمی گپ','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id'=>'social_igap','type'=>'text','title'=>'پیوند رسمی آی‌گپ','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id'=>'social_shad','type'=>'text','title'=>'پیوند رسمی شاد','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_aparat','type'=>'text','title'=>'پیوند رسمی آپارات','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
+                    [ 'id'=>'social_nazdika','type'=>'text','title'=>'پیوند رسمی نزدیکا','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id'=>'social_x','type'=>'text','title'=>'پیوند رسمی ایکس','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id'=>'social_facebook','type'=>'text','title'=>'پیوند رسمی فیسبوک','subtitle'=>'نشانی کامل HTTPS حساب، کانال یا پشتیبانی کسب‌وکار؛ با خالی گذاشتن، نمایش داده نمی‌شود.','default'=>'' ],
                     [ 'id' => 'social_linkedin',          'type' => 'text',   'title' => 'آدرس لینکدین رسمی', 'default' => 'https://linkedin.com/company/zarincode' ],
@@ -316,6 +318,7 @@ class OptionsConfig {
                     [ 'id'=>'floating_contact_url','type'=>'text','title'=>'پیوند دلخواه دکمه شناور','default'=>'' ],
                     [ 'id' => 'enable_floating_contact',  'type' => 'switch', 'title' => 'نمایش راه ارتباطی شناور', 'default' => true ],
                     [ 'id' => 'floating_contact_label',   'type' => 'text',   'title' => 'متن دکمه شناور مشاوره سریع', 'default' => 'راه‌های ارتباطی' ],
+                    [ 'id'=>'enable_live_chat','type'=>'switch','title'=>'چت زندهٔ زرین کد (دکمهٔ شناور + صندوق ورودی پیام‌ها)','subtitle'=>'گفتگوی آنلاین با نام و شماره موبایل الزامی؛ ارسال ویس، ویدیو و عکس؛ تاریخچه در پیشخوان بر اساس شماره یا IP؛ نمایش وضعیت آنلاین/آفلاین کنار آیکون.','default'=>true ],
                 ],
             ],
 

@@ -67,17 +67,18 @@ while ( have_posts() ) :
                         اطلاعات تماس خود را وارد کنید تا <strong>احسان نادری پناه</strong> در کمتر از ۱۵ دقیقه جهت مشاوره رایگان با شما تماس بگیرد:
                     </p>
                     <form class="zc-Ajax-form">
+                        <input type="text" name="zc_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-10000px!important;width:1px;height:1px;opacity:0;">
                         <div class="zc-form-group">
                             <label class="zc-form-label">نام و نام خانوادگی *</label>
-                            <input type="text" class="zc-form-control" required placeholder="مثلاً: محمد رضایی">
+                            <input type="text" name="zc-consult-name" class="zc-form-control" required placeholder="مثلاً: محمد رضایی">
                         </div>
                         <div class="zc-form-group">
                             <label class="zc-form-label">شماره تماس *</label>
-                            <input type="tel" class="zc-form-control" required placeholder="0912XXXXXXX" dir="ltr">
+                            <input type="tel" name="zc-consult-phone" class="zc-form-control" required placeholder="0912XXXXXXX" dir="ltr">
                         </div>
                         <div class="zc-form-group">
                             <label class="zc-form-label">توضیحات اولیه پروژه (اختیاری)</label>
-                            <textarea class="zc-form-control" rows="3" placeholder="نیازمندی‌ها یا بودجه مد نظر خود را بنویسید..."></textarea>
+                            <textarea name="zc-consult-details" class="zc-form-control" rows="3" placeholder="نیازمندی‌ها یا بودجه مد نظر خود را بنویسید..."></textarea>
                         </div>
                         <div class="zc-form-feedback" style="display:none;padding:0.8rem;border-radius:1rem;background:var(--color-accent);color:var(--color-accent-contrast);font-weight:700;font-size:0.84rem;margin-bottom:1rem;"></div>
                         <button type="submit" class="zc-btn zc-btn-yellow" style="width:100%;">

@@ -163,6 +163,7 @@ class Assets {
                 'devName'   => ZARINCODE_DEV_NAME,
                 'devPhone'  => ZARINCODE_DEV_PHONE,
                 'devSite'   => ZARINCODE_DEV_SITE,
+                'consultNonce' => wp_create_nonce( 'zc_consult' ),
             ]
         );
 

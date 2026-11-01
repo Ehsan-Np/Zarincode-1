@@ -50,3 +50,27 @@ html.dark .zc-rating-input .zc-rating-stars{background:#302e26;border-color:#645
 /* Compact destination controls, keeping name labels and usable hit targets. */
 .zc-share-studio .zc-share-studio-head{padding:19px 22px 13px}.zc-share-studio h2{font-size:1.04rem}.zc-share-studio .zc-share-destinations{grid-template-columns:repeat(auto-fit,minmax(62px,1fr));gap:4px;padding:0 18px 13px}.zc-share-studio .zc-share-destinations>a{min-height:66px;padding:6px 3px;gap:5px;border-radius:10px}.zc-share-studio .zc-destination-icon{width:32px;height:32px;border-radius:10px}.zc-share-studio .zc-destination-icon :is(i,svg,img){width:16px;height:16px;font-size:16px}.zc-share-studio .zc-destination-name{font-size:.59rem}.zc-share-studio .zc-share-linkbar{padding:12px 15px;gap:14px}.zc-share-studio .zc-share-link-control button{padding:9px 12px;min-height:40px}.zc-share-studio .zc-device-share{padding:8px 11px;min-height:38px}.zc-share-more{margin-bottom:15px}.zc-share-studio .zc-share-feedback{min-height:26px}
 @media(max-width:600px){.zc-share-studio .zc-share-destinations{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:12px}.zc-share-studio .zc-share-studio-head{padding:17px 17px 12px}.zc-share-studio h2{font-size:.94rem}}
+/* ===== Bold destinations: Bale (native-share button) + Telegram ===== */
+.zc-share-destinations>button[data-network]{display:flex;flex-direction:column;justify-content:flex-start;gap:8px;padding:12px 6px;border:1px solid transparent!important;border-radius:14px;background:transparent!important;color:#e8e8e6;min-width:0;min-height:88px;box-shadow:none;font:inherit;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s,background .2s}
+.zc-share-destinations>button[data-network]:hover,.zc-share-destinations>button[data-network]:focus-visible{border-color:#ffffff26!important;background:#ffffff08!important;color:#fff}
+.zc-share-destinations>a[data-network=telegram],.zc-share-destinations>button[data-network=bale]{min-height:124px;padding:16px 8px;border:2px solid #fdd05b!important;background:linear-gradient(180deg,#fdd05b24,#ffffff0a)!important;border-radius:18px;transform:scale(1.06);box-shadow:0 14px 32px #0000004d,0 0 0 4px #fdd05b1f;z-index:2;position:relative}
+.zc-share-destinations>a[data-network=telegram]:hover,.zc-share-destinations>button[data-network=bale]:hover{transform:scale(1.09) translateY(-3px);border-color:#fdd05b!important}
+.zc-share-destinations>a[data-network=telegram] .zc-destination-icon{background:#167caa;width:54px;height:54px;border-radius:16px;box-shadow:0 6px 16px #167caa55}
+.zc-share-destinations>button[data-network=bale] .zc-destination-icon{background:#fff;border:1px solid #00000014;width:54px;height:54px;border-radius:16px;box-shadow:0 6px 16px #00000026}
+.zc-share-destinations>button[data-network=bale] .zc-destination-icon img{width:30px;height:30px}
+.zc-share-destinations>a[data-network=telegram] .zc-destination-icon i{font-size:26px;width:26px;height:26px}
+.zc-share-destinations :is(a,button)[data-network=telegram] .zc-destination-name,.zc-share-destinations button[data-network=bale] .zc-destination-name{font-size:.74rem;font-weight:900}
+.zc-share-destinations :is(a,button)[data-network=telegram]{border-color:#4aa3d8cc!important}
+@media(max-width:600px){
+    .zc-share-destinations>a[data-network=telegram],.zc-share-destinations>button[data-network=bale]{min-height:110px;transform:scale(1.03)}
+    .zc-share-destinations>a[data-network=telegram]:hover,.zc-share-destinations>button[data-network=bale]:hover{transform:scale(1.04)}
+    .zc-share-destinations>a[data-network=telegram] .zc-destination-icon,.zc-share-destinations>button[data-network=bale] .zc-destination-icon{width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){.zc-share-destinations>a[data-network=telegram],.zc-share-destinations>button[data-network=bale]{transition:none;transform:none!important}}
+/* brand tint for the extra Iranian messengers inside «پیام‌رسان‌های دیگر» */
+.zc-share-more [data-zc-network="روبیکا"]{--zc-m-color:#a855f7}
+.zc-share-more [data-zc-network="سروش پلاس"]{--zc-m-color:#0ea5e9}
+.zc-share-more [data-zc-network="گپ"],.zc-share-more [data-zc-network="آی‌گپ"]{--zc-m-color:#f59e0b}
+.zc-share-more [data-zc-network="آپارات"]{--zc-m-color:#ef4444}
+.zc-share-more [data-zc-network="نزدیکا"]{--zc-m-color:#22c55e}
+.zc-share-more button:hover{border-color:var(--zc-m-color,#d5ba6c)!important;color:#fff!important}

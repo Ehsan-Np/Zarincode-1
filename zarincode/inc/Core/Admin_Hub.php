@@ -11,8 +11,6 @@ final class Admin_Hub {
             'plugins'=>['افزونه‌های موردنیاز',['Zarincode\\Theme\\Plugins\\Plugin_Manager','render_plugin_manager_page']],
             'socials'=>['شبکه‌های اجتماعی',[Social_Manager::class,'page']],
             'policies'=>['گارانتی و پرسش‌ها',[Product_Policies::class,'page']],
-            'layout'=>['ساماندهی دمو',['Zarincode\\Runtime260\\Widgets\\Demo_Composition','page']],
-            'hero'=>['تفکیک هیرو',['Zarincode\\Runtime260\\Widgets\\Hero_Layout','page']],
         ];
     }
     public static function url(string $tool='settings'): string {
@@ -28,7 +26,7 @@ final class Admin_Hub {
     public static function legacy_redirect(): void {
         if(!is_admin())return;
         if(($_SERVER['REQUEST_METHOD']??'GET')!=='GET' || !current_user_can('manage_options'))return;
-        $aliases=['zarincode-demo-importer'=>'demo','zarincode-demo-importer-sub'=>'demo','zarincode-install-plugins'=>'plugins','zarincode-socials'=>'socials','zarincode-product-policies'=>'policies','zarincode-demo-layout'=>'layout','zarincode-split-hero'=>'hero','zarincode-redux-options'=>'settings','zarincode_opt_options'=>'settings','zarincode_opt'=>'settings'];
+        $aliases=['zarincode-demo-importer'=>'demo','zarincode-demo-importer-sub'=>'demo','zarincode-install-plugins'=>'plugins','zarincode-socials'=>'socials','zarincode-product-policies'=>'policies','zarincode-demo-layout'=>'settings','zarincode-split-hero'=>'settings','zarincode-redux-options'=>'settings','zarincode_opt_options'=>'settings','zarincode_opt'=>'settings'];
         $page=$_GET['page']??'';
         if(is_string($page) && isset($aliases[$page])){wp_safe_redirect(self::url($aliases[$page]));exit;}
     }

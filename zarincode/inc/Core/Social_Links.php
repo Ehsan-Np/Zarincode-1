@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 /** Profile destinations and share actions are deliberately distinct. No invented app intents. */
 final class Social_Links {
     public static function catalog():array {
-        return ['telegram'=>['تلگرام','fa-brands fa-telegram'],'whatsapp'=>['واتس‌اپ','fa-brands fa-whatsapp'],'linkedin'=>['لینکدین','fa-brands fa-linkedin-in'],'x'=>['ایکس','fa-brands fa-x-twitter'],'facebook'=>['فیسبوک','fa-brands fa-facebook-f'],'instagram'=>['اینستاگرام','fa-brands fa-instagram'],'github'=>['گیت‌هاب','fa-brands fa-github'],'eitaa'=>['ایتا','eita'],'bale'=>['بله','bale'],'rubika'=>['روبیکا','rubika'],'soroush'=>['سروش پلاس','soroush'],'gap'=>['گپ','gap'],'igap'=>['آی‌گپ','i-gap'],'shad'=>['شاد','shad']];
+        return ['telegram'=>['تلگرام','fa-brands fa-telegram'],'whatsapp'=>['واتس‌اپ','fa-brands fa-whatsapp'],'linkedin'=>['لینکدین','fa-brands fa-linkedin-in'],'x'=>['ایکس','fa-brands fa-x-twitter'],'facebook'=>['فیسبوک','fa-brands fa-facebook-f'],'instagram'=>['اینستاگرام','fa-brands fa-instagram'],'github'=>['گیت‌هاب','fa-brands fa-github'],'eitaa'=>['ایتا','eita'],'bale'=>['بله','bale'],'rubika'=>['روبیکا','rubika'],'soroush'=>['سروش پلاس','soroush'],'gap'=>['گپ','gap'],'igap'=>['آی‌گپ','i-gap'],'aparat'=>['آپارات','aparat'],'nazdika'=>['نزدیکا','nazdika'],'shad'=>['شاد','shad']];
     }
     public static function icon(string $network):string {
         $entry=self::catalog()[$network]??['','fa-solid fa-envelope'];$icon=$entry[1];
@@ -22,10 +22,14 @@ final class Social_Links {
     }
     public static function floating():string {
         $mode=zarincode_get_option('floating_contact_action','socials');$label=zarincode_get_option('floating_contact_label','راه‌های ارتباطی');
-        if($mode==='socials'){$profiles=self::profiles();return $profiles?'<details class="zc-floating-socials"><summary aria-label="'.esc_attr($label).'"><i class="fa-regular fa-comments" aria-hidden="true"></i></summary><div><strong>گفت‌وگو را از اینجا شروع کنیم</strong>'.$profiles.'</div></details>':'';}
-        $url=$mode==='phone'?'tel:'.preg_replace('/[^0-9+]/','',zarincode_get_option('contact_phone','09024561001')):($mode==='custom'?Social_Manager::url(zarincode_get_option('floating_contact_url','')):Social_Manager::url(zarincode_get_option('social_'.$mode,'')));
-        if(!$url)return '';$icon=$mode==='phone'?'<i class="fa-solid fa-phone" aria-hidden="true"></i>':self::icon($mode);
-        return '<a class="zc-floating-channel" href="'.esc_url($url).'" aria-label="'.esc_attr($label).'"'.($mode==='phone'?'':' target="_blank" rel="noopener noreferrer"').'>'.$icon.'</a>';
+        $body='';
+        if($mode==='socials'){$profiles=self::profiles();$body=$profiles?'<details class="zc-floating-socials"><summary aria-label="'.esc_attr($label).'"><i class="fa-regular fa-comments" aria-hidden="true"></i></summary><div><strong>گفت‌وگو را از اینجا شروع کنیم</strong>'.$profiles.'</div></details>':'';}
+        else{$url=$mode==='phone'?'tel:'.preg_replace('/[^0-9+]/','',zarincode_get_option('contact_phone','09024561001')):($mode==='custom'?Social_Manager::url(zarincode_get_option('floating_contact_url','')):Social_Manager::url(zarincode_get_option('social_'.$mode,'')));
+            if($url){$icon=$mode==='phone'?'<i class="fa-solid fa-phone" aria-hidden="true"></i>':self::icon($mode);$body='<a class="zc-floating-channel" href="'.esc_url($url).'" aria-label="'.esc_attr($label).'"'.($mode==='phone'?'':' target="_blank" rel="noopener noreferrer"').'>'.$icon.'</a>';}}
+        // دکمهٔ چت زنده همیشه در کنار عناصر شناور (دارای وضعیت آنلاین/آفلاین) نمایش داده می‌شود.
+        $chat='';if(class_exists('\\Zarincode\\Runtime260\\Features\\Live_Chat')&&(!function_exists('zarincode_get_option')||zarincode_get_option('enable_live_chat',true)))$chat=\Zarincode\Runtime260\Features\Live_Chat::launcher();
+        if($chat||$body)return '<div class="zc-floating-dock">'.$chat.$body.'</div>';
+        return '';
     }
 
 }
