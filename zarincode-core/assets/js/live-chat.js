@@ -8,10 +8,13 @@
     const ID_KEY = 'zc_chat_identity';
     const OUT_KEY = 'zc_chat_last_out';
     const GREET_KEY = 'zc_chat_online_greeted';
+    const SND_KEY = 'zc_chat_sound';
+    const UNREAD_KEY = 'zc_chat_unread';
 
     const state = {
         contact: 0, token: '', since: 0, adminOnline: false,
         pollTimer: null, statusTimer: null, sending: false, recording: null,
+        unread: 0,
     };
 
     const store = {
@@ -23,6 +26,85 @@
 
     const launcher = () => document.querySelector('.zc-chat-launcher');
     const esc = (t) => { const d = document.createElement('div'); d.textContent = t == null ? '' : String(t); return d.innerHTML; };
+
+    /* ------------------------------------------------------------- sound */
+    let actx = null;
+    const origTitle = document.title;
+    let titleTimer = null;
+
+    function soundEnabled() {
+        const stored = localStorage.getItem(SND_KEY);
+        if (stored === '0') return false;
+        if (stored === '1') return true;
+        return C.sound !== false;
+    }
+
+    function unlockAudio() {
+        try {
+            if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+            if (actx.state === 'suspended') actx.resume();
+        } catch (e) { /* autoplay policy */ }
+    }
+
+    function playDing() {
+        if (!soundEnabled()) return;
+        try {
+            unlockAudio();
+            if (!actx) return;
+            const t = actx.currentTime;
+            [[880, 0], [1174.7, 0.14]].forEach((pair) => {
+                const f = pair[0]; const off = pair[1];
+                const o = actx.createOscillator(); const g = actx.createGain();
+                o.type = 'sine'; o.frequency.value = f;
+                g.gain.setValueAtTime(0.0001, t + off);
+                g.gain.exponentialRampToValueAtTime(0.18, t + off + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + off + 0.22);
+                o.connect(g); g.connect(actx.destination);
+                o.start(t + off); o.stop(t + off + 0.24);
+            });
+        } catch (e) { /* ignore */ }
+    }
+
+    function setUnread(n) {
+        state.unread = Math.max(0, n | 0);
+        try { localStorage.setItem(UNREAD_KEY, String(state.unread)); } catch (e) {}
+        const btn = launcher();
+        if (!btn) return;
+        let b = btn.querySelector('.zc-chat-unread');
+        if (!state.unread) { if (b) b.remove(); return; }
+        if (!b) {
+            b = document.createElement('span');
+            b.className = 'zc-chat-unread';
+            b.setAttribute('aria-hidden', 'true');
+            btn.appendChild(b);
+        }
+        b.textContent = state.unread > 9 ? '9+' : String(state.unread);
+    }
+
+    function flashTitle() {
+        if (titleTimer) return;
+        let on = false;
+        titleTimer = setInterval(() => {
+            on = !on;
+            document.title = on ? '(' + state.unread + ') ' + origTitle : origTitle;
+        }, 1500);
+    }
+
+    function stopTitleFlash() {
+        if (titleTimer) { clearInterval(titleTimer); titleTimer = null; }
+        document.title = origTitle;
+    }
+
+    function syncSoundUI() {
+        const btn = document.querySelector('[data-sound-toggle]');
+        if (!btn) return;
+        const on = soundEnabled();
+        btn.classList.toggle('is-muted', !on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('title', on ? 'بی‌صدا کردن اعلان‌ها' : 'فعال کردن صدای اعلان');
+        const i = btn.querySelector('i');
+        if (i) i.className = on ? 'fa-regular fa-bell' : 'fa-regular fa-bell-slash';
+    }
 
     /* ------------------------------------------------------------ DOM */
     function buildPanel() {
@@ -40,7 +122,10 @@
                     <strong>${esc(S.title || 'گفتگوی آنلاین زرین کد')}</strong>
                     <span class="zc-chat-status" data-live-status><i></i><em>…</em></span>
                 </div>
-                <button type="button" class="zc-chat-close" aria-label="بستن گفتگو">&times;</button>
+                <div class="zc-chat-head-actions">
+                    <button type="button" class="zc-chat-sound" data-sound-toggle aria-pressed="true" aria-label="صدای اعلان پیام جدید" title="صدای اعلان پیام جدید"><i class="fa-regular fa-bell"></i></button>
+                    <button type="button" class="zc-chat-close" aria-label="بستن گفتگو">&times;</button>
+                </div>
             </header>
             <section class="zc-chat-body">
                 <form class="zc-chat-prechat" novalidate>
@@ -72,6 +157,16 @@
         document.body.appendChild(root);
 
         root.querySelector('.zc-chat-close').addEventListener('click', closePanel);
+        const sndBtn = root.querySelector('[data-sound-toggle]');
+        if (sndBtn) {
+            syncSoundUI();
+            sndBtn.addEventListener('click', () => {
+                const next = !soundEnabled();
+                try { localStorage.setItem(SND_KEY, next ? '1' : '0'); } catch (e) {}
+                syncSoundUI();
+                if (next) playDing();
+            });
+        }
         root.querySelector('.zc-chat-prechat').addEventListener('submit', onPrechat);
         root.querySelector('[data-chat-form]').addEventListener('submit', (e) => { e.preventDefault(); sendText(); });
         root.querySelectorAll('.zc-tool').forEach((btn) => btn.addEventListener('click', () => onTool(btn.dataset.tool)));
@@ -153,6 +248,8 @@
         panel.hidden = false;
         requestAnimationFrame(() => panel.classList.add('is-open'));
         launcher() && launcher().classList.add('is-active');
+        setUnread(0);
+        stopTitleFlash();
         const id = store.get();
         if (id && id.contact && id.token) {
             state.contact = id.contact;
@@ -290,8 +387,19 @@
             const data = await api('zc_chat_poll', { contact: state.contact, token: state.token, since: state.since });
             if (!data.success) return;
             const wasOnline = state.adminOnline;
+            const panel = document.getElementById('zc-chat-panel');
+            const panelOpen = panel && !panel.hidden;
             (data.data.messages || []).forEach((m) => {
-                if (!hasMessage(m.id)) appendMessage(m);
+                const isNew = !hasMessage(m.id);
+                if (isNew) appendMessage(m);
+                if (isNew && m.dir === 'out') {
+                    playDing();
+                    if (!panelOpen) {
+                        setUnread(state.unread + 1);
+                        if (document.hidden) flashTitle();
+                        toast('پاسخ جدید پشتیبانی دریافت شد.');
+                    }
+                }
                 if (m.id > state.since) state.since = m.id;
             });
             setStatusUI(data.data.adminOnline, { notify: true, flip: !wasOnline && data.data.adminOnline, panelWasOpen: true });
@@ -384,6 +492,8 @@
         const btn = launcher();
         if (!btn) return;
         buildPanel();
+        try { setUnread(Number(localStorage.getItem(UNREAD_KEY) || 0)); } catch (e) { setUnread(0); }
+        document.addEventListener('pointerdown', unlockAudio, { once: true });
         btn.addEventListener('click', () => {
             const panel = document.getElementById('zc-chat-panel');
             if (panel && !panel.hidden) closePanel();

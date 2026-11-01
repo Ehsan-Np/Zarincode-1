@@ -137,10 +137,9 @@ final class Live_Chat {
 					array( 'key' => '_zc_dir', 'value' => 'in' ),
 					array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ),
 				),
-				'no_found_rows'  => true,
 			)
 		);
-		return (int) $q->post_count;
+		return (int) $q->found_posts; // real total; post_count is capped by posts_per_page.
 	}
 
 	/** Chat settings (stored in the single zarincode_opt array). */
@@ -161,6 +160,8 @@ final class Live_Chat {
 			'chat_allow_voice'   => 1,
 			'chat_max_mb'        => 24,
 			'chat_accent'        => '#fdd05b',
+			'chat_sound'         => 1,
+			'chat_notify_email'  => 1,
 		);
 		$out = array();
 		foreach ( $d as $k => $v ) {
@@ -175,6 +176,8 @@ final class Live_Chat {
 		$out['chat_allow_photo']   = $out['chat_allow_photo'] ? 1 : 0;
 		$out['chat_allow_video']   = $out['chat_allow_video'] ? 1 : 0;
 		$out['chat_allow_voice']   = $out['chat_allow_voice'] ? 1 : 0;
+		$out['chat_sound']         = isset( $out['chat_sound'] ) ? ( $out['chat_sound'] ? 1 : 0 ) : 1;
+		$out['chat_notify_email']  = isset( $out['chat_notify_email'] ) ? ( $out['chat_notify_email'] ? 1 : 0 ) : 1;
 		return $out;
 	}
 
@@ -253,10 +256,9 @@ final class Live_Chat {
 					array( 'key' => '_zc_contact', 'value' => $contact ),
 					array( 'key' => '_zc_dir', 'value' => 'out' ),
 				),
-				'no_found_rows'  => true,
 			)
 		);
-		return (int) $q->post_count;
+		return (int) $q->found_posts; // real total; post_count is capped by posts_per_page.
 	}
 
 	public function ajax_start(): void {
@@ -426,7 +428,64 @@ final class Live_Chat {
 		}
 
 		$id = $this->store_message( $contact, 'in', in_array( $type, array( 'text', 'photo', 'voice', 'video' ), true ) ? $type : 'text', $text, is_string( $file ) ? $file : '' );
+		$this->notify_admin_email( $contact );
 		wp_send_json_success( array( 'message' => self::message_row( $id ) ) );
+	}
+
+	/**
+	 * Email the site admin when a visitor sends a chat message.
+	 * Throttled to one email per contact per 5 minutes to avoid spam floods.
+	 */
+	private function notify_admin_email( int $contact ): void {
+		if ( ! (int) self::settings()['chat_notify_email'] ) {
+			return;
+		}
+		$all = get_option( 'zc_chat_email_last', array() );
+		$all = is_array( $all ) ? $all : array();
+		$now = time();
+		if ( isset( $all[ $contact ] ) && ( $now - (int) $all[ $contact ] ) < 300 ) {
+			return;
+		}
+		$all[ $contact ] = $now;
+		// Keep the throttle option small: drop entries older than a day.
+		foreach ( $all as $cid => $ts ) {
+			if ( ( $now - (int) $ts ) > DAY_IN_SECONDS ) {
+				unset( $all[ $cid ] );
+			}
+		}
+		update_option( 'zc_chat_email_last', $all, false );
+
+		$phone = (string) get_post_meta( $contact, '_zc_phone', true );
+		$name  = (string) get_the_title( $contact );
+		$last  = get_posts(
+			array(
+				'post_type'      => self::MESSAGE,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array( 'key' => '_zc_contact', 'value' => $contact ),
+					array( 'key' => '_zc_dir', 'value' => 'in' ),
+				),
+			)
+		);
+		$excerpt = $last ? mb_strimwidth( (string) $last[0]->post_content, 0, 160, '…' ) : '—';
+		$thread  = admin_url( 'admin.php?page=zc-live-chat&zc_thread=' . $contact );
+		wp_mail(
+			get_option( 'admin_email' ),
+			'پیام جدید گفتگوی زنده — ' . $name . ' (' . $phone . ')',
+			implode(
+				"\n",
+				array(
+					'بازدیدکننده یک پیام جدید در گفتگوی زنده ارسال کرده است.',
+					'',
+					'نام: ' . $name,
+					'شماره موبایل: ' . $phone,
+					'آخرین پیام: ' . $excerpt,
+					'مشاهده گفتگو: ' . $thread,
+				)
+			),
+			array( 'Content-Type: text/plain; charset=UTF-8' )
+		);
 	}
 
 	/** Accept photo/video/voice uploads from the visitor chat. */
@@ -472,11 +531,12 @@ final class Live_Chat {
 			'zc-live-chat',
 			'ZarincodeChat',
 			array(
-				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
-				'nonce'     => wp_create_nonce( self::NONCE ),
-				'pollMs'    => 5000,
-				'statusMs'  => 20000,
-				'phone'     => (string) ( function_exists( 'zarincode_get_option' ) ? zarincode_get_option( 'contact_phone', '09024561001' ) : '09024561001' ),
+			'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+			'nonce'     => wp_create_nonce( self::NONCE ),
+			'pollMs'    => 5000,
+			'statusMs'  => 20000,
+			'sound'     => (bool) $st['chat_sound'],
+			'phone'     => (string) ( function_exists( 'zarincode_get_option' ) ? zarincode_get_option( 'contact_phone', '09024561001' ) : '09024561001' ),
 				'maxMb'     => (int) $st['chat_max_mb'],
 				'strings'   => array(
 					'title'        => (string) $st['chat_title'],
@@ -629,10 +689,9 @@ final class Live_Chat {
 						array( 'key' => '_zc_dir', 'value' => 'in' ),
 						array( 'key' => '_zc_read', 'value' => '1', 'compare' => '!=' ),
 					),
-					'no_found_rows'  => true,
 				)
 			);
-			$unread = (int) $unq->post_count;
+			$unread = (int) $unq->found_posts; // real total (ppp=1 caps post_count)
 			echo '<tr>';
 			echo '<td><strong><a href="' . esc_url( add_query_arg( 'zc_thread', $cid, $base ) ) . '">' . esc_html( $c->post_title ) . '</a></strong></td>';
 			echo '<td dir="ltr" style="text-align:right;">' . esc_html( $phone ) . '</td>';
@@ -836,15 +895,23 @@ final class Live_Chat {
 		echo '<span id="zc-chat-live-dot" title="به‌روزرسانی خودکار" style="width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #22c55e33;"></span>';
 		echo '<span style="font-size:.75rem;color:#64748b;">تازه‌سازی خودکار هر ۸ ثانیه</span>';
 		echo '</div>';
-		// Tiny live poller: reload the screen when new activity appears.
+		// Live poller: reload on new activity; beep + browser notification + tab
+		// title flash so the admin notices incoming visitor messages immediately.
 		$nonce = wp_create_nonce( self::ADMIN_NONCE );
 		$mode  = 'thread' === $view ? 'thread' : 'list';
-		echo '<script>(function(){var m=' . wp_json_encode( $mode ) . ',n=' . wp_json_encode( $nonce ) . ',last=null,dot=document.getElementById("zc-chat-live-dot");'
+		$strings = array(
+			'title'   => 'پیام جدید گفتگوی زنده',
+			'bodyNew' => 'یک بازدیدکننده پیام جدیدی ارسال کرده است؛ برای پاسخ روی اعلان یا منوی «گفتگوهای زنده» کلیک کنید.',
+		);
+		echo '<script>(function(){var m=' . wp_json_encode( $mode ) . ',n=' . wp_json_encode( $nonce ) . ',S=' . wp_json_encode( $strings ) . ',last=null,lastUnread=0,actx=null,dot=document.getElementById("zc-chat-live-dot"),origTitle=document.title;'
+			. 'function beep(){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx.state==="suspended")actx.resume();var t=actx.currentTime;[880,1174.7].forEach(function(f,i){var o=actx.createOscillator(),g=actx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(0.0001,t+i*0.14);g.gain.exponentialRampToValueAtTime(0.22,t+i*0.14+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+i*0.14+0.22);o.connect(g);g.connect(actx.destination);o.start(t+i*0.14);o.stop(t+i*0.14+0.24);});}catch(e){}}'
+			. 'function notify(unread){try{if(!("Notification" in window))return;if(Notification.permission==="granted"){new Notification(S.title,{body:S.bodyNew+" ("+unread+" خوانده‌نشده)",tag:"zc-chat"});}else if(Notification.permission==="default"){Notification.requestPermission();}}catch(e){}}'
 			. 'function tick(){fetch(adminurl,{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/x-www-form-urlencoded"},'
 			. 'body:"action=zc_chat_admin_poll&nonce="+n}).then(function(r){return r.json()}).then(function(j){'
 			. 'if(!j||!j.success||!j.data)return;var d=j.data;if(dot){dot.style.background=j.data.active?"#22c55e":"#94a3b8";}'
-			. 'var sig=d.unread+"|"+d.lastId+"|"+d.lastContact;if(last===null){last=sig;return;}'
-			. 'if(sig!==last){location.reload();}}).catch(function(){})}'
+			. 'var sig=d.unread+"|"+d.lastId+"|"+d.lastContact;if(last===null){last=sig;lastUnread=d.unread;return;}'
+			. 'if(sig!==last){if(d.unread>lastUnread||d.lastId){beep();if(document.hidden){notify(d.unread);document.title="("+d.unread+") "+origTitle;}}location.reload();}}).catch(function(){})}'
+			. 'document.addEventListener("click",function once(){try{if("Notification" in window&&Notification.permission==="default")Notification.requestPermission();}catch(e){}document.removeEventListener("click",once);});'
 			. 'setInterval(tick,8000);})();var adminurl=' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';</script>';
 	}
 
@@ -890,7 +957,7 @@ final class Live_Chat {
 			$all[ $k ] = sanitize_text_field( (string) ( $_POST[ $k ] ?? '' ) );
 		}
 		// Toggles (absent ⇒ 0).
-		foreach ( array( 'enable_live_chat', 'chat_field_name', 'chat_field_phone', 'chat_field_website', 'chat_allow_photo', 'chat_allow_video', 'chat_allow_voice' ) as $k ) {
+		foreach ( array( 'enable_live_chat', 'chat_field_name', 'chat_field_phone', 'chat_field_website', 'chat_allow_photo', 'chat_allow_video', 'chat_allow_voice', 'chat_sound', 'chat_notify_email' ) as $k ) {
 			$all[ $k ] = isset( $_POST[ $k ] ) ? 1 : 0;
 		}
 		$all['chat_max_mb'] = max( 1, min( 64, (int) ( $_POST['chat_max_mb'] ?? 24 ) ) );
@@ -936,6 +1003,11 @@ final class Live_Chat {
 		echo '<label style="display:inline-block;margin:4px 12px 4px 0;"><input type="checkbox" name="chat_allow_video" value="1" ' . checked( 1, $st['chat_allow_video'], false ) . '> ویدیو</label>';
 		echo '<label style="display:inline-block;margin:4px 12px 4px 0;"><input type="checkbox" name="chat_allow_voice" value="1" ' . checked( 1, $st['chat_allow_voice'], false ) . '> ویس (ضبط صدا)</label>';
 		echo '<p><label>حداکثر حجم هر فایل (مگابایت، ۱ تا ۶۴)<br><input type="number" name="chat_max_mb" min="1" max="64" value="' . (int) $st['chat_max_mb'] . '" style="width:90px;"></label></p>';
+
+		echo '<h2 style="border-bottom:1px solid #f1f5f9;padding-bottom:8px;">اعلام‌ها و اعلان‌ها</h2>';
+		echo '<label style="display:block;margin:6px 0;font-weight:700;"><input type="checkbox" name="chat_sound" value="1" ' . checked( 1, $st['chat_sound'], false ) . '> صدای اعلان برای بازدیدکننده هنگام دریافت پاسخ پشتیبانی (با دکمهٔ زنگ در سربرگ پنل قابل بی‌صدا کردن است)</label>';
+		echo '<label style="display:block;margin:6px 0;font-weight:700;"><input type="checkbox" name="chat_notify_email" value="1" ' . checked( 1, $st['chat_notify_email'], false ) . '> ارسال ایمیل به مدیر برای هر پیام جدید گفتگو (حداکثر هر ۵ دقیقه یک ایمیل برای هر بازدیدکننده)</label>';
+		echo '<p class="description" style="margin:2px 0 0;">وقتی در پیشخوان هستید، روی پیام جدید زنگ پخش می‌شود و اعلان مرورگر (Notification) با درخواست دسترسی نمایش داده می‌شود؛ در تب‌های بسته عنوان تب هم با شمارنده پیام جدید چشمک می‌زند.</p>';
 
 		echo '<p class="description" style="margin-top:14px;">پیام‌های گفتگو در پیشخوان ← زرین‌پرس ← گفتگوهای زنده دریافت و پاسخ داده می‌شوند. حضور شما (آنلاین/آفلاین) با ۹۰ ثانیه آخرین فعالیت در پیشخوان تشخیص داده می‌شود.</p>';
 		echo '<p><button type="submit" name="zc_chat_settings_save" value="1" class="button button-primary">ذخیرهٔ تنظیمات</button></p>';

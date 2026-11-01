@@ -116,7 +116,9 @@ class Assets {
             ZARINCODE_VERSION
         );
 
-        if ( is_singular('product') ) {
+        // Product-page reference layout (hero row, KPI strip, tabs) is shared
+        // with portfolio case-study singles so both inner pages look identical.
+        if ( is_singular('product') || is_singular('zc_project') ) {
             wp_enqueue_style('zarincode-product-reference', ZARINCODE_URI . '/assets/css/product-reference.css', ['zarincode-main'], ZARINCODE_VERSION);
         }
 
