@@ -2555,3 +2555,16 @@ inbox/chat menu badges at 1. Verified live: project desktop+mobile, product
 neighbor, share, chat panel+settings, inbox list+detail screenshots; PHP+JS
 sweep 0 errors; smoke all-200. Zips: zarincode-4.3.0.zip
 (fcf5274e…178d2) + zarincode-core-4.3.0.zip (c77edd40…7ba29).
+
+== UPDATE 2026-11-01 — v4.3.1 (share studio: compact + fully uniform network styling) ==
+User feedback: share buttons too tall/wide; Bale & Telegram had a gold halo and
+special color scheme; ALL social icons must use the primary palette. Fixed in
+single-experience.css: tiles compacted (48px min-height, 44px grid min, 22-24px
+icons, 12px glyphs) and every per-network rule removed (halo/gradient/glow, blue
+telegram tile, white bale tile, orange eitaa, bold labels, hover scale, mobile
+overrides). Restored the missing button[data-network] base rule so Bale no longer
+falls back to the default white WP button. bale.svg fill set to white so the glyph
+reads on the shared dark slate tile like eita/gap/rubika. Verified with chromium
+(static harness of the real Single_Experience markup + real CSS) at 900px and
+390px: all 10 destinations identical — dark tile + white glyph. Zips:
+zarincode-4.3.1.zip (69226867…a0f9) + zarincode-core-4.3.1.zip (35c01638…86f0).
