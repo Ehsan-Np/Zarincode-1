@@ -2517,3 +2517,13 @@ Researches admin KB rebuilt after snapshot-restore wiped untracked files (lesson
 in AGENTS.md: commit every new file in the same message). Docs: needs-analysis
 2026-11-01-needs-analysis-admin-management. Deliverables: zarincode-4.1.1.zip
 (9f8ec85c…2a5d7) + zarincode-core-4.1.1.zip (4f16ab19…7cd31).
+
+== UPDATE 2026-11-01 — v4.2.0 (inner pages full redesign) ==
+single-zc_service + single-zc_project redesigned from scratch per research
+(outcome hero + trust chips + price card w/ discount ribbon + quick-order form,
+promise grid, 5-step process timeline, auto-FAQ from meta, CTA bands, mobile
+sticky bar; case-study: result banner, meta chips, sticky fact sheet, live link).
+Conditional inner-pages.css (RTL-first, dark-mode, reduced-motion, no extra JS).
+All meta fields, AJAX form fields/honeypot, zc-consult-modal and Single_Experience
+preserved. Verified in live env (6 services + 8 projects seeded): full render, zero
+warnings, desktop+mobile screenshots in docs/audits/2026-11-01-inner-pages-redesign.

@@ -42,10 +42,10 @@ class Elementor_Loader {
     }
 
     public function refresh_generated_css(): void {
-        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='4.1.1') return;
+        if(!current_user_can('manage_options') || get_option('zarincode_css_identity_release')==='4.2.0') return;
         if(class_exists('Elementor\\Plugin') && isset(\Elementor\Plugin::instance()->files_manager)) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
-            update_option('zarincode_css_identity_release','4.1.1',false);
+            update_option('zarincode_css_identity_release','4.2.0',false);
         }
     }
 
