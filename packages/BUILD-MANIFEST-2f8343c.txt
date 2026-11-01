@@ -1,0 +1,9 @@
+release           : 4.1.0
+git-sha           : 2f8343c
+built-at          : 2026-11-01T04:48:35+00:00
+contents          : zarincode-4.1.0.zip (theme), zarincode-core-4.1.0.zip (plugin) — two separate packages (no combo zip)
+includes          : consultation inbox, live chat (voice/photo/video, phone/IP keying, presence),
+                    8 Iranian social networks + bold bale/telegram share, final visual polish
+verified          : WP 7.1.4 / PHP 8.4.27 env battery (docs/2026-11-01-inbox-chat-iranian-socials-polish.md)
+lint              : php -l 0 errors, node --check 0 errors
+commercial_approved: false

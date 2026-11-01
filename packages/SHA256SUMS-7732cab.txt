@@ -1,3 +1,0 @@
-fd65a38ec257299fccc2a54d660561e7ebf8f7395b37227d1bbf28e5f601d6c0  zarincode-4.0.0-rc.2.zip
-7d7b2502f775f0b88961b19f34edb79acda01eee0899e564a8b484b2f179b76a  zarincode-core-4.0.0-rc.2.zip
-83270bd3534cd5e9039baaa93a2e41d20a09b05b9af5365ae906974a3ecbdf33  zarincode-theme-plus-core-4.0.0-rc.2.zip
