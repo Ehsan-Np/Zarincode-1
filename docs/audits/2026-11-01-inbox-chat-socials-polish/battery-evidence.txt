@@ -1,0 +1,58 @@
+# مدرک راستی‌آزمایی — چرخهٔ ۲۰۲۶-۱۱-۰۱ (صندوق ورودی + چت زنده + شبکه‌های ایرانی + پرداخت بصری)
+# محیط: WP 7.1.4 + PHP 8.4.27 + Elementor 4.3.5 + Redux 4.5.16 (نسخهٔ وردپرس‌دات‌اورگ افزونه‌ها؛
+#         afzoneha در این چرخه در دسترس نبود). همهٔ تست‌ها روی http://localhost:8080 اجرا شدند.
+# نکته: بسته‌های Elementor/Redux این چرخه از wordpress.org آمدند (zarincode.com TLS نداشت) — رفتار
+#         قالب/هسته با نسخه‌های قبلی یکسان است.
+
+## بخش ۱ — فرم مشاورهٔ رایگان → صندوق ورودی پیشخوان
+submit-valid            : POST zc_consult_submit → 200 {"success":true} (nonce=zc_consult)
+metas-exact             : _zc_field_zc-consult-name=مشتری آزمایشی / phone=09121234567 / phone_type=همراه
+                          / service=طراحی سایت / priority=مهم / details=«این یک پیام آزمایشی کامل است با چند جزئیات.»
+                          + _zc_status=new + _zc_ip=127.0.0.1 + _zc_page=…/wp-services/website-design/
+honeypot                : zc_hp=filled → {"success":true} ولی post_count ثابت ماند (ربات ثبت نشد)
+rate-limit              : ۴ درخواست موفق → پنجمین 429 (پیام فارسی محدودیت)
+admin-list              : admin.php?page=zc-inbox → 200؛ جدول با ستون‌های نام/موبایل/سرویس/اولویت/پیش‌نمایش/صفحه/وضعیت/تاریخ
+                          + تب‌های همه/جدید/خوانده‌شده/پاسخ‌داده‌شده/هرزنامه + عملیات گروهی (شامل تصویر 05)
+admin-detail            : zc_view=97 → 200؛ «اطلاعات ثبت‌شده» همهٔ فیلدها + «جزئیات فنی» (IP/UA/صفحه/ارجاع/زمان)
+                          + دکمهٔ تماس تلفنی + فرم تغییر وضعیت (تست curl و تصویر)
+
+## بخش ۲ — حذف دو بخش تنظیمات
+grep-settings-html      : «ساماندهی دمو»=0 و «تفکیک هیرو»=0 در صفحهٔ zarincode-theme-options (200)
+grep-hub-nav            : دکمه‌های/مسیرهای zarincode-demo-layout و zarincode-split-hero = 0 در همهٔ صفحات ادمین
+legacy-redirect         : Admin_Hub::legacy_redirect هر دو نشانی قدیمی را به settings هدایت می‌کند (کد)
+menus                   : زیرمنوی جداگانه ندارند؛ فقط «تنظیمات زرین کد» + «صندوق ورودی» + «گفتگوهای زنده» (شلیک تصویر 05/07)
+
+## بخش ۳ — چت زنده (نام + موبایل الزامی؛ وبسایت اختیاری؛ ویس/ویدیو/عکس؛ تاریخچه بر اساس شماره یا IP؛ وضعیت کنار آیکون)
+status-offline          : {"adminOnline":false,"phone":"09024561001"}
+start-missing-phone     : success=false با پیام «شماره موبایل معتبر الزامی است»
+start-valid             : contact=101 (title علی محمدی — 09129876543؛ meta _zc_phone/_zc_ip/_zc_website ثبت شد)
+send-text               : 200 id=102 dir=in type=text
+send-photo (png واقعی)  : 200 type=photo file=…/uploads/2026/10/pic.png
+send-voice (wav واقعی)  : 200 type=voice file=…/uploads/2026/10/voice.wav
+poll-since              : شمارش ۳ پیام با ترتیب شناسهٔ صعودی [text,photo,voice]
+bad-token                : send با token نادرست → success=false
+admin-thread            : admin.php?page=zc-live-chat&zc_thread=101 → 200؛ حباب‌ها + پخش‌کنندهٔ ویس + فرم «پاسخ مدیر»
+admin-reply (POST فرم)  : zc_admin_send → ریدایرکت؛ متن «سلام علی جان…» در ترد دیده شد؛ poll بازدیدکننده out id=105 را گرفت
+read-mark               : با ارسال پاسخ، پیام‌های خوانده‌نشدهٔ بازدیدکننده read=1 شدند
+presence                : zc_chat_admin_seen=now → status adminOnline=true؛ مقدار ۱۲۰ ثانیه‌قبل → false (پنجرهٔ ۹۰ ثانیه)
+deep-link               : /#zc-chat پنل را باز می‌کند (تصویر 04)
+تصویر                   : 01 (داک شناور + نقطهٔ سبز + ریبون «پشتیبانی آنلاین است» + توست «کارشناس زرین کد اکنون آنلاین است…»)
+
+## بخش‌های ۴ و ۵ — شبکه‌های ایرانی در تنظیمات + استودیوی اشتراک
+grep-settings           : social_aparat/social_nazdika/social_rubika/social_eitaa/social_soroush/social_igap/
+                          social_gap/social_shad/social_bale در HTML تنظیمات حاضرند + enable_live_chat=5 ارجاع
+icons                   : zarincode/assets/icons/persian/ = ۱۰ SVG (هر۸ شبکه + شاد + LICENSE)
+single-post             : data-network= telegram,bale,eitaa,whatsapp,facebook,linkedin,x,email + مودال پیام‌رسان‌های
+                          دیگر با روبیکا/سروش‌پلاس/گپ/آی‌گپ/آپارات/نزدیکا/بله (data-zc-network)
+bold                    : کلاس‌های CSS بِولد تلگرام/بله (مقیاس ۱٫۰۶، حلقهٔ ۲px #fdd05b، کاشی ۵۴px، پس‌زمینهٔ سفید بله)
+                          در single-experience.css؛ تصویر 02 ردیف بِولد را نشان می‌دهد
+
+## بخش ۶ — پرداخت بصری
+polish-css              : لایهٔ نهایی zarincode-main.css (selection، scrollbar، focus-visible، دکمه‌ها/کارت‌ها/تیترها، dark)
+regression              : pricing → 200 و جدول/کارت‌ها «شکل قبلی» (تصویر 08)؛ home → 200 با همهٔ باندها (تصویر 01)
+
+## لینت
+php -l                  : همهٔ فایل‌های تغییریافتهٔ PHP → No syntax errors
+node --check            : zarincode-main.js / single-experience.js / live-chat.js → OK
+css braces              : single-experience / zarincode-main / live-chat → تراز
+نسخهٔ WP محیط           : 7.1.4 (مهم: menu_page_exists در WP7 حذف شده — Live_Chat با menu_exists سازگار شد)
