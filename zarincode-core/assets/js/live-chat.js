@@ -45,12 +45,12 @@
             <section class="zc-chat-body">
                 <form class="zc-chat-prechat" novalidate>
                     <p class="zc-chat-welcome">${esc(S.welcome || '')}</p>
-                    <label class="zc-chat-field"><span>${esc(S.name || 'نام *')}</span>
-                        <input type="text" name="name" required maxlength="80" placeholder="مثلاً: علی محمدی" autocomplete="name"></label>
-                    <label class="zc-chat-field"><span>${esc(S.phone || 'شماره موبایل *')}</span>
-                        <input type="tel" name="phone" required maxlength="20" placeholder="0912XXXXXXX" dir="ltr" inputmode="tel" autocomplete="tel"></label>
-                    <label class="zc-chat-field"><span>${esc(S.website || 'وبسایت (اختیاری)')}</span>
-                        <input type="text" name="website" maxlength="160" placeholder="example.com" dir="ltr"></label>
+                    ${(S.fields && S.fields.name === false) ? '' : `<label class="zc-chat-field"><span>${esc(S.name || 'نام *')}</span>
+                        <input type="text" name="name" required maxlength="80" placeholder="مثلاً: علی محمدی" autocomplete="name"></label>`}
+                    ${(S.fields && S.fields.phone === false) ? '' : `<label class="zc-chat-field"><span>${esc(S.phone || 'شماره موبایل *')}</span>
+                        <input type="tel" name="phone" required maxlength="20" placeholder="0912XXXXXXX" dir="ltr" inputmode="tel" autocomplete="tel"></label>`}
+                    ${(S.fields && S.fields.website === true) ? `<label class="zc-chat-field"><span>${esc(S.website || 'وبسایت (اختیاری)')}</span>
+                        <input type="text" name="website" maxlength="160" placeholder="example.com" dir="ltr"></label>` : ''}
                     <p class="zc-chat-error" data-chat-error hidden></p>
                     <button type="submit" class="zc-chat-start">${esc(S.start || 'شروع گفتگو')}</button>
                 </form>
@@ -78,6 +78,20 @@
         if (!navigator.mediaDevices || !window.MediaRecorder) {
             const v = root.querySelector('.zc-tool-voice');
             if (v) v.hidden = true;
+        }
+        if (S.allows) {
+            ['photo', 'video', 'voice'].forEach((t) => {
+                if (!S.allows[t]) {
+                    const b = root.querySelector('.zc-tool[data-tool="' + t + '"]');
+                    if (b) b.hidden = true;
+                }
+            });
+        }
+        if (S.fileLimit) {
+            const hint = document.createElement('p');
+            hint.className = 'zc-chat-filehint';
+            hint.textContent = S.fileLimit;
+            root.querySelector('.zc-chat-tools').appendChild(hint);
         }
     }
 
@@ -208,12 +222,12 @@
         const btn = form.querySelector('.zc-chat-start');
         const payload = {
             name: form.name.value.trim(),
-            phone: form.phone.value.trim(),
-            website: form.website.value.trim(),
+            phone: form.phone ? form.phone.value.trim() : '',
+            website: form.website ? form.website.value.trim() : '',
         };
         chatError('');
-        if (payload.name.length < 2) { chatError(S.nameRequired || 'نام شما الزامی است.'); form.name.focus(); return; }
-        if (!/^(?:\+98|0098|98|0)?9\d{9}$/.test(payload.phone.replace(/[\s\-()]/g, ''))) { chatError(S.phoneRequired || 'شماره موبایل معتبر وارد کنید (مثال: ۰۹۱۲۳۴۵۶۷۸۹).'); form.phone.focus(); return; }
+        if (form.name && payload.name.length < 2) { chatError(S.nameRequired || 'نام شما الزامی است.'); form.name.focus(); return; }
+        if (form.phone && !/^(?:\+98|0098|98|0)?9\d{9}$/.test(payload.phone.replace(/[\s\-()]/g, ''))) { chatError(S.phoneRequired || 'شماره موبایل معتبر وارد کنید (مثال: ۰۹۱۲۳۴۵۶۷۸۹).'); form.phone.focus(); return; }
         if (btn) { btn.disabled = true; btn.textContent = S.sending || 'در حال شروع…'; }
         try {
             const data = await api('zc_chat_start', payload);

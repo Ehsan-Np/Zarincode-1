@@ -9,8 +9,8 @@
 .zc-chat-launcher-dot.is-online{background:#22c55e;box-shadow:0 0 0 2px #22c55e4d;animation:zc-dot-pulse 1.6s ease-out infinite}
 @keyframes zc-dot-pulse{0%{box-shadow:0 0 0 2px #22c55e55}70%{box-shadow:0 0 0 10px #22c55e00}100%{box-shadow:0 0 0 2px #22c55e00}}
 .zc-chat-launcher-ribbon{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;font-size:.58rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px #16a34a44;pointer-events:none}
-.zc-floating-dock .zc-floating-socials>div,.zc-floating-dock .zc-floating-channel{position:relative}
-.zc-floating-dock .zc-floating-socials>div{bottom:0;transform:translateY(calc(-100% - 74px));z-index:60}
+/* socials popup keeps the theme's own absolute positioning (position:relative here
+   used to pull it into flow inside the 48px dock and broke layout when opened). */
 
 /* ------------------------------------------------------------------ panel */
 .zc-chat-panel{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(84px,calc(env(safe-area-inset-bottom) + 74px));width:min(372px,calc(100vw - 28px));height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fffdf7;border:1px solid #e3d9bd;border-radius:22px;box-shadow:0 24px 70px #292c3240;overflow:hidden;z-index:1200;opacity:0;transform:translateY(14px) scale(.98);transition:opacity .22s,transform .22s}
@@ -37,7 +37,7 @@
 .zc-chat-field input:focus{border-color:#d9a93b;box-shadow:0 0 0 3px #fdd05b33}
 .zc-chat-error{margin:0;font-size:.74rem;font-weight:700;color:#b91c1c;background:#fee2e2;border-radius:10px;padding:8px 10px}
 .zc-chat-error[hidden]{display:none}
-.zc-chat-start{border:0;border-radius:13px;background:#fdd05b;color:#292c32;font:inherit;font-weight:900;font-size:.88rem;padding:13px;cursor:pointer;box-shadow:0 6px 18px #fdd05b55;transition:transform .15s,box-shadow .15s}
+.zc-chat-start{border:0;border-radius:13px;background:var(--zc-chat-accent,#fdd05b);color:#292c32;font:inherit;font-weight:900;font-size:.88rem;padding:13px;cursor:pointer;box-shadow:0 6px 18px #fdd05b55;transition:transform .15s,box-shadow .15s}
 .zc-chat-start:hover{transform:translateY(-1px);box-shadow:0 10px 22px #fdd05b66}
 .zc-chat-start:disabled{opacity:.65;cursor:wait;transform:none}
 
@@ -63,7 +63,7 @@
 .zc-chat-input{display:flex;gap:8px;align-items:center}
 .zc-chat-input input{flex:1;min-width:0;border:1px solid #ddd6c3;border-radius:999px;padding:11px 15px;font:inherit;font-size:.85rem;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
 .zc-chat-input input:focus{border-color:#d9a93b;box-shadow:0 0 0 3px #fdd05b33}
-.zc-chat-send{width:44px;height:44px;flex-shrink:0;border:0;border-radius:50%;background:#fdd05b;color:#292c32;cursor:pointer;font-size:1rem;display:grid;place-items:center;box-shadow:0 4px 14px #fdd05b66;transition:transform .15s}
+.zc-chat-send{width:44px;height:44px;flex-shrink:0;border:0;border-radius:50%;background:var(--zc-chat-accent,#fdd05b);color:#292c32;cursor:pointer;font-size:1rem;display:grid;place-items:center;box-shadow:0 4px 14px #fdd05b66;transition:transform .15s}
 .zc-chat-send:hover{transform:scale(1.06)}
 
 .zc-chat-toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-80px);background:#111827;color:#fff;border:1px solid #fdd05b66;padding:12px 18px;border-radius:14px;font-size:.82rem;font-weight:700;box-shadow:0 16px 40px #00000055;z-index:1300;opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;max-width:min(420px,calc(100vw - 32px))}

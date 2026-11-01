@@ -65,6 +65,9 @@ final class Zarincode_Core_Plugin_260 {
         add_action('init',static function(){if(!function_exists('zarincode_get_option')||zarincode_get_option('enable_live_chat',true))\Zarincode\Runtime260\Features\Live_Chat::boot();});
         add_filter('debug_information', [\Zarincode\Runtime260\Support\Diagnostics::class,'site_health']);
         add_action('init',static function(){load_plugin_textdomain('zarincode-core',false,dirname(plugin_basename(__FILE__)).'/languages');});
+        // بانک تحقیقات (پیشخوان) + بهینه‌سازی ویرایش المنتور (تحقیق ۲۰۲۶-۱۱-۰۱).
+        \Zarincode\Runtime260\Admin\Researches\Researches_Admin::boot();
+        \Zarincode\Runtime260\Elementor\Editor_Performance::boot();
         \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();
         \Zarincode\Runtime260\Widgets\Renderer::instance();
         \Zarincode\Runtime260\Widgets\Elementor_Loader::instance();
