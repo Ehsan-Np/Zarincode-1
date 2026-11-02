@@ -516,7 +516,8 @@ class Demo_Seeder {
             [
                 'slug'     => 'ready-made-products',
                 'title'    => 'فروش محصولات آماده',
-                'en_title' => 'Ready-Made Themes, Plugins & Source Codes',
+                // Matches the demo copy override «توسعه و یکپارچه‌سازی وردپرس» (Service_Demo record()).
+                'en_title' => 'WordPress Integration',
                 'icon'     => 'fa-solid fa-box-open',
                 'price'    => 'از ۸۹۰ هزار تا ۱۲ میلیون تومان',
                 'old_p'    => 'تحویل و دانلود آنی',
@@ -896,6 +897,7 @@ class Demo_Seeder {
             ['widget'=>'zarincode_portfolio','sc'=>'[zarincode_widget type="portfolio"]'],
             ['widget'=>'zarincode_why_us','sc'=>'[zarincode_widget type="why_us"]'],
             ['widget'=>'zarincode_pricing','sc'=>'[zarincode_widget type="pricing"]'],
+            ['widget'=>'zarincode_testimonials','sc'=>'[zarincode_widget type="testimonials"]'],
             ['widget'=>'zarincode_blog','sc'=>'[zarincode_widget type="blog"]'],
             ['widget'=>'zarincode_promo','sc'=>'[zarincode_widget type="promo"]'],
         ];
@@ -1129,16 +1131,13 @@ class Demo_Seeder {
      * Shared verbatim by the pricing page (h1) and the homepage (h2) so both stay identical forever.
      */
     private static function pricing_body_sections(string $heading_tag): array {
-        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('pricing');$features=Service_Demo::pricing_features($m);$cards=[];
-        foreach($m['repeaters']['pricing_grid_items_1']['default'] as $i=>$plan){
-            $items=[];foreach($features as $feature)if($feature['plan_key']===($plan['plan_key']??$plan['_id']))$items[]=['text'=>$feature['text'],'icon'=>$feature['icon'],'included'=>'yes'];
-            $cards[]=['id'=>self::gen_id(),'elType'=>'widget','widgetType'=>'zarincode_pricing_plan','settings'=>['eyebrow'=>'طراحی وب‌سایت','title'=>$plan['heading_text_1'],'price'=>$plan['div_text_3']??'با مشاوره','description'=>$plan['div_text_1']??'','features'=>$items,'skin'=>$i===1?'night':'editorial','featured'=>$i===1?'yes':'','link'=>['url'=>home_url('/contact-us/')]],'elements'=>[]];
-        }
-        $grid=['id'=>self::gen_id(),'elType'=>'container','settings'=>['content_width'=>'full','css_classes'=>'zc-pricing-composition'],'elements'=>$cards];
+        // Single pricing composition: badge + heading + tabbed plan cards + comparison matrix.
+        // (A second plain heading and a duplicate static plan-card grid used to be stacked
+        // here, making the section read as a repeated block on the homepage and pricing page.)
+        $widget = self::pricing_widget_settings();
+        $widget['n_pricing_section_title_1_tag'] = $heading_tag;
         return [
-            self::make_elementor_section('heading',['title'=>'تعرفه خدمات؛ برآورد نهایی پس از نیازسنجی','header_size'=>$heading_tag]),
-            self::make_elementor_section('zarincode_pricing',self::pricing_widget_settings()),
-            $grid,
+            self::make_elementor_section('zarincode_pricing',$widget),
             self::make_elementor_section('zarincode_service_matrix',[]),
         ];
     }
@@ -1171,6 +1170,25 @@ class Demo_Seeder {
     }
 
     public static function seed_all(): void {
+        // Persian locale: admin + front in fa_IR (install the pack when possible; set the
+        // option regardless so is_rtl()/date_i18n pick Persian up after any language sync).
+        if ( function_exists( 'wp_download_language_pack' ) ) {
+            @wp_download_language_pack( 'fa_IR' );
+        }
+        update_option( 'WPLANG', 'fa_IR' );
+        // Sell in Toman (Setup registers symbol + zero-decimals filters).
+        if ( class_exists( '\WooCommerce' ) ) {
+            update_option( 'woocommerce_currency', 'TOMAN' );
+            // Number first, symbol after ("7,800,000 تومان") — correct reading order in RTL.
+            update_option( 'woocommerce_currency_pos', 'right_space' );
+        }
+        // Branded demo author instead of the default "admin".
+        wp_update_user( [ 'ID' => 1, 'display_name' => 'احسان نادری پناه' ] );
+        // Remove the stock "Hello world!" post so it never leaks into demo blog grids.
+        $hello = get_posts( [ 'post_type' => 'post', 'post_status' => 'publish', 'title' => 'Hello world!', 'posts_per_page' => 1, 'fields' => 'ids' ] );
+        foreach ( $hello as $hid ) {
+            wp_delete_post( $hid, true );
+        }
         if ( class_exists( '\Zarincode\Runtime260\PostTypes\CPT_Manager' ) ) {
             $cpt_mgr = \Zarincode\Runtime260\PostTypes\CPT_Manager::instance();
             if ( is_callable( [ $cpt_mgr, 'register_post_types_and_taxonomies' ] ) ) {

@@ -2568,3 +2568,26 @@ reads on the shared dark slate tile like eita/gap/rubika. Verified with chromium
 (static harness of the real Single_Experience markup + real CSS) at 900px and
 390px: all 10 destinations identical — dark tile + white glyph. Zips:
 zarincode-4.3.1.zip (69226867…a0f9) + zarincode-core-4.3.1.zip (35c01638…86f0).
+
+== UPDATE 2026-11-02 — v4.5.0 (demo rebuilt from scratch, professional SW-services site) ==
+Root cause of the «several broken things» in recent edits: fresh demo installs
+never activated the Persian locale, so <html> rendered dir=ltr/lang=en-US while
+rtl.css loads unconditionally — every RTL grid (header, steps, why-us, portfolio
+tabs, pricing) came out mirrored. Fixed twice over: Demo_Seeder::seed_all() now
+installs+sets fa_IR, and Setup::force_rtl_attributes() forces dir="rtl" on the
+frontend regardless of locale. Demo content rebuilt & polished end-to-end:
+homepage service cards now map each CPT's _zc_srv_en_title (was six identical
+«Website Design» fallbacks); pricing section de-duplicated on both homepage and
+pricing page (one badge+heading+tabbed cards+matrix; heading_tag drives h1/h2);
+testimonials section added to the homepage (was promised in the admin copy but
+missing); blog/single/related dates converted to Jalali via a jalaali-js port
+verified against the Node reference on 216 dates; stock «Hello world!» post
+deleted by the seeder; demo author display_name set to احسان نادری پناه; all four
+demo covers had the baked «DEMO / PREVIEW» pill erased (it was clipped under the
+HTML icon tile); WooCommerce demo sells in تومان (currency TOMAN + right_space
+position so «7,800,000 تومان» reads correctly in RTL); 6th service en_title
+aligned with its demo copy override (WordPress Integration). Verified in a fresh
+WP+Elementor+Woo env: dir=rtl/lang=fa-IR, unique service labels, zero duplicate
+pricing blocks, Jalali dates, 0 dollar prices, chat start→send→poll round-trip,
+zero PHP warnings, mobile 390px scrollWidth==innerWidth on five pages; full-page
+CDP evidence in docs/audits/2026-11-02-v4.5.0/.

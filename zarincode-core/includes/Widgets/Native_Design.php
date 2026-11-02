@@ -302,7 +302,7 @@ final class Native_Design {
                 if($def['type']==='media')$row[$key]=$item['image'];
             }
             $meta=$item['record_meta']??[];$get=static fn($key)=>(string)($meta[$key][0]??'');
-            if($kind==='blog'){$row['prod_ver_text_1']=$item['date'];$row['span_text_1']=$item['author'];}
+            if($kind==='blog'){$row['prod_ver_text_1']=\Zarincode\Theme\Core\Setup::jalali_date((int)($item['timestamp']??0)?:time());$row['span_text_1']=$item['author'];}
             if($kind==='products'){
                 $row['prod_ver_text_1']=$get('_zc_prod_version')?:$get('_zc_prod_ver');
                 $tags=explode(',',$get('_zc_prod_tags'));foreach(range(1,4) as $tag)$row['meta_tag_text_'.$tag]=trim($tags[$tag-1]??'');
@@ -313,6 +313,7 @@ final class Native_Design {
             if($kind==='services'){
                 $row['service_num_text_1']=sprintf('%02d',$i+1);$row['span_text_1']=$get('_zc_srv_price_range');
                 $icon=$get('_zc_srv_icon');if($icon!=='')$row['icon_1_icon']=Icon_Compatibility::value(['value'=>$icon,'library'=>'fa-solid']);
+                $en=$get('_zc_srv_en_title');if($en!=='')$row['div_text_1']=$en;
             }
             $rows[]=$row;foreach($item['filter_terms']??[] as $slug=>$label)$categories[$slug]=$label;
         }

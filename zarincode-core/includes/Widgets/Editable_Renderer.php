@@ -56,7 +56,7 @@ final class Editable_Renderer {
             $terms=get_the_terms($post->ID,($tax[$kind]??'category'));
             $item=['_id'=>'post-'.$post->ID,'visible'=>'yes','title'=>get_the_title($post),'description'=>wp_trim_words(wp_strip_all_tags($post->post_excerpt?:$post->post_content),max(0,min(200,absint($s['excerpt_length']??22)))),'image'=>['url'=>get_the_post_thumbnail_url($post,'zarincode-card')?:'','id'=>get_post_thumbnail_id($post)],'link'=>['url'=>get_permalink($post)],'button_text'=>$s['read_more']??'','category'=>!is_wp_error($terms)&&$terms?implode('، ',wp_list_pluck($terms,'name')):''];
             $item['image']['alt']=get_the_title($post);
-            $item['date']=get_the_date('', $post);
+            $item['date']=get_the_date('', $post);$item['timestamp']=strtotime($post->post_date_gmt.' UTC')?:strtotime($post->post_date);
             $item['author']=get_the_author_meta('display_name',$post->post_author);
             $item['record_meta']=get_post_meta($post->ID);
             if($kind==='products'&&function_exists('wc_get_product')) {

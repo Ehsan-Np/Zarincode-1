@@ -29,6 +29,7 @@ class Setup {
         add_filter( 'body_class', [ $this, 'body_classes' ] );
         add_filter( 'language_attributes', [ $this, 'force_rtl_attributes' ], 20 );
         add_filter( 'template_include', [ $this, 'enforce_custom_single_templates' ], 99 );
+        add_action( 'init', [ $this, 'woo_toman_currency' ], 5 );
     }
 
     /**
@@ -146,9 +147,126 @@ class Setup {
         if ( is_admin() ) {
             return $output;
         }
-        if ( strpos( $output, 'dir=' ) === false ) {
-            $output .= is_rtl() ? ' dir="rtl"' : ' dir="ltr"';
+        // Persian-first theme: frontend is always RTL regardless of site locale,
+        // matching the unconditionally-enqueued rtl.css. Keeps layouts correct even
+        // on installs that never activated the fa_IR language pack.
+        if ( strpos( $output, 'dir=' ) !== false ) {
+            $output = preg_replace( '/dir="[^"]*"/', 'dir="rtl"', $output );
+        } else {
+            $output .= ' dir="rtl"';
+        }
+        if ( strpos( $output, 'lang=' ) === false ) {
+            $output = 'lang="fa-IR" ' . $output;
         }
         return $output;
+    }
+
+    /** WooCommerce: Persian Toman currency (symbol + zero decimals). */
+    public function woo_toman_currency(): void {
+        add_filter( 'woocommerce_currency_options', static function ( $currencies ) {
+            $currencies['TOMAN'] = 'تومان';
+            return $currencies;
+        } );
+        add_filter( 'woocommerce_currency_symbol', static function ( $symbol, $currency ) {
+            return 'TOMAN' === $currency ? 'تومان' : $symbol;
+        }, 10, 2 );
+        add_filter( 'wc_get_price_decimals', static function ( $decimals ) {
+            return 'TOMAN' === (string) get_option( 'woocommerce_currency', '' ) ? 0 : $decimals;
+        } );
+    }
+
+    /** Gregorian timestamp -> Persian Jalali date ("۲ آبان ۱۴۰۵"). Port of jalaali-js (MIT), verified vs reference. */
+    public static function jalali_date( int $timestamp, string $format = 'j F Y' ): string {
+        static $months = [ 'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند' ];
+        $utc = ( new \DateTime( '@' . $timestamp ) )->setTimezone( new \DateTimeZone( 'UTC' ) );
+        $gy  = (int) $utc->format( 'Y' );
+        $gm  = (int) $utc->format( 'n' );
+        $gd  = (int) $utc->format( 'j' );
+
+        $div = static fn( int $a, int $b ): int => intdiv( $a, $b );
+        $mod = static fn( int $a, int $b ): int => $a - intdiv( $a, $b ) * $b;
+        $g2d = static function ( int $gy, int $gm, int $gd ) use ( $div, $mod ): int {
+            $d  = $div( ( $gy + $div( $gm - 8, 6 ) + 100100 ) * 1461, 4 ) + $div( 153 * $mod( $gm + 9, 12 ) + 2, 5 ) + $gd - 34840408;
+            $d -= $div( $div( $gy + 100100 + $div( $gm - 8, 6 ), 100 ) * 3, 4 ) - 752;
+            return $d;
+        };
+        $d2g = static function ( int $jdn ) use ( $div, $mod ): array {
+            $j  = 4 * $jdn + 139361631;
+            $j  = $j + $div( $div( 4 * $jdn + 183187720, 146097 ) * 3, 4 ) * 4 - 3908;
+            $i  = $div( $mod( $j, 1461 ), 4 ) * 5 + 308;
+            $gd = $div( $mod( $i, 153 ), 5 ) + 1;
+            $gm = $mod( $div( $i, 153 ), 12 ) + 1;
+            $gy = $div( $j, 1461 ) - 100100 + $div( 8 - $gm, 6 );
+            return [ $gy, $gm, $gd ];
+        };
+        $jal_cal = static function ( int $jy, bool $without_leap ) use ( $div, $mod ): ?array {
+            $breaks = [ -61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210, 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178 ];
+            $bl     = count( $breaks );
+            $gy     = $jy + 621;
+            $leap_j = -14;
+            $jp     = $breaks[0];
+            $jump   = 0;
+            if ( $jy < $jp || $jy >= $breaks[ $bl - 1 ] ) {
+                return null;
+            }
+            for ( $i = 1; $i < $bl; $i++ ) {
+                $jm   = $breaks[ $i ];
+                $jump = $jm - $jp;
+                if ( $jy < $jm ) {
+                    break;
+                }
+                $leap_j = $leap_j + $div( $jump, 33 ) * 8 + $div( $mod( $jump, 33 ), 4 );
+                $jp     = $jm;
+            }
+            $n       = $jy - $jp;
+            $leap_j  = $leap_j + $div( $n, 33 ) * 8 + $div( $mod( $n, 33 ) + 3, 4 );
+            if ( 4 === $mod( $jump, 33 ) && 4 === $jump - $n ) {
+                $leap_j++;
+            }
+            $leap_g = $div( $gy, 4 ) - $div( ( $div( $gy, 100 ) + 1 ) * 3, 4 ) - 150;
+            $march = 20 + $leap_j - $leap_g;
+            if ( $without_leap ) {
+                return [ 'gy' => $gy, 'march' => $march ];
+            }
+            if ( $jump - $n < 6 ) {
+                $n = $n - $jump + $div( $jump + 4, 33 ) * 33;
+            }
+            $leap = $mod( $mod( $n + 1, 33 ) - 1, 4 );
+            if ( -1 === $leap ) {
+                $leap = 4;
+            }
+            return [ 'leap' => $leap, 'gy' => $gy, 'march' => $march ];
+        };
+
+        $jdn  = $g2d( $gy, $gm, $gd );
+        $gy   = $d2g( $jdn )[0];
+        $jy   = $gy - 621;
+        $r    = $jal_cal( $jy, false );
+        if ( null === $r ) {
+            return gmdate( 'Y/m/d', $timestamp );
+        }
+        $k = $jdn - $g2d( $gy, 3, $r['march'] );
+        if ( $k >= 0 ) {
+            if ( $k <= 185 ) {
+                $jm = 1 + $div( $k, 31 );
+                $jd = $mod( $k, 31 ) + 1;
+            } else {
+                $k -= 186;
+                $jm = 7 + $div( $k, 30 );
+                $jd = $mod( $k, 30 ) + 1;
+            }
+        } else {
+            $jy -= 1;
+            $k  += 179;
+            if ( 1 === $r['leap'] ) {
+                $k++;
+            }
+            $jm = 7 + $div( $k, 30 );
+            $jd = $mod( $k, 30 ) + 1;
+        }
+        $fa = static function ( $n ): string {
+            return strtr( (string) $n, array_combine( range( 0, 9 ), [ '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹' ] ) );
+        };
+        return strtr( $format, [ 'Y' => $fa( $jy ), 'F' => $months[ $jm - 1 ], 'j' => $fa( $jd ), 'n' => $fa( $jm ) ] );
     }
 }
