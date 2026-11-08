@@ -462,7 +462,7 @@ class Demo_Seeder {
                 'old_p'    => '۲۰ تا ۱۱۰ میلیون',
                 'duration' => '۲۰ تا ۴۵ روز کاری',
                 'cat'      => 'طراحی وب و رابط کاربری',
-                'excerpt'  => 'طراحی سایت حرفه‌ای، مدرن و المنتور بیس با رنگ‌بندی زرد سانشاین Crextio، سرعت بارگذاری زیر ۱ ثانیه، نمایش کامل روی موبایل و پنل مدیریتی آسان برای رشد فروش شما.',
+                'excerpt'  => 'معماری محتوا، مسیر کاربر و رابط واکنش‌گرای فارسی؛ وب‌سایتی که سرعت، سئوی فنی و تجربهٔ موبایل را هم‌زمان رعایت می‌کند.',
                 'content'  => '<h2>هر آنچه باید در مورد خدمات طراحی سایت در زرین کد بدانید</h2><p>در دنیای امروز که فضای دیجیتال بخش جدایی‌ناپذیری از زندگی افراد شده، داشتن یک وب‌سایت حرفه‌ای ضرورتی انکارناپذیر برای هر کسب‌وکاری است. تیم <strong>زرین کد (به مدیریت احسان نادری پناه - 09024561001)</strong> با طراحی اختصاصی UI/UX، پیاده‌سازی استاندارد با وردپرس و المنتور یا کدنویسی اختصاصی، وب‌سایتی سریع، امن و فروشنده‌ساز برای شما خلق می‌کند.</p><h3>ویژگی‌های کلیدی خدمات طراحی سایت زرین کد</h3><ul><li>انجام پروژه به‌صورت دورکاری و حضوری با قرارداد رسمی</li><li>گارانتی ۱۰۰٪ بازگشت وجه در صورت عدم رضایت</li><li>کدنویسی استاندارد منطبق با معیارهای ژاکت و تم‌فارست</li><li>پرداخت دو مرحله‌ای (۵۰٪ پیش‌پرداخت و ۵۰٪ پس از تحویل نهایی)</li><li>یک سال پشتیبانی فنی و گارانتی رایگان</li></ul>',
             ],
             [
@@ -474,7 +474,7 @@ class Demo_Seeder {
                 'old_p'    => '۴۰ تا ۲۲۰ میلیون',
                 'duration' => '۳۰ تا ۶۰ روز کاری',
                 'cat'      => 'مهندسی نرم‌افزار و سامانه',
-                'excerpt'  => 'توسعه و معماری نرم‌افزارهای اختصاصی تحت وب، سامانه‌های سازمانی CRM/ERP، وب‌اپلیکیشن‌های پیشرفته، API و افزونه‌های اختصاصی توسط احسان نادری پناه.',
+                'excerpt'  => 'تحلیل گردش‌کار، معماری داده و پیاده‌سازی سامانه‌های اختصاصی تحت وب، CRM/ERP، API و افزونه — با مستندات و آزمون پذیرش.',
                 'content'  => '<h2>مهندسی و برنامه‌نویسی نرم‌افزارهای اختصاصی در زرین کد</h2><p>اگر کسب‌وکار شما نیازمند فرآیندهای اختصاصی فراتر از سیستم‌های آماده است، واحد مهندسی نرم‌افزار <strong>زرین کد (Zarincode.com)</strong> با بهره‌گیری از PHP 8.x، Laravel، Node.js و React سامانه‌های ابری، مقیاس‌پذیر و امن را از صفر تا صد برای شما تحلیل، طراحی و کدنویسی می‌کند.</p>',
             ],
             [
@@ -486,7 +486,7 @@ class Demo_Seeder {
                 'old_p'    => '۳۰ تا ۱۳۰ میلیون',
                 'duration' => 'دوره ۳ تا ۶ ماهه',
                 'cat'      => 'سئو و بهینه‌سازی موتور جستجو',
-                'excerpt'  => 'بهبود تضمینی رتبه وب‌سایت شما در صفحه اول گوگل با سئو تکنیکال، بهینه‌سازی Core Web Vitals، استراتژی کلمات کلیدی و لینک‌سازی کلاه‌سفید.',
+                'excerpt'  => 'ممیزی فنی، رفع مشکلات ایندکس، بهینه‌سازی Core Web Vitals و نقشهٔ محتوایی مبتنی بر نیت جست‌وجو — بدون وعدهٔ رتبهٔ تضمینی.',
                 'content'  => '<h2>خدمات سئو سایت تضمینی و حضور در رتبه اول گوگل</h2><p>در فضای رقابتی امروز، اگر در صفحه اول گوگل دیده نشوید، سهم بازار خود را به رقبا واگذار کرده‌اید. تیم سئو زرین کد با تدوین استراتژی دقیق کلمات کلیدی پول‌ساز، رفع خطاهای تکنیکال و لینک‌سازی هدفمند، ترافیک ارگانیک و فروش واقعی سایت شما را چند برابر می‌کند.</p>',
             ],
             [
@@ -498,7 +498,7 @@ class Demo_Seeder {
                 'old_p'    => '۱۶ تا ۵۰ میلیون',
                 'duration' => 'دوره ماهانه مستمر',
                 'cat'      => 'سئو و رشد شبکه‌های اجتماعی',
-                'excerpt'  => 'بهینه‌سازی الگوریتمی پیج‌های اینستاگرام، لینکدین، یوتیوب و تلگرام؛ ورود هدفمند به اکسپلور و صدر نتایج جستجوی شبکه‌های اجتماعی.',
+                'excerpt'  => 'ساختار پروفایل، پیام برند و تقویم محتوا با هدف جذب مخاطب مرتبط و افزایش نرخ تبدیل در شبکه‌های اجتماعی.',
                 'content'  => '<h2>سئو شبکه‌های اجتماعی (Instagram, LinkedIn & YouTube SEO)</h2><p>موتورهای جستجوی داخلی اینستاگرام، لینکدین و یوتیوب امروزه یکی از اصلی‌ترین کانال‌های جذب مشتری هستند. ما در زرین کد با بهینه‌سازی بایو، کلیدواژه‌های نام کاربری، کپشن‌نویسی الگوریتمی، Alt Text و استراتژی ریلزهای اکسپلوری، پیج شما را به آهنربای جذب مشتری تبدیل می‌کنیم.</p>',
             ],
             [
@@ -510,7 +510,7 @@ class Demo_Seeder {
                 'old_p'    => '۱۴ تا ۶۰ میلیون',
                 'duration' => 'تقویم ۳۰ روزه ماهانه',
                 'cat'      => 'تولید محتوا و برندینگ',
-                'excerpt'  => 'تولید محتوای متنی سئو شده، تقویم محتوایی، سناریونویسی ویدئو و ریلز، طراحی بنر و مدیریت جامع محتوای وب‌سایت و شبکه‌های اجتماعی.',
+                'excerpt'  => 'محتوای تخصصی سئوشده، تقویم انتشار، سناریوی ویدئو و صفحهٔ فرود — نوشته‌شده برای پاسخ به پرسش واقعی مخاطب.',
                 'content'  => '<h2>خدمات تولید محتوای تخصصی و استراتژی محتوا در زرین کد</h2><p>محتوا پادشاه دنیای دیجیتال است؛ اما تنها محتوایی که بر اساس نیاز کاربر و الگوریتم‌های سئو نگارش و طراحی شده باشد منجر به فروش می‌شود. تیم تولید محتوای زرین کد مقالات تخصصی، لندینگ‌پیج‌ها، بنرهای گرافیکی و ویدئوهای معرفی برند شما را با بالاترین کیفیت تولید می‌کند.</p>',
             ],
             [
@@ -523,7 +523,7 @@ class Demo_Seeder {
                 'old_p'    => 'تحویل و دانلود آنی',
                 'duration' => 'تحویل آنی پس از خرید',
                 'cat'      => 'محصولات دیجیتال آماده',
-                'excerpt'  => 'فروشگاه اختصاصی قالب‌های حرفه‌ای وردپرس، افزونه‌های کاربردی و سورس‌کدهای آماده نرم‌افزار کدنویسی‌شده توسط احسان نادری پناه با آپدیت دائمی.',
+                'excerpt'  => 'قالب، افزونه و سورس‌کدهای تولید زرین کد؛ با مستندات فنی، آپدیت رسمی و لایسنس شفاف برای شروع سریع‌تر.',
                 'content'  => '<h2>مارکت‌پلیس محصولات آماده زرین کد (قالب، افزونه و سورس‌کد)</h2><p>تمامی قالب‌ها، افزونه‌های وردپرس و سورس‌کدهای نرم‌افزاری موجود در فروشگاه زرین کد حاصل کدنویسی مستقیم <strong>احسان نادری پناه</strong> بوده و دارای مستندات کامل، سورس باز، ۶ ماه پشتیبانی رایگان و آپدیت مادام‌العمر هستند.</p>',
             ],
         ];
@@ -890,37 +890,32 @@ class Demo_Seeder {
      * 5. SEED ALL 13 ELEMENTOR PAGES (HOMEPAGE, SERVICES, PORTFOLIO, SHOP, ABOUT, CONTACT, BLOG + 6 LEGAL PAGES)
      */
     public static function seed_elementor_pages(): void {
+        // ---------------------------------------------------------------
+        // Homepage composition (v4.6.0) — "cheerful + formal" design.
+        // Built exclusively from Elementor widgets so every string and every
+        // repeater row is editable in the editor. Order follows the approved
+        // design reference: hero → partners → services → products → portfolio
+        // → why → steps → pricing → testimonials → magazine → final CTA.
+        // ---------------------------------------------------------------
         $home_widgets = [
-            ['widget'=>'zarincode_brands','sc'=>'[zarincode_widget type="brands"]'],
-            ['widget'=>'zarincode_services','sc'=>'[zarincode_widget type="services"]'],
-            ['widget'=>'zarincode_steps','sc'=>'[zarincode_widget type="steps"]'],
-            ['widget'=>'zarincode_portfolio','sc'=>'[zarincode_widget type="portfolio"]'],
-            ['widget'=>'zarincode_why_us','sc'=>'[zarincode_widget type="why_us"]'],
-            ['widget'=>'zarincode_pricing','sc'=>'[zarincode_widget type="pricing"]'],
-            ['widget'=>'zarincode_testimonials','sc'=>'[zarincode_widget type="testimonials"]'],
-            ['widget'=>'zarincode_blog','sc'=>'[zarincode_widget type="blog"]'],
-            ['widget'=>'zarincode_promo','sc'=>'[zarincode_widget type="promo"]'],
+            [ 'widget' => 'zarincode_home_hero',         'sc' => '[zarincode_widget type="home_hero"]' ],
+            [ 'widget' => 'zarincode_home_partners',     'sc' => '[zarincode_widget type="home_partners"]' ],
+            [ 'widget' => 'zarincode_home_services',     'sc' => '[zarincode_widget type="home_services"]' ],
+            [ 'widget' => 'zarincode_home_products',     'sc' => '[zarincode_widget type="home_products"]' ],
+            [ 'widget' => 'zarincode_home_portfolio',    'sc' => '[zarincode_widget type="home_portfolio"]' ],
+            [ 'widget' => 'zarincode_home_why',          'sc' => '[zarincode_widget type="home_why"]' ],
+            [ 'widget' => 'zarincode_home_steps',        'sc' => '[zarincode_widget type="home_steps"]' ],
+            [ 'widget' => 'zarincode_home_pricing',      'sc' => '[zarincode_widget type="home_pricing"]' ],
+            [ 'widget' => 'zarincode_home_testimonials', 'sc' => '[zarincode_widget type="home_testimonials"]' ],
+            [ 'widget' => 'zarincode_home_blog',         'sc' => '[zarincode_widget type="home_blog"]' ],
+            [ 'widget' => 'zarincode_home_promo',        'sc' => '[zarincode_widget type="home_promo"]' ],
         ];
 
         require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
-        $home_tree = [\Zarincode\Runtime260\Widgets\Hero_Layout::composition(Service_Demo::hero(), Service_Demo::settings('zarincode_products_slider'))];
+        $home_tree       = [];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
-            $kind=substr($hw['widget'],strlen('zarincode_'));
-            $settings=[];
-            if(in_array($kind,['products','services','portfolio','blog'],true))$settings=['n_'.$kind.'_source'=>'query','n_'.$kind.'_count'=>8];
-            if($kind==='pricing'){
-                // «شکل قبلی» جدول لیست قیمت = عین ترکیب صفحهٔ تعرفه خدمات (لیست پلن‌ها + کارت‌ها + ماتریس امکانات).
-                foreach(self::pricing_body_sections('h2') as $section)$home_tree[]=$section;
-                $home_shortcodes[]='[zarincode_widget type="pricing"]';
-                continue;
-            }
-            if($kind==='brands')$settings=self::demo_technologies(4);
-            if($kind==='testimonials'){
-                $m=\Zarincode\Runtime260\Widgets\Native_Design::model('testimonials');
-                foreach($m['repeaters'] as $key=>$rep){$rows=$rep['default'];foreach($rows as &$row)$row['customer_photo']=['url'=>get_template_directory_uri().'/assets/images/demo-customer-avatar.jpg','id'=>0];unset($row);$settings['n_testimonials_'.$key]=$rows;}
-            }
-            $home_tree[] = self::make_elementor_section($hw['widget'],$settings);
+            $home_tree[]       = self::make_elementor_section( $hw['widget'], [] );
             $home_shortcodes[] = $hw['sc'];
         }
 

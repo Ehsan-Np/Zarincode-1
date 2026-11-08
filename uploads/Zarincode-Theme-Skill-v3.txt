@@ -2591,3 +2591,25 @@ WP+Elementor+Woo env: dir=rtl/lang=fa-IR, unique service labels, zero duplicate
 pricing blocks, Jalali dates, 0 dollar prices, chat start→send→poll round-trip,
 zero PHP warnings, mobile 390px scrollWidth==innerWidth on five pages; full-page
 CDP evidence in docs/audits/2026-11-02-v4.5.0/.
+
+== UPDATE 2026-11-08 — v4.6.0 (homepage rebuilt as Elementor widgets, "cheerful + formal") ==
+Client rejected two earlier full-page restyle attempts and asked for the current
+theme's refinement to stay, with only the homepage body becoming cheerful and
+professional (header/footer untouched). Delivered as 11 dedicated Elementor
+widgets: zarincode_home_{hero,partners,services,products,portfolio,why,steps,
+pricing,testimonials,blog,promo}. Navigation by Elementor is complete — every
+heading, badge, CTA, URL and item repeater is editable in the panel; products /
+projects / blog / partners switch between hand-made cards and real content
+(WooCommerce, zc_project CPT, posts, repeater).
+Design system: assets/css/home-cheerful.css scoped to .zc-hp (332 selectors,
+tokens on the wrapper) so no other template changes; enqueued on the front page
+only. Palette keeps the brand core (cream/gold/ink) plus 5 pastel accents; Font
+Awesome 7 solids replaced every emoji for a formal tone, rotations softened, and
+service cards gained delivery/guarantee chips, portfolio cards gained KPI
+badges, and a partner-logo carousel replaced the plain name strip.
+Copy: inc/Home/home-content.json + service-demo.json carry professional Persian
+copy (hero promise, 8 "why" cards, 6 steps, pricing matrix, 6 magazine articles,
+service excerpts/prices/durations); the seeder rebuilds the demo from these
+sources. Verified live: all 11 widgets in _elementor_data, .zc-hp on every
+section, computed grid columns 3/4/4/6/3 as designed, FA7 glyphs resolving,
+full-page 1440px and 390px evidence in docs/audits/2026-11-08-v4.6.0/.

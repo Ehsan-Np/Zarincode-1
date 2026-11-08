@@ -122,6 +122,11 @@ class Assets {
             wp_enqueue_style('zarincode-product-reference', ZARINCODE_URI . '/assets/css/product-reference.css', ['zarincode-main'], ZARINCODE_VERSION);
         }
 
+        // Homepage "cheerful + formal" design system (scoped to .zc-hp, front page only).
+        if ( is_front_page() || is_page_template( 'template-elementor-canvas.php' ) && 'page' === get_post_type() ) {
+            wp_enqueue_style( 'zarincode-home-cheerful', ZARINCODE_URI . '/assets/css/home-cheerful.css', array( 'zarincode-main' ), ZARINCODE_VERSION );
+        }
+
         wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION);
 
         // 4. RTL Native Stylesheet

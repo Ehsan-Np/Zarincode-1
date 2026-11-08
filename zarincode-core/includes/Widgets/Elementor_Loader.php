@@ -84,6 +84,7 @@ class Elementor_Loader {
     public function register_widgets( $widgets_manager ): void {
         if ( !\Zarincode\Runtime260\Features\Manager::enabled('native_widgets') ) { return; }
         require_once __DIR__ . '/Elementor_Widgets_Collection.php';
+        require_once __DIR__ . '/Home_Widgets.php';
         require_once __DIR__ . '/Professional_Widgets.php';
         require_once __DIR__.'/Studio_Widgets.php';
         require_once __DIR__.'/Widget_Trust_Badges.php';
@@ -115,6 +116,18 @@ class Elementor_Loader {
             Widget_Testimonials::class,
             Widget_Blog_Grid::class,
             Widget_Page_Content_Section::class,
+            // Homepage "cheerful + formal" section widgets (v4.6.0).
+            Home_Hero::class,
+            Home_Partners::class,
+            Home_Services::class,
+            Home_Products::class,
+            Home_Portfolio::class,
+            Home_Why::class,
+            Home_Steps::class,
+            Home_Pricing::class,
+            Home_Testimonials::class,
+            Home_Blog::class,
+            Home_Promo::class,
         ];
 
         foreach ( $widget_classes as $w_class ) {
