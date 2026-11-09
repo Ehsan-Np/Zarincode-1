@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.10.0
+Stable tag: 4.10.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.10.1 =
+* No API change. Ships with theme 4.10.1 (header/footer geometry revert, footer plate colour, icon sizing untouched, icon fonts render again).
 
 = 4.10.0 =
 * New `Security\Hardening`: error-display shield (works even when the host forces `display_errors On`), `scrub()` path sanitizer used by every message returned to a browser, security headers, XML-RPC off, author/REST user enumeration blocked, `debug.log` guard, admin audit panel.

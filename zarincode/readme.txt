@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.10.0
+Stable tag: 4.10.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,15 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.10.1 =
+* Revert: the 4.10.0 header/footer pass changed the size of both parts — the footer grew from 691.84px to 748.14px and the header shrank from 228.19px to 197px. Both are back to their exact 4.9.1 geometry (verified: footer 691.84px, header 228.19px, total page height 9026px, identical to 4.9.1 at 1440px).
+* Fix: the footer background colour is the only visual change — a single `--zc-footer-plate` colour on the footer plate, with the text/social/icon colours corrected for contrast (headings white, body `#B9BEC8`, links/socials `#E7E9EE`, glyphs brand gold, filled and outline buttons keep the colours set in the editor).
+* Revert: the 4.10.0 footer redesign is gone — no `margin-top`, no `overflow:hidden`, no gold hairline, no rounded dark card around the CTA band, no bullet dots on the link lists, no `translateX` hover.
+* Fix: icons are no longer reshaped. `.elementor-icon` keeps the size, box and radius set in Elementor; the theme only sets its colour. The 2.6rem gold box that squeezed the footer support glyph is removed.
+* Fix: the typeface rule no longer replaces icon fonts. The old `font-family` override painted tofu boxes instead of glyphs in stock widgets, cards and the footer; Vazirmatn is now applied with `:where()` (zero added specificity) so `.fa-*` / `.eicon-*` always win.
+* Fix: theme type metrics (heading line-height, text-editor size, icon-list rhythm, button padding/paint) are declared in a cascade layer, so a size or background set in Elementor wins over the theme default instead of being silently overridden.
+* Verified: `/`, `/shop/`, `/services/`, `/blog/`, `/contact-us/`, a single post and the legal pages all return 200 with an empty `debug.log`; the contact form, product cards and blog cards keep their designed look.
 
 = 4.10.0 =
 * Security: PHP errors can no longer print server paths. A hardening layer (`Zarincode\Runtime260\Security\Hardening`) turns `display_errors` off and installs an error handler that suppresses the display of non-fatal errors even when the host pins `display_errors On`; every message returned to a browser is passed through `scrub()` (`/home/…/public_html/…` → `header.php:54`).

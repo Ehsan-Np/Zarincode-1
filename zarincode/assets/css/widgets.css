@@ -30,271 +30,113 @@
 }
 
 /* ===================================================================
-   1. ELEMENTOR HEADER / FOOTER PART
-   The header/footer templates are built from native widgets, so these
-   rules give the wrapper its branded plate instead of a flat white band.
+   1. ELEMENTOR HEADER / FOOTER PART — colour only
+   -------------------------------------------------------------------
+   The header/footer templates are native Elementor widgets, so the theme
+   must not re-lay them out: the editor is the source of truth for sizes,
+   spacing and structure. This section changes COLOURS only — it never
+   touches padding, margin, width, radius, display or font-size, so the
+   header/footer keep exactly the geometry they have in the editor.
+   Text colour is set on the text nodes themselves (`.elementor-heading-title`,
+   `.elementor-icon-list-text`, …): Elementor prints its kit colours on those
+   nodes, and styling only the wrapper left footer links dark-on-dark.
    =================================================================== */
 .zc-hf { position: relative; z-index: 60; }
 
-.zc-hf-header {
-    background: rgba(255, 255, 255, .92);
-    border-bottom: 1px solid var(--zcw-line);
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
-    box-shadow: 0 6px 26px rgba(42, 44, 49, .06);
+/* The header is left alone: it already carries its own colours from the
+   Elementor header part (and inherits the page plate). Forcing a plate colour
+   here in 4.10.0 turned a light strip into a black bar — the exact regression
+   the user rejected — so only the geometry-neutral helpers below stay. */
+html.dark .zc-hf-header { background: #1A1C22; }
+
+/* Typography inside the header/footer is the editor's setting: inherit the
+   surrounding (kit/body) rhythm instead of re-sizing the text — the theme's
+   global type scale otherwise adds a few pixels per block and the parts no
+   longer match the height they have in Elementor. */
+.zc-hf .elementor-widget-text-editor,
+.zc-hf .elementor-widget-text-editor p,
+.zc-hf .elementor-icon-list-text,
+.zc-hf .elementor-icon-box-description {
+    font-size: inherit;
+    line-height: inherit;
 }
-html.dark .zc-hf-header {
-    background: rgba(26, 28, 34, .92);
-    border-bottom-color: rgba(255, 255, 255, .08);
+.zc-hf .elementor-icon-list-text { font-weight: inherit; }
+
+/* header buttons: no theme shadow/transform, so their box stays the editor's */
+.zc-hf .elementor-widget-button .elementor-button {
+    box-shadow: none;
+    transform: none;
+}
+.zc-hf .elementor-widget-button .elementor-button:hover,
+.zc-hf .elementor-widget-button .elementor-button:focus-visible {
+    box-shadow: none;
+    transform: none;
 }
 
-/* utility strip */
-.zc-hf .zc-hf-strip,
-.zc-hf .zc-hf-strip > .elementor-column-wrap,
-.zc-hf .zc-hf-strip > .elementor-widget-wrap { padding-top: 0 !important; padding-bottom: 0 !important; }
-.zc-hf .zc-hf-strip {
-    background: var(--zcw-ink);
-    color: #E9E4D6;
-}
-.zc-hf .zc-hf-strip p {
-    margin: 0;
-    padding: .45rem 0;
-    font-size: .78rem;
-    font-weight: 600;
-    color: #E9E4D6;
-    text-align: center;
-    letter-spacing: .1px;
-}
-.zc-hf .zc-hf-strip a { color: var(--zcw-gold); text-decoration: none; }
-
-/* main bar */
-.zc-hf .zc-hf-main { padding: .55rem 0; }
-.zc-hf .zc-hf-main .elementor-widget-heading .elementor-heading-title {
-    font-size: 1.32rem;
-    font-weight: 900;
-    letter-spacing: -.4px;
-    color: var(--zcw-ink);
-    line-height: 1.2;
-}
-.zc-hf .zc-hf-main .elementor-widget-text-editor p {
-    margin: .15rem 0 0;
-    font-size: .72rem;
-    font-weight: 600;
-    color: var(--zcw-muted);
-    letter-spacing: .2px;
-}
-
-/* inline navigation built from an Elementor icon-list.
-   Elementor renders `<ul class="elementor-icon-list-items">` with list-item
-   dividers; both are neutralised here so the nav is a clean row of pills. */
-.zc-hf .zc-hf-nav .elementor-icon-list-items,
-.zc-hf .zc-hf-nav ul.elementor-icon-list-items {
-    display: flex !important;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none !important;
-}
-.zc-hf .zc-hf-nav .elementor-icon-list-item,
-.zc-hf .zc-hf-nav li.elementor-icon-list-item {
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none;
-}
-.zc-hf .zc-hf-nav .elementor-icon-list-item::after,
-.zc-hf .zc-hf-nav .elementor-icon-list-item:not(:last-child)::after { display: none !important; content: none !important; border: 0 !important; }
-.zc-hf .zc-hf-nav .elementor-icon-list-text { color: inherit; }
-.zc-hf .zc-hf-nav .elementor-icon-list-item > a,
-.zc-hf .zc-hf-nav .elementor-icon-list-item > span {
-    display: inline-flex;
-    align-items: center;
-    padding: .5rem .72rem;
-    border-radius: 999px;
-    font-size: .875rem;
-    font-weight: 700;
-    color: var(--zcw-ink-2);
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color .22s var(--zcw-ease), color .22s var(--zcw-ease), transform .22s var(--zcw-ease);
-}
-.zc-hf .zc-hf-nav .elementor-icon-list-item > a:hover,
-.zc-hf .zc-hf-nav .elementor-icon-list-item > a:focus-visible {
-    background: var(--zcw-gold-soft);
-    color: var(--zcw-ink);
-    transform: translateY(-1px);
-}
-.zc-hf .zc-hf-nav .elementor-icon-list-icon { display: none; }
-html.dark .zc-hf .zc-hf-nav .elementor-icon-list-item > a { color: #D6D9DF; }
-
-/* header buttons */
-.zc-hf .elementor-widget-button .elementor-button,
-.zc-hf .elementor-button {
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: .88rem;
-    padding: .75rem 1.35rem;
-    background: var(--zcw-gold);
-    color: var(--zcw-ink);
-    border: 1px solid transparent;
-    box-shadow: 0 8px 20px rgba(253, 208, 91, .35);
-    transition: transform .22s var(--zcw-ease), box-shadow .22s var(--zcw-ease), background-color .22s var(--zcw-ease);
-}
-.zc-hf .elementor-button:hover,
-.zc-hf .elementor-button:focus-visible {
-    background: var(--color-accent-hover, #FCC22D);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(253, 208, 91, .45);
-}
-.zc-hf .zc-hf-main .elementor-widget-text-editor .zc-hf-phone {
-    font-weight: 900;
-    font-size: .86rem;
-    color: var(--zcw-ink);
-    text-align: left;
-    letter-spacing: .3px;
-    margin: .3rem 0 0;
-}
-
-/* footer plate */
+/* ------------------------------------------------------------------
+   Footer plate: the background colour is the fix; nothing else changes.
+   `--zc-footer-plate` is still honoured, so a site that set its own plate
+   colour keeps it.
+   ------------------------------------------------------------------ */
 .zc-hf-footer {
     position: relative;
-    background:
-        radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, .10), transparent 55%),
-        radial-gradient(120% 90% at 0% 0%, rgba(253, 208, 91, .06), transparent 55%),
-        linear-gradient(180deg, var(--zc-footer-plate, #2E3138) 0%, #23262C 100%);
+    background: var(--zc-footer-plate, #2A2D33);
     color: #E7E9EE;
-    margin-top: 3rem;
-    overflow: hidden;
 }
-.zc-hf-footer::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(253, 208, 91, .45), transparent);
-}
-.zc-hf-footer .elementor-section { background: transparent; }
-.zc-hf-footer a { color: #E7E9EE; text-decoration: none; }
+.zc-hf-footer .elementor-section,
+.zc-hf-footer .elementor-column,
+.zc-hf-footer .elementor-widget-wrap { background: transparent; }
 
-/* CTA strip inside the footer */
-.zc-hf .zc-hf-cta > .elementor-container {
-    background: rgba(255, 255, 255, .05);
-    border: 1px solid rgba(255, 255, 255, .09);
-    border-radius: 1.5rem;
-    padding: 1.6rem 2rem;
-    margin-bottom: 2.4rem;
-    align-items: center;
-}
-.zc-hf .zc-hf-cta .elementor-heading-title {
-    color: #fff;
-    font-size: 1.35rem;
-    font-weight: 900;
-    line-height: 1.7;
-}
-.zc-hf .zc-hf-cta p { color: #B9BEC8; font-size: .84rem; margin: .4rem 0 0; }
-.zc-hf .zc-hf-cta .elementor-widget-button { margin-bottom: .4rem; }
-.zc-hf .zc-hf-cta .elementor-button { width: 100%; }
+/* Text colours, applied to the nodes Elementor renders.
+   `!important` is limited to `color` / `background-color`: the palette of the
+   theme's own header/footer part is theme-owned, while every size, spacing and
+   radius stays the Elementor setting (so the part keeps the geometry the user
+   built). */
+.zc-hf-footer a:not(.elementor-button),
+.zc-hf-footer .elementor-heading-title,
+.zc-hf-footer .elementor-icon-list-text,
+.zc-hf-footer .elementor-icon-list-item > a,
+.zc-hf-footer .elementor-icon-list-item > span { color: #E7E9EE !important; }
+.zc-hf-footer .elementor-heading-title { color: #FFFFFF !important; }
+.zc-hf-footer .elementor-widget-text-editor,
+.zc-hf-footer .elementor-widget-text-editor p,
+.zc-hf-footer .elementor-icon-box-description { color: #B9BEC8 !important; }
+.zc-hf-footer a:not(.elementor-button):hover,
+.zc-hf-footer .elementor-icon-list-item > a:hover,
+.zc-hf-footer .elementor-icon-list-item > a:hover .elementor-icon-list-text,
+.zc-hf-footer .elementor-widget-text-editor a:hover { color: var(--zcw-gold) !important; }
 
-/* footer columns */
-.zc-hf .zc-hf-cols { padding-bottom: 1.6rem; }
-.zc-hf .zc-hf-cols .elementor-heading-title {
-    color: #fff;
-    font-size: 1.02rem;
-    font-weight: 900;
-    margin-bottom: .35rem;
-    position: relative;
-    padding-bottom: .55rem;
-}
-.zc-hf .zc-hf-cols .elementor-heading-title::after {
-    content: "";
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    width: 2rem;
-    height: 3px;
-    border-radius: 999px;
-    background: var(--zcw-gold);
-}
-.zc-hf .zc-hf-cols p { color: #AEB4BF; font-size: .82rem; line-height: 2; margin: 0 0 .8rem; }
-.zc-hf .zc-hf-links .elementor-icon-list-items { display: block; }
-.zc-hf .zc-hf-links .elementor-icon-list-item { margin: 0 0 .1rem !important; }
-.zc-hf .zc-hf-links .elementor-icon-list-item > a {
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    padding: .3rem 0;
-    font-size: .84rem;
-    font-weight: 600;
-    color: #AEB4BF;
-    transition: color .2s var(--zcw-ease), transform .2s var(--zcw-ease);
-}
-.zc-hf .zc-hf-links .elementor-icon-list-item > a::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(253, 208, 91, .55);
-    transition: transform .2s var(--zcw-ease), background-color .2s var(--zcw-ease);
-}
-.zc-hf .zc-hf-links .elementor-icon-list-item > a:hover,
-.zc-hf .zc-hf-links .elementor-icon-list-item > a:focus-visible {
-    color: var(--zcw-gold);
-    transform: translateX(-3px);
-}
-.zc-hf .zc-hf-links .elementor-icon-list-item > a:hover::before { background: var(--zcw-gold); transform: scale(1.4); }
+/* icon glyphs in the footer: brand gold, never the kit blue */
+.zc-hf-footer i,
+.zc-hf-footer .elementor-icon,
+.zc-hf-footer .elementor-icon-list-icon i,
+.zc-hf-footer .elementor-icon-list-icon svg { color: var(--zcw-gold) !important; fill: var(--zcw-gold) !important; }
+.zc-hf-footer .elementor-icon-box-title,
+.zc-hf-footer .elementor-icon-box-title a { color: #FFFFFF !important; }
 
-/* icon-box in the footer (support row) */
-.zc-hf-footer .elementor-icon-box-wrapper { text-align: right; }
-.zc-hf-footer .elementor-icon-box-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.6rem;
-    height: 2.6rem;
-    border-radius: .9rem;
-    background: rgba(253, 208, 91, .14);
-    color: var(--zcw-gold);
-    font-size: 1rem;
-    margin-bottom: .5rem;
+/* Footer buttons keep the colours set in the editor (the filled one has dark
+   ink on gold, the outline one gold on a translucent fill), so only the theme's
+   decorative shadow/transform is removed — nothing that affects the box. */
+.zc-hf-footer .elementor-widget-button .elementor-button {
+    box-shadow: none;
+    transform: none;
 }
-.zc-hf-footer .elementor-icon-box-title { color: #fff; font-size: .9rem; font-weight: 800; }
-.zc-hf-footer .elementor-icon-box-description { color: #AEB4BF; font-size: .8rem; }
 
-/* social shortcode inside the footer */
-.zc-hf-footer .zc-social-links,
-.zc-hf-footer .zc-socials { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .9rem; }
+/* the theme's own social-profile shortcode: colours only */
+.zc-hf-footer .zc-social-profiles a,
 .zc-hf-footer .zc-social-links a,
 .zc-hf-footer .zc-socials a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .07);
-    border: 1px solid rgba(255, 255, 255, .1);
     color: #E7E9EE;
-    font-size: .85rem;
-    transition: background-color .2s var(--zcw-ease), color .2s var(--zcw-ease), transform .2s var(--zcw-ease);
+    border-color: rgba(255, 255, 255, .16);
 }
+.zc-hf-footer .zc-social-profiles a:hover,
 .zc-hf-footer .zc-social-links a:hover,
 .zc-hf-footer .zc-socials a:hover {
     background: var(--zcw-gold);
+    border-color: var(--zcw-gold);
     color: var(--zcw-ink);
-    transform: translateY(-2px);
 }
-
-/* legal line */
-.zc-hf .zc-hf-bottom { border-top: 1px solid rgba(255, 255, 255, .09); }
-.zc-hf .zc-hf-bottom p {
-    margin: 0;
-    padding: .95rem 0;
-    font-size: .78rem;
-    color: #9AA0AC;
-    text-align: center;
-}
+.zc-hf-footer .zc-social-profiles i { color: inherit; fill: currentColor; }
 
 /* ===================================================================
    2. WORDPRESS CORE WIDGETS
@@ -629,9 +471,9 @@ h2.widget-title {
 /* ===================================================================
    4. ELEMENTOR STOCK WIDGETS
    =================================================================== */
-.elementor-widget-heading .elementor-heading-title { color: var(--zcw-ink); font-weight: 900; letter-spacing: -.2px; }
-.elementor-widget-text-editor { color: var(--zcw-ink-2); font-size: .95rem; line-height: 2; }
-.elementor-widget-text-editor h2, .elementor-widget-text-editor h3 { color: var(--zcw-ink); font-weight: 900; }
+.elementor-widget-heading .elementor-heading-title { color: var(--zcw-ink); }
+.elementor-widget-text-editor { color: var(--zcw-ink-2); }
+.elementor-widget-text-editor h2, .elementor-widget-text-editor h3 { color: var(--zcw-ink); }
 .elementor-widget-text-editor a { color: var(--zcw-gold-deep); font-weight: 700; text-decoration: none; border-bottom: 1px dashed rgba(138, 107, 16, .35); }
 .elementor-widget-text-editor a:hover { color: var(--zcw-ink); border-bottom-color: var(--zcw-ink); }
 .elementor-widget-text-editor ul, .elementor-widget-text-editor ol { padding-inline-start: 1.2rem; }
@@ -649,27 +491,29 @@ h2.widget-title {
 .elementor-widget-image img { border-radius: var(--zcw-radius); }
 .elementor-widget-image a:hover img { opacity: .94; }
 
-/* icon / icon-box / image-box */
-.elementor-widget-icon.elementor-view-stacked .elementor-icon,
-.elementor-widget-icon.elementor-view-framed .elementor-icon { border-radius: 1rem; }
-.elementor-widget-icon.elementor-view-stacked .elementor-icon { background: var(--zcw-gold); color: var(--zcw-ink); }
+/* icon / icon-box / image-box — COLOURS ONLY.
+   Never set width/height/padding/radius on `.elementor-icon` here: the icon
+   size and its box are widget settings, and restyling them turned the footer
+   support icon into a giant unboxed glyph (4.10.0 regression). */
+.elementor-widget-icon .elementor-icon { color: var(--zcw-gold-deep); }
+.elementor-widget-icon.elementor-view-stacked .elementor-icon { background-color: var(--zcw-gold); color: var(--zcw-ink); }
 .elementor-widget-icon.elementor-view-framed .elementor-icon { border-color: var(--zcw-gold); color: var(--zcw-gold-deep); }
 
-.elementor-widget-icon-box .elementor-icon-box-wrapper { gap: .6rem; }
-.elementor-widget-icon-box .elementor-icon-box-title { font-weight: 900; color: var(--zcw-ink); }
-.elementor-widget-icon-box .elementor-icon-box-description { color: var(--zcw-ink-2); font-size: .9rem; line-height: 1.95; }
-.elementor-widget-icon-box.elementor-view-stacked .elementor-icon { background: var(--zcw-gold); color: var(--zcw-ink); border-radius: .9rem; }
-.elementor-widget-icon-box.elementor-view-framed .elementor-icon { border-color: var(--zcw-gold); color: var(--zcw-gold-deep); border-radius: .9rem; }
+.elementor-widget-icon-box .elementor-icon { color: var(--zcw-gold-deep); }
+.elementor-widget-icon-box .elementor-icon-box-title,
+.elementor-widget-icon-box .elementor-icon-box-title a { color: var(--zcw-ink); }
+.elementor-widget-icon-box .elementor-icon-box-description { color: var(--zcw-ink-2); }
+.elementor-widget-icon-box.elementor-view-stacked .elementor-icon { background-color: var(--zcw-gold); color: var(--zcw-ink); }
+.elementor-widget-icon-box.elementor-view-framed .elementor-icon { border-color: var(--zcw-gold); color: var(--zcw-gold-deep); }
 
-.elementor-widget-image-box .elementor-image-box-wrapper { background: var(--zcw-surface); border: 1px solid var(--zcw-line); border-radius: 1.25rem; padding: 1.2rem; box-shadow: var(--zcw-shadow); transition: transform .26s var(--zcw-ease), box-shadow .26s var(--zcw-ease); }
-.elementor-widget-image-box .elementor-image-box-wrapper:hover { transform: translateY(-4px); box-shadow: var(--zcw-shadow-hover); }
-.elementor-widget-image-box .elementor-image-box-img img { border-radius: .9rem; }
-.elementor-widget-image-box .elementor-image-box-title { font-weight: 900; color: var(--zcw-ink); }
-.elementor-widget-image-box .elementor-image-box-description { color: var(--zcw-ink-2); font-size: .88rem; }
+.elementor-widget-image-box .elementor-image-box-img img { border-radius: var(--zcw-radius-sm); }
+.elementor-widget-image-box .elementor-image-box-title,
+.elementor-widget-image-box .elementor-image-box-title a { color: var(--zcw-ink); }
+.elementor-widget-image-box .elementor-image-box-description { color: var(--zcw-ink-2); }
 
 /* icon list */
-.elementor-icon-list-items .elementor-icon-list-item { padding: .35rem 0; }
-.elementor-icon-list-text { color: var(--zcw-ink-2); font-size: .9rem; font-weight: 600; }
+/* list item rhythm lives in @layer zcw-typography (see end of file) */
+.elementor-icon-list-text { color: var(--zcw-ink-2); }
 .elementor-icon-list-icon { color: var(--zcw-gold-deep); }
 .elementor-icon-list-icon i { color: var(--zcw-gold-deep); }
 
@@ -785,9 +629,6 @@ body.elementor-template-canvas {
 body .elementor-widget-heading .elementor-heading-title {
     color: var(--zcw-ink);
     font-family: "Vazirmatn", system-ui, sans-serif;
-    font-weight: 900;
-    letter-spacing: -.02em;
-    line-height: 1.5;
 }
 body .elementor-widget-heading .elementor-heading-title a { color: inherit; text-decoration: none; }
 body .elementor-widget-heading .elementor-heading-title a:hover { color: var(--zcw-gold-deep); }
@@ -801,21 +642,12 @@ body .elementor-button.elementor-size-sm,
 body .elementor-button.elementor-size-md,
 body .elementor-button.elementor-size-lg,
 body .elementor-button.elementor-size-xl {
-    background: linear-gradient(135deg, #FDD05B, #FCC22D);
-    color: var(--zcw-ink);
-    border: 0;
-    border-radius: 999px;
-    padding: .8rem 1.6rem;
     font-family: "Vazirmatn", system-ui, sans-serif;
-    font-weight: 800;
-    font-size: .92rem;
     box-shadow: 0 10px 22px rgba(242, 189, 46, .28);
     text-shadow: none;
 }
 body .elementor-widget-button .elementor-button:hover,
 body .elementor-widget-button .elementor-button:focus-visible {
-    background: linear-gradient(135deg, #FCC22D, #F2B71A);
-    color: var(--zcw-ink);
     transform: translateY(-2px);
     box-shadow: 0 14px 28px rgba(242, 189, 46, .36);
 }
@@ -825,30 +657,25 @@ body .elementor-widget-button .elementor-button .elementor-button-icon { color: 
 body .elementor-widget-icon .elementor-icon,
 body .elementor-widget-icon-box .elementor-icon {
     color: var(--zcw-gold-deep);
-    transition: color .2s var(--zcw-ease), transform .2s var(--zcw-ease);
 }
 body .elementor-widget-icon .elementor-icon.elementor-view-stacked,
 body .elementor-widget-icon-box .elementor-icon.elementor-view-stacked {
-    background: var(--zcw-gold);
+    background-color: var(--zcw-gold);
     color: var(--zcw-ink);
-    padding: .55em;
-    border-radius: 18px;
 }
 body .elementor-widget-icon .elementor-icon.elementor-view-framed,
 body .elementor-widget-icon-box .elementor-icon.elementor-view-framed {
-    color: var(--zcw-ink);
-    border: 2px solid var(--zcw-ink);
-    border-radius: 18px;
-    padding: .55em;
+    border-color: var(--zcw-gold);
+    color: var(--zcw-gold-deep);
 }
 body .elementor-widget-icon-box .elementor-icon-box-title,
 body .elementor-widget-icon-box .elementor-icon-box-title a {
     color: var(--zcw-ink);
     font-weight: 800;
 }
-body .elementor-widget-icon-box .elementor-icon-box-description { color: var(--zcw-ink-2); line-height: 1.95; }
+body .elementor-widget-icon-box .elementor-icon-box-description { color: var(--zcw-ink-2); }
 body .elementor-widget-image-box .elementor-image-box-title { color: var(--zcw-ink); font-weight: 800; }
-body .elementor-widget-image-box .elementor-image-box-description { color: var(--zcw-ink-2); line-height: 1.95; }
+body .elementor-widget-image-box .elementor-image-box-description { color: var(--zcw-ink-2); }
 body .elementor-widget-image-box .elementor-image-box-img img { border-radius: var(--zcw-radius-sm); }
 
 /* -- icon list ------------------------------------------------------- */
@@ -971,15 +798,12 @@ body .elementor-widget-alert .elementor-alert.elementor-alert-danger { backgroun
 body .elementor-widget-alert .elementor-alert.elementor-alert-success { background: #ECF8F0; border-color: rgba(31, 138, 76, .28); }
 body .elementor-widget-divider .elementor-divider-separator { border-top-color: var(--zcw-line); border-top-width: 1px; }
 body .elementor-widget-social-icons .elementor-social-icon {
-    background: var(--zcw-ink);
+    background-color: var(--zcw-ink);
     color: #fff;
-    border-radius: 12px;
-    transition: background .2s var(--zcw-ease), transform .2s var(--zcw-ease);
 }
 body .elementor-widget-social-icons .elementor-social-icon:hover {
-    background: var(--zcw-gold);
+    background-color: var(--zcw-gold);
     color: var(--zcw-ink);
-    transform: translateY(-2px);
 }
 
 /* -- media ----------------------------------------------------------- */
@@ -1013,22 +837,54 @@ body .elementor-widget-posts .elementor-post__meta-data { color: var(--zcw-muted
 
 /* -------------------------------------------------------------------
    Vazirmatn everywhere — standing typography order.
-   Elementor's kit typography (Roboto / Roboto Slab) and any third-party
-   widget font declaration are replaced with the project font, except on
-   icon fonts, where the glyph code points must keep their own family.
+   `:where()` keeps specificity at (0,1,0) so any icon-font class
+   (`.fa-solid`, `.eicon-*`) still wins and glyphs are never replaced by
+   a text font.
    ------------------------------------------------------------------- */
-body .elementor-widget-container {
-    font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif !important;
-}
-body .elementor-widget-container :where(:not(i):not(svg):not(svg *):not([class*="fa-"]):not([class*="eicon"]):not([class*="elementor-icon"]):not(.elementor-star-rating)) {
-    font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif !important;
-}
-body .elementor-widget-container i,
-body .elementor-widget-container .elementor-star-rating,
-body .elementor-widget-container [class*="eicon"],
-body .elementor-widget-container [class*="fa-"] {
+body :where(.elementor-widget-container) { font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif; }
+body :where(.elementor-widget-container) :where(p, li, h1, h2, h3, h4, h5, h6, span, a, div, blockquote, td, th, label, strong, em) {
     font-family: inherit;
 }
-body .elementor-widget-container [class*="eicon"] { font-family: eicons !important; }
-body .elementor-widget-container [class*="fa-"] { font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important; }
-body .elementor-widget-container .elementor-star-rating { font-family: eicons !important; }
+
+/* -------------------------------------------------------------------
+   Theme typography METRICS — declared in a cascade layer on purpose.
+   Unlayered author CSS (Elementor's per-element styles) outranks every
+   layer, so these values are DEFAULTS: they style content the editor left
+   at its defaults, but the moment a size / line-height / spacing is set in
+   Elementor, the editor wins. Without the layer the theme silently
+   resized the header and footer parts (footer grew ~19px in 4.10.0).
+   ------------------------------------------------------------------- */
+@layer zcw-typography {
+    /* button paint: the brand gradient is the DEFAULT — a background set in the
+       editor (e.g. the translucent outline button in the footer) wins, instead
+       of the theme painting gold behind gold text. */
+    body .elementor-widget-button .elementor-button,
+    body .elementor-button.elementor-size-sm,
+    body .elementor-button.elementor-size-md,
+    body .elementor-button.elementor-size-lg,
+    body .elementor-button.elementor-size-xl {
+        background: linear-gradient(135deg, #FDD05B, #FCC22D);
+        color: var(--zcw-ink);
+        border: 0;
+        border-radius: 999px;
+    }
+    body .elementor-widget-button .elementor-button:hover,
+    body .elementor-widget-button .elementor-button:focus-visible {
+        background: linear-gradient(135deg, #FCC22D, #F2B71A);
+        color: var(--zcw-ink);
+    }
+    .elementor-widget-heading .elementor-heading-title { font-weight: 900; letter-spacing: -.2px; }
+    body .elementor-widget-heading .elementor-heading-title { font-weight: 900; letter-spacing: -.02em; line-height: 1.5; }
+    .elementor-widget-text-editor { font-size: .95rem; line-height: 2; }
+    .elementor-widget-text-editor h2, .elementor-widget-text-editor h3 { font-weight: 900; }
+    .elementor-widget-text-editor ul, .elementor-widget-text-editor ol { padding-inline-start: 1.2rem; }
+    .elementor-icon-list-items .elementor-icon-list-item { padding: .35rem 0; }
+    .elementor-icon-list-text { font-size: .9rem; font-weight: 600; }
+    body .elementor-widget-icon-box .elementor-icon-box-description,
+    body .elementor-widget-image-box .elementor-image-box-description { line-height: 1.95; }
+    body .elementor-widget-button .elementor-button,
+    body .elementor-button.elementor-size-sm,
+    body .elementor-button.elementor-size-md,
+    body .elementor-button.elementor-size-lg,
+    body .elementor-button.elementor-size-xl { padding: .8rem 1.6rem; font-weight: 800; font-size: .92rem; }
+}
