@@ -26,9 +26,18 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 ?>
 
 <?php $zc_custom_footer = ''; ?>
-<?php if ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('footer') ) : ?>
-<?php elseif ( ( $zc_custom_footer = zarincode_builder_part( 'footer' ) ) !== '' ) : ?>
+<?php
+/*
+ * Priority: the theme's own Elementor footer document → an Elementor Pro
+ * footer location → the coded shell. The Elementor document comes first
+ * because it is the one the panel, the admin bar and the dashboard notice all
+ * point at; when it is the live footer, «ویرایش فوتر» edits exactly what the
+ * visitor sees.
+ */
+if ( ( $zc_custom_footer = zarincode_builder_part( 'footer' ) ) !== '' ) : ?>
 <footer role="contentinfo"><?php echo $zc_custom_footer; ?></footer>
+<?php elseif ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('footer') ) : ?>
+<?php /* Elementor Pro prints its own <footer> landmark. */ ?>
 <?php else : ?>
 <footer class="zc-footer" role="contentinfo">
     <div class="zc-container">

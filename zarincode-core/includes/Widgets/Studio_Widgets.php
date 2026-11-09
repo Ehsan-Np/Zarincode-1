@@ -67,3 +67,78 @@ final class Widget_Pricing_Plan extends Studio_Widget {
         echo '</ul>';if(!empty($s['link']['url']))echo '<a class="zc-plan-action" '.$this->link($s['link'],'action').'>'.esc_html($s['button']??'').' <span aria-hidden="true">←</span></a>';echo '<p class="zc-plan-note">'.esc_html($s['footnote']??'').'</p></article>';
     }
 }
+
+final class Widget_Social_Profiles extends Studio_Widget {
+    public function get_name():string{return 'zarincode_social_profiles';}
+    public function get_title():string{return 'شبکه‌های اجتماعی قابل ویرایش';}
+    public function get_icon():string{return 'eicon-social-icons';}
+    public function get_keywords():array{return ['social','شبکه','ارتباط','footer'];}
+
+    protected function register_controls():void {
+        $this->start_controls_section('content',['label'=>'شبکه‌ها و پیوندها']);
+        $this->field('aria','برچسب دسترس‌پذیری','text','راه‌های ارتباطی زرین کد');
+        $r=new Repeater();
+        $r->add_control('icon',['label'=>'آیکون شبکه','type'=>C::ICONS,'default'=>['value'=>'fab fa-telegram','library'=>'fa-brands']]);
+        $r->add_control('label',['label'=>'نام نمایش‌داده‌شده','type'=>C::TEXT,'label_block'=>true,'default'=>'تلگرام']);
+        $r->add_control('link',['label'=>'نشانی صفحه','type'=>C::URL]);
+        $r->add_control('new_tab',['label'=>'باز شدن در زبانهٔ تازه','type'=>C::SWITCHER,'default'=>'yes']);
+        $this->field('profiles','فهرست شبکه‌ها',C::REPEATER,self::default_profiles(),[
+            'fields'=>$r->get_controls(),
+            'title_field'=>'{{{ label }}}',
+            'prevent_empty'=>false,
+        ]);
+        $this->end_controls_section();
+
+        $this->start_controls_section('layout',['label'=>'چیدمان']);
+        $this->add_responsive_control('align',['label'=>'ترازبندی','type'=>C::CHOOSE,'options'=>['flex-start'=>['title'=>'راست','icon'=>'eicon-text-align-right'],'center'=>['title'=>'وسط','icon'=>'eicon-text-align-center'],'flex-end'=>['title'=>'چپ','icon'=>'eicon-text-align-left']],'default'=>'flex-start','selectors'=>['{{WRAPPER}} .zc-social-profiles'=>'justify-content:{{VALUE}};']]);
+        $this->end_controls_section();
+
+        $this->start_controls_section('skin',['label'=>'ظاهر','tab'=>C::TAB_STYLE]);
+        $this->field('text_color','رنگ متن','color','',['selectors'=>['{{WRAPPER}} .zc-social-profiles a'=>'color:{{VALUE}};']]);
+        $this->field('border_color','رنگ حاشیه','color','',['selectors'=>['{{WRAPPER}} .zc-social-profiles a'=>'border-color:{{VALUE}};']]);
+        $this->field('hover_color','رنگ هاور','color','',['selectors'=>['{{WRAPPER}} .zc-social-profiles a:hover'=>'border-color:{{VALUE}};color:{{VALUE}};']]);
+        $this->add_responsive_control('icon_size',['label'=>'اندازهٔ آیکون','type'=>C::SLIDER,'size_units'=>['px','em'],'range'=>['px'=>['min'=>10,'max'=>40]],'selectors'=>['{{WRAPPER}} .zc-social-profiles i,{{WRAPPER}} .zc-social-profiles svg'=>'font-size:{{SIZE}}{{UNIT}};width:{{SIZE}}{{UNIT}};height:{{SIZE}}{{UNIT}};']]);
+        $this->end_controls_section();
+    }
+
+    /** Defaults come from the theme's own Social Links options, so the widget
+     *  opens with the networks the owner already configured — and every one of
+     *  them can then be renamed, re-iconed, relinked, reordered or removed
+     *  right inside the Elementor panel. */
+    public static function default_profiles():array {
+        $rows=[];
+        $networks=['telegram'=>['fab fa-telegram','fa-brands'],'instagram'=>['fab fa-instagram','fa-brands'],'linkedin'=>['fab fa-linkedin-in','fa-brands'],'whatsapp'=>['fab fa-whatsapp','fa-brands'],'x'=>['fab fa-x-twitter','fa-brands']];
+        $labels=['telegram'=>'تلگرام','instagram'=>'اینستاگرام','linkedin'=>'لینکدین','whatsapp'=>'واتس‌اپ','x'=>'ایکس'];
+        foreach($networks as $key=>[$value,$library]){
+            $url='';
+            if(function_exists('zarincode_get_option')){$url=(string)zarincode_get_option('social_'.$key,'');}
+            if(!$url||!in_array(wp_parse_url($url,PHP_URL_SCHEME),['https','http'],true)){$url='https://zarincode.com';}
+            $rows[]=['_id'=>substr(md5($key),0,7),'icon'=>['value'=>$value,'library'=>$library],'label'=>$labels[$key],'link'=>['url'=>$url,'is_external'=>'','nofollow'=>'noopener'],'new_tab'=>'yes'];
+        }
+        return $rows;
+    }
+
+    /** Public alias: the control default and the builder read the same list. */
+    public static function profiles_default():array { return self::default_profiles(); }
+
+    protected function render():void {
+        $s=$this->get_settings_for_display();
+        $profiles=is_array($s['profiles']??null)?$s['profiles']:[];
+        if(!$profiles){echo '<p class="zc-social-empty">'.esc_html__('شبکه‌ای انتخاب نشده است.','zarincode-core').'</p>';return;}
+        $class='zc-social-profiles elementor-social-profiles';
+        echo '<nav class="'.esc_attr($class).'" aria-label="'.esc_attr($s['aria']??'راه‌های ارتباطی').'">';
+        foreach($profiles as $i=>$row){
+            $label=trim((string)($row['label']??''));
+            $url=(string)($row['link']['url']??'');
+            $tab='yes'===(string)($row['new_tab']??'yes');
+            $attrs=' href="'.esc_url($url?:'#').'"';
+            if($tab){$attrs.=' target="_blank" rel="noopener noreferrer me"';}
+            $attrs.=' aria-label="'.esc_attr($label?('ارتباط با ما در '.$label):'ارتباط با ما').'"';
+            echo '<a'.$attrs.' data-zc-social="'.esc_attr($label).'">';
+            echo Icon_Compatibility::render($row['icon']??[]);
+            if(''!==$label){echo '<span>'.esc_html($label).'</span>';}
+            echo '</a>';
+        }
+        echo '</nav>';
+    }
+}

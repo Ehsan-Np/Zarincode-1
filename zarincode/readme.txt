@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.10.1
+Stable tag: 4.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,18 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.11.0 =
+* Header and footer: the approved design is back, byte for byte — the theme now paints NOTHING inside `.zc-hf`. The whole 4.10.0/4.10.1 experiment (footer plate override, `margin-top`, `overflow`, gold hairline, rounded CTA card, link dots, icon-box boxes, header plate) is gone; the header/footer look is exactly the Elementor document. Measured: header 227.56px, footer 694.72px (4.9.1: 228.19 / 691.84).
+* Widget skin is declarative only: every rule in `widgets.css` now lives in `@layer zcw-skin`, so any value set in Elementor (element, page CSS or site kit) wins over the theme default. This is what keeps the editor and the front end identical.
+* Footer is fully editable in Elementor — and it works now. The document type is the registered `wp-post` document (the old `wp-footer` type is Elementor Pro's and made the editor fall back to a document it could not save). Verified: `post.php?post=13&action=elementor` → 200 `elementor-editor-active`, a document save through the Elementor API persists, and the front end immediately shows the new copy.
+* Every footer element is a named Elementor widget (shown in the Navigator): «نوار دعوت به اقدام», «تیتر دعوت به اقدام», «توضیح دعوت به اقدام», «دکمهٔ تماس مستقیم», «دکمهٔ ثبت سفارش», «ستون درباره و پشتیبانی», «متن معرفی زرین کد», «بلوک پشتیبانی مستقیم», «ستون خدمات», «پیوندهای خدمات», «ستون فروشگاه», «پیوندهای فروشگاه», «ستون قوانین و شبکه‌ها», «پیوندهای قوانین», «شبکه‌های اجتماعی فوتر», «متن کپی‌رایت». Each link row keeps its own text, icon, URL and target.
+* New widget «شبکه‌های اجتماعی قابل ویرایش» (`zarincode_social_profiles`): a repeater where each network has an icon, a visible label, a URL and «باز شدن در زبانهٔ تازه». Defaults are read from the theme's social options, then the owner edits them inside Elementor — no code and no theme option needed. Replaces the read-only shortcode widget in the footer.
+* The Elementor document is never overwritten: `ensure()` only fills an empty template; a rebuild from the panel is a separate confirmed action that keeps a `_zc_hf_backup_data` copy. A saved edit survives re-imports and updates (verified).
+* Self-heal on upgrade: once per theme version the missing header/footer document is rebuilt for administrators, and the theme renders the Elementor document whenever it exists (the coded shell is now a true last resort), so an updated site can no longer end up with a footer that cannot be edited.
+* Admin shortcuts: «ویرایش هدر/فوتر با المنتور» in the admin bar, «ویرایش با المنتور» as the first row action plus «جایگاه»/«وضعیت نمایش» columns in هدر و فوترساز, gold edit buttons in the theme panel, and a dashboard notice pointing at the footer document.
+* Fix: 4 × `add_submenu_page( null, … )` (theme + core) logged a PHP 8.1+ «Passing null to parameter» deprecation on every admin page load. The parent slug is now an empty string: the pages stay hidden and `debug.log` is empty on `/wp-admin/` (verified: 0 lines on dashboard, templates list, theme panel, Elementor editor).
+* Verified: `/`, `/shop/`, `/services/`, `/blog/`, `/contact-us/`, a single post and the legal pages → 200 with an empty `debug.log`; Elementor editor opens for both documents; demo import still builds page 27, product 10, post 10, zc_service 6, zc_project 8 with 0 log lines.
 
 = 4.10.1 =
 * Revert: the 4.10.0 header/footer pass changed the size of both parts — the footer grew from 691.84px to 748.14px and the header shrank from 228.19px to 197px. Both are back to their exact 4.9.1 geometry (verified: footer 691.84px, header 228.19px, total page height 9026px, identical to 4.9.1 at 1440px).

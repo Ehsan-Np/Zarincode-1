@@ -704,6 +704,18 @@ class OptionsConfig {
 
                 <!-- Quick Access Strip -->
                 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                    <?php
+                    $zc_hf_edit = array();
+                    foreach ( array( 'header' => '🎨 ویرایش هدر با المنتور', 'footer' => '🧱 ویرایش فوتر با المنتور' ) as $zc_hf_key => $zc_hf_label ) {
+                        $zc_hf_id = function_exists( 'zarincode_hf_template_id' ) ? zarincode_hf_template_id( $zc_hf_key ) : 0;
+                        if ( $zc_hf_id ) {
+                            $zc_hf_edit[] = '<a href="' . esc_url( admin_url( 'post.php?post=' . $zc_hf_id . '&action=elementor' ) ) . '" class="button" style="border-radius:10px;font-weight:bold;background:#FDD05B;border-color:#FDD05B;color:#2A2C31;">' . esc_html( $zc_hf_label ) . '</a>';
+                        } else {
+                            $zc_hf_edit[] = '<a href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=zarincode_build_hf&force=1' ), 'zarincode_build_hf' ) ) . '" class="button" style="border-radius:10px;font-weight:bold;">' . esc_html( str_replace( 'ویرایش', 'ساخت', $zc_hf_label ) ) . '</a>';
+                        }
+                    }
+                    echo implode( ' ', $zc_hf_edit ); // phpcs:ignore WordPress.Security.EscapeOutput -- markup built above with esc_url/esc_html.
+                    ?>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_hf_template' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🎨 مدیریت هدر و فوتر المنتوری</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_service' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">🏆 مدیریت ۶ خدمت تخصصی</a>
                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=zc_project' ) ); ?>" class="button" style="border-radius:10px;font-weight:bold;">💼 مدیریت نمونه‌کارها</a>

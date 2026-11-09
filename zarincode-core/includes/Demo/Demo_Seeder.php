@@ -62,7 +62,7 @@ class Demo_Seeder {
     public function register_demo_admin_menus(): void {
         // Hidden compatibility routes; the sole visible entry is the theme control center.
         foreach(['zarincode-demo-importer','zarincode-demo-importer-sub'] as $slug) {
-            add_submenu_page(null,'درون‌ریزی دمو','درون‌ریزی دمو','manage_options',$slug,[$this,'render_admin_page']);
+            add_submenu_page('','درون‌ریزی دمو','درون‌ریزی دمو','manage_options',$slug,[$this,'render_admin_page']);
         }
 
     }

@@ -1,7 +1,7 @@
 <?php
 /** Theme presentation bootstrap and backwards-compatible public helper functions. */
 defined( 'ABSPATH' ) || exit;
-define( 'ZARINCODE_VERSION', '4.10.1' );
+define( 'ZARINCODE_VERSION', '4.11.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
@@ -125,30 +125,59 @@ function zarincode_hf_template_id( string $type ): int {
     if ( ! in_array( $type, array( 'header', 'footer' ), true ) || ! post_type_exists( 'zc_hf_template' ) ) {
         return 0;
     }
+
+    $base = array(
+        'post_type'              => 'zc_hf_template',
+        'post_status'            => 'publish',
+        'posts_per_page'         => 1,
+        'fields'                 => 'ids',
+        'no_found_rows'          => true,
+        'update_post_term_cache' => false,
+        'orderby'                => 'menu_order date',
+        'order'                  => 'ASC',
+    );
+
+    // 1. A template explicitly marked active for this location.
     $ids = get_posts(
-        array(
-            'post_type'              => 'zc_hf_template',
-            'post_status'            => 'publish',
-            'posts_per_page'         => 1,
-            'fields'                 => 'ids',
-            'no_found_rows'          => true,
-            'update_post_term_cache' => false,
-            'suppress_filters'       => false,
-            'meta_query'             => array(
+        $base + array(
+            'meta_query' => array(
                 array( 'key' => '_zc_hf_type', 'value' => $type ),
                 array( 'key' => '_zc_hf_active', 'value' => 'yes' ),
             ),
-            'orderby'                => 'menu_order date',
-            'order'                  => 'ASC',
         )
     );
+
+    // 2. Older installs: the location meta exists but `_zc_hf_active` was never
+    //    written (the template still renders, so it must still be found).
+    if ( ! $ids ) {
+        $ids = get_posts(
+            $base + array(
+                'meta_query' => array(
+                    array( 'key' => '_zc_hf_type', 'value' => $type ),
+                ),
+            )
+        );
+    }
+
+    // 3. The document the builder ships with, matched by its stable slug.
+    if ( ! $ids ) {
+        $slug = 'zarincode-elementor-' . $type;
+        $ids  = get_posts( $base + array( 'name' => $slug ) );
+    }
+
     $cache[ $type ] = $ids ? (int) $ids[0] : 0;
     return $cache[ $type ];
 }
 
 /** Render the active Elementor header/footer template; empty output keeps a safe fallback. */
 function zarincode_builder_part( string $type ): string {
-    if ( 'elementor_hf' !== zarincode_get_option( $type . '_source', 'elementor_hf' ) ) {
+    /*
+     * The Elementor document always wins when it exists: it is the only footer
+     * the owner can edit in the panel, so a stale option value must never put
+     * the coded shell in front of it. The option is only consulted as a
+     * tie-breaker when no document has been created yet.
+     */
+    if ( ! zarincode_hf_template_id( $type ) && 'default_bento' === zarincode_get_option( $type . '_source', 'elementor_hf' ) ) {
         return '';
     }
     if ( ! class_exists( '\Elementor\Plugin' ) ) {
@@ -214,6 +243,33 @@ add_shortcode('zarincode_social_links',static fn()=>\Zarincode\Theme\Core\Social
 add_action('after_setup_theme',static function(){
     $options=get_option('zarincode_opt',[]);if(is_array($options)&&($options['logo_monogram']??'')==='Z'){$options['logo_monogram']='ZC';update_option('zarincode_opt',$options);global $zarincode_opt;$zarincode_opt=$options;}
 },30);
+
+/*
+ * Self-heal the Elementor header/footer documents.
+ *
+ * A site that updated from an older build, skipped the demo import or deleted
+ * a template used to fall back to the coded footer, which cannot be edited in
+ * Elementor at all. Once per theme version (and only for administrators) the
+ * missing document is rebuilt. Existing documents are never touched — see
+ * `HF_Builder::upsert()`.
+ */
+add_action( 'admin_init', static function () {
+    if ( ! current_user_can( 'manage_options' ) || ! class_exists( '\Zarincode\Runtime260\Elementor\HF_Builder' ) ) {
+        return;
+    }
+    if ( ! post_type_exists( 'zc_hf_template' ) || ! did_action( 'elementor/loaded' ) ) {
+        return;
+    }
+    $stamp = (string) get_option( 'zc_hf_boot_version', '' );
+    if ( ZARINCODE_VERSION === $stamp ) {
+        return;
+    }
+    $missing = ! zarincode_hf_template_id( 'header' ) || ! zarincode_hf_template_id( 'footer' );
+    if ( $missing ) {
+        \Zarincode\Runtime260\Elementor\HF_Builder::ensure();
+    }
+    update_option( 'zc_hf_boot_version', ZARINCODE_VERSION, false );
+}, 30 );
 
 \Zarincode\Theme\Core\Admin_Hub::boot();
 

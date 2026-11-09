@@ -75,9 +75,15 @@ $zc_nav_state = static function ( array $paths, bool $extra = false ) use ( &$zc
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="zc-skip-link" href="#primary"><?php echo esc_html__( 'Skip to content', 'zarincode' ); ?></a>
-<?php if ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('header') ) : ?>
-<?php elseif ( ( $zc_custom_header = zarincode_builder_part( 'header' ) ) !== '' ) : ?>
+<?php
+/*
+ * Priority: the theme's own Elementor header document → an Elementor Pro
+ * header location → the coded shell.
+ */
+if ( ( $zc_custom_header = zarincode_builder_part( 'header' ) ) !== '' ) : ?>
 <header role="banner"><?php echo $zc_custom_header; ?></header>
+<?php elseif ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('header') ) : ?>
+<?php /* Elementor Pro prints its own <header> landmark. */ ?>
 <?php else : ?>
 
 <?php if ( $enable_topbar ) : ?>

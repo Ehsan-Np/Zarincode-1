@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 /** Bounded custom links. SVG is sanitized markup, never a global upload permission. */
 final class Social_Manager {
     public static function boot():void {
-        add_action('admin_menu',static function(){add_submenu_page(null,'شبکه‌های اجتماعی دلخواه','شبکه‌های اجتماعی','manage_options','zarincode-socials',[self::class,'page']);});
+        add_action('admin_menu',static function(){add_submenu_page('','شبکه‌های اجتماعی دلخواه','شبکه‌های اجتماعی','manage_options','zarincode-socials',[self::class,'page']);});
         add_action('admin_enqueue_scripts',static function($hook){if(strpos($hook,'zarincode-socials')===false && Admin_Hub::selected()!=='socials')return;wp_enqueue_media();wp_enqueue_style('zc-social-admin-icons',get_template_directory_uri().'/assets/fontawesome/css/all.min.css',[],ZARINCODE_VERSION);wp_enqueue_script('zc-social-manager',get_template_directory_uri().'/assets/js/social-manager.js',['jquery'],ZARINCODE_VERSION,true);});
     }
     public static function svg($raw):string {return class_exists('Zarincode\\Runtime260\\Content\\Social_Profile_Store')?\Zarincode\Runtime260\Content\Social_Profile_Store::svg($raw):'';}

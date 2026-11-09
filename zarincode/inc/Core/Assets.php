@@ -136,6 +136,9 @@ class Assets {
             array(),
             $this->asset_version( '/assets/css/vazirmatn.css' )
         );
+        // The preview must show what the visitor gets, so the widget skin is
+        // loaded here too — it only paints WordPress/WooCommerce widgets and
+        // Elementor's stock widgets, never the header/footer document.
         wp_enqueue_style(
             'zarincode-widgets',
             ZARINCODE_URI . '/assets/css/widgets.css',
@@ -218,6 +221,8 @@ class Assets {
         // 4. Widget skin: WordPress core widgets, WooCommerce and Elementor's
         //    stock widgets. Loaded everywhere because an Elementor page, a
         //    widget area or a WooCommerce template can appear on any route.
+        //    It deliberately contains no header/footer rules any more — those
+        //    documents are authored in Elementor only (see HF_Builder).
         wp_enqueue_style(
             'zarincode-widgets',
             ZARINCODE_URI . '/assets/css/widgets.css',

@@ -117,6 +117,7 @@ class Elementor_Loader {
         $widget_classes = [
             Widget_Trust_Badges::class,
             Widget_Client_Logos::class,
+            Widget_Social_Profiles::class,
             Widget_Pricing_Plan::class,
             Widget_Service_Spotlight::class,
             Widget_Project_Roadmap::class,

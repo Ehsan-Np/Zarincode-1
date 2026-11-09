@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.10.1
+Stable tag: 4.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.11.0 =
+* Ships with theme 4.11.0. The header/footer builder now creates real `wp-post` Elementor documents (fully editable), adds the «شبکه‌های اجتماعی قابل ویرایش» widget, never overwrites an owner's edit, and fixes the PHP 8.1+ `add_submenu_page( null )` deprecation in the demo importer.
 
 = 4.10.1 =
 * No API change. Ships with theme 4.10.1 (header/footer geometry revert, footer plate colour, icon sizing untouched, icon fonts render again).

@@ -353,7 +353,13 @@ class Plugin_Manager {
      * Register Admin Menus for Plugin Installer
      */
     public function register_plugin_installer_menus(): void {
-        add_submenu_page(null,
+        /*
+         * An empty parent keeps the page hidden (it is reachable at
+         * admin.php?page=zarincode-install-plugins). Passing `null` made
+         * WordPress call plugin_basename(null), which logs a PHP 8.1+
+         * deprecation on every admin page load.
+         */
+        add_submenu_page('',
             'نصب و مدیریت افزونه‌های قالب زرین کد',
             'نصب افزونه‌های قالب',
             'manage_options',

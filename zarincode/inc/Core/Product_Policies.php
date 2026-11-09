@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 /** Presentation bridge. Durable policies and metadata editing belong to the companion. */
 final class Product_Policies {
     public static function boot():void {
-        add_action('admin_menu',static function(){add_submenu_page(null,'سیاست‌ها و پرسش‌های محصول','گارانتی و پرسش‌های محصول','manage_options','zarincode-product-policies',[self::class,'page']);});
+        add_action('admin_menu',static function(){add_submenu_page('','سیاست‌ها و پرسش‌های محصول','گارانتی و پرسش‌های محصول','manage_options','zarincode-product-policies',[self::class,'page']);});
     }
     public static function defaults():array {return class_exists('Zarincode\\Runtime260\\Content\\Product_Policy_Store')?\Zarincode\Runtime260\Content\Product_Policy_Store::defaults():[];}
     public static function sanitize($raw):array {return class_exists('Zarincode\\Runtime260\\Content\\Product_Policy_Store')?\Zarincode\Runtime260\Content\Product_Policy_Store::sanitize($raw):[];}
