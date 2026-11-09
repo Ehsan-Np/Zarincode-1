@@ -11,6 +11,7 @@ Artifacts in this folder:
 | `footer-4.13.0-desktop-1440.png` | the Elementor footer document at 1440 |
 | `footer-4.13.0-tablet-768.png` | 768 — brand full width, then two columns per row |
 | `footer-4.13.0-mobile-390.png` | 390 — one column per row, CTA and bottom bar stacked |
+| `footer-4.13.0-elementor-editor.png` | the footer document open in the Elementor editor (Structure panel, 41 navigator items) |
 
 ## Document shape (post 6, `_elementor_data`)
 
