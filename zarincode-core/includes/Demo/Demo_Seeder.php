@@ -310,33 +310,95 @@ class Demo_Seeder {
         return class_exists( '\Elementor\Widget_Base' );
     }
 
+    /**
+     * One section of a demo page: a **Flexbox Container** holding the designed
+     * widget.
+     *
+     * Elementor's Sections/Columns are the legacy layout (they are still
+     * rendered, but they are not what the editor creates any more, they need
+     * four DOM nodes per widget, and they cannot be nested). Containers are the
+     * current primitive since 3.16, so every generated page is a flat list of
+     * Containers that the owner can drag, duplicate, nest and style — the same
+     * shape the footer uses.
+     *
+     * `content_width: full` + zero padding is the exact equivalent of the old
+     * `layout: full_width` + `gap: no` section, so the design does not move.
+     */
     private static function make_elementor_section( string $widget_type, array $settings = [] ): array {
         $settings=Service_Demo::settings($widget_type,$settings);
         return [
             'id'       => self::gen_id(),
-            'elType'   => 'section',
+            'elType'   => 'container',
+            'isInner'  => false,
             'settings' => [
-                'layout' => 'full_width',
-                'gap'    => 'no',
+                'content_width'        => 'full',
+                'flex_direction'       => 'column',
+                'flex_justify_content' => 'flex-start',
+                'flex_align_items'     => 'stretch',
+                'flex_gap'             => [
+                    'column'   => '0',
+                    'row'      => '0',
+                    'unit'     => 'px',
+                    'isLinked' => true,
+                ],
+                'padding'              => [
+                    'unit'     => 'px',
+                    'top'      => '0',
+                    'right'    => '0',
+                    'bottom'   => '0',
+                    'left'     => '0',
+                    'isLinked' => true,
+                ],
+                '_title'               => self::section_title( $widget_type ),
             ],
             'elements' => [
                 [
-                    'id'       => self::gen_id(),
-                    'elType'   => 'column',
-                    'settings' => [ '_column_size' => 100 ],
-                    'elements' => [
-                        [
-                            'id'         => self::gen_id(),
-                            'elType'     => 'widget',
-                            'widgetType' => $widget_type,
-                            // Empty settings must serialise as a JSON object ({}), not an
-                            // array ([]) — Elementor's editor reads settings as a map.
-                            'settings'   => $settings ? $settings : (object) array(),
-                        ],
-                    ],
+                    'id'         => self::gen_id(),
+                    'elType'     => 'widget',
+                    'widgetType' => $widget_type,
+                    // Empty settings must serialise as a JSON object ({}), not an
+                    // array ([]) — Elementor's editor reads settings as a map.
+                    'settings'   => $settings ? $settings : (object) array(),
                 ],
             ],
         ];
+    }
+
+    /**
+     * Persian label for the container in the editor's Navigator.
+     *
+     * The registered widget title is asked for first (every design widget
+     * already returns a Persian label from `get_title()`), so the Navigator
+     * reads «قوانین و مقررات» instead of «Page Terms». The static map is only
+     * a fallback for a site where the widget is not registered.
+     */
+    private static function section_title( string $widget_type ): string {
+        if ( class_exists( 'Elementor\Plugin' ) ) {
+            $widget = \Elementor\Plugin::instance()->widgets_manager->get_widget_types( $widget_type );
+            if ( $widget && method_exists( $widget, 'get_title' ) ) {
+                $title = trim( wp_strip_all_tags( (string) $widget->get_title() ) );
+                if ( '' !== $title ) {
+                    return $title;
+                }
+            }
+        }
+        $titles = [
+            'zarincode_home_hero'         => 'قهرمان صفحه اصلی',
+            'zarincode_home_partners'     => 'برندها و کارفرمایان',
+            'zarincode_home_services'     => 'خدمات تخصصی',
+            'zarincode_home_products'     => 'محصولات فروشگاه',
+            'zarincode_home_portfolio'    => 'نمونه‌کارها',
+            'zarincode_home_why'          => 'چرا زرین کد',
+            'zarincode_home_steps'        => 'مراحل همکاری',
+            'zarincode_home_pricing'      => 'تعرفه‌ها',
+            'zarincode_home_testimonials' => 'نظرات مشتریان',
+            'zarincode_home_blog'         => 'مقالات',
+            'zarincode_home_promo'        => 'فراخوان پایانی',
+        ];
+        if ( isset( $titles[ $widget_type ] ) ) {
+            return $titles[ $widget_type ];
+        }
+        return ucwords( str_replace( [ 'zarincode_', '_' ], [ '', ' ' ], $widget_type ) );
     }
 
     public static function upsert_post_with_elementor( string $post_type, string $slug, string $title, array $elementor_tree, string $content, string $excerpt = '', array $meta = [] ): int {
@@ -1442,7 +1504,9 @@ class Demo_Seeder {
         self::seed_featured_images();
         self::seed_navigation_menus();
         Service_Demo::sidebars();
-        if(class_exists('Elementor\\Plugin'))\Elementor\Plugin::instance()->files_manager->clear_cache();
+        if ( class_exists( 'Elementor\Plugin' ) ) {
+            \Elementor\Plugin::instance()->files_manager->clear_cache();
+        }
         flush_rewrite_rules( false );
     }
 
