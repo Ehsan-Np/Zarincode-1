@@ -2026,3 +2026,155 @@ html.dark .zc-btn-yellow{box-shadow:0 10px 26px #fdd05b38}
 html.dark .zc-badge-pill{background:linear-gradient(140deg,#2c2f36,#17181c)}
 html.dark :is(.zc-service-card,.zc-portfolio-card,.zc-blog-card,.zc-product-card,.zc-card):hover{border-color:#8e793d66;box-shadow:0 18px 42px #00000059}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}:is(.zc-btn,.zc-glass-panel,:is(.zc-service-card,.zc-portfolio-card,.zc-blog-card,.zc-product-card,.zc-card)){transition:none}:is(.zc-btn:hover,.zc-glass-panel:hover,:is(.zc-service-card,.zc-portfolio-card,.zc-blog-card,.zc-product-card,.zc-card):hover){transform:none}}
+
+/* =====================================================================
+   v4.9.0 — Header→footer continuity, centred icons, live hover states
+   ===================================================================== */
+
+/* ── 1. Every icon box on the site is a centred box ─────────────────── */
+.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box,.zc-cart-count),
+.zc-footer :is(.zc-badge-pill,.zc-footer-title),
+.zc-footer-links a > :is(i,svg),
+.zc-btn > :is(i,svg),
+.zc-icon-btn > :is(i,svg) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+}
+
+.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box),
+.zc-footer :is(.zc-badge-pill) {
+    place-items: center;
+    align-content: center;
+}
+
+/* Glyph boxes: kill baseline drift so the glyph is optically centred */
+.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box) > i,
+.zc-header-pill .zc-dropdown-icon > i,
+.zc-footer-links a > i,
+.zc-btn > i,
+.zc-icon-btn > i {
+    display: block;
+    line-height: 1;
+    width: 1em;
+    height: 1em;
+    margin: 0 auto;
+    font-size: inherit;
+    text-align: center;
+}
+
+/* ── 2. Header → footer colour band (one continuous gradient) ───────── */
+body.zc-has-home .zc-footer,
+.zc-hp ~ .zc-footer,
+.home .zc-footer {
+    margin-top: 2rem;
+}
+
+.zc-footer {
+    position: relative;
+}
+
+.zc-footer::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: -2rem;
+    height: 3rem;
+    background: linear-gradient(180deg, rgba(253, 208, 91, 0), rgba(253, 208, 91, 0.28));
+    pointer-events: none;
+    z-index: 0;
+}
+
+.zc-footer-bento {
+    position: relative;
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.16), transparent 55%),
+        radial-gradient(100% 80% at 0% 100%, rgba(253, 208, 91, 0.08), transparent 60%),
+        linear-gradient(165deg, #2E3138 0%, var(--zc-dark) 45%, #22242A 100%);
+    border: 1px solid rgba(253, 208, 91, 0.18);
+    box-shadow: 0 30px 70px rgba(42, 44, 49, 0.32);
+    overflow: hidden;
+}
+
+/* The gold hairline repeats the active-menu / CTA accent of the header */
+.zc-footer-bento::before {
+    content: '';
+    position: absolute;
+    inset-inline: 2.25rem;
+    top: 0;
+    height: 3px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    opacity: 0.85;
+}
+
+.zc-footer-title::before {
+    background: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(253, 208, 91, 0.18);
+}
+
+.zc-footer-links a {
+    transition: color 0.25s cubic-bezier(0.34, 0.9, 0.34, 1),
+                transform 0.25s cubic-bezier(0.34, 0.9, 0.34, 1),
+                opacity 0.25s ease;
+}
+
+/* ── 3. Header hover/focus parity (links, icons, CTA) ───────────────── */
+.zc-nav-pill > li > a,
+.zc-dropdown-menu a,
+.zc-icon-btn,
+.zc-btn,
+.zc-brand {
+    transition: background-color 0.24s cubic-bezier(0.34, 0.9, 0.34, 1),
+                color 0.24s ease,
+                transform 0.24s cubic-bezier(0.34, 0.9, 0.34, 1),
+                box-shadow 0.24s cubic-bezier(0.34, 0.9, 0.34, 1);
+}
+
+.zc-nav-pill > li > a:hover {
+    transform: translateY(-1px);
+}
+
+.zc-nav-pill > li.current-menu-item > a {
+    box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+
+.zc-icon-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 18px rgba(42, 44, 49, 0.16);
+}
+
+.zc-dropdown-menu a:hover .zc-dropdown-icon {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    transform: scale(1.06);
+}
+
+.zc-dropdown-icon {
+    transition: background-color 0.24s ease, color 0.24s ease, transform 0.24s ease;
+}
+
+.zc-header-pill :is(a, button):focus-visible,
+.zc-footer :is(a, button):focus-visible,
+.zc-nav-pill > li > a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zc-nav-pill > li > a,
+    .zc-dropdown-menu a,
+    .zc-icon-btn,
+    .zc-btn,
+    .zc-footer-links a,
+    .zc-dropdown-icon {
+        transition-duration: 0.001ms;
+    }
+    .zc-nav-pill > li > a:hover,
+    .zc-icon-btn:hover,
+    .zc-footer-links a:hover {
+        transform: none;
+    }
+}

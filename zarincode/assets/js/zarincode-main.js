@@ -344,3 +344,39 @@
 (()=>{'use strict';const adjust=()=>{const targets=[document.getElementById('zarincode-crextio-switcher'),...document.querySelectorAll('.zc-floating-quick-contact'),...([...document.querySelectorAll('.zc-floating-socials')].filter(el=>!el.closest('.zc-floating-quick-contact')))].filter(Boolean);if(!targets.length)return;const floaties=[...document.querySelectorAll('.e-contact-buttons,.e-floating-bars,.elementor-widget-contact-buttons,.elementor-widget-floating-bars')];for(const el of targets){if(el._zcBaseBottom===undefined)el._zcBaseBottom=getComputedStyle(el).bottom||'1.25rem';el.style.bottom=el._zcBaseBottom;const r1=el.getBoundingClientRect();let extra=0;for(const f of floaties){const r2=f.getBoundingClientRect();const ovH=Math.min(r1.right,r2.right)-Math.max(r1.left,r2.left);const ovV=Math.min(r1.bottom,r2.bottom)-Math.max(r1.top,r2.top);if(ovH>2&&ovV>2)extra=Math.max(extra,r2.height+16);}if(extra)el.style.bottom='calc('+el._zcBaseBottom+' + '+extra+'px)';}};const run=()=>{adjust();setTimeout(adjust,350);setTimeout(adjust,1200);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();window.addEventListener('load',run);window.addEventListener('resize',()=>{clearTimeout(window._zcCcsT);window._zcCcsT=setTimeout(run,150)});})();
 // Scrollable code regions must be reachable from the keyboard (WCAG 2.1.1).
 (()=>{'use strict';const mark=pre=>{const scrollable=pre.scrollWidth>pre.clientWidth+1||pre.scrollHeight>pre.clientHeight+1;if(scrollable)pre.setAttribute('tabindex','0');else pre.removeAttribute('tabindex');};const run=()=>{document.querySelectorAll('.elementor-widget-code-highlight pre,.elementor-widget-code-highlight code[class*="language-"]').forEach(mark);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();window.addEventListener('load',run);window.addEventListener('resize',()=>{clearTimeout(window._zcPreT);window._zcPreT=setTimeout(run,200)});})();
+// Homepage ticker: visible pause/resume control (WCAG 2.2.2 - Pause, Stop, Hide).
+(()=>{'use strict';
+ const init=()=>{document.querySelectorAll('.zc-hp .ticker[data-zc-ticker]').forEach(box=>{
+  const btn=box.querySelector('.tpause');if(!btn)return;
+  btn.addEventListener('click',()=>{
+   const paused=box.classList.toggle('is-paused');
+   btn.setAttribute('aria-pressed',paused?'true':'false');
+   btn.setAttribute('aria-label',paused?'ادامهٔ حرکت نوار':'توقف حرکت نوار');
+   btn.querySelector('span').textContent=paused?'▶':'❙❙';
+  });
+ });};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+// Homepage pricing: switch between service tracks (tabs are real buttons).
+(()=>{'use strict';
+ const init=()=>{document.querySelectorAll('.zc-hp .plans[data-zc-plans]').forEach(wrap=>{
+  const chips=[...wrap.parentElement.querySelectorAll('.chips .chip')];
+  const panels=[...wrap.querySelectorAll('.plan-panel')];
+  if(!chips.length||chips.length!==panels.length)return;
+  const select=index=>{
+   chips.forEach((c,i)=>{const on=i===index;c.classList.toggle('on',on);c.setAttribute('aria-selected',on?'true':'false');c.tabIndex=on?0:-1;});
+   panels.forEach((p,i)=>{if(i===index)p.removeAttribute('hidden');else p.setAttribute('hidden','');});
+  };
+  chips.forEach((chip,i)=>{
+   chip.addEventListener('click',()=>select(i));
+   chip.addEventListener('keydown',e=>{
+    if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;
+    e.preventDefault();
+    const next=e.key==='Home'?0:e.key==='End'?chips.length-1:(i+(e.key==='ArrowRight'?-1:1)+chips.length)%chips.length;
+    select(next);chips[next].focus();
+   });
+  });
+ });
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();

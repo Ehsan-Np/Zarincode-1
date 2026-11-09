@@ -354,3 +354,201 @@
 .zc-hp section.tint-violet{background:linear-gradient(180deg,transparent,#F1EBFF44 30%,#F1EBFF44 70%,transparent)}
 /* --- v4.7.1: a flat wrapper drops the tint gradients so section background controls win --- */
 .zc-hp.is-flat section,.zc-hp.is-flat .hero{background-image:none}
+
+/* =====================================================================
+   v4.9.0 — Interaction layer: one hover language, animated ticker,
+   pixel-centred icons. Scope: .zc-hp only.
+   ===================================================================== */
+
+.zc-hp{
+  --zc-ease:cubic-bezier(.34,.9,.34,1);
+  --zc-t:.28s var(--zc-ease);
+  --zc-lift:-4px;
+}
+
+/* ---------- 1. Icon centring (the circle/square is always the box) --- */
+/* Any icon box: grid/flex centred, no baseline drift, glyph line-box 1. */
+.zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic,.ava,.ava2,.zc-dropdown-icon,span[class*="ico-"]) {
+  display:grid;
+  place-items:center;
+  align-content:center;
+  justify-content:center;
+  line-height:1;
+  text-align:center;
+}
+.zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic,.ava,.ava2) > :is(.fa,i,svg,img),
+.zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic) > span {
+  display:block;
+  margin:0 auto;
+  line-height:1;
+  width:1em;
+  text-align:center;
+}
+.zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic) > svg{height:1em;fill:currentColor}
+.zc-hp :is(.schips span,.pchips span,.timepill,.chip,.seal,.flag,.badge,.kind,.score span) > .fa{
+  display:inline-block;
+  vertical-align:middle;
+  margin-inline-end:.35em;
+  line-height:1;
+  position:relative;
+  inset-block-start:-.05em;
+}
+
+/* ---------- 2. Buttons & links: one predictable reaction each -------- */
+.zc-hp :is(.btn,.add,.smore,.go,.continue,.chip,.pm a,a.tag,a.pill){
+  transition:transform var(--zc-t),box-shadow var(--zc-t),background-color var(--zc-t),color var(--zc-t),border-color var(--zc-t);
+  will-change:transform;
+}
+.zc-hp .btn:hover,
+.zc-hp .btn:focus-visible{transform:translateY(-2px);box-shadow:0 16px 32px rgba(41,44,49,.22)}
+.zc-hp .btn-gold:hover,.zc-hp .btn-gold:focus-visible{background:var(--gold2);box-shadow:0 16px 34px rgba(253,208,91,.55)}
+.zc-hp .btn-ink:hover,.zc-hp .btn-ink:focus-visible{background:#171A1F;box-shadow:0 18px 36px rgba(41,44,49,.34)}
+.zc-hp .btn-white:hover,.zc-hp .btn-white:focus-visible{background:var(--gold3);box-shadow:0 16px 32px rgba(41,44,49,.16)}
+.zc-hp .btn:active{transform:translateY(0) scale(.985)}
+
+/* CTA inside cards: lifts + arrow slides */
+.zc-hp .smore:hover,.zc-hp .smore:focus-visible{background:var(--ink);color:#fff;transform:translateX(-3px)}
+.zc-hp .smore .ar,.zc-hp .continue .ar{transition:transform var(--zc-t);display:inline-block}
+.zc-hp .smore:hover .ar,.zc-hp .continue:hover .ar{transform:translateX(-5px)}
+.zc-hp .go:hover,.zc-hp .go:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
+.zc-hp .continue:hover,.zc-hp .continue:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
+.zc-hp .add:hover,.zc-hp .add:focus-visible{transform:translateY(-2px);box-shadow:0 12px 24px rgba(41,44,49,.2);background:var(--gold2)}
+.zc-hp .add.g:hover,.zc-hp .add.g:focus-visible{background:var(--gold);color:var(--ink)}
+
+/* Text links, chips and tags react too (no dead hover anywhere) */
+.zc-hp .sec-head .link:hover,.zc-hp .sec-head .link:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
+.zc-hp .chip:hover,.zc-hp .chip:focus-visible{background:#fff;border-color:var(--gold-deep);color:var(--ink);transform:translateY(-2px)}
+.zc-hp .chip.on:hover{transform:translateY(-2px)}
+.zc-hp a.tag:hover,.zc-hp a.pill:hover,.zc-hp a.chip:hover{filter:brightness(.96)}
+.zc-hp .pop-item{transition:background-color var(--zc-t),transform var(--zc-t),padding-inline-start var(--zc-t)}
+.zc-hp .pop-item:hover{background:#FFFBEE;transform:translateX(-3px)}
+.zc-hp a.pop-item{display:block}
+
+/* ---------- 3. Cards: richer but consistent hover ------------------- */
+.zc-hp :is(.svc,.pcard,.jcard,.tst,.scard,.featured,.plan,.tcard,.step,.bcard,.promo){
+  transition:transform var(--zc-t),box-shadow var(--zc-t),border-color var(--zc-t);
+}
+.zc-hp :is(.svc,.pcard,.jcard):hover{box-shadow:0 24px 48px rgba(41,44,49,.16)}
+.zc-hp .svc:hover .scover .ico-tile,
+.zc-hp .pcard:hover .pcover .ico-tile,
+.zc-hp .jcard:hover .jcover .ico-tile{transform:rotate(-6deg) scale(1.06);background:var(--gold)}
+.zc-hp :is(.scover,.pcover,.jcover) .ico-tile{transition:transform var(--zc-t),background-color var(--zc-t)}
+.zc-hp :is(.pcard,.jcard) :is(.pcover,.jcover){transition:filter var(--zc-t)}
+.zc-hp :is(.pcard,.jcard):hover :is(.pcover,.jcover){filter:saturate(1.12)}
+.zc-hp .plan:hover{transform:translateY(var(--zc-lift));box-shadow:0 22px 44px rgba(41,44,49,.14)}
+.zc-hp .tst:hover{transform:translateY(var(--zc-lift));box-shadow:0 22px 44px rgba(41,44,49,.14)}
+.zc-hp .tcard:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(41,44,49,.14)}
+.zc-hp .tcard:hover .ti{transform:scale(1.08)}
+.zc-hp .tcard .ti{transition:transform var(--zc-t)}
+.zc-hp .step:hover,.zc-hp .bcard:hover{transform:translateY(-3px)}
+.zc-hp .sticker{transition:transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .sticker:hover{transform:rotate(0deg) translateY(-3px);box-shadow:0 14px 28px rgba(41,44,49,.14)}
+.zc-hp .floaty{transition:transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .floaty:hover{transform:rotate(0deg) scale(1.035);box-shadow:0 22px 40px rgba(41,44,49,.2);z-index:5}
+.zc-hp .code-card{transition:transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .collage:hover .code-card{transform:translateY(-4px) rotate(-.6deg)}
+
+/* Partner logos: always brighten + lift */
+.zc-hp .clients .plogo,.zc-hp .plogo{
+  transition:transform var(--zc-t),filter var(--zc-t),color var(--zc-t),box-shadow var(--zc-t);
+  filter:grayscale(1);opacity:.72;
+}
+.zc-hp .plogo:hover,.zc-hp .plogo:focus-visible{filter:grayscale(0);opacity:1;transform:translateY(-3px);color:var(--ink)}
+
+/* Table rows (pricing matrix) */
+.zc-hp .matrix tbody tr{transition:background-color var(--zc-t)}
+.zc-hp .matrix tbody tr:hover{background:#FFFBEE}
+
+/* Keyboard parity: never rely on :hover alone */
+.zc-hp :is(a,button):focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:12px}
+
+/* ---------- 4. Ticker: real horizontal marquee ---------------------- */
+.zc-hp .ticker{position:relative;display:flex;overflow:hidden;direction:ltr}
+.zc-hp .ticker .ttrack{
+  display:flex;
+  flex:0 0 auto;
+  min-width:100%;
+  white-space:nowrap;
+  animation:zc-ticker 34s linear infinite;
+  will-change:transform;
+}
+.zc-hp .ticker .ttrack[aria-hidden="true"]{pointer-events:none}
+.zc-hp .ticker span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+  padding:0 26px;
+  direction:rtl;
+}
+.zc-hp .ticker .titem{transition:color var(--zc-t),transform var(--zc-t);border-radius:10px}
+.zc-hp .ticker .titem:hover,.zc-hp .ticker .titem:focus-visible{color:#8A5A00;transform:translateY(-1px) scale(1.03)}
+.zc-hp .ticker b{margin:0;opacity:.45;flex:0 0 auto}
+@keyframes zc-ticker{from{transform:translate3d(0,0,0)}to{transform:translate3d(-100%,0,0)}}
+/* Pause while the reader is inspecting it (WCAG 2.2.2) */
+.zc-hp .ticker:hover .ttrack,
+.zc-hp .ticker:focus-within .ttrack{animation-play-state:paused}
+.zc-hp .ticker .tpause{
+  position:absolute;inset-inline-start:8px;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border-radius:50%;border:1px solid #292C3133;
+  background:#ffffffcc;color:var(--ink);cursor:pointer;z-index:2;
+  display:grid;place-items:center;font-size:10px;line-height:1;
+  opacity:0;transition:opacity var(--zc-t),background-color var(--zc-t);
+}
+.zc-hp .ticker:hover .tpause,.zc-hp .ticker .tpause:focus-visible{opacity:1}
+.zc-hp .ticker .tpause:hover{background:#fff}
+.zc-hp .ticker.is-paused .ttrack{animation-play-state:paused}
+
+/* ---------- 5. Reduced motion: everything settles down --------------- */
+@media (prefers-reduced-motion:reduce){
+  .zc-hp *,.zc-hp *::before,.zc-hp *::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  .zc-hp .ticker .ttrack{animation:none!important;transform:none!important;flex-wrap:wrap;white-space:normal;justify-content:center}
+  .zc-hp .ticker .ttrack[aria-hidden="true"]{display:none}
+  .zc-hp :is(.svc,.pcard,.jcard,.plan,.tst,.tcard,.floaty,.sticker):hover{transform:none}
+}
+
+/* ---------- 6. Testimonials: real photo beside the name -------------- */
+.zc-hp .tst .who{display:flex;align-items:center;gap:11px}
+.zc-hp .tst .ava{overflow:hidden;flex:0 0 auto;transition:transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .tst .ava.has-photo{padding:0;background:#fff;box-shadow:0 6px 14px rgba(41,44,49,.16)}
+.zc-hp .tst .ava img{
+  width:100%;height:100%;aspect-ratio:1;object-fit:cover;object-position:center;
+  display:block;border-radius: inherit;
+}
+.zc-hp .tst:hover .ava{transform:scale(1.05)}
+.zc-hp .tst .tlink{
+  margin-inline-start:auto;display:inline-grid;place-items:center;
+  width:28px;height:28px;border-radius:50%;background:#ffffffcc;color:var(--ink);
+  font-size:13px;line-height:1;transition:background-color var(--zc-t),transform var(--zc-t),color var(--zc-t);
+}
+.zc-hp .tst .tlink:hover,.zc-hp .tst .tlink:focus-visible{background:var(--ink);color:var(--gold);transform:translateX(-3px)}
+
+/* ---------- 7. Pricing: real, keyboard-operable track tabs ----------- */
+.zc-hp .chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.zc-hp .chip{
+  appearance:none;border:1px solid #292C3118;background:#fff;color:var(--ink2);
+  font:inherit;font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:999px;
+  cursor:pointer;line-height:1.6;
+}
+.zc-hp .chip.on{background:var(--ink);color:var(--gold);border-color:var(--ink);box-shadow:0 10px 22px rgba(41,44,49,.18)}
+.zc-hp .plan-panel[hidden]{display:none}
+.zc-hp .plan-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.zc-hp .plan-panel{grid-template-columns:1fr}}
+.zc-hp .plans{display:block}
+
+/* ---------- 8. Chips that are links look and behave like links -------- */
+.zc-hp .pchips a{
+  background:#F7F8FA;border:1px solid #292C3112;border-radius:999px;padding:4px 11px;
+  font-size:11px;font-weight:800;color:var(--ink2);display:inline-block;
+  transition:background-color var(--zc-t),color var(--zc-t),border-color var(--zc-t),transform var(--zc-t);
+}
+.zc-hp .pchips a:hover,.zc-hp .pchips a:focus-visible{background:var(--ink);color:var(--gold);border-color:var(--ink);transform:translateY(-2px)}
+.zc-hp a.tag{display:inline-block;transition:transform var(--zc-t),filter var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp a.tag:hover,.zc-hp a.tag:focus-visible{transform:translateY(-2px);filter:brightness(.94);box-shadow:0 6px 14px rgba(41,44,49,.12)}
+.zc-hp .scard h3 a{transition:color var(--zc-t),box-shadow var(--zc-t);box-shadow:inset 0 -1px 0 transparent}
+.zc-hp .scard h3 a:hover,.zc-hp .scard h3 a:focus-visible{color:var(--gold-deep);box-shadow:inset 0 -1px 0 var(--gold)}
+.zc-hp .scard:hover h3 a{color:var(--gold-deep)}

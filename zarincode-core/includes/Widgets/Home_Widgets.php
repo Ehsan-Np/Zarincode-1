@@ -915,7 +915,11 @@ class Home_Services extends Abstract_Home_Widget {
 	protected function register_controls(): void {
 		$this->heading_controls();
 
-		$this->content_section( 'zc_services_items', 'کارت‌های خدمات' );
+		$this->content_section( 'zc_services_source', 'منبع خدمات' );
+		$this->source_controls( 'source', 'count', 'خدمات', 'کارت‌های دستی (پیش‌فرض دمو)', 'خدمات واقعی سایت (نوشته‌های «خدمات»)', 6, 1, 12 );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_services_items', 'کارت‌های خدمات', array( 'source' => 'manual' ) );
 		$row = new Repeater();
 		$this->f_icon( $row, 'icon', 'display' );
 		$this->f_text( $row, 'no', 'شمارهٔ کارت', '' );
@@ -958,6 +962,11 @@ class Home_Services extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
+		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+			$this->fill_from_services( $settings );
+			return $settings;
+		}
+
 		$items = array();
 		foreach ( $this->rows_of( $settings, 'items' ) as $index => $row ) {
 			$meta = array();
@@ -984,6 +993,99 @@ class Home_Services extends Abstract_Home_Widget {
 		}
 		$settings['items'] = $items;
 		return $settings;
+	}
+
+	/**
+	 * Builds the service cards from published «خدمات» (zc_service) posts so the
+	 * homepage shows the same content the archive and single templates use.
+	 *
+	 * @param array $settings Widget settings, updated in place.
+	 */
+	private function fill_from_services( array &$settings ): void {
+		$limit = max( 1, (int) ( $settings['count'] ?? 6 ) );
+		$posts = get_posts( array(
+			'post_type'        => 'zc_service',
+			'post_status'      => 'publish',
+			'numberposts'      => $limit,
+			'orderby'          => 'menu_order date',
+			'order'            => 'ASC',
+			'suppress_filters' => false,
+		) );
+
+		if ( ! $posts ) {
+			return; // Falls back to the widget's own manual/default rows.
+		}
+
+		// Font Awesome class => the short icon names this template understands.
+		$icon_alias = array(
+			'laptop-code'       => 'display',
+			'desktop'           => 'display',
+			'code'              => 'gears',
+			'microchip'         => 'server',
+			'chart-line'        => 'chart-line',
+			'arrow-trend-up'    => 'arrow-trend-up',
+			'hashtag'           => 'hashtag',
+			'pen-nib'           => 'pen-nib',
+			'pen-ruler'         => 'pen-ruler',
+			'box-open'          => 'cubes',
+			'cubes'             => 'cubes',
+			'cart-shopping'     => 'cart-shopping',
+			'magnifying-glass'  => 'magnifying-glass',
+			'shield-halved'     => 'shield-halved',
+			'rocket'            => 'rocket',
+			'wordpress'         => 'wordpress',
+			'palette'           => 'palette',
+			'robot'             => 'robot',
+			'comments'          => 'comments',
+		);
+
+		$tones = array( 'sc-a', 'sc-b', 'sc-c', 'sc-d', 'sc-e', 'sc-f' );
+		$items = array();
+		foreach ( $posts as $index => $post ) {
+			$id       = (int) $post->ID;
+			$fa_class = (string) get_post_meta( $id, '_zc_srv_icon', true );
+			$short    = 'display';
+			if ( '' !== $fa_class ) {
+				foreach ( $icon_alias as $needle => $icon ) {
+					if ( false !== strpos( $fa_class, $needle ) ) {
+						$short = $icon;
+						break;
+					}
+				}
+			}
+
+			$meta = array();
+			$duration = trim( (string) get_post_meta( $id, '_zc_srv_duration', true ) );
+			if ( '' !== $duration ) {
+				$meta[] = array( 'icon' => 'clock', 'text' => $duration );
+			}
+			$delivery = trim( (string) get_post_meta( $id, '_zc_srv_final_delivery', true ) );
+			if ( '' === $delivery ) {
+				$delivery = trim( (string) get_post_meta( $id, '_zc_srv_delivery_mode', true ) );
+			}
+			if ( '' !== $delivery ) {
+				$meta[] = array( 'icon' => 'shield-halved', 'text' => $delivery );
+			}
+
+			$description = $post->post_excerpt;
+			if ( '' === trim( (string) $description ) ) {
+				$description = wp_trim_words( wp_strip_all_tags( (string) $post->post_content ), 24 );
+			}
+
+			$items[] = array(
+				'no'        => sprintf( '%02d', $index + 1 ),
+				'en'        => (string) get_post_meta( $id, '_zc_srv_en_title', true ),
+				'icon'      => $short,
+				'title'     => get_the_title( $post ),
+				'desc'      => $description,
+				'meta'      => $meta,
+				'price'     => (string) get_post_meta( $id, '_zc_srv_price_range', true ),
+				'link'      => get_permalink( $id ),
+				'link_text' => 'جزئیات خدمت',
+				'tone'      => $tones[ $index % 6 ],
+			);
+		}
+		$settings['items'] = $items;
 	}
 }
 
@@ -1326,6 +1428,7 @@ class Home_Pricing extends Abstract_Home_Widget {
 
 		$row = new Repeater();
 		$this->f_text( $row, 'title', 'نام پلن' );
+		$this->f_text( $row, 'track', 'مسیر (تب) این پلن', '', array( 'description' => 'دقیقاً یکی از عنوان‌های تب‌ها؛ تا کارت زیر همان تب نمایش داده شود.' ) );
 		$this->f_text( $row, 'delivery', 'مدت تحویل' );
 		$this->f_text( $row, 'price', 'بازهٔ قیمت' );
 		$this->f_text( $row, 'flag', 'نشان پلن' );
@@ -1338,6 +1441,7 @@ class Home_Pricing extends Abstract_Home_Widget {
 		foreach ( $this->da( 'plans' ) as $plan ) {
 			$defaults[] = array(
 				'title'    => $plan['title'] ?? '',
+				'track'    => $plan['track'] ?? '',
 				'delivery' => $plan['delivery'] ?? '',
 				'price'    => $plan['price'] ?? '',
 				'flag'     => $plan['flag'] ?? '',
@@ -1411,6 +1515,7 @@ class Home_Pricing extends Abstract_Home_Widget {
 		foreach ( $this->rows_of( $settings, 'plans' ) as $row ) {
 			$plans[] = array(
 				'title'    => (string) ( $row['title'] ?? '' ),
+				'track'    => (string) ( $row['track'] ?? '' ),
 				'delivery' => (string) ( $row['delivery'] ?? '' ),
 				'price'    => (string) ( $row['price'] ?? '' ),
 				'flag'     => (string) ( $row['flag'] ?? '' ),
@@ -1466,20 +1571,38 @@ class Home_Testimonials extends Abstract_Home_Widget {
 	protected function register_controls(): void {
 		$this->heading_controls();
 
-		$this->content_section( 'zc_testimonials_items', 'نظرات' );
+		$this->content_section( 'zc_testimonials_source', 'منبع نظرات' );
+		$this->source_controls( 'source', 'count', 'نظرات', 'نظرات دستی (پیش‌فرض دمو)', 'دیدگاه‌های واقعی محصولات (ووکامرس)', 3, 1, 12 );
+		$this->f_switch( $this, 'use_gravatars', 'استفاده از تصویر پروفایل نویسنده در حالت پویا', 'yes' );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_testimonials_items', 'نظرات', array( 'source' => 'manual' ) );
 		$row = new Repeater();
+		$row->add_control( 'photo', array(
+			'label'       => 'عکس مشتری',
+			'type'        => C::MEDIA,
+			'label_block' => true,
+			'description' => 'تصویر واقعی مشتری؛ اگر خالی بماند حرف اول نام نمایش داده می‌شود.',
+		) );
 		$this->f_area( $row, 'text', 'متن نظر', '', array( 'rows' => 3 ) );
 		$this->f_text( $row, 'name', 'نام' );
 		$this->f_text( $row, 'role', 'سمت / سازمان' );
 		$this->f_text( $row, 'initial', 'حرف اول آواتار', '', array( 'description' => 'یک حرف یا نویسه؛ خالی بگذارید تا از نام ساخته شود.' ) );
 		$this->f_number( $row, 'stars', 'امتیاز (۰ تا ۵ — صفر: بدون ستاره)', 5, 0, 5 );
-		$this->f_repeater(
-			'items',
-			'نظرات',
-			$row->get_controls(),
-			$this->pick_rows( $this->da( 'items' ), array( 'text', 'name', 'role', 'initial', 'stars' ) ),
-			'name'
-		);
+		$this->f_url( $row, 'link', 'پیوند (نمونه‌کار یا صفحهٔ مشتری) — اختیاری' );
+		$testimonial_rows = array();
+		foreach ( $this->da( 'items' ) as $item ) {
+			$testimonial_rows[] = array(
+				'photo'   => array( 'url' => (string) ( $item['photo'] ?? '' ) ),
+				'text'    => (string) ( $item['text'] ?? '' ),
+				'name'    => (string) ( $item['name'] ?? '' ),
+				'role'    => (string) ( $item['role'] ?? '' ),
+				'initial' => (string) ( $item['initial'] ?? '' ),
+				'stars'   => (int) ( $item['stars'] ?? 5 ),
+				'link'    => array( 'url' => (string) ( $item['link'] ?? '' ) ),
+			);
+		}
+		$this->f_repeater( 'items', 'نظرات', $row->get_controls(), $testimonial_rows, 'name' );
 		$this->end_controls_section();
 
 		$this->style_shell();
@@ -1501,20 +1624,88 @@ class Home_Testimonials extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
+		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+			$this->fill_from_reviews( $settings );
+			return $settings;
+		}
+
 		$items = array();
 		foreach ( $this->rows_of( $settings, 'items' ) as $row ) {
 			$name    = (string) ( $row['name'] ?? '' );
 			$initial = trim( (string) ( $row['initial'] ?? '' ) );
 			$items[] = array(
+				'photo'   => $this->media_url( $row['photo'] ?? '' ),
 				'initial' => '' !== $initial ? $initial : mb_substr( $name, 0, 1 ),
 				'stars'   => max( 0, min( 5, (int) ( $row['stars'] ?? 5 ) ) ),
 				'text'    => (string) ( $row['text'] ?? '' ),
 				'name'    => $name,
 				'role'    => (string) ( $row['role'] ?? '' ),
+				'link'    => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
 		$settings['items'] = $items;
 		return $settings;
+	}
+
+	/**
+	 * Normalises a MEDIA control value (array|url|id) to an image URL.
+	 *
+	 * @param mixed $value Raw control value.
+	 */
+	protected function media_url( $value ): string {
+		if ( is_array( $value ) ) {
+			if ( ! empty( $value['url'] ) ) {
+				return (string) $value['url'];
+			}
+			$value = $value['id'] ?? '';
+		}
+		if ( is_numeric( $value ) ) {
+			return (string) ( wp_get_attachment_image_url( (int) $value, 'thumbnail' ) ?: '' );
+		}
+		return is_string( $value ) ? trim( $value ) : '';
+	}
+
+	/**
+	 * Fills the cards from real WooCommerce product reviews so the section is
+	 * fed by customer feedback that already lives on the site.
+	 *
+	 * @param array $settings Widget settings, updated in place.
+	 */
+	private function fill_from_reviews( array &$settings ): void {
+		if ( ! post_type_exists( 'product' ) ) {
+			return;
+		}
+
+		$limit   = max( 1, (int) ( $settings['count'] ?? 3 ) );
+		$reviews = get_comments( array(
+			'status'    => 'approve',
+			'post_type' => 'product',
+			'number'    => $limit,
+			'orderby'   => 'comment_date_gmt',
+			'order'     => 'DESC',
+			'type'      => 'review',
+		) );
+
+		if ( ! $reviews ) {
+			return;
+		}
+
+		$use_gravatar = 'yes' === ( $settings['use_gravatars'] ?? 'yes' );
+		$items        = array();
+		foreach ( $reviews as $review ) {
+			$rating = (int) get_comment_meta( (int) $review->comment_ID, 'rating', true );
+			$name   = (string) $review->comment_author;
+			$items[] = array(
+				'photo'   => $use_gravatar ? (string) get_avatar_url( (string) $review->comment_author_email, array( 'size' => 96 ) ) : '',
+				'initial' => mb_substr( $name, 0, 1 ),
+				'stars'   => max( 0, min( 5, $rating > 0 ? $rating : 5 ) ),
+				'text'    => wp_trim_words( wp_strip_all_tags( (string) $review->comment_content ), 34 ),
+				'name'    => $name,
+				'role'    => sprintf( 'خریدار %s', get_the_title( (int) $review->comment_post_ID ) ),
+				'link'    => get_permalink( (int) $review->comment_post_ID ),
+			);
+		}
+		$settings['items'] = $items;
 	}
 }
 

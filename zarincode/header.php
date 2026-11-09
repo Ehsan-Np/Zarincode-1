@@ -33,6 +33,33 @@ $cta_custom_url   = zarincode_get_option( 'header_cta_custom_url', '/contact-us/
 $cart_url         = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/shop/' );
 $cart_cnt         = ( function_exists( 'WC' ) && WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
 $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrait.png';
+
+/*
+ * Current-menu state, resolved from the request URL rather than a hard-coded
+ * slug, so a menu item lights up whatever the page/CPT permalink structure is.
+ * Returns [ 'class' => …, 'aria' => … ] for use inside the nav <li> and <a>.
+ */
+$zc_cur_path = untrailingslashit( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '/', PHP_URL_PATH ) );
+$zc_home_path = untrailingslashit( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ) );
+if ( '' !== $zc_home_path && 0 === strpos( $zc_cur_path, $zc_home_path ) ) {
+    $zc_cur_path = substr( $zc_cur_path, strlen( $zc_home_path ) );
+}
+$zc_cur_path = untrailingslashit( '/' . ltrim( $zc_cur_path, '/' ) );
+
+$zc_nav_state = static function ( array $paths, bool $extra = false ): array {
+    global $zc_cur_path;
+    $hit = $extra;
+    foreach ( $paths as $path ) {
+        $path = untrailingslashit( '/' . ltrim( (string) $path, '/' ) );
+        if ( $zc_cur_path === $path || ( '/' !== $path && 0 === strpos( $zc_cur_path, $path . '/' ) ) ) {
+            $hit = true;
+            break;
+        }
+    }
+    return $hit
+        ? array( 'class' => ' current-menu-item', 'aria' => ' aria-current="page"' )
+        : array( 'class' => '', 'aria' => '' );
+};
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="<?php echo 'dark' === zarincode_get_option( 'default_theme_mode', 'light' ) ? 'dark' : ''; ?>">
 <head>
@@ -118,13 +145,15 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
 
             <!-- Main Pill Navigation with Mega Dropdowns -->
             <ul class="zc-nav-pill" aria-label="منوی اصلی">
-                <li class="<?php echo is_front_page() ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                <?php $zc_st = $zc_nav_state( array( '/' ), is_front_page() ); ?>
+                <li class="<?php echo esc_attr( trim( $zc_st['class'] ) ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
                         <i class="fa-solid fa-house"></i> صفحه اصلی
                     </a>
                 </li>
-                <li class="has-megamenu <?php echo ( is_page( 'services' ) || is_singular( 'zc_service' ) || is_post_type_archive( 'zc_service' ) ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">
+                <?php $zc_st = $zc_nav_state( array( '/services', '/service' ), is_singular( 'zc_service' ) || is_post_type_archive( 'zc_service' ) ); ?>
+                <li class="has-megamenu<?php echo esc_attr( $zc_st['class'] ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
                         <i class="fa-solid fa-layer-group"></i> خدمات ما <i class="fa-solid fa-chevron-down zc-nav-caret"></i>
                     </a>
                     <ul class="zc-dropdown-menu">
@@ -184,18 +213,21 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
                         </li>
                     </ul>
                 </li>
-                <li class="<?php echo ( is_page( 'shop' ) || ( function_exists( 'is_shop' ) && is_shop() ) || is_singular( 'product' ) || is_post_type_archive( 'product' ) ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">
+                <?php $zc_st = $zc_nav_state( array( '/shop', '/product', '/product-category' ), ( function_exists( 'is_shop' ) && is_shop() ) || is_singular( 'product' ) || is_post_type_archive( 'product' ) ); ?>
+                <li class="<?php echo esc_attr( trim( $zc_st['class'] ) ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
                         <i class="fa-solid fa-store"></i> فروشگاه محصولات
                     </a>
                 </li>
-                <li class="<?php echo ( is_page( 'projects-portfolio' ) || is_singular( 'zc_project' ) || is_post_type_archive( 'zc_project' ) ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>">
+                <?php $zc_st = $zc_nav_state( array( '/projects-portfolio', '/project' ), is_singular( 'zc_project' ) || is_post_type_archive( 'zc_project' ) ); ?>
+                <li class="<?php echo esc_attr( trim( $zc_st['class'] ) ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/projects-portfolio/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
                         <i class="fa-solid fa-briefcase"></i> نمونه‌کارها
                     </a>
                 </li>
-                <li class="has-megamenu <?php echo ( is_page( [ 'terms-and-conditions', 'warranty-policy', 'privacy-policy', 'refund-policy', 'gdpr-compliance', 'dmca-policy' ] ) ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>">
+                <?php $zc_st = $zc_nav_state( array( '/terms-and-conditions', '/warranty-policy', '/privacy-policy', '/refund-policy', '/gdpr-compliance', '/dmca-policy' ) ); ?>
+                <li class="has-megamenu<?php echo esc_attr( $zc_st['class'] ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
                         <i class="fa-solid fa-gavel"></i> قوانین و گارانتی <i class="fa-solid fa-chevron-down zc-nav-caret"></i>
                     </a>
                     <ul class="zc-dropdown-menu">
@@ -207,11 +239,13 @@ $ehsan_avatar     = get_template_directory_uri() . '/assets/images/ehsan-portrai
                         <li><a href="<?php echo esc_url( home_url( '/dmca-policy/' ) ); ?>"><span class="zc-dropdown-icon"><i class="fa-solid fa-copyright"></i></span> DMCA Policy (English)</a></li>
                     </ul>
                 </li>
-                <li class="<?php echo is_page( 'about-us' ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>">درباره ما</a>
+                <?php $zc_st = $zc_nav_state( array( '/about-us' ), is_page( 'about-us' ) ); ?>
+                <li class="<?php echo esc_attr( trim( $zc_st['class'] ) ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>درباره ما</a>
                 </li>
-                <li class="<?php echo is_page( 'contact-us' ) ? 'current-menu-item' : ''; ?>">
-                    <a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">تماس با ما</a>
+                <?php $zc_st = $zc_nav_state( array( '/contact-us' ), is_page( 'contact-us' ) ); ?>
+                <li class="<?php echo esc_attr( trim( $zc_st['class'] ) ); ?>">
+                    <a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"<?php echo $zc_st['aria']; // phpcs:ignore WordPress.Security.EscapeOutput ?>>تماس با ما</a>
                 </li>
             </ul>
 

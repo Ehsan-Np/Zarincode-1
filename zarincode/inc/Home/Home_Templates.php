@@ -43,6 +43,30 @@ final class Home_Templates {
 		return esc_url( (string) ( $v ?: '#' ) );
 	}
 
+	/**
+	 * Resolves a tag/category label to real site content: the term archive when
+	 * that term exists, otherwise the site search for the phrase.
+	 *
+	 * @param string $name Term name as displayed.
+	 * @param string $taxonomy Taxonomy to try (product_tag, category, …).
+	 */
+	private static function term_or_search_url( string $name, string $taxonomy = 'category' ): string {
+		$name = trim( $name );
+		if ( '' === $name ) {
+			return '';
+		}
+		if ( taxonomy_exists( $taxonomy ) ) {
+			$term = get_term_by( 'name', $name, $taxonomy );
+			if ( $term && ! is_wp_error( $term ) ) {
+				$link = get_term_link( $term );
+				if ( ! is_wp_error( $link ) ) {
+					return (string) $link;
+				}
+			}
+		}
+		return home_url( '/?s=' . rawurlencode( $name ) );
+	}
+
 	/** First non-empty link wins; empty values never degrade into "#" for CTAs. */
 	private static function url_or( $value, string $fallback = '#' ): string {
 		$value = is_string( $value ) ? trim( $value ) : '';
@@ -205,11 +229,38 @@ final class Home_Templates {
 		$items = array_key_exists( 'items', $s ) && is_array( $s['items'] )
 			? $s['items']
 			: (array) ( self::defaults( 'hero' )['ticker'] ?? array() );
-		$out = '';
-		foreach ( $items as $it ) {
-			$out .= self::e( $it ) . '<b>◆</b> ';
+		if ( ! $items ) {
+			return '';
 		}
-		return '<div class="ticker"><span>' . $out . '</span></div>';
+
+		// Each item: a plain string (text only) or [ 'text' => …, 'link' => … ].
+		// Without an explicit link the term still resolves to real site content
+		// through the WordPress search archive, so nothing in the bar is a dead end.
+		$build = static function () use ( $items ): string {
+			$out = '';
+			foreach ( $items as $it ) {
+				$is_map = is_array( $it );
+				$text   = trim( (string) ( $is_map ? ( $it['text'] ?? '' ) : $it ) );
+				if ( '' === $text ) {
+					continue;
+				}
+				$link = $is_map ? trim( (string) ( $it['link'] ?? '' ) ) : '';
+				$href = '' !== $link ? $link : home_url( '/?s=' . rawurlencode( $text ) );
+				$out .= '<span><a class="titem" href="' . esc_url( $href ) . '">' . self::e( $text ) . '</a><b aria-hidden="true">◆</b></span>';
+			}
+			return $out;
+		};
+
+		$track = $build();
+		if ( '' === $track ) {
+			return '';
+		}
+
+		return '<div class="ticker" data-zc-ticker>'
+			. '<button type="button" class="tpause" aria-label="توقف / ادامهٔ حرکت نوار" aria-pressed="false"><span aria-hidden="true">❙❙</span></button>'
+			. '<div class="ttrack">' . $track . '</div>'
+			. '<div class="ttrack" aria-hidden="true">' . $track . '</div>'
+			. '</div>';
 	}
 
 	/* ---------------------------------------------------------- PARTNERS */
@@ -355,7 +406,7 @@ final class Home_Templates {
 				<div class="pbody">
 					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
 					<?php if ( ! empty( $it['tags'] ) && is_array( $it['tags'] ) ) : ?>
-					<div class="pchips"><?php foreach ( $it['tags'] as $t ) : ?><span><?php echo self::e( $t ); ?></span><?php endforeach; ?></div>
+					<div class="pchips"><?php foreach ( $it['tags'] as $t ) : ?><a href="<?php echo esc_url( self::term_or_search_url( (string) $t, 'product_tag' ) ); ?>"><?php echo self::e( $t ); ?></a><?php endforeach; ?></div>
 					<?php endif; ?>
 					<div class="prow">
 						<span>
@@ -480,15 +531,38 @@ final class Home_Templates {
 <section>
 	<div class="wrap">
 		<?php echo self::head( $a, '', '', true ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-		<?php if ( $tabs ) : ?>
-		<div class="chips">
-			<?php foreach ( $tabs as $i => $t ) : ?>
-			<span class="chip <?php echo 0 === $i ? 'on' : ''; ?>"><?php echo self::e( $t ); ?></span>
-			<?php endforeach; ?>
-		</div>
-		<?php endif; ?>
-		<div class="plans">
-			<?php foreach ( $plans as $p ) : ?>
+		<?php
+		// A plan may declare which track (tab) it belongs to. When none does, the
+		// cards stay in one panel and the tabs stay decorative — never broken.
+		$has_track = false;
+		foreach ( $plans as $p ) {
+			if ( '' !== trim( (string) ( $p['track'] ?? '' ) ) ) {
+				$has_track = true;
+				break;
+			}
+		}
+
+		$groups = array();
+		if ( $has_track ) {
+			foreach ( $tabs as $t ) {
+				$groups[ (string) $t ] = array();
+			}
+			$first = (string) ( $tabs[0] ?? '' );
+			foreach ( $plans as $p ) {
+				$key = trim( (string) ( $p['track'] ?? '' ) );
+				if ( '' === $key || ! isset( $groups[ $key ] ) ) {
+					$key = $first;
+				}
+				$groups[ $key ][] = $p;
+			}
+		} else {
+			$groups[''] = $plans;
+		}
+		$groups = array_filter( $groups );
+
+		$card = static function ( array $p ) use ( $a ): string {
+			ob_start();
+			?>
 			<div class="plan <?php echo esc_attr( (string) ( $p['tone'] ?? 'p1' ) ); ?>">
 				<?php if ( ! empty( $p['flag'] ) ) : ?><span class="flag"><?php echo self::e( $p['flag'] ); ?></span><?php endif; ?>
 				<h4><?php echo self::e( $p['title'] ?? '' ); ?></h4>
@@ -499,7 +573,26 @@ final class Home_Templates {
 				<?php endif; ?>
 				<a class="btn btn-ink" href="<?php echo self::url_or( $p['link'] ?? '', '/contact-us/' ); ?>"><?php echo self::e( $p['cta'] ?? 'مشاوره و ثبت سفارش' ); ?></a>
 			</div>
-			<?php endforeach; ?>
+			<?php
+			return (string) ob_get_clean();
+		};
+		?>
+		<?php if ( $has_track && count( $groups ) > 1 ) : ?>
+		<div class="chips" role="tablist" aria-label="مسیرهای تعرفه">
+			<?php $first = true; foreach ( array_keys( $groups ) as $i => $track ) : ?>
+			<button type="button" class="chip <?php echo $first ? 'on' : ''; ?>" role="tab"
+				id="zc-plan-tab-<?php echo (int) $i; ?>" aria-controls="zc-plan-panel-<?php echo (int) $i; ?>"
+				aria-selected="<?php echo $first ? 'true' : 'false'; ?>" tabindex="<?php echo $first ? '0' : '-1'; ?>"
+				data-zc-track="<?php echo (int) $i; ?>"><?php echo self::e( $track ); ?></button>
+			<?php $first = false; endforeach; ?>
+		</div>
+		<?php endif; ?>
+		<div class="plans"<?php echo ( $has_track && count( $groups ) > 1 ) ? ' data-zc-plans' : ''; ?>>
+			<?php $first = true; foreach ( array_values( $groups ) as $i => $group ) : ?>
+			<div class="plan-panel"<?php echo ( $has_track && count( $groups ) > 1 ) ? ' role="tabpanel" id="zc-plan-panel-' . (int) $i . '" aria-labelledby="zc-plan-tab-' . (int) $i . '"' : ''; ?><?php echo $first ? '' : ' hidden'; ?>>
+				<?php foreach ( $group as $p ) : echo $card( $p ); endforeach; // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			</div>
+			<?php $first = false; endforeach; ?>
 		</div>
 		<?php if ( ! empty( $matrix['rows'] ) ) : ?>
 		<div class="matrix">
@@ -546,8 +639,18 @@ final class Home_Templates {
 				<?php endif; ?>
 				<p><?php echo self::e( $t['text'] ?? '' ); ?></p>
 				<div class="who">
+					<?php $ava_link = (string) ( $t['link'] ?? '' ); ?>
+					<?php if ( ! empty( $t['photo'] ) ) : ?>
+					<span class="ava has-photo">
+						<img src="<?php echo esc_url( (string) $t['photo'] ); ?>" alt="<?php echo esc_attr( (string) ( $t['name'] ?? '' ) ); ?>" width="48" height="48" loading="lazy" decoding="async">
+					</span>
+					<?php else : ?>
 					<span class="ava"><?php echo self::e( $t['initial'] ?? 'م' ); ?></span>
+					<?php endif; ?>
 					<span><b><?php echo self::e( $t['name'] ?? '' ); ?></b><span><?php echo self::e( $t['role'] ?? '' ); ?></span></span>
+					<?php if ( '' !== $ava_link ) : ?>
+					<a class="tlink" href="<?php echo esc_url( self::url_or( $ava_link, '/' ) ); ?>" aria-label="<?php echo esc_attr( 'مشاهدهٔ ' . (string) ( $t['name'] ?? '' ) ); ?>">←</a>
+					<?php endif; ?>
 				</div>
 			</div>
 			<?php endforeach; ?>
@@ -597,10 +700,10 @@ final class Home_Templates {
 					<div class="sbody2">
 						<div class="tags">
 							<?php foreach ( (array) ( $b['tags'] ?? array() ) as $k => $tag ) : ?>
-							<span class="tag <?php echo esc_attr( array( 'a', 'b', 'c' )[ $k % 3 ] ); ?>"><?php echo self::e( $tag ); ?></span>
+							<a class="tag <?php echo esc_attr( array( 'a', 'b', 'c' )[ $k % 3 ] ); ?>" href="<?php echo esc_url( self::term_or_search_url( (string) $tag, 'category' ) ); ?>"><?php echo self::e( $tag ); ?></a>
 							<?php endforeach; ?>
 						</div>
-						<h3><?php echo self::e( $b['title'] ?? '' ); ?></h3>
+						<h3><?php $side_link = (string) ( $b['link'] ?? '' ); ?><?php if ( '' !== $side_link ) : ?><a href="<?php echo esc_url( self::url_or( $side_link, '/blog/' ) ); ?>"><?php echo self::e( $b['title'] ?? '' ); ?></a><?php else : ?><?php echo self::e( $b['title'] ?? '' ); ?><?php endif; ?></h3>
 						<p><?php echo self::e( $b['excerpt'] ?? '' ); ?></p>
 						<div class="bmeta">
 							<div class="who2"><span class="ava2" style="width:32px;height:32px;font-size:12px">ض</span><span><b><?php echo self::e( $b['author'] ?? '' ); ?></b><span><?php echo self::e( $b['date'] ?? '' ); ?></span></span></div>
