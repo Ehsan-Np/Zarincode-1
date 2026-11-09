@@ -416,13 +416,21 @@
 .zc-hp .add.g:hover,.zc-hp .add.g:focus-visible{background:var(--gold);color:var(--ink)}
 
 /* Text links, chips and tags react too (no dead hover anywhere) */
-.zc-hp .sec-head .link:hover,.zc-hp .sec-head .link:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
+/* The "view all" link sits beside .sec-head, inside .head-row. */
+.zc-hp .head-row .link,.zc-hp .sec-head .link{transition:color var(--zc-t),transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .head-row .link:hover,.zc-hp .head-row .link:focus-visible,
+.zc-hp .sec-head .link:hover,.zc-hp .sec-head .link:focus-visible{color:var(--gold-deep);transform:translateX(-3px);box-shadow:inset 0 -2px 0 var(--gold)}
+.zc-hp .head-row .link .ar{transition:transform var(--zc-t);display:inline-block}
+.zc-hp .head-row .link:hover .ar{transform:translateX(-5px)}
 .zc-hp .chip:hover,.zc-hp .chip:focus-visible{background:#fff;border-color:var(--gold-deep);color:var(--ink);transform:translateY(-2px)}
 .zc-hp .chip.on:hover{transform:translateY(-2px)}
 .zc-hp a.tag:hover,.zc-hp a.pill:hover,.zc-hp a.chip:hover{filter:brightness(.96)}
 .zc-hp .pop-item{transition:background-color var(--zc-t),transform var(--zc-t),padding-inline-start var(--zc-t)}
 .zc-hp .pop-item:hover{background:#FFFBEE;transform:translateX(-3px)}
-.zc-hp a.pop-item{display:block}
+.zc-hp a.pop-item{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;border-radius:14px}
+.zc-hp a.pop-item:hover h4,.zc-hp a.pop-item:focus-visible h4{color:var(--gold-deep)}
+.zc-hp a.pop-item .rank{transition:transform var(--zc-t),background-color var(--zc-t)}
+.zc-hp a.pop-item:hover .rank{transform:scale(1.08)}
 
 /* ---------- 3. Cards: richer but consistent hover ------------------- */
 .zc-hp :is(.svc,.pcard,.jcard,.tst,.scard,.featured,.plan,.tcard,.step,.bcard,.promo){
@@ -552,3 +560,49 @@
 .zc-hp .scard h3 a{transition:color var(--zc-t),box-shadow var(--zc-t);box-shadow:inset 0 -1px 0 transparent}
 .zc-hp .scard h3 a:hover,.zc-hp .scard h3 a:focus-visible{color:var(--gold-deep);box-shadow:inset 0 -1px 0 var(--gold)}
 .zc-hp .scard:hover h3 a{color:var(--gold-deep)}
+
+/* ---------- 9. Why / Steps / Partners / Promo: same hover language ---- */
+.zc-hp .bcard .em,
+.zc-hp .bento .bcard .em{width:56px;height:56px;border-radius:18px;background:#ffffffcf;box-shadow:0 8px 16px rgba(41,44,49,.1);margin:0 0 12px;font-size:24px}
+.zc-hp .bcard:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(41,44,49,.16)}
+.zc-hp .bcard:hover .em{transform:rotate(-6deg) scale(1.06)}
+.zc-hp .bcard .em{transition:transform var(--zc-t),background-color var(--zc-t)}
+.zc-hp .bcard::after{
+  content:"";position:absolute;inset-inline:0;bottom:0;height:4px;border-radius:4px 4px 0 0;
+  background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform var(--zc-t);
+}
+.zc-hp .bcard:hover::after{transform:scaleX(1)}
+
+.zc-hp .step:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(41,44,49,.15)}
+.zc-hp .step:hover .sic{background:var(--gold);transform:scale(1.07) rotate(-4deg)}
+.zc-hp .step .sic{transition:transform var(--zc-t),background-color var(--zc-t)}
+.zc-hp .step::before{transition:transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .step:hover::before{transform:translateX(50%) translateY(2px);box-shadow:0 12px 22px rgba(41,44,49,.22)}
+
+.zc-hp .promo{transition:box-shadow var(--zc-t),transform var(--zc-t)}
+.zc-hp .promo:hover{box-shadow:0 28px 60px rgba(232,169,59,.35)}
+.zc-hp .promo .k{transition:transform var(--zc-t),background-color var(--zc-t)}
+.zc-hp .promo:hover .k{transform:translateY(-2px)}
+
+.zc-hp .clients .pn,.zc-hp .clients .lab{
+  transition:color var(--zc-t),box-shadow var(--zc-t);
+  border-radius:999px;padding:2px 8px;
+}
+.zc-hp .clients .pn:hover,.zc-hp .clients .lab:hover{color:var(--gold-deep);box-shadow:inset 0 -1px 0 var(--gold)}
+.zc-hp .clients .phead{transition:transform var(--zc-t)}
+.zc-hp .clients .cbox2:hover .phead{transform:translateY(-1px)}
+.zc-hp .clients .plogo{cursor:default}
+
+/* ---------- 10. Fewer real items must not leave empty grid holes ------ */
+/* When a site has only 1–3 published items the grid keeps card-sized
+   columns and centres them instead of stretching/abandoning the track. */
+.zc-hp .grid3:has(> :only-child){grid-template-columns:minmax(0,340px);justify-content:center}
+.zc-hp .grid3:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,340px));justify-content:center}
+.zc-hp .grid4:has(> :only-child){grid-template-columns:minmax(0,300px);justify-content:center}
+.zc-hp .grid4:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,300px));justify-content:center}
+.zc-hp .grid4:has(> :nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,300px));justify-content:center}
+@media (max-width:900px){
+  .zc-hp .grid3:has(> :nth-child(2):last-child),
+  .zc-hp .grid4:has(> :nth-child(2):last-child),
+  .zc-hp .grid4:has(> :nth-child(3):last-child){grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+}

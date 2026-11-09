@@ -688,7 +688,7 @@ final class Home_Templates {
 					<p><?php echo self::e( $feat['excerpt'] ?? '' ); ?></p>
 					<a class="continue" href="<?php echo self::url_or( $feat['link'] ?? '', '/blog/' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
 					<div class="bmeta">
-						<div class="who2"><span class="ava2">ض</span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
+						<div class="who2"><span class="ava2"><?php echo self::e( mb_substr( (string) ( $feat['author'] ?? 'ز' ), 0, 1 ) ); ?></span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
 						<span class="timepill">🕐 <?php echo self::e( $feat['read'] ?? '' ); ?></span>
 					</div>
 				</div>
@@ -706,7 +706,7 @@ final class Home_Templates {
 						<h3><?php $side_link = (string) ( $b['link'] ?? '' ); ?><?php if ( '' !== $side_link ) : ?><a href="<?php echo esc_url( self::url_or( $side_link, '/blog/' ) ); ?>"><?php echo self::e( $b['title'] ?? '' ); ?></a><?php else : ?><?php echo self::e( $b['title'] ?? '' ); ?><?php endif; ?></h3>
 						<p><?php echo self::e( $b['excerpt'] ?? '' ); ?></p>
 						<div class="bmeta">
-							<div class="who2"><span class="ava2" style="width:32px;height:32px;font-size:12px">ض</span><span><b><?php echo self::e( $b['author'] ?? '' ); ?></b><span><?php echo self::e( $b['date'] ?? '' ); ?></span></span></div>
+							<div class="who2"><span class="ava2" style="width:32px;height:32px;font-size:12px"><?php echo self::e( mb_substr( (string) ( $b['author'] ?? 'ز' ), 0, 1 ) ); ?></span><span><b><?php echo self::e( $b['author'] ?? '' ); ?></b><span><?php echo self::e( $b['date'] ?? '' ); ?></span></span></div>
 							<span class="timepill" style="font-size:11.5px"><?php echo self::e( $b['read'] ?? '' ); ?></span>
 						</div>
 					</div>
@@ -716,8 +716,8 @@ final class Home_Templates {
 			<div class="side">
 				<div class="popular">
 					<div class="pop-head"><span class="ic"><?php echo self::ico( 'chart-simple' ); ?></span><span><b><?php echo self::e( $a['popular_title'] ?? '' ); ?></b><span><?php echo self::e( $a['popular_sub'] ?? '' ); ?></span></span></div>
-					<?php foreach ( $pop as $i => $p ) : ?>
-					<div class="pop-item"><span class="rank r<?php echo (int) ( $i + 1 ); ?>"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span><div><h4><?php echo self::e( $p['title'] ?? '' ); ?></h4><div class="pm">◆ <?php echo self::e( $p['meta'] ?? '' ); ?></div></div></div>
+					<?php foreach ( $pop as $i => $p ) : $pop_link = (string) ( $p['link'] ?? '' ); ?>
+					<<?php echo '' !== $pop_link ? 'a' : 'div'; ?><?php echo '' !== $pop_link ? ' href="' . esc_url( self::url_or( $pop_link, '/blog/' ) ) . '"' : ''; ?> class="pop-item"><span class="rank r<?php echo (int) ( $i + 1 ); ?>"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span><div><h4><?php echo self::e( $p['title'] ?? '' ); ?></h4><div class="pm">◆ <?php echo self::e( $p['meta'] ?? '' ); ?></div></div></<?php echo '' !== $pop_link ? 'a' : 'div'; ?>>
 					<?php endforeach; ?>
 				</div>
 				<div class="news">

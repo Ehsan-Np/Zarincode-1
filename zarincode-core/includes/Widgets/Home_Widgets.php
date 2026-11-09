@@ -302,6 +302,22 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 		return is_array( $rows ) ? array_values( array_filter( $rows, 'is_array' ) ) : array();
 	}
 
+	/**
+	 * Stores the prepared rows, and drops the key entirely when there are none
+	 * so the template falls back to its own demo/backup content instead of
+	 * rendering an empty grid.
+	 *
+	 * @param array $settings Widget settings, updated in place.
+	 * @param array $items    Prepared rows.
+	 */
+	protected function set_items( array &$settings, array $items ): void {
+		if ( $items ) {
+			$settings['items'] = array_values( $items );
+		} else {
+			unset( $settings['items'] );
+		}
+	}
+
 	/* ----------------------------------------------------- shared: content */
 
 	/**
@@ -328,17 +344,17 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 	}
 
 	/** Data-source selector shared by products / portfolio / blog. */
-	protected function source_controls( string $id, string $count_id, string $label, string $manual_label, string $query_label, int $count, int $min, int $max ): void {
+	protected function source_controls( string $id, string $count_id, string $label, string $manual_label, string $query_label, int $count, int $min, int $max, string $default = 'query' ): void {
 		$this->f_select( $this, $id, 'منبع داده', array(
-			'manual' => $manual_label,
 			'query'  => $query_label,
-		), 'manual' );
+			'manual' => $manual_label,
+		), $default );
 		$this->f_number( $this, $count_id, 'تعداد آیتم‌های نمایشی', $count, $min, $max );
 		$this->add_control( $count_id . '_note', array(
 			'type'            => C::RAW_HTML,
-			'raw'             => 'در حالت «کارت‌های دستی» محتوای زیر نمایش داده می‌شود؛ در حالت پویا آیتم‌ها از سایت خوانده می‌شوند.',
+			'raw'             => 'حالت پویا محتوا را از سایت می‌خواند و اگر هنوز محتوایی منتشر نشده باشد، برای جلوگیری از بخش خالی، همان کارت‌های دستی زیر نمایش داده می‌شود.',
 			'content_classes' => 'elementor-descriptor',
-			'condition'       => array( $id => 'manual' ),
+			'condition'       => array( $id => 'query' ),
 		) );
 	}
 
@@ -916,7 +932,7 @@ class Home_Services extends Abstract_Home_Widget {
 		$this->heading_controls();
 
 		$this->content_section( 'zc_services_source', 'منبع خدمات' );
-		$this->source_controls( 'source', 'count', 'خدمات', 'کارت‌های دستی (پیش‌فرض دمو)', 'خدمات واقعی سایت (نوشته‌های «خدمات»)', 6, 1, 12 );
+		$this->source_controls( 'source', 'count', 'خدمات', 'کارت‌های دستی (دلخواه)', 'خدمات واقعی سایت (نوشته‌های «خدمات»)', 6, 1, 12 );
 		$this->end_controls_section();
 
 		$this->content_section( 'zc_services_items', 'کارت‌های خدمات', array( 'source' => 'manual' ) );
@@ -962,7 +978,7 @@ class Home_Services extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
-		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
 			$this->fill_from_services( $settings );
 			return $settings;
 		}
@@ -991,7 +1007,7 @@ class Home_Services extends Abstract_Home_Widget {
 				'link_text' => (string) ( $row['link_text'] ?? '' ) ?: 'جزئیات',
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 		return $settings;
 	}
 
@@ -1085,7 +1101,7 @@ class Home_Services extends Abstract_Home_Widget {
 				'tone'      => $tones[ $index % 6 ],
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 	}
 }
 
@@ -1113,7 +1129,7 @@ class Home_Products extends Abstract_Home_Widget {
 		$this->heading_controls( true );
 
 		$this->content_section( 'zc_products_source', 'منبع محصولات' );
-		$this->source_controls( 'source', 'count', 'محصولات', 'کارت‌های دستی (پیش‌فرض دمو)', 'محصولات واقعی ووکامرس', 4, 1, 12 );
+		$this->source_controls( 'source', 'count', 'محصولات', 'کارت‌های دستی (دلخواه)', 'محصولات واقعی ووکامرس', 4, 1, 12 );
 		$this->f_text( $this, 'currency', 'واحد قیمت', $this->ds( 'currency', 'تومان' ) );
 		$this->f_text( $this, 'cta_text', 'متن دکمهٔ کارت', $this->ds( 'cta_text', 'مشاهده' ) );
 		$this->end_controls_section();
@@ -1156,30 +1172,37 @@ class Home_Products extends Abstract_Home_Widget {
 	protected function prepare( array $settings ): array {
 		$settings = $this->urls_to_string( $settings, array( 'link_url' ) );
 
-		if ( 'query' === ( $settings['source'] ?? 'manual' ) && function_exists( 'wc_get_products' ) ) {
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) && function_exists( 'wc_get_products' ) ) {
 			$products = wc_get_products( array(
 				'status'  => 'publish',
 				'limit'   => max( 1, (int) ( $settings['count'] ?? 4 ) ),
 				'orderby' => 'popularity',
 			) );
-			$items = array();
-			foreach ( $products as $product ) {
-				$regular = (float) $product->get_regular_price();
-				$price   = (float) $product->get_price();
-				$items[] = array(
-					'icon'     => 'cubes',
-					'discount' => '',
-					'kind'     => 'محصول دیجیتال',
-					'title'    => $product->get_name(),
-					'tags'     => array_slice( wp_get_post_terms( $product->get_id(), 'product_tag', array( 'fields' => 'names' ) ) ?: array(), 0, 3 ),
-					'old'      => $regular > $price ? number_format_i18n( $regular, 0 ) : '',
-					'now'      => number_format_i18n( $price, 0 ),
-					'link'     => get_permalink( $product->get_id() ),
-					'featured' => $product->is_featured() ? 'yes' : '',
-				);
+
+			if ( $products ) {
+				$items = array();
+				foreach ( $products as $product ) {
+					$regular = (float) $product->get_regular_price();
+					$price   = (float) $product->get_price();
+					$items[] = array(
+						'icon'     => 'cubes',
+						'discount' => '',
+						'kind'     => 'محصول دیجیتال',
+						'title'    => $product->get_name(),
+						'tags'     => array_slice( wp_get_post_terms( $product->get_id(), 'product_tag', array( 'fields' => 'names' ) ) ?: array(), 0, 3 ),
+						'old'      => $regular > $price ? number_format_i18n( $regular, 0 ) : '',
+						'now'      => number_format_i18n( $price, 0 ),
+						'link'     => get_permalink( $product->get_id() ),
+						'featured' => $product->is_featured() ? 'yes' : '',
+					);
+				}
+				if ( $items ) {
+					$this->set_items( $settings, $items );
+					return $settings;
+				}
 			}
-			$settings['items'] = $items;
-			return $settings;
+			// No published products (yet): fall through to the configured cards so
+			// the section never renders an empty grid.
 		}
 
 		$items = array();
@@ -1196,7 +1219,7 @@ class Home_Products extends Abstract_Home_Widget {
 				'link'     => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 		return $settings;
 	}
 }
@@ -1225,7 +1248,7 @@ class Home_Portfolio extends Abstract_Home_Widget {
 		$this->heading_controls( true );
 
 		$this->content_section( 'zc_portfolio_source', 'منبع پروژه‌ها' );
-		$this->source_controls( 'source', 'count', 'پروژه‌ها', 'کارت‌های دستی (پیش‌فرض دمو)', 'پروژه‌های واقعی (نمونه‌کار)', 3, 1, 9 );
+		$this->source_controls( 'source', 'count', 'پروژه‌ها', 'کارت‌های دستی (دلخواه)', 'پروژه‌های واقعی (نمونه‌کار)', 3, 1, 9 );
 		$this->f_text( $this, 'cta_text', 'متن پیوند کارت', $this->ds( 'cta_text', 'اطلاعات پروژه' ) );
 		$this->end_controls_section();
 
@@ -1264,7 +1287,7 @@ class Home_Portfolio extends Abstract_Home_Widget {
 		$settings = $this->urls_to_string( $settings, array( 'link_url' ) );
 		$items    = array();
 
-		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
 			$posts = get_posts( array(
 				'post_type'      => 'zc_project',
 				'numberposts'    => max( 1, (int) ( $settings['count'] ?? 3 ) ),
@@ -1282,8 +1305,8 @@ class Home_Portfolio extends Abstract_Home_Widget {
 					'link'  => get_permalink( $post ),
 				);
 			}
-			$settings['items'] = $items;
-			return $settings;
+			$this->set_items( $settings, $items );
+			return $settings; // No projects yet — keep the configured cards.
 		}
 
 		foreach ( $this->rows_of( $settings, 'items' ) as $row ) {
@@ -1297,7 +1320,7 @@ class Home_Portfolio extends Abstract_Home_Widget {
 				'link'  => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 		return $settings;
 	}
 }
@@ -1572,7 +1595,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 		$this->heading_controls();
 
 		$this->content_section( 'zc_testimonials_source', 'منبع نظرات' );
-		$this->source_controls( 'source', 'count', 'نظرات', 'نظرات دستی (پیش‌فرض دمو)', 'دیدگاه‌های واقعی محصولات (ووکامرس)', 3, 1, 12 );
+		$this->source_controls( 'source', 'count', 'نظرات', 'نظرات دستی (دلخواه)', 'دیدگاه‌های واقعی محصولات (ووکامرس)', 3, 1, 12 );
 		$this->f_switch( $this, 'use_gravatars', 'استفاده از تصویر پروفایل نویسنده در حالت پویا', 'yes' );
 		$this->end_controls_section();
 
@@ -1624,7 +1647,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
-		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
 			$this->fill_from_reviews( $settings );
 			return $settings;
 		}
@@ -1643,7 +1666,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 				'link'    => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 		return $settings;
 	}
 
@@ -1705,7 +1728,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 				'link'    => get_permalink( (int) $review->comment_post_ID ),
 			);
 		}
-		$settings['items'] = $items;
+		$this->set_items( $settings, $items );
 	}
 }
 
@@ -1733,7 +1756,7 @@ class Home_Blog extends Abstract_Home_Widget {
 		$this->heading_controls( true );
 
 		$this->content_section( 'zc_blog_source', 'منبع مقالات' );
-		$this->source_controls( 'source', 'count', 'مقالات', 'کارت‌های دستی (پیش‌فرض دمو)', 'آخرین نوشته‌های واقعی سایت', 3, 3, 7 );
+		$this->source_controls( 'source', 'count', 'مقالات', 'کارت‌های دستی (دلخواه)', 'آخرین نوشته‌های واقعی سایت', 3, 3, 7 );
 		$this->f_text( $this, 'read_more', 'متن پیوند «ادامه»', $this->ds( 'read_more', 'ادامهٔ مطلب' ) );
 		$this->end_controls_section();
 
@@ -1787,11 +1810,12 @@ class Home_Blog extends Abstract_Home_Widget {
 		$prow = new Repeater();
 		$this->f_text( $prow, 'title', 'عنوان مقاله' );
 		$this->f_text( $prow, 'meta', 'زیرنویس' );
+		$this->f_url( $prow, 'link', 'پیوند مقاله' );
 		$this->f_repeater(
 			'popular_items',
 			'پربازدیدترین‌ها',
 			$prow->get_controls(),
-			$this->pick_rows( $this->da( 'popular' ), array( 'title', 'meta' ) ),
+			$this->pick_rows( $this->da( 'popular' ), array( 'title', 'meta', 'link' ) ),
 			'title'
 		);
 		$newsletter = $this->dn( 'newsletter' );
@@ -1809,7 +1833,7 @@ class Home_Blog extends Abstract_Home_Widget {
 	protected function prepare( array $settings ): array {
 		$settings = $this->urls_to_string( $settings, array( 'link_url', 'f_link' ) );
 
-		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
 			$this->fill_from_posts( $settings );
 			return $settings;
 		}
@@ -1843,7 +1867,15 @@ class Home_Blog extends Abstract_Home_Widget {
 		}
 		$settings['side'] = $side;
 
-		$settings['popular'] = $this->rows_of( $settings, 'popular_items' );
+		$popular = array();
+		foreach ( $this->rows_of( $settings, 'popular_items' ) as $row ) {
+			$popular[] = array(
+				'title' => (string) ( $row['title'] ?? '' ),
+				'meta'  => (string) ( $row['meta'] ?? '' ),
+				'link'  => $this->link_of( $row['link'] ?? '' ),
+			);
+		}
+		$settings['popular'] = $popular;
 
 		$settings['newsletter'] = array(
 			'title'       => (string) ( $settings['news_title'] ?? '' ),
@@ -1914,6 +1946,7 @@ class Home_Blog extends Abstract_Home_Widget {
 			$popular[] = array(
 				'title' => get_the_title( $post ),
 				'meta'  => $first_cat( (int) $post->ID ) . ' · ' . $reading( $post ),
+				'link'  => get_permalink( $post ),
 			);
 		}
 		if ( $popular ) {

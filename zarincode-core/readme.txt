@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.8.0
+Stable tag: 4.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,18 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.9.0 =
+* Homepage integration: every homepage section can now be fed by real site content (services CPT, WooCommerce
+  products, product reviews, posts, projects) with a safe fallback to the configured cards when a site is empty.
+* Services and testimonials gained a «منبع داده» control; testimonials support a real client photo and author
+  avatars, plus optional links per quote.
+* Pricing: four working tracks (design / development / SEO / content) as an accessible tab list, 12 initial plans,
+  per-plan «مسیر» field so the Elementor panel stays the single source of truth.
+* Ticker: seamless horizontal marquee, links per item, pause on hover/focus and a visible pause button.
+* Header: current-menu state resolved from the request path with aria-current="page"; footer now shares the
+  header's dark plate, gold hairline and hover language so the site reads as one piece.
+* Icons: one centred box for every icon container (grid + place-items:center); keyboard focus parity everywhere.
 
 = 4.8.0 =
 * New «سئو و هوش مصنوعی» admin module (two screens): search-engine indexing + AI-visibility scanner.
