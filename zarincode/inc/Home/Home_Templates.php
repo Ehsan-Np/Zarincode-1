@@ -43,9 +43,12 @@ final class Home_Templates {
 		return esc_url( (string) ( $v ?: '#' ) );
 	}
 
-	/** Font Awesome solid glyph from a short name (display => f108). */
-	private static function ico( string $name ): string {
-		$map = array(
+	/**
+	 * Font Awesome solid glyphs used across the homepage (short name => code point).
+	 * Shared with the Elementor icon pickers via icon_choices().
+	 */
+	public static function icon_map(): array {
+		return array(
 			'circle-check' => 'f058', 'star' => 'f005', 'shield-halved' => 'f3ed', 'bolt' => 'f0e7',
 			'chart-line' => 'f201', 'handshake' => 'f2b5', 'cart-shopping' => 'f07a', 'magnifying-glass' => 'f002',
 			'comments' => 'f086', 'display' => 'f108', 'gears' => 'f085', 'arrow-trend-up' => 'e098',
@@ -58,8 +61,57 @@ final class Home_Templates {
 			'clock' => 'f017', 'file-lines' => 'f15c', 'phone' => 'f095', 'arrow-left' => 'f060',
 			'quote-right' => 'f10e', 'sparkles' => 'f890',
 		);
+	}
+
+	/** Persian labels for the icon picker, keyed by the same short names. */
+	public static function icon_labels(): array {
+		return array(
+			'circle-check' => 'تأیید', 'star' => 'ستاره', 'shield-halved' => 'سپر و امنیت', 'bolt' => 'سرعت',
+			'chart-line' => 'نمودار رشد', 'handshake' => 'همکاری', 'cart-shopping' => 'سبد خرید',
+			'magnifying-glass' => 'ذره‌بین و جست‌وجو', 'comments' => 'گفت‌وگو', 'display' => 'نمایشگر و وب‌سایت',
+			'gears' => 'چرخ‌دنده و فنی', 'arrow-trend-up' => 'روند صعودی', 'pen-nib' => 'قلم طراحی',
+			'hashtag' => 'هشتگ', 'cubes' => 'محصول و بسته', 'graduation-cap' => 'آموزش',
+			'robot' => 'هوش مصنوعی', 'building' => 'ساختمان', 'palette' => 'پالت رنگ', 'hospital' => 'درمان',
+			'newspaper' => 'مقاله', 'compass' => 'قطب‌نما و راهبرد', 'bullseye' => 'هدف',
+			'layer-group' => 'لایه‌ها', 'gift' => 'هدیه', 'pen-ruler' => 'طراحی و اندازه',
+			'screwdriver-wrench' => 'ابزار فنی', 'rocket' => 'شروع و رشد', 'wordpress' => 'وردپرس',
+			'envelope' => 'ایمیل', 'cloud' => 'ابر', 'building-columns' => 'سازمان',
+			'globe' => 'وب و جهان', 'server' => 'سرور', 'chart-simple' => 'نمودار ساده',
+			'users' => 'کاربران', 'clock' => 'ساعت و زمان', 'file-lines' => 'سند و مستندات',
+			'phone' => 'تلفن', 'arrow-left' => 'فلش', 'quote-right' => 'نقل‌قول', 'sparkles' => 'درخشش',
+		);
+	}
+
+	/** Options for an Elementor SELECT2 icon control. */
+	public static function icon_choices(): array {
+		$choices = array( '' => '— بدون آیکون —' );
+		foreach ( self::icon_labels() as $name => $label ) {
+			$choices[ $name ] = $label . ' — ' . $name;
+		}
+		return $choices;
+	}
+
+	/** Font Awesome solid glyph from a short name (display => f108). */
+	private static function ico( string $name ): string {
+		if ( '' === $name ) {
+			return '';
+		}
+		$map  = self::icon_map();
 		$code = $map[ $name ] ?? 'f111';
 		return '<span class="fa" aria-hidden="true">&#x' . $code . ';</span>';
+	}
+
+	/**
+	 * Reads a list from the settings, falling back to the content model.
+	 *
+	 * An empty array in $a means "the editor removed every row" and renders
+	 * nothing — that is why array_key_exists() is used instead of !empty().
+	 */
+	private static function list_of( array $a, array $d, string $key ): array {
+		if ( array_key_exists( $key, $a ) && is_array( $a[ $key ] ) ) {
+			return array_values( $a[ $key ] );
+		}
+		return isset( $d[ $key ] ) && is_array( $d[ $key ] ) ? array_values( $d[ $key ] ) : array();
 	}
 
 	private static function stars( int $n ): string {
@@ -71,9 +123,9 @@ final class Home_Templates {
 	public static function hero( array $s ): string {
 		$d = self::defaults( 'hero' );
 		$a = array_merge( $d, $s );
-		$badges  = ! empty( $a['badges'] ) && is_array( $a['badges'] ) ? $a['badges'] : ( $d['badges'] ?? array() );
-		$trust   = ! empty( $a['trust'] ) && is_array( $a['trust'] ) ? $a['trust'] : ( $d['trust'] ?? array() );
-		$floats  = ! empty( $a['floats'] ) && is_array( $a['floats'] ) ? $a['floats'] : ( $d['floats'] ?? array() );
+		$badges = self::list_of( $a, $d, 'badges' );
+		$trust  = self::list_of( $a, $d, 'trust' );
+		$floats = self::list_of( $a, $d, 'floats' );
 		ob_start();
 		?>
 <div class="hero">
@@ -122,10 +174,9 @@ final class Home_Templates {
 	/* ------------------------------------------------------------ TICKER */
 
 	public static function ticker( array $s ): string {
-		$items = ! empty( $s['items'] ) && is_array( $s['items'] ) ? $s['items'] : array(
-			'وردپرس و المنتور', 'لاراول و PHP 8.4', 'React و Next.js', 'سئوی داده‌محور', 'ووکامرس',
-			'طراحی UI/UX', 'امنیت سازمانی', 'هوش مصنوعی', 'سورس‌کدهای آماده',
-		);
+		$items = array_key_exists( 'items', $s ) && is_array( $s['items'] )
+			? $s['items']
+			: (array) ( self::defaults( 'hero' )['ticker'] ?? array() );
 		$out = '';
 		foreach ( $items as $it ) {
 			$out .= self::e( $it ) . '<b>◆</b> ';
@@ -138,7 +189,7 @@ final class Home_Templates {
 	public static function partners( array $s ): string {
 		$d = self::defaults( 'partners' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		ob_start();
 		?>
 <div class="clients">
@@ -208,7 +259,7 @@ final class Home_Templates {
 	public static function services( array $s ): string {
 		$d = self::defaults( 'services' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		$tones = array( 'sc-a', 'sc-b', 'sc-c', 'sc-d', 'sc-e', 'sc-f' );
 		ob_start();
 		?>
@@ -252,13 +303,13 @@ final class Home_Templates {
 	public static function products( array $s ): string {
 		$d = self::defaults( 'products' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		$covers = array( 'pc1', 'pc2', 'pc3', 'pc4' );
 		ob_start();
 		?>
-<section style="padding-top:10px">
+<section class="pt-tight">
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), '/shop/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/shop/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="grid4">
 			<?php foreach ( $items as $i => $it ) : $cover = $covers[ $i % 4 ]; ?>
 			<div class="pcard">
@@ -275,9 +326,9 @@ final class Home_Templates {
 					<div class="prow">
 						<span>
 							<?php if ( ! empty( $it['old'] ) ) : ?><span class="old"><?php echo self::e( $it['old'] ); ?></span><?php endif; ?>
-							<span class="now"><?php echo self::e( $it['now'] ?? '' ); ?> <small>تومان</small></span>
+							<span class="now"><?php echo self::e( $it['now'] ?? '' ); ?><?php if ( ! empty( $a['currency'] ) ) : ?> <small><?php echo self::e( $a['currency'] ); ?></small><?php endif; ?></span>
 						</span>
-						<a class="add <?php echo ! empty( $it['featured'] ) ? 'g' : ''; ?>" href="<?php echo self::url( $it['link'] ?? '' ); ?>">مشاهده</a>
+						<a class="add <?php echo ! empty( $it['featured'] ) ? 'g' : ''; ?>" href="<?php echo self::url( $it['link'] ?? '' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?></a>
 					</div>
 				</div>
 			</div>
@@ -294,13 +345,13 @@ final class Home_Templates {
 	public static function portfolio( array $s ): string {
 		$d = self::defaults( 'portfolio' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		$tones = array( 'jc1', 'jc2', 'jc3' );
 		ob_start();
 		?>
-<section style="background:linear-gradient(180deg,transparent,#FFFBEE55 30%,#FFFBEE55 70%,transparent)">
+<section class="tint-cream">
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), '/projects-portfolio/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/projects-portfolio/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="grid3">
 			<?php foreach ( $items as $i => $it ) : ?>
 			<div class="jcard">
@@ -314,7 +365,7 @@ final class Home_Templates {
 					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
 					<div class="jrow">
 						<span class="cat <?php echo esc_attr( (string) ( $it['tone'] ?? 'c1' ) ); ?>"><?php echo self::e( $it['cat'] ?? '' ); ?></span>
-						<a class="go" href="<?php echo self::url( $it['link'] ?? '' ); ?>">اطلاعات پروژه ←</a>
+						<a class="go" href="<?php echo self::url( $it['link'] ?? '' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?> ←</a>
 					</div>
 				</div>
 			</div>
@@ -331,7 +382,7 @@ final class Home_Templates {
 	public static function why( array $s ): string {
 		$d = self::defaults( 'why' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		ob_start();
 		?>
 <section>
@@ -361,10 +412,10 @@ final class Home_Templates {
 	public static function steps( array $s ): string {
 		$d = self::defaults( 'steps' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		ob_start();
 		?>
-<section style="background:linear-gradient(180deg,transparent,#FFF1C955 30%,#FFF1C955 70%,transparent)">
+<section class="tint-gold">
 	<div class="wrap">
 		<?php echo self::head( $a, '', '', true ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="steps">
@@ -387,9 +438,9 @@ final class Home_Templates {
 	public static function pricing( array $s ): string {
 		$d = self::defaults( 'pricing' );
 		$a = array_merge( $d, $s );
-		$plans  = ! empty( $a['plans'] ) && is_array( $a['plans'] ) ? $a['plans'] : ( $d['plans'] ?? array() );
-		$tabs   = ! empty( $a['tabs'] ) && is_array( $a['tabs'] ) ? $a['tabs'] : ( $d['tabs'] ?? array() );
-		$matrix = ! empty( $a['matrix'] ) && is_array( $a['matrix'] ) ? $a['matrix'] : ( $d['matrix'] ?? array() );
+		$plans  = self::list_of( $a, $d, 'plans' );
+		$tabs   = self::list_of( $a, $d, 'tabs' );
+		$matrix = array_key_exists( 'matrix', $a ) && is_array( $a['matrix'] ) ? $a['matrix'] : ( $d['matrix'] ?? array() );
 		ob_start();
 		?>
 <section>
@@ -408,7 +459,7 @@ final class Home_Templates {
 				<?php if ( ! empty( $p['flag'] ) ) : ?><span class="flag"><?php echo self::e( $p['flag'] ); ?></span><?php endif; ?>
 				<h4><?php echo self::e( $p['title'] ?? '' ); ?></h4>
 				<div class="sub"><?php echo self::e( $p['delivery'] ?? '' ); ?></div>
-				<div class="pprice"><span>بازهٔ سرمایه‌گذاری</span><b><?php echo self::e( $p['price'] ?? '' ); ?> <small>میلیون تومان</small></b></div>
+				<div class="pprice"><span><?php echo self::e( $a['price_label'] ?? '' ); ?></span><b><?php echo self::e( $p['price'] ?? '' ); ?><?php if ( ! empty( $a['price_unit'] ) ) : ?> <small><?php echo self::e( $a['price_unit'] ); ?></small><?php endif; ?></b></div>
 				<?php if ( ! empty( $p['features'] ) && is_array( $p['features'] ) ) : ?>
 				<ul><?php foreach ( $p['features'] as $f ) : ?><li><?php echo self::e( $f ); ?></li><?php endforeach; ?></ul>
 				<?php endif; ?>
@@ -444,11 +495,11 @@ final class Home_Templates {
 	public static function testimonials( array $s ): string {
 		$d = self::defaults( 'testimonials' );
 		$a = array_merge( $d, $s );
-		$items = ! empty( $a['items'] ) && is_array( $a['items'] ) ? $a['items'] : ( $d['items'] ?? array() );
+		$items = self::list_of( $a, $d, 'items' );
 		$tones = array( 'tt1', 'tt2', 'tt3' );
 		ob_start();
 		?>
-<section style="background:linear-gradient(180deg,transparent,#F1EBFF44 30%,#F1EBFF44 70%,transparent)">
+<section class="tint-violet">
 	<div class="wrap">
 		<?php echo self::head( $a, '', '', true ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="tgrid">
@@ -476,14 +527,14 @@ final class Home_Templates {
 		$d = self::defaults( 'blog' );
 		$a = array_merge( $d, $s );
 		$feat = array_merge( (array) ( $d['featured'] ?? array() ), (array) ( $a['featured'] ?? array() ) );
-		$side = ! empty( $a['side'] ) && is_array( $a['side'] ) ? $a['side'] : ( $d['side'] ?? array() );
-		$pop  = ! empty( $a['popular'] ) && is_array( $a['popular'] ) ? $a['popular'] : ( $d['popular'] ?? array() );
+		$side = self::list_of( $a, $d, 'side' );
+		$pop  = self::list_of( $a, $d, 'popular' );
 		$news = array_merge( (array) ( $d['newsletter'] ?? array() ), (array) ( $a['newsletter'] ?? array() ) );
 		ob_start();
 		?>
 <section>
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), '/blog/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/blog/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="bgrid">
 			<article class="featured">
 				<div class="fcover">
@@ -495,7 +546,7 @@ final class Home_Templates {
 				</div>
 				<div class="fbody">
 					<p><?php echo self::e( $feat['excerpt'] ?? '' ); ?></p>
-					<a class="continue" href="<?php echo self::url( $feat['link'] ?? '' ); ?>">ادامهٔ مطلب <span class="ar">←</span></a>
+					<a class="continue" href="<?php echo self::url( $feat['link'] ?? '' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
 					<div class="bmeta">
 						<div class="who2"><span class="ava2">ض</span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
 						<span class="timepill">🕐 <?php echo self::e( $feat['read'] ?? '' ); ?></span>
@@ -524,7 +575,7 @@ final class Home_Templates {
 			</div>
 			<div class="side">
 				<div class="popular">
-					<div class="pop-head"><span class="ic"><?php echo self::ico( 'chart-simple' ); ?></span><span><b>پربازدیدترین‌ها</b><span>این ماه مجلهٔ زرین کد</span></span></div>
+					<div class="pop-head"><span class="ic"><?php echo self::ico( 'chart-simple' ); ?></span><span><b><?php echo self::e( $a['popular_title'] ?? '' ); ?></b><span><?php echo self::e( $a['popular_sub'] ?? '' ); ?></span></span></div>
 					<?php foreach ( $pop as $i => $p ) : ?>
 					<div class="pop-item"><span class="rank r<?php echo (int) ( $i + 1 ); ?>"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span><div><h4><?php echo self::e( $p['title'] ?? '' ); ?></h4><div class="pm">◆ <?php echo self::e( $p['meta'] ?? '' ); ?></div></div></div>
 					<?php endforeach; ?>
@@ -552,7 +603,7 @@ final class Home_Templates {
 		$a = array_merge( $d, $s );
 		ob_start();
 		?>
-<section style="padding-top:10px">
+<section class="pt-tight">
 	<div class="wrap">
 		<div class="promo">
 			<span class="k">✦ <?php echo self::e( $a['badge'] ?? '' ); ?></span>

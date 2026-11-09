@@ -3,7 +3,7 @@
  * Plugin Name: Zarincode Core (هسته و ویجت‌های المنتوری قالب زرین کد)
  * Plugin URI:  https://zarincode.com
  * Description: افزونه هسته و ضروری قالب وردپرس «زرین کد (Zarincode)» شامل ۲۶ ویجت المنتور با ویرایش محتوای متصل به پیش‌نمایش، پست‌تایپ‌های خدمات و نمونه‌کارها، هدر و فوترساز المنتوری، اتصال به ووکامرس و درون‌ریز هوشمند دمو و صفحات حقوقی (قوانین ایران، گارانتی، بازگشت وجه، حریم خصوصی، GDPR و DMCA).
- * Version:     4.6.0
+ * Version:     4.7.0
  * Author:      Ehsan NaderiPanah (احسان نادری پناه)
  * Author URI:  https://zarincode.com
  * Text Domain: zarincode-core

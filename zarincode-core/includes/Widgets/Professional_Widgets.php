@@ -78,7 +78,9 @@ abstract class Professional_Widget extends Widget_Base {
     }
     protected function register_controls(): void {
         $type=$this->type();
-        $this->start_controls_section('intro',['label'=>'عنوان و معرفی']);
+        // The section id must differ from the `intro` control id below: Elementor
+        // treats sections as controls and rejects two entries sharing one name.
+        $this->start_controls_section('intro_section',['label'=>'عنوان و معرفی']);
         $this->control('eyebrow','نشان بالای عنوان',C::TEXT,'ZARINCODE / DIGITAL STUDIO');
         $this->control('title','عنوان',C::TEXT,self::catalog()[$type][2]);
         $this->control('tag','تگ عنوان',C::SELECT,'h2',['options'=>['h1'=>'H1','h2'=>'H2','h3'=>'H3','div'=>'DIV']]);

@@ -8,15 +8,35 @@ class Renderer {
     private static ?Renderer $instance=null;
     public static function instance(): Renderer { return self::$instance??(self::$instance=new self()); }
     private function __construct(){add_shortcode('zarincode_widget',[$this,'handle_shortcode']);}
-    /** Homepage sections rendered by dedicated templates (v4.6.0). */
-    private const HOME_SECTIONS=['home_hero','home_partners','home_services','home_products','home_portfolio','home_why','home_steps','home_pricing','home_testimonials','home_blog','home_promo'];
+    /**
+     * Homepage sections rendered by dedicated templates.
+     *
+     * The shortcode type is the widget name (`home_hero`); the template method is
+     * the bare section name (`hero`). Both sides are mapped explicitly so that a
+     * rename on either one can never produce a fatal "undefined method" error.
+     */
+    private const HOME_SECTIONS=[
+        'home_hero' => 'hero',
+        'home_partners' => 'partners',
+        'home_services' => 'services',
+        'home_products' => 'products',
+        'home_portfolio' => 'portfolio',
+        'home_why' => 'why',
+        'home_steps' => 'steps',
+        'home_pricing' => 'pricing',
+        'home_testimonials' => 'testimonials',
+        'home_blog' => 'blog',
+        'home_promo' => 'promo',
+    ];
     public function handle_shortcode($atts): string {
         $atts=shortcode_atts(['type'=>'hero','section'=>'','count'=>8],$atts,'zarincode_widget');
         $kind=sanitize_key($atts['type']);
-        if(in_array($kind,self::HOME_SECTIONS,true)){
-            if(!class_exists('\Zarincode\Theme\Home\Home_Templates'))return '';
+        if(isset(self::HOME_SECTIONS[$kind])){
             $tpl='\Zarincode\Theme\Home\Home_Templates';
-            return $tpl::wrap_open().'<div class="zc-hp-body">'.$tpl::{$kind}([]).'</div>'.$tpl::wrap_close();
+            $method=self::HOME_SECTIONS[$kind];
+            if(!class_exists($tpl)||!method_exists($tpl,$method))return '';
+            $html=$tpl::$method(array());
+            return ''===$html?'':$tpl::wrap_open().'<div class="zc-hp-body">'.$html.'</div>'.$tpl::wrap_close();
         }
         if(!isset(Widget_Schema::definitions()[$kind]))return '';
         if($kind==='page_section')$atts['section_key']=$atts['section']?:'about-page';

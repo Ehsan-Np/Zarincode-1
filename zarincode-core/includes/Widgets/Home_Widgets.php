@@ -1,10 +1,20 @@
 <?php
 /**
- * Homepage Elementor widgets — "cheerful + formal" homepage (v4.6.0).
+ * Homepage section widgets — "cheerful + formal" homepage (v4.7.0).
  *
- * Each widget renders one homepage section through Home_Templates and exposes
- * every heading plus item repeaters in the Elementor panel, so the page stays
- * 100% editable without touching code.
+ * Eleven widgets compose the homepage. Each one behaves like a stock Elementor
+ * widget, so it can be edited without touching code:
+ *
+ *   • Content tab  — every string, link, icon, repeater row and data source.
+ *   • Style tab    — background, typography, colors, spacing, border, radius and
+ *                    shadow, all wired through Elementor `selectors` so the live
+ *                    preview updates instantly and Elementor generates the CSS.
+ *   • Advanced tab — the standard Elementor controls (margin, padding, motion…).
+ *
+ * Control defaults are read from the theme content model
+ * (zarincode/inc/Home/home-content.json) through Home_Templates::defaults(), so a
+ * freshly dropped widget already shows the approved copy instead of empty fields,
+ * and clearing a field really clears it on the front end.
  *
  * @package Zarincode\Runtime260\Widgets
  */
@@ -12,618 +22,1771 @@
 namespace Zarincode\Runtime260\Widgets;
 
 use Elementor\Widget_Base;
-use Elementor\Controls_Manager;
+use Elementor\Controls_Manager as C;
 use Elementor\Repeater;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Background;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
 use Zarincode\Theme\Home\Home_Templates;
 
 defined( 'ABSPATH' ) || exit;
 
+/* ===================================================================== BASE */
+
 abstract class Abstract_Home_Widget extends Widget_Base {
 
+	/** Elementor panel category registered by Elementor_Loader::register_category(). */
+	public const CATEGORY = 'zarincode-home';
+
+	/** Section heading selectors reused by the style controls. */
+	private const SEL_BADGE = '{{WRAPPER}} .zc-hp .sec-head .k, {{WRAPPER}} .zc-hp .head-row .k';
+	private const SEL_TITLE = '{{WRAPPER}} .zc-hp h2.t';
+	private const SEL_HILITE = '{{WRAPPER}} .zc-hp h2.t .g';
+	private const SEL_DESC = '{{WRAPPER}} .zc-hp .sec-head p, {{WRAPPER}} .zc-hp .head-row p';
+	private const SEL_LINK = '{{WRAPPER}} .zc-hp .head-row .link';
+
+	/** Cached content model for this section. */
+	private ?array $content_defaults = null;
+
+	/* ------------------------------------------------------------ Elementor */
+
 	public function get_categories(): array {
-		return array( 'zarincode' );
+		return array( self::CATEGORY );
 	}
 
 	public function get_keywords(): array {
-		return array( 'zarincode', 'home', 'صفحه اصلی' );
-	}
-
-	public function get_icon(): string {
-		return 'eicon-post-content';
+		return array( 'zarincode', 'زرین کد', 'صفحه اصلی', 'home', $this->section_slug() );
 	}
 
 	public function get_style_depends(): array {
 		return array( 'zarincode-home-cheerful' );
 	}
 
-	protected function section_slug(): string {
-		return '';
+	/** Sections read posts/products, so Elementor must not cache the output. */
+	protected function is_dynamic_content(): bool {
+		return true;
 	}
 
-	/** Section heading controls shared by the content sections. */
-	protected function heading_controls( bool $with_after = false ): void {
-		$this->start_controls_section( 'zc_head', array( 'label' => 'عنوان و توضیح بخش' ) );
-		$this->add_control( 's_badge', array( 'label' => 'برچسب بالای عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 's_title', array( 'label' => 'عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 's_highlight', array( 'label' => 'بخش هایلایت‌شدهٔ عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		if ( $with_after ) {
-			$this->add_control( 's_after', array( 'label' => 'ادامهٔ عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
+	/** Theme template method that renders this section (hero, services, …). */
+	abstract protected function section_slug(): string;
+
+	/** Elementor section ids that hold editable content (not style/advanced). */
+	private array $content_sections = array();
+
+	/** Opens a content-tab section and remembers it for Home_Defaults. */
+	protected function content_section( string $id, string $label, array $condition = array() ): void {
+		$this->content_sections[] = $id;
+		$args = array( 'label' => $label, 'tab' => C::TAB_CONTENT );
+		if ( $condition ) {
+			$args['condition'] = $condition;
 		}
-		$this->add_control( 's_desc', array( 'label' => 'توضیح زیر عنوان', 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => '' ) );
-		$this->add_control( 's_more_text', array( 'label' => 'متن پیوند «مشاهده همه»', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 's_more_url', array( 'label' => 'نشانی پیوند «مشاهده همه»', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
+		$this->start_controls_section( $id, $args );
+	}
+
+	/** Section ids registered through content_section(). */
+	public function get_content_section_ids(): array {
+		return $this->content_sections;
+	}
+
+	/** Turns Elementor settings into the array the template expects. */
+	protected function prepare( array $settings ): array {
+		return $settings;
+	}
+
+	/* -------------------------------------------------- content model access */
+
+	protected function defaults(): array {
+		if ( null === $this->content_defaults ) {
+			$this->content_defaults = class_exists( Home_Templates::class )
+				? Home_Templates::defaults( $this->section_slug() )
+				: array();
+		}
+		return $this->content_defaults;
+	}
+
+	/** Raw default for a content key ('' when missing). */
+	protected function d( string $key, $fallback = '' ) {
+		$d = $this->defaults();
+		return array_key_exists( $key, $d ) ? $d[ $key ] : $fallback;
+	}
+
+	/** String default — safe for TEXT/TEXTAREA controls. */
+	protected function ds( string $key, string $fallback = '' ): string {
+		$value = $this->d( $key, $fallback );
+		return is_scalar( $value ) ? (string) $value : $fallback;
+	}
+
+	/** Array default — safe for repeaters. */
+	protected function da( string $key ): array {
+		$value = $this->d( $key, array() );
+		return is_array( $value ) ? array_values( $value ) : array();
+	}
+
+	/** Nested array default (featured, matrix, newsletter…). */
+	protected function dn( string $key ): array {
+		$value = $this->d( $key, array() );
+		return is_array( $value ) ? $value : array();
+	}
+
+	/* -------------------------------------------------------- field helpers */
+
+	/** Adds a control to the widget or to a repeater instance. */
+	protected function field( $target, string $id, array $args ): void {
+		$target->add_control( $id, $args );
+	}
+
+	protected function f_text( $target, string $id, string $label, string $default = '', array $extra = array() ): void {
+		$this->field( $target, $id, array_merge( array(
+			'label'       => $label,
+			'type'        => C::TEXT,
+			'default'     => $default,
+			'label_block' => true,
+			'dynamic'     => array( 'active' => true ),
+		), $extra ) );
+	}
+
+	protected function f_area( $target, string $id, string $label, string $default = '', array $extra = array() ): void {
+		$this->field( $target, $id, array_merge( array(
+			'label'       => $label,
+			'type'        => C::TEXTAREA,
+			'default'     => $default,
+			'rows'        => 3,
+			'label_block' => true,
+			'dynamic'     => array( 'active' => true ),
+		), $extra ) );
+	}
+
+	protected function f_url( $target, string $id, string $label, string $default = '' ): void {
+		$this->field( $target, $id, array(
+			'label'       => $label,
+			'type'        => C::URL,
+			'default'     => array( 'url' => $default ),
+			'label_block' => true,
+			'placeholder' => '/contact-us/',
+			'dynamic'     => array( 'active' => true ),
+		) );
+	}
+
+	protected function f_number( $target, string $id, string $label, $default, int $min, int $max ): void {
+		$this->field( $target, $id, array(
+			'label'   => $label,
+			'type'    => C::NUMBER,
+			'default' => $default,
+			'min'     => $min,
+			'max'     => $max,
+		) );
+	}
+
+	protected function f_select( $target, string $id, string $label, array $options, string $default = '', string $type = C::SELECT ): void {
+		$this->field( $target, $id, array(
+			'label'       => $label,
+			'type'        => $type,
+			'options'     => $options,
+			'default'     => $default,
+			'label_block' => true,
+		) );
+	}
+
+	protected function f_switch( $target, string $id, string $label, string $default = 'yes' ): void {
+		$this->field( $target, $id, array(
+			'label'        => $label,
+			'type'         => C::SWITCHER,
+			'default'      => $default,
+			'return_value' => 'yes',
+		) );
+	}
+
+	/** Icon picker: a searchable list of the Font Awesome glyphs the design ships. */
+	protected function f_icon( $target, string $id = 'icon', string $default = 'display' ): void {
+		$options = class_exists( Home_Templates::class ) ? Home_Templates::icon_choices() : array();
+		$this->field( $target, $id, array(
+			'label'       => 'آیکون',
+			'type'        => C::SELECT2,
+			'options'     => $options,
+			'default'     => $default,
+			'label_block' => true,
+		) );
+	}
+
+	/**
+	 * Registers a repeater with stable row identities and real defaults.
+	 *
+	 * @param string $id          Control id.
+	 * @param string $label       Panel label.
+	 * @param array  $fields      field id => control args.
+	 * @param array  $rows        default rows (already in template shape).
+	 * @param string $title_field Field used as the collapsed row title.
+	 */
+	protected function f_repeater( string $id, string $label, array $fields, array $rows, string $title_field ): void {
+		// $fields is Repeater::get_controls(), which already carries Elementor's hidden
+		// `_id` field. Building a second Repeater around it would redeclare `_id`.
+		$this->add_control( $id, array(
+			'label'         => $label,
+			'type'          => C::REPEATER,
+			'fields'        => $fields,
+			'default'       => Repeater_Identity::rows( $rows, $this->get_name() . '.' . $id, $fields ),
+			'title_field'   => '{{{ ' . $title_field . ' }}}',
+			'prevent_empty' => false,
+			'label_block'   => true,
+		) );
+	}
+
+	/* --------------------------------------------------- normalisation utils */
+
+	/** URL controls return arrays; the templates expect plain strings. */
+	protected function urls_to_string( array $settings, array $keys ): array {
+		foreach ( $keys as $key ) {
+			$value = $settings[ $key ] ?? '';
+			if ( is_array( $value ) ) {
+				$settings[ $key ] = (string) ( $value['url'] ?? '' );
+			}
+		}
+		return $settings;
+	}
+
+	/** "a, b , c" or an array → clean list. */
+	protected function to_list( $value ): array {
+		if ( is_array( $value ) ) {
+			$items = $value;
+		} else {
+			$items = preg_split( '/[,،]+/u', (string) $value );
+		}
+		$items = array_map( 'trim', (array) $items );
+		return array_values( array_filter( $items, static fn( $v ) => '' !== $v && null !== $v ) );
+	}
+
+	/** Textarea (one item per line) → clean list. */
+	protected function to_lines( $value ): array {
+		$items = preg_split( '/[\r\n]+/u', (string) $value );
+		$items = array_map( 'trim', (array) $items );
+		$items = array_filter( $items, static fn( $v ) => '' !== $v );
+		return array_values( $items );
+	}
+
+	/** Only the given keys, keeping repeater rows in template shape. */
+	protected function pick_rows( $rows, array $keys ): array {
+		$out = array();
+		foreach ( (array) $rows as $row ) {
+			if ( ! is_array( $row ) ) {
+				continue;
+			}
+			$item = array();
+			foreach ( $keys as $key ) {
+				if ( array_key_exists( $key, $row ) ) {
+					$item[ $key ] = $row[ $key ];
+				}
+			}
+			$out[] = $item;
+		}
+		return $out;
+	}
+
+	/** Repeater rows are always arrays, never "not set". */
+	protected function rows_of( array $settings, string $key ): array {
+		$rows = $settings[ $key ] ?? array();
+		return is_array( $rows ) ? array_values( array_filter( $rows, 'is_array' ) ) : array();
+	}
+
+	/* ----------------------------------------------------- shared: content */
+
+	/**
+	 * Standard section heading controls.
+	 *
+	 * @param bool $with_link Show the "مشاهده همه" link controls.
+	 */
+	protected function heading_controls( bool $with_link = false ): void {
+		$this->content_section( 'zc_heading', 'عنوان و توضیح بخش' );
+		$this->f_text( $this, 'badge', 'برچسب بالای عنوان', $this->ds( 'badge' ), array(
+			'description' => 'چیپ کوچک بالای عنوان. برای حذف، فیلد را خالی کنید.',
+		) );
+		$this->f_text( $this, 'title', 'عنوان', $this->ds( 'title' ) );
+		$this->f_text( $this, 'title_highlight', 'بخش هایلایت‌شدهٔ عنوان', $this->ds( 'title_highlight' ), array(
+			'description' => 'این عبارت با هایلایتر طلایی مشخص می‌شود.',
+		) );
+		$this->f_text( $this, 'title_after', 'ادامهٔ عنوان', $this->ds( 'title_after' ) );
+		$this->f_area( $this, 'desc', 'توضیح زیر عنوان', $this->ds( 'desc' ) );
+		if ( $with_link ) {
+			$this->f_text( $this, 'link_text', 'متن پیوند «مشاهده همه»', $this->ds( 'link_text' ) );
+			$this->f_url( $this, 'link_url', 'نشانی پیوند «مشاهده همه»', $this->ds( 'link_url' ) );
+		}
 		$this->end_controls_section();
 	}
 
-	protected function settings_with_head(): array {
-		$s = $this->get_settings_for_display();
-		$map = array(
-			'badge'           => 's_badge',
-			'title'           => 's_title',
-			'title_highlight' => 's_highlight',
-			'title_after'     => 's_after',
-			'desc'            => 's_desc',
-			'link_text'       => 's_more_text',
+	/** Data-source selector shared by products / portfolio / blog. */
+	protected function source_controls( string $id, string $count_id, string $label, string $manual_label, string $query_label, int $count, int $min, int $max ): void {
+		$this->f_select( $this, $id, 'منبع داده', array(
+			'manual' => $manual_label,
+			'query'  => $query_label,
+		), 'manual' );
+		$this->f_number( $this, $count_id, 'تعداد آیتم‌های نمایشی', $count, $min, $max );
+		$this->add_control( $count_id . '_note', array(
+			'type'            => C::RAW_HTML,
+			'raw'             => 'در حالت «کارت‌های دستی» محتوای زیر نمایش داده می‌شود؛ در حالت پویا آیتم‌ها از سایت خوانده می‌شوند.',
+			'content_classes' => 'elementor-descriptor',
+			'condition'       => array( $id => 'manual' ),
+		) );
+	}
+
+	/* --------------------------------------------------- shared: style tabs */
+
+	/** Section shell: background, padding, margin, radius. */
+	protected function style_shell(): void {
+		$this->start_controls_section( 'zc_style_shell', array( 'label' => 'پوستهٔ بخش', 'tab' => C::TAB_STYLE ) );
+		$this->add_group_control( Group_Control_Background::get_type(), array(
+			'name'     => 'sec_bg',
+			'label'    => 'پس‌زمینهٔ بخش',
+			'types'    => array( 'classic', 'gradient' ),
+			'exclude'  => Editor_Controls::BACKGROUND_EXCLUDE,
+			'selector' => '{{WRAPPER}} .zc-hp',
+		) );
+		$this->add_responsive_control( 'sec_padding', array(
+			'label'      => 'فاصلهٔ داخلی',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', 'em', 'rem', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_responsive_control( 'sec_margin', array(
+			'label'      => 'فاصلهٔ بیرونی',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', 'em', 'rem', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_responsive_control( 'sec_radius', array(
+			'label'      => 'گردی گوشه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+			),
+		) );
+		$this->end_controls_section();
+	}
+
+	/** Section heading styles: badge, title, highlight, description, link. */
+	protected function style_heading( bool $with_link = false ): void {
+		$this->start_controls_section( 'zc_style_head', array( 'label' => 'عنوان بخش', 'tab' => C::TAB_STYLE ) );
+
+		$this->add_control( 'head_badge_heading', array( 'label' => 'برچسب بالای عنوان', 'type' => C::HEADING ) );
+		$this->add_control( 'badge_color', array(
+			'label'     => 'رنگ متن',
+			'type'      => C::COLOR,
+			'selectors' => array( self::SEL_BADGE => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'badge_bg', array(
+			'label'     => 'رنگ پس‌زمینه',
+			'type'      => C::COLOR,
+			'selectors' => array( self::SEL_BADGE => 'background-color: {{VALUE}};' ),
+		) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'badge_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => self::SEL_BADGE,
+		) );
+
+		$this->add_control( 'head_title_heading', array( 'label' => 'عنوان', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'title_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => self::SEL_TITLE,
+		) );
+		$this->add_control( 'title_color', array(
+			'label'     => 'رنگ عنوان',
+			'type'      => C::COLOR,
+			'selectors' => array( self::SEL_TITLE => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'highlight_color', array(
+			'label'       => 'رنگ عبارت هایلایت',
+			'type'        => C::COLOR,
+			'description' => 'هایلایتر طلایی را با «رنگ پس‌زمینهٔ هایلایت» تغییر دهید.',
+			'selectors'   => array( self::SEL_HILITE => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'highlight_bg', array(
+			'label'     => 'رنگ هایلایتر',
+			'type'      => C::COLOR,
+			'selectors' => array( self::SEL_HILITE => 'background-image: linear-gradient({{VALUE}}, {{VALUE}});' ),
+		) );
+
+		$this->add_control( 'head_desc_heading', array( 'label' => 'توضیح', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'desc_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => self::SEL_DESC,
+		) );
+		$this->add_control( 'desc_color', array(
+			'label'     => 'رنگ متن',
+			'type'      => C::COLOR,
+			'selectors' => array( self::SEL_DESC => 'color: {{VALUE}};' ),
+		) );
+
+		if ( $with_link ) {
+			$this->add_control( 'head_link_heading', array( 'label' => 'پیوند «مشاهده همه»', 'type' => C::HEADING, 'separator' => 'before' ) );
+			$this->add_group_control( Group_Control_Typography::get_type(), array(
+				'name'     => 'more_type',
+				'label'    => 'تایپوگرافی',
+				'selector' => self::SEL_LINK,
+			) );
+			$this->add_control( 'more_color', array(
+				'label'     => 'رنگ',
+				'type'      => C::COLOR,
+				'selectors' => array( self::SEL_LINK => 'color: {{VALUE}};' ),
+			) );
+		}
+
+		$this->add_control( 'head_spacing_heading', array( 'label' => 'چیدمان', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_responsive_control( 'head_align', array(
+			'label'     => 'ترازبندی',
+			'type'      => C::CHOOSE,
+			'options'   => array(
+				'right'  => array( 'title' => 'راست', 'icon' => 'eicon-text-align-right' ),
+				'center' => array( 'title' => 'وسط', 'icon' => 'eicon-text-align-center' ),
+				'left'   => array( 'title' => 'چپ', 'icon' => 'eicon-text-align-left' ),
+			),
+			'selectors' => array(
+				'{{WRAPPER}} .zc-hp .sec-head' => 'text-align: {{VALUE}};',
+			),
+		) );
+		$this->add_responsive_control( 'head_gap', array(
+			'label'      => 'فاصله تا محتوا',
+			'type'       => C::SLIDER,
+			'size_units' => array( 'px', 'em' ),
+			'range'      => array( 'px' => array( 'min' => 0, 'max' => 120 ) ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .sec-head, {{WRAPPER}} .zc-hp .head-row' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+			),
+		) );
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Card styles (normal + hover) plus card title / text / icon typography.
+	 *
+	 * @param string $label     Style section label.
+	 * @param string $card      Inner selector of one card, e.g. '.svc'.
+	 * @param string $title     Card title selector, e.g. '.sbody h3'.
+	 * @param string $text      Card body selector.
+	 * @param string $icon      Icon selector (optional).
+	 */
+	protected function style_cards( string $label, string $card, string $title, string $text, string $icon = '' ): void {
+		$card_sel  = '{{WRAPPER}} .zc-hp ' . $card;
+		$title_sel = '{{WRAPPER}} .zc-hp ' . $title;
+		$text_sel  = '{{WRAPPER}} .zc-hp ' . $text;
+
+		$this->start_controls_section( 'zc_style_cards', array( 'label' => $label, 'tab' => C::TAB_STYLE ) );
+
+		$this->start_controls_tabs( 'card_tabs' );
+
+		$this->start_controls_tab( 'card_tab_normal', array( 'label' => 'عادی' ) );
+		$this->add_control( 'card_bg', array(
+			'label'     => 'رنگ پس‌زمینه',
+			'type'      => C::COLOR,
+			'selectors' => array( $card_sel => 'background-color: {{VALUE}};' ),
+		) );
+		$this->add_group_control( Group_Control_Border::get_type(), array(
+			'name'     => 'card_border',
+			'label'    => 'حاشیه',
+			'selector' => $card_sel,
+		) );
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(), array(
+			'name'     => 'card_shadow',
+			'label'    => 'سایه',
+			'selector' => $card_sel,
+		) );
+		$this->add_responsive_control( 'card_radius', array(
+			'label'      => 'گردی گوشه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', '%', 'em' ),
+			'selectors'  => array(
+				$card_sel => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_responsive_control( 'card_padding', array(
+			'label'      => 'فاصلهٔ داخلی',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', 'em', '%' ),
+			'selectors'  => array(
+				$card_sel => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'card_tab_hover', array( 'label' => 'هاور' ) );
+		$this->add_control( 'card_bg_hover', array(
+			'label'     => 'رنگ پس‌زمینه',
+			'type'      => C::COLOR,
+			'selectors' => array( $card_sel . ':hover' => 'background-color: {{VALUE}};' ),
+		) );
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(), array(
+			'name'     => 'card_shadow_hover',
+			'label'    => 'سایه',
+			'selector' => $card_sel . ':hover',
+		) );
+		$this->add_control( 'card_lift', array(
+			'label'     => 'بالا آمدن کارت',
+			'type'      => C::SLIDER,
+			'range'     => array( 'px' => array( 'min' => -20, 'max' => 0 ) ),
+			'selectors' => array( $card_sel . ':hover' => 'transform: translateY({{SIZE}}px);' ),
+		) );
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_control( 'card_title_heading', array( 'label' => 'عنوان کارت', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'card_title_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => $title_sel,
+		) );
+		$this->add_control( 'card_title_color', array(
+			'label'     => 'رنگ عنوان',
+			'type'      => C::COLOR,
+			'selectors' => array( $title_sel => 'color: {{VALUE}};' ),
+		) );
+
+		$this->add_control( 'card_text_heading', array( 'label' => 'متن کارت', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'card_text_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => $text_sel,
+		) );
+		$this->add_control( 'card_text_color', array(
+			'label'     => 'رنگ متن',
+			'type'      => C::COLOR,
+			'selectors' => array( $text_sel => 'color: {{VALUE}};' ),
+		) );
+
+		if ( '' !== $icon ) {
+			$icon_sel = '{{WRAPPER}} .zc-hp ' . $icon . ' .fa';
+			$this->add_control( 'card_icon_heading', array( 'label' => 'آیکون', 'type' => C::HEADING, 'separator' => 'before' ) );
+			$this->add_control( 'card_icon_color', array(
+				'label'     => 'رنگ آیکون',
+				'type'      => C::COLOR,
+				'selectors' => array( $icon_sel => 'color: {{VALUE}};' ),
+			) );
+			$this->add_control( 'card_icon_bg', array(
+				'label'     => 'پس‌زمینهٔ آیکون',
+				'type'      => C::COLOR,
+				'selectors' => array( '{{WRAPPER}} .zc-hp ' . $icon => 'background-color: {{VALUE}};' ),
+			) );
+			$this->add_responsive_control( 'card_icon_size', array(
+				'label'      => 'اندازهٔ آیکون',
+				'type'       => C::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array( 'px' => array( 'min' => 8, 'max' => 64 ) ),
+				'selectors'  => array( $icon_sel => 'font-size: {{SIZE}}{{UNIT}};' ),
+			) );
+		}
+
+		$this->end_controls_section();
+	}
+
+	/* -------------------------------------------------------------- render */
+
+	protected function render(): void {
+		$slug = $this->section_slug();
+		if ( '' === $slug || ! class_exists( Home_Templates::class ) || ! method_exists( Home_Templates::class, $slug ) ) {
+			return;
+		}
+
+		$settings = $this->prepare( $this->get_settings_for_display() );
+		$html     = Home_Templates::$slug( $settings );
+		if ( '' === $html ) {
+			return;
+		}
+
+		echo Home_Templates::wrap_open() . $html . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput -- templates escape internally.
+	}
+}
+
+/* ==================================================================== HERO */
+
+class Home_Hero extends Abstract_Home_Widget {
+
+	public function get_name(): string {
+		return 'zarincode_home_hero';
+	}
+
+	public function get_title(): string {
+		return 'صفحه اصلی — هیرو';
+	}
+
+	public function get_icon(): string {
+		return 'eicon-heading';
+	}
+
+	protected function section_slug(): string {
+		return 'hero';
+	}
+
+	protected function register_controls(): void {
+		$this->content_section( 'zc_hero_title', 'عنوان اصلی' );
+		$this->f_text( $this, 'title_line1', 'خط اول عنوان', $this->ds( 'title_line1' ) );
+		$this->f_text( $this, 'title_highlight', 'بخش هایلایت‌شدهٔ عنوان', $this->ds( 'title_highlight' ), array(
+			'description' => 'این عبارت با هایلایتر طلایی نمایش داده می‌شود.',
+		) );
+		$this->f_text( $this, 'title_line2', 'خط دوم عنوان', $this->ds( 'title_line2' ) );
+		$this->f_text( $this, 'title_pop', 'جملهٔ برجستهٔ پایانی', $this->ds( 'title_pop' ), array(
+			'description' => 'این جمله داخل قرص تیرهٔ زیر عنوان می‌آید.',
+		) );
+		$this->f_area( $this, 'lead', 'متن معرفی', $this->ds( 'lead' ) );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_buttons', 'دکمه‌ها' );
+		$this->f_text( $this, 'primary_text', 'دکمهٔ اصلی — متن', $this->ds( 'primary_text' ) );
+		$this->f_url( $this, 'primary_url', 'دکمهٔ اصلی — پیوند', $this->ds( 'primary_url' ) );
+		$this->f_text( $this, 'secondary_text', 'دکمهٔ دوم — متن', $this->ds( 'secondary_text' ) );
+		$this->f_url( $this, 'secondary_url', 'دکمهٔ دوم — پیوند', $this->ds( 'secondary_url' ) );
+		$this->f_text( $this, 'tertiary_text', 'دکمهٔ سوم — متن', $this->ds( 'tertiary_text' ) );
+		$this->f_url( $this, 'tertiary_url', 'دکمهٔ سوم — پیوند', $this->ds( 'tertiary_url' ) );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_badges', 'نشان‌های بالای عنوان' );
+		$badge = new Repeater();
+		$this->f_icon( $badge, 'icon', 'circle-check' );
+		$this->f_text( $badge, 'text', 'متن نشان' );
+		$this->f_repeater(
+			'badges',
+			'نشان‌ها',
+			$badge->get_controls(),
+			$this->pick_rows( $this->da( 'badges' ), array( 'icon', 'text' ) ),
+			'text'
 		);
-		foreach ( $map as $target => $key ) {
-			if ( isset( $s[ $key ] ) && '' !== $s[ $key ] ) {
-				$s[ $target ] = $s[ $key ];
-			}
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_trust', 'شاخص‌های اعتماد' );
+		$trust = new Repeater();
+		$this->f_icon( $trust, 'icon', 'chart-line' );
+		$this->f_text( $trust, 'value', 'مقدار', '', array( 'description' => 'مثال: +۱۴۰ پروژه' ) );
+		$this->f_text( $trust, 'label', 'زیرنویس' );
+		$this->f_repeater(
+			'trust',
+			'شاخص‌ها',
+			$trust->get_controls(),
+			$this->pick_rows( $this->da( 'trust' ), array( 'icon', 'value', 'label' ) ),
+			'value'
+		);
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_float', 'کارت شناور و امتیاز' );
+		$this->f_text( $this, 'score_value', 'امتیاز (کارت شناور)', $this->ds( 'score_value' ) );
+		$this->f_text( $this, 'score_label', 'زیرنویس امتیاز', $this->ds( 'score_label' ) );
+		$floats = new Repeater();
+		$this->f_icon( $floats, 'icon', 'cart-shopping' );
+		$this->f_text( $floats, 'text', 'متن' );
+		$this->f_repeater(
+			'floats',
+			'نشان‌های شناور',
+			$floats->get_controls(),
+			$this->pick_rows( $this->da( 'floats' ), array( 'icon', 'text' ) ),
+			'text'
+		);
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_ticker', 'نوار متحرک فناوری‌ها' );
+		$this->f_switch( $this, 'ticker_show', 'نمایش نوار متحرک' );
+		$this->f_area( $this, 'ticker_items', 'عبارت‌ها (هر خط یک مورد)', implode( "\n", (array) $this->d( 'ticker', array() ) ) );
+		$this->end_controls_section();
+
+		/* ---- style ---- */
+		$this->style_shell();
+
+		$this->start_controls_section( 'zc_style_hero', array( 'label' => 'عنوان و متن هیرو', 'tab' => C::TAB_STYLE ) );
+		$this->add_control( 'hero_title_heading', array( 'label' => 'عنوان', 'type' => C::HEADING ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'hero_title_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => '{{WRAPPER}} .zc-hp h1.big',
+		) );
+		$this->add_control( 'hero_title_color', array(
+			'label'     => 'رنگ عنوان',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp h1.big' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'hero_hl_color', array(
+			'label'     => 'رنگ عبارت هایلایت',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp h1.big .hl' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'hero_pop_color', array(
+			'label'     => 'رنگ متن قرص پایانی',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp h1.big .pop' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'hero_pop_bg', array(
+			'label'     => 'پس‌زمینهٔ قرص پایانی',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp h1.big .pop' => 'background-color: {{VALUE}};' ),
+		) );
+
+		$this->add_control( 'hero_lead_heading', array( 'label' => 'متن معرفی', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'hero_lead_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => '{{WRAPPER}} .zc-hp .hero .lead',
+		) );
+		$this->add_control( 'hero_lead_color', array(
+			'label'     => 'رنگ متن',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .hero .lead' => 'color: {{VALUE}};' ),
+		) );
+
+		$this->add_control( 'hero_btn_heading', array( 'label' => 'دکمه‌ها', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'hero_btn_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => '{{WRAPPER}} .zc-hp .hero-actions .btn',
+		) );
+		$this->add_responsive_control( 'hero_btn_radius', array(
+			'label'      => 'گردی دکمه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .hero-actions .btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_responsive_control( 'hero_btn_padding', array(
+			'label'      => 'فاصلهٔ داخلی دکمه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', 'em' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .hero-actions .btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+
+		$this->add_control( 'hero_trust_heading', array( 'label' => 'کارت‌های اعتماد', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_control( 'trust_bg', array(
+			'label'     => 'رنگ پس‌زمینه',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .tcard' => 'background-color: {{VALUE}};' ),
+		) );
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(), array(
+			'name'     => 'trust_shadow',
+			'label'    => 'سایه',
+			'selector' => '{{WRAPPER}} .zc-hp .tcard',
+		) );
+		$this->add_responsive_control( 'trust_radius', array(
+			'label'      => 'گردی گوشه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .tcard' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->end_controls_section();
+	}
+
+	protected function prepare( array $settings ): array {
+		$settings = $this->urls_to_string( $settings, array( 'primary_url', 'secondary_url', 'tertiary_url' ) );
+
+		foreach ( array( 'badges' => 'badges', 'trust' => 'trust', 'floats' => 'floats' ) as $key => $template_key ) {
+			$settings[ $template_key ] = $this->rows_of( $settings, $key );
 		}
-		if ( ! empty( $s['s_more_url']['url'] ) ) {
-			$s['more_url'] = $s['s_more_url']['url'];
+
+		$show_ticker = ( $settings['ticker_show'] ?? 'yes' ) !== 'yes';
+		if ( $show_ticker ) {
+			$settings['ticker_items'] = array();
+			return $settings;
 		}
-		return is_array( $s ) ? $s : array();
+		$items = $this->to_lines( $settings['ticker_items'] ?? '' );
+		$settings['ticker_items'] = $items;
+		return $settings;
 	}
 
 	protected function render(): void {
 		$slug = $this->section_slug();
-		if ( '' === $slug || ! class_exists( Home_Templates::class ) ) {
+		if ( ! class_exists( Home_Templates::class ) ) {
 			return;
 		}
-		$settings = $this->settings_with_head();
-		echo Home_Templates::wrap_open() . Home_Templates::$slug( $settings ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput -- templates escape internally.
+		$settings = $this->prepare( $this->get_settings_for_display() );
+		$html     = Home_Templates::hero( $settings );
+		$ticker   = ! empty( $settings['ticker_items'] ) ? Home_Templates::ticker( array( 'items' => $settings['ticker_items'] ) ) : '';
+		echo Home_Templates::wrap_open() . $html . $ticker . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 }
 
-/* ------------------------------------------------------------------ HERO */
-
-class Home_Hero extends Abstract_Home_Widget {
-	public function get_name(): string {
-		return 'zarincode_home_hero';
-	}
-	public function get_title(): string {
-		return 'صفحه اصلی — هیرو';
-	}
-	protected function section_slug(): string {
-		return 'hero';
-	}
-	protected function register_controls(): void {
-		$this->start_controls_section( 'zc_hero', array( 'label' => 'محتوای هیرو' ) );
-		$this->add_control( 'h_line1', array( 'label' => 'خط اول عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_hl', array( 'label' => 'هایلایت طلایی', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_line2', array( 'label' => 'خط دوم عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_pop', array( 'label' => 'نشان تیرهٔ عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_lead', array( 'label' => 'متن معرفی', 'type' => Controls_Manager::TEXTAREA, 'rows' => 4, 'default' => '' ) );
-		$this->add_control( 'h_p1t', array( 'label' => 'دکمهٔ اصلی — متن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_p1u', array( 'label' => 'دکمهٔ اصلی — پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'h_p2t', array( 'label' => 'دکمهٔ دوم — متن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_p2u', array( 'label' => 'دکمهٔ دوم — پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'h_p3t', array( 'label' => 'دکمهٔ سوم — متن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_p3u', array( 'label' => 'دکمهٔ سوم — پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'h_score', array( 'label' => 'امتیاز (کارت تیره)', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'h_score_l', array( 'label' => 'زیرنویس امتیاز', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->end_controls_section();
-
-		$this->start_controls_section( 'zc_hero_triple', array( 'label' => 'سه شاخص اعتماد' ) );
-		for ( $i = 1; $i <= 3; $i++ ) {
-			$this->add_control( "t{$i}_v", array( 'label' => "شاخص {$i} — مقدار", 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-			$this->add_control( "t{$i}_l", array( 'label' => "شاخص {$i} — برچسب", 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		}
-		$this->end_controls_section();
-	}
-	protected function render(): void {
-		$s = $this->get_settings_for_display();
-		$map = array(
-			'title_line1' => 'h_line1', 'title_highlight' => 'h_hl', 'title_line2' => 'h_line2', 'title_pop' => 'h_pop',
-			'lead' => 'h_lead', 'primary_text' => 'h_p1t', 'secondary_text' => 'h_p2t', 'tertiary_text' => 'h_p3t',
-			'score_value' => 'h_score', 'score_label' => 'h_score_l',
-		);
-		$out = array();
-		foreach ( $map as $k => $key ) {
-			if ( isset( $s[ $key ] ) && '' !== $s[ $key ] ) {
-				$out[ $k ] = $s[ $key ];
-			}
-		}
-		foreach ( array( 'primary' => 'h_p1u', 'secondary' => 'h_p2u', 'tertiary' => 'h_p3u' ) as $k => $key ) {
-			if ( ! empty( $s[ $key ]['url'] ) ) {
-				$out[ $k . '_url' ] = $s[ $key ]['url'];
-			}
-		}
-		$trust = array();
-		for ( $i = 1; $i <= 3; $i++ ) {
-			if ( ! empty( $s[ "t{$i}_v" ] ) || ! empty( $s[ "t{$i}_l" ] ) ) {
-				$trust[] = array( 'icon' => array( 'chart-line', 'handshake', 'bolt' )[ $i - 1 ], 'value' => $s[ "t{$i}_v" ] ?? '', 'label' => $s[ "t{$i}_l" ] ?? '' );
-			}
-		}
-		if ( $trust ) {
-			$out['trust'] = $trust;
-		}
-		echo Home_Templates::wrap_open() . Home_Templates::hero( $out ) . Home_Templates::ticker( array() ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
-	}
-}
-
-/* ------------------------------------------------------------- PARTNERS */
+/* ================================================================ PARTNERS */
 
 class Home_Partners extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_partners';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — کاروسل برندها';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-carousel';
+	}
+
 	protected function section_slug(): string {
 		return 'partners';
 	}
+
 	protected function register_controls(): void {
-		$this->start_controls_section( 'zc_partners', array( 'label' => 'کاروسل شرکای همکار' ) );
-		$this->add_control( 'p_label', array( 'label' => 'برچسب بخش', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'p_count', array( 'label' => 'متن شمارنده (مثلاً +۲۴ سازمان)', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'p_note', array( 'label' => 'یادداشت پایین', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r = new Repeater();
-		$r->add_control( 'name', array( 'label' => 'نام برند', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'logo', array( 'label' => 'لوگو', 'type' => Controls_Manager::MEDIA ) );
-		$r->add_control( 'icon', array( 'label' => 'آیکون جایگزین لوگو', 'type' => Controls_Manager::TEXT, 'default' => 'building', 'description' => 'نام آیکون Font Awesome بدون پیشوند؛ مثل building یا wordpress' ) );
-		$r->add_control( 'link', array( 'label' => 'پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'p_items', array( 'label' => 'برندها', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ name }}}', 'prevent_empty' => false ) );
+		$this->content_section( 'zc_partners', 'متن‌های بخش' );
+		$this->f_text( $this, 'label', 'برچسب بخش', $this->ds( 'label' ) );
+		$this->f_text( $this, 'count', 'شمارنده', $this->ds( 'count' ), array( 'description' => 'مثال: +۲۴ سازمان' ) );
+		$this->f_text( $this, 'note', 'یادداشت پایین', $this->ds( 'note' ) );
 		$this->end_controls_section();
+
+		$this->content_section( 'zc_partners_items', 'برندها' );
+		$row = new Repeater();
+		$this->f_text( $row, 'name', 'نام برند' );
+		$this->f_icon( $row, 'icon', 'building' );
+		$this->f_url( $row, 'link', 'پیوند' );
+		$this->f_repeater(
+			'items',
+			'برندها',
+			$row->get_controls(),
+			$this->pick_rows( $this->da( 'items' ), array( 'name', 'icon', 'link' ) ),
+			'name'
+		);
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_cards( 'کارت برندها', '.cbox2.partners', '.plogo', '.note2', '.plogo' );
 	}
-	protected function render(): void {
-		$s   = $this->get_settings_for_display();
-		$out = array();
-		foreach ( array( 'label' => 'p_label', 'count' => 'p_count', 'note' => 'p_note' ) as $k => $key ) {
-			if ( ! empty( $s[ $key ] ) ) {
-				$out[ $k ] = $s[ $key ];
-			}
-		}
-		if ( ! empty( $s['p_items'] ) && is_array( $s['p_items'] ) ) {
-			$items = array();
-			foreach ( $s['p_items'] as $row ) {
-				$items[] = array(
-					'name' => $row['name'] ?? '',
-					'icon' => $row['icon'] ?? 'building',
-					'logo' => $row['logo']['url'] ?? '',
-				);
-			}
-			if ( $items ) {
-				$out['items'] = $items;
-			}
-		}
-		echo Home_Templates::wrap_open() . Home_Templates::partners( $out ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+	protected function prepare( array $settings ): array {
+		return array_merge( $settings, array(
+			'items' => $this->rows_of( $settings, 'items' ),
+		) );
 	}
 }
 
-/* ------------------------------------------------------------- SERVICES */
+/* ================================================================ SERVICES */
 
 class Home_Services extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_services';
 	}
+
 	public function get_title(): string {
-		return 'صفحه اصلی — خدمات رنگین';
+		return 'صفحه اصلی — خدمات';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-posts-grid';
+	}
+
 	protected function section_slug(): string {
 		return 'services';
 	}
+
 	protected function register_controls(): void {
 		$this->heading_controls();
-		$this->start_controls_section( 'zc_items', array( 'label' => 'کارت‌های خدمات' ) );
-		$r = new Repeater();
-		$r->add_control( 'icon', array( 'label' => 'آیکون', 'type' => Controls_Manager::TEXT, 'default' => 'display' ) );
-		$r->add_control( 'en', array( 'label' => 'برچسب انگلیسی', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'title', array( 'label' => 'عنوان خدمت', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'desc', array( 'label' => 'توضیح', 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => '' ) );
-		$r->add_control( 'meta', array( 'label' => 'چیپ‌های اطلاعاتی (با کاما جدا کنید)', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'price', array( 'label' => 'برچسب قیمت', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'link', array( 'label' => 'پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'srv_items', array( 'label' => 'خدمات', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ title }}}', 'prevent_empty' => false ) );
-		$this->end_controls_section();
-	}
-	protected function render(): void {
-		$s    = $this->settings_with_head();
-		$rows = $s['srv_items'] ?? array();
-		if ( is_array( $rows ) && $rows ) {
-			$items = array();
-			foreach ( $rows as $i => $row ) {
-				$meta = array();
-				foreach ( array_filter( array_map( 'trim', explode( ',', (string) ( $row['meta'] ?? '' ) ) ) ) as $k => $m ) {
-					$meta[] = array( 'icon' => 0 === $k ? 'clock' : 'shield-halved', 'text' => $m );
-				}
-				$items[] = array(
-					'no'        => sprintf( '%02d', $i + 1 ),
-					'en'        => $row['en'] ?? '',
-					'icon'      => $row['icon'] ?? 'display',
-					'title'     => $row['title'] ?? '',
-					'desc'      => $row['desc'] ?? '',
-					'meta'      => $meta,
-					'price'     => $row['price'] ?? '',
-					'link'      => $row['link']['url'] ?? '',
-					'link_text' => 'جزئیات',
-				);
-			}
-			$s['items'] = $items;
+
+		$this->content_section( 'zc_services_items', 'کارت‌های خدمات' );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'display' );
+		$this->f_text( $row, 'no', 'شمارهٔ کارت', '' );
+		$this->f_text( $row, 'en', 'برچسب انگلیسی', '' );
+		$this->f_text( $row, 'title', 'عنوان خدمت' );
+		$this->f_area( $row, 'desc', 'توضیح', '', array( 'rows' => 2 ) );
+		$this->f_text( $row, 'chip1_text', 'چیپ ۱ — متن', '' );
+		$this->f_icon( $row, 'chip1_icon', 'clock' );
+		$this->f_text( $row, 'chip2_text', 'چیپ ۲ — متن', '' );
+		$this->f_icon( $row, 'chip2_icon', 'shield-halved' );
+		$this->f_text( $row, 'price', 'برچسب قیمت', '' );
+		$this->f_url( $row, 'link', 'پیوند کارت' );
+		$this->f_text( $row, 'link_text', 'متن پیوند کارت', 'جزئیات' );
+
+		$defaults = array();
+		foreach ( $this->da( 'items' ) as $item ) {
+			$meta           = is_array( $item['meta'] ?? null ) ? $item['meta'] : array();
+			$defaults[]     = array(
+				'icon'        => $item['icon'] ?? 'display',
+				'no'          => $item['no'] ?? '',
+				'en'          => $item['en'] ?? '',
+				'title'       => $item['title'] ?? '',
+				'desc'        => $item['desc'] ?? '',
+				'chip1_text'  => $meta[0]['text'] ?? '',
+				'chip1_icon'  => $meta[0]['icon'] ?? 'clock',
+				'chip2_text'  => $meta[1]['text'] ?? '',
+				'chip2_icon'  => $meta[1]['icon'] ?? 'shield-halved',
+				'price'       => $item['price'] ?? '',
+				'link'        => array( 'url' => (string) ( $item['link'] ?? '' ) ),
+				'link_text'   => $item['link_text'] ?? 'جزئیات',
+			);
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::services( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+		$this->f_repeater( 'items', 'خدمات', $row->get_controls(), $defaults, 'title' );
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading();
+		$this->style_cards( 'کارت خدمات', '.svc', '.sbody h3', '.sbody p', '.ico-tile' );
+	}
+
+	protected function prepare( array $settings ): array {
+		$items = array();
+		foreach ( $this->rows_of( $settings, 'items' ) as $index => $row ) {
+			$meta = array();
+			foreach ( array( 1, 2 ) as $n ) {
+				$text = trim( (string) ( $row[ 'chip' . $n . '_text' ] ?? '' ) );
+				if ( '' !== $text ) {
+					$meta[] = array(
+						'icon' => (string) ( $row[ 'chip' . $n . '_icon' ] ?? 'clock' ),
+						'text' => $text,
+					);
+				}
+			}
+			$items[] = array(
+				'no'        => (string) ( $row['no'] ?? '' ) ?: sprintf( '%02d', $index + 1 ),
+				'en'        => (string) ( $row['en'] ?? '' ),
+				'icon'      => (string) ( $row['icon'] ?? 'display' ),
+				'title'     => (string) ( $row['title'] ?? '' ),
+				'desc'      => (string) ( $row['desc'] ?? '' ),
+				'meta'      => $meta,
+				'price'     => (string) ( $row['price'] ?? '' ),
+				'link'      => (string) ( $row['link']['url'] ?? '' ),
+				'link_text' => (string) ( $row['link_text'] ?? '' ) ?: 'جزئیات',
+			);
+		}
+		$settings['items'] = $items;
+		return $settings;
 	}
 }
 
-/* ------------------------------------------------------------- PRODUCTS */
+/* ================================================================ PRODUCTS */
 
 class Home_Products extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_products';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — محصولات دیجیتال';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-cart-medium';
+	}
+
 	protected function section_slug(): string {
 		return 'products';
 	}
+
 	protected function register_controls(): void {
 		$this->heading_controls( true );
-		$this->start_controls_section( 'zc_prod', array( 'label' => 'منبع محصولات' ) );
-		$this->add_control( 'p_source', array(
-			'label'   => 'منبع داده',
-			'type'    => Controls_Manager::SELECT,
-			'default' => 'manual',
-			'options' => array( 'manual' => 'کارت‌های دستی (پیش‌فرض دمو)', 'query' => 'محصولات واقعی ووکامرس' ),
-		) );
-		$this->add_control( 'p_count', array( 'label' => 'تعداد محصولات', 'type' => Controls_Manager::NUMBER, 'default' => 4, 'min' => 1, 'max' => 12, 'condition' => array( 'p_source' => 'query' ) ) );
+
+		$this->content_section( 'zc_products_source', 'منبع محصولات' );
+		$this->source_controls( 'source', 'count', 'محصولات', 'کارت‌های دستی (پیش‌فرض دمو)', 'محصولات واقعی ووکامرس', 4, 1, 12 );
+		$this->f_text( $this, 'currency', 'واحد قیمت', $this->ds( 'currency', 'تومان' ) );
+		$this->f_text( $this, 'cta_text', 'متن دکمهٔ کارت', $this->ds( 'cta_text', 'مشاهده' ) );
 		$this->end_controls_section();
+
+		$this->content_section( 'zc_products_items', 'کارت‌های محصول', array( 'source' => 'manual' ) );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'cubes' );
+		$this->f_text( $row, 'kind', 'نوع محصول', '', array( 'description' => 'مثال: سورس‌کد / قالب' ) );
+		$this->f_text( $row, 'title', 'نام محصول' );
+		$this->f_text( $row, 'tags', 'برچسب‌ها (با کاما)', '' );
+		$this->f_text( $row, 'discount', 'نشان تخفیف', '' );
+		$this->f_text( $row, 'old', 'قیمت قبلی', '' );
+		$this->f_text( $row, 'now', 'قیمت فعلی', '' );
+		$this->f_switch( $row, 'featured', 'برجسته', 'no' );
+		$this->f_url( $row, 'link', 'پیوند محصول' );
+
+		$defaults = array();
+		foreach ( $this->da( 'items' ) as $item ) {
+			$defaults[] = array(
+				'icon'     => $item['icon'] ?? 'cubes',
+				'kind'     => $item['kind'] ?? '',
+				'title'    => $item['title'] ?? '',
+				'tags'     => implode( ', ', (array) ( $item['tags'] ?? array() ) ),
+				'discount' => $item['discount'] ?? '',
+				'old'      => $item['old'] ?? '',
+				'now'      => $item['now'] ?? '',
+				'featured' => empty( $item['featured'] ) ? 'no' : 'yes',
+				'link'     => array( 'url' => (string) ( $item['link'] ?? '' ) ),
+			);
+		}
+
+		$this->f_repeater( 'items', 'محصولات', $row->get_controls(), $defaults, 'title' );
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading( true );
+		$this->style_cards( 'کارت محصول', '.pcard', '.pbody h4', '.pchips span', '.ico-tile' );
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		$s['source'] = $s['p_source'] ?? 'manual';
-		if ( 'query' === $s['source'] && function_exists( 'wc_get_products' ) ) {
-			$products = wc_get_products( array( 'status' => 'publish', 'limit' => max( 1, (int) ( $s['p_count'] ?? 4 ) ), 'orderby' => 'popularity' ) );
-			$items    = array();
-			foreach ( $products as $p ) {
+
+	protected function prepare( array $settings ): array {
+		$settings = $this->urls_to_string( $settings, array( 'link_url' ) );
+
+		if ( 'query' === ( $settings['source'] ?? 'manual' ) && function_exists( 'wc_get_products' ) ) {
+			$products = wc_get_products( array(
+				'status'  => 'publish',
+				'limit'   => max( 1, (int) ( $settings['count'] ?? 4 ) ),
+				'orderby' => 'popularity',
+			) );
+			$items = array();
+			foreach ( $products as $product ) {
+				$regular = (float) $product->get_regular_price();
+				$price   = (float) $product->get_price();
 				$items[] = array(
 					'icon'     => 'cubes',
 					'discount' => '',
 					'kind'     => 'محصول دیجیتال',
-					'title'    => $p->get_name(),
-					'tags'     => array_slice( wp_get_post_terms( $p->get_id(), 'product_tag', array( 'fields' => 'names' ) ) ?: array(), 0, 3 ),
-					'old'      => $p->get_regular_price() !== $p->get_price() ? number_format_i18n( (float) $p->get_regular_price(), 0 ) : '',
-					'now'      => number_format_i18n( (float) $p->get_price(), 0 ),
-					'link'     => get_permalink( $p->get_id() ),
-					'featured' => $p->is_featured() ? 'yes' : '',
+					'title'    => $product->get_name(),
+					'tags'     => array_slice( wp_get_post_terms( $product->get_id(), 'product_tag', array( 'fields' => 'names' ) ) ?: array(), 0, 3 ),
+					'old'      => $regular > $price ? number_format_i18n( $regular, 0 ) : '',
+					'now'      => number_format_i18n( $price, 0 ),
+					'link'     => get_permalink( $product->get_id() ),
+					'featured' => $product->is_featured() ? 'yes' : '',
 				);
 			}
-			if ( $items ) {
-				$s['items'] = $items;
-			}
+			$settings['items'] = $items;
+			return $settings;
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::products( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+		$items = array();
+		foreach ( $this->rows_of( $settings, 'items' ) as $row ) {
+			$items[] = array(
+				'icon'     => (string) ( $row['icon'] ?? 'cubes' ),
+				'kind'     => (string) ( $row['kind'] ?? '' ),
+				'title'    => (string) ( $row['title'] ?? '' ),
+				'tags'     => $this->to_list( $row['tags'] ?? '' ),
+				'discount' => (string) ( $row['discount'] ?? '' ),
+				'old'      => (string) ( $row['old'] ?? '' ),
+				'now'      => (string) ( $row['now'] ?? '' ),
+				'featured' => ( $row['featured'] ?? '' ) === 'yes' ? 'yes' : '',
+				'link'     => (string) ( $row['link']['url'] ?? '' ),
+			);
+		}
+		$settings['items'] = $items;
+		return $settings;
 	}
 }
 
-/* ------------------------------------------------------------ PORTFOLIO */
+/* =============================================================== PORTFOLIO */
 
 class Home_Portfolio extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_portfolio';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — نمونه‌کارها';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-gallery-grid';
+	}
+
 	protected function section_slug(): string {
 		return 'portfolio';
 	}
+
 	protected function register_controls(): void {
-		$this->heading_controls();
-		$this->start_controls_section( 'zc_pf', array( 'label' => 'منبع پروژه‌ها' ) );
-		$this->add_control( 'pf_source', array(
-			'label'   => 'منبع داده',
-			'type'    => Controls_Manager::SELECT,
-			'default' => 'manual',
-			'options' => array( 'manual' => 'کارت‌های دستی (پیش‌فرض دمو)', 'query' => 'پروژه‌های واقعی (CPT نمونه‌کار)' ),
-		) );
-		$this->add_control( 'pf_count', array( 'label' => 'تعداد پروژه', 'type' => Controls_Manager::NUMBER, 'default' => 3, 'min' => 1, 'max' => 9, 'condition' => array( 'pf_source' => 'query' ) ) );
+		$this->heading_controls( true );
+
+		$this->content_section( 'zc_portfolio_source', 'منبع پروژه‌ها' );
+		$this->source_controls( 'source', 'count', 'پروژه‌ها', 'کارت‌های دستی (پیش‌فرض دمو)', 'پروژه‌های واقعی (نمونه‌کار)', 3, 1, 9 );
+		$this->f_text( $this, 'cta_text', 'متن پیوند کارت', $this->ds( 'cta_text', 'اطلاعات پروژه' ) );
 		$this->end_controls_section();
+
+		$this->content_section( 'zc_portfolio_items', 'کارت‌های پروژه', array( 'source' => 'manual' ) );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'display' );
+		$this->f_text( $row, 'title', 'عنوان پروژه' );
+		$this->f_text( $row, 'year', 'سال / فصل' );
+		$this->f_text( $row, 'cat', 'دسته‌بندی' );
+		$this->f_text( $row, 'kpi', 'دستاورد', '', array( 'description' => 'مثال: +۳۵٪ نرخ تبدیل' ) );
+		$this->f_select( $row, 'tone', 'رنگ برچسب', array( 'c1' => 'طلایی', 'c2' => 'نعنایی', 'c3' => 'بنفش' ), 'c1' );
+		$this->f_url( $row, 'link', 'پیوند پروژه' );
+
+		$defaults = array();
+		foreach ( $this->da( 'items' ) as $item ) {
+			$defaults[] = array(
+				'icon'  => $item['icon'] ?? 'display',
+				'title' => $item['title'] ?? '',
+				'year'  => $item['year'] ?? '',
+				'cat'   => $item['cat'] ?? '',
+				'kpi'   => $item['kpi'] ?? '',
+				'tone'  => $item['tone'] ?? 'c1',
+				'link'  => array( 'url' => (string) ( $item['link'] ?? '' ) ),
+			);
+		}
+
+		$this->f_repeater( 'items', 'پروژه‌ها', $row->get_controls(), $defaults, 'title' );
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading( true );
+		$this->style_cards( 'کارت پروژه', '.jcard', '.jbody h4', '.jrow .cat', '.ico-tile' );
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( 'query' === ( $s['pf_source'] ?? 'manual' ) ) {
-			$posts = get_posts( array( 'post_type' => 'zc_project', 'numberposts' => max( 1, (int) ( $s['pf_count'] ?? 3 ) ) ) );
-			$items = array();
-			foreach ( $posts as $p ) {
+
+	protected function prepare( array $settings ): array {
+		$settings = $this->urls_to_string( $settings, array( 'link_url' ) );
+		$items    = array();
+
+		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+			$posts = get_posts( array(
+				'post_type'      => 'zc_project',
+				'numberposts'    => max( 1, (int) ( $settings['count'] ?? 3 ) ),
+				'post_status'    => 'publish',
+				'ignore_sticky_posts' => true,
+			) );
+			foreach ( $posts as $index => $post ) {
 				$items[] = array(
-					'year'  => (string) get_post_meta( $p->ID, '_zc_prj_date', true ),
+					'year'  => (string) get_post_meta( $post->ID, '_zc_prj_date', true ),
 					'icon'  => 'display',
-					'kpi'   => (string) get_post_meta( $p->ID, '_zc_prj_metrics', true ),
-					'title' => get_the_title( $p ),
-					'cat'   => implode( '، ', wp_get_post_terms( $p->ID, 'zc_project_cat', array( 'fields' => 'names' ) ) ?: array() ),
-					'tone'  => 'c1',
-					'link'  => get_permalink( $p ),
+					'kpi'   => (string) get_post_meta( $post->ID, '_zc_prj_metrics', true ),
+					'title' => get_the_title( $post ),
+					'cat'   => implode( '، ', wp_get_post_terms( $post->ID, 'zc_project_cat', array( 'fields' => 'names' ) ) ?: array() ),
+					'tone'  => array( 'c1', 'c2', 'c3' )[ $index % 3 ],
+					'link'  => get_permalink( $post ),
 				);
 			}
-			if ( $items ) {
-				$s['items'] = $items;
-			}
+			$settings['items'] = $items;
+			return $settings;
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::portfolio( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+		foreach ( $this->rows_of( $settings, 'items' ) as $row ) {
+			$items[] = array(
+				'icon'  => (string) ( $row['icon'] ?? 'display' ),
+				'title' => (string) ( $row['title'] ?? '' ),
+				'year'  => (string) ( $row['year'] ?? '' ),
+				'cat'   => (string) ( $row['cat'] ?? '' ),
+				'kpi'   => (string) ( $row['kpi'] ?? '' ),
+				'tone'  => (string) ( $row['tone'] ?? 'c1' ),
+				'link'  => (string) ( $row['link']['url'] ?? '' ),
+			);
+		}
+		$settings['items'] = $items;
+		return $settings;
 	}
 }
 
-/* ----------------------------------------------------------------- WHY */
+/* ===================================================================== WHY */
 
 class Home_Why extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_why';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — چرا زرین کد';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-info-circle';
+	}
+
 	protected function section_slug(): string {
 		return 'why';
 	}
+
 	protected function register_controls(): void {
 		$this->heading_controls();
-		$this->start_controls_section( 'zc_why', array( 'label' => 'کارت‌ها (بنتو)' ) );
-		$r = new Repeater();
-		$r->add_control( 'icon', array( 'label' => 'آیکون', 'type' => Controls_Manager::TEXT, 'default' => 'compass' ) );
-		$r->add_control( 'title', array( 'label' => 'عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'text', array( 'label' => 'متن', 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => '' ) );
-		$this->add_control( 'why_items', array( 'label' => 'کارت‌ها', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ title }}}', 'prevent_empty' => false ) );
+
+		$this->content_section( 'zc_why_items', 'کارت‌ها (بنتو)' );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'compass' );
+		$this->f_text( $row, 'title', 'عنوان' );
+		$this->f_area( $row, 'text', 'متن', '', array( 'rows' => 2 ) );
+		$this->f_repeater(
+			'items',
+			'کارت‌ها',
+			$row->get_controls(),
+			$this->pick_rows( $this->da( 'items' ), array( 'icon', 'title', 'text' ) ),
+			'title'
+		);
 		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading();
+		$this->style_cards( 'کارت‌ها', '.bcard', '.bcard h4', '.bcard p', '.bcard .em' );
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( ! empty( $s['why_items'] ) && is_array( $s['why_items'] ) ) {
-			$s['items'] = array_map(
-				static fn( $r ) => array( 'icon' => $r['icon'] ?? 'compass', 'title' => $r['title'] ?? '', 'text' => $r['text'] ?? '' ),
-				$s['why_items']
-			);
-		}
-		echo Home_Templates::wrap_open() . Home_Templates::why( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+	protected function prepare( array $settings ): array {
+		$settings['items'] = $this->rows_of( $settings, 'items' );
+		return $settings;
 	}
 }
 
-/* --------------------------------------------------------------- STEPS */
+/* =================================================================== STEPS */
 
 class Home_Steps extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_steps';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — مراحل همکاری';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-time-line';
+	}
+
 	protected function section_slug(): string {
 		return 'steps';
 	}
+
 	protected function register_controls(): void {
 		$this->heading_controls();
-		$this->start_controls_section( 'zc_steps', array( 'label' => 'قدم‌ها' ) );
-		$r = new Repeater();
-		$r->add_control( 'icon', array( 'label' => 'آیکون', 'type' => Controls_Manager::TEXT, 'default' => 'bullseye' ) );
-		$r->add_control( 'title', array( 'label' => 'عنوان قدم', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'text', array( 'label' => 'توضیح', 'type' => Controls_Manager::TEXTAREA, 'rows' => 2, 'default' => '' ) );
-		$this->add_control( 'step_items', array( 'label' => 'قدم‌ها', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ title }}}', 'prevent_empty' => false ) );
+
+		$this->content_section( 'zc_steps_items', 'قدم‌ها' );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'bullseye' );
+		$this->f_text( $row, 'title', 'عنوان قدم' );
+		$this->f_area( $row, 'text', 'توضیح', '', array( 'rows' => 2 ) );
+		$this->f_repeater(
+			'items',
+			'قدم‌ها',
+			$row->get_controls(),
+			$this->pick_rows( $this->da( 'items' ), array( 'icon', 'title', 'text' ) ),
+			'title'
+		);
 		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading();
+		$this->style_cards( 'کارت مرحله', '.step', '.step b', '.step p', '.step .sic' );
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( ! empty( $s['step_items'] ) && is_array( $s['step_items'] ) ) {
-			$s['items'] = array_map(
-				static fn( $r ) => array( 'icon' => $r['icon'] ?? 'bullseye', 'title' => $r['title'] ?? '', 'text' => $r['text'] ?? '' ),
-				$s['step_items']
-			);
-		}
-		echo Home_Templates::wrap_open() . Home_Templates::steps( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+	protected function prepare( array $settings ): array {
+		$settings['items'] = $this->rows_of( $settings, 'items' );
+		return $settings;
 	}
 }
 
-/* -------------------------------------------------------------- PRICING */
+/* ================================================================= PRICING */
 
 class Home_Pricing extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_pricing';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — تعرفه‌ها';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-price-table';
+	}
+
 	protected function section_slug(): string {
 		return 'pricing';
 	}
+
 	protected function register_controls(): void {
 		$this->heading_controls();
-		$this->start_controls_section( 'zc_plans', array( 'label' => 'پلن‌ها' ) );
-		$r = new Repeater();
-		$r->add_control( 'title', array( 'label' => 'نام پلن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'delivery', array( 'label' => 'مدت تحویل', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'price', array( 'label' => 'بازه قیمت (میلیون تومان)', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'flag', array( 'label' => 'نشان بالای پلن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'tone', array( 'label' => 'رنگ پلن', 'type' => Controls_Manager::SELECT, 'default' => 'p1', 'options' => array( 'p1' => 'آسمانی', 'p2' => 'طلایی (ویژه)', 'p3' => 'بنفش' ) ) );
-		$r->add_control( 'features', array( 'label' => 'مزایا (هر خط یک مورد)', 'type' => Controls_Manager::TEXTAREA, 'rows' => 4, 'default' => '' ) );
-		$r->add_control( 'link', array( 'label' => 'پیوند دکمه', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'plan_items', array( 'label' => 'پلن‌ها', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ title }}}', 'prevent_empty' => false ) );
+
+		$this->content_section( 'zc_pricing_plans', 'پلن‌ها' );
+		$this->f_text( $this, 'tabs', 'تب‌های بالای پلن‌ها (با کاما)', implode( ', ', (array) $this->d( 'tabs', array() ) ) );
+		$this->f_text( $this, 'price_label', 'برچسب بالای قیمت', $this->ds( 'price_label', 'بازهٔ سرمایه‌گذاری' ) );
+		$this->f_text( $this, 'price_unit', 'واحد قیمت', $this->ds( 'price_unit', 'میلیون تومان' ) );
+
+		$row = new Repeater();
+		$this->f_text( $row, 'title', 'نام پلن' );
+		$this->f_text( $row, 'delivery', 'مدت تحویل' );
+		$this->f_text( $row, 'price', 'بازهٔ قیمت' );
+		$this->f_text( $row, 'flag', 'نشان پلن' );
+		$this->f_select( $row, 'tone', 'رنگ پلن', array( 'p1' => 'آسمانی', 'p2' => 'طلایی (ویژه)', 'p3' => 'بنفش' ), 'p1' );
+		$this->f_area( $row, 'features', 'مزایا (هر خط یک مورد)', '', array( 'rows' => 4 ) );
+		$this->f_text( $row, 'cta', 'متن دکمه', 'مشاوره و ثبت سفارش' );
+		$this->f_url( $row, 'link', 'پیوند دکمه' );
+
+		$defaults = array();
+		foreach ( $this->da( 'plans' ) as $plan ) {
+			$defaults[] = array(
+				'title'    => $plan['title'] ?? '',
+				'delivery' => $plan['delivery'] ?? '',
+				'price'    => $plan['price'] ?? '',
+				'flag'     => $plan['flag'] ?? '',
+				'tone'     => $plan['tone'] ?? 'p1',
+				'features' => implode( "\n", (array) ( $plan['features'] ?? array() ) ),
+				'cta'      => $plan['cta'] ?? 'مشاوره و ثبت سفارش',
+				'link'     => array( 'url' => (string) ( $plan['link'] ?? '' ) ),
+			);
+		}
+
+		$this->f_repeater( 'plans', 'پلن‌ها', $row->get_controls(), $defaults, 'title' );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_pricing_matrix', 'جدول مقایسه' );
+		$matrix = $this->dn( 'matrix' );
+		$this->f_text( $this, 'matrix_head', 'سرستون‌ها (با کاما)', implode( ', ', (array) ( $matrix['head'] ?? array() ) ) );
+		$this->f_text( $this, 'matrix_foot', 'پاورقی جدول (با کاما)', implode( ', ', (array) ( $matrix['foot'] ?? array() ) ) );
+		$mrow = new Repeater();
+		$this->f_text( $mrow, 'feature', 'ویژگی' );
+		$this->f_text( $mrow, 'col_1', 'ستون ۱' );
+		$this->f_text( $mrow, 'col_2', 'ستون ۲' );
+		$this->f_text( $mrow, 'col_3', 'ستون ۳' );
+		$mrows = array();
+		foreach ( (array) ( $matrix['rows'] ?? array() ) as $cells ) {
+			$mrows[] = array(
+				'feature' => $cells[0] ?? '',
+				'col_1'   => $cells[1] ?? '',
+				'col_2'   => $cells[2] ?? '',
+				'col_3'   => $cells[3] ?? '',
+			);
+		}
+		$this->f_repeater( 'matrix_rows', 'ردیف‌های جدول', $mrow->get_controls(), $mrows, 'feature' );
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading();
+		$this->style_cards( 'کارت پلن', '.plan', '.plan h4', '.plan .sub', '.plan .flag' );
+
+		$this->start_controls_section( 'zc_style_price', array( 'label' => 'قیمت و جدول', 'tab' => C::TAB_STYLE ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'price_type',
+			'label'    => 'تایپوگرافی قیمت',
+			'selector' => '{{WRAPPER}} .zc-hp .pprice b',
+		) );
+		$this->add_control( 'price_color', array(
+			'label'     => 'رنگ قیمت',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .pprice b' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'matrix_heading', array( 'label' => 'جدول مقایسه', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_control( 'matrix_bg', array(
+			'label'     => 'پس‌زمینهٔ جدول',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .matrix' => 'background-color: {{VALUE}};' ),
+		) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'matrix_type',
+			'label'    => 'تایپوگرافی جدول',
+			'selector' => '{{WRAPPER}} .zc-hp .matrix table',
+		) );
+		$this->add_control( 'matrix_color', array(
+			'label'     => 'رنگ متن جدول',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .matrix td, {{WRAPPER}} .zc-hp .matrix th' => 'color: {{VALUE}};' ),
+		) );
 		$this->end_controls_section();
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( ! empty( $s['plan_items'] ) && is_array( $s['plan_items'] ) ) {
-			$plans = array();
-			foreach ( $s['plan_items'] as $row ) {
-				$plans[] = array(
-					'title'    => $row['title'] ?? '',
-					'delivery' => $row['delivery'] ?? '',
-					'price'    => $row['price'] ?? '',
-					'flag'     => $row['flag'] ?? '',
-					'tone'     => $row['tone'] ?? 'p1',
-					'features' => array_filter( array_map( 'trim', explode( "\n", (string) ( $row['features'] ?? '' ) ) ) ),
-					'cta'      => 'مشاوره و ثبت سفارش',
-					'link'     => $row['link']['url'] ?? '',
-				);
-			}
-			$s['plans'] = $plans;
+
+	protected function prepare( array $settings ): array {
+		$plans = array();
+		foreach ( $this->rows_of( $settings, 'plans' ) as $row ) {
+			$plans[] = array(
+				'title'    => (string) ( $row['title'] ?? '' ),
+				'delivery' => (string) ( $row['delivery'] ?? '' ),
+				'price'    => (string) ( $row['price'] ?? '' ),
+				'flag'     => (string) ( $row['flag'] ?? '' ),
+				'tone'     => (string) ( $row['tone'] ?? 'p1' ),
+				'features' => $this->to_lines( $row['features'] ?? '' ),
+				'cta'      => (string) ( $row['cta'] ?? '' ) ?: 'مشاوره و ثبت سفارش',
+				'link'     => (string) ( $row['link']['url'] ?? '' ),
+			);
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::pricing( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+		$settings['plans'] = $plans;
+
+		$settings['tabs'] = $this->to_list( $settings['tabs'] ?? '' );
+
+		$rows = array();
+		foreach ( $this->rows_of( $settings, 'matrix_rows' ) as $row ) {
+			$rows[] = array(
+				(string) ( $row['feature'] ?? '' ),
+				(string) ( $row['col_1'] ?? '' ),
+				(string) ( $row['col_2'] ?? '' ),
+				(string) ( $row['col_3'] ?? '' ),
+			);
+		}
+		$settings['matrix'] = array(
+			'head' => $this->to_list( $settings['matrix_head'] ?? '' ),
+			'rows' => $rows,
+			'foot' => $this->to_list( $settings['matrix_foot'] ?? '' ),
+		);
+
+		return $settings;
 	}
 }
 
-/* --------------------------------------------------------- TESTIMONIALS */
+/* ============================================================ TESTIMONIALS */
 
 class Home_Testimonials extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_testimonials';
 	}
+
 	public function get_title(): string {
-		return 'صفحه اصلی — نظرات';
+		return 'صفحه اصلی — نظرات مشتریان';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-testimonial';
+	}
+
 	protected function section_slug(): string {
 		return 'testimonials';
 	}
+
 	protected function register_controls(): void {
-		$this->heading_controls( true );
-		$this->start_controls_section( 'zc_tst', array( 'label' => 'نظرات' ) );
-		$r = new Repeater();
-		$r->add_control( 'text', array( 'label' => 'متن نظر', 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => '' ) );
-		$r->add_control( 'name', array( 'label' => 'نام', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'role', array( 'label' => 'سمت / سازمان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$r->add_control( 'stars', array( 'label' => 'امتیاز (۱ تا ۵)', 'type' => Controls_Manager::NUMBER, 'default' => 5, 'min' => 1, 'max' => 5 ) );
-		$this->add_control( 'tst_items', array( 'label' => 'نظرات', 'type' => Controls_Manager::REPEATER, 'fields' => $r->get_controls(), 'title_field' => '{{{ name }}}', 'prevent_empty' => false ) );
+		$this->heading_controls();
+
+		$this->content_section( 'zc_testimonials_items', 'نظرات' );
+		$row = new Repeater();
+		$this->f_area( $row, 'text', 'متن نظر', '', array( 'rows' => 3 ) );
+		$this->f_text( $row, 'name', 'نام' );
+		$this->f_text( $row, 'role', 'سمت / سازمان' );
+		$this->f_text( $row, 'initial', 'حرف اول آواتار', '', array( 'description' => 'یک حرف یا نویسه؛ خالی بگذارید تا از نام ساخته شود.' ) );
+		$this->f_number( $row, 'stars', 'امتیاز (۱ تا ۵)', 5, 1, 5 );
+		$this->f_repeater(
+			'items',
+			'نظرات',
+			$row->get_controls(),
+			$this->pick_rows( $this->da( 'items' ), array( 'text', 'name', 'role', 'initial', 'stars' ) ),
+			'name'
+		);
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading();
+		$this->style_cards( 'کارت نظر', '.tst', '.tst .who b', '.tst p', '.tst .ava' );
+
+		$this->start_controls_section( 'zc_style_stars', array( 'label' => 'ستاره‌ها', 'tab' => C::TAB_STYLE ) );
+		$this->add_control( 'stars_color', array(
+			'label'     => 'رنگ ستاره‌ها',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .tst .stars' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'quote_color', array(
+			'label'     => 'رنگ علامت نقل‌قول',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .tst .qm' => 'color: {{VALUE}};' ),
+		) );
 		$this->end_controls_section();
 	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( ! empty( $s['tst_items'] ) && is_array( $s['tst_items'] ) ) {
-			$items = array();
-			foreach ( $s['tst_items'] as $i => $row ) {
-				$name    = (string) ( $row['name'] ?? '' );
-				$items[] = array(
-					'initial' => mb_substr( $name, 0, 1 ),
-					'stars'   => (int) ( $row['stars'] ?? 5 ),
-					'text'    => $row['text'] ?? '',
-					'name'    => $name,
-					'role'    => $row['role'] ?? '',
-				);
-			}
-			$s['items'] = $items;
+
+	protected function prepare( array $settings ): array {
+		$items = array();
+		foreach ( $this->rows_of( $settings, 'items' ) as $row ) {
+			$name    = (string) ( $row['name'] ?? '' );
+			$initial = trim( (string) ( $row['initial'] ?? '' ) );
+			$items[] = array(
+				'initial' => '' !== $initial ? $initial : mb_substr( $name, 0, 1 ),
+				'stars'   => max( 1, min( 5, (int) ( $row['stars'] ?? 5 ) ) ),
+				'text'    => (string) ( $row['text'] ?? '' ),
+				'name'    => $name,
+				'role'    => (string) ( $row['role'] ?? '' ),
+			);
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::testimonials( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+		$settings['items'] = $items;
+		return $settings;
 	}
 }
 
-/* ---------------------------------------------------------------- BLOG */
+/* ==================================================================== BLOG */
 
 class Home_Blog extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_blog';
 	}
+
 	public function get_title(): string {
-		return 'صفحه اصلی — مجله (شاخص + کناری)';
+		return 'صفحه اصلی — مجله';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-posts-masonry';
+	}
+
 	protected function section_slug(): string {
 		return 'blog';
 	}
+
 	protected function register_controls(): void {
-		$this->heading_controls();
-		$this->start_controls_section( 'zc_blog', array( 'label' => 'منبع مقالات' ) );
-		$this->add_control( 'b_source', array(
-			'label'   => 'منبع داده',
-			'type'    => Controls_Manager::SELECT,
-			'default' => 'manual',
-			'options' => array( 'manual' => 'کارت‌های دستی (پیش‌فرض دمو)', 'query' => 'آخرین نوشته‌های واقعی' ),
-		) );
-		$this->add_control( 'b_count', array( 'label' => 'تعداد نوشته‌ها', 'type' => Controls_Manager::NUMBER, 'default' => 3, 'min' => 3, 'max' => 7, 'condition' => array( 'b_source' => 'query' ) ) );
+		$this->heading_controls( true );
+
+		$this->content_section( 'zc_blog_source', 'منبع مقالات' );
+		$this->source_controls( 'source', 'count', 'مقالات', 'کارت‌های دستی (پیش‌فرض دمو)', 'آخرین نوشته‌های واقعی سایت', 3, 3, 7 );
+		$this->f_text( $this, 'read_more', 'متن پیوند «ادامه»', $this->ds( 'read_more', 'ادامهٔ مطلب' ) );
 		$this->end_controls_section();
-	}
-	protected function render(): void {
-		$s = $this->settings_with_head();
-		if ( 'query' === ( $s['b_source'] ?? 'manual' ) ) {
-			$posts = get_posts( array( 'numberposts' => max( 3, (int) ( $s['b_count'] ?? 3 ) ) ) );
-			if ( $posts ) {
-				$cats = static function ( $id ) {
-					$t = wp_get_post_categories( $id, array( 'fields' => 'names' ) );
-					return $t ? $t[0] : 'مجلهٔ زرین کد';
-				};
-				$date = static function ( $id ) {
-					return class_exists( '\Zarincode\Theme\Core\Setup' )
-						? \Zarincode\Theme\Core\Setup::jalali_date( (int) get_post_time( 'U', true, $id ) )
-						: get_the_date( '', $id );
-				};
-				$first              = array_shift( $posts );
-				$s['featured']      = array(
-					'cat'     => $cats( $first->ID ),
-					'seal'    => 'تازه‌ترین مقاله',
-					'icon'    => 'newspaper',
-					'title'   => get_the_title( $first ),
-					'excerpt' => wp_trim_words( wp_strip_all_tags( $first->post_excerpt ?: $first->post_content ), 22 ),
-					'author'  => get_the_author_meta( 'display_name', (int) $first->post_author ),
-					'date'    => $date( $first->ID ),
-					'read'    => max( 1, (int) ceil( str_word_count( wp_strip_all_tags( $first->post_content ) ) / 200 ) ) . ' دقیقه مطالعه',
-					'link'    => get_permalink( $first ),
-				);
-				$side = array();
-				foreach ( array_slice( $posts, 0, 2 ) as $i => $p ) {
-					$side[] = array(
-						'tags'    => array( $cats( $p->ID ), 'زرین کد' ),
-						'pill'    => $cats( $p->ID ),
-						'icon'    => array( 'arrow-trend-up', 'robot' )[ $i % 2 ],
-						'title'   => get_the_title( $p ),
-						'excerpt' => wp_trim_words( wp_strip_all_tags( $p->post_excerpt ?: $p->post_content ), 16 ),
-						'author'  => get_the_author_meta( 'display_name', (int) $p->post_author ),
-						'date'    => $date( $p->ID ),
-						'read'    => '۵ دقیقه',
-						'link'    => get_permalink( $p ),
-						'tone'    => 0 === $i ? 'sc1' : 'sc2',
-					);
-				}
-				$s['side'] = $side;
-			}
+
+		$this->content_section( 'zc_blog_featured', 'مقالهٔ شاخص', array( 'source' => 'manual' ) );
+		$featured = $this->dn( 'featured' );
+		$this->f_icon( $this, 'f_icon', 'newspaper' );
+		$this->f_text( $this, 'f_cat', 'دسته‌بندی', (string) ( $featured['cat'] ?? '' ) );
+		$this->f_text( $this, 'f_seal', 'نشان ویژه', (string) ( $featured['seal'] ?? '' ) );
+		$this->f_text( $this, 'f_title', 'عنوان', (string) ( $featured['title'] ?? '' ) );
+		$this->f_area( $this, 'f_excerpt', 'خلاصه', (string) ( $featured['excerpt'] ?? '' ) );
+		$this->f_text( $this, 'f_author', 'نویسنده', (string) ( $featured['author'] ?? '' ) );
+		$this->f_text( $this, 'f_date', 'تاریخ', (string) ( $featured['date'] ?? '' ) );
+		$this->f_text( $this, 'f_read', 'زمان مطالعه', (string) ( $featured['read'] ?? '' ) );
+		$this->f_url( $this, 'f_link', 'پیوند مقاله', (string) ( $featured['link'] ?? '' ) );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_blog_side', 'مقالات کنار', array( 'source' => 'manual' ) );
+		$row = new Repeater();
+		$this->f_icon( $row, 'icon', 'newspaper' );
+		$this->f_text( $row, 'pill', 'برچسب روی کاور' );
+		$this->f_select( $row, 'tone', 'رنگ کارت', array( 'sc1' => 'آسمانی', 'sc2' => 'نعنایی', 'sc3' => 'هلویی' ), 'sc1' );
+		$this->f_text( $row, 'title', 'عنوان' );
+		$this->f_area( $row, 'excerpt', 'خلاصه', '', array( 'rows' => 2 ) );
+		$this->f_text( $row, 'tags', 'برچسب‌ها (با کاما)' );
+		$this->f_text( $row, 'author', 'نویسنده' );
+		$this->f_text( $row, 'date', 'تاریخ' );
+		$this->f_text( $row, 'read', 'زمان مطالعه' );
+		$this->f_url( $row, 'link', 'پیوند' );
+
+		$defaults = array();
+		foreach ( $this->da( 'side' ) as $item ) {
+			$defaults[] = array(
+				'icon'    => $item['icon'] ?? 'newspaper',
+				'pill'    => $item['pill'] ?? '',
+				'tone'    => $item['tone'] ?? 'sc1',
+				'title'   => $item['title'] ?? '',
+				'excerpt' => $item['excerpt'] ?? '',
+				'tags'    => implode( ', ', (array) ( $item['tags'] ?? array() ) ),
+				'author'  => $item['author'] ?? '',
+				'date'    => $item['date'] ?? '',
+				'read'    => $item['read'] ?? '',
+				'link'    => array( 'url' => (string) ( $item['link'] ?? '' ) ),
+			);
 		}
-		echo Home_Templates::wrap_open() . Home_Templates::blog( $s ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+		$this->f_repeater( 'side_items', 'مقالات کنار', $row->get_controls(), $defaults, 'title' );
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_blog_popular', 'پربازدیدترین‌ها و خبرنامه' );
+		$this->f_text( $this, 'popular_title', 'عنوان باکس پربازدید', $this->ds( 'popular_title', 'پربازدیدترین‌ها' ) );
+		$this->f_text( $this, 'popular_sub', 'زیرنویس باکس', $this->ds( 'popular_sub', '' ) );
+		$prow = new Repeater();
+		$this->f_text( $prow, 'title', 'عنوان مقاله' );
+		$this->f_text( $prow, 'meta', 'زیرنویس' );
+		$this->f_repeater(
+			'popular_items',
+			'پربازدیدترین‌ها',
+			$prow->get_controls(),
+			$this->pick_rows( $this->da( 'popular' ), array( 'title', 'meta' ) ),
+			'title'
+		);
+		$newsletter = $this->dn( 'newsletter' );
+		$this->f_text( $this, 'news_title', 'خبرنامه — عنوان', (string) ( $newsletter['title'] ?? '' ) );
+		$this->f_text( $this, 'news_desc', 'خبرنامه — توضیح', (string) ( $newsletter['desc'] ?? '' ) );
+		$this->f_text( $this, 'news_placeholder', 'خبرنامه — متن جای ورودی', (string) ( $newsletter['placeholder'] ?? '' ) );
+		$this->f_text( $this, 'news_button', 'خبرنامه — متن دکمه', (string) ( $newsletter['button'] ?? '' ) );
+		$this->end_controls_section();
+
+		$this->style_shell();
+		$this->style_heading( true );
+		$this->style_cards( 'کارت مقاله', '.scard', '.scard h3', '.scard p', '.scover2 .g' );
+	}
+
+	protected function prepare( array $settings ): array {
+		$settings = $this->urls_to_string( $settings, array( 'link_url', 'f_link' ) );
+
+		if ( 'query' === ( $settings['source'] ?? 'manual' ) ) {
+			$this->fill_from_posts( $settings );
+			return $settings;
+		}
+
+		$settings['featured'] = array(
+			'icon'    => (string) ( $settings['f_icon'] ?? 'newspaper' ),
+			'cat'     => (string) ( $settings['f_cat'] ?? '' ),
+			'seal'    => (string) ( $settings['f_seal'] ?? '' ),
+			'title'   => (string) ( $settings['f_title'] ?? '' ),
+			'excerpt' => (string) ( $settings['f_excerpt'] ?? '' ),
+			'author'  => (string) ( $settings['f_author'] ?? '' ),
+			'date'    => (string) ( $settings['f_date'] ?? '' ),
+			'read'    => (string) ( $settings['f_read'] ?? '' ),
+			'link'    => (string) ( $settings['f_link'] ?? '' ),
+		);
+
+		$side = array();
+		foreach ( $this->rows_of( $settings, 'side_items' ) as $row ) {
+			$side[] = array(
+				'icon'    => (string) ( $row['icon'] ?? 'newspaper' ),
+				'pill'    => (string) ( $row['pill'] ?? '' ),
+				'tone'    => (string) ( $row['tone'] ?? 'sc1' ),
+				'title'   => (string) ( $row['title'] ?? '' ),
+				'excerpt' => (string) ( $row['excerpt'] ?? '' ),
+				'tags'    => $this->to_list( $row['tags'] ?? '' ),
+				'author'  => (string) ( $row['author'] ?? '' ),
+				'date'    => (string) ( $row['date'] ?? '' ),
+				'read'    => (string) ( $row['read'] ?? '' ),
+				'link'    => (string) ( $row['link']['url'] ?? '' ),
+			);
+		}
+		$settings['side'] = $side;
+
+		$settings['popular'] = $this->rows_of( $settings, 'popular_items' );
+
+		$settings['newsletter'] = array(
+			'title'       => (string) ( $settings['news_title'] ?? '' ),
+			'desc'        => (string) ( $settings['news_desc'] ?? '' ),
+			'placeholder' => (string) ( $settings['news_placeholder'] ?? '' ),
+			'button'      => (string) ( $settings['news_button'] ?? '' ),
+		);
+
+		return $settings;
+	}
+
+	/** Builds the three blog slots from the newest published posts. */
+	private function fill_from_posts( array &$settings ): void {
+		$posts = get_posts( array(
+			'numberposts' => max( 3, (int) ( $settings['count'] ?? 3 ) ),
+			'post_status' => 'publish',
+		) );
+		if ( ! $posts ) {
+			return;
+		}
+
+		$first_cat = static function ( int $id ): string {
+			$terms = wp_get_post_categories( $id, array( 'fields' => 'names' ) );
+			return $terms ? (string) $terms[0] : 'مجلهٔ زرین کد';
+		};
+		$date_of = static function ( int $id ): string {
+			return class_exists( '\Zarincode\Theme\Core\Setup' )
+				? \Zarincode\Theme\Core\Setup::jalali_date( (int) get_post_time( 'U', true, $id ) )
+				: (string) get_the_date( '', $id );
+		};
+		$reading = static function ( $post ): string {
+			$words = str_word_count( wp_strip_all_tags( (string) $post->post_content ) );
+			return number_format_i18n( max( 1, (int) ceil( $words / 200 ) ) ) . ' دقیقه مطالعه';
+		};
+
+		$featured = array_shift( $posts );
+		$settings['featured'] = array(
+			'icon'    => 'newspaper',
+			'cat'     => $first_cat( (int) $featured->ID ),
+			'seal'    => 'تازه‌ترین مقاله',
+			'title'   => get_the_title( $featured ),
+			'excerpt' => wp_trim_words( wp_strip_all_tags( $featured->post_excerpt ?: $featured->post_content ), 22 ),
+			'author'  => get_the_author_meta( 'display_name', (int) $featured->post_author ),
+			'date'    => $date_of( (int) $featured->ID ),
+			'read'    => $reading( $featured ),
+			'link'    => get_permalink( $featured ),
+		);
+
+		$side = array();
+		foreach ( array_slice( $posts, 0, 2 ) as $index => $post ) {
+			$side[] = array(
+				'icon'    => array( 'arrow-trend-up', 'robot' )[ $index % 2 ],
+				'pill'    => $first_cat( (int) $post->ID ),
+				'tone'    => array( 'sc1', 'sc2' )[ $index % 2 ],
+				'title'   => get_the_title( $post ),
+				'excerpt' => wp_trim_words( wp_strip_all_tags( $post->post_excerpt ?: $post->post_content ), 16 ),
+				'tags'    => array( $first_cat( (int) $post->ID ), 'زرین کد' ),
+				'author'  => get_the_author_meta( 'display_name', (int) $post->post_author ),
+				'date'    => $date_of( (int) $post->ID ),
+				'read'    => $reading( $post ),
+				'link'    => get_permalink( $post ),
+			);
+		}
+		$settings['side'] = $side;
+
+		$popular = array();
+		foreach ( get_posts( array( 'numberposts' => 3, 'orderby' => 'comment_count', 'post_status' => 'publish' ) ) as $post ) {
+			$popular[] = array(
+				'title' => get_the_title( $post ),
+				'meta'  => $first_cat( (int) $post->ID ) . ' · ' . $reading( $post ),
+			);
+		}
+		if ( $popular ) {
+			$settings['popular'] = $popular;
+		}
 	}
 }
 
-/* --------------------------------------------------------------- PROMO */
+/* =================================================================== PROMO */
 
 class Home_Promo extends Abstract_Home_Widget {
+
 	public function get_name(): string {
 		return 'zarincode_home_promo';
 	}
+
 	public function get_title(): string {
 		return 'صفحه اصلی — فراخوان پایانی';
 	}
+
+	public function get_icon(): string {
+		return 'eicon-call-to-action';
+	}
+
 	protected function section_slug(): string {
 		return 'promo';
 	}
+
 	protected function register_controls(): void {
-		$this->start_controls_section( 'zc_promo', array( 'label' => 'فراخوان پایانی' ) );
-		$this->add_control( 'pr_badge', array( 'label' => 'برچسب', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'pr_title', array( 'label' => 'عنوان', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'pr_text', array( 'label' => 'توضیح', 'type' => Controls_Manager::TEXTAREA, 'rows' => 3, 'default' => '' ) );
-		$this->add_control( 'pr_p1t', array( 'label' => 'دکمه اصلی — متن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'pr_p1u', array( 'label' => 'دکمه اصلی — پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
-		$this->add_control( 'pr_p2t', array( 'label' => 'دکمه دوم — متن', 'type' => Controls_Manager::TEXT, 'default' => '' ) );
-		$this->add_control( 'pr_p2u', array( 'label' => 'دکمه دوم — پیوند', 'type' => Controls_Manager::URL, 'default' => array( 'url' => '' ) ) );
+		$this->content_section( 'zc_promo_content', 'محتوای فراخوان' );
+		$this->f_text( $this, 'badge', 'برچسب', $this->ds( 'badge' ) );
+		$this->f_text( $this, 'title', 'عنوان', $this->ds( 'title' ) );
+		$this->f_area( $this, 'text', 'توضیح', $this->ds( 'text' ) );
+		$this->f_text( $this, 'primary_text', 'دکمهٔ اصلی — متن', $this->ds( 'primary_text' ) );
+		$this->f_url( $this, 'primary_url', 'دکمهٔ اصلی — پیوند', $this->ds( 'primary_url' ) );
+		$this->f_text( $this, 'secondary_text', 'دکمهٔ دوم — متن', $this->ds( 'secondary_text' ) );
+		$this->f_url( $this, 'secondary_url', 'دکمهٔ دوم — پیوند', $this->ds( 'secondary_url' ) );
+		$this->end_controls_section();
+
+		$this->style_shell();
+
+		$this->start_controls_section( 'zc_style_promo', array( 'label' => 'کارت فراخوان', 'tab' => C::TAB_STYLE ) );
+		$this->add_group_control( Group_Control_Background::get_type(), array(
+			'name'     => 'promo_bg',
+			'label'    => 'پس‌زمینهٔ کارت',
+			'types'    => array( 'classic', 'gradient' ),
+			'exclude'  => Editor_Controls::BACKGROUND_EXCLUDE,
+			'selector' => '{{WRAPPER}} .zc-hp .promo',
+		) );
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(), array(
+			'name'     => 'promo_shadow',
+			'label'    => 'سایه',
+			'selector' => '{{WRAPPER}} .zc-hp .promo',
+		) );
+		$this->add_responsive_control( 'promo_radius', array(
+			'label'      => 'گردی گوشه‌ها',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', '%' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .promo' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_responsive_control( 'promo_padding', array(
+			'label'      => 'فاصلهٔ داخلی',
+			'type'       => C::DIMENSIONS,
+			'size_units' => array( 'px', 'em' ),
+			'selectors'  => array(
+				'{{WRAPPER}} .zc-hp .promo' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			),
+		) );
+		$this->add_control( 'promo_title_heading', array( 'label' => 'عنوان', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'promo_title_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => '{{WRAPPER}} .zc-hp .promo h2',
+		) );
+		$this->add_control( 'promo_title_color', array(
+			'label'     => 'رنگ عنوان',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .promo h2' => 'color: {{VALUE}};' ),
+		) );
+		$this->add_control( 'promo_text_heading', array( 'label' => 'توضیح', 'type' => C::HEADING, 'separator' => 'before' ) );
+		$this->add_group_control( Group_Control_Typography::get_type(), array(
+			'name'     => 'promo_text_type',
+			'label'    => 'تایپوگرافی',
+			'selector' => '{{WRAPPER}} .zc-hp .promo p',
+		) );
+		$this->add_control( 'promo_text_color', array(
+			'label'     => 'رنگ متن',
+			'type'      => C::COLOR,
+			'selectors' => array( '{{WRAPPER}} .zc-hp .promo p' => 'color: {{VALUE}};' ),
+		) );
 		$this->end_controls_section();
 	}
-	protected function render(): void {
-		$s   = $this->get_settings_for_display();
-		$out = array();
-		$map = array( 'badge' => 'pr_badge', 'title' => 'pr_title', 'text' => 'pr_text', 'primary_text' => 'pr_p1t', 'secondary_text' => 'pr_p2t' );
-		foreach ( $map as $k => $key ) {
-			if ( ! empty( $s[ $key ] ) ) {
-				$out[ $k ] = $s[ $key ];
-			}
-		}
-		foreach ( array( 'primary' => 'pr_p1u', 'secondary' => 'pr_p2u' ) as $k => $key ) {
-			if ( ! empty( $s[ $key ]['url'] ) ) {
-				$out[ $k . '_url' ] = $s[ $key ]['url'];
-			}
-		}
-		echo Home_Templates::wrap_open() . Home_Templates::promo( $out ) . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+
+	protected function prepare( array $settings ): array {
+		return $this->urls_to_string( $settings, array( 'primary_url', 'secondary_url' ) );
 	}
 }

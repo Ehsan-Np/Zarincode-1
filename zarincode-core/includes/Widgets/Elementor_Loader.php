@@ -71,6 +71,7 @@ class Elementor_Loader {
     }
 
     public function register_category( $elements_manager ): void {
+        $elements_manager->add_category('zarincode-home',['title'=>'زرین کد — بخش‌های صفحه اصلی','icon'=>'eicon-globe']);
         $elements_manager->add_category('zarincode-professional',['title'=>'زرین کد — ابزارهای حرفه‌ای آژانس','icon'=>'fa fa-star']);
         $elements_manager->add_category(
             'zarincode-elements',
@@ -85,6 +86,7 @@ class Elementor_Loader {
         if ( !\Zarincode\Runtime260\Features\Manager::enabled('native_widgets') ) { return; }
         require_once __DIR__ . '/Elementor_Widgets_Collection.php';
         require_once __DIR__ . '/Home_Widgets.php';
+        require_once __DIR__ . '/Home_Defaults.php';
         require_once __DIR__ . '/Professional_Widgets.php';
         require_once __DIR__.'/Studio_Widgets.php';
         require_once __DIR__.'/Widget_Trust_Badges.php';

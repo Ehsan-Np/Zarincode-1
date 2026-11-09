@@ -347,3 +347,9 @@
 .zc-hp .bcard .em .fa,.zc-hp .step .sic .fa{font-size:22px}
 .zc-hp .tcard .ti .fa{font-size:17px}
 .zc-hp .tst .stars{letter-spacing:2px}
+
+/* --- v4.7.0: section tints as classes so Elementor style controls can override them --- */
+.zc-hp section.pt-tight{padding-top:10px}
+.zc-hp section.tint-cream{background:linear-gradient(180deg,transparent,#FFFBEE55 30%,#FFFBEE55 70%,transparent)}
+.zc-hp section.tint-gold{background:linear-gradient(180deg,transparent,#FFF1C955 30%,#FFF1C955 70%,transparent)}
+.zc-hp section.tint-violet{background:linear-gradient(180deg,transparent,#F1EBFF44 30%,#F1EBFF44 70%,transparent)}

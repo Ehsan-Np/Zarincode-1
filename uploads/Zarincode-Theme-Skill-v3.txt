@@ -2613,3 +2613,44 @@ service excerpts/prices/durations); the seeder rebuilds the demo from these
 sources. Verified live: all 11 widgets in _elementor_data, .zc-hp on every
 section, computed grid columns 3/4/4/6/3 as designed, FA7 glyphs resolving,
 full-page 1440px and 390px evidence in docs/audits/2026-11-08-v4.6.0/.
+
+== UPDATE 2026-11-09 — v4.7.0 (demo-import fatal fixed; widgets made normally editable) ==
+Client reported the demo import failing on the live site and pasted debug.log, and
+asked for the custom widgets to be editable "like every normal Elementor widget".
+Two real bugs were reproduced and fixed:
+1) FATAL — Renderer::handle_shortcode() checked `in_array($kind, HOME_SECTIONS)`
+   with the shortcode name (home_hero) and then called
+   Home_Templates::home_hero(), a method that does not exist (templates are named
+   hero, services…). It surfaces during the import because `wp_update_post()`
+   fires Yoast's indexable-link builder, which runs do_shortcode() on the page
+   content. Fixed with an explicit widget→template map + class_exists()/
+   method_exists() guards.
+2) NOTICE — Professional_Widgets opened a section named 'intro' and also added a
+   control named 'intro': "Cannot redeclare control with same name intro".
+   Section renamed to 'intro_section'. Lesson: in Elementor a section IS a
+   control; ids must be unique per widget, and a Repeater's get_controls() must
+   be reused as-is (it already contains `_id`) instead of wrapping it in a second
+   Repeater.
+Widget-rework pattern adopted (mirrors how stock Elementor widgets are built):
+* content defaults are derived from the content model so the panel never opens
+  blank; only content sections are exported for seeding (never style controls),
+* Style tab per widget: Group_Control_Background (classic+gradient),
+  Group_Control_Typography, Group_Control_Border, Group_Control_Box_Shadow,
+  DIMENSIONS/SLIDER via add_responsive_control, plus normal/hover tabs,
+  all wired with `selectors` on `{{WRAPPER}} .zc-hp …` so Elementor generates
+  the CSS and the editor preview updates live,
+* icons are SELECT2 pickers fed by Home_Templates::icon_choices() (shared FA7
+  table) rather than a free-text glyph name,
+* an empty repeater now really renders nothing (array_key_exists, not !empty),
+  and section tints moved from inline styles to classes so the new background
+  controls can win.
+Verified: admin-panel demo import on a fresh WP 6.9 + Elementor 3.32.4 + Woo
+11.2.1 + Yoast install → success notice, no fatals, empty debug.log; all 37
+zarincode widgets register with zero notices; editor shows the new category
+"زرین کد — بخش‌های صفحه اصلی" with 11 widgets and filled fields; generated CSS
+contains .zc-hp padding / h2.t color / .svc background / .sec-head alignment
+rules. Visual regression vs the approved 4.6.0 render: 43 px out of 12.4M
+(0.000%). Evidence: docs/audits/2026-11-09-v4.7.0/.
+Sandbox note: the WP test box has ~2 GB RAM; a second full import with Yoast
+active pushed it into swap (load ~20) — kill chromium before importing, and
+prefer `wp eval` seeding over repeated admin imports.

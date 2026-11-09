@@ -324,7 +324,9 @@ class Demo_Seeder {
                             'id'         => self::gen_id(),
                             'elType'     => 'widget',
                             'widgetType' => $widget_type,
-                            'settings'   => $settings,
+                            // Empty settings must serialise as a JSON object ({}), not an
+                            // array ([]) — Elementor's editor reads settings as a map.
+                            'settings'   => $settings ? $settings : (object) array(),
                         ],
                     ],
                 ],
@@ -915,7 +917,11 @@ class Demo_Seeder {
         $home_tree       = [];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
-            $home_tree[]       = self::make_elementor_section( $hw['widget'], [] );
+            // Seed the content defaults so the Elementor panel opens with real copy.
+            $widget_settings = class_exists( \Zarincode\Runtime260\Widgets\Home_Defaults::class )
+                ? \Zarincode\Runtime260\Widgets\Home_Defaults::settings( $hw['widget'] )
+                : array();
+            $home_tree[]       = self::make_elementor_section( $hw['widget'], $widget_settings );
             $home_shortcodes[] = $hw['sc'];
         }
 
