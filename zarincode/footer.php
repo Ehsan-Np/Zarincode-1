@@ -38,7 +38,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
             <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.75rem 2rem;background:rgba(255,255,255,0.05);border-radius:1.5rem;margin-bottom:2.5rem;border:1px solid rgba(255,255,255,0.08);">
                 <div>
                     <span class="zc-badge-pill" style="margin-bottom:0.4rem;">ZARINCODE DIGITAL AGENCY &amp; MARKETPLACE</span>
-                    <h3 style="margin:0;font-size:1.45rem;font-weight:900;color:#FFFFFF;"><?php echo esc_html( $cta_heading ); ?></h3>
+                    <h2 style="margin:0;font-size:1.45rem;font-weight:900;color:#FFFFFF;"><?php echo esc_html( $cta_heading ); ?></h2>
                 </div>
                 <div style="display:flex;flex-wrap:wrap;gap:0.85rem;">
                     <a href="tel:<?php echo esc_attr( $phone ); ?>" class="zc-btn zc-btn-yellow">
@@ -78,7 +78,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 
                 <!-- Col 2: Core Services -->
                 <div>
-                    <h4 class="zc-footer-title">خدمات تخصصی زرین کد</h4>
+                    <h3 class="zc-footer-title">خدمات تخصصی زرین کد</h3>
                     <ul class="zc-footer-links">
                         <li><a href="<?php echo esc_url( home_url( '/service/website-design/' ) ); ?>"><i class="fa-solid fa-angle-left"></i> طراحی سایت حرفه‌ای و المنتوری</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/service/software-development/' ) ); ?>"><i class="fa-solid fa-angle-left"></i> برنامه‌نویسی نرم‌افزار و وب‌اپلیکیشن</a></li>
@@ -91,7 +91,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 
                 <!-- Col 3: Legal, Compliance & Policies -->
                 <div>
-                    <h4 class="zc-footer-title">قوانین و اسناد حقوقی</h4>
+                    <h3 class="zc-footer-title">قوانین و اسناد حقوقی</h3>
                     <ul class="zc-footer-links">
                         <li><a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>"><i class="fa-solid fa-scale-balanced"></i> قوانین و شرایط و مقررات کشور ایران</a></li>
                         <li><a href="<?php echo esc_url( home_url( '/warranty-policy/' ) ); ?>"><i class="fa-solid fa-shield-halved"></i> شرایط گارانتی و پشتیبانی فنی</a></li>
@@ -104,7 +104,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
 
                 <!-- Col 4: Trust Badges & Quick Links -->
                 <div>
-                    <h4 class="zc-footer-title">اعتبارنامه‌ها و راه‌های ارتباطی</h4>
+                    <h3 class="zc-footer-title">اعتبارنامه‌ها و راه‌های ارتباطی</h3>
                     <?php
                     $badges=[['provider'=>'enamad','code'=>$enamad_html],['provider'=>'samandehi','code'=>$samandehi_html],['provider'=>'zarinpal','code'=>zarincode_get_option('footer_zarinpal_html','')],['provider'=>zarincode_get_option('footer_gateway_provider','zibal'),'code'=>zarincode_get_option('footer_gateway_html','')]];
                     if(class_exists('\Zarincode\Runtime260\Widgets\Trust_Badges'))echo \Zarincode\Runtime260\Widgets\Trust_Badges::html($badges);

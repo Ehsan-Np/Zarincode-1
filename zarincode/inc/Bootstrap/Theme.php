@@ -55,6 +55,7 @@ function zarincode_fa_digits( $input ): string {
 \Zarincode\Theme\Core\Article_Layout::boot();
 \Zarincode\Theme\Core\Article_Ratings::boot();
 \Zarincode\Theme\Core\Seo_Meta::boot();
+\Zarincode\Theme\Home\Home_Cache::boot();
 \Zarincode\Theme\Core\Discussion::boot();
 \Zarincode\Theme\Core\Account::boot();
 \Zarincode\Theme\Core\Social_Manager::boot();

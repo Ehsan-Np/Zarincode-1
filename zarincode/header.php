@@ -78,7 +78,7 @@ $zc_nav_state = static function ( array $paths, bool $extra = false ): array {
 
 <?php if ( $enable_topbar ) : ?>
 <!-- Top Announcement & Legal Bar -->
-<div class="zc-topbar">
+<div class="zc-topbar" role="region" aria-label="<?php echo esc_attr__( 'اطلاع‌رسانی و قوانین', 'zarincode' ); ?>">
     <div class="zc-container zc-topbar-inner">
         <div class="zc-topbar-items">
             <?php if ( ! empty( $topbar_badge ) ) : ?>

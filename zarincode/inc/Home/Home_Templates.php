@@ -57,6 +57,19 @@ final class Home_Templates {
 			return $index;
 		}
 
+		if ( class_exists( Home_Cache::class ) ) {
+			return $index = (array) Home_Cache::remember( 'title_index', array( self::class, 'build_content_index' ) );
+		}
+
+		return $index = self::build_content_index();
+	}
+
+	/**
+	 * Builds the title index (cold cache only).
+	 *
+	 * @return array<int, array{title:string, norm:string, url:string}>
+	 */
+	public static function build_content_index(): array {
 		$index = array();
 		$types = array( 'zc_service', 'product', 'zc_project', 'post' );
 		foreach ( $types as $type ) {
@@ -323,7 +336,7 @@ final class Home_Templates {
 		// Each item: a plain string (text only) or [ 'text' => …, 'link' => … ].
 		// Without an explicit link the term still resolves to real site content
 		// through the WordPress search archive, so nothing in the bar is a dead end.
-		$build = static function () use ( $items ): string {
+		$build = static function ( bool $clone = false ) use ( $items ): string {
 			$out = '';
 			foreach ( $items as $it ) {
 				$is_map = is_array( $it );
@@ -336,12 +349,12 @@ final class Home_Templates {
 					$link = self::url_for_label( $text ); // A real service / product / article.
 				}
 				$href = '' !== $link ? $link : home_url( '/?s=' . rawurlencode( $text ) );
-				$out .= '<span><a class="titem" href="' . esc_url( $href ) . '">' . self::e( $text ) . '</a><b aria-hidden="true">◆</b></span>';
+				$out .= '<span><a class="titem"' . ( $clone ? ' tabindex="-1"' : '' ) . ' href="' . esc_url( $href ) . '">' . self::e( $text ) . '</a><b aria-hidden="true">◆</b></span>';
 			}
 			return $out;
 		};
 
-		$track = $build();
+		$track = $build(false);
 		if ( '' === $track ) {
 			return '';
 		}
@@ -349,7 +362,7 @@ final class Home_Templates {
 		return '<div class="ticker" data-zc-ticker>'
 			. '<button type="button" class="tpause" aria-label="توقف / ادامهٔ حرکت نوار" aria-pressed="false"><span aria-hidden="true">❙❙</span></button>'
 			. '<div class="ttrack">' . $track . '</div>'
-			. '<div class="ttrack" aria-hidden="true">' . $track . '</div>'
+			. '<div class="ttrack" aria-hidden="true">' . $build(true) . '</div>'
 			. '</div>';
 	}
 
@@ -502,7 +515,7 @@ final class Home_Templates {
 					<span class="kind"><?php echo self::e( $it['kind'] ?? '' ); ?></span>
 				</div>
 				<div class="pbody">
-					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
+					<h3><?php echo self::e( $it['title'] ?? '' ); ?></h3>
 					<?php if ( ! empty( $it['tags'] ) && is_array( $it['tags'] ) ) : ?>
 					<div class="pchips"><?php foreach ( $it['tags'] as $t ) : ?><a href="<?php echo esc_url( self::term_or_search_url( (string) $t, 'product_tag' ) ); ?>"><?php echo self::e( $t ); ?></a><?php endforeach; ?></div>
 					<?php endif; ?>
@@ -548,7 +561,7 @@ final class Home_Templates {
 					<span class="ico-tile"><?php echo self::ico( (string) ( $it['icon'] ?? 'display' ) ); ?></span>
 				</div>
 				<div class="jbody">
-					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
+					<h3><?php echo self::e( $it['title'] ?? '' ); ?></h3>
 					<div class="jrow">
 						<?php if ( '' !== trim( (string) ( $it['cat'] ?? '' ) ) ) : ?><span class="cat <?php echo esc_attr( (string) ( $it['tone'] ?? 'c1' ) ); ?>"><?php echo self::e( $it['cat'] ); ?></span><?php endif; ?>
 						<a class="go" href="<?php echo self::url_or( $it['link'] ?? '', '/projects-portfolio/' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?> ←</a>
@@ -582,7 +595,7 @@ final class Home_Templates {
 			<div class="bcard <?php echo esc_attr( $tone ); ?>">
 				<span class="no"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span>
 				<span class="em"><?php echo self::ico( (string) ( $it['icon'] ?? 'compass' ) ); ?></span>
-				<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
+				<h3><?php echo self::e( $it['title'] ?? '' ); ?></h3>
 				<p><?php echo self::e( $it['text'] ?? '' ); ?></p>
 			</div>
 			<?php endforeach; ?>
@@ -666,7 +679,7 @@ final class Home_Templates {
 			?>
 			<div class="plan <?php echo esc_attr( (string) ( $p['tone'] ?? 'p1' ) ); ?>">
 				<?php if ( ! empty( $p['flag'] ) ) : ?><span class="flag"><?php echo self::e( $p['flag'] ); ?></span><?php endif; ?>
-				<h4><?php echo self::e( $p['title'] ?? '' ); ?></h4>
+				<h3><?php echo self::e( $p['title'] ?? '' ); ?></h3>
 				<div class="sub"><?php echo self::e( $p['delivery'] ?? '' ); ?></div>
 				<div class="pprice"><span><?php echo self::e( $a['price_label'] ?? '' ); ?></span><b><?php echo self::e( $p['price'] ?? '' ); ?><?php if ( ! empty( $a['price_unit'] ) ) : ?> <small><?php echo self::e( $a['price_unit'] ); ?></small><?php endif; ?></b></div>
 				<?php if ( ! empty( $p['features'] ) && is_array( $p['features'] ) ) : ?>
@@ -696,7 +709,7 @@ final class Home_Templates {
 			<?php $first = false; endforeach; ?>
 		</div>
 		<?php if ( ! empty( $matrix['rows'] ) ) : ?>
-		<div class="matrix">
+		<div class="matrix" tabindex="0" role="group" aria-label="<?php echo esc_attr__( 'مقایسهٔ پلن‌ها (قابل اسکرول افقی)', 'zarincode' ); ?>">
 			<table>
 				<thead><tr>
 					<?php foreach ( (array) ( $matrix['head'] ?? array() ) as $h ) : ?><th><?php echo self::e( $h ); ?></th><?php endforeach; ?>
@@ -736,7 +749,7 @@ final class Home_Templates {
 				<span class="qm">”</span>
 				<?php $rating = max( 0, min( 5, (int) ( $t['stars'] ?? 5 ) ) ); ?>
 				<?php if ( $rating > 0 ) : ?>
-				<div class="stars" aria-label="<?php echo esc_attr( (string) $rating ); ?> از ۵"><?php echo wp_kses_post( self::stars( $rating ) ); ?></div>
+				<div class="stars" role="img" aria-label="<?php echo esc_attr( (string) $rating ); ?> از ۵"><?php echo wp_kses_post( self::stars( $rating ) ); ?></div>
 				<?php endif; ?>
 				<p><?php echo self::e( $t['text'] ?? '' ); ?></p>
 				<div class="who">
@@ -826,7 +839,7 @@ final class Home_Templates {
 				<div class="popular">
 					<div class="pop-head"><span class="ic"><?php echo self::ico( 'chart-simple' ); ?></span><span><b><?php echo self::e( $a['popular_title'] ?? '' ); ?></b><span><?php echo self::e( $a['popular_sub'] ?? '' ); ?></span></span></div>
 					<?php foreach ( $pop as $i => $p ) : $pop_link = (string) ( $p['link'] ?? '' ); ?>
-					<<?php echo '' !== $pop_link ? 'a' : 'div'; ?><?php echo '' !== $pop_link ? ' href="' . esc_url( self::url_or( $pop_link, '/blog/' ) ) . '"' : ''; ?> class="pop-item"><span class="rank r<?php echo (int) ( $i + 1 ); ?>"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span><div><h4><?php echo self::e( $p['title'] ?? '' ); ?></h4><div class="pm">◆ <?php echo self::e( $p['meta'] ?? '' ); ?></div></div></<?php echo '' !== $pop_link ? 'a' : 'div'; ?>>
+					<<?php echo '' !== $pop_link ? 'a' : 'div'; ?><?php echo '' !== $pop_link ? ' href="' . esc_url( self::url_or( $pop_link, '/blog/' ) ) . '"' : ''; ?> class="pop-item"><span class="rank r<?php echo (int) ( $i + 1 ); ?>"><?php echo self::e( sprintf( '%02d', $i + 1 ) ); ?></span><div><h3><?php echo self::e( $p['title'] ?? '' ); ?></h3><div class="pm">◆ <?php echo self::e( $p['meta'] ?? '' ); ?></div></div></<?php echo '' !== $pop_link ? 'a' : 'div'; ?>>
 					<?php endforeach; ?>
 				</div>
 				<div class="news">

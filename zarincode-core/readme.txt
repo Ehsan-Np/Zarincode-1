@@ -40,6 +40,16 @@ Do NOT reimport the demo when upgrading an existing site.
 * Ticker terms resolve to a matching service / product / project / article before falling back to site search.
 * Touch: 34-44px hit areas for the ticker, chips, tags and card CTAs on small or coarse pointers; no horizontal
   overflow at 390px.
+* Performance: the homepage title index (22 queries), the average product rating and the partner brands are cached
+  for 12 h in a non-autoloaded transient + object cache, flushed on content, term, review and theme changes.
+  Front page: 182 queries before, 152 warm (196 on the first request that builds the caches); per section warm:
+  hero +3, partners +1, services +3, products +12, portfolio +9, testimonials +3, blog +16, why/steps/pricing +0.
+* Accessibility: axe-core 4.10.2 (WCAG 2.0/2.1 A + AA + best practice) reports 0 violations on the homepage at
+  1366/768/390px and on the 404 and search templates. Muted text token #84888F -> #5F6369 (3.55:1 -> 5.6:1 on
+  white, >=4.8:1 on the pastel cards), struck prices #A9AEB8 -> #6E7278, card headings h4 -> h3 so the outline is
+  h1 hero > h2 section > h3 card, star ratings exposed as role="img", the duplicated ticker track taken out of the
+  tab order, the pricing matrix keyboard-scrollable, the announcement bar a labelled region and the footer CTA /
+  column headings h2/h3. Card typography is unchanged by the heading fix.
 
 = 4.8.0 =
 * New «سئو و هوش مصنوعی» admin module (two screens): search-engine indexing + AI-visibility scanner.

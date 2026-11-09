@@ -900,10 +900,24 @@ class Home_Hero extends Abstract_Home_Widget {
 	 * rated). Bounded query: at most 60 rated products.
 	 */
 	private function average_product_rating(): float {
-		if ( ! post_type_exists( 'product' ) ) {
-			return 0.0;
+		static $cached = null;
+		if ( null !== $cached ) {
+			return $cached;
 		}
 
+		if ( ! post_type_exists( 'product' ) ) {
+			return $cached = 0.0;
+		}
+
+		if ( class_exists( '\\Zarincode\\Theme\\Home\\Home_Cache' ) ) {
+			return $cached = (float) \Zarincode\Theme\Home\Home_Cache::remember( 'avg_rating', array( $this, 'compute_average_rating' ) );
+		}
+
+		return $cached = $this->compute_average_rating();
+	}
+
+	/** Uncached average rating (runs on a cold cache only). */
+	public function compute_average_rating(): float {
 		$ids = get_posts( array(
 			'post_type'        => 'product',
 			'post_status'      => 'publish',
@@ -1033,6 +1047,16 @@ class Home_Partners extends Abstract_Home_Widget {
 		}
 
 		$limit = max( 1, (int) ( $settings['count'] ?? 12 ) );
+		if ( class_exists( '\\Zarincode\\Theme\\Home\\Home_Cache' ) ) {
+			$items = (array) \Zarincode\Theme\Home\Home_Cache::remember( 'brands', array( $this, 'brands_from_projects' ) );
+			$items = array_slice( $items, 0, $limit );
+			$this->set_items( $settings, $items );
+			if ( 'yes' === ( $settings['auto_count'] ?? 'yes' ) && $items ) {
+				$settings['count'] = sprintf( '+%s برند', number_format_i18n( count( $items ) ) );
+			}
+			return;
+		}
+
 		$posts = get_posts( array(
 			'post_type'        => 'zc_project',
 			'post_status'      => 'publish',
@@ -1067,6 +1091,43 @@ class Home_Partners extends Abstract_Home_Widget {
 		if ( 'yes' === ( $settings['auto_count'] ?? 'yes' ) && $items ) {
 			$settings['count'] = sprintf( '+%s برند', number_format_i18n( count( $items ) ) );
 		}
+	}
+
+	/**
+	 * Every unique client name written on a published project, newest first.
+	 * Cached; used when the cache is warm.
+	 */
+	public function brands_from_projects(): array {
+		if ( ! post_type_exists( 'zc_project' ) ) {
+			return array();
+		}
+
+		$posts = get_posts( array(
+			'post_type'        => 'zc_project',
+			'post_status'      => 'publish',
+			'numberposts'      => 60,
+			'orderby'          => 'date',
+			'order'            => 'DESC',
+			'suppress_filters' => false,
+		) );
+
+		$items = array();
+		$seen  = array();
+		foreach ( $posts as $post ) {
+			$client = trim( (string) get_post_meta( (int) $post->ID, '_zc_prj_client', true ) );
+			$key    = mb_strtolower( $client );
+			if ( '' === $client || isset( $seen[ $key ] ) ) {
+				continue;
+			}
+			$seen[ $key ] = true;
+			$items[]      = array(
+				'name' => $client,
+				'icon' => 'building',
+				'link' => get_permalink( $post ),
+			);
+		}
+
+		return $items;
 	}
 }
 
@@ -1182,12 +1243,13 @@ class Home_Services extends Abstract_Home_Widget {
 	private function fill_from_services( array &$settings ): void {
 		$limit = max( 1, (int) ( $settings['count'] ?? 6 ) );
 		$posts = get_posts( array(
-			'post_type'        => 'zc_service',
-			'post_status'      => 'publish',
-			'numberposts'      => $limit,
-			'orderby'          => 'menu_order date',
-			'order'            => 'ASC',
-			'suppress_filters' => false,
+			'post_type'             => 'zc_service',
+			'post_status'           => 'publish',
+			'numberposts'           => $limit,
+			'orderby'               => 'menu_order date',
+			'order'                 => 'ASC',
+			'update_post_term_cache' => false, // Services never print terms.
+			'suppress_filters'      => false,
 		) );
 
 		if ( ! $posts ) {
@@ -2063,9 +2125,21 @@ class Home_Blog extends Abstract_Home_Widget {
 			return;
 		}
 
-		$first_cat = static function ( int $id ): string {
-			$terms = wp_get_post_categories( $id, array( 'fields' => 'names' ) );
-			return $terms ? (string) $terms[0] : 'مجلهٔ زرین کد';
+		// One query for every category of the listed posts instead of one per post.
+		$cat_map = array();
+		if ( $posts ) {
+			$ids     = array_map( static function ( $p ) { return (int) $p->ID; }, $posts );
+			$all     = wp_get_object_terms( $ids, 'category', array( 'fields' => 'all_with_object_id' ) );
+			if ( ! is_wp_error( $all ) ) {
+				foreach ( $all as $term ) {
+					if ( ! isset( $cat_map[ (int) $term->object_id ] ) ) {
+						$cat_map[ (int) $term->object_id ] = (string) $term->name;
+					}
+				}
+			}
+		}
+		$first_cat = static function ( int $id ) use ( &$cat_map ): string {
+			return $cat_map[ $id ] ?? 'مجلهٔ زرین کد';
 		};
 		$date_of = static function ( int $id ): string {
 			return class_exists( '\Zarincode\Theme\Core\Setup' )
