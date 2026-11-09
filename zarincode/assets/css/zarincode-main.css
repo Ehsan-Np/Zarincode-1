@@ -14,6 +14,18 @@
     --zc-darker: #1E2025;
     --zc-bg-from: #F8F6F0;
     --zc-bg-to: #FFF5D1;
+    --zc-bg-mid-a: #FFFDF7;
+    --zc-bg-mid-b: #FFFBEE;
+    --zc-footer-plate: #2E3138;
+    --zc-footer-veil: linear-gradient(
+        180deg,
+        rgba(46, 49, 56, 0) 0%,
+        rgba(46, 49, 56, 0.05) 26%,
+        rgba(46, 49, 56, 0.20) 52%,
+        rgba(46, 49, 56, 0.52) 76%,
+        rgba(46, 49, 56, 0.84) 92%,
+        #2E3138 100%
+    );
     --zc-surface: rgba(255, 255, 255, 0.78);
     --zc-surface-solid: #FFFFFF;
     --zc-surface-border: rgba(255, 255, 255, 0.92);
@@ -36,6 +48,18 @@ html.dark {
     color-scheme: dark;
     --zc-bg-from: #15171C;
     --zc-bg-to: #1F1B14;
+    --zc-bg-mid-a: #171A20;
+    --zc-bg-mid-b: #1B1C21;
+    --zc-footer-plate: #1A1C22;
+    --zc-footer-veil: linear-gradient(
+        180deg,
+        rgba(26, 28, 34, 0) 0%,
+        rgba(26, 28, 34, 0.10) 26%,
+        rgba(26, 28, 34, 0.35) 52%,
+        rgba(26, 28, 34, 0.68) 76%,
+        rgba(26, 28, 34, 0.92) 92%,
+        #1A1C22 100%
+    );
     --zc-surface: rgba(36, 38, 44, 0.78);
     --zc-surface-solid: #24262C;
     --zc-surface-border: rgba(255, 255, 255, 0.09);
@@ -55,6 +79,7 @@ html.dark {
 html {
     scroll-behavior: smooth;
     font-family: var(--zc-font-family);
+    background-color: var(--zc-bg-mid-a);
 }
 
 body {
@@ -62,8 +87,24 @@ body {
     padding: 0;
     font-family: var(--zc-font-family);
     color: var(--zc-text-main);
-    background: linear-gradient(135deg, var(--zc-bg-from) 0%, var(--zc-bg-to) 100%);
-    background-attachment: fixed;
+    /* v4.9.0 — one page-wide backdrop instead of a viewport-fixed diagonal.
+       180deg + background-size:100% 100% means the top edge (behind the header)
+       and the bottom edge (behind the footer) are identical from left to right in
+       RTL, and nothing shifts while scrolling: header → content → footer read as
+       one surface. */
+    background-color: var(--zc-bg-mid-a);
+    background-image: linear-gradient(
+        180deg,
+        var(--zc-bg-from) 0%,
+        var(--zc-bg-mid-a) 13%,
+        var(--zc-bg-mid-a) 44%,
+        var(--zc-bg-mid-b) 66%,
+        var(--zc-bg-to) 90%,
+        var(--zc-bg-to) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: scroll;
     min-height: 100vh;
     line-height: 1.75;
     overflow-x: hidden;
@@ -1425,8 +1466,11 @@ html.dark .zc-project-info-pills span {
 
 /* ── Footer (Crextio Bento Dark Footer) ── */
 .zc-footer {
-    margin-top: 4rem;
-    padding-bottom: 2.5rem;
+    /* v4.9.0 — the footer is the bottom of the page, not a card dropped on it:
+       the blend band above the plate is part of this box, the plate reaches the
+       last pixel of the page and there is no hairline cutting the transition. */
+    margin-top: 0;
+    padding: 9rem 0 0;
 }
 
 .zc-footer-bento {
@@ -2016,7 +2060,8 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 /* images */
 .entry-content img,.zc-glass-panel img{border-radius:14px}
 /* footer depth */
-body>.zc-site-footer,.zc-site-footer,#colophon,.zc-footer{border-top:1px solid #272a3212}
+body>.zc-site-footer,.zc-site-footer,#colophon{border-top:1px solid #272a3212}
+.zc-footer{border-top:0}
 /* pricing band rhythm (shares the pricing page look) */
 .zc-pricing-composition{margin-block:clamp(1rem,2.5vw,2rem)}
 /* dark mode counterparts */
@@ -2065,49 +2110,100 @@ html.dark :is(.zc-service-card,.zc-portfolio-card,.zc-blog-card,.zc-product-card
     text-align: center;
 }
 
-/* ── 2. Header → footer colour band (one continuous gradient) ───────── */
+/* ── 2. Header → footer colour band (one continuous gradient) ─────────
+   v4.9.0: the page backdrop (body gradient) runs warm → cream → warm from the
+   header to the footer. The plate now *rises out of* that backdrop through a
+   9rem veil instead of being a card dropped on it: no top hairline, no drop
+   shadow, its top corners rounded over the veil so the seam is invisible, and
+   it runs to the last pixel of the page. */
 body.zc-has-home .zc-footer,
 .zc-hp ~ .zc-footer,
 .home .zc-footer {
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 .zc-footer {
     position: relative;
+    isolation: isolate;
 }
 
 .zc-footer::before {
     content: '';
     position: absolute;
     inset-inline: 0;
-    top: -2rem;
-    height: 3rem;
-    background: linear-gradient(180deg, rgba(253, 208, 91, 0), rgba(253, 208, 91, 0.28));
+    top: 0;
+    height: 9rem;
     pointer-events: none;
     z-index: 0;
+    background: var(--zc-footer-veil);
 }
 
 .zc-footer-bento {
     position: relative;
     background:
         radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.16), transparent 55%),
-        radial-gradient(100% 80% at 0% 100%, rgba(253, 208, 91, 0.08), transparent 60%),
-        linear-gradient(165deg, #2E3138 0%, var(--zc-dark) 45%, #22242A 100%);
-    border: 1px solid rgba(253, 208, 91, 0.18);
-    box-shadow: 0 30px 70px rgba(42, 44, 49, 0.32);
+        radial-gradient(120% 90% at 0% 0%, rgba(253, 208, 91, 0.09), transparent 55%),
+        linear-gradient(180deg, var(--zc-footer-plate) 0%, var(--zc-dark) 55%, #22242A 100%);
+    border: 1px solid rgba(253, 208, 91, 0.16);
+    border-bottom: 0;
+    border-radius: var(--zc-radius-2xl) var(--zc-radius-2xl) 0 0;
+    box-shadow: inset 0 1px 0 rgba(253, 208, 91, 0.22);
     overflow: hidden;
+    padding-bottom: 2.5rem;
 }
 
-/* The gold hairline repeats the active-menu / CTA accent of the header */
+/* Full-bleed plate: the footer is the bottom of the *page*, so it must reach the
+   page edges instead of sitting in the container with cream gutters beside it —
+   those gutters were the remaining colour break. The inner rows stay on the site
+   container width so the footer grid still lines up with the header. */
+.zc-footer > .zc-container {
+    max-width: none;
+    padding-inline: 0;
+}
+
+.zc-footer-bento {
+    padding-inline: clamp(1.25rem, 4.5vw, 4rem);
+}
+
+.zc-footer-bento > * {
+    max-width: var(--zc-container-width);
+    margin-inline: auto;
+    min-width: 0;
+}
+
+/* Bottom bar: keeps its own rhythm now that it left the inline style block, and
+   long Persian legal sentences wrap instead of being clipped by the plate. */
+.zc-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    font-size: 0.84rem;
+    color: #9CA3AF;
+}
+
+.zc-footer-bottom > * {
+    flex: 1 1 280px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.zc-footer-grid > * {
+    min-width: 0;
+}
+
+/* No hairline across the plate — that line was the visible "cut". The accent
+   now glows softly inside the top of the plate so the eye reads one surface. */
 .zc-footer-bento::before {
     content: '';
     position: absolute;
-    inset-inline: 2.25rem;
+    inset-inline: 0;
     top: 0;
-    height: 3px;
-    border-radius: 0 0 4px 4px;
-    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-    opacity: 0.85;
+    height: 6rem;
+    background: linear-gradient(180deg, rgba(253, 208, 91, 0.10), transparent 75%);
+    pointer-events: none;
 }
 
 .zc-footer-title::before {
@@ -2177,4 +2273,51 @@ body.zc-has-home .zc-footer,
     .zc-footer-links a:hover {
         transform: none;
     }
+}
+
+/* =====================================================================
+   v4.9.0 — one surface from header to footer
+   ===================================================================== */
+
+/* The blend band needs less runway on small screens, and the plate must keep
+   its own bottom padding once .zc-footer no longer carries any. */
+@media (max-width: 768px) {
+    .zc-footer {
+        padding-top: 6rem;
+    }
+
+    .zc-footer::before {
+        height: 6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .zc-footer {
+        padding-top: 4.5rem;
+    }
+
+    .zc-footer::before {
+        height: 4.5rem;
+    }
+}
+
+/* Dark mode: the page backdrop is dark too, so the plate only needs a whisper
+   of separation — keep the same geometry, drop the contrast jump. */
+html.dark .zc-footer-bento {
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.10), transparent 55%),
+        radial-gradient(120% 90% at 0% 0%, rgba(253, 208, 91, 0.06), transparent 55%),
+        linear-gradient(180deg, var(--zc-footer-plate) 0%, #1B1D22 55%, #15171B 100%);
+    border-color: rgba(253, 208, 91, 0.12);
+    box-shadow: inset 0 1px 0 rgba(253, 208, 91, 0.14);
+}
+
+/* Nothing behind the homepage may paint its own flat plate: the backdrop has to
+   show through the header zone, the content and the footer band. */
+.zc-main-content,
+main#primary,
+.site-content,
+.zc-hp,
+.zc-hp > section {
+    background-color: transparent;
 }

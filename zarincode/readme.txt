@@ -48,6 +48,11 @@ Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT cod
 * Ticker: seamless horizontal marquee with per-item links, pause on hover/focus and a visible pause button.
 * Header/footer: current-menu state from the request path with aria-current="page"; the footer shares the header's dark plate, gold hairline and hover language.
 * Interaction: 27 hover/focus targets (cards, chips, tags, buttons, menu, ticker, tables) with a single easing/lift language.
+* Colour continuity: the page background is now one 180deg gradient owned by the stylesheet (top edge behind the
+  header and bottom edge above the footer are identical from left to right, and it no longer shifts while you
+  scroll); the colour switcher only pushes the two colours instead of repainting a fixed diagonal on body; the
+  homepage no longer paints its own flat cream; the footer plate is full-bleed, rises out of the page through a
+  9rem veil with no hairline and no drop shadow, keeps its own hover language and runs to the last pixel.
 * Performance: homepage 182 → 152 queries warm (title index, average rating and partner brands cached 12 h and flushed on content, term, review and theme changes).
 * Accessibility: axe-core 4.10.2 (WCAG 2.0/2.1 A + AA + best practice) clean on the homepage at three breakpoints and on 404/search; contrast tokens, heading outline, star rating roles, ticker tab order and keyboard-scrollable pricing table fixed.
 

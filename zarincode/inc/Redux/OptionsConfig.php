@@ -1021,10 +1021,33 @@ class OptionsConfig {
             body {
                 font-size: <?php echo esc_attr( $font_size . 'px' ); ?>;
                 line-height: <?php echo esc_attr( $line_height ); ?>;
-                background: linear-gradient(135deg, var(--zc-bg-from) 0%, var(--zc-bg-to) 100%);
+                /* v4.9.0 — same page-wide 180deg recipe as assets/css/zarincode-main.css,
+                   so the two background colours never disagree left-to-right. */
+                background-color: var(--zc-bg-mid-a);
+                background-image: linear-gradient(
+                    180deg,
+                    var(--zc-bg-from) 0%,
+                    var(--zc-bg-mid-a) 13%,
+                    var(--zc-bg-mid-a) 44%,
+                    var(--zc-bg-mid-b) 66%,
+                    var(--zc-bg-to) 90%,
+                    var(--zc-bg-to) 100%
+                );
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-attachment: scroll;
             }
             html.dark body {
-                background: linear-gradient(135deg, <?php echo esc_attr( $dark_from ); ?> 0%, <?php echo esc_attr( $dark_to ); ?> 100%);
+                background-color: var(--zc-bg-mid-a);
+                background-image: linear-gradient(
+                    180deg,
+                    <?php echo esc_attr( $dark_from ); ?> 0%,
+                    var(--zc-bg-mid-a) 13%,
+                    var(--zc-bg-mid-a) 44%,
+                    var(--zc-bg-mid-b) 66%,
+                    <?php echo esc_attr( $dark_to ); ?> 90%,
+                    <?php echo esc_attr( $dark_to ); ?> 100%
+                );
             }
             .zc-container { max-width: var(--zc-container-width); }
             .zc-glass-panel, .zc-dark-card, .zc-service-card, .zc-product-card { border-radius: var(--zc-radius-bento); }

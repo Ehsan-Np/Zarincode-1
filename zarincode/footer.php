@@ -118,7 +118,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
             </div>
 
             <!-- Bottom Copyright & Standards Note -->
-            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding-top:1.5rem;font-size:0.84rem;color:#9CA3AF;">
+            <div class="zc-footer-bottom">
                 <div>
                     <?php echo esc_html( $copyright_text ); ?>
                 </div>

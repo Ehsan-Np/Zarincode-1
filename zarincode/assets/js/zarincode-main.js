@@ -42,9 +42,13 @@
         const to = mode === 'dark' ? preset.darkTo : preset.bgTo;
         root.style.setProperty('--zc-bg-from', from);
         root.style.setProperty('--zc-bg-to', to);
+        // v4.9.0 — the page backdrop is owned by the stylesheet (one 180deg
+        // gradient from the header edge to the footer edge). Only the two colours
+        // are pushed here, so a theme switch can never put a fixed diagonal back
+        // on body and break the header→footer continuity.
         if (document.body) {
-            document.body.style.background = 'linear-gradient(135deg, ' + from + ' 0%, ' + to + ' 100%)';
-            document.body.style.backgroundAttachment = 'fixed';
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundAttachment = '';
         }
     }
 

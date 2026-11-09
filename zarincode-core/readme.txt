@@ -44,6 +44,9 @@ Do NOT reimport the demo when upgrading an existing site.
   for 12 h in a non-autoloaded transient + object cache, flushed on content, term, review and theme changes.
   Front page: 182 queries before, 152 warm (196 on the first request that builds the caches); per section warm:
   hero +3, partners +1, services +3, products +12, portfolio +9, testimonials +3, blog +16, why/steps/pricing +0.
+* Colour continuity: one page-wide 180deg backdrop (stylesheet-owned) from the header edge to the footer edge, a
+  full-bleed footer plate that rises out of it through a 9rem veil with no hairline or drop shadow, and the colour
+  switcher no longer repaints a fixed diagonal on body (light and dark verified).
 * Accessibility: axe-core 4.10.2 (WCAG 2.0/2.1 A + AA + best practice) reports 0 violations on the homepage at
   1366/768/390px and on the 404 and search templates. Muted text token #84888F -> #5F6369 (3.55:1 -> 5.6:1 on
   white, >=4.8:1 on the pastel cards), struck prices #A9AEB8 -> #6E7278, card headings h4 -> h3 so the outline is
