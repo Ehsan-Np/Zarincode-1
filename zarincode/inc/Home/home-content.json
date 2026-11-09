@@ -68,6 +68,22 @@
       "امنیت سازمانی",
       "هوش مصنوعی",
       "سورس‌کدهای آماده"
+    ],
+    "code_fn": "grow",
+    "code_arg": "business",
+    "code_rows": [
+      {
+        "left": "const site =",
+        "right": "design(business, true);"
+      },
+      {
+        "left": "const seo  =",
+        "right": "rank(site, 'first-page');"
+      },
+      {
+        "left": "return",
+        "right": "sell(site + seo);"
+      }
     ]
   },
   "partners": {

@@ -33,6 +33,13 @@ Do NOT reimport the demo when upgrading an existing site.
 * Header: current-menu state resolved from the request path with aria-current="page"; footer now shares the
   header's dark plate, gold hairline and hover language so the site reads as one piece.
 * Icons: one centred box for every icon container (grid + place-items:center); keyboard focus parity everywhere.
+* Brand bar: lives off the «کارفرما» field of published projects (unique clients, each logo linking to its project),
+  with an optional auto counter; the hero trust cards can show the real project count and average review rating.
+* Media: product, project and article cards use the real featured image when the post has one, with the generated
+  gradients kept as the fallback; the hero code card is editable (function signature + one row per line).
+* Ticker terms resolve to a matching service / product / project / article before falling back to site search.
+* Touch: 34-44px hit areas for the ticker, chips, tags and card CTAs on small or coarse pointers; no horizontal
+  overflow at 390px.
 
 = 4.8.0 =
 * New «سئو و هوش مصنوعی» admin module (two screens): search-engine indexing + AI-visibility scanner.

@@ -44,6 +44,87 @@ final class Home_Templates {
 	}
 
 	/**
+	 * A light index of the site's own published titles (services, products,
+	 * projects, posts), built once per request with a fixed number of queries.
+	 * Used by the ticker so every term can point at the real page that talks
+	 * about it instead of a generic search.
+	 *
+	 * @return array<int, array{title:string, norm:string, url:string}>
+	 */
+	private static function content_index(): array {
+		static $index = null;
+		if ( null !== $index ) {
+			return $index;
+		}
+
+		$index = array();
+		$types = array( 'zc_service', 'product', 'zc_project', 'post' );
+		foreach ( $types as $type ) {
+			if ( ! post_type_exists( $type ) ) {
+				continue;
+			}
+			$ids = get_posts( array(
+				'post_type'        => $type,
+				'post_status'      => 'publish',
+				'numberposts'      => 60,
+				'fields'           => 'ids',
+				'no_found_rows'    => true,
+				'suppress_filters' => false,
+			) );
+			foreach ( (array) $ids as $id ) {
+				$title = (string) get_the_title( $id );
+				$norm  = self::norm( $title );
+				if ( '' === $norm ) {
+					continue;
+				}
+				$url = (string) get_permalink( $id );
+				if ( '' !== $url ) {
+					$index[] = array( 'title' => $title, 'norm' => $norm, 'url' => $url );
+				}
+			}
+		}
+
+		return $index;
+	}
+
+	/** Normalises a label for comparison (ZWNJ, punctuation, case, spacing). */
+	private static function norm( string $text ): string {
+		$text = str_replace( array( "\xE2\x80\x8C", "\u{200c}", '-', '_', '\u{200f}', '\u{200e}' ), ' ', $text );
+		$text = preg_replace( '/[^\p{L}\p{N}]+/u', '', $text );
+		return mb_strtolower( (string) $text );
+	}
+
+	/**
+	 * Best real page for a free-text label (used by the ticker): exact title
+	 * first, then the longest title that contains / is contained by the label.
+	 * Returns '' when the site has nothing to point at.
+	 */
+	private static function url_for_label( string $label ): string {
+		$norm = self::norm( $label );
+		if ( '' === $norm ) {
+			return '';
+		}
+
+		$best     = '';
+		$best_len = 0;
+		foreach ( self::content_index() as $row ) {
+			if ( $row['norm'] === $norm ) {
+				return $row['url'];
+			}
+			$len = mb_strlen( $row['norm'] );
+			if ( $len < 4 ) {
+				continue;
+			}
+			if ( ( false !== mb_strpos( $row['norm'], $norm ) || false !== mb_strpos( $norm, $row['norm'] ) ) && $len > $best_len ) {
+				$best     = $row['url'];
+				$best_len = $len;
+			}
+		}
+
+		return $best;
+	}
+
+	/**
 	 * Resolves a tag/category label to real site content: the term archive when
 	 * that term exists, otherwise the site search for the phrase.
 	 *
@@ -204,14 +285,20 @@ final class Home_Templates {
 		<div class="collage">
 			<div class="blob1"></div>
 			<div class="blob2"></div>
+			<?php
+			// The code card is editable content, not decoration: the widget stores a
+			// function signature plus one row per line, so a site can show its own
+			// stack instead of the demo snippet.
+			$code_rows = self::list_of( $a, $d, 'code_rows' );
+			?>
+			<?php if ( $code_rows ) : ?>
 			<div class="code-card">
 				<div class="bar"><i></i><i></i><i></i></div>
-				<pre><b>function</b> <em>grow</em>(business) {
-  <s>const</s> site = <em>design</em>(business, <b>true</b>);
-  <s>const</s> seo  = <em>rank</em>(site, <b>'first-page'</b>);
-  <s>return</s> <em>sell</em>(site + seo);
-}</pre>
+				<pre><b>function</b> <em><?php echo self::e( $a['code_fn'] ?? 'grow' ); ?></em>(<?php echo self::e( $a['code_arg'] ?? 'business' ); ?>) {
+<?php foreach ( $code_rows as $row ) : ?>  <s><?php echo self::e( $row['left'] ?? '' ); ?></s> <em><?php echo self::e( $row['right'] ?? '' ); ?></em>
+<?php endforeach; ?></pre>
 			</div>
+			<?php endif; ?>
 			<div class="score"><b><?php echo self::e( $a['score_value'] ?? '' ); ?></b><span><?php echo self::e( $a['score_label'] ?? '' ); ?></span></div>
 			<?php foreach ( $floats as $i => $f ) : ?>
 			<div class="floaty fl<?php echo (int) ( $i + 1 ); ?>"><span class="fi"><?php echo self::ico( (string) ( $f['icon'] ?? 'cart-shopping' ) ); ?></span> <?php echo self::e( $f['text'] ?? '' ); ?></div>
@@ -245,6 +332,9 @@ final class Home_Templates {
 					continue;
 				}
 				$link = $is_map ? trim( (string) ( $it['link'] ?? '' ) ) : '';
+				if ( '' === $link ) {
+					$link = self::url_for_label( $text ); // A real service / product / article.
+				}
 				$href = '' !== $link ? $link : home_url( '/?s=' . rawurlencode( $text ) );
 				$out .= '<span><a class="titem" href="' . esc_url( $href ) . '">' . self::e( $text ) . '</a><b aria-hidden="true">◆</b></span>';
 			}
@@ -284,8 +374,13 @@ final class Home_Templates {
 					// track is duplicated so the CSS marquee loops seamlessly.
 					for ( $loop = 0; $loop < 2; $loop++ ) :
 						foreach ( $items as $p ) :
+							$plink = trim( (string) ( $p['link'] ?? '' ) );
 							?>
+					<?php if ( '' !== $plink ) : ?>
+					<a class="plogo" href="<?php echo esc_url( self::url_or( $plink, '/' ) ); ?>" title="<?php echo esc_attr( (string) ( $p['name'] ?? '' ) ); ?>"><?php echo self::ico( (string) ( $p['icon'] ?? 'building' ) ); ?> <?php echo self::e( $p['name'] ?? '' ); ?></a>
+					<?php else : ?>
 					<span class="plogo"><?php echo self::ico( (string) ( $p['icon'] ?? 'building' ) ); ?> <?php echo self::e( $p['name'] ?? '' ); ?></span>
+					<?php endif; ?>
 							<?php
 						endforeach;
 					endfor;
@@ -399,6 +494,9 @@ final class Home_Templates {
 			<?php foreach ( $items as $i => $it ) : $cover = $covers[ $i % 4 ]; ?>
 			<div class="pcard">
 				<div class="pcover <?php echo esc_attr( $cover ); ?>">
+					<?php if ( ! empty( $it['image'] ) ) : ?>
+					<img class="pimg" src="<?php echo esc_url( (string) $it['image'] ); ?>" alt="<?php echo esc_attr( (string) ( $it['title'] ?? '' ) ); ?>" loading="lazy" decoding="async">
+					<?php endif; ?>
 					<span class="ico-tile"><?php echo self::ico( (string) ( $it['icon'] ?? 'cubes' ) ); ?></span>
 					<?php if ( ! empty( $it['discount'] ) ) : ?><span class="badge"><?php echo self::e( $it['discount'] ); ?></span><?php endif; ?>
 					<span class="kind"><?php echo self::e( $it['kind'] ?? '' ); ?></span>
@@ -441,6 +539,9 @@ final class Home_Templates {
 			<?php foreach ( $items as $i => $it ) : ?>
 			<div class="jcard">
 				<div class="jcover <?php echo esc_attr( $tones[ $i % 3 ] ); ?>">
+					<?php if ( ! empty( $it['image'] ) ) : ?>
+					<img class="jimg" src="<?php echo esc_url( (string) $it['image'] ); ?>" alt="<?php echo esc_attr( (string) ( $it['title'] ?? '' ) ); ?>" loading="lazy" decoding="async">
+					<?php endif; ?>
 					<span class="yr"><?php echo self::e( $it['year'] ?? '' ); ?></span>
 					<div class="win"></div>
 					<?php if ( ! empty( $it['kpi'] ) ) : ?><span class="kpi"><?php echo self::e( $it['kpi'] ); ?></span><?php endif; ?>
@@ -449,7 +550,7 @@ final class Home_Templates {
 				<div class="jbody">
 					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
 					<div class="jrow">
-						<span class="cat <?php echo esc_attr( (string) ( $it['tone'] ?? 'c1' ) ); ?>"><?php echo self::e( $it['cat'] ?? '' ); ?></span>
+						<?php if ( '' !== trim( (string) ( $it['cat'] ?? '' ) ) ) : ?><span class="cat <?php echo esc_attr( (string) ( $it['tone'] ?? 'c1' ) ); ?>"><?php echo self::e( $it['cat'] ); ?></span><?php endif; ?>
 						<a class="go" href="<?php echo self::url_or( $it['link'] ?? '', '/projects-portfolio/' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?> ←</a>
 					</div>
 				</div>
@@ -678,6 +779,9 @@ final class Home_Templates {
 		<div class="bgrid">
 			<article class="featured">
 				<div class="fcover">
+					<?php if ( ! empty( $feat['image'] ) ) : ?>
+					<img class="fimg" src="<?php echo esc_url( (string) $feat['image'] ); ?>" alt="<?php echo esc_attr( (string) ( $feat['title'] ?? '' ) ); ?>" loading="lazy" decoding="async">
+					<?php endif; ?>
 					<div class="dots"></div>
 					<?php if ( ! empty( $feat['seal'] ) ) : ?><span class="seal">✦ <?php echo self::e( $feat['seal'] ); ?></span><?php endif; ?>
 					<span class="cat"><?php echo self::e( $feat['cat'] ?? '' ); ?></span>
@@ -696,7 +800,12 @@ final class Home_Templates {
 			<div class="stack">
 				<?php foreach ( $side as $i => $b ) : ?>
 				<article class="scard <?php echo esc_attr( (string) ( $b['tone'] ?? 'sc1' ) ); ?>">
-					<div class="scover2"><span class="g"><?php echo self::ico( (string) ( $b['icon'] ?? 'newspaper' ) ); ?></span><span class="pill"><?php echo self::e( $b['pill'] ?? '' ); ?></span></div>
+					<div class="scover2">
+					<?php if ( ! empty( $b['image'] ) ) : ?>
+					<img class="simg" src="<?php echo esc_url( (string) $b['image'] ); ?>" alt="<?php echo esc_attr( (string) ( $b['title'] ?? '' ) ); ?>" loading="lazy" decoding="async">
+					<?php endif; ?>
+					<span class="g"><?php echo self::ico( (string) ( $b['icon'] ?? 'newspaper' ) ); ?></span><span class="pill"><?php echo self::e( $b['pill'] ?? '' ); ?></span>
+				</div>
 					<div class="sbody2">
 						<div class="tags">
 							<?php foreach ( (array) ( $b['tags'] ?? array() ) as $k => $tag ) : ?>

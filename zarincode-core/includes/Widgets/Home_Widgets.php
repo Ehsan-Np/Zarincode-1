@@ -706,6 +706,12 @@ class Home_Hero extends Abstract_Home_Widget {
 		$this->end_controls_section();
 
 		$this->content_section( 'zc_hero_trust', 'شاخص‌های اعتماد' );
+		$this->f_switch( $this, 'real_stats', 'آمار واقعی سایت (تعداد پروژه‌ها و میانگین امتیاز)', 'yes' );
+		$this->add_control( 'real_stats_note', array(
+			'type'            => C::RAW_HTML,
+			'raw'             => 'با روشن بودن این گزینه، «مقدار» کارت اول از تعداد نمونه‌کارهای منتشرشده و کارت دوم از میانگین امتیاز دیدگاه‌های محصولات ساخته می‌شود؛ اگر داده‌ای نباشد، همان مقداری که نوشته‌اید نمایش داده می‌شود.',
+			'content_classes' => 'elementor-descriptor',
+		) );
 		$trust = new Repeater();
 		$this->f_icon( $trust, 'icon', 'chart-line' );
 		$this->f_text( $trust, 'value', 'مقدار', '', array( 'description' => 'مثال: +۱۴۰ پروژه' ) );
@@ -720,6 +726,8 @@ class Home_Hero extends Abstract_Home_Widget {
 		$this->end_controls_section();
 
 		$this->content_section( 'zc_hero_float', 'کارت شناور و امتیاز' );
+		$this->f_text( $this, 'code_fn', 'کارت کد — نام تابع', $this->ds( 'code_fn', 'grow' ) );
+		$this->f_text( $this, 'code_arg', 'کارت کد — پارامتر ورودی', $this->ds( 'code_arg', 'business' ) );
 		$this->f_text( $this, 'score_value', 'امتیاز (کارت شناور)', $this->ds( 'score_value' ) );
 		$this->f_text( $this, 'score_label', 'زیرنویس امتیاز', $this->ds( 'score_label' ) );
 		$floats = new Repeater();
@@ -731,6 +739,20 @@ class Home_Hero extends Abstract_Home_Widget {
 			$floats->get_controls(),
 			$this->pick_rows( $this->da( 'floats' ), array( 'icon', 'text' ) ),
 			'text'
+		);
+
+		$this->end_controls_section();
+
+		$this->content_section( 'zc_hero_code', 'کارت کد (نمایشی)' );
+		$code = new Repeater();
+		$this->f_text( $code, 'left', 'سمت چپ خط', '' );
+		$this->f_text( $code, 'right', 'سمت راست خط' );
+		$this->f_repeater(
+			'code_rows',
+			'خطوط کد',
+			$code->get_controls(),
+			$this->pick_rows( $this->da( 'code_rows' ), array( 'left', 'right' ) ),
+			'right'
 		);
 		$this->end_controls_section();
 
@@ -834,6 +856,10 @@ class Home_Hero extends Abstract_Home_Widget {
 			$settings[ $template_key ] = $this->rows_of( $settings, $key );
 		}
 
+		if ( 'yes' === ( $settings['real_stats'] ?? 'yes' ) ) {
+			$settings['trust'] = $this->real_stats( (array) $settings['trust'] );
+		}
+
 		$show_ticker = ( $settings['ticker_show'] ?? 'yes' ) !== 'yes';
 		if ( $show_ticker ) {
 			$settings['ticker_items'] = array();
@@ -842,6 +868,87 @@ class Home_Hero extends Abstract_Home_Widget {
 		$items = $this->to_lines( $settings['ticker_items'] ?? '' );
 		$settings['ticker_items'] = $items;
 		return $settings;
+	}
+
+	/**
+	 * Replaces the first two trust values with numbers the site can prove:
+	 * published projects and the average product rating. Values without data
+	 * stay exactly as the user typed them.
+	 *
+	 * @param array $rows Trust rows (icon / value / label).
+	 */
+	private function real_stats( array $rows ): array {
+		if ( ! $rows ) {
+			return $rows;
+		}
+
+		$projects = post_type_exists( 'zc_project' ) ? (int) ( wp_count_posts( 'zc_project' )->publish ?? 0 ) : 0;
+		if ( $projects > 0 && isset( $rows[0] ) ) {
+			$rows[0]['value'] = sprintf( '+%s پروژه', number_format_i18n( $projects ) );
+		}
+
+		$rating = $this->average_product_rating();
+		if ( $rating > 0 && isset( $rows[1] ) ) {
+			$rows[1]['value'] = sprintf( '%s٪ رضایت', number_format_i18n( (int) round( $rating / 5 * 100 ) ) );
+		}
+
+		return $rows;
+	}
+
+	/**
+	 * Site-wide average of WooCommerce product ratings (0 when nothing is
+	 * rated). Bounded query: at most 60 rated products.
+	 */
+	private function average_product_rating(): float {
+		if ( ! post_type_exists( 'product' ) ) {
+			return 0.0;
+		}
+
+		$ids = get_posts( array(
+			'post_type'        => 'product',
+			'post_status'      => 'publish',
+			'numberposts'      => 60,
+			'fields'           => 'ids',
+			'no_found_rows'    => true,
+			'meta_key'         => '_wc_average_rating',
+			'suppress_filters' => false,
+		) );
+
+		$sum = 0.0;
+		$n   = 0;
+		foreach ( (array) $ids as $id ) {
+			$value = (float) get_post_meta( (int) $id, '_wc_average_rating', true );
+			if ( $value > 0 ) {
+				$sum += $value;
+				++$n;
+			}
+		}
+
+		if ( $n > 0 ) {
+			return $sum / $n;
+		}
+
+		// Fresh stores may not have the cached lookup meta yet: fall back to the
+		// approved review ratings themselves (one query + primed meta cache).
+		$reviews = get_comments( array(
+			'post_type' => 'product',
+			'status'    => 'approve',
+			'type'      => 'review',
+			'meta_key'  => 'rating',
+			'number'    => 200,
+		) );
+
+		$sum = 0.0;
+		$n   = 0;
+		foreach ( (array) $reviews as $review ) {
+			$value = (float) get_comment_meta( (int) $review->comment_ID, 'rating', true );
+			if ( $value > 0 ) {
+				$sum += $value;
+				++$n;
+			}
+		}
+
+		return $n > 0 ? $sum / $n : 0.0;
 	}
 
 	protected function render(): void {
@@ -878,12 +985,14 @@ class Home_Partners extends Abstract_Home_Widget {
 
 	protected function register_controls(): void {
 		$this->content_section( 'zc_partners', 'متن‌های بخش' );
+		$this->source_controls( 'source', 'count', 'برندها', 'فهرست دستی برندها (دلخواه)', 'نام کارفرمایان پروژه‌های واقعی سایت', 12, 1, 40 );
 		$this->f_text( $this, 'label', 'برچسب بخش', $this->ds( 'label' ) );
-		$this->f_text( $this, 'count', 'شمارنده', $this->ds( 'count' ), array( 'description' => 'مثال: +۲۴ سازمان' ) );
+		$this->f_text( $this, 'count', 'شمارنده', $this->ds( 'count' ), array( 'description' => 'مثال: +۲۴ سازمان — با گزینهٔ زیر می‌توانید خودکار شود.' ) );
+		$this->f_switch( $this, 'auto_count', 'شمارندهٔ خودکار از تعداد برندها', 'yes' );
 		$this->f_text( $this, 'note', 'یادداشت پایین', $this->ds( 'note' ) );
 		$this->end_controls_section();
 
-		$this->content_section( 'zc_partners_items', 'برندها' );
+		$this->content_section( 'zc_partners_items', 'برندها', array( 'source' => 'manual' ) );
 		$row = new Repeater();
 		$this->f_text( $row, 'name', 'نام برند' );
 		$this->f_icon( $row, 'icon', 'building' );
@@ -902,9 +1011,62 @@ class Home_Partners extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
-		return array_merge( $settings, array(
-			'items' => $this->rows_of( $settings, 'items' ),
+		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
+			$this->fill_from_projects( $settings );
+		} else {
+			$this->set_items( $settings, $this->rows_of( $settings, 'items' ) );
+		}
+		return $settings;
+	}
+
+	/**
+	 * Lists the clients written in the «کارفرما» field of real published
+	 * projects — the brand bar then shows work that actually exists on the site,
+	 * each logo linking to its project.
+	 *
+	 * @param array $settings Widget settings, updated in place.
+	 */
+	private function fill_from_projects( array &$settings ): void {
+		if ( ! post_type_exists( 'zc_project' ) ) {
+			$this->set_items( $settings, $this->rows_of( $settings, 'items' ) );
+			return;
+		}
+
+		$limit = max( 1, (int) ( $settings['count'] ?? 12 ) );
+		$posts = get_posts( array(
+			'post_type'        => 'zc_project',
+			'post_status'      => 'publish',
+			'numberposts'      => 60,
+			'orderby'          => 'date',
+			'order'            => 'DESC',
+			'suppress_filters' => false,
 		) );
+
+		$items = array();
+		$seen  = array();
+		foreach ( $posts as $post ) {
+			$client = trim( (string) get_post_meta( (int) $post->ID, '_zc_prj_client', true ) );
+			$key    = mb_strtolower( $client );
+			if ( '' === $client || isset( $seen[ $key ] ) ) {
+				continue;
+			}
+			$seen[ $key ] = true;
+			$items[]      = array(
+				'name' => $client,
+				'icon' => 'building',
+				'link' => get_permalink( $post ),
+			);
+			if ( count( $items ) >= $limit ) {
+				break;
+			}
+		}
+
+		$this->set_items( $settings, $items );
+
+		// The counter can follow the real number of brands.
+		if ( 'yes' === ( $settings['auto_count'] ?? 'yes' ) && $items ) {
+			$settings['count'] = sprintf( '+%s برند', number_format_i18n( count( $items ) ) );
+		}
 	}
 }
 
@@ -1097,6 +1259,7 @@ class Home_Services extends Abstract_Home_Widget {
 				'meta'      => $meta,
 				'price'     => (string) get_post_meta( $id, '_zc_srv_price_range', true ),
 				'link'      => get_permalink( $id ),
+				'image'     => (string) ( get_the_post_thumbnail_url( $id, 'medium_large' ) ?: '' ),
 				'link_text' => 'جزئیات خدمت',
 				'tone'      => $tones[ $index % 6 ],
 			);
@@ -1193,6 +1356,7 @@ class Home_Products extends Abstract_Home_Widget {
 						'old'      => $regular > $price ? number_format_i18n( $regular, 0 ) : '',
 						'now'      => number_format_i18n( $price, 0 ),
 						'link'     => get_permalink( $product->get_id() ),
+						'image'    => (string) ( wp_get_attachment_image_url( (int) $product->get_image_id(), 'medium_large' ) ?: '' ),
 						'featured' => $product->is_featured() ? 'yes' : '',
 					);
 				}
@@ -1211,6 +1375,7 @@ class Home_Products extends Abstract_Home_Widget {
 				'icon'     => (string) ( $row['icon'] ?? 'cubes' ),
 				'kind'     => (string) ( $row['kind'] ?? '' ),
 				'title'    => (string) ( $row['title'] ?? '' ),
+				'image'    => $this->media_url( $row['image'] ?? '' ),
 				'tags'     => $this->to_list( $row['tags'] ?? '' ),
 				'discount' => (string) ( $row['discount'] ?? '' ),
 				'old'      => (string) ( $row['old'] ?? '' ),
@@ -1302,6 +1467,7 @@ class Home_Portfolio extends Abstract_Home_Widget {
 					'title' => get_the_title( $post ),
 					'cat'   => implode( '، ', wp_get_post_terms( $post->ID, 'zc_project_cat', array( 'fields' => 'names' ) ) ?: array() ),
 					'tone'  => array( 'c1', 'c2', 'c3' )[ $index % 3 ],
+					'image' => (string) ( get_the_post_thumbnail_url( $post, 'large' ) ?: '' ),
 					'link'  => get_permalink( $post ),
 				);
 			}
@@ -1917,6 +2083,7 @@ class Home_Blog extends Abstract_Home_Widget {
 			'cat'     => $first_cat( (int) $featured->ID ),
 			'seal'    => 'تازه‌ترین مقاله',
 			'title'   => get_the_title( $featured ),
+			'image'   => (string) ( get_the_post_thumbnail_url( $featured, 'large' ) ?: '' ),
 			'excerpt' => wp_trim_words( wp_strip_all_tags( $featured->post_excerpt ?: $featured->post_content ), 22 ),
 			'author'  => get_the_author_meta( 'display_name', (int) $featured->post_author ),
 			'date'    => $date_of( (int) $featured->ID ),
@@ -1931,6 +2098,7 @@ class Home_Blog extends Abstract_Home_Widget {
 				'pill'    => $first_cat( (int) $post->ID ),
 				'tone'    => array( 'sc1', 'sc2' )[ $index % 2 ],
 				'title'   => get_the_title( $post ),
+				'image'   => (string) ( get_the_post_thumbnail_url( $post, 'medium_large' ) ?: '' ),
 				'excerpt' => wp_trim_words( wp_strip_all_tags( $post->post_excerpt ?: $post->post_content ), 16 ),
 				'tags'    => array( $first_cat( (int) $post->ID ), 'زرین کد' ),
 				'author'  => get_the_author_meta( 'display_name', (int) $post->post_author ),

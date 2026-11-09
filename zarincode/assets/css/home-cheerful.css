@@ -606,3 +606,51 @@
   .zc-hp .grid4:has(> :nth-child(2):last-child),
   .zc-hp .grid4:has(> :nth-child(3):last-child){grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 }
+
+/* ---------- 11. Touch targets on small / coarse pointers ------------- */
+/* A 26px pill is fine with a mouse and hostile with a thumb. The hit area
+   grows on touch devices without changing the desktop composition. */
+@media (max-width:900px),(pointer:coarse){
+  .zc-hp .ticker .tpause{width:38px;height:38px;font-size:12px}
+  .zc-hp .smore,.zc-hp .go,.zc-hp .continue{display:inline-flex;align-items:center;min-height:44px;padding-block:9px}
+  .zc-hp .add{min-height:40px}
+  .zc-hp .tst .tlink{width:38px;height:38px}
+  .zc-hp .pchips a,.zc-hp a.tag{display:inline-flex;align-items:center;min-height:34px}
+  .zc-hp .ticker .titem{display:inline-flex;align-items:center;min-height:34px}
+  .zc-hp .head-row .link{display:inline-flex;align-items:center;min-height:44px}
+  .zc-hp :is(.scard h3 a,.featured h3 a,.pop-item h4 a){display:inline-block;padding-block:4px}
+}
+
+/* ---------- 12. Real cover images (products / projects / articles) ---- */
+/* The generated gradients stay as the fallback: when the post has a featured
+   image it fills the cover, and the badges/icons keep painting above it. */
+.zc-hp :is(.pcover,.jcover,.fcover,.scover2) > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+  display:block;
+  transition:transform .5s var(--zc-ease);
+}
+.zc-hp :is(.pcover,.jcover,.fcover,.scover2){isolation:isolate}
+.zc-hp :is(.pcover,.jcover,.fcover,.scover2) > :not(img){position:relative;z-index:1}
+/* Keep the labels readable on top of photography */
+.zc-hp .pcover > img + .ico-tile{box-shadow:0 8px 18px rgba(41,44,49,.25)}
+.zc-hp .fcover > img ~ .cat,
+.zc-hp .fcover > img ~ .seal{position:relative;z-index:2}
+.zc-hp .fcover:has(> img)::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(20,22,26,.15) 0%,rgba(20,22,26,.05) 45%,rgba(20,22,26,.62) 100%);
+}
+.zc-hp .fcover:has(> img) .ttl{padding-inline:18px;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.zc-hp .scover2:has(> img)::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(20,22,26,.05),rgba(20,22,26,.45));
+}
+.zc-hp .jcover .win{position:relative;z-index:1}
+.zc-hp .jcover:has(> img) .win{display:none}
+.zc-hp :is(.pcard,.jcard,.featured,.scard):hover :is(.pimg,.jimg,.fimg,.simg){transform:scale(1.05)}
+.zc-hp .scover2{position:relative;overflow:hidden}
