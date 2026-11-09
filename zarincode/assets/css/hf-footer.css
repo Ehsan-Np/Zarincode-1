@@ -1,0 +1,513 @@
+/* =====================================================================
+   Zarincode — Elementor footer rendered as the approved 4.9.0 footer
+   ---------------------------------------------------------------------
+   Every visual value here is copied from the 4.9.0 footer (`.zc-footer`,
+   `.zc-footer-bento`, `.zc-footer-grid`, `.zc-footer-title`, `.zc-footer-links`,
+   `.zc-footer-bottom`, `.zc-btn`, `.zc-badge-pill` in zarincode-main.css):
+   same plate, same glow, same CTA card, same four columns, same chips, same
+   bottom bar. What is different is only WHO OWNS THE CONTENT — every text,
+   link, icon, button and social entry is now an Elementor widget that the
+   owner can edit in the panel without touching this file.
+
+   Two technical notes:
+   1. Elementor prints its generated post CSS AFTER the theme, and 4.x drops
+      `.elementor-widget-container` from the optimised markup while 3.x keeps
+      it. Every rule below therefore targets the widget ROOT plus its
+      container and carries four classes, so it wins on specificity instead of
+      order on both Elementor 3.x and 4.x.
+   2. Everything is nested under `.zc-footer-host` (the landmark printed by
+      footer.php around the Elementor footer document), so nothing here can
+      reach the header, the content or any other Elementor page.
+   ===================================================================== */
+
+/* ── the landmark IS the plate: the 4.9.0 `.zc-footer` + `.zc-footer-bento` ── */
+/* v4.9.0: the footer is the bottom of the page, not a card dropped on it. The
+   9rem band above the plate is a veil that fades the page into the plate, the
+   plate is full-bleed, only its top corners are rounded, and it runs to the
+   last pixel of the page — no hairline cutting the transition.
+   Note: the plate lives on the theme's own landmark, NOT on Elementor's
+   `.zc-hf` wrapper — the theme never sets layout on that element. */
+.zc-footer-host {
+    position: relative;
+    isolation: isolate;
+    margin-top: 9rem;
+    max-width: none;
+    padding: 3rem clamp(1.25rem, 4.5vw, 4rem) 2.5rem;
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, .16), transparent 55%),
+        radial-gradient(120% 90% at 0% 0%, rgba(253, 208, 91, .09), transparent 55%),
+        linear-gradient(180deg, var(--zc-footer-plate, #2E3138) 0%, var(--zc-dark, #2A2C31) 55%, #22242A 100%);
+    color: #E5E7EB;
+    border: 1px solid rgba(253, 208, 91, .16);
+    border-bottom: 0;
+    border-radius: var(--zc-radius-2xl, 2rem) var(--zc-radius-2xl, 2rem) 0 0;
+    box-shadow: inset 0 1px 0 rgba(253, 208, 91, .22);
+    overflow: hidden;
+}
+.zc-footer-host::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: -9rem;
+    height: 9rem;
+    pointer-events: none;
+    z-index: 0;
+    background: var(--zc-footer-veil, linear-gradient(
+        180deg,
+        rgba(46, 49, 56, 0) 0%,
+        rgba(46, 49, 56, .05) 26%,
+        rgba(46, 49, 56, .20) 52%,
+        rgba(46, 49, 56, .52) 76%,
+        rgba(46, 49, 56, .84) 92%,
+        #2E3138 100%
+    ));
+}
+.zc-footer-host > * { position: relative; z-index: 1; }
+
+/* The Elementor documents inside the plate are carriers only: the plate shows
+   through exactly as in 4.9.0, and every row stays on the site container width
+   so the footer columns line up with the header. `.zc-hf-footer` is used here
+   as a scope (ancestor), never as a styled element. */
+.zc-footer-host .zc-hf-footer,
+.zc-footer-host .zc-hf-footer .elementor-section,
+.zc-footer-host .zc-hf-footer .elementor-column,
+.zc-footer-host .zc-hf-footer .elementor-widget-wrap { background: transparent; }
+.zc-footer-host .zc-hf-footer > .elementor .elementor-section { padding: 0; margin: 0; }
+.zc-footer-host .zc-hf-footer .elementor-section > .elementor-container {
+    max-width: var(--zc-container-width, 1469px);
+    margin-inline: auto;
+}
+.zc-footer-host .zc-hf-footer .elementor-column > .elementor-widget-wrap { padding: 0; }
+
+/* ── CTA card: the 4.9.0 inline strip ────────────────────────────────── */
+.zc-footer-host .zc-hf-footer .zc-ft-cta > .elementor-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-column {
+    width: auto !important;
+    max-width: 100%;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-ctatext {
+    flex: 0 1 auto;
+    min-width: 0;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-ctatext > .elementor-widget-wrap { display: block; }
+
+/* CTA text: badge on top, then the H2 — both start-aligned, as in 4.9.0 */
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext .elementor-widget { text-align: start; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext .elementor-heading-title,
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext .elementor-widget-container { text-align: start; }
+
+/* badge pill: `.zc-badge-pill` (dark gradient pill, accent text) */
+.zc-footer-host .zc-hf-footer .zc-ft-badge,
+.zc-footer-host .zc-hf-footer .zc-ft-badge .elementor-widget-container {
+    margin: 0 0 .4rem;
+    line-height: 0;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-badge .elementor-heading-title {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem 1rem;
+    margin: 0;
+    border-radius: 9999px;
+    background: linear-gradient(140deg, #2f3238, #1f2126);
+    border: 1px solid rgba(253, 208, 91, .24);
+    color: #FDD05B;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    box-shadow: 0 4px 14px rgba(41, 44, 50, .10);
+}
+/* CTA heading: 1.45rem / 900 / white, one line — exactly 4.9.0 */
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext h1.elementor-heading-title,
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext h2.elementor-heading-title,
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext .elementor-heading-title {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1.7;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-ctatext .zc-ft-badge .elementor-heading-title { color: #FDD05B; font-size: .78rem; line-height: 1.6; }
+
+/* the two CTA buttons: inline, gap .85rem, aligned to the end of the card */
+.zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-buttons { flex: 0 0 auto; }
+.zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-buttons > .elementor-widget-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .85rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-buttons .elementor-widget-button {
+    width: auto;
+    margin: 0;
+}
+
+/* buttons: `.zc-btn` + `.zc-btn-yellow` / the glass one from 4.9.0 */
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    padding: .8rem 1.65rem;
+    border-radius: 9999px;
+    font-family: var(--zc-font-family, inherit);
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: normal;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition: all .22s ease;
+    text-transform: none;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-button .elementor-button-content-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-button .elementor-button-icon,
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-button .elementor-button-icon :is(i, svg) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-gold {
+    background: var(--color-accent, #FDD05B);
+    color: var(--color-accent-contrast, #2A2C31);
+    box-shadow: 0 8px 24px rgba(253, 208, 91, .40);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-gold:hover,
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-gold:focus {
+    background: var(--color-accent-hover, #FCC22D);
+    color: var(--color-accent-contrast, #2A2C31);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(253, 208, 91, .55);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-glass {
+    background: rgba(255, 255, 255, .10);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, .20);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-glass:hover,
+.zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button .elementor-button.zc-ft-glass:focus {
+    background: rgba(255, 255, 255, .16);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* ── the four columns: `.zc-footer-grid` 1.6fr 1fr 1fr 1.2fr ─────────── */
+.zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 2.25rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-grid .elementor-column {
+    min-width: 0;
+    width: auto !important;
+    flex: 1 1 0;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-grid .zc-ft-col-brand { flex: 1.6 1 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-grid .zc-ft-col-cred  { flex: 1.2 1 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container > .elementor-column > .elementor-widget-wrap {
+    display: block;
+    min-width: 0;
+}
+
+/* brand column: monogram beside the name and the tagline (4.9.0 header row) */
+.zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container > .elementor-column.zc-ft-col-brand > .elementor-widget-wrap {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: .85rem;
+    align-items: center;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-mark    { grid-column: 1; grid-row: 1 / span 2; align-self: center; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-brand   { grid-column: 2; grid-row: 1; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-tagline { grid-column: 2; grid-row: 2; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-about,
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-contact,
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .elementor-widget-zarincode_social_profiles { grid-column: 1 / -1; }
+.zc-footer-host .zc-hf-footer .zc-ft-col-brand .zc-ft-about { margin-top: 1.25rem; }
+
+/* the monogram: 2.8rem accent circle, as in 4.9.0 */
+.zc-footer-host .zc-hf-footer .zc-ft-mark .elementor-heading-title,
+.zc-footer-host .zc-hf-footer .zc-ft-mark .elementor-widget-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: var(--color-accent, #FDD05B);
+    color: var(--color-accent-contrast, #2A2C31);
+    font-weight: 900;
+    font-size: 1.3rem;
+    line-height: 1;
+    margin: 0;
+}
+
+/* brand name (1.25rem / 900 / white) and tagline (.78rem / accent) */
+.zc-footer-host .zc-hf-footer .zc-ft-brand .elementor-heading-title,
+.zc-footer-host .zc-hf-footer .zc-ft-brand .elementor-widget-container {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1.6;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-tagline,
+.zc-footer-host .zc-hf-footer .zc-ft-tagline .elementor-widget-container {
+    color: var(--color-accent, #FDD05B);
+    font-size: .78rem;
+    line-height: 1.8;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-tagline p { margin: 0; }
+
+/* about paragraph: .9rem / #9CA3AF / 1.85 */
+.zc-footer-host .zc-hf-footer .zc-ft-about,
+.zc-footer-host .zc-hf-footer .zc-ft-about .elementor-widget-container {
+    color: #9CA3AF;
+    font-size: .9rem;
+    line-height: 1.85;
+    margin: 0 0 1.25rem;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-about p { margin: 0; }
+
+/* contact rows: icon + label, .88rem, accent icons */
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding: 0;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-item { padding: 0; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-item > a,
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-item > span {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .88rem;
+    color: #E5E7EB;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-icon {
+    color: var(--color-accent, #FDD05B);
+    width: 1.4rem;
+    min-width: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-icon svg,
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-icon svg *,
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-icon i {
+    fill: currentColor;
+    color: var(--color-accent, #FDD05B);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-text {
+    color: inherit;
+    padding: 0;
+    font-size: .88rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-text strong { color: inherit; font-weight: 800; }
+.zc-footer-host .zc-hf-footer .zc-ft-contact .elementor-icon-list-text a { color: var(--color-accent, #FDD05B); }
+
+/* socials keep the 4.9.0 pill look (markup comes from the socials widget) */
+.zc-footer-host .zc-hf-footer .zc-social-profiles { margin: 1.2rem 0 0; }
+.zc-footer-host .zc-hf-footer .zc-social-profiles a {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .5rem .65rem;
+    border: 1px solid rgba(136, 136, 136, .27);
+    border-radius: 8px;
+    font-size: .7rem;
+    color: #E5E7EB;
+}
+.zc-footer-host .zc-hf-footer .zc-social-profiles a:hover {
+    border-color: var(--color-accent, #FDD05B);
+    color: #FFFFFF;
+}
+.zc-footer-host .zc-hf-footer .zc-social-profiles :is(svg, img) {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* column titles: `.zc-footer-title` with the accent dot */
+.zc-footer-host .zc-hf-footer .zc-ft-title { margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-title .elementor-heading-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 1.2rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.6;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-title .elementor-heading-title::before {
+    content: '';
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: var(--color-accent, #FDD05B);
+    box-shadow: 0 0 0 3px rgba(253, 208, 91, .18);
+    flex: 0 0 auto;
+}
+
+/* link lists: `.zc-footer-links` */
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item { padding: 0; margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item > a,
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item > span {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    color: #9CA3AF;
+    font-size: .9rem;
+    line-height: 1.7;
+    transition: color .25s ease, transform .25s ease;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item > a:hover,
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item > a:focus,
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-item > span:hover {
+    color: var(--color-accent, #FDD05B);
+    transform: translateX(-4px);
+}
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-icon {
+    color: inherit;
+    width: auto;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+}
+/* Elementor prints the glyph colour as `fill` on the SVG, so both properties
+   have to be reset to keep the 4.9.0 grey (`color: inherit`) glyphs. */
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-icon svg,
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-icon svg *,
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-icon i { fill: currentColor; color: inherit; }
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-icon :is(i, svg) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    width: 1em;
+    height: 1em;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-links .elementor-icon-list-text {
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+/* credential chips: `.zc-btn` with the light fill, one row, start-aligned */
+.zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container > .elementor-column.zc-ft-col-cred > .elementor-widget-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: .6rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-col-cred .zc-ft-title { width: 100%; }
+.zc-footer-host .zc-hf-footer .elementor-widget-button.zc-ft-cred { width: auto; margin: 0; flex: 0 0 auto; }
+.zc-footer-host .zc-hf-footer .elementor-widget-button.zc-ft-cred .elementor-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .45rem .95rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, .08);
+    color: #FFFFFF;
+    font-family: var(--zc-font-family, inherit);
+    font-size: .8rem;
+    font-weight: 600;
+    line-height: normal;
+    border: 1px solid transparent;
+    transition: all .22s ease;
+    white-space: nowrap;
+}
+.zc-footer-host .zc-hf-footer .elementor-widget-button.zc-ft-cred .elementor-button:hover {
+    background: rgba(255, 255, 255, .14);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* ── bottom bar: `.zc-footer-bottom` ─────────────────────────────────── */
+.zc-footer-host .zc-hf-footer .zc-ft-bottom > .elementor-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-bottom .elementor-column {
+    flex: 1 1 280px;
+    min-width: 0;
+    width: auto !important;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-bottom .elementor-widget,
+.zc-footer-host .zc-hf-footer .zc-ft-bottom .elementor-widget-container {
+    font-size: .84rem;
+    color: #9CA3AF;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+    text-align: start;
+}
+.zc-footer-host .zc-hf-footer .zc-ft-bottom p { margin: 0; }
+.zc-footer-host .zc-hf-footer .zc-ft-bottom strong { color: var(--color-accent, #FDD05B); }
+
+/* ── small screens keep the 4.9.0 stacking rules ─────────────────────── */
+@media (max-width: 1099px) {
+    .zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container { flex-wrap: wrap; row-gap: 2.25rem; }
+    .zc-footer-host .zc-hf-footer .zc-ft-grid .elementor-column { width: calc(50% - 1.125rem) !important; flex: 0 0 auto; }
+    .zc-footer-host .zc-hf-footer .zc-ft-grid .zc-ft-col-brand { width: 100% !important; }
+}
+@media (max-width: 768px) {
+    .zc-footer-host { margin-top: 6rem; }
+    .zc-footer-host::before { top: -6rem; height: 6rem; }
+}
+@media (max-width: 767px) {
+    .zc-footer-host { padding: 2rem 1.25rem 1.5rem; }
+    .zc-footer-host .zc-hf-footer .zc-ft-cta > .elementor-container { padding: 1.25rem; }
+    .zc-footer-host .zc-hf-footer .zc-ft-ctatext .elementor-heading-title { font-size: 1.15rem; }
+    .zc-footer-host .zc-hf-footer .zc-ft-cta .zc-ft-ctatext { flex: 1 1 100%; }
+    .zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-widget-button { width: 100%; }
+    .zc-footer-host .zc-hf-footer .zc-ft-cta .elementor-button { width: 100%; }
+    .zc-footer-host .zc-hf-footer .zc-ft-grid > .elementor-container { flex-wrap: wrap; gap: 1.15rem; }
+    .zc-footer-host .zc-hf-footer .zc-ft-grid .elementor-column { width: 100% !important; }
+    .zc-footer-host .zc-hf-footer .elementor-widget-button.zc-ft-cred { width: auto; }
+}
+@media (max-width: 480px) {
+    .zc-footer-host { margin-top: 4.5rem; }
+    .zc-footer-host::before { top: -4.5rem; height: 4.5rem; }
+}

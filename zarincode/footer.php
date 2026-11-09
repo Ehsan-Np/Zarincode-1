@@ -35,7 +35,7 @@ $modal_desc      = zarincode_get_option( 'consult_modal_desc', 'فرم زیر ر
  * visitor sees.
  */
 if ( ( $zc_custom_footer = zarincode_builder_part( 'footer' ) ) !== '' ) : ?>
-<footer role="contentinfo"><?php echo $zc_custom_footer; ?></footer>
+<footer class="zc-footer-host" role="contentinfo"><?php echo $zc_custom_footer; ?></footer>
 <?php elseif ( function_exists('elementor_theme_do_location') && elementor_theme_do_location('footer') ) : ?>
 <?php /* Elementor Pro prints its own <footer> landmark. */ ?>
 <?php else : ?>

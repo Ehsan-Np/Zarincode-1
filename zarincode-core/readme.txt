@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.11.0
+Stable tag: 4.12.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,11 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.12.0 =
+* Ships with theme 4.12.0. `HF_Builder::footer_tree()` is rebuilt from native widgets so the Elementor footer reproduces the approved 4.9.0 design exactly (CTA card, brand column, two link lists, credential chips, bottom bar) while every element stays editable. `HF_Builder::header_tree()` now returns the theme's own designed header widget, so a rebuild never redraws the header.
+* `ensure()` adopts an existing `zc_hf_template` with `_zc_hf_type` instead of creating a duplicate document; the legacy-tree upgrade only touches the footer, never the header.
+* Font Awesome icon names in the generated trees use FA5 names (`fa-balance-scale`, `fa-shield-alt`, `fa-undo`, `fa-globe`), removing the Elementor «Undefined array key» warnings.
 
 = 4.11.0 =
 * Ships with theme 4.11.0. The header/footer builder now creates real `wp-post` Elementor documents (fully editable), adds the «شبکه‌های اجتماعی قابل ویرایش» widget, never overwrites an owner's edit, and fixes the PHP 8.1+ `add_submenu_page( null )` deprecation in the demo importer.

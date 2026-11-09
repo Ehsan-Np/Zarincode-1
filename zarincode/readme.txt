@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.11.0
+Stable tag: 4.12.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,15 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.12.0 =
+* Footer design is the 4.9.0 footer again, pixel for pixel — and still fully editable in Elementor. The 4.11.0 experiment (a generic Elementor document footer) is withdrawn: it changed the plate, the CTA card, the columns, the chips and the bottom bar. `assets/css/hf-footer.css` carries the 4.9.0 rules verbatim (plate `#2A2C31`, radius 2rem, `3rem 2.25rem 2rem`, the accent glow inside the top edge, CTA card `rgba(255,255,255,.05)` + 1px `rgba(255,255,255,.08)` + radius 1.5rem, four columns `1.6fr 1fr 1fr 1.2fr` with `2.25rem` gaps, gold dot titles, `#9CA3AF` links that turn `#FDD05B` with `translateX(-4px)`, credential chips, `.zc-footer-bottom` bar, and the 1099px/767px stacking rules).
+* The design is applied to Elementor markup instead of coded markup: the footer document is built from native widgets — CTA card (badge heading, H2, direct-call button, order button), brand column (monogram, name, tagline, about text, contact icon-list, socials widget), services and legal icon-lists, credential buttons, and the two bottom-bar texts. Every text, link, icon, button and social entry is editable in the panel; the stylesheet only dresses the widgets.
+* `hf-footer.css` is scoped to `.zc-footer-host` (the landmark `footer.php` prints around the Elementor footer document) and to the widgets inside it, so it cannot reach the header, the content or any other Elementor page. It targets the widget root as well as `.elementor-widget-container`, and carries four classes per selector, so it wins on specificity — not on order — on both Elementor 3.x and 4.x.
+* Verified parity at 1440px: `/tmp/base_footer.png` (4.9.0, 1031.30px including the 9rem lead-in) vs the Elementor footer (866.83px + the same 9rem lead-in), same colours, same gradient, same radii, same icons, same RTL order. Mobile at 390px stacks exactly like 4.9.0.
+* Footer template adoption: `ensure()` adopts an existing `zc_hf_template` carrying `_zc_hf_type` instead of creating a second document, so an install never ends up with two footers. QA: the demo template 13 is adopted, no duplicate is created.
+* The header is left alone: it ships as the theme's own designed header widget inside a real Elementor document and is never re-drawn by the builder, so updating cannot change the approved header.
+* Verified: `/` → 200 with `footer.zc-footer-host`, Elementor editor for the footer document → 200 `elementor-editor-active`, a saved edit appears on the front end immediately and survives `ensure()`, and `debug.log` stays empty (the `Cannot redeclare control with same name "count"` notices and the Font Awesome `Undefined array key` warnings of 4.11.0 are gone).
 
 = 4.11.0 =
 * Header and footer: the approved design is back, byte for byte — the theme now paints NOTHING inside `.zc-hf`. The whole 4.10.0/4.10.1 experiment (footer plate override, `margin-top`, `overflow`, gold hairline, rounded CTA card, link dots, icon-box boxes, header plate) is gone; the header/footer look is exactly the Elementor document. Measured: header 227.56px, footer 694.72px (4.9.1: 228.19 / 691.84).

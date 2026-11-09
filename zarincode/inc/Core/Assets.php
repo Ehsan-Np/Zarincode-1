@@ -145,6 +145,12 @@ class Assets {
             array( 'zarincode-vazirmatn' ),
             $this->asset_version( '/assets/css/widgets.css' )
         );
+        wp_enqueue_style(
+            'zarincode-hf-footer',
+            ZARINCODE_URI . '/assets/css/hf-footer.css',
+            array( 'zarincode-vazirmatn' ),
+            $this->asset_version( '/assets/css/hf-footer.css' )
+        );
     }
 
     /** Option «اعداد فارسی» → html.zc-fa-digits (ss01 of Vazirmatn). */
@@ -228,6 +234,16 @@ class Assets {
             ZARINCODE_URI . '/assets/css/widgets.css',
             array( 'zarincode-main' ),
             $this->asset_version( '/assets/css/widgets.css' )
+        );
+
+        // 5. The approved 4.9.0 footer design, applied to the Elementor footer
+        //    document (plate, CTA card, 4 columns, chips, bottom bar). Loaded
+        //    everywhere so the Elementor preview shows exactly the front end.
+        wp_enqueue_style(
+            'zarincode-hf-footer',
+            ZARINCODE_URI . '/assets/css/hf-footer.css',
+            array( 'zarincode-main' ),
+            $this->asset_version( '/assets/css/hf-footer.css' )
         );
 
         // Product-page reference layout (hero row, KPI strip, tabs) is shared
