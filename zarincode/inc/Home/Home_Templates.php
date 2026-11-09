@@ -183,7 +183,7 @@ final class Home_Templates {
 			'wordpress' => 'f19a', 'envelope' => 'f0e0', 'cloud' => 'f0c2', 'building-columns' => 'f19c',
 			'globe' => 'f0ac', 'server' => 'f233', 'chart-simple' => 'f201', 'users' => 'f0c0',
 			'clock' => 'f017', 'file-lines' => 'f15c', 'phone' => 'f095', 'arrow-left' => 'f060',
-			'quote-right' => 'f10e', 'sparkles' => 'f890',
+			'quote-right' => 'f10e', 'sparkles' => 'f890', 'user' => 'f007',
 		);
 	}
 
@@ -202,7 +202,7 @@ final class Home_Templates {
 			'envelope' => 'ایمیل', 'cloud' => 'ابر', 'building-columns' => 'سازمان',
 			'globe' => 'وب و جهان', 'server' => 'سرور', 'chart-simple' => 'نمودار ساده',
 			'users' => 'کاربران', 'clock' => 'ساعت و زمان', 'file-lines' => 'سند و مستندات',
-			'phone' => 'تلفن', 'arrow-left' => 'فلش', 'quote-right' => 'نقل‌قول', 'sparkles' => 'درخشش',
+			'phone' => 'تلفن', 'arrow-left' => 'فلش', 'quote-right' => 'نقل‌قول', 'sparkles' => 'درخشش', 'user' => 'کاربر و نویسنده',
 		);
 	}
 
@@ -805,8 +805,8 @@ final class Home_Templates {
 					<p><?php echo self::e( $feat['excerpt'] ?? '' ); ?></p>
 					<a class="continue" href="<?php echo self::url_or( $feat['link'] ?? '', '/blog/' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
 					<div class="bmeta">
-						<div class="who2"><span class="ava2"><?php echo self::e( mb_substr( (string) ( $feat['author'] ?? 'ز' ), 0, 1 ) ); ?></span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
-						<span class="timepill">🕐 <?php echo self::e( $feat['read'] ?? '' ); ?></span>
+						<div class="who2"><span class="ava2"><?php echo self::ico( 'user' ); ?></span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
+						<span class="timepill"><?php echo self::ico( 'clock' ); ?><?php echo self::e( $feat['read'] ?? '' ); ?></span>
 					</div>
 				</div>
 			</article>
@@ -828,8 +828,8 @@ final class Home_Templates {
 						<h3><?php $side_link = (string) ( $b['link'] ?? '' ); ?><?php if ( '' !== $side_link ) : ?><a href="<?php echo esc_url( self::url_or( $side_link, '/blog/' ) ); ?>"><?php echo self::e( $b['title'] ?? '' ); ?></a><?php else : ?><?php echo self::e( $b['title'] ?? '' ); ?><?php endif; ?></h3>
 						<p><?php echo self::e( $b['excerpt'] ?? '' ); ?></p>
 						<div class="bmeta">
-							<div class="who2"><span class="ava2" style="width:32px;height:32px;font-size:12px"><?php echo self::e( mb_substr( (string) ( $b['author'] ?? 'ز' ), 0, 1 ) ); ?></span><span><b><?php echo self::e( $b['author'] ?? '' ); ?></b><span><?php echo self::e( $b['date'] ?? '' ); ?></span></span></div>
-							<span class="timepill" style="font-size:11.5px"><?php echo self::e( $b['read'] ?? '' ); ?></span>
+							<div class="who2"><span class="ava2" style="width:32px;height:32px;font-size:12px"><?php echo self::ico( 'user' ); ?></span><span><b><?php echo self::e( $b['author'] ?? '' ); ?></b><span><?php echo self::e( $b['date'] ?? '' ); ?></span></span></div>
+							<span class="timepill" style="font-size:11.5px"><?php echo self::ico( 'clock' ); ?><?php echo self::e( $b['read'] ?? '' ); ?></span>
 						</div>
 					</div>
 				</article>

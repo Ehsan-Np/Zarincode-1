@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.9.0
+Stable tag: 4.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,14 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.9.1 =
+* Icons: the 4.9.0 pass forced every glyph (`display:block; width/height:1em`) inside header buttons, footer links and all `.zc-btn`s; that clipped wide glyphs and detached icons from their labels. Only real icon boxes (circle/tile with a background) are centred now, and text buttons keep natural inline metrics with `flex:0 0 auto` so an icon can never be squashed at the pill edge.
+* Homepage services: the meta chip's glyph is a `<span class="fa">`, so `.schips span` painted a second pill over the icon. Chips are pills only for text; the glyph sits in its own perfectly centred 18px badge.
+* Homepage CTA arrows: `.smore .ar` / `.continue .ar` / `.link .ar` were re-declared `display:inline-block`, which pinned the arrow to the circle rim. They are grid-centred again (direction:ltr, line-height:1) and the "جزئیات خدمت" hover no longer paints a dark rectangle behind the label.
+* Portfolio cards: long `cat c2` tags are clamped (single line + ellipsis, max 66% of the row) so they can never collide with the CTA or wrap the arrow; the card body is a flex column with the CTA row pinned to the bottom, so titles of different lengths still align.
+* Blog cards: the featured photograph absorbs the extra card height (no dead white block), side thumbnails share one fixed 168px cover column in equal-height rows, excerpts/titles are clamped, and the meta row is a tidy avatar + author + date with a read-time chip carrying a clock icon.
+* Version: theme and core both 4.9.1.
 
 = 4.9.0 =
 * Homepage: all sections can be fed by real site content (services, products, reviews, posts, projects) with a safe manual fallback; services and testimonials gained a data-source control; testimonials show the real client photo.

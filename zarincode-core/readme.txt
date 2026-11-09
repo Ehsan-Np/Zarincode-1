@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.9.0
+Stable tag: 4.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.9.1 =
+* Companion release for theme 4.9.1 — no functional change to the core engine; the version is bumped so WordPress reports the pair as one update.
 
 = 4.9.0 =
 * Homepage integration: every homepage section can now be fed by real site content (services CPT, WooCommerce

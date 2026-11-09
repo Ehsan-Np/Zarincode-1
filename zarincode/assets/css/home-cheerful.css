@@ -90,9 +90,12 @@
 @media (prefers-reduced-motion:reduce){.zc-hp .clients .ptrack{animation:none}}
 .zc-hp .ico-tile{width:62px;height:62px;border-radius:18px;background:#ffffffd9;box-shadow:0 8px 18px rgba(41,44,49,.12);display:grid;place-items:center;font-size:24px;color:var(--ink);top:14px;right:16px;left:auto;position:absolute}
 .zc-hp .scover .emo.ico{display:none}
-.zc-hp .schips{display:flex;gap:7px;flex-wrap:wrap}
-.zc-hp .schips span{display:inline-flex;gap:6px;align-items:center;background:#F7F8FA;border:1px solid #292C3112;border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:800;color:var(--ink2)}
-.zc-hp .schips .fa{font-size:10.5px;color:var(--gold-deep)}
+.zc-hp .schips{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+/* v4.9.1: the glyph is a <span class="fa">, so `.schips span` used to paint a
+   second pill *on top of the icon*. Only the text pills are pills now; the
+   glyph gets its own optically-centred badge. */
+.zc-hp .schips > span:not(.fa){display:inline-flex;gap:7px;align-items:center;background:#F7F8FA;border:1px solid #292C3112;border-radius:999px;padding-block:5px;padding-inline:9px 13px;font-size:11.5px;font-weight:800;color:var(--ink2)}
+.zc-hp .schips > span > span.fa, .zc-hp .pchips > span > span.fa{display:inline-grid;place-items:center;align-content:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;margin:0;padding:0;border:0;border-radius:50%;background:#FFF1C9;color:var(--gold-deep);font-size:9px;line-height:1;text-align:center;inset-block-start:0}
 .zc-hp .kpi{position:absolute;left:14px;bottom:12px;background:var(--ink);color:var(--gold);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:900;z-index:3;box-shadow:0 8px 16px rgba(41,44,49,.25)}
 .zc-hp section{padding:54px 0}
 .zc-hp .sec-head{text-align:center;max-width:760px;margin:0 auto 34px}
@@ -105,7 +108,7 @@
 .zc-hp .head-row h2{text-align:right}
 .zc-hp .head-row p{color:var(--muted);font-weight:500;margin-top:8px}
 .zc-hp .link{background:#fff;border-radius:999px;padding:13px 26px;font-weight:800;font-size:14.5px;box-shadow:var(--sh1);white-space:nowrap}
-.zc-hp .link .ar{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--gold);font-size:12px;margin-right:6px}
+.zc-hp .link .ar{display:grid;place-items:center;align-content:center;justify-content:center;width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:12px;line-height:1;direction:ltr;text-align:center;margin:0;padding:0}
 .zc-hp .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .zc-hp .svc{background:#fff;border-radius:26px;box-shadow:var(--sh1);overflow:hidden;display:flex;flex-direction:column;transition:.2s}
 .zc-hp .svc:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
@@ -124,8 +127,13 @@
 .zc-hp .sbody p{font-size:13.5px;color:var(--ink2);font-weight:500}
 .zc-hp .sfoot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px;border-top:1px dashed #292C3126}
 .zc-hp .pricetag{font-size:12.5px;font-weight:900;color:#8A6B10;background:var(--gold3);border:1px solid #EFD79A;border-radius:999px;padding:6px 14px}
-.zc-hp .smore{font-size:13.5px;font-weight:900;color:var(--ink);display:inline-flex;gap:7px;align-items:center}
-.zc-hp .smore .ar{width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-size:11px}
+.zc-hp .smore{font-size:13.5px;font-weight:900;color:var(--ink);display:inline-flex;gap:8px;align-items:center;min-height:28px}
+/* v4.9.1: the arrow chip is a fixed square box and the glyph is centred by
+   grid — `display:block` + a text line-box pushed the arrow to the rim. */
+.zc-hp .smore .ar,
+.zc-hp .continue .ar{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:grid;place-items:center;align-content:center;justify-content:center;line-height:1;direction:ltr;text-align:center;font-size:11px;padding:0}
+.zc-hp .smore .ar{background:var(--ink);color:var(--gold)}
+.zc-hp .continue .ar{background:var(--gold);color:var(--ink)}
 .zc-hp .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .zc-hp .pcard{background:#fff;border-radius:24px;box-shadow:var(--sh1);overflow:hidden;transition:.2s;display:flex;flex-direction:column}
 .zc-hp .pcard:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
@@ -160,7 +168,8 @@
 .zc-hp .jcover .emo{position:absolute;left:18px;bottom:12px;font-size:36px;opacity:.85}
 .zc-hp .jbody{padding:16px 20px 20px}
 .zc-hp .jbody h3{font-size:16.5px;font-weight:900;margin-bottom:12px}
-.zc-hp .jrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.zc-hp .jrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:nowrap;min-width:0}
+.zc-hp .jbody{min-width:0}
 .zc-hp .cat{font-size:12.5px;font-weight:800;border-radius:999px;padding:6px 14px}
 .zc-hp .c1{background:var(--peach);color:#9A4E1B}
 .zc-hp .c2{background:var(--mint);color:#1D7A56}
@@ -407,8 +416,10 @@
 .zc-hp .btn:active{transform:translateY(0) scale(.985)}
 
 /* CTA inside cards: lifts + arrow slides */
-.zc-hp .smore:hover,.zc-hp .smore:focus-visible{background:var(--ink);color:#fff;transform:translateX(-3px)}
-.zc-hp .smore .ar,.zc-hp .continue .ar{transition:transform var(--zc-t);display:inline-block}
+.zc-hp .smore:hover,.zc-hp .smore:focus-visible{color:var(--gold-deep);background:transparent}
+.zc-hp .smore:hover .ar,.zc-hp .smore:focus-visible .ar{background:var(--gold);color:var(--ink)}
+.zc-hp .continue:hover .ar,.zc-hp .continue:focus-visible .ar{background:var(--ink);color:var(--gold)}
+.zc-hp .smore .ar,.zc-hp .continue .ar{transition:transform var(--zc-t),background-color var(--zc-t),color var(--zc-t)}
 .zc-hp .smore:hover .ar,.zc-hp .continue:hover .ar{transform:translateX(-5px)}
 .zc-hp .go:hover,.zc-hp .go:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
 .zc-hp .continue:hover,.zc-hp .continue:focus-visible{color:var(--gold-deep);transform:translateX(-3px)}
@@ -417,10 +428,10 @@
 
 /* Text links, chips and tags react too (no dead hover anywhere) */
 /* The "view all" link sits beside .sec-head, inside .head-row. */
-.zc-hp .head-row .link,.zc-hp .sec-head .link{transition:color var(--zc-t),transform var(--zc-t),box-shadow var(--zc-t)}
+.zc-hp .head-row .link,.zc-hp .sec-head .link{display:inline-flex;align-items:center;gap:8px;transition:color var(--zc-t),transform var(--zc-t),box-shadow var(--zc-t)}
 .zc-hp .head-row .link:hover,.zc-hp .head-row .link:focus-visible,
 .zc-hp .sec-head .link:hover,.zc-hp .sec-head .link:focus-visible{color:var(--gold-deep);transform:translateX(-3px);box-shadow:inset 0 -2px 0 var(--gold)}
-.zc-hp .head-row .link .ar{transition:transform var(--zc-t);display:inline-block}
+.zc-hp .head-row .link .ar{transition:transform var(--zc-t);display:grid;place-items:center;flex:0 0 24px;line-height:1;direction:ltr;text-align:center;margin-inline-start:2px}
 .zc-hp .head-row .link:hover .ar{transform:translateX(-5px)}
 .zc-hp .chip:hover,.zc-hp .chip:focus-visible{background:#fff;border-color:var(--gold-deep);color:var(--ink);transform:translateY(-2px)}
 .zc-hp .chip.on:hover{transform:translateY(-2px)}
@@ -654,3 +665,206 @@
 .zc-hp .jcover:has(> img) .win{display:none}
 .zc-hp :is(.pcard,.jcard,.featured,.scard):hover :is(.pimg,.jimg,.fimg,.simg){transform:scale(1.05)}
 .zc-hp .scover2{position:relative;overflow:hidden}
+
+/* =====================================================================
+   v4.9.1 — Icon geometry (scoped to *boxed* icons only) + card polish
+   ---------------------------------------------------------------------
+   Rule of the house after the 4.9.0 regression: a rule may only centre a
+   glyph when that glyph sits inside a box that actually paints a
+   background / border (a circle, a tile, a badge). Free-standing inline
+   icons keep their natural inline metrics — no global width/height/display
+   overrides, so no other part of the site can shift.
+   ===================================================================== */
+
+/* ---------- 1. Boxed glyphs: optical centre, never a nudged baseline ---- */
+.zc-hp :is(
+  .ico-tile,
+  .scover .num,
+  .schips > span > .fa,
+  .pchips > span > .fa,
+  .pop-head .ic,
+  .pop-item .rank,
+  .jcover .yr,
+  .timepill > .fa,
+  .seal,
+  .badge,
+  .kind,
+  .flag,
+  .kpi > .fa
+) {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  justify-content: center;
+  line-height: 1;
+  text-align: center;
+}
+
+.zc-hp :is(.ico-tile, .scover .num, .schips > span > .fa, .pchips > span > .fa, .pop-head .ic, .kpi > .fa) > :is(.fa, i, svg) {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  line-height: 1;
+  font-size: inherit;
+  text-align: center;
+}
+
+/* Inline glyphs inside text pills/chips: no box, so only neutralise the
+   baseline drift. No width, no height, no display swap. */
+.zc-hp :is(.schips > span, .pchips > span, .timepill, .chip, .tag, .go, .pm, .jbody h3) > :is(.fa, i, svg):not([class*="ar"]) {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  margin-inline-end: 0.34em;
+  inset-block-start: 0;
+  flex: 0 0 auto;
+}
+
+/* ---------- 2. Arrow chips (service card CTA, "ادامه مطلب") ------------ */
+.zc-hp :is(.smore, .continue, .go) { flex-wrap: nowrap; }
+.zc-hp :is(.smore .ar, .continue .ar) > :is(.fa, i, svg) {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  line-height: 1;
+}
+
+/* ---------- 3. Portfolio cards: a long tag can never wreck the card ----- */
+.zc-hp .jcard { display: flex; flex-direction: column; }
+.zc-hp .jbody { display: flex; flex-direction: column; flex: 1 1 auto; }
+.zc-hp .jrow { margin-top: auto; padding-top: 14px; }
+.zc-hp .jbody h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.zc-hp .jrow > .cat {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 2;
+  padding-block: 5px;
+}
+.zc-hp .jrow > :is(.go, .link, a) {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.zc-hp .jcover { isolation: isolate; }
+.zc-hp .jcover > .yr,
+.zc-hp .jcover > .kpi,
+.zc-hp .jcover > .ico-tile { z-index: 3; }
+
+/* ---------- 4. Blog cards: one crop, one meta rhythm ------------------- */
+.zc-hp .bgrid { align-items: stretch; }
+
+/* Featured card: the photograph absorbs any extra height, so no dead
+   white gap under the copy when the side stack is taller. */
+.zc-hp .featured { min-width: 0; }
+.zc-hp .featured .fcover {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 262px;
+  max-height: none;
+}
+.zc-hp .featured .fcover > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.zc-hp .fbody { flex: 0 0 auto; gap: 14px; }
+.zc-hp .fbody > p {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Side cards: a fixed cover column + a cover crop = equal, tidy thumbnails */
+.zc-hp .scard { grid-template-columns: 168px minmax(0, 1fr); }
+.zc-hp .scard .scover2 { min-height: 100%; overflow: hidden; }
+.zc-hp .scard .scover2 > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.zc-hp .sbody2 { min-width: 0; }
+.zc-hp .sbody2 h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.75;
+}
+.zc-hp .sbody2 > p {
+  -webkit-line-clamp: 2;
+  margin: 0;
+}
+
+/* Meta row: author / date on one line, read-time chip pinned opposite */
+.zc-hp .bmeta {
+  gap: 12px;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 13px;
+}
+.zc-hp .who2 { min-width: 0; flex: 1 1 auto; }
+.zc-hp .who2 > span:last-child { min-width: 0; }
+.zc-hp .who2 b {
+  max-width: 100%;
+  line-height: 1.45;
+}
+.zc-hp .ava2 { font-size: 15px; font-weight: 900; letter-spacing: 0; }
+.zc-hp .timepill {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.6;
+  padding: 6px 11px;
+}
+.zc-hp .scard .timepill { padding: 5px 10px; font-size: 11.5px; }
+.zc-hp .timepill > .fa { font-size: 10.5px; opacity: .85; }
+
+@media (max-width: 768px) {
+  .zc-hp .scard { grid-template-columns: 1fr; }
+  .zc-hp .scard .scover2 { min-height: 176px; }
+  .zc-hp .jrow > .cat { max-width: 100%; }
+}
+
+/* Pills that already use `gap` don't also need a glyph margin */
+.zc-hp :is(.schips, .pchips) > span > :is(.fa, i, svg) { margin-inline-end: 0; }
+
+/* A real screenshot beats a decorative glyph — hide the sticker once the
+   post carries its own featured image so the crop stays clean. */
+.zc-hp .scover2:has(> img) > .g { display: none; }
+
+/* Equal rows for the two secondary posts: identical heights, therefore
+   identical thumbnail crops (no more "uneven image sizes"). */
+.zc-hp .stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+  align-content: stretch;
+  min-width: 0;
+}
+.zc-hp .scard { min-height: 0; }
+@media (max-width: 768px) {
+  .zc-hp .stack { grid-template-rows: none; grid-auto-rows: auto; }
+}

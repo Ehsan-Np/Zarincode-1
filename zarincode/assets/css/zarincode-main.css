@@ -2076,38 +2076,49 @@ html.dark :is(.zc-service-card,.zc-portfolio-card,.zc-blog-card,.zc-product-card
    v4.9.0 — Header→footer continuity, centred icons, live hover states
    ===================================================================== */
 
-/* ── 1. Every icon box on the site is a centred box ─────────────────── */
+/* ── 1. Icon boxes: only boxes that paint a shape get box treatment ────
+   v4.9.1 correction. The 4.9.0 pass forced `display:block; width/height:1em`
+   on *every* glyph inside the header, the footer links and every .zc-btn.
+   Those glyphs are inline text icons; turning them into fixed 1em blocks
+   clipped wide glyphs and pushed icons away from their label. The centring
+   now applies to real icon boxes (a circle / tile that has a background)
+   and nowhere else — text buttons keep their natural inline metrics. */
 .zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box,.zc-cart-count),
-.zc-footer :is(.zc-badge-pill,.zc-footer-title),
-.zc-footer-links a > :is(i,svg),
-.zc-btn > :is(i,svg),
-.zc-icon-btn > :is(i,svg) {
+.zc-icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
-    text-align: center;
-}
-
-.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box),
-.zc-footer :is(.zc-badge-pill) {
     place-items: center;
     align-content: center;
+    line-height: 1;
+    text-align: center;
 }
 
-/* Glyph boxes: kill baseline drift so the glyph is optically centred */
-.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box) > i,
-.zc-header-pill .zc-dropdown-icon > i,
-.zc-footer-links a > i,
-.zc-btn > i,
-.zc-icon-btn > i {
+.zc-header-pill :is(.zc-icon-btn,.zc-dropdown-icon,.zc-brand-logo-box,.zc-cart-count) > :is(i,svg),
+.zc-icon-btn > :is(i,svg) {
     display: block;
-    line-height: 1;
     width: 1em;
     height: 1em;
-    margin: 0 auto;
+    margin: 0;
+    line-height: 1;
     font-size: inherit;
     text-align: center;
+    flex: 0 0 auto;
+}
+
+/* Text buttons and footer links: keep the glyph inline next to its label,
+   only remove the line-box drift that makes icons sit a pixel low. */
+.zc-btn > :is(i,svg),
+.zc-footer-links a > :is(i,svg),
+.zc-footer :is(.zc-badge-pill,.zc-footer-title) > :is(i,svg) {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    line-height: 1;
+    font-size: inherit;
+    vertical-align: middle;
+    flex: 0 0 auto;
 }
 
 /* ── 2. Header → footer colour band (one continuous gradient) ─────────
