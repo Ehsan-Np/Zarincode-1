@@ -31,3 +31,14 @@
 
 ### عبرت ۲۰۲۶-۱۱-۰۱: فایل track‌نشده = بخار
 بازیابی snapshot با بازسازی `.git` از origin، فایل‌های **untracked** را از worktree می‌زداید (بانک تحقیقات «Researches/» یک‌بار در همین چرخه از دست رفت و از روی منابع بازسازی شد). قاعدهٔ مطلق: **هر فایلِ جدید باید در همان پیامِ ساخته‌شدن** با `git add -A --sparse && git commit && git push` ثبت شود؛ هیچ‌گاه روی حالت untracked حساب نکن.
+
+## وضعیت فشردهٔ worktree (دستور کاربر — ۲۰۲۶-۱۱-۰۹)
+کاربر خواست فقط **پرامپت‌ها + آخرین نسخهٔ قالب و افزونه** روی دیسک بماند و بقیه کامل پاک شود.
+بنابراین sparse checkout محلی به این صورت تنظیم شده است (`core.sparseCheckoutCone=false`):
+`docs/audits/`، `docs/design/`، `docs/releases/`، `docs/adr/`، `docs/architecture/`، `docs/governance/`،
+`docs/archive/`، `docs/*.md`، `tools/`، `deliverables/`، `packages/`، `tests/` و همهٔ `uploads/*` جز
+`uploads/Zarincode-Theme-Skill-v3.txt` کنار گذاشته می‌شوند. همهٔ اینها در گیت و GitHub باقی‌اند و با
+`git sparse-checkout set`/`git checkout` هر وقت لازم شد برمی‌گردند؛ **آنها را از مخزن حذف نکنید**.
+بستهٔ نصبی در worktree نگه داشته نمی‌شود؛ هر وقت لازم شد از سورس ساخته می‌شود:
+`cd zarincode && zip -qr /tmp/zarincode-<ver>.zip . -x "*.DS_Store" "*.git*"` و مثل آن برای `zarincode-core`.
+بالا نگه‌داشتن فایل zip جایی ممنوع نیست ولی پیش‌فرض «فقط سورس» است (انتخاب صریح کاربر).
