@@ -32,3 +32,6 @@ coverage/
 !tools/browser/package-lock.json
 !tools/browser/sbom.cdx.json
 /wpqa/
+
+# Built release packages (regenerate with the packaging steps in docs/prompts)
+/release-*/

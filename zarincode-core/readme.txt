@@ -1,7 +1,7 @@
 === Zarincode Core ===
 Contributors: zarincode
 Tags: elementor, agency, woocommerce, rtl
-Requires at least: 6.0
+Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
 Stable tag: 4.9.0

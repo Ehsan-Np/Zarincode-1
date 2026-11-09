@@ -77,7 +77,7 @@ while ( have_posts() ) :
                 <!-- Quick Order Form Card (Webinex Quick Project Request) -->
                 <div class="zc-white-card" style="padding:2.25rem;">
                     <span class="zc-badge-pill">FAST ORDER REQUEST</span>
-                    <h3 style="margin:0.25rem 0 1rem;font-size:1.3rem;font-weight:900;">ثبت سریع درخواست «<?php the_title(); ?>»</h3>
+                    <h2 style="margin:0.25rem 0 1rem;font-size:1.3rem;font-weight:900;">ثبت سریع درخواست «<?php the_title(); ?>»</h2>
                     <p style="font-size:0.86rem;color:var(--zc-text-secondary);margin-bottom:1.25rem;">
                         اطلاعات تماس خود را وارد کنید تا <strong>احسان نادری پناه</strong> در کمتر از ۱۵ دقیقه جهت مشاوره رایگان با شما تماس بگیرد:
                     </p>
@@ -110,7 +110,7 @@ while ( have_posts() ) :
             <h2 class="zc-section-title" style="font-size:1.65rem;margin-bottom:1.5rem;">شرایط و تضمین‌های ارائه خدمت «<?php the_title(); ?>»</h2>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;">
                 <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-handshake" style="color:var(--color-accent);" aria-hidden="true"></i>نحوه انجام خدمت:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $mode ); ?></div></div>
-                <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-shield-heart" style="color:var(--color-accent);" aria-hidden="true"></i>گارانتی بازگشت وجه:</small><div style="font-weight:800;margin-top:0.25rem;color:#10B981;"><?php echo esc_html( $refund ); ?></div></div>
+                <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-shield-heart" style="color:var(--color-accent);" aria-hidden="true"></i>گارانتی بازگشت وجه:</small><div style="font-weight:800;margin-top:0.25rem;color:#127D47;"><?php echo esc_html( $refund ); ?></div></div>
                 <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-medal" style="color:var(--color-accent);" aria-hidden="true"></i>ضمانت کیفیت:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $quality ); ?></div></div>
                 <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-solid fa-wallet" style="color:var(--color-accent);" aria-hidden="true"></i>پیش‌پرداخت:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $prepayment ); ?></div></div>
                 <div class="zc-white-card" style="padding:1.15rem;"><small style="color:var(--zc-text-muted);display:flex;align-items:center;gap:.4rem;"><i class="fa-regular fa-clock" style="color:var(--color-accent);" aria-hidden="true"></i>مدت زمان اجرا:</small><div style="font-weight:800;margin-top:0.25rem;"><?php echo esc_html( $duration ); ?></div></div>

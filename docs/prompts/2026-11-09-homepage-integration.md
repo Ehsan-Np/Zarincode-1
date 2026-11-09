@@ -184,3 +184,33 @@
 - در تک‌خدمت/نمونه‌کار سطح عنوان پس از `h2` به `h3` می‌پرد (پرش سطح).
 
 این‌ها فهرست مرحلهٔ بعدی است؛ در این کامیت دست نخورده‌اند تا دامنهٔ تغییر محدود بماند.
+
+## مرحلهٔ ۴.۹.۰-ج — بستن باقی‌ماندهٔ دسترس‌پذیری و بستهٔ انتشار
+
+### اصلاح قالبی‌های داخلی (باقی‌ماندهٔ مرحلهٔ قبل)
+
+| مورد | فایل | اصلاح |
+|---|---|---|
+| عنوان و لینک خالی جعبهٔ نویسنده (`empty-heading`, `link-name`) | `inc/Core/Single_Experience.php` | نام سه‌مرحله‌ای: `display_name` → `user_login` → `nickname` → نام سایت؛ `get_avatar()` با همان نام؛ عنوان همیشه متن دارد |
+| کنتراست متن‌های ریز (`color-contrast`) | `single-experience.css` | `zc-story-kicker`، `zc-related-meta`، `zc-related-grid p`، `zc-adjacent-label`، `zc-article-breadcrumb`، `figcaption`، `zc-editorial-meta small`، `comment-metadata`، `comment-notes`/`#email-notes`/`.required-field-message`، `zc-rating-input legend small`، `zc-review-score>span`، `zc-share-help`، `zc-reading-rail>span` → `#62666E` (۵٫۶۷:۱ روی کرم) یا `#5F6369` |
+| کنتراست برچسب تصویر محصول | `zarincode-main.css` | `.zc-product-media-label small` از `#979181` (۲٫۸۳:۱) → `#5C6068` (۵٫۶۹:۱) |
+| متن سبز «گارانتی بازگشت وجه» | `single-zc_service.php` | `#10B981` (۲٫۵۴:۱) → `#127D47` (۵٫۱۸:۱) |
+| پرش سطح عنوان در تک‌خدمت | `single-zc_service.php` | عنوان کارت «ثبت سریع درخواست» `h3` → `h2` (اندازهٔ ۱٫۳rem حفظ شد) |
+| پرش سطح عنوان در تک‌نمونه‌کار | `single-zc_project.php` | تیترهای تب‌ها `h3` → `h2`، عنوان کارت‌ها `h4` → `h3` (همهٔ اندازه‌ها inline و بدون تغییر) |
+| پرش سطح عنوان در تک‌محصول | `single-product.php` | همان الگو: `h3` → `h2`، `h4` → `h3` |
+
+سنجش این مرحله:
+
+- `php -l` روی همهٔ فایل‌های تغییریافته: پاک.
+- اسکن ایستای ترتیب عنوان روی کل قالب (`<h1..h6>` به ترتیب DOM): **۰ پرش** در `single-zc_service` (۱،۲،۲)، `single-zc_project` (۱،۲،۳،۲،۳،۳،۳،۳)، `single-product` و `footer`.
+- کنتراست با محاسبهٔ WCAG روی همان جفت‌رنگ‌ها: همهٔ مقادیر جدید ≥ ۴٫۵:۱ (کمینه `#5F6369` روی کرم = ۵٫۹۴:۱، `#62666E` روی `#FFFDF8` = ۵٫۶۷:۱، `#5C6068` روی `#F7F3E8` = ۵٫۶۹:۱، `#127D47` روی سفید = ۵٫۱۸:۱).
+- صادقانه: این سه قالب در این مرحله **دوباره با axe روی نمونهٔ زنده اجرا نشدند** (نمونهٔ آزمایشی پس از مرحلهٔ قبل پاک شده بود)؛ سنجش بالا ایستا/محاسباتی است.
+
+### بستهٔ انتشار (WordPress standards)
+
+- `zarincode/readme.txt` اضافه شد (قالب‌های وردپرس هم readme استاندارد دارند): `Requires at least: 6.6`, `Tested up to: 7.1`, `Requires PHP: 8.0`, `Stable tag: 4.9.0`, License, Description/Installation/FAQ/Copyright/Changelog/Upgrade Notice.
+- هدر افزونه با `Requires at least: 6.6`, `Tested up to: 7.1`, `WC requires at least: 8.0`, `WC tested up to: 11.2` هم‌تراز با قالب شد.
+- بسته‌بندی: یک پوشهٔ ریشه (`zarincode/` و `zarincode-core/`)، بدون `.git`/`node_modules`/`*.log`/`*.map`/فایل‌های موقت؛ ۱۰۳ فایل PHP همه با `php -l` پاک؛ `demo-data/` و `languages/` (شامل `.pot` و `fa_IR`) داخل بسته.
+- آزمون نصب واقعی از همان زیپ‌ها روی وردپرس ۶٫۸٫۳ فارسی تازه: نصب و فعال‌سازی قالب و افزونه موفق؛ CPTهای `zc_service`, `zc_project`, `zc_hf_template` ثبت شدند؛ `/` = ۲۰۰، `/?p=1` = ۲۰۰، `/?s=test` = ۲۰۰، صفحهٔ ناموجود = ۴۰۴، سه فایل CSS = ۲۰۰؛ **۰ خطای PHP** در لاگ سرور.
+
+بسته‌ها: `release-4.9.0/zarincode-4.9.0.zip` (۲۱۶ ورودی، ۱۱MB)، `release-4.9.0/zarincode-core-4.9.0.zip` (۱۴۰ ورودی، ۷۴۳KB)، به‌همراه `SHA256SUMS.txt`.

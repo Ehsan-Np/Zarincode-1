@@ -44,9 +44,17 @@ final class Single_Experience {
 
     private static function author(int $id,bool $commerce):void {
         $author=(int)get_post_field('post_author',$id);$bio=get_the_author_meta('description',$author);
-        echo '<section class="zc-author-box'.($commerce?' zc-product-maker':'').'" aria-label="'.($commerce?'ارائه‌دهنده محصول':'درباره نویسنده').'">'.get_avatar($author,96,'',get_the_author_meta('display_name',$author)).'<div><span class="zc-story-kicker">'.($commerce?'تخصص پشت این محصول':'صدای این مقاله').'</span><h2><a href="'.esc_url(get_author_posts_url($author)).'">'.esc_html(get_the_author_meta('display_name',$author)).'</a></h2>';
+        // Never emit an empty heading or an unnamed link: fall back to the login,
+        // then to the site name, and only link the author when the URL exists.
+        $name=trim((string)get_the_author_meta('display_name',$author));
+        if(''===$name)$name=trim((string)get_the_author_meta('user_login',$author));
+        if(''===$name)$name=trim((string)get_the_author_meta('nickname',$author));
+        if(''===$name)$name=get_bloginfo('name');
+        $archive=trim((string)get_author_posts_url($author));
+        $name_html=''!==$name?('<a href="'.esc_url($archive).'">'.esc_html($name).'</a>'):'';
+        echo '<section class="zc-author-box'.($commerce?' zc-product-maker':'').'" aria-label="'.($commerce?'ارائه‌دهنده محصول':'درباره نویسنده').'">'.get_avatar($author,96,'',$name).'<div><span class="zc-story-kicker">'.($commerce?'تخصص پشت این محصول':'صدای این مقاله').'</span><h2>'.$name_html.'</h2>';
         if($bio!=='')echo '<div class="zc-author-bio">'.wp_kses_post(wpautop($bio)).'</div>';
-        echo '<div class="zc-author-actions"><a class="zc-author-archive" href="'.esc_url(get_author_posts_url($author)).'">'.($commerce?'آشنایی با ارائه‌دهنده':'مقالات بیشتر از این نویسنده').' <span aria-hidden="true">←</span></a>';
+        echo '<div class="zc-author-actions"><a class="zc-author-archive" href="'.esc_url($archive).'">'.($commerce?'آشنایی با ارائه‌دهنده':'مقالات بیشتر از این نویسنده').' <span aria-hidden="true">←</span></a>';
         if($commerce)echo '<a href="'.esc_url(home_url('/contact-us/')).'" class="zc-maker-contact">پرسش پیش از خرید <i class="fa-regular fa-comment" aria-hidden="true"></i></a>';
         echo '</div></div><span class="zc-author-watermark" aria-hidden="true"></span></section>';
     }

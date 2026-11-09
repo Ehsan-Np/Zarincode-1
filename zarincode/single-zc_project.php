@@ -140,9 +140,9 @@ while ( have_posts() ) :
                             <?php the_content(); ?>
                         </div>
 
-                        <h3 style="font-size:1.2rem;font-weight:900;margin:0 0 1.25rem;">
+                        <h2 style="font-size:1.2rem;font-weight:900;margin:0 0 1.25rem;">
                             <i class="fa-solid fa-circle-check" style="color:var(--color-accent);"></i> روند اجرای این پروژه
-                        </h3>
+                        </h2>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-bottom:1.5rem;">
                             <?php
                             $phases = [
@@ -158,7 +158,7 @@ while ( have_posts() ) :
                                         <span style="width:2.4rem;height:2.4rem;border-radius:0.75rem;background:var(--color-accent);color:var(--color-accent-contrast);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">
                                             <i class="<?php echo esc_attr( $ph['icon'] ); ?>"></i>
                                         </span>
-                                        <h4 style="margin:0;font-size:0.95rem;font-weight:800;"><?php echo esc_html( $ph['title'] ); ?></h4>
+                                        <h3 style="margin:0;font-size:0.95rem;font-weight:800;"><?php echo esc_html( $ph['title'] ); ?></h3>
                                     </div>
                                     <p style="margin:0;font-size:0.84rem;color:var(--zc-text-secondary);line-height:1.75;"><?php echo esc_html( $ph['desc'] ); ?></p>
                                 </div>
@@ -168,7 +168,7 @@ while ( have_posts() ) :
 
                     <!-- TAB 2: Project Specifications -->
                     <div id="prj-tab-specs" class="zc-prod-tab-pane" style="display:none;">
-                        <h3 style="font-size:1.15rem;font-weight:900;margin:0 0 1.25rem;">مشخصات فنی و اجرایی پروژه</h3>
+                        <h2 style="font-size:1.15rem;font-weight:900;margin:0 0 1.25rem;">مشخصات فنی و اجرایی پروژه</h2>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.85rem;">
                             <?php
                             $specs = [
@@ -204,15 +204,15 @@ while ( have_posts() ) :
                         </div>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;">
                             <div class="zc-white-card" style="padding:1.25rem;">
-                                <h4 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-gauge-high" style="color:var(--color-accent);"></i> عملکرد و سرعت</h4>
+                                <h3 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-gauge-high" style="color:var(--color-accent);"></i> عملکرد و سرعت</h3>
                                 <p style="margin:0;font-size:0.84rem;color:var(--zc-text-secondary);line-height:1.75;">بهینه‌سازی سرعت بارگذاری، کاهش حجم منابع و تجربه روان روی موبایل و دسکتاپ.</p>
                             </div>
                             <div class="zc-white-card" style="padding:1.25rem;">
-                                <h4 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--color-accent);"></i> سئو و دیده‌شدن</h4>
+                                <h3 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--color-accent);"></i> سئو و دیده‌شدن</h3>
                                 <p style="margin:0;font-size:0.84rem;color:var(--zc-text-secondary);line-height:1.75;">ساختار محتوایی و نشانه‌گذاری استاندارد برای رشد پایدار در نتایج جستجو.</p>
                             </div>
                             <div class="zc-white-card" style="padding:1.25rem;">
-                                <h4 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-shield-halved" style="color:var(--color-accent);"></i> پایداری و پشتیبانی</h4>
+                                <h3 style="margin:0 0 0.6rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-shield-halved" style="color:var(--color-accent);"></i> پایداری و پشتیبانی</h3>
                                 <p style="margin:0;font-size:0.84rem;color:var(--zc-text-secondary);line-height:1.75;">تحویل مستند، آموزش تیم کارفرما و پشتیبانی شفاف مطابق پلن اجرایی پروژه.</p>
                             </div>
                         </div>
@@ -267,7 +267,7 @@ while ( have_posts() ) :
                         <img src="<?php echo esc_url( $dev_img ); ?>" alt="<?php echo esc_attr( $dev_name ); ?>" style="width:68px;height:68px;border-radius:1.1rem;object-fit:cover;border:2px solid var(--color-accent);flex-shrink:0;">
                         <div>
                             <span style="display:inline-block;background:var(--color-accent);color:var(--color-accent-contrast);padding:0.15rem 0.6rem;border-radius:999px;font-size:0.7rem;font-weight:900;margin-bottom:0.25rem;">OFFICIAL AUTHOR</span>
-                            <h4 style="margin:0;font-size:1rem;font-weight:900;"><?php echo esc_html( $dev_name ); ?></h4>
+                            <h3 style="margin:0;font-size:1rem;font-weight:900;"><?php echo esc_html( $dev_name ); ?></h3>
                             <div style="font-size:0.78rem;color:var(--zc-text-secondary);">معمار نرم‌افزار و مدیر فنی زرین کد</div>
                         </div>
                     </div>

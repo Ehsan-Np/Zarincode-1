@@ -11,6 +11,10 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Domain Path: /languages
  * Requires PHP: 8.0
+ * Requires at least: 6.6
+ * Tested up to: 7.1
+ * WC requires at least: 8.0
+ * WC tested up to: 11.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
