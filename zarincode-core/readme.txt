@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.12.0
+Stable tag: 4.13.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,13 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.13.0 =
+* Ships with theme 4.13.0. `HF_Builder::footer_tree()` is a pure Container tree: the plate, the CTA card, the four columns and the bottom bar are Containers, and everything inside them is a stock Elementor widget (heading, text-editor, button, icon-list, icon, `zarincode_social_profiles`). 17 Containers / 23 widgets, five levels deep, no raw HTML.
+* `container()` writes `padding` explicitly (Elementor's nested default of 10px silently shrank every column), supports per-device `wrap_t` / `wrap_m` through `flex_wrap_tablet` / `flex_wrap_mobile`, and keeps the responsive width controls (`width`, `width_tablet`, `width_mobile`) in the same place the editor stores them.
+* `typo()` accepts `size_t` / `size_m`, so every heading and the CTA badge carry real per-device font sizes instead of a CSS clamp in the theme.
+* New `docs/standards/elementor-footer-architecture.md`: the standards this tree follows (Elementor container schema, control naming, responsive control pairs, editability rules, CSS scoping, RTL logical values) with the sources that were read before coding.
+* Verified: `php -l` clean, `ensure(true)` + `elementor flush-css` run without a warning, the front end renders the plate, and `debug.log` stays at the two known `WP\MCP` deprecations of the QA install.
 
 = 4.12.0 =
 * Ships with theme 4.12.0. `HF_Builder::footer_tree()` is rebuilt from native widgets so the Elementor footer reproduces the approved 4.9.0 design exactly (CTA card, brand column, two link lists, credential chips, bottom bar) while every element stays editable. `HF_Builder::header_tree()` now returns the theme's own designed header widget, so a rebuild never redraws the header.

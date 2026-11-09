@@ -474,7 +474,17 @@ final class HF_Builder {
 	private static function socials( string $name = 'شبکه‌های اجتماعی' ): array {
 		self::load_widgets();
 		if ( class_exists( '\Zarincode\Runtime260\Widgets\Widget_Social_Profiles' ) ) {
-			return self::widget( 'zarincode_social_profiles', array(), $name );
+			return self::widget(
+				'zarincode_social_profiles',
+				array(
+					'align'        => 'flex-start',
+					'text_color'   => '#E5E7EB',
+					'border_color' => 'rgba(136,136,136,0.27)',
+					'hover_color'  => '#FDD05B',
+					'icon_size'    => array( 'unit' => 'px', 'size' => 18 ),
+				),
+				$name
+			);
 		}
 		return self::widget( 'shortcode', array( 'shortcode' => '[zarincode_social_links]' ), $name );
 	}
@@ -544,186 +554,724 @@ final class HF_Builder {
 	 * button and every social entry is an Elementor widget the owner can edit
 	 * in the panel — nothing is hard-coded in PHP any more.
 	 */
+	/**
+	 * Footer: the approved 4.9.0 design, expressed **entirely in Elementor**.
+	 *
+	 * Structure — every level is a native element, nothing is one "chunk":
+	 *
+	 *   Container  zc-ft-plate        the dark bento plate (gradient, radius,
+	 *                                 border, shadow, padding and row gap are
+	 *                                 Elementor settings, so the box itself is
+	 *                                 editable in the panel)
+	 *   ├─ Container zc-ft-cta          the CTA card (fill, border, radius, gap)
+	 *   │  ├─ Heading   zc-ft-badge        the gold pill above the H2
+	 *   │  ├─ Heading   zc-ft-cta-title    the H2
+	 *   │  └─ Container zc-ft-buttons      direct-call button + order button
+	 *   ├─ Container zc-ft-grid         the four columns (1.6 / 1 / 1 / 1.2)
+	 *   │  ├─ zc-ft-col-brand             monogram, name, tagline, about,
+	 *   │  │                              contact icon-list, social profiles
+	 *   │  ├─ zc-ft-col-services          dot + title, link icon-list
+	 *   │  ├─ zc-ft-col-legal             dot + title, link icon-list
+	 *   │  └─ zc-ft-col-cred              dot + title, chip container
+	 *   └─ Container zc-ft-bottom       copyright + support/standards lines
+	 *
+	 * Every value the 4.9.0 stylesheet used is written as the matching
+	 * Elementor control (typography, colours, padding, gaps, borders, radius,
+	 * shadows, per-device widths), so the owner edits the footer in the panel
+	 * and the front end follows. The theme adds only the page-continuity veil
+	 * above the plate and the two decorative glows (see hf-footer.css).
+	 */
 	public static function footer_tree(): array {
-		/* ---------------------------------------------------------- CTA card */
-		$cta = self::row(
+		/* ------------------------------------------------------------ tokens */
+		$gold    = '#FDD05B';
+		$gold_hi = '#FCC22D';
+		$ink     = '#2A2C31';
+		$white   = '#FFFFFF';
+		$body    = '#E5E7EB';
+		$muted   = '#9CA3AF';
+		$line    = 'rgba(255,255,255,0.10)';
+		$pill    = array( 'unit' => 'px', 'top' => '999', 'right' => '999', 'bottom' => '999', 'left' => '999', 'isLinked' => true );
+
+		/* CTA card ─────────────────────────────────────────────────────────── */
+		$badge = self::widget(
+			'heading',
+			array_merge(
+				array(
+					'title'          => 'ZARINCODE DIGITAL AGENCY &amp; MARKETPLACE',
+					'header_size'    => 'span',
+					'align'          => 'start',
+					'title_color'    => $gold,
+					'_flex_align_self' => 'flex-start',
+				),
+				self::typo( '12.5', '700', array( 'letter_spacing' => '0.04', 'text_transform' => 'uppercase', 'line_height' => '1.6', 'size_m' => '10.5' ) ),
+				array(
+					'_background_background'     => 'gradient',
+					'_background_color'          => '#2F3238',
+					'_background_color_b'        => '#1F2126',
+					'_background_gradient_type'  => 'linear',
+					'_background_gradient_angle' => array( 'unit' => 'deg', 'size' => 140 ),
+					'_border_border'             => 'solid',
+					'_border_width'              => array( 'unit' => 'px', 'top' => '1', 'right' => '1', 'bottom' => '1', 'left' => '1', 'isLinked' => true ),
+					'_border_color'              => 'rgba(253,208,91,0.24)',
+					'_border_radius'             => $pill,
+					'_padding'                   => array( 'unit' => 'px', 'top' => '6', 'right' => '16', 'bottom' => '6', 'left' => '16', 'isLinked' => false ),
+				)
+			),
+			'نشان بالای کارت',
+			'zc-ft-badge'
+		);
+
+		$cta_title = self::widget(
+			'heading',
+			array_merge(
+				array(
+					'title'       => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟',
+					'header_size' => 'h2',
+					'align'       => 'start',
+					'title_color' => $white,
+				),
+				self::typo( '23.2', '900', array( 'line_height' => '1.7', 'size_t' => '21', 'size_m' => '17.5' ) )
+			),
+			'تیتر دعوت به اقدام',
+			'zc-ft-cta-title'
+		);
+
+		$btn_call = self::widget(
+			'button',
+			array_merge(
+				array(
+					'text'             => 'تماس مستقیم: 09024561001',
+					'link'             => array( 'url' => 'tel:09024561001', 'is_external' => '', 'nofollow' => '' ),
+					'align'            => 'start',
+					'size'             => 'md',
+					'selected_icon'    => array( 'value' => 'fas fa-phone-volume', 'library' => 'fa-solid' ),
+					'icon_align'       => 'right',
+					'_flex_align_self' => 'center',
+				),
+				self::typo( '15.2', '600', array( 'line_height' => '1.4' ) ),
+				array(
+					'background_color'                  => $gold,
+					'button_text_color'                 => $ink,
+					'button_background_hover_color'     => $gold_hi,
+					'button_hover_color'                => $ink,
+					'border_radius'                     => $pill,
+					'text_padding'                      => array( 'unit' => 'px', 'top' => '12.8', 'right' => '26.4', 'bottom' => '12.8', 'left' => '26.4', 'isLinked' => false ),
+					'button_box_shadow_box_shadow_type' => 'yes',
+					'button_box_shadow_box_shadow'      => array( 'horizontal' => 0, 'vertical' => 8, 'blur' => 24, 'spread' => 0, 'color' => 'rgba(253,208,91,0.40)' ),
+				)
+			),
+			'دکمهٔ تماس مستقیم',
+			'zc-ft-gold'
+		);
+
+		$btn_order = self::widget(
+			'button',
+			array_merge(
+				array(
+					'text'             => 'ثبت سفارش آنلاین پروژه',
+					'link'             => array( 'url' => home_url( '/contact-us/' ), 'is_external' => '', 'nofollow' => '' ),
+					'align'            => 'start',
+					'size'             => 'md',
+					'selected_icon'    => array( 'value' => 'fas fa-paper-plane', 'library' => 'fa-solid' ),
+					'icon_align'       => 'right',
+					'_flex_align_self' => 'center',
+				),
+				self::typo( '15.2', '600', array( 'line_height' => '1.4' ) ),
+				array(
+					'background_color'              => 'rgba(255,255,255,0.10)',
+					'button_text_color'             => $white,
+					'button_background_hover_color' => 'rgba(255,255,255,0.16)',
+					'button_hover_color'            => $white,
+					'border_border'                 => 'solid',
+					'border_width'                  => array( 'unit' => 'px', 'top' => '1', 'right' => '1', 'bottom' => '1', 'left' => '1', 'isLinked' => true ),
+					'border_color'                  => 'rgba(255,255,255,0.20)',
+					'border_radius'                 => $pill,
+					'text_padding'                  => array( 'unit' => 'px', 'top' => '12.8', 'right' => '26.4', 'bottom' => '12.8', 'left' => '26.4', 'isLinked' => false ),
+				)
+			),
+			'دکمهٔ ثبت سفارش آنلاین',
+			'zc-ft-glass'
+		);
+
+		$cta_btns = self::container(
+			array( $btn_call, $btn_order ),
+			array_merge(
+				self::line( '14' ),
+				array( 'css' => 'zc-ft-buttons', 'title' => 'دکمه‌های دعوت به اقدام', 'justify' => 'flex-start', 'nowrap' => true, 'wrap_m' => true )
+			),
+			true
+		);
+
+		$cta = self::container(
+			array( $badge, $cta_title, $cta_btns ),
+			array_merge(
+				self::stack( '14' ),
+				array(
+					'css'        => 'zc-ft-cta',
+					'title'      => 'کارت دعوت به اقدام',
+					'content_width' => 'full',
+					'justify'    => 'center',
+					'align'      => 'flex-start',
+					'padding'    => array( 'top' => '26', 'right' => '36', 'bottom' => '26', 'left' => '36' ),
+					'padding_t'  => array( 'top' => '22', 'right' => '20', 'bottom' => '22', 'left' => '20' ),
+					'background' => 'rgba(255,255,255,0.05)',
+					'border'     => 'rgba(255,255,255,0.08)',
+					'radius'     => '24',
+				)
+			),
+			true
+		);
+
+		/* brand column ─────────────────────────────────────────────────────── */
+		$monogram = self::widget(
+			'heading',
+			array_merge(
+				array(
+					'title'            => 'ZC',
+					'header_size'      => 'span',
+					'align'            => 'center',
+					'title_color'      => $ink,
+					'_flex_align_self' => 'center',
+					'_flex_size'       => 'none',
+					'_element_width'   => 'auto',
+				),
+				self::typo( '20.8', '900', array( 'line_height' => '44.8', 'line_height_unit' => 'px' ) ),
+				array(
+					'_background_background' => 'classic',
+					'_background_color'      => $gold,
+					'_border_radius'         => $pill,
+					'_padding'               => array( 'unit' => 'px', 'top' => '0', 'right' => '8', 'bottom' => '0', 'left' => '8', 'isLinked' => false ),
+				)
+			),
+			'مونوگرام برند',
+			'zc-ft-mark'
+		);
+
+		$brand_name = self::widget(
+			'heading',
+			array_merge(
+				array(
+					'title'       => 'زرین کد',
+					'header_size' => 'h3',
+					'align'       => 'start',
+					'title_color' => $white,
+				),
+				self::typo( '20', '900', array( 'line_height' => '1.6', 'size_m' => '18' ) )
+			),
+			'نام برند',
+			'zc-ft-brand'
+		);
+
+		$tagline = self::widget(
+			'text-editor',
+			array_merge(
+				array(
+					'editor'     => '<p>Zarincode.com — Digital Engineering</p>',
+					'text_color' => $gold,
+					'align'      => 'start',
+				),
+				self::typo( '12.5', '400', array( 'line_height' => '1.8' ) )
+			),
+			'شعار برند',
+			'zc-ft-tagline'
+		);
+
+		$brand_text = self::container(
+			array( $brand_name, $tagline ),
+			array_merge( self::stack( '2' ), array( 'title' => 'نام و شعار برند', 'grow' => true ) ),
+			true
+		);
+
+		$brand_head = self::container(
+			array( $monogram, $brand_text ),
+			array_merge( self::line( '14' ), array( 'css' => 'zc-ft-brandhead', 'title' => 'نشان و نام برند', 'nowrap' => true ) ),
+			true
+		);
+
+		$about = self::widget(
+			'text-editor',
+			array_merge(
+				array(
+					'editor'     => '<p>زرین کد با مدیریت و کدنویسی مستقیم احسان نادری پناه، ارائه‌دهنده خدمات فوق‌تخصصی طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و مارکت‌پلیس افزونه‌ها، قالب‌های وردپرس و سورس‌کدهای آماده تجاری است.</p>',
+					'text_color' => $muted,
+					'align'      => 'start',
+				),
+				self::typo( '14.4', '400', array( 'line_height' => '1.85' ) )
+			),
+			'متن معرفی زرین کد',
+			'zc-ft-about'
+		);
+
+		$contact = self::icons(
 			array(
-				array(
-					'size'    => 62,
-					'widgets' => array(
-						self::widget(
-							'heading',
-							array(
-								'title'       => 'ZARINCODE DIGITAL AGENCY &amp; MARKETPLACE',
-								'header_size' => 'span',
-								'align'       => 'right',
-							),
-							'نشان بالای کارت',
-							'zc-ft-badge'
-						),
-						self::widget(
-							'heading',
-							array(
-								'title'       => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟',
-								'header_size' => 'h2',
-								'align'       => 'right',
-							),
-							'تیتر دعوت به اقدام'
-						),
-					),
-				),
-				array(
-					'size'    => 38,
-					'widgets' => array(
-						self::widget(
-							'button',
-							array_merge(
-								array(
-									'text'        => 'تماس مستقیم: 09024561001',
-									'link'        => array( 'url' => 'tel:09024561001', 'is_external' => '', 'nofollow' => '' ),
-									'align'       => 'left',
-									'size'        => 'md',
-									'selected_icon' => array( 'value' => 'fas fa-phone-volume', 'library' => 'fa-solid' ),
-									'icon_align'  => 'right',
-								),
-								self::pill_button( 'gold' )
-							),
-							'دکمهٔ تماس مستقیم',
-							'zc-ft-gold'
-						),
-						self::widget(
-							'button',
-							array_merge(
-								array(
-									'text'        => 'ثبت سفارش آنلاین پروژه',
-									'link'        => array( 'url' => home_url( '/contact-us/' ), 'is_external' => '', 'nofollow' => '' ),
-									'align'       => 'left',
-									'size'        => 'md',
-									'selected_icon' => array( 'value' => 'fas fa-paper-plane', 'library' => 'fa-solid' ),
-									'icon_align'  => 'right',
-								),
-								self::pill_button( 'glass' )
-							),
-							'دکمهٔ ثبت سفارش آنلاین',
-							'zc-ft-glass'
-						),
-					),
-				),
+				array( 'توسعه‌دهنده: احسان نادری پناه (Ehsan NaderiPanah)', '', 'fas fa-user-tie' ),
+				array( 'خط ویژه مشاوره: 09024561001', 'tel:09024561001', 'fas fa-phone' ),
+				array( 'وب‌سایت رسمی: Zarincode.com', 'https://zarincode.com', 'fas fa-globe' ),
 			),
-			array( 'css_classes' => 'zc-ft-cta', 'structure' => '62+38', '_title' => 'کارت دعوت به اقدام' ),
-			array( 'zc-ft-ctatext', 'zc-ft-buttons' )
-		);
-
-		/* ------------------------------------------------------- brand column */
-		$brand = array(
-			self::widget( 'heading', array( 'title' => 'ZC', 'header_size' => 'span', 'align' => 'right' ), 'مونوگرام برند', 'zc-ft-mark' ),
-			self::widget( 'heading', array( 'title' => 'زرین کد', 'header_size' => 'h3', 'align' => 'right' ), 'نام برند', 'zc-ft-brand' ),
-			self::widget(
-				'text-editor',
-				array( 'editor' => '<p>Zarincode.com — Digital Engineering</p>' ),
-				'شعار برند',
-				'zc-ft-tagline'
-			),
-			self::widget(
-				'text-editor',
-				array( 'editor' => '<p>زرین کد با مدیریت و کدنویسی مستقیم احسان نادری پناه، ارائه‌دهنده خدمات فوق‌تخصصی طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و مارکت‌پلیس افزونه‌ها، قالب‌های وردپرس و سورس‌کدهای آماده تجاری است.</p>' ),
-				'متن معرفی زرین کد',
-				'zc-ft-about'
-			),
-			self::links(
-				array(
-					array( 'توسعه‌دهنده: احسان نادری پناه (Ehsan NaderiPanah)', '#' , 'fas fa-user-tie' ),
-					array( 'خط ویژه مشاوره: 09024561001', 'tel:09024561001', 'fas fa-phone' ),
-					array( 'وب‌سایت رسمی: Zarincode.com', 'https://zarincode.com', 'fas fa-globe' ),
-				),
-				array( '_css_classes' => 'zc-ft-contact' ),
-				'اطلاعات تماس'
-			),
-			self::socials( 'شبکه‌های اجتماعی فوتر' ),
-		);
-
-		/* ---------------------------------------------------- services column */
-		$services = array(
-			self::widget( 'heading', array( 'title' => 'خدمات تخصصی زرین کد', 'header_size' => 'h3', 'align' => 'right' ), 'عنوان ستون خدمات', 'zc-ft-title' ),
-			self::links(
-				array(
-					array( 'طراحی سایت حرفه‌ای و المنتوری', home_url( '/service/website-design/' ), 'fas fa-angle-left' ),
-					array( 'برنامه‌نویسی نرم‌افزار و وب‌اپلیکیشن', home_url( '/service/software-development/' ), 'fas fa-angle-left' ),
-					array( 'سئو سایت و بهینه‌سازی موتور جستجو', home_url( '/service/website-seo/' ), 'fas fa-angle-left' ),
-					array( 'سئو شبکه‌های اجتماعی (اینستاگرام و لینکدین)', home_url( '/service/social-media-seo/' ), 'fas fa-angle-left' ),
-					array( 'تولید محتوای تخصصی و استراتژی محتوا', home_url( '/service/content-creation/' ), 'fas fa-angle-left' ),
-					array( 'فروشگاه قالب، افزونه و سورس‌کد آماده', home_url( '/service/ready-made-products/' ), 'fas fa-angle-left' ),
-				),
-				array( '_css_classes' => 'zc-ft-links' ),
-				'پیوندهای خدمات'
-			),
-		);
-
-		/* ------------------------------------------------------- legal column */
-		$legal = array(
-			self::widget( 'heading', array( 'title' => 'قوانین و اسناد حقوقی', 'header_size' => 'h3', 'align' => 'right' ), 'عنوان ستون قوانین', 'zc-ft-title' ),
-			self::links(
-				array(
-					array( 'قوانین و شرایط و مقررات کشور ایران', home_url( '/terms-and-conditions/' ), 'fas fa-balance-scale' ),
-					array( 'شرایط گارانتی و پشتیبانی فنی', home_url( '/warranty-policy/' ), 'fas fa-shield-alt' ),
-					array( 'سیاست حفظ حریم خصوصی کاربران', home_url( '/privacy-policy/' ), 'fas fa-user-shield' ),
-					array( 'شرایط و ضوابط بازگشت وجه', home_url( '/refund-policy/' ), 'fas fa-undo' ),
-					array( 'قوانین حفاظت داده اتحادیه اروپا (GDPR)', home_url( '/gdpr-compliance/' ), 'fas fa-globe' ),
-					array( 'DMCA Takedown Policy (English)', home_url( '/dmca-policy/' ), 'fas fa-copyright' ),
-				),
-				array( '_css_classes' => 'zc-ft-links' ),
-				'پیوندهای قوانین'
-			),
-		);
-
-		/* -------------------------------------------- credentials/quck links */
-		$credentials = array(
-			self::widget( 'heading', array( 'title' => 'اعتبارنامه‌ها و راه‌های ارتباطی', 'header_size' => 'h3', 'align' => 'right' ), 'عنوان ستون اعتبارنامه‌ها', 'zc-ft-title' ),
-			self::chip( 'درباره زرین کد', home_url( '/about-us/' ), 'چیپ درباره' ),
-			self::chip( 'نمونه‌کارها', home_url( '/projects-portfolio/' ), 'چیپ نمونه‌کارها' ),
-			self::chip( 'تماس با ما', home_url( '/contact-us/' ), 'چیپ تماس' ),
-		);
-
-		$columns = self::row(
 			array(
-				array( 'size' => 40, 'widgets' => $brand ),
-				array( 'size' => 25, 'widgets' => $services ),
-				array( 'size' => 25, 'widgets' => $legal ),
-				array( 'size' => 30, 'widgets' => $credentials ),
+				'icon_color'                  => $gold,
+				'text_color'                  => $body,
+				'icon_size'                   => array( 'unit' => 'px', 'size' => 14 ),
+				'space_between'               => array( 'unit' => 'px', 'size' => 11, 'sizes' => array() ),
+				'view'                        => 'traditional',
+				'icon_align'                  => 'right',
+				'icon_typography_typography'  => 'custom',
+				'icon_typography_font_size'   => array( 'unit' => 'px', 'size' => 14.08 ),
+				'icon_typography_line_height' => array( 'unit' => 'em', 'size' => 1.7 ),
 			),
-			array( 'css_classes' => 'zc-ft-grid', 'structure' => '40+25+25+30', '_title' => 'ستون‌های فوتر' ),
-			array( 'zc-ft-col-brand', 'zc-ft-col-services', 'zc-ft-col-legal', 'zc-ft-col-cred' )
+			'اطلاعات تماس',
+			'zc-ft-contact'
 		);
 
-		/* --------------------------------------------------------- bottom bar */
-		$bottom = self::row(
+		$brand_col = self::container(
+			array( $brand_head, $about, $contact, self::socials( 'شبکه‌های اجتماعی فوتر' ) ),
+			array_merge(
+				self::stack( '22' ),
+				array(
+					'css'          => 'zc-ft-col-brand',
+					'title'        => 'ستون برند و پشتیبانی',
+					'ratio'        => 29.6,
+					'ratio_tablet' => 100,
+					'ratio_mobile' => 100,
+				)
+			),
+			true
+		);
+
+		/* services column ──────────────────────────────────────────────────── */
+		$services_col = self::container(
 			array(
-				array(
-					'size'    => 55,
-					'widgets' => array(
-						self::widget(
-							'text-editor',
-							array( 'editor' => '<p>تمامی حقوق مادی و معنوی این قالب و محصولات متعلق به زرین کد (Zarincode.com) و احسان نادری پناه (Ehsan NaderiPanah) می‌باشد.</p>' ),
-							'متن کپی‌رایت'
-						),
+				self::column_title( 'خدمات تخصصی زرین کد', 'عنوان ستون خدمات' ),
+				self::links(
+					array(
+						array( 'طراحی سایت حرفه‌ای و المنتوری', home_url( '/service/website-design/' ), 'fas fa-angle-left' ),
+						array( 'برنامه‌نویسی نرم‌افزار و وب‌اپلیکیشن', home_url( '/service/software-development/' ), 'fas fa-angle-left' ),
+						array( 'سئو سایت و بهینه‌سازی موتور جستجو', home_url( '/service/website-seo/' ), 'fas fa-angle-left' ),
+						array( 'سئو شبکه‌های اجتماعی (اینستاگرام و لینکدین)', home_url( '/service/social-media-seo/' ), 'fas fa-angle-left' ),
+						array( 'تولید محتوای تخصصی و استراتژی محتوا', home_url( '/service/content-creation/' ), 'fas fa-angle-left' ),
+						array( 'فروشگاه قالب، افزونه و سورس‌کد آماده', home_url( '/service/ready-made-products/' ), 'fas fa-angle-left' ),
 					),
-				),
-				array(
-					'size'    => 45,
-					'widgets' => array(
-						self::widget(
-							'text-editor',
-							array( 'editor' => '<p>پشتیبانی و فروش: <strong dir="ltr">09024561001</strong> &nbsp;•&nbsp; طراحی بر پایه استانداردهای Zhaket &amp; ThemeForest</p>' ),
-							'خط پشتیبانی و استانداردها'
-						),
-					),
+					self::footer_link_styles(),
+					'پیوندهای خدمات'
 				),
 			),
-			array( 'css_classes' => 'zc-ft-bottom', 'structure' => '55+45', '_title' => 'نوار پایانی فوتر' ),
-			array( 'ستون کپی‌رایت', 'ستون پشتیبانی' )
+			array_merge(
+				self::stack( '0' ),
+				array( 'css' => 'zc-ft-col-services', 'title' => 'ستون خدمات', 'ratio' => 20.2, 'ratio_tablet' => 45, 'ratio_mobile' => 100 )
+			),
+			true
 		);
 
-		return array( $cta, $columns, $bottom );
+		/* legal column ─────────────────────────────────────────────────────── */
+		$legal_col = self::container(
+			array(
+				self::column_title( 'قوانین و اسناد حقوقی', 'عنوان ستون قوانین' ),
+				self::links(
+					array(
+						array( 'قوانین و شرایط و مقررات کشور ایران', home_url( '/terms-and-conditions/' ), 'fas fa-balance-scale' ),
+						array( 'شرایط گارانتی و پشتیبانی فنی', home_url( '/warranty-policy/' ), 'fas fa-shield-alt' ),
+						array( 'سیاست حفظ حریم خصوصی کاربران', home_url( '/privacy-policy/' ), 'fas fa-user-shield' ),
+						array( 'شرایط و ضوابط بازگشت وجه', home_url( '/refund-policy/' ), 'fas fa-undo' ),
+						array( 'قوانین حفاظت داده اتحادیه اروپا (GDPR)', home_url( '/gdpr-compliance/' ), 'fas fa-globe' ),
+						array( 'DMCA Takedown Policy (English)', home_url( '/dmca-policy/' ), 'fas fa-copyright' ),
+					),
+					self::footer_link_styles(),
+					'پیوندهای قوانین'
+				),
+			),
+			array_merge(
+				self::stack( '0' ),
+				array( 'css' => 'zc-ft-col-legal', 'title' => 'ستون قوانین', 'ratio' => 20.2, 'ratio_tablet' => 45, 'ratio_mobile' => 100 )
+			),
+			true
+		);
+
+		/* credentials column ───────────────────────────────────────────────── */
+		$chips = self::container(
+			array(
+				self::chip( 'درباره زرین کد', home_url( '/about-us/' ), 'چیپ درباره' ),
+				self::chip( 'نمونه‌کارها', home_url( '/projects-portfolio/' ), 'چیپ نمونه‌کارها' ),
+				self::chip( 'تماس با ما', home_url( '/contact-us/' ), 'چیپ تماس' ),
+			),
+			array_merge( self::line( '6' ), array( 'css' => 'zc-ft-chips', 'title' => 'چیپ‌های اعتبارنامه', 'justify' => 'flex-start' ) ),
+			true
+		);
+
+		$cred_col = self::container(
+			array( self::column_title( 'اعتبارنامه‌ها و راه‌های ارتباطی', 'عنوان ستون اعتبارنامه‌ها' ), $chips ),
+			array_merge(
+				self::stack( '22' ),
+				array( 'css' => 'zc-ft-col-cred', 'title' => 'ستون اعتبارنامه‌ها', 'ratio' => 21.6, 'ratio_tablet' => 45, 'ratio_mobile' => 100 )
+			),
+			true
+		);
+
+		$grid = self::container(
+			array( $brand_col, $services_col, $legal_col, $cred_col ),
+			array_merge(
+				self::line( '36' ),
+				array(
+					'css'         => 'zc-ft-grid',
+					'title'       => 'ستون‌های فوتر',
+					'content_width' => 'full',
+					'align'       => 'flex-start',
+					'nowrap'      => true,
+					'wrap_t'      => true,
+					'wrap_m'      => true,
+					'padding'     => array( 'top' => '0', 'right' => '0', 'bottom' => '68', 'left' => '0' ),
+					'border'      => $line,
+					'border_side' => 'bottom',
+				)
+			),
+			true
+		);
+
+		/* bottom bar ───────────────────────────────────────────────────────── */
+		$copyright = self::widget(
+			'text-editor',
+			array_merge(
+				array(
+					'editor'     => '<p>تمامی حقوق مادی و معنوی این قالب و محصولات متعلق به زرین کد (Zarincode.com) و احسان نادری پناه (Ehsan NaderiPanah) می‌باشد.</p>',
+					'text_color' => $muted,
+					'align'      => 'start',
+				),
+				self::typo( '13.5', '400', array( 'line_height' => '1.9' ) )
+			),
+			'متن کپی‌رایت',
+			'zc-ft-copy'
+		);
+
+		$support = self::widget(
+			'text-editor',
+			array_merge(
+				array(
+					'editor'     => '<p>پشتیبانی و فروش: <strong dir="ltr">09024561001</strong> &nbsp;•&nbsp; طراحی بر پایه استانداردهای Zhaket &amp; ThemeForest</p>',
+					'text_color' => $muted,
+					'align'      => 'start',
+				),
+				self::typo( '13.5', '400', array( 'line_height' => '1.9' ) )
+			),
+			'خط پشتیبانی و استانداردها',
+			'zc-ft-support'
+		);
+
+		$bottom = self::container(
+			array(
+				self::container( array( $copyright ), array_merge( self::stack( '0' ), array( 'css' => 'zc-ft-copy-cell', 'title' => 'ستون کپی‌رایت', 'ratio' => 55, 'ratio_tablet' => 100, 'ratio_mobile' => 100 ) ), true ),
+				self::container( array( $support ), array_merge( self::stack( '0' ), array( 'css' => 'zc-ft-support-cell', 'title' => 'ستون پشتیبانی', 'ratio' => 45, 'ratio_tablet' => 100, 'ratio_mobile' => 100 ) ), true ),
+			),
+			array_merge(
+				self::line( '16' ),
+				array(
+					'css'     => 'zc-ft-bottom',
+					'title'   => 'نوار پایانی فوتر',
+					'content_width' => 'full',
+					'nowrap'  => true,
+					'wrap_m'  => true,
+					'justify' => 'space-between',
+					'align'   => 'center',
+					'padding' => array( 'top' => '40', 'right' => '0', 'bottom' => '0', 'left' => '0' ),
+				)
+			),
+			true
+		);
+
+		/* the plate ────────────────────────────────────────────────────────── */
+		$plate = self::container(
+			array( $cta, $grid, $bottom ),
+			array(
+				'css'           => 'zc-ft-plate',
+				'title'         => 'فوتر زرین کد',
+				'direction'     => 'column',
+				'gap'           => array( 'column' => '40', 'row' => '40' ),
+				'padding'       => array( 'top' => '48', 'right' => '64', 'bottom' => '56', 'left' => '64' ),
+				'padding_t'     => array( 'top' => '40', 'right' => '32', 'bottom' => '32', 'left' => '32' ),
+				'padding_m'     => array( 'top' => '32', 'right' => '20', 'bottom' => '24', 'left' => '20' ),
+				'gradient'      => array( '#2E3138', '#22242A', '180' ),
+				'border'        => 'rgba(253,208,91,0.16)',
+				'border_side'   => 'no-bottom',
+				'radius'        => array( 'top' => '32', 'right' => '32', 'bottom' => '0', 'left' => '0' ),
+				'shadow'        => array( 'horizontal' => 0, 'vertical' => 24, 'blur' => 60, 'spread' => 0, 'color' => 'rgba(42,44,49,0.13)' ),
+				'content_width' => 'full',
+			)
+		);
+
+		return array( $plate );
+	}
+
+	/** A dot + title row, exactly the 4.9.0 `.zc-footer-title` block. */
+	private static function column_title( string $text, string $name ): array {
+		$dot = self::widget(
+			'icon',
+			array(
+				'selected_icon'    => array( 'value' => 'fas fa-circle', 'library' => 'fa-solid' ),
+				'primary_color'    => '#FDD05B',
+				'size'             => array( 'unit' => 'px', 'size' => 8.8 ),
+				'align'            => 'start',
+				'_flex_align_self' => 'center',
+			),
+			'نقطهٔ طلایی عنوان'
+		);
+		$title = self::widget(
+			'heading',
+			array_merge(
+				array( 'title' => $text, 'header_size' => 'h3', 'align' => 'start', 'title_color' => '#FFFFFF' ),
+				self::typo( '16.8', '800', array( 'line_height' => '1.6', 'size_m' => '15.4' ) )
+			),
+			'متن عنوان ستون'
+		);
+		return self::container(
+			array( $dot, $title ),
+			array_merge( self::line( '8' ), array( 'css' => 'zc-ft-title', 'title' => $name, 'align' => 'center' ) ),
+			true
+		);
+	}
+
+	/** Shared colours/typography for the two footer link lists. */
+	private static function footer_link_styles(): array {
+		return array(
+			'icon_color'                  => '#9CA3AF',
+			'icon_color_hover'            => '#FDD05B',
+			'text_color'                  => '#9CA3AF',
+			'text_color_hover'            => '#FDD05B',
+			'icon_size'                   => array( 'unit' => 'px', 'size' => 12 ),
+			'space_between'               => array( 'unit' => 'px', 'size' => 8, 'sizes' => array() ),
+			'view'                        => 'traditional',
+			'icon_align'                  => 'right',
+			'icon_typography_typography'  => 'custom',
+			'icon_typography_font_size'   => array( 'unit' => 'px', 'size' => 14.4 ),
+			'icon_typography_line_height' => array( 'unit' => 'em', 'size' => 1.7 ),
+		);
+	}
+
+	/* =====================================================================
+	 * Small builders — one per Elementor control group, so a value is written
+	 * once and shows up in the panel under the label the owner expects.
+	 * ===================================================================== */
+
+	/**
+	 * Typography for a widget.
+	 *
+	 * @param string $size   Font size in px (string keeps the decimal).
+	 * @param string $weight Font weight.
+	 * @param array  $extra  Extra typography sub-controls: line_height,
+	 *                       line_height_unit, letter_spacing, text_transform.
+	 */
+	private static function typo( string $size, string $weight, array $extra = array() ): array {
+		$out = array(
+			'typography_typography'  => 'custom',
+			'typography_font_size'   => array( 'unit' => 'px', 'size' => (float) $size ),
+			'typography_font_weight' => $weight,
+		);
+		if ( isset( $extra['line_height'] ) ) {
+			$out['typography_line_height'] = array(
+				'unit' => $extra['line_height_unit'] ?? 'em',
+				'size' => (float) $extra['line_height'],
+			);
+		}
+		if ( isset( $extra['size_m'] ) ) {
+			$out['typography_font_size_mobile'] = array( 'unit' => 'px', 'size' => (float) $extra['size_m'] );
+		}
+		if ( isset( $extra['size_t'] ) ) {
+			$out['typography_font_size_tablet'] = array( 'unit' => 'px', 'size' => (float) $extra['size_t'] );
+		}
+		if ( isset( $extra['letter_spacing'] ) ) {
+			$out['typography_letter_spacing'] = array( 'unit' => 'em', 'size' => (float) $extra['letter_spacing'] );
+		}
+		if ( isset( $extra['text_transform'] ) ) {
+			$out['typography_text_transform'] = $extra['text_transform'];
+		}
+		return $out;
+	}
+
+	/** Defaults for a container that stacks its children vertically. */
+	private static function stack( string $gap ): array {
+		return array(
+			'direction' => 'column',
+			'gap'       => array( 'column' => $gap, 'row' => $gap ),
+		);
+	}
+
+	/** Defaults for a container that lays its children out in one line. */
+	private static function line( string $gap ): array {
+		return array(
+			'direction' => 'row',
+			'gap'       => array( 'column' => $gap, 'row' => $gap ),
+			'align'     => 'center',
+		);
+	}
+
+	/**
+	 * A Flexbox Container with the design written as Elementor controls.
+	 *
+	 * Supported keys: css, title, direction, nowrap, gap, justify, align,
+	 * width/t_width/m_width (percent columns), ratio/ratio_tablet/
+	 * ratio_mobile (flex-basis 0 + grow, i.e. `1.6fr 1fr …`), grow,
+	 * padding/padding_t/padding_m, background, gradient (from/to/angle),
+	 * border + border_side, radius, shadow, content_width.
+	 *
+	 * @param array $children Child elements.
+	 * @param array $args     Control values (see above).
+	 * @param bool  $inner    True for a container nested inside another one.
+	 */
+	private static function container( array $children, array $args = array(), bool $inner = false ): array {
+		$settings = array(
+			'content_width'        => $args['content_width'] ?? 'boxed',
+			'flex_direction'       => $args['direction'] ?? 'row',
+			'flex_wrap'            => ! empty( $args['nowrap'] ) ? 'nowrap' : 'wrap',
+			'flex_justify_content' => $args['justify'] ?? 'flex-start',
+			'flex_align_items'     => $args['align'] ?? 'stretch',
+		);
+
+		$gap = $args['gap'] ?? array( 'column' => '20', 'row' => '20' );
+		$settings['flex_gap'] = array(
+			'column'   => (string) $gap['column'],
+			'row'      => (string) $gap['row'],
+			'unit'     => 'px',
+			'isLinked' => false,
+		);
+
+		if ( ! empty( $args['wrap_t'] ) ) {
+			$settings['flex_wrap_tablet'] = 'wrap';
+		}
+		if ( ! empty( $args['wrap_m'] ) ) {
+			$settings['flex_wrap_mobile'] = 'wrap';
+		}
+
+		if ( ! empty( $args['ratio'] ) ) {
+			// Proportional column, exactly like CSS `1.6fr 1fr 1fr 1.2fr`: the
+			// ratio is written as a percentage of the row, which is the value
+			// the Width control stores (a 0 flex-basis reads as “empty” to
+			// Elementor, so it would never be saved).
+			$settings['content_width'] = 'full';
+			$settings['width']         = array( 'unit' => '%', 'size' => (float) $args['ratio'] );
+			$settings['_flex_size']    = 'custom';
+			$settings['_flex_grow']    = 0;
+			$settings['_flex_shrink']  = 1;
+			if ( isset( $args['ratio_tablet'] ) ) {
+				$settings['width_tablet']  = array( 'unit' => '%', 'size' => (float) $args['ratio_tablet'] );
+				$settings['_flex_size_tablet'] = 'custom';
+				$settings['_flex_grow_tablet'] = 0;
+				$settings['_flex_shrink_tablet'] = 1;
+			}
+			if ( isset( $args['ratio_mobile'] ) ) {
+				$settings['width_mobile']  = array( 'unit' => '%', 'size' => (float) $args['ratio_mobile'] );
+				$settings['_flex_size_mobile'] = 'custom';
+				$settings['_flex_grow_mobile'] = 0;
+				$settings['_flex_shrink_mobile'] = 1;
+			}
+		} elseif ( ! empty( $args['width'] ) && 'auto' !== $args['width'] && '100' !== (string) $args['width'] ) {
+			$settings['content_width'] = 'full';
+			$settings['width']         = array( 'unit' => '%', 'size' => (float) $args['width'] );
+			if ( ! empty( $args['t_width'] ) ) {
+				$settings['width_tablet'] = array( 'unit' => '%', 'size' => (float) $args['t_width'] );
+			}
+			if ( ! empty( $args['m_width'] ) ) {
+				$settings['width_mobile'] = array( 'unit' => '%', 'size' => (float) $args['m_width'] );
+			}
+		} elseif ( ! empty( $args['grow'] ) ) {
+			$settings['_flex_size'] = 'grow';
+		} elseif ( ! empty( $args['shrink'] ) ) {
+			$settings['content_width'] = 'full';
+			$settings['_flex_size']    = 'none';
+		}
+
+		/*
+		 * Elementor gives every nested Container a 10px padding by default.
+		 * That default silently eats 20px of every column (and 20px of height
+		 * per nested box), so the tree writes the padding explicitly — zero
+		 * unless the design asks for more.
+		 */
+		$settings['padding'] = self::box( $args['padding'] ?? array() );
+		if ( ! empty( $args['padding_t'] ) ) {
+			$settings['padding_tablet'] = self::box( $args['padding_t'] );
+		}
+		if ( ! empty( $args['padding_m'] ) ) {
+			$settings['padding_mobile'] = self::box( $args['padding_m'] );
+		}
+
+		if ( ! empty( $args['gradient'] ) ) {
+			$settings['background_background']     = 'gradient';
+			$settings['background_color']          = $args['gradient'][0];
+			$settings['background_color_b']        = $args['gradient'][1];
+			$settings['background_gradient_type']  = 'linear';
+			$settings['background_gradient_angle'] = array( 'unit' => 'deg', 'size' => (float) $args['gradient'][2] );
+		} elseif ( ! empty( $args['background'] ) ) {
+			$settings['background_background'] = 'classic';
+			$settings['background_color']      = $args['background'];
+		}
+
+		if ( ! empty( $args['border'] ) ) {
+			$side = $args['border_side'] ?? 'all';
+			$w    = array( 'top' => '1', 'right' => '1', 'bottom' => '1', 'left' => '1' );
+			if ( 'bottom' === $side ) {
+				$w = array( 'top' => '0', 'right' => '0', 'bottom' => '1', 'left' => '0' );
+			} elseif ( 'no-bottom' === $side ) {
+				$w['bottom'] = '0';
+			}
+			$settings['border_border'] = 'solid';
+			$settings['border_width']  = array( 'unit' => 'px', 'isLinked' => false ) + $w;
+			$settings['border_color']  = $args['border'];
+		}
+
+		if ( ! empty( $args['radius'] ) ) {
+			if ( is_array( $args['radius'] ) ) {
+				$settings['border_radius'] = array( 'unit' => 'px', 'isLinked' => false ) + $args['radius'];
+			} else {
+				$settings['border_radius'] = array( 'unit' => 'px', 'top' => $args['radius'], 'right' => $args['radius'], 'bottom' => $args['radius'], 'left' => $args['radius'], 'isLinked' => true );
+			}
+		}
+
+		if ( ! empty( $args['shadow'] ) ) {
+			$settings['box_shadow_box_shadow_type'] = 'yes';
+			$settings['box_shadow_box_shadow']      = $args['shadow'];
+		}
+
+		if ( ! empty( $args['title'] ) ) {
+			$settings['_title'] = $args['title'];
+		}
+		if ( ! empty( $args['css'] ) ) {
+			$settings['css_classes'] = $args['css'];
+		}
+
+		return array(
+			'id'       => self::id(),
+			'elType'   => 'container',
+			'isInner'  => $inner,
+			'settings' => $settings,
+			'elements' => $children,
+		);
+	}
+
+	/** Four-sided box value (`padding`, `margin`). */
+	private static function box( array $v ): array {
+		return array(
+			'unit'     => 'px',
+			'top'      => (string) ( $v['top'] ?? '0' ),
+			'right'    => (string) ( $v['right'] ?? '0' ),
+			'bottom'   => (string) ( $v['bottom'] ?? '0' ),
+			'left'     => (string) ( $v['left'] ?? '0' ),
+			'isLinked' => false,
+		);
+	}
+
+	/** An icon list with per-row icon, label and link, styled from the panel. */
+	private static function icons( array $rows, array $settings = array(), string $name = '', string $css = '' ): array {
+		$items = array();
+		foreach ( $rows as $row ) {
+			$items[] = array(
+				'_id'           => self::id(),
+				'text'          => $row[0],
+				'selected_icon' => array( 'value' => $row[2] ?? '', 'library' => 'fa-solid' ),
+				'link'          => array( 'url' => $row[1], 'is_external' => '', 'nofollow' => '' ),
+			);
+		}
+		return self::widget(
+			'icon-list',
+			array_merge( array( 'icon_list' => $items ), $settings ),
+			$name,
+			$css
+		);
 	}
 
 	/** A pill-styled Elementor button (`gold` = brand, `glass` = translucent). */
@@ -756,13 +1304,19 @@ final class HF_Builder {
 			array(
 				'text'        => $text,
 				'link'        => array( 'url' => $url, 'is_external' => '', 'nofollow' => '' ),
-				'align'       => 'left',
+				'align'       => 'start',
 				'size'        => 'sm',
 				'button_text_color' => '#FFFFFF',
 				'background_color'  => 'rgba(255,255,255,0.08)',
 				'border_radius'     => array( 'unit' => 'px', 'top' => 999, 'right' => 999, 'bottom' => 999, 'left' => 999, 'isLinked' => true ),
 				'button_background_hover_color' => 'rgba(255,255,255,0.14)',
 				'button_hover_color' => '#FFFFFF',
+				'text_padding'       => array( 'unit' => 'px', 'top' => '7', 'right' => '10', 'bottom' => '7', 'left' => '10', 'isLinked' => false ),
+				'typography_typography'   => 'custom',
+				'typography_font_size'    => array( 'unit' => 'px', 'size' => 12.6 ),
+				'typography_font_weight'  => '500',
+				'typography_line_height'  => array( 'unit' => 'em', 'size' => 1.4 ),
+				'_element_width'     => 'auto',
 			),
 			$name,
 			'zc-ft-cred'

@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.12.0
+Stable tag: 4.13.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,17 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.13.0 =
+* The footer is a Container tree of native Elementor widgets — 17 Containers and 23 widgets (7 headings, 5 buttons, 4 text editors, 3 icon lists, 3 icons, 1 social-profiles widget), nested five levels deep. No monolithic HTML block, no shortcode chunk, no hand-written markup anywhere in the document: open the template and every box, icon, link and button is a real element you can select, drag, duplicate or delete.
+* The approved 4.9.0 box is unchanged: same plate gradient `#2E3138 → #22242A`, radius `32px 32px 0 0`, gold hairline, `48px 64px 56px` padding, CTA card `rgba(255,255,255,.05)` with a 1px `rgba(255,255,255,.08)` border and 24px radius, gold badge, one-line H2, the two pills, the four columns, the dot titles and the divider.
+* Layout bugs that made the Elementor version drift from the design are fixed at the root, in the control values — not with CSS patches:
+  - Nested Containers inherit Elementor's 10px default padding, which stole 20px from every column (the credit chips wrapped, the about text gained a line, the plate grew). The builder now writes the padding explicitly.
+  - The Text Editor widget prints its `<p>` verbatim, so the browser's 1em margins added ~25px per text block. The footer now carries a scoped paragraph-rhythm reset (`.zc-footer-host … p`), documented as a typographic reset — no Elementor control is outranked.
+  - Column proportions are Elementor Width controls (`29.6 / 20.2 / 20.2 / 21.6 %` over a 36px gap) instead of legacy flex hacks, so the columns land on the 4.9.0 x-positions: 388 / 265 / 265 / 283 px at 1440.
+  - Tablet and mobile now wrap through Elementor's own responsive wrap controls: the four columns go to brand-full-width then 2×45% at 768, and one per row at 390; the CTA buttons and the bottom bar stack instead of overflowing; headings carry per-device font sizes.
+* Measured at 1440: footer plate 1005.94px (4.9.0 reference 1031.30px including the same 9rem lead-in), CTA card 213px vs 212px, columns x-positions 959 / 673 / 388 / 65 vs 959 / 673 / 388 / 64, chips on one row of 32px like the reference.
+* `assets/css/hf-footer.css` keeps only what a control cannot express: the page-continuity veil above the plate, the two decorative gold glows, the paragraph reset, and the mobile lead-in. It never sets a layout property on a widget.
 
 = 4.12.0 =
 * Footer design is the 4.9.0 footer again, pixel for pixel — and still fully editable in Elementor. The 4.11.0 experiment (a generic Elementor document footer) is withdrawn: it changed the plate, the CTA card, the columns, the chips and the bottom bar. `assets/css/hf-footer.css` carries the 4.9.0 rules verbatim (plate `#2A2C31`, radius 2rem, `3rem 2.25rem 2rem`, the accent glow inside the top edge, CTA card `rgba(255,255,255,.05)` + 1px `rgba(255,255,255,.08)` + radius 1.5rem, four columns `1.6fr 1fr 1fr 1.2fr` with `2.25rem` gaps, gold dot titles, `#9CA3AF` links that turn `#FDD05B` with `translateX(-4px)`, credential chips, `.zc-footer-bottom` bar, and the 1099px/767px stacking rules).
