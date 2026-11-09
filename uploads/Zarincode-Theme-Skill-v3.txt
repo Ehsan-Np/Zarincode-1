@@ -2654,3 +2654,34 @@ rules. Visual regression vs the approved 4.6.0 render: 43 px out of 12.4M
 Sandbox note: the WP test box has ~2 GB RAM; a second full import with Yoast
 active pushed it into swap (load ~20) — kill chromium before importing, and
 prefer `wp eval` seeding over repeated admin imports.
+
+== UPDATE 2026-11-09 — v4.7.1 (hardening pass on the widget layer) ==
+Four defects found by auditing 4.7.0 against real behaviour and fixed:
+1) get_style_depends() only works for *registered* handles. The homepage design
+   system was enqueued on the front page but never registered, so a homepage
+   widget placed on any other page/template rendered unstyled. Always pair
+   get_style_depends() with a wp_register_style() that runs on both
+   `wp_enqueue_scripts` and `elementor/frontend/after_register_styles`, and never
+   depend on a handle that may not exist (WordPress drops the style silently).
+2) Elementor emits a switcher's `selectors` CSS rule even when the switch is ON —
+   a switcher with `default=yes, return_value=no` therefore applied its rule by
+   default. For "remove a shipped style" toggles, apply a wrapper class in
+   render() instead of using selectors on a switcher.
+3) A background colour selected while the design paints a `background` gradient on
+   the inner <section> is invisible: point the background group at the element
+   that actually carries the paint (`{{WRAPPER}} .zc-hp section`) and offer a way
+   to drop the gradient.
+4) Never render a design element from an optional string: an emptied highlight
+   produced an empty gold pill plus a dangling comma, and a 0-star rating printed
+   an empty star block. Conditionally emit every wrapper, and give CTA links a real
+   fallback (section archive) instead of `#`.
+Also: reading `$row['link']['url']` breaks on string values — normalise with a
+helper that accepts arrays, strings and null; and bump `ZARINCODE_CORE_VERSION`
+(it had been frozen at 4.1.0) whenever a one-off upgrade flag keys on it.
+Migration pattern for shipped demo widgets: never rewrite user-edited settings —
+walk `_elementor_data`, touch only widgets whose settings are literally empty,
+store a `zarincode_*_<version>` flag so it runs once, then clear Elementor cache.
+Verified: widgets and shortcode on non-front pages load the stylesheet, 11/11
+empty widgets backfilled while a manual title survived, panel colour now wins,
+homepage render identical to the approved design (43 px of 12.4 M), all 37
+zarincode widgets register without notices.

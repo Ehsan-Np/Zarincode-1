@@ -36,7 +36,11 @@ class Renderer {
             $method=self::HOME_SECTIONS[$kind];
             if(!class_exists($tpl)||!method_exists($tpl,$method))return '';
             $html=$tpl::$method(array());
-            return ''===$html?'':$tpl::wrap_open().'<div class="zc-hp-body">'.$html.'</div>'.$tpl::wrap_close();
+            if(''===$html)return '';
+            // The design system is normally enqueued by the theme on the front page;
+            // a shortcode can appear on any other template, so pull it in here too.
+            if(wp_style_is('zarincode-home-cheerful','registered'))wp_enqueue_style('zarincode-home-cheerful');
+            return $tpl::wrap_open().'<div class="zc-hp-body">'.$html.'</div>'.$tpl::wrap_close();
         }
         if(!isset(Widget_Schema::definitions()[$kind]))return '';
         if($kind==='page_section')$atts['section_key']=$atts['section']?:'about-page';

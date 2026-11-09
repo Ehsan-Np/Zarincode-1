@@ -8,10 +8,9 @@
   --mint:#E7F7EF;--mint2:#C7EEDD;--peach:#FFEEE1;--peach2:#FFD9BE;
   --lav:#F1EBFF;--lav2:#DFD3FF;--sky:#E8F3FF;--sky2:#CBE4FF;
   --rose:#FFEAF1;--rose2:#FFD1E0;
-  --sh1:0 2px 6px rgba(41,44,49,.05);--sh2:0 14px 34px rgba(41,44,49,.09);;font-family:Vazirmatn,sans-serif;color:var(--ink);line-height:1.9;background:var(--cream)}
+  --sh1:0 2px 6px rgba(41,44,49,.05);--sh2:0 14px 34px rgba(41,44,49,.09);font-family:Vazirmatn,sans-serif;color:var(--ink);line-height:1.9;background:var(--cream)}
 .zc-hp *{margin:0;padding:0;box-sizing:border-box}
 .zc-hp .fa{font-family:"Font Awesome 7 Pro","Font Awesome 7 Free","Font Awesome 6 Free","Font Awesome 5 Free",serif;font-weight:900;font-style:normal;line-height:1;display:inline-block;speak:never}
-.zc-hp *{margin:0;padding:0;box-sizing:border-box}
 .zc-hp{font-family:Vazirmatn,sans-serif;color:var(--ink);line-height:1.9;overflow-x:hidden;background:var(--cream)}
 .zc-hp .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
 .zc-hp a{color:inherit;text-decoration:none}
@@ -353,3 +352,5 @@
 .zc-hp section.tint-cream{background:linear-gradient(180deg,transparent,#FFFBEE55 30%,#FFFBEE55 70%,transparent)}
 .zc-hp section.tint-gold{background:linear-gradient(180deg,transparent,#FFF1C955 30%,#FFF1C955 70%,transparent)}
 .zc-hp section.tint-violet{background:linear-gradient(180deg,transparent,#F1EBFF44 30%,#F1EBFF44 70%,transparent)}
+/* --- v4.7.1: a flat wrapper drops the tint gradients so section background controls win --- */
+.zc-hp.is-flat section,.zc-hp.is-flat .hero{background-image:none}

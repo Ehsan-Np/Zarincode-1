@@ -103,6 +103,72 @@ final class Home_Defaults {
 		return $out;
 	}
 
+	/**
+	 * Fills in the homepage widgets that were imported before 4.7.0.
+	 *
+	 * The 4.6.0 importer wrote `settings: []` for every homepage widget, so an
+	 * updated site keeps an Elementor panel full of empty fields even though the
+	 * front end looks complete. This runs once per plugin version and only
+	 * touches widgets whose settings are still completely empty — anything the
+	 * user has edited is left alone.
+	 *
+	 * @return int Number of widgets that received their defaults.
+	 */
+	public static function backfill_homepage(): int {
+		$front = (int) get_option( 'page_on_front' );
+		if ( ! $front ) {
+			return 0;
+		}
+
+		$raw = get_post_meta( $front, '_elementor_data', true );
+		if ( ! is_string( $raw ) || '' === $raw ) {
+			return 0;
+		}
+
+		$tree = json_decode( $raw, true );
+		if ( ! is_array( $tree ) ) {
+			return 0;
+		}
+
+		$filled  = 0;
+		$changed = false;
+
+		$walk = static function ( array &$elements ) use ( &$walk, &$filled, &$changed ) {
+			foreach ( $elements as &$element ) {
+				if ( ! is_array( $element ) ) {
+					continue;
+				}
+				$type = (string) ( $element['widgetType'] ?? '' );
+				if ( in_array( $type, self::widgets(), true ) ) {
+					$settings = $element['settings'] ?? array();
+					if ( is_array( $settings ) && array() === $settings ) {
+						$defaults = self::settings( $type );
+						if ( $defaults ) {
+							$element['settings'] = $defaults;
+							$filled++;
+							$changed = true;
+						}
+					}
+				}
+				if ( ! empty( $element['elements'] ) && is_array( $element['elements'] ) ) {
+					$walk( $element['elements'] );
+				}
+			}
+			unset( $element );
+		};
+
+		$walk( $tree );
+
+		if ( $changed ) {
+			update_post_meta( $front, '_elementor_data', wp_slash( wp_json_encode( $tree ) ) );
+			if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::instance()->files_manager ) ) {
+				\Elementor\Plugin::instance()->files_manager->clear_cache();
+			}
+		}
+
+		return $filled;
+	}
+
 	/** Resolves a registered widget instance (Elementor must be loaded). */
 	private static function instance( string $widget ): ?\Elementor\Widget_Base {
 		if ( ! class_exists( '\Elementor\Plugin' ) ) {

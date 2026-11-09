@@ -1,0 +1,101 @@
+Zarincode 4.7.1 build manifest
+=============================
+Date: 2026-11-09
+Builder: workspace sandbox (manual zip recipe; build-release.py still stale)
+Base: 4.7.0 (demo-import fatal fix + Elementor widget rework)
+
+What 4.7.1 fixes
+----------------
+1) Styles could not be scoped on non-front pages (theme)
+   The homepage widgets declare `get_style_depends(['zarincode-home-cheerful'])`,
+   but the theme only *enqueued* that stylesheet, never registered it. On any
+   page that is not the front page the handle was unknown, so Elementor could not
+   resolve the dependency and the section rendered unstyled (services page,
+   shortcode inside a post, a widget dropped on a landing page).
+   → inc/Core/Assets.php now registers the handle on `wp_enqueue_scripts` (5) and
+     on `elementor/frontend/after_register_styles`, keeps enqueueing it on the
+     front page only, and drops a dependency that is not registered yet.
+   → Renderer.php also enqueues the handle when a `[zarincode_widget type=home_*]`
+     shortcode runs, so the shortcode path is covered too.
+   Verified: a widget on a non-front Elementor page and the shortcode on a plain
+   page both load home-cheerful.css and render `.zc-hp` correctly.
+
+2) Existing installs still had empty widget panels (plugin)
+   The 4.6.0 importer wrote `settings: []` for every homepage widget. Updating the
+   files fixes new imports, but an already-imported site kept blank fields in the
+   Elementor panel even though the front end looked complete.
+   → NEW Home_Defaults::backfill_homepage() + Elementor_Loader::backfill_home_defaults()
+     run once per plugin version on `admin_init` and fill only widgets whose
+     settings are still completely empty. User-edited widgets are never touched
+     (proved: a widget with a hand-written title keeps it).
+   Verified on a simulated 4.6.0 homepage: 11/11 widgets refilled (18/4/6/12/11/
+   6/6/12/6/27/7 settings), a manually edited title preserved, an emptied widget
+   re-seeded, and the one-off flag set so it never runs twice.
+
+3) Section background colour seemed to "do nothing" (plugin + CSS)
+   The shipped tints are `background` gradients on the `<section>`; a background
+   colour picked in the panel landed on the wrapper and stayed invisible.
+   → New «تینت گرادیانی ملایم» switch. It is applied as a wrapper class
+     (`zc-hp is-flat`) instead of a `selectors` switcher, because Elementor emits
+     a switcher's CSS rule even while the switch is on — the first attempt would
+     have removed the tint by default.
+   → The background group now targets `{{WRAPPER}} .zc-hp section, … .hero`.
+   Verified: `.zc-hp section{background-color:#EEF6FF}` from the panel on top of
+     `.zc-hp.is-flat section{background-image:none}` (screenshot in the audit).
+
+4) Empty fields produced broken markup (theme)
+   * Clearing «بخش هایلایت‌شدهٔ عنوان» left `<span class="g"></span>` (an empty
+     gold pill) and a dangling «،» in the hero headline. Both are now omitted.
+   * The hero comma is only printed when the highlight is followed by more text.
+   * A testimonial rated 0 no longer prints an empty star block.
+   * «مشاهده همه» / card CTAs no longer degrade to `#`: they fall back to the
+     section archive (`/shop/`, `/projects-portfolio/`, `/blog/`) or
+     `/contact-us/` for pricing/CTA buttons. `url_or()` added for this.
+
+5) Small robustness/quality items
+   * Repeater link values are read through `link_of()`, which accepts both the
+     Elementor array form and a plain string (seeded/programmatic settings used
+     to raise "Trying to access array offset on string").
+   * Testimonial rating accepts 0–5 (0 = hide stars) and is clamped on render.
+   * Removed the duplicated `.zc-hp *` reset rule and a stray `;;` in the CSS
+     token block; added the `is-flat` rules.
+   * `ZARINCODE_CORE_VERSION` was still 4.1.0 since 4.2 — now tracks the release
+     (4.7.1), which is also what the new one-off upgrade flag keys on.
+
+Contents
+--------
+zarincode-4.7.1.zip (10,772,934 bytes)
+  sha256 5a094561e67184dd422671491c0af744b6a178be508eadb685a6abc5451b3a93
+  WordPress theme "Zarincode" — includes today's Assets.php registration fix,
+  Home_Templates hardening (headline/highlight, stars, URL fallbacks, flat
+  wrapper), home-cheerful.css cleanups, version 4.7.1.
+
+zarincode-core-4.7.1.zip (735,655 bytes)
+  sha256 b0e0fcddc57b59caa35f6ba59b743375cdc724d1828c17552f203856da5ad553
+  Companion plugin "Zarincode Core" — includes Home_Defaults::backfill_homepage(),
+  the one-off admin_init upgrade, the tint switch (class-based), link_of(),
+  Router shortcode style enqueue, version 4.7.1.
+
+Verification run (fresh WordPress 6.9 + Elementor 3.32.4 + WooCommerce 11.2.1)
+-------------------------------------------------------------------------------
+* Demo import via `wp eval Demo_Seeder::seed_all()` → success.
+* Homepage 200: 11 `.zc-hp` wrappers, 6 services, 4 products, 3 projects,
+  6 steps, 3 plans, 3 testimonials; no warnings/notices/fatals in the HTML.
+* All 37 zarincode_* widgets register with zero new `_doing_it_wrong` notices.
+* `debug.log` contains only Elementor's own PHP 8.4 deprecations
+  (atomic-global-styles.php) and WooCommerce's textdomain notice — neither is
+  from the theme or the plugin.
+* Style controls generate CSS: `.zc-hp section{background-color:#EEF6FF}`,
+  `.zc-hp h2.t{color:…}`, `.zc-hp .svc{background-color:…}`,
+  `.zc-hp .sec-head{text-align:center}`, `.zc-hp{padding:…}`.
+* Visual regression: full-page render at 1440 px is 8,651 px tall and differs
+  from the approved design by 43 px out of 12.4 M (0.0003 %); mobile 390 × 18,217.
+* Screenshots: docs/audits/2026-11-09-v4.7.1/ (home-desktop-1440,
+  home-mobile-390, style-override-proof).
+
+Upgrade notes
+-------------
+* Update the theme **and** the plugin together.
+* Existing pages: only widgets whose settings were still empty are touched, and
+  only once per plugin version.
+* No database schema, option name or saved-content format changed.

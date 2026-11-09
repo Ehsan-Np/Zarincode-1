@@ -43,6 +43,12 @@ final class Home_Templates {
 		return esc_url( (string) ( $v ?: '#' ) );
 	}
 
+	/** First non-empty link wins; empty values never degrade into "#" for CTAs. */
+	private static function url_or( $value, string $fallback = '#' ): string {
+		$value = is_string( $value ) ? trim( $value ) : '';
+		return esc_url( '' !== $value ? $value : $fallback );
+	}
+
 	/**
 	 * Font Awesome solid glyphs used across the homepage (short name => code point).
 	 * Shared with the Elementor icon pickers via icon_choices().
@@ -136,12 +142,34 @@ final class Home_Templates {
 				<span class="sticker st<?php echo (int) ( $i + 1 ); ?>"><span class="em"><?php echo self::ico( (string) ( $b['icon'] ?? 'circle-check' ) ); ?></span> <?php echo self::e( $b['text'] ?? '' ); ?></span>
 				<?php endforeach; ?>
 			</div>
-			<h1 class="big"><?php echo self::e( $a['title_line1'] ?? '' ); ?> <span class="hl"><?php echo self::e( $a['title_highlight'] ?? '' ); ?></span>،<br><?php echo self::e( $a['title_line2'] ?? '' ); ?><br><span class="pop"><?php echo self::e( $a['title_pop'] ?? '' ); ?></span></h1>
+			<?php
+			$line1 = trim( (string) ( $a['title_line1'] ?? '' ) );
+			$high  = trim( (string) ( $a['title_highlight'] ?? '' ) );
+			$line2 = trim( (string) ( $a['title_line2'] ?? '' ) );
+			$pop   = trim( (string) ( $a['title_pop'] ?? '' ) );
+			?>
+			<h1 class="big"><?php
+				echo self::e( $line1 );
+				if ( '' !== $high ) :
+					?> <span class="hl"><?php echo self::e( $high ); ?></span><?php
+					// The comma belongs to the sentence, not to the design: only print
+					// it when the highlight is followed by more text.
+					if ( '' !== $line2 ) {
+						echo '،';
+					}
+				endif;
+				if ( '' !== $line2 ) :
+					?><br><?php echo self::e( $line2 ); ?><?php
+				endif;
+				if ( '' !== $pop ) :
+					?><br><span class="pop"><?php echo self::e( $pop ); ?></span><?php
+				endif;
+			?></h1>
 			<p class="lead"><?php echo self::e( $a['lead'] ?? '' ); ?></p>
 			<div class="hero-actions">
-				<a class="btn btn-gold btn-lg" href="<?php echo self::url( $a['primary_url'] ?? '' ); ?>"><?php echo self::ico( 'rocket' ); ?> <?php echo self::e( $a['primary_text'] ?? '' ); ?></a>
-				<a class="btn btn-white btn-lg" href="<?php echo self::url( $a['secondary_url'] ?? '' ); ?>"><?php echo self::e( $a['secondary_text'] ?? '' ); ?> ←</a>
-				<a class="btn btn-peach btn-lg" href="<?php echo self::url( $a['tertiary_url'] ?? '' ); ?>"><?php echo self::ico( 'phone' ); ?> <?php echo self::e( $a['tertiary_text'] ?? '' ); ?></a>
+				<a class="btn btn-gold btn-lg" href="<?php echo self::url_or( $a['primary_url'] ?? '', '/contact-us/' ); ?>"><?php echo self::ico( 'rocket' ); ?> <?php echo self::e( $a['primary_text'] ?? '' ); ?></a>
+				<a class="btn btn-white btn-lg" href="<?php echo self::url_or( $a['secondary_url'] ?? '', '/projects-portfolio/' ); ?>"><?php echo self::e( $a['secondary_text'] ?? '' ); ?> ←</a>
+				<a class="btn btn-peach btn-lg" href="<?php echo self::url_or( $a['tertiary_url'] ?? '', '/contact-us/' ); ?>"><?php echo self::ico( 'phone' ); ?> <?php echo self::e( $a['tertiary_text'] ?? '' ); ?></a>
 			</div>
 			<div class="trust">
 				<?php foreach ( $trust as $i => $t ) : ?>
@@ -229,7 +257,13 @@ final class Home_Templates {
 		$high  = (string) ( $a['title_highlight'] ?? '' );
 		$after = (string) ( $a['title_after'] ?? '' );
 		$desc  = (string) ( $a['desc'] ?? '' );
-		$title_html = self::e( $title ) . ' <span class="g">' . self::e( $high ) . '</span>' . ( $after !== '' ? ' ' . self::e( $after ) : '' );
+		$title_html = self::e( $title );
+		if ( '' !== trim( $high ) ) {
+			$title_html .= ' <span class="g">' . self::e( $high ) . '</span>';
+		}
+		if ( '' !== trim( $after ) ) {
+			$title_html .= ' ' . self::e( $after );
+		}
 		ob_start();
 		if ( $center ) :
 			?>
@@ -286,7 +320,7 @@ final class Home_Templates {
 					<?php endif; ?>
 					<div class="sfoot">
 						<span class="pricetag"><?php echo self::e( $it['price'] ?? '' ); ?></span>
-						<a class="smore" href="<?php echo self::url( $it['link'] ?? '' ); ?>"><?php echo self::e( $it['link_text'] ?? 'جزئیات' ); ?> <span class="ar">←</span></a>
+						<a class="smore" href="<?php echo self::url_or( $it['link'] ?? '', '/services/' ); ?>"><?php echo self::e( $it['link_text'] ?? 'جزئیات' ); ?> <span class="ar">←</span></a>
 					</div>
 				</div>
 			</div>
@@ -309,7 +343,7 @@ final class Home_Templates {
 		?>
 <section class="pt-tight">
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/shop/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '' ) ?: '/shop/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="grid4">
 			<?php foreach ( $items as $i => $it ) : $cover = $covers[ $i % 4 ]; ?>
 			<div class="pcard">
@@ -328,7 +362,7 @@ final class Home_Templates {
 							<?php if ( ! empty( $it['old'] ) ) : ?><span class="old"><?php echo self::e( $it['old'] ); ?></span><?php endif; ?>
 							<span class="now"><?php echo self::e( $it['now'] ?? '' ); ?><?php if ( ! empty( $a['currency'] ) ) : ?> <small><?php echo self::e( $a['currency'] ); ?></small><?php endif; ?></span>
 						</span>
-						<a class="add <?php echo ! empty( $it['featured'] ) ? 'g' : ''; ?>" href="<?php echo self::url( $it['link'] ?? '' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?></a>
+						<a class="add <?php echo ! empty( $it['featured'] ) ? 'g' : ''; ?>" href="<?php echo self::url_or( $it['link'] ?? '', '/shop/' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?></a>
 					</div>
 				</div>
 			</div>
@@ -351,7 +385,7 @@ final class Home_Templates {
 		?>
 <section class="tint-cream">
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/projects-portfolio/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '' ) ?: '/projects-portfolio/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="grid3">
 			<?php foreach ( $items as $i => $it ) : ?>
 			<div class="jcard">
@@ -365,7 +399,7 @@ final class Home_Templates {
 					<h4><?php echo self::e( $it['title'] ?? '' ); ?></h4>
 					<div class="jrow">
 						<span class="cat <?php echo esc_attr( (string) ( $it['tone'] ?? 'c1' ) ); ?>"><?php echo self::e( $it['cat'] ?? '' ); ?></span>
-						<a class="go" href="<?php echo self::url( $it['link'] ?? '' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?> ←</a>
+						<a class="go" href="<?php echo self::url_or( $it['link'] ?? '', '/projects-portfolio/' ); ?>"><?php echo self::e( $it['cta'] ?? ( $a['cta_text'] ?? '' ) ); ?> ←</a>
 					</div>
 				</div>
 			</div>
@@ -463,7 +497,7 @@ final class Home_Templates {
 				<?php if ( ! empty( $p['features'] ) && is_array( $p['features'] ) ) : ?>
 				<ul><?php foreach ( $p['features'] as $f ) : ?><li><?php echo self::e( $f ); ?></li><?php endforeach; ?></ul>
 				<?php endif; ?>
-				<a class="btn btn-ink" href="<?php echo self::url( $p['link'] ?? '' ); ?>"><?php echo self::e( $p['cta'] ?? 'مشاوره و ثبت سفارش' ); ?></a>
+				<a class="btn btn-ink" href="<?php echo self::url_or( $p['link'] ?? '', '/contact-us/' ); ?>"><?php echo self::e( $p['cta'] ?? 'مشاوره و ثبت سفارش' ); ?></a>
 			</div>
 			<?php endforeach; ?>
 		</div>
@@ -506,7 +540,10 @@ final class Home_Templates {
 			<?php foreach ( $items as $i => $t ) : ?>
 			<div class="tst <?php echo esc_attr( $tones[ $i % 3 ] ); ?>">
 				<span class="qm">”</span>
-				<div class="stars" aria-label="<?php echo esc_attr( (string) ( $t['stars'] ?? 5 ) ); ?> از ۵"><?php echo wp_kses_post( self::stars( (int) ( $t['stars'] ?? 5 ) ) ); ?></div>
+				<?php $rating = max( 0, min( 5, (int) ( $t['stars'] ?? 5 ) ) ); ?>
+				<?php if ( $rating > 0 ) : ?>
+				<div class="stars" aria-label="<?php echo esc_attr( (string) $rating ); ?> از ۵"><?php echo wp_kses_post( self::stars( $rating ) ); ?></div>
+				<?php endif; ?>
 				<p><?php echo self::e( $t['text'] ?? '' ); ?></p>
 				<div class="who">
 					<span class="ava"><?php echo self::e( $t['initial'] ?? 'م' ); ?></span>
@@ -534,7 +571,7 @@ final class Home_Templates {
 		?>
 <section>
 	<div class="wrap">
-		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '/blog/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo self::head( $a, (string) ( $a['link_text'] ?? '' ), (string) ( $a['link_url'] ?? '' ) ?: '/blog/' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<div class="bgrid">
 			<article class="featured">
 				<div class="fcover">
@@ -546,7 +583,7 @@ final class Home_Templates {
 				</div>
 				<div class="fbody">
 					<p><?php echo self::e( $feat['excerpt'] ?? '' ); ?></p>
-					<a class="continue" href="<?php echo self::url( $feat['link'] ?? '' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
+					<a class="continue" href="<?php echo self::url_or( $feat['link'] ?? '', '/blog/' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
 					<div class="bmeta">
 						<div class="who2"><span class="ava2">ض</span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
 						<span class="timepill">🕐 <?php echo self::e( $feat['read'] ?? '' ); ?></span>
@@ -610,8 +647,8 @@ final class Home_Templates {
 			<h2><?php echo self::e( $a['title'] ?? '' ); ?></h2>
 			<p><?php echo self::e( $a['text'] ?? '' ); ?></p>
 			<div class="row">
-				<a class="btn btn-ink btn-lg" href="<?php echo self::url( $a['primary_url'] ?? '' ); ?>"><?php echo self::e( $a['primary_text'] ?? '' ); ?> ←</a>
-				<a class="btn btn-white btn-lg" href="<?php echo self::url( $a['secondary_url'] ?? '' ); ?>"><?php echo self::e( $a['secondary_text'] ?? '' ); ?></a>
+				<a class="btn btn-ink btn-lg" href="<?php echo self::url_or( $a['primary_url'] ?? '', '/contact-us/' ); ?>"><?php echo self::e( $a['primary_text'] ?? '' ); ?> ←</a>
+				<a class="btn btn-white btn-lg" href="<?php echo self::url_or( $a['secondary_url'] ?? '', '/pricing/' ); ?>"><?php echo self::e( $a['secondary_text'] ?? '' ); ?></a>
 			</div>
 		</div>
 	</div>
@@ -620,9 +657,14 @@ final class Home_Templates {
 		return (string) ob_get_clean();
 	}
 
-	/** Wrap the whole homepage body (used by front-page.php). */
-	public static function wrap_open(): string {
-		return '<div class="zc-hp" dir="rtl">';
+	/**
+	 * Wraps the whole section body (used by front-page.php and every widget).
+	 *
+	 * @param bool $flat Drops the soft gradient tints so a user-chosen section
+	 *                   background colour is not covered by them.
+	 */
+	public static function wrap_open( bool $flat = false ): string {
+		return '<div class="zc-hp' . ( $flat ? ' is-flat' : '' ) . '" dir="rtl">';
 	}
 
 	public static function wrap_close(): string {

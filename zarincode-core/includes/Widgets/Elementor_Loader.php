@@ -39,6 +39,28 @@ class Elementor_Loader {
         add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_assets' ] );
         add_action( 'elementor/elements/categories_registered', [ $this, 'register_category' ] );
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
+        // One-off upgrade: sites that imported the 4.6.0 demo keep empty widget
+        // panels until their homepage widgets are seeded with real content.
+        add_action( 'admin_init', [ $this, 'backfill_home_defaults' ], 20 );
+    }
+
+    /** Runs Home_Defaults::backfill_homepage() once per plugin version. */
+    public function backfill_home_defaults(): void {
+        $flag = 'zarincode_home_defaults_' . ( defined( 'ZARINCODE_CORE_VERSION' ) ? ZARINCODE_CORE_VERSION : '0' );
+        if ( 'done' === get_option( $flag ) || ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+        require_once __DIR__ . '/Home_Defaults.php';
+        // Widgets are registered by Elementor during `elementor/init`; if that has
+        // not happened yet the option stays unset and the next request retries.
+        if ( ! class_exists( '\\Elementor\\Plugin' ) || ! \Elementor\Plugin::instance()->widgets_manager ) {
+            return;
+        }
+        if ( null === \Elementor\Plugin::instance()->widgets_manager->get_widget_types( 'zarincode_home_hero' ) ) {
+            return;
+        }
+        Home_Defaults::backfill_homepage();
+        update_option( $flag, 'done', false );
     }
 
     public function refresh_generated_css(): void {

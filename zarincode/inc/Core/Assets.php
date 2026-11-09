@@ -23,6 +23,8 @@ class Assets {
     }
 
     private function __construct() {
+        add_action( 'wp_enqueue_scripts', [ $this, 'register_frontend_styles' ], 5 );
+        add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_frontend_styles' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ], 20 );
         add_action( 'wp_enqueue_scripts', [ $this, 'drop_core_block_styles_on_plain_pages' ], 99 );
         add_action( 'wp_head', [ $this, 'preload_critical_fonts' ], 1 );
@@ -90,6 +92,33 @@ class Assets {
         wp_dequeue_script( 'wp-block-library' );
     }
 
+    /**
+     * Registers the homepage design system once, independently of the current
+     * screen. Registering (not just enqueueing) is what lets Elementor resolve
+     * `get_style_depends()` for the homepage widgets — in the editor preview and
+     * on any non-front page that embeds one of those widgets or its shortcode.
+     */
+    public function register_frontend_styles(): void {
+        if ( wp_style_is( 'zarincode-home-cheerful', 'registered' ) ) {
+            return;
+        }
+        // Depend on the theme stylesheet only when it is actually registered,
+        // otherwise WordPress silently drops a style with an unknown dependency.
+        $deps = [];
+        foreach ( [ 'zarincode-main', 'zarincode-fontawesome' ] as $handle ) {
+            if ( wp_style_is( $handle, 'registered' ) ) {
+                $deps[] = $handle;
+                break;
+            }
+        }
+        wp_register_style(
+            'zarincode-home-cheerful',
+            ZARINCODE_URI . '/assets/css/home-cheerful.css',
+            $deps,
+            ZARINCODE_VERSION
+        );
+    }
+
     public function enqueue_frontend_assets(): void {
         wp_enqueue_script('zarincode-dialogs',ZARINCODE_URI.'/assets/js/dialogs.js',[],ZARINCODE_VERSION,true);
         // 1. Local Vazirmatn Font
@@ -123,8 +152,10 @@ class Assets {
         }
 
         // Homepage "cheerful + formal" design system (scoped to .zc-hp, front page only).
-        if ( is_front_page() || is_page_template( 'template-elementor-canvas.php' ) && 'page' === get_post_type() ) {
-            wp_enqueue_style( 'zarincode-home-cheerful', ZARINCODE_URI . '/assets/css/home-cheerful.css', array( 'zarincode-main' ), ZARINCODE_VERSION );
+        // Other pages that use the section widgets get the file from
+        // Elementor's get_style_depends() via the registered handle below.
+        if ( is_front_page() ) {
+            wp_enqueue_style( 'zarincode-home-cheerful' );
         }
 
         wp_enqueue_style('zarincode-responsive', ZARINCODE_URI . '/assets/css/responsive.css', ['zarincode-main','zarincode-rtl'], ZARINCODE_VERSION);

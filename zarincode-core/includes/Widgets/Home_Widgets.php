@@ -245,6 +245,20 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 		return $settings;
 	}
 
+	/**
+	 * URL control value → plain string.
+	 *
+	 * Elementor stores URLs as `['url' => …]`, but seeded or programmatically
+	 * built settings may already be strings; reading `['url']` off a string used
+	 * to raise a PHP warning.
+	 */
+	protected function link_of( $value ): string {
+		if ( is_array( $value ) ) {
+			return (string) ( $value['url'] ?? '' );
+		}
+		return is_string( $value ) ? $value : '';
+	}
+
 	/** "a, b , c" or an array → clean list. */
 	protected function to_list( $value ): array {
 		if ( is_array( $value ) ) {
@@ -333,12 +347,25 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 	/** Section shell: background, padding, margin, radius. */
 	protected function style_shell(): void {
 		$this->start_controls_section( 'zc_style_shell', array( 'label' => 'پوستهٔ بخش', 'tab' => C::TAB_STYLE ) );
+		// The shipped design paints a soft gradient on the <section> of some blocks.
+		// A user colour must be able to win over it, so the tint can be switched off
+		// first — otherwise picking a colour would appear to do nothing.
+		// Deliberately not a `selectors` switcher: Elementor emits a switcher's CSS
+		// rule even when the switch is on, which would kill the tint by default.
+		// The value is applied as a wrapper class in render() instead.
+		$this->add_control( 'sec_tint', array(
+			'label'        => 'تینت گرادیانی ملایم',
+			'type'         => C::SWITCHER,
+			'default'      => 'yes',
+			'return_value' => 'no',
+			'description'  => 'روشن بگذارید تا تینت ملایم طراحی نمایش داده شود. اگر رنگ پس‌زمینه انتخاب می‌کنید، خاموشش کنید.',
+		) );
 		$this->add_group_control( Group_Control_Background::get_type(), array(
 			'name'     => 'sec_bg',
 			'label'    => 'پس‌زمینهٔ بخش',
 			'types'    => array( 'classic', 'gradient' ),
 			'exclude'  => Editor_Controls::BACKGROUND_EXCLUDE,
-			'selector' => '{{WRAPPER}} .zc-hp',
+			'selector' => '{{WRAPPER}} .zc-hp section, {{WRAPPER}} .zc-hp .hero',
 		) );
 		$this->add_responsive_control( 'sec_padding', array(
 			'label'      => 'فاصلهٔ داخلی',
@@ -598,7 +625,12 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 			return;
 		}
 
-		echo Home_Templates::wrap_open() . $html . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput -- templates escape internally.
+		echo Home_Templates::wrap_open( $this->is_flat( $settings ) ) . $html . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput -- templates escape internally.
+	}
+
+	/** True when the user asked for a flat (non-tinted) section background. */
+	protected function is_flat( array $settings ): bool {
+		return ( $settings['sec_tint'] ?? 'yes' ) === 'no';
 	}
 }
 
@@ -804,7 +836,7 @@ class Home_Hero extends Abstract_Home_Widget {
 		$settings = $this->prepare( $this->get_settings_for_display() );
 		$html     = Home_Templates::hero( $settings );
 		$ticker   = ! empty( $settings['ticker_items'] ) ? Home_Templates::ticker( array( 'items' => $settings['ticker_items'] ) ) : '';
-		echo Home_Templates::wrap_open() . $html . $ticker . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
+		echo Home_Templates::wrap_open( $this->is_flat( $settings ) ) . $html . $ticker . Home_Templates::wrap_close(); // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 }
 
@@ -946,7 +978,7 @@ class Home_Services extends Abstract_Home_Widget {
 				'desc'      => (string) ( $row['desc'] ?? '' ),
 				'meta'      => $meta,
 				'price'     => (string) ( $row['price'] ?? '' ),
-				'link'      => (string) ( $row['link']['url'] ?? '' ),
+				'link'      => $this->link_of( $row['link'] ?? '' ),
 				'link_text' => (string) ( $row['link_text'] ?? '' ) ?: 'جزئیات',
 			);
 		}
@@ -1059,7 +1091,7 @@ class Home_Products extends Abstract_Home_Widget {
 				'old'      => (string) ( $row['old'] ?? '' ),
 				'now'      => (string) ( $row['now'] ?? '' ),
 				'featured' => ( $row['featured'] ?? '' ) === 'yes' ? 'yes' : '',
-				'link'     => (string) ( $row['link']['url'] ?? '' ),
+				'link'     => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
 		$settings['items'] = $items;
@@ -1160,7 +1192,7 @@ class Home_Portfolio extends Abstract_Home_Widget {
 				'cat'   => (string) ( $row['cat'] ?? '' ),
 				'kpi'   => (string) ( $row['kpi'] ?? '' ),
 				'tone'  => (string) ( $row['tone'] ?? 'c1' ),
-				'link'  => (string) ( $row['link']['url'] ?? '' ),
+				'link'  => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
 		$settings['items'] = $items;
@@ -1385,7 +1417,7 @@ class Home_Pricing extends Abstract_Home_Widget {
 				'tone'     => (string) ( $row['tone'] ?? 'p1' ),
 				'features' => $this->to_lines( $row['features'] ?? '' ),
 				'cta'      => (string) ( $row['cta'] ?? '' ) ?: 'مشاوره و ثبت سفارش',
-				'link'     => (string) ( $row['link']['url'] ?? '' ),
+				'link'     => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
 		$settings['plans'] = $plans;
@@ -1440,7 +1472,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 		$this->f_text( $row, 'name', 'نام' );
 		$this->f_text( $row, 'role', 'سمت / سازمان' );
 		$this->f_text( $row, 'initial', 'حرف اول آواتار', '', array( 'description' => 'یک حرف یا نویسه؛ خالی بگذارید تا از نام ساخته شود.' ) );
-		$this->f_number( $row, 'stars', 'امتیاز (۱ تا ۵)', 5, 1, 5 );
+		$this->f_number( $row, 'stars', 'امتیاز (۰ تا ۵ — صفر: بدون ستاره)', 5, 0, 5 );
 		$this->f_repeater(
 			'items',
 			'نظرات',
@@ -1475,7 +1507,7 @@ class Home_Testimonials extends Abstract_Home_Widget {
 			$initial = trim( (string) ( $row['initial'] ?? '' ) );
 			$items[] = array(
 				'initial' => '' !== $initial ? $initial : mb_substr( $name, 0, 1 ),
-				'stars'   => max( 1, min( 5, (int) ( $row['stars'] ?? 5 ) ) ),
+				'stars'   => max( 0, min( 5, (int) ( $row['stars'] ?? 5 ) ) ),
 				'text'    => (string) ( $row['text'] ?? '' ),
 				'name'    => $name,
 				'role'    => (string) ( $row['role'] ?? '' ),
@@ -1615,7 +1647,7 @@ class Home_Blog extends Abstract_Home_Widget {
 				'author'  => (string) ( $row['author'] ?? '' ),
 				'date'    => (string) ( $row['date'] ?? '' ),
 				'read'    => (string) ( $row['read'] ?? '' ),
-				'link'    => (string) ( $row['link']['url'] ?? '' ),
+				'link'    => $this->link_of( $row['link'] ?? '' ),
 			);
 		}
 		$settings['side'] = $side;
