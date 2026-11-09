@@ -1,2 +1,0 @@
-5a094561e67184dd422671491c0af744b6a178be508eadb685a6abc5451b3a93  deliverables/zarincode-4.7.1.zip
-b0e0fcddc57b59caa35f6ba59b743375cdc724d1828c17552f203856da5ad553  deliverables/zarincode-core-4.7.1.zip
