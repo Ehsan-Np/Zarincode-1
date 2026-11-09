@@ -89,11 +89,22 @@ final class Native_Design {
         if($d['type']==='switcher')$a['return_value']='yes';
         return $a;
     }
-    public static function register($widget,string $kind):void {
+    /**
+     * Register the model controls of a widget.
+     *
+     * `$only` scopes a `page_section` widget to ONE page model. The editor ships
+     * the control stack of every widget used on the page, so the old "all ten
+     * page models in one widget" registration pushed ~2.4 MB of control JSON
+     * into every Elementor editor load (measured: 2,805 controls, 2,457 KB) and
+     * was the main reason the editor felt slow. Each page model now has its own
+     * widget class, so a page only carries the controls of its own model.
+     */
+    public static function register($widget,string $kind,string $only=''):void {
         $sections=$kind==='page_section'?Widget_Schema::sections():['about-page'=>Widget_Schema::definitions()[$kind][1]];
+        if($only!=='')$sections=array_intersect_key($sections,array($only=>true));
         foreach($sections as $section=>$name){
             $m=self::model($kind,$section);if(!$m)continue;
-            $condition=['design_mode'=>'original'];if($kind==='page_section')$condition['section_key']=$section;
+            $condition=['design_mode'=>'original'];if($kind==='page_section'&&$only==='')$condition['section_key']=$section;
             $queryKind=self::query_kind($m);
             if($queryKind!==''){
                 $widget->start_controls_section(self::id($m,'source_section'),['label'=>'منبع داده و نمایش خودکار','condition'=>$condition]);

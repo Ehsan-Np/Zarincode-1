@@ -174,7 +174,7 @@ class Demo_Seeder {
         </style>
         <div class="wrap zc-demo-fullwidth-wrap" style="direction:rtl;text-align:right;font-family:Tahoma,system-ui,sans-serif;width:100%;max-width:100%;box-sizing:border-box;">
             <h1 class="screen-reader-text">پنل درون‌ریز هوشمند قالب زرین کد</h1>
-            <hr class="wp-header-end"><div class="notice notice-warning inline"><p><strong>بازنویسی صریح دمو:</strong> درون‌ریزی، نوشته‌های هم‌نام دمو و تنظیمات قالب را بازسازی می‌کند. روی سایت عملیاتی ابتدا پشتیبان بگیرید و در محیط آزمایشی اجرا کنید. به‌روزرسانی قالب به‌تنهایی دمو را وارد نمی‌کند.</p></div>
+            <hr class="wp-header-end"><div class="notice notice-warning inline"><p><strong>بازنویسی صریح دمو:</strong> درون‌ریزی، نوشته‌های هم‌نام دمو را بازسازی می‌کند اما <strong>تنظیمات ذخیره‌شدهٔ شما را هرگز بازنویسی نمی‌کند</strong> (فقط کلیدهای خالی با مقدار پیش‌فرض پر می‌شوند). روی سایت عملیاتی ابتدا پشتیبان بگیرید و در محیط آزمایشی اجرا کنید. به‌روزرسانی قالب به‌تنهایی دمو را وارد نمی‌کند.</p></div>
             <div style="background:linear-gradient(135deg,#2A2C31 0%,#18191D 100%);color:#fff;padding:30px 34px;border-radius:24px;margin-bottom:24px;border:2px solid #FDD05B;box-shadow:0 15px 40px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;width:100%;box-sizing:border-box;">
                 <div>
                     <span style="background:#FDD05B;color:#2A2C31;padding:4px 14px;border-radius:999px;font-weight:bold;font-size:12px;">ZARINCODE SERVICE DEMO 3.5</span>
@@ -305,6 +305,11 @@ class Demo_Seeder {
         return substr( md5( uniqid( (string) mt_rand(), true ) ), 0, 7 );
     }
 
+    /** Elementor must be loaded for widget classes and their defaults to exist. */
+    private static function elementor_ready(): bool {
+        return class_exists( '\Elementor\Widget_Base' );
+    }
+
     private static function make_elementor_section( string $widget_type, array $settings = [] ): array {
         $settings=Service_Demo::settings($widget_type,$settings);
         return [
@@ -380,46 +385,33 @@ class Demo_Seeder {
      * 1. SEED HEADER, FOOTER, MEGAMENU & POPUP ELEMENTOR TEMPLATES
      */
     public static function seed_header_footer_templates(): void {
-        $hf_items = [
-            [
-                'slug'  => 'zarincode-main-header',
-                'title' => 'هدر اصلی المنتوری زرین کد (Crextio Sunshine Pill Header)',
-                'type'  => 'header',
-                'tree'  => [ self::make_elementor_section( 'zarincode_header', [
-                    'brand_title'    => 'زریــن کـد',
-                    'brand_subtitle' => 'Zarincode Studio',
-                    'dev_name'       => 'احسان نادری پناه',
-                    'phone'          => '09024561001',
-                    'cta_text'       => 'درخواست مشاوره',
-                ] ) ],
-                'sc'    => '[zarincode_widget type="header"]',
-            ],
-            [
-                'slug'  => 'zarincode-main-footer',
-                'title' => 'فوتر بنتو دارک المنتوری زرین کد (Crextio Dark Bento Footer)',
-                'type'  => 'footer',
-                'tree'  => [ self::make_elementor_section( 'zarincode_footer', [
-                    'cta_heading' => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟',
-                    'phone'       => '09024561001',
-                    'dev_name'    => 'احسان نادری پناه (Ehsan NaderiPanah)',
-                ] ) ],
-                'sc'    => '[zarincode_widget type="footer"]',
-            ],
-            [
+        /*
+         * Header and footer are built from *native* Elementor widgets so the
+         * owner can edit every column, link, colour and spacing value in the
+         * editor (see Elementor\HF_Builder). The two extra templates
+         * (megamenu + consultation popup) stay on the theme widgets because
+         * they are dynamic lists, and those widgets are themselves editable.
+         */
+        if ( class_exists( \Zarincode\Runtime260\Elementor\HF_Builder::class ) ) {
+            \Zarincode\Runtime260\Elementor\HF_Builder::ensure();
+        }
+
+        $hf_items = array(
+            array(
                 'slug'  => 'zarincode-services-megamenu',
                 'title' => 'مگامنوی ۶ خدمت تخصصی و محصولات زرین کد',
                 'type'  => 'megamenu',
-                'tree'  => [ self::make_elementor_section( 'zarincode_services', [ 'count' => 6 ] ) ],
+                'tree'  => array( self::make_elementor_section( 'zarincode_services', array( 'count' => 6 ) ) ),
                 'sc'    => '[zarincode_widget type="services"]',
-            ],
-            [
+            ),
+            array(
                 'slug'  => 'zarincode-consultation-popup',
                 'title' => 'پاپ‌آپ درخواست مشاوره رایگان و سفارش پروژه (09024561001)',
                 'type'  => 'popup',
-                'tree'  => [ self::make_elementor_section( 'zarincode_promo', [] ) ],
+                'tree'  => array( self::make_elementor_section( 'zarincode_promo', array() ) ),
                 'sc'    => '[zarincode_widget type="promo"]',
-            ],
-        ];
+            ),
+        );
 
         foreach ( $hf_items as $hf ) {
             self::upsert_post_with_elementor(
@@ -429,24 +421,11 @@ class Demo_Seeder {
                 $hf['tree'],
                 $hf['sc'],
                 '',
-                [
+                array(
                     '_zc_hf_type'   => $hf['type'],
                     '_zc_hf_active' => 'yes',
-                ]
+                )
             );
-
-            // Also save in elementor_library so it appears in Elementor > Saved Templates as well!
-            if ( post_type_exists( 'elementor_library' ) ) {
-                self::upsert_post_with_elementor(
-                    'elementor_library',
-                    $hf['slug'] . '-el',
-                    $hf['title'],
-                    $hf['tree'],
-                    $hf['sc'],
-                    '',
-                    [ '_elementor_template_type' => 'section' ]
-                );
-            }
         }
     }
 
@@ -845,22 +824,63 @@ class Demo_Seeder {
             ],
         ];
 
-        foreach ( $items as $i=>$it ) {
-            $it=Service_Demo::record($it,'product',$i);
-            $product_id=self::upsert_post_with_elementor(
+        // Two more products so the shop grid shows a full 10-item catalogue.
+        $items[] = array(
+            'slug'      => 'zarinpanel-admin-dashboard-kit',
+            'name'      => 'کیت داشبورد مدیریت و پنل کاربری زرین پنل (ZarinPanel UI Kit)',
+            'price'     => '890000',
+            'price_fa'  => '۸۹۰,۰۰۰',
+            'old_price' => '',
+            'ver'       => 'نسخه نمایشی',
+            'cat_badge' => 'کیت رابط کاربری',
+            'sales'     => 'محصول نمایشی',
+            'icon'      => 'fa-solid fa-table-columns',
+            'tags'      => 'Dashboard,Figma,HTML,RTL Panels',
+            'sku'       => 'ZC-KIT-01',
+            'desc'      => 'مجموعه کارت، نمودار و جدول آمادهٔ پنل مدیریت فارسی با پشتیبانی راست‌به‌چپ و رنگ‌بندی زرین کد.',
+        );
+        $items[] = array(
+            'slug'      => 'zarincare-support-ticketing-source',
+            'name'      => 'سورس‌کد سامانه تیکت و پشتیبانی مشتریان (ZarinCare Desk)',
+            'price'     => '3450000',
+            'price_fa'  => '۳,۴۵۰,۰۰۰',
+            'old_price' => '',
+            'ver'       => 'نسخه نمایشی',
+            'cat_badge' => 'سورس‌کد نرم‌افزار',
+            'sales'     => 'محصول نمایشی',
+            'icon'      => 'fa-solid fa-headset',
+            'tags'      => 'Ticketing,SLA,Knowledge Base,Laravel',
+            'sku'       => 'ZC-SRC-04',
+            'desc'      => 'سامانهٔ تیکت با صف‌بندی، سطح خدمت (SLA)، پایگاه دانش و گزارش رضایت مشتری — سورس‌کد کامل و مستند.',
+        );
+
+        $covers = array(
+            'demo-product-cover.jpg',
+            'demo-service-cover.jpg',
+            'demo-project-cover.jpg',
+            'demo-post-cover.jpg',
+        );
+        $idx = 0;
+
+        foreach ( $items as $it ) {
+            $it = Service_Demo::record( $it, 'product', $idx );
+            $idx++;
+
+            $product_id = self::upsert_post_with_elementor(
                 'product',
                 $it['slug'],
                 $it['name'],
-                [],
+                array(),
                 '<p>' . $it['desc'] . '</p>',
                 $it['desc'],
-                [
+                array(
                     '_regular_price'         => $it['price'],
                     '_price'                 => $it['price'],
                     '_sku'                   => $it['sku'],
                     '_virtual'               => 'yes',
                     '_downloadable'          => 'yes',
                     '_stock_status'          => 'instock',
+                    '_manage_stock'          => 'no',
                     '_visibility'            => 'visible',
                     '_zc_prod_price_display' => $it['price_fa'],
                     '_zc_prod_old_price'     => $it['old_price'],
@@ -873,19 +893,172 @@ class Demo_Seeder {
                     '_zc_prod_tags'          => $it['tags'],
                     '_zc_prod_demo_url'      => home_url( '/?demo_preview=' . $it['slug'] ),
                     '_zc_prod_demo_label'    => 'پیش‌نمایش آنلاین دمو',
-                ]
+                )
             );
-            if($product_id&&taxonomy_exists('product_cat')){
-                $term=term_exists($it['cat_badge'],'product_cat');
-                if(!$term)$term=wp_insert_term($it['cat_badge'],'product_cat');
-                if(!is_wp_error($term)){
-                    $category=(int)(is_array($term)?$term['term_id']:$term);
-                    if(class_exists('WC_Product_Simple')){
-                        $product=new \WC_Product_Simple($product_id);$product->set_status('publish');$product->set_regular_price($it['price']);$product->set_virtual(true);$product->set_category_ids([$category]);$product->set_catalog_visibility('visible');$product->save();
-                    }else wp_set_object_terms($product_id,[$category],'product_cat');
-                }
+
+            if ( ! $product_id ) {
+                continue;
+            }
+
+            // A featured image makes the shop grid look like a real store.
+            self::attach_demo_image( $product_id, $covers[ ( $idx - 1 ) % count( $covers ) ], $it['name'] );
+
+            self::sync_product( $product_id, $it );
+        }
+
+        /*
+         * WooCommerce 9.x+ ships new stores in "Coming soon" mode: the shop URL
+         * answers with a placeholder page for every visitor, so imported
+         * products look like they were never created. Turning it off is part of
+         * a complete demo import (the owner can switch it back on in
+         * WooCommerce → Settings → Site visibility).
+         */
+        if ( 'yes' === get_option( 'woocommerce_coming_soon' ) ) {
+            update_option( 'woocommerce_coming_soon', 'no' );
+        }
+        update_option( 'woocommerce_store_pages_only', 'no' );
+
+        // Point WooCommerce at the demo shop page so /shop/ is the catalogue.
+        $shop_page = get_page_by_path( 'shop', OBJECT, 'page' );
+        if ( $shop_page ) {
+            update_option( 'woocommerce_shop_page_id', (int) $shop_page->ID );
+        }
+
+        /*
+         * Finally, repair every demo product that WooCommerce may have skipped
+         * (typical when the demo is imported before WooCommerce is active: the
+         * post exists but has no product_type term, so the shop shows nothing).
+         */
+        self::repair_products();
+    }
+
+    /**
+     * Make one post behave as a real WooCommerce product.
+     *
+     * WooCommerce decides what to list from the `product_type` taxonomy, not
+     * from the post type alone. A product created through wp_insert_post()
+     * without WooCommerce loaded has no `product_type` term, no price lookup
+     * row and no visibility meta — it is invisible in the shop even though it
+     * exists. This function fixes all of that idempotently.
+     */
+    public static function sync_product( int $product_id, array $data = array() ): void {
+        if ( ! $product_id || 'product' !== get_post_type( $product_id ) ) {
+            return;
+        }
+
+        $price = (string) ( $data['price'] ?? get_post_meta( $product_id, '_regular_price', true ) );
+
+        // 1. product_type = simple (the term WooCommerce reads).
+        if ( taxonomy_exists( 'product_type' ) ) {
+            if ( ! has_term( 'simple', 'product_type', $product_id ) ) {
+                wp_set_object_terms( $product_id, 'simple', 'product_type' );
             }
         }
+
+        // 2. WooCommerce price lookup keys + visibility meta.
+        $meta = array(
+            '_price'            => $price,
+            '_regular_price'    => $price,
+            '_stock_status'     => 'instock',
+            '_manage_stock'     => 'no',
+            '_virtual'          => 'yes',
+            '_downloadable'     => 'yes',
+            '_visibility'       => 'visible',
+            '_sold_individually'=> 'no',
+        );
+        foreach ( $meta as $key => $value ) {
+            if ( '' === $value || null === $value ) {
+                continue;
+            }
+            update_post_meta( $product_id, $key, $value );
+        }
+
+        // 3. Let WooCommerce recalculate the lookup table + caches itself.
+        if ( class_exists( 'WC_Product_Simple' ) && '' !== $price ) {
+            $product = new \WC_Product_Simple( $product_id );
+            $product->set_status( 'publish' );
+            $product->set_regular_price( $price );
+            $product->set_virtual( true );
+            $product->set_downloadable( true );
+            $product->set_catalog_visibility( 'visible' );
+            if ( ! empty( $data['cat_badge'] ) && taxonomy_exists( 'product_cat' ) ) {
+                $term = term_exists( $data['cat_badge'], 'product_cat' );
+                if ( ! $term ) {
+                    $term = wp_insert_term( $data['cat_badge'], 'product_cat' );
+                }
+                if ( ! is_wp_error( $term ) ) {
+                    $product->set_category_ids( array( (int) ( is_array( $term ) ? $term['term_id'] : $term ) ) );
+                }
+            }
+            $product->save();
+        } elseif ( ! empty( $data['cat_badge'] ) && taxonomy_exists( 'product_cat' ) ) {
+            $term = term_exists( $data['cat_badge'], 'product_cat' );
+            if ( ! $term ) {
+                $term = wp_insert_term( $data['cat_badge'], 'product_cat' );
+            }
+            if ( ! is_wp_error( $term ) ) {
+                wp_set_object_terms( $product_id, array( (int) ( is_array( $term ) ? $term['term_id'] : $term ) ), 'product_cat' );
+            }
+        }
+
+        clean_post_cache( $product_id );
+    }
+
+    /** Re-sync every demo product (also runs after WooCommerce is activated). */
+    public static function repair_products(): int {
+        if ( ! post_type_exists( 'product' ) ) {
+            return 0;
+        }
+        $ids = get_posts( array(
+            'post_type'        => 'product',
+            'post_status'      => 'publish',
+            'posts_per_page'   => 100,
+            'fields'           => 'ids',
+            'no_found_rows'    => true,
+            'suppress_filters' => false,
+        ) );
+        $fixed = 0;
+        foreach ( $ids as $id ) {
+            self::sync_product( (int) $id );
+            $fixed++;
+        }
+        if ( $fixed && function_exists( 'wc_delete_product_transients' ) ) {
+            wc_delete_product_transients();
+        }
+        return $fixed;
+    }
+
+    /** Copy a bundled demo image into the media library and set it as the thumbnail. */
+    private static function attach_demo_image( int $post_id, string $file, string $alt ): void {
+        if ( has_post_thumbnail( $post_id ) ) {
+            return;
+        }
+        $path = get_template_directory() . '/assets/images/' . $file;
+        if ( ! file_exists( $path ) ) {
+            return;
+        }
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+
+        $upload = wp_upload_bits( $file, null, (string) file_get_contents( $path ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+        if ( ! empty( $upload['error'] ) ) {
+            return;
+        }
+        $attachment = array(
+            'post_mime_type' => (string) ( $upload['type'] ?? 'image/jpeg' ),
+            'post_title'     => sanitize_text_field( $alt ),
+            'post_content'   => '',
+            'post_status'    => 'inherit',
+        );
+        $attach_id = wp_insert_attachment( $attachment, $upload['file'], $post_id );
+        if ( is_wp_error( $attach_id ) || ! $attach_id ) {
+            return;
+        }
+        $meta = wp_generate_attachment_metadata( $attach_id, $upload['file'] );
+        wp_update_attachment_metadata( $attach_id, $meta );
+        update_post_meta( $attach_id, '_wp_attachment_image_alt', sanitize_text_field( $alt ) );
+        set_post_thumbnail( $post_id, $attach_id );
     }
 
     /**
@@ -913,7 +1086,14 @@ class Demo_Seeder {
             [ 'widget' => 'zarincode_home_promo',        'sc' => '[zarincode_widget type="home_promo"]' ],
         ];
 
-        require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
+        // Widget classes extend Elementor\Widget_Base: loading them without
+        // Elementor is a fatal error (it used to abort the whole demo import on
+        // sites where Elementor was missing/inactive). The pages are still
+        // created below — their content falls back to the widget shortcodes.
+        $elementor_ready = class_exists( '\Elementor\Widget_Base' );
+        if ( $elementor_ready ) {
+            require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
+        }
         $home_tree       = [];
         $home_shortcodes = [];
         foreach ( $home_widgets as $hw ) {
@@ -921,7 +1101,9 @@ class Demo_Seeder {
             $widget_settings = class_exists( \Zarincode\Runtime260\Widgets\Home_Defaults::class )
                 ? \Zarincode\Runtime260\Widgets\Home_Defaults::settings( $hw['widget'] )
                 : array();
-            $home_tree[]       = self::make_elementor_section( $hw['widget'], $widget_settings );
+            if ( $elementor_ready ) {
+                $home_tree[] = self::make_elementor_section( $hw['widget'], $widget_settings );
+            }
             $home_shortcodes[] = $hw['sc'];
         }
 
@@ -952,16 +1134,42 @@ class Demo_Seeder {
         ];
 
         foreach ( $inner_pages as $slug => $cfg ) {
-            $tree = Service_Demo::legal($slug) ?: [ self::make_elementor_section( 'zarincode_page_section', [ 'section_key' => $cfg['key'] ] ) ];
+            $page_settings = array( 'section_key' => $cfg['key'] );
+            $legal_rows    = Service_Demo::legal_rows( $slug );
+            if ( $legal_rows ) {
+                // Feed the designed legal-document widget with the demo clauses
+                // so the page has a real structure (hero, TOC, numbered cards)
+                // instead of loose heading/text widgets.
+                $page_settings['n_legal_content_items_1'] = $legal_rows;
+                $nav_rows = Service_Demo::legal_nav( $slug );
+                if ( $nav_rows ) {
+                    $page_settings['n_legal_nav_items_1'] = $nav_rows;
+                }
+                $legal_data = Service_Demo::legal_data( $slug );
+                if ( ! empty( $legal_data['title'] ) ) {
+                    $page_settings['n_section_title_text_1'] = (string) $legal_data['title'];
+                    $page_settings['n_heading_text_1']      = (string) $legal_data['title'];
+                }
+            }
+            // Scoped widget per page model (item 10: the all-in-one widget put
+            // 2.4 MB of controls into every editor load).
+            $widget = 'zarincode_page_' . str_replace( '-', '_', (string) $cfg['key'] );
+            // Without Elementor the page body is the widget shortcode (§ below),
+            // so no (empty) builder data is written.
+            $tree   = self::elementor_ready() ? [ self::make_elementor_section( $widget, $page_settings ) ] : [];
             $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos','testimonials']][$slug]??[];
-            foreach($extras as $extra){
+            foreach(self::elementor_ready() ? $extras : [] as $extra){
                 $extraSettings=[];
                 if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
                 if($extra==='client_logos')$extraSettings=self::demo_clients();
                 $tree[]=self::make_elementor_section('zarincode_'.$extra,$extraSettings);
             }
 
-            $sc   = Service_Demo::legal_content($slug) ?: '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
+            // The page body is the designed document section (hero, table of
+            // contents, numbered clause cards, sidebar, CTA) — not a raw list of
+            // <h2>/<p>. It is also the fallback shown when Elementor is not
+            // rendering the page, so both paths look finished.
+            $sc = '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
             $pid  = self::upsert_post_with_elementor( 'page', $slug, $cfg['title'], $tree, $sc );
             if ( 'privacy-policy' === $slug ) {
                 update_option( 'wp_page_for_privacy_policy', $pid );
@@ -1008,7 +1216,16 @@ class Demo_Seeder {
                 $bp['content'],
                 wp_trim_words(wp_strip_all_tags( $bp['content'] ),34)
             );
-            wp_update_post(['ID'=>$post_id,'comment_status'=>'open']);$term=term_exists('راهنمای تصمیم و اجرا','category');if(!$term)$term=wp_insert_term('راهنمای تصمیم و اجرا','category');if(!is_wp_error($term))wp_set_post_terms($post_id,[(int)(is_array($term)?$term['term_id']:$term)],'category');
+            wp_update_post( array( 'ID' => $post_id, 'comment_status' => 'open' ) );
+            $term = term_exists( 'راهنمای تصمیم و اجرا', 'category' );
+            if ( ! $term ) {
+                $term = wp_insert_term( 'راهنمای تصمیم و اجرا', 'category' );
+            }
+            if ( ! is_wp_error( $term ) ) {
+                wp_set_post_terms( $post_id, array( (int) ( is_array( $term ) ? $term['term_id'] : $term ) ), 'category' );
+            }
+            // A cover makes the magazine grid look finished instead of a wall of text.
+            self::attach_demo_image( $post_id, 'demo-post-cover.jpg', (string) $bp['title'] );
         }
     }
 
@@ -1103,7 +1320,26 @@ class Demo_Seeder {
             'product_warranty_badge' => 'پیش‌نیازها و شرایط پشتیبانی هر محصول را پیش از خرید بررسی کنید',
             'social_whatsapp'=>'https://wa.me/989024561001','social_github'=>'https://github.com/Ehsan-Np','logo_monogram'=>'ZC','floating_contact_action'=>'socials','floating_contact_label'=>'راه‌های ارتباطی','topbar_show_phone'=>false,'topbar_show_dev'=>false,'enable_topbar'=>false,'blog_sidebar_layout'=>'both','blog_article_ratings'=>true,
         ];
-        update_option( 'zarincode_opt', $defaults );
+        /*
+         * MERGE, never overwrite.
+         *
+         * This used to be `update_option( 'zarincode_opt', $defaults )`, which
+         * silently threw away every setting the site owner had saved (brand
+         * name, phone, colours, chat, footer…). A demo import must only fill
+         * the keys the site does not have yet; anything already saved — by the
+         * options panel, Redux, or a JSON import — always wins.
+         */
+        $saved = get_option( 'zarincode_opt', array() );
+        $saved = is_array( $saved ) ? $saved : array();
+        $merged = $defaults;
+        foreach ( $saved as $key => $value ) {
+            if ( null !== $value && '' !== $value ) {
+                $merged[ $key ] = $value;
+            }
+        }
+        update_option( 'zarincode_opt', $merged );
+        // Tell the next admin page load to keep the owner's values.
+        update_option( 'zarincode_options_preserved_on_import', gmdate( 'c' ), false );
     }
 
     /**

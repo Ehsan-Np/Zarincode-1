@@ -1,12 +1,31 @@
 <?php
 /** Theme presentation bootstrap and backwards-compatible public helper functions. */
 defined( 'ABSPATH' ) || exit;
-define( 'ZARINCODE_VERSION', '4.9.1' );
+define( 'ZARINCODE_VERSION', '4.10.0' );
 define( 'ZARINCODE_DIR', get_template_directory() );
 define( 'ZARINCODE_URI', get_template_directory_uri() );
 define( 'ZARINCODE_DEV_NAME', 'احسان نادری پناه (Ehsan NaderiPanah)' );
 define( 'ZARINCODE_DEV_PHONE', '09024561001' );
 define( 'ZARINCODE_DEV_SITE', 'https://zarincode.com' );
+
+/*
+ * Fallback error shield.
+ *
+ * The full shield lives in zarincode-core (Zarincode\Runtime260\Security\Hardening):
+ * it also installs an error handler that works when the host pins
+ * `display_errors On` in php.ini. If the companion plugin is disabled we still
+ * must never let PHP print a warning — those messages carry the absolute
+ * server path (e.g. /home/greenfis/public_html/...). See the «امنیت» panel.
+ */
+if ( ! class_exists( 'Zarincode\Runtime260\Security\Hardening' ) ) {
+    $zc_host = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( (string) $_SERVER['HTTP_HOST'] ) : '';
+    if ( ! preg_match( '/(^|\\.)(localhost|local|test)(:|$)/', $zc_host ) && ! str_contains( $zc_host, '127.0.0.1' ) ) {
+        @ini_set( 'display_errors', '0' );          // phpcs:ignore WordPress.PHP.IniSet.display_errors_Blacklisted
+        @ini_set( 'display_startup_errors', '0' );  // phpcs:ignore WordPress.PHP.IniSet.Risky
+        @ini_set( 'html_errors', '0' );             // phpcs:ignore WordPress.PHP.IniSet.Risky
+    }
+    unset( $zc_host );
+}
 
 /** Theme namespace only: functional classes are owned and loaded by the companion. */
 spl_autoload_register( static function ( $class ) {
@@ -78,21 +97,108 @@ add_action( 'admin_head', function () {
     </style>';
 }, 999 );
 
+/**
+ * Render the Elementor-built header/footer template.
+ *
+ * Design decision (4.9.2): the site owner asked for a header and a footer that
+ * are 100% editable in Elementor, not a fixed coded look. The template CPT
+ * (zc_hf_template) already exists; what stopped it from rendering was the
+ * `demo_design === original` gate and the two `*_source` options defaulting to
+ * the coded shell. Now:
+ *
+ *  - if a published, active template exists for the location it is used, and
+ *  - the coded header/footer stays as the fallback so a fresh install (or a
+ *    deleted template) never renders an empty page,
+ *  - `zarincode_hf_template_id()` is the single lookup used by both the renderer
+ *    and the admin bar shortcut, so «ویرایش با المنتور» always points at the
+ *    template that is actually being displayed.
+ *
+ * @param string $type header|footer
+ * @return string Rendered markup, or '' when the coded shell should be used.
+ */
+function zarincode_hf_template_id( string $type ): int {
+    static $cache = array();
+    if ( isset( $cache[ $type ] ) ) {
+        return $cache[ $type ];
+    }
+    $cache[ $type ] = 0;
+    if ( ! in_array( $type, array( 'header', 'footer' ), true ) || ! post_type_exists( 'zc_hf_template' ) ) {
+        return 0;
+    }
+    $ids = get_posts(
+        array(
+            'post_type'              => 'zc_hf_template',
+            'post_status'            => 'publish',
+            'posts_per_page'         => 1,
+            'fields'                 => 'ids',
+            'no_found_rows'          => true,
+            'update_post_term_cache' => false,
+            'suppress_filters'       => false,
+            'meta_query'             => array(
+                array( 'key' => '_zc_hf_type', 'value' => $type ),
+                array( 'key' => '_zc_hf_active', 'value' => 'yes' ),
+            ),
+            'orderby'                => 'menu_order date',
+            'order'                  => 'ASC',
+        )
+    );
+    $cache[ $type ] = $ids ? (int) $ids[0] : 0;
+    return $cache[ $type ];
+}
+
 /** Render the active Elementor header/footer template; empty output keeps a safe fallback. */
 function zarincode_builder_part( string $type ): string {
-    if ( 'original' === zarincode_get_option( 'demo_design', 'original' ) ) { return ''; }
-    if ( ! in_array( $type, [ 'header', 'footer' ], true ) || 'elementor_hf' !== zarincode_get_option( $type . '_source', 'elementor_hf' ) || ! class_exists( '\Elementor\Plugin' ) ) { return ''; }
+    if ( 'elementor_hf' !== zarincode_get_option( $type . '_source', 'elementor_hf' ) ) {
+        return '';
+    }
+    if ( ! class_exists( '\Elementor\Plugin' ) ) {
+        return '';
+    }
+    $id = zarincode_hf_template_id( $type );
+    if ( ! $id ) {
+        return '';
+    }
+    // Never recurse when the template itself contains a header/footer shortcode.
     static $rendering = false;
-    if ( $rendering ) { return ''; }
-    $ids = get_posts( [ 'post_type' => 'zc_hf_template', 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids', 'suppress_filters'=>false, 'meta_query' => [ [ 'key' => '_zc_hf_type', 'value' => $type ], [ 'key' => '_zc_hf_active', 'value' => 'yes' ] ] ] );
-    if ( ! $ids ) { return ''; }
+    if ( $rendering ) {
+        return '';
+    }
     $rendering = true;
     try {
-        return (string) \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( (int) $ids[0], true );
+        $html = (string) \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $id, true );
+        if ( '' === trim( $html ) ) {
+            return '';
+        }
+        return '<div class="zc-hf zc-hf-' . esc_attr( $type ) . '" data-zc-hf="' . (int) $id . '">' . $html . '</div>';
+    } catch ( \Throwable $e ) {
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            error_log( 'Zarincode: header/footer template #' . $id . ' failed: ' . $e->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+        }
+        return '';
     } finally {
         $rendering = false;
     }
 }
+
+/** Handy admin-bar shortcut: jump straight into the Elementor template in use. */
+add_action( 'admin_bar_menu', static function ( $bar ) {
+    if ( ! is_admin_bar_showing() || ! current_user_can( 'edit_posts' ) || ! class_exists( '\Elementor\Plugin' ) ) {
+        return;
+    }
+    foreach ( array( 'header' => 'ویرایش هدر در المنتور', 'footer' => 'ویرایش فوتر در المنتور' ) as $type => $label ) {
+        $id = zarincode_hf_template_id( $type );
+        if ( ! $id ) {
+            continue;
+        }
+        $bar->add_node(
+            array(
+                'id'    => 'zc-edit-' . $type,
+                'title' => $label,
+                'href'  => admin_url( 'post.php?post=' . $id . '&action=elementor' ),
+            )
+        );
+    }
+}, 90 );
 
 // Register early; load badge CSS only when a configured footer needs it.
 add_action('wp_enqueue_scripts',static function(){

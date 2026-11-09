@@ -426,7 +426,7 @@ final class Live_Chat {
 		} else {
 			$file = $this->receive_upload();
 			if ( is_wp_error( $file ) ) {
-				wp_send_json_error( array( 'message' => $file->get_error_message() ), 422 );
+				wp_send_json_error( array( 'message' => \Zarincode\Runtime260\Security\Hardening::scrub( $file->get_error_message() ) ), 422 );
 			}
 		}
 
@@ -512,7 +512,7 @@ final class Live_Chat {
 		);
 		$result = wp_handle_upload( $file, $overrides );
 		if ( isset( $result['error'] ) ) {
-			return new \WP_Error( 'upload', 'فرمت فایل مجاز نیست (تصویر، ویدیو یا صدا). ' . $result['error'] );
+			return new \WP_Error( 'upload', 'فرمت فایل مجاز نیست (تصویر، ویدیو یا صدا). ' . \Zarincode\Runtime260\Security\Hardening::scrub( (string) $result['error'] ) );
 		}
 		return (string) $result['url'];
 	}
@@ -1112,7 +1112,7 @@ final class Live_Chat {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 				$received = $this->normalize_admin_upload( 'zc_admin_file' );
 				if ( is_wp_error( $received ) ) {
-					$fail = $received->get_error_message();
+					$fail = \Zarincode\Runtime260\Security\Hardening::scrub( $received->get_error_message() );
 					echo '<div class="notice notice-error"><p>' . esc_html( $fail ) . '</p></div>';
 					return;
 				}
@@ -1150,7 +1150,7 @@ final class Live_Chat {
 		}
 		$result = wp_handle_upload( $file, array( 'test_form' => false, 'test_size' => false, 'mimes' => self::allowed_mimes() ) );
 		if ( isset( $result['error'] ) ) {
-			return new \WP_Error( 'upload', 'فرمت فایل مجاز نیست. ' . $result['error'] );
+			return new \WP_Error( 'upload', 'فرمت فایل مجاز نیست. ' . \Zarincode\Runtime260\Security\Hardening::scrub( (string) $result['error'] ) );
 		}
 		return (string) $result['url'];
 	}
@@ -1187,7 +1187,7 @@ final class Live_Chat {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 			$received = $this->normalize_admin_upload( 'hc_file' );
 			if ( is_wp_error( $received ) ) {
-				wp_send_json_error( array( 'message' => $received->get_error_message() ), 422 );
+				wp_send_json_error( array( 'message' => \Zarincode\Runtime260\Security\Hardening::scrub( $received->get_error_message() ) ), 422 );
 			}
 			$file = $received;
 		}

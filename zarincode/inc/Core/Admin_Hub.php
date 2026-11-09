@@ -11,6 +11,7 @@ final class Admin_Hub {
             'plugins'=>['افزونه‌های موردنیاز',['Zarincode\\Theme\\Plugins\\Plugin_Manager','render_plugin_manager_page']],
             'socials'=>['شبکه‌های اجتماعی',[Social_Manager::class,'page']],
             'policies'=>['گارانتی و پرسش‌ها',[Product_Policies::class,'page']],
+            'security'=>['امنیت و نمایش خطا',['Zarincode\\Runtime260\\Security\\Hardening_Page','page']],
         ];
     }
     public static function url(string $tool='settings'): string {

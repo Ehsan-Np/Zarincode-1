@@ -21,7 +21,33 @@ require_once __DIR__.'/Native_Design.php';
 
 abstract class Abstract_Zarincode_Widget extends Widget_Base {
     use \Zarincode\Runtime260\Elementor\Widget_Contract;
+    /**
+     * Page model this widget instance is locked to ('' = every model).
+     * Scoped widgets exist so the Elementor editor never has to ship the
+     * control stack of all ten page models at once.
+     */
+    protected $zc_scope='';
+    /** Raw settings of the saved element ('' when the widget is being inserted). */
+    protected $zc_raw=array();
     abstract protected function kind(): string;
+    /** Scoped page model key (see Widget_Schema::sections()). */
+    public function zc_scope():string { return (string)$this->zc_scope; }
+    public function __construct($data=array(),$args=null) {
+        if(is_array($data)&&isset($data['settings'])&&is_array($data['settings'])) $this->zc_raw=$data['settings'];
+        parent::__construct($data,$args);
+    }
+    /**
+     * Does this element use the legacy (v2.6) custom layout?
+     *
+     * The legacy layout registers ~2,000 controls per widget (30 components x
+     * normal/hover x background/border/shadow groups). Elementor ships the whole
+     * control stack of every widget used on the page with the editor, so every
+     * legacy widget added ~1.2 MB to each editor load — the measured cause of the
+     * "editor is very slow" report. The legacy controls are now registered only
+     * for elements that actually run in custom mode; switching the mode in the
+     * panel saves and reloads the editor (see assets/editor.js).
+     */
+    protected function legacy_layout_active():bool { return 'custom'===($this->zc_raw['design_mode']??''); }
     public function get_name(): string { return 'zarincode_'.$this->kind(); }
     public function get_title(): string { return Widget_Schema::definitions()[$this->kind()][1]; }
     public function get_icon(): string { return Widget_Schema::definitions()[$this->kind()][2]; }
@@ -40,7 +66,11 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     /** Also cover saved/imported rows from 2.6.0, before CSS generation (not just render). */
     protected function get_init_settings() {
         $settings=parent::get_init_settings();
+        // A scoped page widget always renders its own model, even if the saved
+        // element predates the per-model widget split.
+        if($this->zc_scope!=='') $settings['section_key']=$this->zc_scope;
         $settings=Native_Design::migrate($settings,$this->get_data('settings')?:[],$this->kind());
+        if($this->zc_scope!=='') $settings['section_key']=$this->zc_scope;
         return Repeater_Identity::settings($settings,$this->get_controls(),$this->get_name().'.'.$this->get_id());
     }
     public function get_raw_data($with_html_content=false) {
@@ -72,10 +102,13 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->field('design_mode','طراحی ویجت',C::SELECT,'original',['options'=>['original'=>'طراحی اصلی دمو (پیش‌فرض)','custom'=>'چیدمان سفارشی نسخه ۲٫۶'],'description'=>'همان طرح اصلی از کنترل‌های مستقل ساخته می‌شود. متن، آیکون، تصویر، پیوند، آیتم‌ها و استایل اجزا در بخش‌های طراحی اصلی قابل ویرایش‌اند؛ طرح سفارشی قدیمی نیز حفظ شده است.']);
         if ($kind==='page_section') {
             $this->field('page_cards_source','منبع کارت‌های صفحه',C::SELECT,'auto',['options'=>['auto'=>'خودکار مطابق نوع صفحه','manual'=>'کارت‌های دستی زیر'],'condition'=>['design_mode'=>'custom']]);
-            $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
+            if ($this->zc_scope==='') {
+                $this->field('section_key','الگوی اولیه صفحه',C::SELECT,'about-page',['options'=>Widget_Schema::sections()]);
+            }
             $this->field('page_content','محتوای کامل صفحه (جایگزین الگو)',C::WYSIWYG,'',['condition'=>['design_mode'=>'custom'],'description'=>'برای شخصی‌سازی کامل متن حقوقی، محتوای خود را اینجا وارد کنید. متن الگو صرفاً نمونه است و باید بازبینی حقوقی شود.']);
         }
         $this->end_controls_section();
+        if($this->legacy_layout_active()):
         $this->start_controls_section('custom_main',['label'=>'محتوای چیدمان سفارشی']);
         $this->field('badge','نشان بالای عنوان',C::TEXT,in_array($kind,['hero','promo'],true)?'ZARINCODE STUDIO':'');
         $this->field('badge_icon','آیکون نشان',C::ICONS,['value'=>'fas fa-star','library'=>'fa-solid']);
@@ -110,8 +143,9 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
             $clause->add_control('icon',['label'=>'آیکون بند','type'=>C::ICONS]);
             $clause->add_control('visible',['label'=>'نمایش بند','type'=>C::SWITCHER,'default'=>'yes']);
             foreach(Legal_And_Inner_Pages::documents() as $key=>$document) {
+                if($this->zc_scope!=='' && $key!==$this->zc_scope) continue;
                 $prefix='document_'.str_replace('-','_',$key).'_';
-                $this->start_controls_section($prefix.'section',['label'=>'محتوای '.(Widget_Schema::sections()[$key]??$key),'condition'=>['section_key'=>$key]]);
+                $this->start_controls_section($prefix.'section',['label'=>'محتوای '.(Widget_Schema::sections()[$key]??$key),'condition'=>($this->zc_scope===''?['section_key'=>$key]:['design_mode'=>'custom'])]);
                 $this->field($prefix.'title','عنوان صفحه',C::TEXT,$document['title']??'');
                 $this->field($prefix.'badge','نشان صفحه',C::TEXT,$document['badge']??'');
                 $this->field($prefix.'description','مقدمه صفحه',C::WYSIWYG,$document['description']??'');
@@ -236,7 +270,8 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
         $this->field('image_fit','نحوه قرارگیری تصویر',C::SELECT,'cover',['options'=>['cover'=>'پوشش','contain'=>'در بر گرفتن','fill'=>'کشیده','none'=>'اصلی'],'selectors'=>['{{WRAPPER}} .zc-edit-image'=>'object-fit: {{VALUE}};']]);
         $this->add_responsive_control('icon_size',['label'=>'اندازه آیکون','type'=>C::SLIDER,'range'=>['px'=>['min'=>8,'max'=>200]],'selectors'=>['{{WRAPPER}} .zc-edit-icon'=>'font-size: {{SIZE}}{{UNIT}};','{{WRAPPER}} .zc-edit-icon svg'=>'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};']]);
         $this->end_controls_section();
-        Native_Design::register($this,$kind);
+        endif; // end legacy custom-layout controls
+        Native_Design::register($this,$kind,$this->zc_scope);
     }
     protected function render(): void {
         $settings=$this->get_settings_for_display();
@@ -262,7 +297,15 @@ class Widget_Promo_Banner extends Abstract_Zarincode_Widget { protected function
 class Widget_Project_Steps extends Abstract_Zarincode_Widget { protected function kind(): string { return 'steps'; } }
 class Widget_Testimonials extends Abstract_Zarincode_Widget { protected function kind(): string { return 'testimonials'; } }
 class Widget_Blog_Grid extends Abstract_Zarincode_Widget { protected function kind(): string { return 'blog'; } }
-class Widget_Page_Content_Section extends Abstract_Zarincode_Widget { protected function kind(): string { return 'page_section'; } }
+/**
+ * Legacy all-in-one inner-page widget. Kept registered (hidden from the panel)
+ * so content built by earlier versions renders unchanged; new pages use the
+ * scoped widgets in Page_Section_Widgets.php.
+ */
+class Widget_Page_Content_Section extends Abstract_Zarincode_Widget {
+    protected function kind(): string { return 'page_section'; }
+    public function show_in_panel(): bool { return false; }
+}
 
 class Widget_Hero_Intro extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_intro'; } }
 class Widget_Hero_CTA extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero_cta'; } }

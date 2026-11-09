@@ -46,7 +46,7 @@ final class Demo_Composition {
         if(!current_user_can('edit_theme_options'))return;
         echo '<div class="wrap"><h1>ساماندهی ویجت‌های دموی ۳٫۲</h1><p>با اقدام شما، شش ابزار تخصصی از صفحه اصلی به صفحات خدمات، پروژه‌ها، درباره ما، سئو و تعرفه‌ها منتقل می‌شوند. همان تنظیمات و محتوا منتقل و از مبدأ و مقصد پشتیبان گرفته می‌شود. گروه‌های حاوی چند ویجت دست‌نخورده می‌مانند. ابتدا در staging آزمایش کنید.</p>';
         $id=absint($_POST['source_id']??get_option('page_on_front'));
-        if(isset($_POST['zc_relocate'])){check_admin_referer('zc_relocate');try{$count=self::relocate($id);echo '<div class="notice notice-success"><p>'.esc_html(sprintf('%d بخش تخصصی منتقل شد.',$count)).'</p></div>';}catch(\Throwable $error){echo '<div class="notice notice-error"><p>'.esc_html($error->getMessage()).'</p></div>';}}
+        if(isset($_POST['zc_relocate'])){check_admin_referer('zc_relocate');try{$count=self::relocate($id);echo '<div class="notice notice-success"><p>'.esc_html(sprintf('%d بخش تخصصی منتقل شد.',$count)).'</p></div>';}catch(\Throwable $error){echo '<div class="notice notice-error"><p>'.esc_html(\Zarincode\Runtime260\Security\Hardening::scrub($error->getMessage())).'</p></div>';}}
         $plan=current_user_can('edit_post',$id)?self::plan($id):['moves'=>[]];echo '<ul>';foreach($plan['moves'] as $slug=>$move)echo '<li>'.esc_html($move['title'].' — '.count($move['nodes']).' بخش').'</li>';echo '</ul><form method="post">';wp_nonce_field('zc_relocate');echo '<label>شناسه صفحه مبدأ <input type="number" name="source_id" min="1" required value="'.esc_attr($id).'"></label><p><button name="zc_relocate" value="1" class="button button-primary">پشتیبان‌گیری و انتقال به صفحات مرتبط</button></p></form></div>';
     }
 }

@@ -30,6 +30,19 @@ class Assets {
         add_action( 'wp_head', [ $this, 'preload_critical_fonts' ], 1 );
         add_filter( 'style_loader_tag', [ $this, 'make_fontawesome_non_blocking' ], 10, 4 );
         add_filter( 'script_loader_tag', [ $this, 'defer_theme_scripts' ], 10, 3 );
+        // Vazirmatn is the project typeface — including wp-admin, the login
+        // screen and the Elementor editor panel/preview.
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_font' ] );
+        add_action( 'login_enqueue_scripts', [ $this, 'enqueue_admin_font' ] );
+        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_admin_font' ] );
+        add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_editor_preview_font' ] );
+        // Standing typography order: Vazirmatn is the only typeface of the
+        // project. Elementor's kit still requests Roboto / Roboto Slab from
+        // Google Fonts on every page (measured: 2 external stylesheets), which
+        // both breaks the order and adds render-blocking third-party requests.
+        add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+        add_filter( 'body_class', [ $this, 'font_body_class' ] );
+        add_filter( 'admin_body_class', [ $this, 'font_admin_body_class' ] );
     }
 
     /**
@@ -41,12 +54,11 @@ class Assets {
         if ( is_admin() || is_feed() || wp_doing_ajax() ) {
             return;
         }
-        foreach ( [ 'Vazirmatn-Regular.woff2', 'Vazirmatn-Bold.woff2' ] as $font ) {
-            printf(
-                '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin />' . "\n",
-                esc_url( ZARINCODE_URI . '/assets/fonts/vazirmatn/' . $font )
-            );
-        }
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin />' . "\n",
+            esc_url( ZARINCODE_URI . '/assets/fonts/Vazirmatn-Variable.woff2' )
+        );
+        // Elementor caches its own font preloads; nothing else is needed.
     }
 
     /**
@@ -98,6 +110,64 @@ class Assets {
      * `get_style_depends()` for the homepage widgets — in the editor preview and
      * on any non-front page that embeds one of those widgets or its shortcode.
      */
+    /**
+     * Load the variable Vazirmatn face wherever WordPress or Elementor paints
+     * its own type (admin, login, Elementor editor chrome).
+     */
+    public function enqueue_admin_font(): void {
+        wp_enqueue_style(
+            'zarincode-admin-font',
+            ZARINCODE_URI . '/assets/css/admin-font.css',
+            array(),
+            $this->asset_version( '/assets/css/admin-font.css' )
+        );
+    }
+
+    /**
+     * The Elementor preview iframe is a front-end document. Ship the face and
+     * the widget skin so what the editor shows is what the visitor gets — and
+     * so an Elementor-built page never looks "undesigned" while editing.
+     */
+    public function enqueue_editor_preview_font(): void {
+        $this->enqueue_admin_font();
+        wp_enqueue_style(
+            'zarincode-vazirmatn',
+            ZARINCODE_URI . '/assets/css/vazirmatn.css',
+            array(),
+            $this->asset_version( '/assets/css/vazirmatn.css' )
+        );
+        wp_enqueue_style(
+            'zarincode-widgets',
+            ZARINCODE_URI . '/assets/css/widgets.css',
+            array( 'zarincode-vazirmatn' ),
+            $this->asset_version( '/assets/css/widgets.css' )
+        );
+    }
+
+    /** Option «اعداد فارسی» → html.zc-fa-digits (ss01 of Vazirmatn). */
+    public function font_body_class( array $classes ): array {
+        if ( zarincode_get_option( 'persian_digits', true ) ) {
+            $classes[] = 'zc-fa-digits';
+        }
+        $classes[] = 'zc-font-vazirmatn';
+        return $classes;
+    }
+
+    /** Same switch for wp-admin. */
+    public function font_admin_body_class( $classes ): string {
+        $classes = is_string( $classes ) ? $classes : '';
+        if ( zarincode_get_option( 'persian_digits', true ) ) {
+            $classes .= ' zc-fa-digits';
+        }
+        return $classes . ' zc-font-vazirmatn';
+    }
+
+    /** Version an asset by its mtime so an edited file is never served from cache. */
+    private function asset_version( string $relative ): string {
+        $path = get_template_directory() . $relative;
+        return file_exists( $path ) ? (string) filemtime( $path ) : ZARINCODE_VERSION;
+    }
+
     public function register_frontend_styles(): void {
         if ( wp_style_is( 'zarincode-home-cheerful', 'registered' ) ) {
             return;
@@ -143,6 +213,16 @@ class Assets {
             ZARINCODE_URI . '/assets/css/zarincode-main.css',
             [ 'zarincode-vazirmatn', 'zarincode-fontawesome' ],
             ZARINCODE_VERSION
+        );
+
+        // 4. Widget skin: WordPress core widgets, WooCommerce and Elementor's
+        //    stock widgets. Loaded everywhere because an Elementor page, a
+        //    widget area or a WooCommerce template can appear on any route.
+        wp_enqueue_style(
+            'zarincode-widgets',
+            ZARINCODE_URI . '/assets/css/widgets.css',
+            array( 'zarincode-main' ),
+            $this->asset_version( '/assets/css/widgets.css' )
         );
 
         // Product-page reference layout (hero row, KPI strip, tabs) is shared

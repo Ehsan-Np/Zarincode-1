@@ -46,12 +46,16 @@ if ( '' !== $zc_home_path && 0 === strpos( $zc_cur_path, $zc_home_path ) ) {
 }
 $zc_cur_path = untrailingslashit( '/' . ltrim( $zc_cur_path, '/' ) );
 
-$zc_nav_state = static function ( array $paths, bool $extra = false ): array {
-    global $zc_cur_path;
-    $hit = $extra;
+/* PHP 8.1+: header.php runs inside load_template(), so its variables are NOT
+   globals. `global $zc_cur_path` inside the closure therefore resolved to
+   null and strpos(null, …) logged a deprecation on every nav item (768 times
+   in one page load). The path is captured by reference instead. */
+$zc_nav_state = static function ( array $paths, bool $extra = false ) use ( &$zc_cur_path ): array {
+    $hit   = $extra;
+    $route = is_string( $zc_cur_path ) ? $zc_cur_path : '';
     foreach ( $paths as $path ) {
         $path = untrailingslashit( '/' . ltrim( (string) $path, '/' ) );
-        if ( $zc_cur_path === $path || ( '/' !== $path && 0 === strpos( $zc_cur_path, $path . '/' ) ) ) {
+        if ( $route === $path || ( '/' !== $path && 0 === strpos( $route, $path . '/' ) ) ) {
             $hit = true;
             break;
         }

@@ -106,8 +106,36 @@
         cleanup = () => { alive = false; observer.disconnect(); $(root).off('.zcNativePanel'); currentApply = () => {}; };
         schedule();
     }
+    /**
+     * Legacy layout switch.
+     *
+     * The v2.6 ("custom") controls of a zarincode widget are registered on the
+     * server only for elements that really use them, otherwise each such widget
+     * would ship ~1.2 MB of controls with every editor load. Switching
+     * `design_mode` therefore saves the element and reloads the editor so the
+     * matching control set is registered.
+     */
+    let modeReloading = false;
+    function watchLegacyMode(panel, model) {
+        if (!model || !String(model.get('widgetType') || '').startsWith('zarincode_')) return;
+        model.on('change:settings', function () {
+            if (modeReloading) return;
+            const settings = model.get('settings');
+            const mode = settings && settings.get ? settings.get('design_mode') : null;
+            if (mode !== 'custom' && mode !== 'original') return;
+            modeReloading = true;
+            elementorCommon.elements.$body.addClass('zc-mode-switching');
+            const done = () => window.location.reload();
+            if (typeof $e !== 'undefined' && $e.run) {
+                $e.run('document/save/update').then(done).catch(done);
+            } else {
+                done();
+            }
+        });
+    }
     $(window).on('elementor:init', function () {
         elementor.hooks.addAction('panel/open_editor/widget', mount);
+        elementor.hooks.addAction('panel/open_editor/widget', watchLegacyMode);
         elementor.on('preview:loaded', bindPreview);
     });
     window.addEventListener('pagehide', () => { cleanup(); if (frameDocument) frameDocument.removeEventListener('pointerdown', previewClick, true); });

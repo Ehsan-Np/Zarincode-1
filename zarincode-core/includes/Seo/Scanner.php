@@ -531,7 +531,7 @@ final class Scanner {
 		$ms = (int) round( ( microtime( true ) - $start ) * 1000 );
 
 		if ( is_wp_error( $res ) ) {
-			return array( 'code' => 0, 'body' => '', 'error' => $res->get_error_message(), 'ttfb' => $ms );
+			return array( 'code' => 0, 'body' => '', 'error' => \Zarincode\Runtime260\Security\Hardening::scrub( $res->get_error_message() ), 'ttfb' => $ms );
 		}
 		$headers = wp_remote_retrieve_headers( $res );
 		return array(

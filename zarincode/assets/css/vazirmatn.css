@@ -1,50 +1,89 @@
-/* فونت رسمی وزیرمتن (Vazirmatn) - میزبانی محلی در قالب زرین کد */
+/* =====================================================================
+   Vazirmatn — the one and only typeface of this project
+   ---------------------------------------------------------------------
+   The variable font (wght 100–900) is bundled locally: one 109KB woff2
+   request covers every weight instead of seven static files, and it works
+   offline (no Google Fonts, no CDN, GDPR-safe).
+
+   Persian digits are NOT a second font: Vazirmatn ships the `ss01`
+   ("Farsi Digits") stylistic set, so Arabic-Indic digits are switched on
+   with a font feature. That works inside Elementor widgets, WooCommerce
+   tables, the admin panel and the editor panel — everywhere the font is
+   used — without touching a single string.
+
+   Source: https://github.com/rastikerdar/vazirmatn (SIL OFL 1.1)
+   ===================================================================== */
+
 @font-face {
     font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-Light.woff2') format('woff2');
-    font-weight: 300;
+    src: url('../fonts/Vazirmatn-Variable.woff2') format('woff2-variations'),
+         url('../fonts/Vazirmatn-Variable.woff2') format('woff2'),
+         url('../fonts/Vazirmatn-Variable.ttf') format('truetype');
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
+    unicode-range: U+0000-00FF, U+0600-06FF, U+0750-077F, U+0870-088E,
+        U+08A0-08FF, U+200C-200D, U+2010-2015, U+2028-202F, U+2030-2046,
+        U+20A0-20CF, U+2116, U+2190-21FF, U+2200-22FF, U+25A0-25FF,
+        U+FB50-FDFF, U+FE70-FEFF;
 }
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+
+:root {
+    --zc-font-family: 'Vazirmatn', 'Vazirmatn FD', 'IRANSans', 'Segoe UI',
+        Tahoma, 'Helvetica Neue', Arial, sans-serif;
+    /* Persian digits for every number written anywhere in the site. */
+    --zc-font-features: 'ss01' 1;
 }
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+
+/* A single, predictable stack for the whole front end — including the
+   parts Elementor and WooCommerce render on their own. */
+html body,
+html body button,
+html body input,
+html body select,
+html body textarea,
+html body optgroup,
+html body .elementor-widget-container,
+html body [class*='elementor-widget-'],
+html body .woocommerce,
+html body .woocommerce-page,
+html body .wp-block-group,
+html body .entry-content,
+html body .zc-hp {
+    font-family: var(--zc-font-family);
 }
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+
+/* ss01 = Farsi Digits (verified in the shipped variable font). Only when the
+   theme's «اعداد فارسی» option is on; html gets the class from body_class. */
+html.zc-fa-digits body,
+html.zc-fa-digits body :where(button, input, select, textarea, table, td, th) {
+    font-feature-settings: var(--zc-font-features);
+    font-variant-numeric: normal;
 }
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+
+/* Elementor's own UI type scale asks for Roboto; keep the brand font there
+   too so nothing on the site falls back to a Latin-only face. */
+.elementor-widget-container,
+.elementor-widget-container p,
+.elementor-widget-container span,
+.elementor-widget-container li,
+.elementor-widget-container a,
+.elementor-widget-container h1,
+.elementor-widget-container h2,
+.elementor-widget-container h3,
+.elementor-widget-container h4,
+.elementor-widget-container h5,
+.elementor-widget-container h6,
+.elementor-widget-container button,
+.elementor-widget-container input,
+.elementor-widget-container select,
+.elementor-widget-container textarea {
+    font-family: var(--zc-font-family);
 }
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('../fonts/vazirmatn/Vazirmatn-Black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+
+/* Metric-safe fallbacks while the variable font is still loading. */
+@supports (font-variation-settings: normal) {
+    :root {
+        --zc-font-variable: 1;
+    }
 }

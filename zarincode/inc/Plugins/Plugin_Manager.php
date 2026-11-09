@@ -302,7 +302,7 @@ class Plugin_Manager {
                 return [
                     'success' => false,
                     'status'  => 'not_installed',
-                    'message' => 'خطا در استخراج فایل فشرده افزونه: ' . $unzipped->get_error_message(),
+                    'message' => 'خطا در استخراج فایل فشرده افزونه: ' . \Zarincode\Runtime260\Security\Hardening::scrub( $unzipped->get_error_message() ),
                 ];
             }
 
@@ -318,7 +318,7 @@ class Plugin_Manager {
             return [
                 'success' => false,
                 'status'  => self::get_plugin_status( $plugin ),
-                'message' => 'افزونه نصب شد اما در فعال‌سازی خطایی رخ داد: ' . $activated->get_error_message(),
+                'message' => 'افزونه نصب شد اما در فعال‌سازی خطایی رخ داد: ' . \Zarincode\Runtime260\Security\Hardening::scrub( $activated->get_error_message() ),
             ];
         }
 

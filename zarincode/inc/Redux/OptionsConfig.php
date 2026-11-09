@@ -153,7 +153,7 @@ class OptionsConfig {
                 'redux' => 'el el-lines',
                 'desc'  => 'انتخاب هدر پیش‌فرض یا هدر المنتوری، تنظیمات چسبان بودن هدر، مگامنو، دکمه جستجو، سبد خرید و دکمه مشاوره.',
                 'fields' => [
-                    [ 'id' => 'header_source',            'type' => 'select', 'title' => 'منبع رندر هدر سایت', 'options' => [ 'default_pill' => 'هدر کپسولی استاندارد زرین کد (Crextio Pill Header)', 'elementor_hf' => 'استفاده از قالب هدر ساخته شده در المنتور (zc_hf_template)' ], 'default' => 'default_pill' ],
+                    [ 'id' => 'header_source',            'type' => 'select', 'title' => 'منبع رندر هدر سایت', 'options' => [ 'elementor_hf' => 'هدر المنتوری (قابل ویرایش کامل با ویجت‌های المنتور)', 'default_pill' => 'هدر کپسولی کدنویسی‌شدهٔ زرین کد (پشتیبان)' ], 'default' => 'elementor_hf' ],
                     [ 'id' => 'enable_sticky_header',     'type' => 'switch', 'title' => 'چسبان بودن هدر هنگام اسکرول', 'default' => true ],
                     [ 'id' => 'header_show_search',       'type' => 'switch', 'title' => 'نمایش دکمه مودال جستجوی سریع', 'default' => true ],
                     [ 'id' => 'header_show_dark_toggle',  'type' => 'switch', 'title' => 'نمایش دکمه تغییر حالت روشن / تیره در هدر', 'default' => true ],
@@ -266,7 +266,7 @@ class OptionsConfig {
                 'redux' => 'el el-website',
                 'desc'  => 'ساختار پابرگ، فراخوان همکاری، اعتبارنامه‌های صادرشده و حقوق نشر را مدیریت کنید.',
                 'fields' => [
-                    [ 'id' => 'footer_source',            'type' => 'select',   'title' => 'ساختار پابرگ', 'options' => [ 'default_bento' => 'پابرگ اصلی زرین کد', 'elementor_hf' => 'قالب پابرگ طراحی‌شده با المنتور' ], 'default' => 'default_bento' ],
+                    [ 'id' => 'footer_source',            'type' => 'select',   'title' => 'ساختار پابرگ', 'options' => [ 'elementor_hf' => 'فوتر المنتوری (قابل ویرایش کامل با ویجت‌های المنتور)', 'default_bento' => 'فوتر بنتو کدنویسی‌شدهٔ زرین کد (پشتیبان)' ], 'default' => 'elementor_hf' ],
                     [ 'id' => 'footer_show_cta_strip',    'type' => 'switch',   'title' => 'نمایش فراخوان همکاری در پابرگ', 'default' => true ],
                     [ 'id' => 'footer_cta_heading',       'type' => 'text',     'title' => 'عنوان نوار فراخوان بالای فوتر', 'default' => 'برای تحول دیجیتال، طراحی سایت اختصاصی یا خرید سورس‌کدهای آماده آماده‌اید؟' ],
                     [ 'id' => 'footer_about_text',        'type' => 'textarea', 'title' => 'متن معرفی آژانس زرین کد در ستون اول فوتر', 'default' => 'زرین کد با مدیریت و کدنویسی مستقیم احسان نادری پناه، ارائه‌دهنده خدمات فوق‌تخصصی طراحی سایت، برنامه‌نویسی نرم‌افزار، سئو سایت و شبکه‌های اجتماعی، تولید محتوا و مارکت‌پلیس افزونه‌ها، قالب‌های وردپرس و سورس‌کدهای آماده تجاری است.' ],

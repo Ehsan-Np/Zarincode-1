@@ -53,8 +53,13 @@ class Renderer {
         return isset($methods[$kind]) ? Original_Design::{$methods[$kind]}($settings) : '';
     }
     public static function output(string $kind,array $settings=[]): string {
-        if(!\Zarincode\Runtime260\Features\Manager::enabled('native_widgets'))return '';
+        // The approved original design is plain PHP/CSS: it does not need
+        // Elementor, so it keeps rendering when Elementor is not active (for
+        // example while it is being updated, or in the pages' non-Elementor
+        // fallback content). Only the v2.6 custom layout depends on Elementor's
+        // widget layer, and that one still respects the feature flag.
         if(($settings['design_mode']??'original')!=='custom') return self::original($kind,$settings);
+        if(!\Zarincode\Runtime260\Features\Manager::enabled('native_widgets'))return '';
         $defaults=Widget_Schema::defaults($kind);
         if(class_exists('Elementor\\Plugin')&&did_action('elementor/init')){
             $element=\Elementor\Plugin::instance()->elements_manager->create_element_instance(['id'=>'zc'.substr(md5($kind),0,6),'elType'=>'widget','widgetType'=>'zarincode_'.$kind,'settings'=>$settings]);

@@ -1,0 +1,82 @@
+/* =====================================================================
+   Vazirmatn in wp-admin, the login screen and the Elementor editor panel
+   ---------------------------------------------------------------------
+   WordPress hard-codes system-ui/-apple-system in the admin. The brand font
+   is loaded locally from the theme so the dashboard, the theme options
+   panel, the demo importer, the Elementor editor chrome and the Elementor
+   preview iframe all render with the same typeface as the front end.
+   ===================================================================== */
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/Vazirmatn-Variable.woff2') format('woff2-variations'),
+         url('../fonts/Vazirmatn-Variable.woff2') format('woff2'),
+         url('../fonts/Vazirmatn-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body,
+body.wp-admin,
+.wp-admin .wrap,
+.wp-admin #wpbody-content,
+.wp-admin .wp-heading-inline,
+.wp-admin h1,
+.wp-admin h2,
+.wp-admin h3,
+.wp-admin h4,
+.wp-admin p,
+.wp-admin li,
+.wp-admin td,
+.wp-admin th,
+.wp-admin label,
+.wp-admin input,
+.wp-admin select,
+.wp-admin textarea,
+.wp-admin button,
+.wp-admin .button,
+.wp-admin .notice,
+.wp-admin .postbox,
+.wp-admin .form-table th,
+.wp-admin .form-table td,
+.login form,
+.login label,
+.login input,
+.login .button,
+.login #nav,
+.login #backtoblog,
+#elementor-panel,
+#elementor-panel *,
+#elementor-preview,
+#elementor-preview *,
+.elementor-control,
+.elementor-control *,
+.elementor-panel,
+.elementor-panel *,
+.mce-content-body,
+.wp-editor-area {
+    font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Arial, sans-serif !important;
+}
+
+/* Persian digits inside the admin too (option: اعداد فارسی). */
+body.zc-fa-digits,
+body.zc-fa-digits input,
+body.zc-fa-digits select,
+body.zc-fa-digits textarea,
+body.zc-fa-digits td,
+body.zc-fa-digits th,
+#elementor-panel,
+#elementor-preview {
+    font-feature-settings: 'ss01' 1;
+}
+
+/* Elementor panel icons are a font, not text: never touch their family. */
+#elementor-panel .eicon,
+#elementor-panel [class^='eicon-'],
+#elementor-panel [class*=' eicon-'],
+#elementor-panel .fa,
+#elementor-preview .fa,
+#elementor-preview .eicon {
+    font-family: inherit;
+}

@@ -107,6 +107,7 @@ class Elementor_Loader {
     public function register_widgets( $widgets_manager ): void {
         if ( !\Zarincode\Runtime260\Features\Manager::enabled('native_widgets') ) { return; }
         require_once __DIR__ . '/Elementor_Widgets_Collection.php';
+        require_once __DIR__ . '/Page_Section_Widgets.php';
         require_once __DIR__ . '/Home_Widgets.php';
         require_once __DIR__ . '/Home_Defaults.php';
         require_once __DIR__ . '/Professional_Widgets.php';
@@ -140,6 +141,18 @@ class Elementor_Loader {
             Widget_Testimonials::class,
             Widget_Blog_Grid::class,
             Widget_Page_Content_Section::class,
+            // Scoped page widgets: one per inner-page model, so the editor only
+            // ships the controls of the model actually used (item 10 — speed).
+            Widget_Page_About::class,
+            Widget_Page_Contact::class,
+            Widget_Page_Services::class,
+            Widget_Page_Projects::class,
+            Widget_Page_Terms::class,
+            Widget_Page_Warranty::class,
+            Widget_Page_Privacy::class,
+            Widget_Page_Refund::class,
+            Widget_Page_Gdpr::class,
+            Widget_Page_Dmca::class,
             // Homepage "cheerful + formal" section widgets (v4.6.0).
             Home_Hero::class,
             Home_Partners::class,

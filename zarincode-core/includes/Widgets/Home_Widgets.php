@@ -1001,7 +1001,11 @@ class Home_Partners extends Abstract_Home_Widget {
 		$this->content_section( 'zc_partners', 'متن‌های بخش' );
 		$this->source_controls( 'source', 'count', 'برندها', 'فهرست دستی برندها (دلخواه)', 'نام کارفرمایان پروژه‌های واقعی سایت', 12, 1, 40 );
 		$this->f_text( $this, 'label', 'برچسب بخش', $this->ds( 'label' ) );
-		$this->f_text( $this, 'count', 'شمارنده', $this->ds( 'count' ), array( 'description' => 'مثال: +۲۴ سازمان — با گزینهٔ زیر می‌توانید خودکار شود.' ) );
+		// NOTE: `count` is already the number-of-items control added by
+		// source_controls(). Registering a second control with the same id made
+		// Elementor log «Cannot redeclare control with same name "count"» on
+		// every panel load. The counter caption lives in `count_label`.
+		$this->f_text( $this, 'count_label', 'شمارنده', $this->ds( 'count' ), array( 'description' => 'مثال: +۲۴ سازمان — با گزینهٔ زیر می‌توانید خودکار شود.' ) );
 		$this->f_switch( $this, 'auto_count', 'شمارندهٔ خودکار از تعداد برندها', 'yes' );
 		$this->f_text( $this, 'note', 'یادداشت پایین', $this->ds( 'note' ) );
 		$this->end_controls_section();
@@ -1025,6 +1029,10 @@ class Home_Partners extends Abstract_Home_Widget {
 	}
 
 	protected function prepare( array $settings ): array {
+		// The caption control is `count_label`; the template prints `count`.
+		if ( isset( $settings['count_label'] ) && '' !== trim( (string) $settings['count_label'] ) ) {
+			$settings['count'] = (string) $settings['count_label'];
+		}
 		if ( 'manual' !== ( $settings['source'] ?? 'query' ) ) {
 			$this->fill_from_projects( $settings );
 		} else {

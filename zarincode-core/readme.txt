@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.9.1
+Stable tag: 4.10.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,13 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.10.0 =
+* New `Security\Hardening`: error-display shield (works even when the host forces `display_errors On`), `scrub()` path sanitizer used by every message returned to a browser, security headers, XML-RPC off, author/REST user enumeration blocked, `debug.log` guard, admin audit panel.
+* Elementor editor speed: one scoped widget per inner-page model (page controls payload 2,457 KB → 95 KB); legacy v2.6 layout controls are registered only for elements that actually use them (editor.js saves and reloads when the mode changes).
+* Legal/inner pages: designed document layout with real demo clauses (hero, table of contents, numbered cards, sidebar, CTA) instead of bare heading/text widgets.
+* Demo import: 10 WooCommerce products (type/price/stock/visibility/image fixed), 10 blog posts, coming-soon disabled, shop page wired.
+* Widget skin: full Elementor stock-widget skin + Vazirmatn enforced inside widget containers.
 
 = 4.9.1 =
 * Companion release for theme 4.9.1 — no functional change to the core engine; the version is bumped so WordPress reports the pair as one update.

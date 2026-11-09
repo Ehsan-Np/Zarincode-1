@@ -21,7 +21,47 @@ final class Service_Demo {
         if($kind==='product'){$row['sales']='محصول نمایشی';$row['old_price']='';$row['ver']='نسخه نمایشی';$row['desc']='نمونه کاتالوگ دیجیتال برای نمایش ساختار فروشگاه زرین کد. مشخصات، فایل قابل دریافت، مجوز استفاده و شرایط پشتیبانی باید برای محصول واقعی توسط فروشنده تکمیل شود. این داده نمایشی به معنی عرضه یا تضمین قابلیت‌های محصول نیست.';return $row;}return $row;
     }
     private static function section(string $type,array $settings):array {return ['id'=>substr(wp_generate_uuid4(),0,8),'elType'=>'section','settings'=>['layout'=>'boxed'],'elements'=>[['id'=>substr(wp_generate_uuid4(),0,8),'elType'=>'column','settings'=>['_column_size'=>100],'elements'=>[['id'=>substr(wp_generate_uuid4(),0,8),'elType'=>'widget','widgetType'=>$type,'settings'=>$settings,'elements'=>[]]]]]];}
-    public static function legal(string $slug):array {$data=self::data()['legal'][$slug]??[];if(!$data)return [];$tree=[self::section('heading',['title'=>$data['title'],'header_size'=>'h1']),self::section('text-editor',['editor'=>'<p><strong>متن نمونه قابل ویرایش:</strong> این صفحه الگوی محتوایی دمو است، نه مشاوره حقوقی یا اعلام انطباق قانونی. مالک سایت باید آن را با رویه واقعی کسب‌وکار و قوانین قابل اعمال تطبیق دهد.</p>'])];foreach($data['sections'] as $part){$tree[]=self::section('heading',['title'=>$part[0],'header_size'=>'h2']);$tree[]=self::section('text-editor',['editor'=>'<p>'.$part[1].'</p>']);}return $tree;}
+    /**
+     * Legal pages are NOT built from loose heading/text widgets any more.
+     *
+     * A page made of ten bare `heading` + `text-editor` widgets renders as an
+     * unstyled wall of text (Elementor's kit paints the headings blue and the
+     * theme has nothing to hook onto) — exactly the "no design" report.
+     * Every legal page is now ONE `zarincode_page_section` widget: it owns the
+     * hero, the sticky clause navigation, the numbered clause cards, the
+     * sidebar and the CTA, and every string of it is editable in the panel.
+     *
+     * @return array Elementor tree (empty = let the caller build the widget).
+     */
+    public static function legal(string $slug):array {return [];}
+
+    /** Raw legal copy of one page (title + [heading, body] pairs). */
+    public static function legal_data(string $slug):array {return self::data()['legal'][$slug]??[];}
+
+    /** Clause rows in the shape of the page_section widget repeater. */
+    public static function legal_rows(string $slug):array {
+        $data=self::legal_data($slug);$out=[];$icons=['fas fa-landmark','fas fa-file-signature','fas fa-shield-halved','fas fa-scale-balanced','fas fa-handshake','fas fa-gavel','fas fa-circle-info','fas fa-lock'];
+        foreach(($data['sections']??[]) as $i=>$part){
+            $out[]=[
+                '_id'=>substr(md5($slug.$i),0,8),'_variant'=>'v1','_enabled'=>'yes',
+                'icon_1_icon'=>['value'=>$icons[$i%count($icons)],'library'=>'fa-solid'],'icon_1_visible'=>'yes',
+                'heading_text_1'=>(string)($part[0]??''),'heading_1_tag'=>'h3','heading_1_visible'=>'yes',
+                'description_1_body'=>'<p>'.wp_kses_post((string)($part[1]??'')).'</p>','description_1_visible'=>'yes',
+                'legal_clause_1_visible'=>'',
+            ];
+        }
+        return $out;
+    }
+
+    /** Navigation rows (table of contents) in the shape of the nav repeater. */
+    public static function legal_nav(string $slug):array {
+        $data=self::legal_data($slug);$out=[];foreach(($data['sections']??[]) as $i=>$part){$title=(string)($part[0]??'');if(''===$title)continue;$out[]=[
+            '_id'=>substr(md5($slug.'nav'.$i),0,8),'_variant'=>'v1','_enabled'=>'yes',
+            'link_1_href'=>['url'=>'#zc-clause-'.($i+1),'is_external'=>'','nofollow'=>'','custom_attributes'=>''],
+            'icon_1_icon'=>['value'=>'fas fa-angle-left','library'=>'fa-solid'],'icon_1_visible'=>'yes',
+            'span_text_1'=>$title,'span_1_visible'=>'yes','link_1_visible'=>'yes','list_item_1_visible'=>'yes',
+        ];}return $out;
+    }
     public static function legal_content(string $slug):string {$data=self::data()['legal'][$slug]??[];if(!$data)return ''; $html='<p>متن نمونه دمو؛ پیش از انتشار با سیاست واقعی و قوانین قابل اعمال تطبیق دهید.</p>';foreach($data['sections'] as $part)$html.='<h2>'.esc_html($part[0]).'</h2><p>'.esc_html($part[1]).'</p>';return $html;}
     public static function blog():array {return self::urls(self::data()['blog']??[]);}
     public static function sidebars():void {

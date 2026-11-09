@@ -329,7 +329,18 @@ class CPT_Manager {
         echo '</div>';
     }
 
+    /**
+     * Save the product demo fields.
+     *
+     * WooCommerce already verifies its own product nonce before firing this
+     * hook, but the handler is public and hooked globally, so it repeats the
+     * capability check rather than trusting the caller (`save_post` on a
+     * product can also be triggered by code that never saw the meta box).
+     */
     public function save_wc_general_demo_fields( int $post_id ): void {
+        if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+        }
         if ( isset( $_POST['_zc_prod_demo_url'] ) ) {
             update_post_meta( $post_id, '_zc_prod_demo_url', esc_url_raw( wp_unslash( $_POST['_zc_prod_demo_url'] ) ) );
         }

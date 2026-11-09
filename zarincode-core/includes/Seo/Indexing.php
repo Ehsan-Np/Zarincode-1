@@ -492,7 +492,7 @@ final class Indexing {
 				'time'  => time(),
 				'code'  => $code,
 				'count' => count( $urls ),
-				'note'  => is_wp_error( $response ) ? $response->get_error_message() : self::code_note( $code ),
+				'note'  => is_wp_error( $response ) ? \Zarincode\Runtime260\Security\Hardening::scrub( $response->get_error_message() ) : self::code_note( $code ),
 			)
 		);
 		update_option( 'zarincode_indexnow_log', array_slice( $history, 0, 20 ), false );
