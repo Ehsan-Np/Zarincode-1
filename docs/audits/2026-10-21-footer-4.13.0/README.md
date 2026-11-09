@@ -12,6 +12,7 @@ Artifacts in this folder:
 | `footer-4.13.0-tablet-768.png` | 768 — brand full width, then two columns per row |
 | `footer-4.13.0-mobile-390.png` | 390 — one column per row, CTA and bottom bar stacked |
 | `footer-4.13.0-elementor-editor.png` | the footer document open in the Elementor editor (Structure panel, 41 navigator items) |
+| `footer-4.13.0-elementor-editor-selected.png` | the CTA H2 selected from the canvas: the panel shows the Heading widget's own Content/Style/Advanced tabs, and the Structure panel highlights «تیتر دعوت به اقدام» |
 
 ## Document shape (post 6, `_elementor_data`)
 
