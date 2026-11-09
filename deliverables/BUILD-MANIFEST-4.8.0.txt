@@ -30,7 +30,26 @@ WordPress 7.1.4 · Elementor 4.3.6 · PHP 8.4 · fa_IR · WP_DEBUG + WP_DEBUG_LO
 · /llms.txt 200 text/plain · /robots.txt 200 with 18 AI agents · /{key}.txt 200
 · scan score 96/100 (A) on the demo site, 0 fails
 · debug.log: only Elementor's own PHP 8.4 deprecation; nothing from zarincode-core
-· evidence: docs/audits/2026-11-09-v4.8.0/
+· evidence: docs/audits/2026-11-09-v4.8.0/ (in git; sparse-excluded from the local worktree)
+
+
+PACKAGING NOTE (updated 2026-11-09, after the cleanup directive)
+----------------------------------------------------------------
+Installable archives are intentionally NOT stored in this repository or in the
+worktree: the site owner asked to keep only source + prompts on disk, and the
+4.8.0 zips that were produced during the release were deleted with that cleanup.
+The SHA-256 values below are the fingerprints of those deleted builds and are kept
+as a release record only — no file in this repository matches them.
+
+Rebuild the two installable archives from source at any time:
+
+  cd zarincode      && zip -qr /tmp/zarincode-4.8.0.zip . -x "*.DS_Store" "*.git*"
+  cd ../zarincode-core && zip -qr /tmp/zarincode-core-4.8.0.zip . -x "*.DS_Store" "*.git*"
+  unzip -t /tmp/zarincode-4.8.0.zip && unzip -t /tmp/zarincode-core-4.8.0.zip
+  sha256sum /tmp/zarincode-4.8.0.zip /tmp/zarincode-core-4.8.0.zip
+
+Because zip output embeds timestamps, a rebuild produces byte-identical *contents*
+but different checksums.
 
 CHECKSUMS
 ---------
