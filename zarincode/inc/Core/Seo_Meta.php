@@ -19,6 +19,10 @@ final class Seo_Meta {
 		add_action( 'wp_head', [ self::class, 'meta' ], 5 );
 		add_action( 'wp_head', [ self::class, 'website_schema' ], 45 );
 		add_filter( 'robots_txt', [ self::class, 'robots_txt' ], 10, 2 );
+		// Robots directives go through the core API, never a second meta tag.
+		add_filter( 'wp_robots', [ self::class, 'robots_filter' ], 10 );
+		// A static front page otherwise gets the bare site name as its <title>.
+		add_filter( 'document_title_parts', [ self::class, 'title_parts' ], 10 );
 	}
 
 	/** True when an SEO plugin already owns document metadata. */
@@ -57,6 +61,8 @@ final class Seo_Meta {
 	private static function description(): string {
 		$text = '';
 		if ( is_singular() ) {
+			// Strip shortcodes first: a page built from [zarincode_widget …] would
+			// otherwise expose its own markup as the search snippet.
 			$id   = (int) get_queried_object_id();
 			$type = (string) get_post_type( $id );
 			if ( 'product' === $type && function_exists( 'wc_get_product' ) ) {
@@ -67,7 +73,7 @@ final class Seo_Meta {
 				$text = (string) get_post_field( 'post_excerpt', $id );
 			}
 			if ( '' === trim( $text ) ) {
-				$content = (string) get_post_field( 'post_content', $id );
+				$content = strip_shortcodes( (string) get_post_field( 'post_content', $id ) );
 				if ( preg_match( '/<p[^>]*>(.+?)<\/p>/su', $content, $m ) ) {
 					$text = $m[1];
 				} else {
@@ -78,7 +84,8 @@ final class Seo_Meta {
 			$term = get_queried_object();
 			$text = $term && ! is_wp_error( $term ) ? (string) ( $term->description ?? '' ) : '';
 		}
-		$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $text ) ) ?? '' );
+		// Drop any shortcode residue ("[zarincode_widget …]") before trimming.
+		$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( strip_shortcodes( (string) $text ) ) ) ?? '' );
 		if ( '' === $text ) {
 			$text = (string) zarincode_get_option( 'brand_slogan', 'طراحی سایت، سئو، توسعه نرم‌افزار و تولید محتوای حرفه‌ای با تضمین امنیت تا سقف ۹۹٪' );
 		}
@@ -142,9 +149,49 @@ final class Seo_Meta {
 				}
 			}
 		}
-		if ( $noindex ) {
-			echo '<meta name="robots" content="noindex, follow" />' . "\n";
+	}
+
+	/**
+	 * Feeds noindex into WordPress' own robots tag instead of echoing a second
+	 * `<meta name="robots">`. Two tags on one page is a documented crawl hazard:
+	 * Google merges them, and a later plugin's `index` cannot cancel ours.
+	 */
+	public static function robots_filter( array $robots ): array {
+		if ( self::owned() ) {
+			return $robots;
 		}
+		if ( self::noindex() ) {
+			$robots['noindex'] = true;
+			$robots['follow']  = true;
+		}
+		return $robots;
+	}
+
+	/**
+	 * Front-page document title: «Site — tagline».
+	 *
+	 * WordPress prints only the site name for a static front page, which wastes
+	 * the single strongest on-page ranking field. Composed through
+	 * `document_title_parts` so the separator stays filterable, and skipped
+	 * entirely when an SEO plugin owns metadata.
+	 */
+	public static function title_parts( array $parts ): array {
+		if ( self::owned() || is_admin() || ! is_front_page() || is_paged() ) {
+			return $parts;
+		}
+		$tagline = trim( (string) get_bloginfo( 'description' ) );
+		if ( '' === $tagline && function_exists( 'zarincode_get_option' ) ) {
+			$tagline = trim( (string) zarincode_get_option( 'brand_slogan', '' ) );
+		}
+		if ( '' === $tagline ) {
+			return $parts;
+		}
+		if ( 60 < mb_strlen( $tagline ) ) {
+			$tagline = mb_substr( $tagline, 0, 58 ) . '…';
+		}
+		$parts['title']   = (string) get_bloginfo( 'name' );
+		$parts['tagline'] = $tagline;
+		return $parts;
 	}
 
 	/** Site-level WebSite graph on the front page when no plugin owns schema. */

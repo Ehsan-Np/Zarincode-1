@@ -2685,3 +2685,58 @@ Verified: widgets and shortcode on non-front pages load the stylesheet, 11/11
 empty widgets backfilled while a manual title survived, panel colour now wins,
 homepage render identical to the approved design (43 px of 12.4 M), all 37
 zarincode widgets register without notices.
+
+--------------------------------------------------------------------------------
+NOTE — v4.8.0 (2026-11-09): search-engine indexing + AI-visibility scanner
+--------------------------------------------------------------------------------
+Module: zarincode-core/includes/Seo/ (Bootstrap + Store + Indexing + Llms +
+Scanner + Settings_Page). One admin entry «سئو و هوش مصنوعی» with two screens;
+one autoloaded option `zarincode_seo`; no front-end assets, no files written.
+
+What the 2026 research changed in the design
+1) llms.txt is a *bonus*, not the point: no search-integrated AI crawler uses it,
+   Google explicitly does not, adoption is ~5–10 %. So it is generated from real
+   published content, capped (~40 links), cached 12 h, and served as text/plain by a
+   rewrite rule — never a template, never a per-request build.
+2) Split the crawler list by purpose. Retrieval/citation bots (OAI-SearchBot,
+   ChatGPT-User, PerplexityBot/-User, Claude-SearchBot/-User) are allowed by
+   default; training bots (GPTBot, ClaudeBot, CCBot, Bytespider, …) are the owner's
+   editorial choice, exposed as one policy select: all / nofeed / block.
+3) `Google-Extended` does NOT gate AI Overviews or AI Mode (those come from the
+   Search index via Googlebot). Blocking it only removes Gemini training+grounding
+   citations — say so in the UI instead of pretending it is an AI-Overview switch.
+   AI Overviews control is snippet directives: `nosnippet`, `max-snippet`,
+   `data-nosnippet`; there is no `noai` meta tag.
+4) IndexNow is Bing/Yandex/Naver/Seznam/Yep only — Google ignores it. Key file is
+   served by a virtual route (`/{key}.txt` = key, 200, text/plain), submissions are
+   `wp_schedule_single_event()` +60 s so publishing never waits on HTTP, with one
+   retry after 900 s and a response log (200/202 accepted, 403 key, 422 host).
+
+Engineering rules that mattered
+* robots directives belong in `wp_robots`, not a hand-printed meta tag: two
+  `<meta name="robots">` tags are merged unpredictably and a later `index` cannot
+  cancel ours. The theme's Seo_Meta was rewritten to filter `wp_robots`.
+* `pre_get_document_title` is useless here (returns empty at that point) — use
+  `document_title_parts` and set `title`/`tagline`.
+* Shortcodes leak: a page built from `[zarincode_widget …]` exposed its own markup
+  as the meta description and inside llms.txt. Run `strip_shortcodes()` before any
+  text extraction (also true for JSON-LD descriptions).
+* `str_word_count()` is ASCII-only: a 2,093-word Persian page scored 214. Count
+  `[\p{L}\p{N}]+` with `preg_match_all('/u')`.
+* Do not add a second schema graph: the theme already prints `ProfessionalService`
+  (OptionsConfig) and a richer `BlogPosting` (Article_Ratings). Feature schema must
+  detect that and stand down, otherwise a page ends with two `BlogPosting` nodes
+  and conflicting dates/languages.
+* robots.txt parsing bugs are easy: a naive "User-agent: * … Disallow: /" regex
+  matched a *later* group and declared a healthy site closed. Parse group by group
+  (a new `User-agent` after any rule opens a new group) — regression-tested.
+* Never add a second autoloaded=false option on the front-end path (the rewrite
+  hash flag cost exactly one extra query; `Store::remember()` keeps it inside the
+  autoloaded option instead).
+* Scanner scores must be computed from the *public* HTML (`wp_remote_get`), never
+  from internal state, or the verdict diverges from what crawlers see.
+
+Measured: 76 vs 76 queries with the feature on/off, 9.3 MB peak both ways,
+homepage screenshot identical (0 px above delta 4 of 12.49 M), demo site scores
+96/100 (A) with 0 failures, `/llms.txt` 8.2 KB, robots.txt carries 18 AI agents,
+`debug.log` clean of zarincode-core notices on WP 7.1.4 / Elementor 4.3.6 / PHP 8.4.

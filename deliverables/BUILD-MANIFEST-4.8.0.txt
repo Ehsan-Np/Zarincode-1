@@ -1,0 +1,397 @@
+Zarincode — BUILD MANIFEST 4.8.0
+================================
+Release date : 2026-11-09
+Theme version: 4.8.0   (zarincode-4.8.0.zip)
+Core version : 4.8.0   (zarincode-core-4.8.0.zip)
+PHP          : 8.0+     WP: 6.0+    Elementor required for widget editing
+
+WHAT IS NEW (4.8.0)
+-------------------
+1) Admin module «سئو و هوش مصنوعی» (zarincode-core/includes/Seo/)
+   · Store.php          one autoloaded option `zarincode_seo` + field-level sanitising
+   · Indexing.php       verification metas, wp_robots directives, robots.txt groups,
+                        Organization/BreadcrumbList/BlogPosting JSON-LD, IndexNow key
+                        route + queued submissions
+   · Llms.php           /llms.txt and /llms-full.txt (curated, cached 12 h, virtual route)
+   · Scanner.php        ~43 weighted checks in 5 groups + AI-reading preview
+   · Settings_Page.php  two screens, Settings API, inline design system
+   · Bootstrap.php      wiring + one-off rewrite flush
+2) Theme 4.8.0
+   · Seo_Meta: noindex through `wp_robots` (single robots tag), front-page
+     document title, shortcode-free meta description
+3) Performance contract
+   · 0 extra front-end queries (measured 76 vs 76), no files written, no CSS/JS,
+     no template change; all meta suppressed when Yoast/RankMath/AIOSEO owns the page
+
+VERIFICATION SUMMARY
+--------------------
+WordPress 7.1.4 · Elementor 4.3.6 · PHP 8.4 · fa_IR · WP_DEBUG + WP_DEBUG_LOG
+· homepage 1440 px and 390 px: no visual change (0 px above delta 4 of 12.49 M)
+· /llms.txt 200 text/plain · /robots.txt 200 with 18 AI agents · /{key}.txt 200
+· scan score 96/100 (A) on the demo site, 0 fails
+· debug.log: only Elementor's own PHP 8.4 deprecation; nothing from zarincode-core
+· evidence: docs/audits/2026-11-09-v4.8.0/
+
+CHECKSUMS
+---------
+de91b51f39ccc4a4c5dd8b7a178c7655695de9cade96f2f4f9e1e1f374a597cf  deliverables/zarincode-4.8.0.zip
+4addab2d24ebafbcda30124375120a7b2c0753e42ca7204ed7950a4ecaa63517  deliverables/zarincode-core-4.8.0.zip
+
+FILES
+-----
+
+[zarincode-4.8.0.zip]  213 files, 10773579 bytes, sha256 de91b51f39ccc4a4c5dd8b7a178c7655695de9cade96f2f4f9e1e1f374a597cf
+        0  woocommerce/
+        0  woocommerce/myaccount/
+      371  woocommerce/myaccount/my-account.php
+      370  woocommerce/myaccount/dashboard.php
+      151  woocommerce/myaccount/navigation.php
+        0  patterns/
+      606  patterns/agency-intro.php
+     3395  single.php
+        0  languages/
+     5148  languages/fa_IR.mo
+     6190  languages/fa_IR.po
+     4196  languages/zarincode.pot
+      398  archive-zc_service.php
+   536461  screenshot.png
+    26424  single-zc_project.php
+      579  front-page.php
+    24816  header.php
+     1334  comments.php
+     3281  comments-product.php
+     1062  theme.json
+     3466  index.php
+     3623  README.md
+        0  assets/
+        0  assets/css/
+    14977  assets/css/account.css
+    11125  assets/css/responsive.css
+     1437  assets/css/vazirmatn.css
+        0  assets/css/elementor/
+     5478  assets/css/elementor/official.css
+        0  assets/css/blocks/
+      978  assets/css/blocks/content.css
+      415  assets/css/blocks/editor.css
+    54282  assets/css/zarincode-main.css
+    42557  assets/css/single-experience.css
+    30727  assets/css/home-cheerful.css
+     4622  assets/css/product-reference.css
+        0  assets/fonts/
+        0  assets/fonts/vazirmatn/
+    50684  assets/fonts/vazirmatn/Vazirmatn-Regular.woff2
+    51032  assets/fonts/vazirmatn/Vazirmatn-SemiBold.woff2
+    51180  assets/fonts/vazirmatn/Vazirmatn-Light.woff2
+    51020  assets/fonts/vazirmatn/Vazirmatn-Bold.woff2
+    51120  assets/fonts/vazirmatn/Vazirmatn-ExtraBold.woff2
+    50568  assets/fonts/vazirmatn/Vazirmatn-Black.woff2
+    51128  assets/fonts/vazirmatn/Vazirmatn-Medium.woff2
+        0  assets/fontawesome/
+        0  assets/fontawesome/css/
+      586  assets/fontawesome/css/jelly-regular.min.css
+     1469  assets/fontawesome/css/sharp-duotone-solid.min.css
+    21082  assets/fontawesome/css/v4-shims.min.css
+      590  assets/fontawesome/css/mosaic-solid.min.css
+     1387  assets/fontawesome/css/slab-duo-regular.min.css
+      577  assets/fontawesome/css/sharp-thin.min.css
+     1343  assets/fontawesome/css/duotone-regular.min.css
+      638  assets/fontawesome/css/jelly-fill-regular.min.css
+      580  assets/fontawesome/css/sharp-light.min.css
+      586  assets/fontawesome/css/pixel-regular.min.css
+      578  assets/fontawesome/css/slab-regular.min.css
+     1469  assets/fontawesome/css/sharp-duotone-light.min.css
+     1450  assets/fontawesome/css/utility-duo-semibold.min.css
+    16602  assets/fontawesome/css/brands.min.css
+      586  assets/fontawesome/css/sharp-regular.min.css
+     1317  assets/fontawesome/css/vellum-solid.min.css
+   154993  assets/fontawesome/css/fontawesome.min.css
+      571  assets/fontawesome/css/thin.min.css
+      580  assets/fontawesome/css/sharp-solid.min.css
+     1466  assets/fontawesome/css/sharp-duotone-thin.min.css
+      607  assets/fontawesome/css/graphite-thin.min.css
+     1337  assets/fontawesome/css/duotone-light.min.css
+      574  assets/fontawesome/css/solid.min.css
+     1334  assets/fontawesome/css/duotone-thin.min.css
+      574  assets/fontawesome/css/light.min.css
+     1475  assets/fontawesome/css/sharp-duotone-regular.min.css
+      590  assets/fontawesome/css/notdog-solid.min.css
+      641  assets/fontawesome/css/whiteboard-semibold.min.css
+     5361  assets/fontawesome/css/svg.min.css
+     1283  assets/fontawesome/css/duotone.min.css
+      663  assets/fontawesome/css/utility-fill-semibold.min.css
+      570  assets/fontawesome/css/etch-solid.min.css
+     1409  assets/fontawesome/css/notdog-duo-solid.min.css
+      580  assets/fontawesome/css/regular.min.css
+     1472  assets/fontawesome/css/v4-font-face.min.css
+     1395  assets/fontawesome/css/jelly-duo-regular.min.css
+      596  assets/fontawesome/css/chisel-regular.min.css
+      640  assets/fontawesome/css/slab-press-regular.min.css
+   175584  assets/fontawesome/css/all.min.css
+    25527  assets/fontawesome/css/svg-with-js.min.css
+      611  assets/fontawesome/css/utility-semibold.min.css
+      863  assets/fontawesome/css/v5-font-face.min.css
+     1518  assets/fontawesome/css/slab-press-duo-regular.min.css
+     1397  assets/fontawesome/css/thumbprint-light.min.css
+        0  assets/fontawesome/webfonts/
+    28104  assets/fontawesome/webfonts/fa-thumbprint-light-300.woff2
+   280800  assets/fontawesome/webfonts/fa-solid-900.woff2
+    42756  assets/fontawesome/webfonts/fa-notdog-duo-solid-900.woff2
+    27220  assets/fontawesome/webfonts/fa-utility-semibold-600.woff2
+   115380  assets/fontawesome/webfonts/fa-brands-400.woff2
+   317668  assets/fontawesome/webfonts/fa-sharp-light-300.woff2
+   380172  assets/fontawesome/webfonts/fa-light-300.woff2
+    39824  assets/fontawesome/webfonts/fa-utility-duo-semibold-600.woff2
+   482448  assets/fontawesome/webfonts/fa-sharp-duotone-thin-100.woff2
+   229552  assets/fontawesome/webfonts/fa-sharp-solid-900.woff2
+    28920  assets/fontawesome/webfonts/fa-slab-press-regular-400.woff2
+   103360  assets/fontawesome/webfonts/fa-graphite-thin-100.woff2
+   410860  assets/fontawesome/webfonts/fa-thin-100.woff2
+   512324  assets/fontawesome/webfonts/fa-duotone-regular-400.woff2
+    27908  assets/fontawesome/webfonts/fa-chisel-regular-400.woff2
+   357596  assets/fontawesome/webfonts/fa-regular-400.woff2
+   358716  assets/fontawesome/webfonts/fa-duotone-900.woff2
+   297876  assets/fontawesome/webfonts/fa-sharp-regular-400.woff2
+     4200  assets/fontawesome/webfonts/fa-v4compatibility.woff2
+    60292  assets/fontawesome/webfonts/fa-whiteboard-semibold-600.woff2
+    29672  assets/fontawesome/webfonts/fa-jelly-fill-regular-400.woff2
+    29728  assets/fontawesome/webfonts/fa-slab-regular-400.woff2
+    15364  assets/fontawesome/webfonts/fa-etch-solid-900.woff2
+    50372  assets/fontawesome/webfonts/fa-jelly-duo-regular-400.woff2
+    31364  assets/fontawesome/webfonts/fa-notdog-solid-900.woff2
+   296004  assets/fontawesome/webfonts/fa-sharp-duotone-solid-900.woff2
+    44228  assets/fontawesome/webfonts/fa-slab-duo-regular-400.woff2
+    22668  assets/fontawesome/webfonts/fa-utility-fill-semibold-600.woff2
+    44648  assets/fontawesome/webfonts/fa-slab-press-duo-regular-400.woff2
+    35892  assets/fontawesome/webfonts/fa-vellum-solid-900.woff2
+    11440  assets/fontawesome/webfonts/fa-pixel-regular-400.woff2
+    17264  assets/fontawesome/webfonts/fa-mosaic-solid-900.woff2
+    38344  assets/fontawesome/webfonts/fa-jelly-regular-400.woff2
+   599884  assets/fontawesome/webfonts/fa-duotone-thin-100.woff2
+   543680  assets/fontawesome/webfonts/fa-duotone-light-300.woff2
+   420672  assets/fontawesome/webfonts/fa-sharp-duotone-regular-400.woff2
+   458572  assets/fontawesome/webfonts/fa-sharp-duotone-light-300.woff2
+   333824  assets/fontawesome/webfonts/fa-sharp-thin-100.woff2
+        0  assets/js/
+     1657  assets/js/social-manager.js
+     3960  assets/js/single-experience.js
+     3328  assets/js/dialogs.js
+    22473  assets/js/zarincode-main.js
+        0  assets/icons/
+        0  assets/icons/persian/
+     4940  assets/icons/persian/gap.svg
+     2888  assets/icons/persian/rubika.svg
+     1979  assets/icons/persian/soroush.svg
+     2230  assets/icons/persian/aparat.svg
+     4139  assets/icons/persian/shad.svg
+     1787  assets/icons/persian/i-gap.svg
+     3225  assets/icons/persian/eita.svg
+     2189  assets/icons/persian/nazdika.svg
+     1992  assets/icons/persian/bale.svg
+      823  assets/icons/persian/LICENSE.txt
+        0  assets/images/
+   133661  assets/images/ehsan-contact-consultation.jpg
+    42329  assets/images/demo-project-cover.jpg
+     3303  assets/images/demo-client-6.png
+     3092  assets/images/demo-client-2.png
+     3669  assets/images/demo-customer-avatar.jpg
+  1811090  assets/images/ehsan-portrait.png
+   106798  assets/images/ehsan-about-founder.jpg
+     3273  assets/images/demo-client-3.png
+    41634  assets/images/demo-post-cover.jpg
+     3298  assets/images/demo-client-4.png
+    41729  assets/images/demo-product-cover.jpg
+    41663  assets/images/demo-service-cover.jpg
+     3060  assets/images/demo-client-5.png
+   234709  assets/images/zarincode-luxury-office.jpg
+   120712  assets/images/ehsan-hero-executive.jpg
+     3223  assets/images/demo-client-1.png
+      186  functions.php
+    11852  single-zc_service.php
+     1605  style.css
+      408  archive-zc_project.php
+     1943  page.php
+     1516  404.php
+     1108  wpml-config.xml
+    27194  single-product.php
+        0  inc/
+        0  inc/Redux/
+   101439  inc/Redux/OptionsConfig.php
+        0  inc/Elementor/
+     5033  inc/Elementor/Kit_Defaults.php
+        0  inc/Bootstrap/
+     5876  inc/Bootstrap/Theme.php
+        0  inc/Compatibility/
+      521  inc/Compatibility/SEO.php
+      741  inc/Compatibility/Elementor_Styles.php
+     1043  inc/Compatibility/Editor.php
+        0  inc/Home/
+    24076  inc/Home/home-content.json
+    29266  inc/Home/Home_Templates.php
+        0  inc/Core/
+     9315  inc/Core/Seo_Meta.php
+     4360  inc/Core/Article_Layout.php
+     8629  inc/Core/Assets.php
+     3343  inc/Core/Admin_Hub.php
+    13594  inc/Core/Single_Experience.php
+     2441  inc/Core/Discussion.php
+     7708  inc/Core/Account.php
+     2572  inc/Core/Settings_Security.php
+    11565  inc/Core/Setup.php
+     2682  inc/Core/Article_Toc.php
+     6423  inc/Core/Social_Manager.php
+     2980  inc/Core/Product_Policies.php
+     2241  inc/Core/Layout.php
+     4280  inc/Core/Article_Ratings.php
+     4412  inc/Core/Social_Links.php
+        0  inc/Plugins/
+    39289  inc/Plugins/Plugin_Manager.php
+    19442  footer.php
+        0  demo-data/
+   238297  demo-data/zarincode-articles.xml
+     1158  demo-data/zarincode-redux-options.json
+   563668  demo-data/zarincode-demo-content.xml
+     1991  demo-data/zarincode-professional-kit.json
+      459  template-elementor-canvas.php
+      626  rtl.css
+    14543  woocommerce.php
+
+[zarincode-core-4.8.0.zip]  139 files, 774570 bytes, sha256 4addab2d24ebafbcda30124375120a7b2c0753e42ca7204ed7950a4ecaa63517
+        0  includes/
+        0  includes/research/
+     1739  includes/research/zarinpal-research.md
+        0  includes/PostTypes/
+    23921  includes/PostTypes/CPT_Manager.php
+        0  includes/Support/
+     1700  includes/Support/Diagnostics.php
+     1029  includes/Support/Settings_Schema.php
+        0  includes/Admin/
+     8038  includes/Admin/Product_Policy_Admin.php
+        0  includes/Admin/Researches/
+      507  includes/Admin/Researches/Social_Signal.php
+     6623  includes/Admin/Researches/Researches_Admin.php
+      788  includes/Admin/Researches/README.md
+      718  includes/Admin/Researches/Zarincode_Theme.php
+     4623  includes/Admin/Researches/rocket.php
+      627  includes/Admin/Researches/Persianlabs_Icons.php
+      520  includes/Admin/Researches/Social_IDEAA.php
+      775  includes/Admin/Researches/Bale_Research.php
+        0  includes/Elementor/
+      321  includes/Elementor/Widget_Contract.php
+     1859  includes/Elementor/Public_Data_Tag.php
+     3568  includes/Elementor/Editor_Performance.php
+     1643  includes/Elementor/Shared_Controls.php
+     1746  includes/Elementor/Contracts.php
+        0  includes/Features/
+    63625  includes/Features/Live_Chat.php
+     6041  includes/Features/Registry.php
+     5842  includes/Features/Manager.php
+    33414  includes/Features/Consultation_Inbox.php
+        0  includes/Widgets/
+     5914  includes/Widgets/Renderer.php
+     6791  includes/Widgets/Icon_Compatibility.php
+    29304  includes/Widgets/Elementor_Widgets_Collection.php
+    35823  includes/Widgets/COPYING-GPL-3.0.txt
+    58688  includes/Widgets/Original_Pages.php
+     7709  includes/Widgets/Widget_Schema.php
+    44214  includes/Widgets/Native_Design.php
+    20143  includes/Widgets/Editable_Renderer.php
+    11121  includes/Widgets/Studio_Widgets.php
+        0  includes/Widgets/models/
+    97248  includes/Widgets/models/page_section_warranty.json
+   223760  includes/Widgets/models/portfolio.json
+    74735  includes/Widgets/models/blog.json
+   103622  includes/Widgets/models/page_section_contact_page.json
+   567045  includes/Widgets/models/pricing.json
+   263265  includes/Widgets/models/page_section_services_page.json
+    81733  includes/Widgets/models/page_section_privacy.json
+    90642  includes/Widgets/models/hero.json
+    25101  includes/Widgets/models/header.json
+     9209  includes/Widgets/models/hero_cta.json
+   371975  includes/Widgets/models/products.json
+    77103  includes/Widgets/models/why_us.json
+    36294  includes/Widgets/models/steps.json
+    44110  includes/Widgets/models/brands.json
+   107983  includes/Widgets/models/page_section_terms.json
+   237642  includes/Widgets/models/page_section_projects_page.json
+   142630  includes/Widgets/models/services.json
+    32733  includes/Widgets/models/promo.json
+    59799  includes/Widgets/models/hero_intro.json
+   147665  includes/Widgets/models/page_section_about_page.json
+    91147  includes/Widgets/models/page_section_refund.json
+     8629  includes/Widgets/models/footer.json
+   159470  includes/Widgets/models/page_section_dmca.json
+    70171  includes/Widgets/models/testimonials.json
+   112416  includes/Widgets/models/page_section_gdpr.json
+     4847  includes/Widgets/Pricing_Features.php
+    83996  includes/Widgets/Original_Design.php
+     3983  includes/Widgets/Widget_Trust_Badges.php
+        0  includes/Widgets/assets/
+     7905  includes/Widgets/assets/editor.js
+     8416  includes/Widgets/assets/professional.css
+     1846  includes/Widgets/assets/widgets.js
+     7000  includes/Widgets/assets/widgets.css
+     5016  includes/Widgets/assets/native.js
+     2735  includes/Widgets/assets/studio.js
+    14928  includes/Widgets/assets/studio.css
+     5159  includes/Widgets/assets/native.css
+     6699  includes/Widgets/assets/professional.js
+      989  includes/Widgets/assets/trust-badges.css
+      782  includes/Widgets/assets/editor.css
+     5323  includes/Widgets/Hero_Layout.php
+     1671  includes/Widgets/Repeater_Identity.php
+    71937  includes/Widgets/Home_Widgets.php
+    33860  includes/Widgets/documents.json
+     5297  includes/Widgets/Trust_Badges.php
+     5516  includes/Widgets/Home_Defaults.php
+     1364  includes/Widgets/THIRD-PARTY-NOTICES.md
+     1806  includes/Widgets/Legal_And_Inner_Pages.php
+    12144  includes/Widgets/Inline_Editing.php
+      732  includes/Widgets/Editor_Controls.php
+    41612  includes/Widgets/Professional_Widgets.php
+     7858  includes/Widgets/Elementor_Loader.php
+     6283  includes/Widgets/Demo_Composition.php
+        0  includes/Demo/
+     7769  includes/Demo/Service_Demo.php
+        0  includes/Demo/fixtures/
+    40857  includes/Demo/fixtures/pricing-widget-settings.json
+    89865  includes/Demo/Demo_Seeder.php
+    82633  includes/Demo/service-demo.json
+        0  includes/Content/
+     2727  includes/Content/Article_Rating_Service.php
+     6537  includes/Content/Product_Policy_Store.php
+     6961  includes/Content/Social_Profile_Store.php
+     2178  includes/Content/Article_Rating_Repository.php
+     3998  includes/Content/Discussion_Service.php
+        0  includes/Seo/
+    10325  includes/Seo/Llms.php
+    37434  includes/Seo/Scanner.php
+    43616  includes/Seo/Settings_Page.php
+    18769  includes/Seo/Indexing.php
+     1294  includes/Seo/Bootstrap.php
+     8671  includes/Seo/Store.php
+        0  includes/Integrations/
+     2464  includes/Integrations/Multilingual.php
+        0  languages/
+     3653  languages/fa_IR.mo
+     4645  languages/fa_IR.po
+     3398  languages/zarincode-core.pot
+     4497  readme.txt
+        0  assets/
+        0  assets/css/
+    19212  assets/css/live-chat-admin.css
+     9936  assets/css/live-chat.css
+        0  assets/js/
+    12335  assets/js/live-chat-admin.js
+    24814  assets/js/live-chat.js
+        0  assets/admin/
+      822  assets/admin/policy-manager.js
+        0  assets/vendor/
+        0  assets/vendor/fontawesome/
+        0  assets/vendor/fontawesome/css/
+   103009  assets/vendor/fontawesome/css/all.min.css
+        0  assets/vendor/fontawesome/webfonts/
+   156400  assets/vendor/fontawesome/webfonts/fa-solid-900.woff2
+    25392  assets/vendor/fontawesome/webfonts/fa-regular-400.woff2
+   110867  wpml-config.xml
+     5005  zarincode-core.php
+      238  uninstall.php

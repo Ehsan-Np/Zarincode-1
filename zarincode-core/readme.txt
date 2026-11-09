@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.7.0
+Stable tag: 4.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,16 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.8.0 =
+* New «سئو و هوش مصنوعی» admin module (two screens): search-engine indexing + AI-visibility scanner.
+* Indexing: robots.txt groups for 18 AI crawlers, verification metas (Google/Bing/Yandex/Baidu/Pinterest, tag or token),
+  snippet controls, selective noindex, sitemap advertising, sanitised custom head/robots code.
+* IndexNow: auto-generated key served by a virtual route, queued submissions via WP-Cron, response history with codes.
+* llms.txt / llms-full.txt: curated, cached (12 h), rebuilt on content change, served as plain text via rewrite.
+* AI scan: ~43 weighted checks in five groups, per-item Persian fix hints, live preview of how models read the site.
+* Zero front-end cost: one autoloaded option, no extra queries, no files, no CSS/JS; all meta suppressed when an
+  SEO plugin owns the page. Companion theme 4.8.0 fixes the front-page document title.
 
 = 3.7.0 =
 * Theme: bespoke native Woo account portal, configurable header account URL, fixed viewport contact controls.

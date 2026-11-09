@@ -1,0 +1,18 @@
+<meta name='robots' content='max-image-preview:large, max-snippet:150' />
+<meta name="google-site-verification" content="AbC123xyzTOKEN" />
+<meta name="msvalidate.01" content="9F2A11BB" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage"}</script>
+<meta property="og:site_name" content="زرین کد" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="صفحه اصلی &#8211; آژانس طراحی سایت، نرم‌افزار، سئو و فروشگاه محصولات آماده زرین کد" />
+<meta property="og:description" content="آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8090/" />
+<meta property="og:image" content="http://127.0.0.1:8090/wp-content/themes/zarincode/screenshot.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="صفحه اصلی &#8211; آژانس طراحی سایت، نرم‌افزار، سئو و فروشگاه محصولات آماده زرین کد" />
+<meta name="twitter:description" content="آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده" />
+<meta name="twitter:image" content="http://127.0.0.1:8090/wp-content/themes/zarincode/screenshot.png" />
+<link rel="https://api.w.org/" href="http://127.0.0.1:8090/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="http://127.0.0.1:8090/wp-json/wp/v2/pages/35" /><link rel="canonical" href="http://127.0.0.1:8090/" />
+			<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebSite","@id":"http:\/\/127.0.0.1:8090\/#website","url":"http:\/\/127.0.0.1:8090\/","name":"زرین کد","inLanguage":"en_US","potentialAction":{"@type":"SearchAction","target":"http:\/\/127.0.0.1:8090\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+        <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"ProfessionalService","name":"زرین کد | Zarincode","url":"http:\/\/127.0.0.1:8090\/","telephone":"09024561001","email":"info@zarincode.com","founder":{"@type":"Person","name":"احسان نادری پناه (Ehsan NaderiPanah)"},"description":"آژانس مهندسی نرم‌افزار، طراحی سایت، سئو و مارکت‌پلیس محصولات آماده","sameAs":["https:\/\/zarincode.com","https:\/\/github.com\/Ehsan-Np"]}</script>
