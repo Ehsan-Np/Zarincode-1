@@ -122,3 +122,32 @@ Hard-won details, all verified in the browser:
 5. `debug.log` unchanged (the only accepted lines are the two `WP\MCP`
    deprecations of the QA install).
 6. `git status` clean; packages rebuilt in `release-<version>/`.
+
+## 8. Demo pages follow the same rule
+
+Every page the demo importer writes is now a **flat list of native Containers**
+(`elType: container`), one per designed section, each holding exactly one
+design widget, with a Persian `_title` for the Navigator:
+
+```
+Container  _title: "خدمات تخصصی"   content_width: full   padding: 0
+└─ Widget zarincode_home_services
+```
+
+Why not Sections/Columns: the legacy layout needs four DOM nodes per widget,
+cannot nest, and is not what the editor creates any more — the owner cannot
+drag a widget from one section into another without fighting the structure.
+`content_width: full` + zero padding reproduces the old `layout: full_width` /
+`gap: no` exactly, so the design does not move (verified: a full-page screenshot
+before/after the conversion is identical apart from the animated marquee).
+
+Rules:
+
+* Never generate `elType: section` / `elType: column` in new code.
+* Always write `padding` on a generated container (Elementor's nested default
+  is 10px).
+* Always give the container a `_title`; take it from the widget's `get_title()`
+  when the widget is registered, and fall back to a static map.
+* A generated tree must survive a re-import: `upsert_post_with_elementor()`
+  writes `_elementor_edit_mode`, `_elementor_template_type` and
+  `_elementor_data`, and the importer clears Elementor's CSS cache afterwards.

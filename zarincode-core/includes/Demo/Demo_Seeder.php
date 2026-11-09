@@ -975,10 +975,14 @@ class Demo_Seeder {
          * a complete demo import (the owner can switch it back on in
          * WooCommerce → Settings → Site visibility).
          */
-        if ( 'yes' === get_option( 'woocommerce_coming_soon' ) ) {
-            update_option( 'woocommerce_coming_soon', 'no' );
-        }
+        // Written unconditionally: on a brand-new install WooCommerce creates
+        // the option (default `yes`) after the importer has run, so a guarded
+        // write would leave the whole site behind a coming-soon screen —
+        // Elementor's own front page included, because Woo's coming-soon
+        // template replaces the theme template for every visitor.
+        update_option( 'woocommerce_coming_soon', 'no' );
         update_option( 'woocommerce_store_pages_only', 'no' );
+        delete_transient( 'wc_coming_soon_should_show' );
 
         // Point WooCommerce at the demo shop page so /shop/ is the catalogue.
         $shop_page = get_page_by_path( 'shop', OBJECT, 'page' );

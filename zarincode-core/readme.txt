@@ -23,6 +23,7 @@ Do NOT reimport the demo when upgrading an existing site.
 == Changelog ==
 
 = 4.13.0 =
+* Demo importer writes Flexbox Containers, not Sections: `Demo_Seeder::make_elementor_section()` emits `elType: container` with `content_width: full`, explicit zero padding and a Persian `_title` taken from the widget's own `get_title()`. The dead `Service_Demo::section()` helper (still building sections) is gone, and `seed_all()` clears Elementor's CSS cache again, and the demo import writes `woocommerce_coming_soon = no` unconditionally — the option is created by WooCommerce after the import on a fresh install, so the old guarded write left the site showing Woo's coming-soon page.
 * Ships with theme 4.13.0. `HF_Builder::footer_tree()` is a pure Container tree: the plate, the CTA card, the four columns and the bottom bar are Containers, and everything inside them is a stock Elementor widget (heading, text-editor, button, icon-list, icon, `zarincode_social_profiles`). 17 Containers / 23 widgets, five levels deep, no raw HTML.
 * `container()` writes `padding` explicitly (Elementor's nested default of 10px silently shrank every column), supports per-device `wrap_t` / `wrap_m` through `flex_wrap_tablet` / `flex_wrap_mobile`, and keeps the responsive width controls (`width`, `width_tablet`, `width_mobile`) in the same place the editor stores them.
 * `typo()` accepts `size_t` / `size_m`, so every heading and the CTA badge carry real per-device font sizes instead of a CSS clamp in the theme.
