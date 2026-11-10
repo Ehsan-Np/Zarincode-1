@@ -953,7 +953,7 @@
                     "heading_1_tag": "h3",
                     "heading_1_visible": "yes",
                     "icon_2_icon": {
-                        "value": "fas fa-cart-flatbed",
+                        "value": "fas fa-dolly",
                         "library": "fa-solid"
                     },
                     "icon_2_visible": "yes",
@@ -1099,7 +1099,7 @@
                     "heading_1_tag": "h3",
                     "heading_1_visible": "yes",
                     "icon_2_icon": {
-                        "value": "fas fa-magnifying-glass-chart",
+                        "value": "fas fa-chart-line",
                         "library": "fa-solid"
                     },
                     "icon_2_visible": "yes",
@@ -1245,7 +1245,7 @@
                     "heading_1_tag": "h3",
                     "heading_1_visible": "yes",
                     "icon_2_icon": {
-                        "value": "fas fa-shirt",
+                        "value": "fas fa-tshirt",
                         "library": "fa-solid"
                     },
                     "icon_2_visible": "yes",

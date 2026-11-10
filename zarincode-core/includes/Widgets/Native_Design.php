@@ -223,6 +223,47 @@ final class Native_Design {
         }
         return $settings;
     }
+    /**
+     * Is this link the page being viewed — or a branch that contains it?
+     *
+     * Returns "current" (same path), "ancestor" (the page is inside this
+     * section) or "" (unrelated). Query strings and the trailing slash are
+     * ignored, and the home page is compared as a path, so the state survives
+     * «plain» and «pretty» permalinks as well as a sub-directory install.
+     */
+    public static function current_state(string $url): string {
+        if ('' === $url || '#' === $url[0] || 0 === stripos($url, 'mailto:') || 0 === stripos($url, 'tel:') || 0 === stripos($url, 'javascript:')) {
+            return '';
+        }
+        $target = wp_parse_url($url);
+        if (!is_array($target) || empty($target['path'])) {
+            return '';
+        }
+        $home    = wp_parse_url(home_url('/'));
+        $request = isset($_SERVER['REQUEST_URI']) ? (string) wp_unslash($_SERVER['REQUEST_URI']) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        $current = (string) wp_parse_url($request, PHP_URL_PATH);
+        $base    = isset($home['path']) ? rtrim((string) $home['path'], '/') : '';
+        $trim    = static function (string $path) use ($base): string {
+            $path = '/' . ltrim(rawurldecode($path), '/');
+            if ('' !== $base && '/' !== $base && 0 === strpos($path, $base . '/')) {
+                $path = substr($path, strlen($base));
+            }
+            return '/' . trim($path, '/');
+        };
+        $link = $trim((string) $target['path']);
+        $here = $trim('' !== $current ? $current : '/');
+        if ($link === $here) {
+            return 'current';
+        }
+        // A section root (e.g. /services) is an ancestor of its children
+        // (/services/website-seo). The front page is never an ancestor: every
+        // path starts with "/".
+        if ('/' !== $link && '' !== $link && 0 === strpos($here, $link . '/')) {
+            return 'ancestor';
+        }
+        return '';
+    }
+
     private static function attrs(array $attrs):string {$out='';foreach($attrs as $key=>$value)if(is_scalar($value)&&preg_match('/^[a-zA-Z][a-zA-Z0-9:_-]*$/D',$key)&&stripos($key,'on')!==0)$out.=' '.esc_attr($key).'="'.esc_attr((string)$value).'"';return $out;}
     private static function link($widget,array $link):array {
         $custom=is_string($link['custom_attributes']??null)?$link['custom_attributes']:'';unset($link['custom_attributes']);$link['url']=esc_url(is_scalar($link['url']??'')?(string)($link['url']??''):'');
@@ -267,6 +308,19 @@ final class Native_Design {
             foreach($node['bindings']??[] as $attr=>$field){$v=$data[$field]??'';
                 if(in_array($attr,['href','action'],true)){$link=is_array($v)?$v:['url'=>$v];$linkAttrs=self::link($widget,$link);if($attr==='action'){$linkAttrs['action']=$linkAttrs['href']??'';unset($linkAttrs['href'],$linkAttrs['target'],$linkAttrs['rel']);}$attrs=array_merge($attrs,$linkAttrs);
                 }elseif(is_scalar($v))$attrs[$attr]=(string)$v;
+            }
+            // ── Current page marker ────────────────────────────────────────────
+            // The header and the footer are Elementor documents built from these
+            // trees, so WordPress never prints `current-menu-item` for them. A
+            // visitor could not tell which page they were on: the 4.13.x header
+            // showed every navigation row in the same idle colour. Marking the
+            // link here (instead of hand-editing the saved document) keeps the
+            // state correct on any permalink structure and for any tree — nav
+            // pill, drawer list, footer column, breadcrumb row.
+            if('a'===$tag&&!empty($attrs['href'])){
+                $zc_state=self::current_state((string)$attrs['href']);
+                if('current'===$zc_state){$attrs['aria-current']='page';$attrs['class']=trim(($attrs['class']??'').' is-current');
+                }elseif('ancestor'===$zc_state){$attrs['class']=trim(($attrs['class']??'').' is-current-ancestor');}
             }
             if($queryActive&&isset($attrs['data-filter'])){
                 $active=in_array($attrs['data-filter'],['all','*',''],true);

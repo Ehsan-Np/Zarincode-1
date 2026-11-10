@@ -67,6 +67,33 @@ class Demo_Seeder {
 
     }
 
+    /** One line with the real post counts, for the import result banner. */
+    public static function import_summary(): string {
+        $count = static function ( string $type ): int {
+            return post_type_exists( $type ) ? (int) ( wp_count_posts( $type )->publish ?? 0 ) : 0;
+        };
+        global $wpdb;
+        $elementor_pages = (int) $wpdb->get_var(
+            "SELECT COUNT(DISTINCT p.ID) FROM {$wpdb->posts} p
+             INNER JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_elementor_data'
+             WHERE p.post_type = 'page' AND p.post_status = 'publish' AND m.meta_value <> ''"
+        );
+        // Persian digits regardless of the admin locale (standing order: the
+        // whole product speaks Persian, including its own messages).
+        $fa = static fn( int $n ): string => strtr(
+            number_format_i18n( $n ),
+            array( '0' => '۰', '1' => '۱', '2' => '۲', '3' => '۳', '4' => '۴', '5' => '۵', '6' => '۶', '7' => '۷', '8' => '۸', '9' => '۹' )
+        );
+        return sprintf(
+            'نتیجه: %s خدمت، %s نمونه‌کار، %s محصول، %s نوشته، %s برگهٔ المنتوری.',
+            $fa( $count( 'zc_service' ) ),
+            $fa( $count( 'zc_project' ) ),
+            $fa( $count( 'product' ) ),
+            $fa( $count( 'post' ) ),
+            $fa( $elementor_pages )
+        );
+    }
+
     public function render_admin_notice_banner(): void {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
@@ -113,6 +140,7 @@ class Demo_Seeder {
                     break;
                 case 'pages_legal':
                     self::seed_elementor_pages();
+                    self::seed_seo_meta();
                     $message = 'تمامی ۱۳ برگه المنتوری (صفحه اصلی، خدمات، نمونه‌کارها، درباره ما، تماس با ما و ۶ صفحه قوانین) با موفقیت درون‌ریزی شدند!';
                     break;
                 case 'shop_blog':
@@ -123,9 +151,13 @@ class Demo_Seeder {
                 default:
                     self::seed_all();
                     update_option( 'zarincode_demo_imported_v25', 'yes' );
-                    $message = 'تمامی بخش‌های دموی زرین کد (هدر، فوتر، ۶ خدمت، ۸ نمونه‌کار، ۸ محصول فروشگاه، ۱۳ برگه المنتوری و قوانین، فهرست‌ها و تنظیمات Redux) به طور کامل درون‌ریزی و فعال شدند!';
+                    $message = 'تمامی بخش‌های دموی زرین کد (هدر، فوتر، خدمات، نمونه‌کارها، محصولات فروشگاه، برگه‌های المنتوری و قوانین، فهرست‌ها و تنظیمات Redux) درون‌ریزی و فعال شدند.';
                     break;
             }
+            // Report what actually landed instead of a fixed sentence: the
+            // numbers differ with or without WooCommerce, and a banner that
+            // claims «۸ محصول» while ten were imported reads as a failed import.
+            $message .= ' ' . self::import_summary();
         }
 
         $cnt_hf       = wp_count_posts( 'zc_hf_template' )->publish ?? 0;
@@ -1315,6 +1347,94 @@ class Demo_Seeder {
     /**
      * 7. SEED WORDPRESS NAVIGATION MENUS & ASSIGN LOCATIONS
      */
+    /**
+     * Search metadata for every demo page.
+     *
+     * A theme cannot invent a description for a page it did not write, and
+     * Elementor keeps the copy out of `post_content`, so before this pass each
+     * page shipped the same site slogan as its `<meta name="description">` —
+     * eleven duplicate snippets in the index. These are written once, per page,
+     * as `_zc_seo_title` / `_zc_seo_description`; Seo_Meta prefers them and an
+     * editor can change or delete any of them per page.
+     *
+     * The wording positions the brand as what it is: a software development
+     * studio that also designs, ships and markets its own products.
+     */
+    public static function seed_seo_meta(): void {
+        $meta = array(
+            'home' => array(
+                'زرین کد | استودیو توسعه نرم‌افزار، طراحی سایت و سئوی فنی',
+                'استودیو توسعه نرم‌افزار زرین کد: طراحی سایت اختصاصی، ساخت سامانه تحت وب با لاراول و Next.js، فروشگاه ووکامرس و سئوی فنی — با قرارداد رسمی، تحویل مرحله‌ای و یک سال پشتیبانی.',
+            ),
+            'services' => array(
+                'خدمات توسعه نرم‌افزار و طراحی سایت | زرین کد',
+                'خدمات استودیو زرین کد: طراحی و توسعه وب، سامانه اختصاصی، اپلیکیشن و API، ووکامرس، اتوماسیون فرایند و سئوی فنی؛ با معیار پذیرش مشخص در هر مرحله.',
+            ),
+            'projects-portfolio' => array(
+                'نمونه‌کارها و پروژه‌های نرم‌افزاری | زرین کد',
+                'نمونه‌کارهای زرین کد: سامانه‌های تحت وب، فروشگاه ووکامرس و پروژه‌های سئوی فنی، همراه با مسئله، راهکار و نتیجهٔ قابل اندازه‌گیری هر پروژه.',
+            ),
+            'about-us' => array(
+                'درباره استودیو زرین کد و احسان نادری پناه',
+                'زرین کد یک استودیو توسعه نرم‌افزار است؛ تیمی از مهندسان نرم‌افزار، طراحان محصول و متخصصان سئوی فنی که پروژه را با قرارداد رسمی و مستندات تحویل می‌دهند.',
+            ),
+            'contact-us' => array(
+                'شروع پروژه و تماس با زرین کد',
+                'هدف، محدوده و زمان‌بندی پروژه‌تان را بنویسید؛ کارشناس زرین کد قدم بعدی، برآورد شفاف و برنامهٔ تحویل را اعلام می‌کند. تماس مستقیم: ۰۹۰۲۴۵۶۱۰۰۱.',
+            ),
+            'pricing' => array(
+                'تعرفه طراحی سایت، توسعه نرم‌افزار و سئو | زرین کد',
+                'تعرفهٔ شفاف خدمات زرین کد: بازهٔ قیمت طراحی سایت، ساخت سامانه اختصاصی، ووکامرس و سئوی فنی، زمان تحویل و شرایط پذیرش هر پروژه در یک نگاه.',
+            ),
+            'shop' => array(
+                'فروشگاه محصولات دیجیتال زرین کد | قالب، افزونه و سورس‌کد',
+                'محصولات دیجیتال زرین کد: قالب وردپرس، افزونه، سورس‌کد سامانه و کیت‌های آمادهٔ توسعه، همراه با مستندات فنی، آپدیت رسمی و پشتیبانی.',
+            ),
+            'blog' => array(
+                'وبلاگ فنی زرین کد | توسعه نرم‌افزار، وردپرس و سئوی فنی',
+                'مقالات تیم مهندسی زرین کد دربارهٔ توسعه نرم‌افزار، وردپرس و المنتور، سئوی فنی، امنیت و بهینه‌سازی سرعت — بر پایهٔ پروژه‌های واقعی.',
+            ),
+            'terms-and-conditions' => array(
+                'قوانین و شرایط استفاده از خدمات زرین کد',
+                'قوانین و شرایط همکاری با زرین کد: دامنهٔ خدمات، پرداخت و تحویل، مالکیت کد و دارایی‌ها، محرمانگی و حدود مسئولیت، به زبان روشن.',
+            ),
+            'warranty-policy' => array(
+                'شرایط گارانتی و پشتیبانی فنی | زرین کد',
+                'شرایط پشتیبانی زرین کد: رفع باگ تا ۹۰ روز پس از تحویل، پشتیبانی فنی یک‌ساله، زمان پاسخ مشخص و مسیر رسمی ثبت تیکت.',
+            ),
+            'privacy-policy' => array(
+                'سیاست حفظ حریم خصوصی | زرین کد',
+                'سیاست حفظ حریم خصوصی زرین کد: چه داده‌ای جمع می‌شود، با چه هدفی، چه مدت نگه داشته می‌شود و چگونه می‌توانید حذف یا اصلاح آن را بخواهید.',
+            ),
+            'refund-policy' => array(
+                'شرایط ضمانت بازگشت وجه | زرین کد',
+                'ضوابط بازگشت وجه در زرین کد: بازهٔ لغو سفارش، سهم بازگشتی در هر مرحلهٔ تحویل و تعهد متقابل کارفرما در برابر آن.',
+            ),
+            'gdpr-compliance' => array(
+                'انطباق با GDPR و حقوق داده | زرین کد',
+                'نحوهٔ انطباق زرین کد با مقررات GDPR: مبنای قانونی پردازش، حقوق کاربران، انتقال داده و نگهداری سوابق.',
+            ),
+            'dmca-policy' => array(
+                'DMCA Copyright & Takedown Policy | Zarincode',
+                'How to submit a DMCA takedown notice to Zarincode, which information is required, and how counter-notices are handled.',
+            ),
+        );
+        foreach ( $meta as $slug => $pair ) {
+            $page = get_page_by_path( $slug );
+            if ( ! $page ) {
+                continue;
+            }
+            // Only demo pages we created; never overwrite a description an
+            // editor wrote by hand on the same slug after the import.
+            if ( get_post_meta( $page->ID, '_zc_seo_description', true ) && get_post_meta( $page->ID, '_zc_seo_imported', true ) ) {
+                continue;
+            }
+            update_post_meta( $page->ID, '_zc_seo_title', $pair[0] );
+            update_post_meta( $page->ID, '_zc_seo_description', $pair[1] );
+            update_post_meta( $page->ID, '_zc_seo_imported', '1' );
+        }
+    }
+
     public static function seed_navigation_menus(): void {
         $locations = get_theme_mod( 'nav_menu_locations', [] );
         if ( ! is_array( $locations ) ) {
@@ -1524,6 +1644,7 @@ class Demo_Seeder {
         self::seed_blog_posts();
         self::seed_featured_images();
         self::seed_navigation_menus();
+        self::seed_seo_meta();
         Service_Demo::sidebars();
         if ( class_exists( 'Elementor\Plugin' ) ) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();

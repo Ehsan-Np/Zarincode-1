@@ -5,13 +5,13 @@
     "fields": {
         "badge_pill_text_1": {
             "type": "text",
-            "default": "!HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS",
-            "label": "متن: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS"
+            "default": "خدمات تخصصی استودیو زرین کد",
+            "label": "متن: خدمات تخصصی استودیو زرین کد"
         },
         "badge_pill_1_visible": {
             "type": "switcher",
             "default": "yes",
-            "label": "نمایش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS"
+            "label": "نمایش: خدمات تخصصی استودیو زرین کد"
         },
         "section_title_text_1": {
             "type": "text",
@@ -74,12 +74,12 @@
         "div_2_visible": {
             "type": "switcher",
             "default": "yes",
-            "label": "نمایش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو "
+            "label": "نمایش: خدمات تخصصی استودیو زرین کد آنچه در استودیو "
         },
         "container_1_visible": {
             "type": "switcher",
             "default": "yes",
-            "label": "نمایش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو "
+            "label": "نمایش: خدمات تخصصی استودیو زرین کد آنچه در استودیو "
         },
         "icon_1_icon": {
             "type": "icons",
@@ -386,7 +386,7 @@
         "div_1_visible": {
             "type": "switcher",
             "default": "yes",
-            "label": "نمایش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو "
+            "label": "نمایش: خدمات تخصصی استودیو زرین کد آنچه در استودیو "
         }
     },
     "repeaters": {
@@ -2909,7 +2909,7 @@
                     "div_text_1": "اصلاح و بازبینی رایگان:",
                     "div_2_visible": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-wand-magic-sparkles",
+                        "value": "fas fa-magic",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",
@@ -3923,23 +3923,23 @@
     },
     "parts": {
         "_div_1": {
-            "label": "بخش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو ",
+            "label": "بخش: خدمات تخصصی استودیو زرین کد آنچه در استودیو ",
             "type": "box"
         },
         "_container_1": {
-            "label": "بخش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو ",
+            "label": "بخش: خدمات تخصصی استودیو زرین کد آنچه در استودیو ",
             "type": "box"
         },
         "_div_2": {
-            "label": "بخش: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS آنچه در استودیو ",
+            "label": "بخش: خدمات تخصصی استودیو زرین کد آنچه در استودیو ",
             "type": "box"
         },
         "_badge_pill_1": {
-            "label": "جزء: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS",
+            "label": "جزء: خدمات تخصصی استودیو زرین کد",
             "type": "text"
         },
         "_badge_pill_text_1": {
-            "label": "متن: !HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS",
+            "label": "متن: خدمات تخصصی استودیو زرین کد",
             "type": "text"
         },
         "_section_title_1": {

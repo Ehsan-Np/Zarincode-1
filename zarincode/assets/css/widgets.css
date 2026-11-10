@@ -552,21 +552,32 @@ body .elementor-widget-sidebar .widget:last-child:not(.zc-hf *){ margin-bottom: 
     color: var(--zcw-ink) !important;
 }body .elementor-widget-posts .elementor-post__title a:not(.zc-hf *),
 body .elementor-widget-portfolio .elementor-portfolio-item__title:not(.zc-hf *){ color: var(--zcw-ink); font-weight: 800; }body .elementor-widget-posts .elementor-post__meta-data:not(.zc-hf *){ color: var(--zcw-muted); font-size: .8rem; }/* -------------------------------------------------------------------
-   Vazirmatn everywhere — standing typography order.
-   Elementor's kit typography (Roboto / Roboto Slab) and any third-party
-   widget font declaration are replaced with the project font:not(.zc-hf *),
-except on
-   icon fonts:not(.zc-hf *),
-where the glyph code points must keep their own family.
-   ------------------------------------------------------------------- */
+   Typography — standing order: Vazirmatn everywhere.
+   -------------------------------------------------------------------
+   These rules live inside `@layer zcw-skin`, and an `!important` in a layer
+   beats every unlayered `!important`. That is why the icon family has to be
+   fixed *here*, next to the rule that overrides it, and not in icons.css.
+
+   4.13.x bug: the Vazirmatn override excluded icons with
+   `:not([class*="fa-"])` only. A glyph written as `<span class="fa">` — the
+   shape Home_Templates::ico() used to print — does not contain the string
+   "fa-", so Vazirmatn was forced onto it and every homepage icon rendered
+   as a tofu box. `.fa` is now excluded explicitly below and given the Font
+   Awesome family by the companion rule. */
 body .elementor-widget-container:not(.zc-hf *){
     font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif !important;
-}body .elementor-widget-container :where(:not(i):not(svg):not(svg *):not([class*="fa-"]):not([class*="eicon"]):not([class*="elementor-icon"]):not(.elementor-star-rating)):not(.zc-hf *){
+}
+body .elementor-widget-container :where(:not(i):not(svg):not(svg *):not(.fa):not([class*="fa-"]):not([class*="eicon"]):not([class*="elementor-icon"]):not(.elementor-star-rating)):not(.zc-hf *){
     font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif !important;
-}body .elementor-widget-container i:not(.zc-hf *),
-body .elementor-widget-container .elementor-star-rating:not(.zc-hf *),
+}
+/* Icon fonts keep their own family — solid, regular and brand glyphs alike.
+   The family list is a fallback chain: a brand glyph is not in the solid face,
+   so the browser walks to "Font Awesome 7 Brands" on its own. */
+body .elementor-widget-container :is(.fa, [class*="fa-"]):not(.zc-hf *){
+    font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
+}
 body .elementor-widget-container [class*="eicon"]:not(.zc-hf *),
-body .elementor-widget-container [class*="fa-"]:not(.zc-hf *){
-    font-family: inherit;
-}body .elementor-widget-container [class*="eicon"]:not(.zc-hf *){ font-family: eicons !important; }body .elementor-widget-container [class*="fa-"]:not(.zc-hf *){ font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important; }body .elementor-widget-container .elementor-star-rating:not(.zc-hf *){ font-family: eicons !important; }
+body .elementor-widget-container .elementor-star-rating:not(.zc-hf *){
+    font-family: eicons !important;
+}
 }

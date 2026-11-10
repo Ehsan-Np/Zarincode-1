@@ -464,6 +464,145 @@ html.dark .progress-dashed {
     opacity: 1;
 }
 
+/* ── Navigation states (v4.14.0) ────────────────────────────────────────
+   Four states, each with its own visual language so a visitor can tell
+   «where I am» from «where the pointer is»:
+
+     idle      soft text on the pill track
+     hover     ink pill + gold glyph (the pointer is here)
+     current   ink pill + gold glyph + gold underline (I am here)
+     ancestor  gold-tinted pill (this branch contains the current page)
+     focus     gold ring, for keyboard users
+
+   The underline is drawn on ::after instead of a border so it never
+   changes the item's box and cannot shift the row. */
+.zc-nav-pill > li > a {
+    position: relative;
+    transition: background-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.zc-nav-pill > li > a:hover {
+    transform: translateY(-1px);
+}
+
+.zc-nav-pill > li > a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* The page the visitor is on: ink pill + a gold underline.
+   `is-current` is what the Elementor header/footer trees get (Native_Design
+   marks them at render time); `current-menu-item` is what a WordPress menu
+   gets. Both must look identical. */
+.zc-nav-pill > li.current-menu-item > a,
+.zc-nav-pill > li.current_page_item > a,
+.zc-nav-pill > li > a.is-current,
+.zc-nav-pill > li > a[aria-current="page"] {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+}
+
+.zc-nav-pill > li.current-menu-item > a > :is(i,svg):first-child,
+.zc-nav-pill > li.current_page_item > a > :is(i,svg):first-child,
+.zc-nav-pill > li > a.is-current > :is(i,svg):first-child,
+.zc-nav-pill > li > a[aria-current="page"] > :is(i,svg):first-child {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+.zc-nav-pill > li:has(> a.is-current) {
+    isolation: isolate;
+}
+
+.zc-nav-pill > li.current-menu-item > a::after,
+.zc-nav-pill > li.current_page_item > a::after,
+.zc-nav-pill > li > a.is-current::after,
+.zc-nav-pill > li > a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0.85rem;
+    bottom: 0.28rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-accent);
+}
+
+/* A branch that contains the current page (خدمات / قوانین …). */
+.zc-nav-pill > li > a.is-current-ancestor {
+    background: var(--color-accent-soft);
+    color: var(--zc-text-main);
+    box-shadow: inset 0 0 0 1px rgba(253, 208, 91, 0.55);
+}
+
+.zc-nav-pill > li > a.is-current-ancestor > :is(i,svg):first-child {
+    color: var(--zc-dark);
+    opacity: 1;
+}
+
+.zc-nav-pill > li.current-menu-ancestor > a,
+.zc-nav-pill > li.current-menu-parent > a {
+    background: var(--color-accent-soft);
+    color: var(--zc-text-main);
+    box-shadow: inset 0 0 0 1px rgba(253, 208, 91, 0.55);
+}
+
+.zc-nav-pill > li.current-menu-ancestor > a > :is(i,svg):first-child,
+.zc-nav-pill > li.current-menu-parent > a > :is(i,svg):first-child {
+    color: var(--zc-dark);
+    opacity: 1;
+}
+
+/* Caret turns while the mega menu is open. */
+.zc-nav-pill > li.has-megamenu:hover .zc-nav-caret,
+.zc-nav-pill > li.has-megamenu:focus-within .zc-nav-caret {
+    transform: rotate(180deg);
+}
+
+.zc-nav-caret {
+    transition: transform .2s ease;
+}
+
+/* Keyboard and touch can open the mega menu without a pointer. */
+.zc-nav-pill > li.has-megamenu:focus-within > .zc-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Mega-menu rows: hover, keyboard focus and the current page. */
+.zc-dropdown-menu li a {
+    position: relative;
+    transition: background-color .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.zc-dropdown-menu li a:hover,
+.zc-dropdown-menu li a:focus-visible {
+    background: var(--color-accent-soft);
+    color: var(--zc-text-main);
+    box-shadow: inset 2px 0 0 var(--color-accent);
+}
+
+.zc-dropdown-menu li a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+}
+
+.zc-dropdown-menu li > a.is-current,
+.zc-dropdown-menu li.current-menu-item > a {
+    background: var(--color-accent-soft);
+    box-shadow: inset 3px 0 0 var(--color-accent);
+    font-weight: 800;
+}
+
+.zc-dropdown-icon {
+    transition: transform .16s ease, background-color .16s ease;
+}
+
+.zc-dropdown-menu li a:hover .zc-dropdown-icon,
+.zc-dropdown-menu li.current-menu-item .zc-dropdown-icon {
+    transform: scale(1.06);
+}
+
 .zc-nav-pill > li.has-megamenu:hover > .zc-dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -674,6 +813,47 @@ html.dark .progress-dashed {
 html.dark .zc-mobile-nav-list > li > a,
 html.dark .zc-mobile-sub-row > a {
     background: rgba(255, 255, 255, 0.05);
+}
+
+/* Drawer: hover, current and keyboard-focus states mirror the desktop nav. */
+.zc-mobile-nav-list > li > a,
+.zc-mobile-sub-row > a,
+.zc-mobile-nav-list .zc-mobile-toggle,
+.zc-mobile-nav-list button {
+    transition: background-color .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.zc-mobile-nav-list > li > a:hover,
+.zc-mobile-sub-row > a:hover {
+    background: var(--color-accent-soft);
+}
+
+.zc-mobile-nav-list > li.current-menu-item > a,
+.zc-mobile-sub-row.current-menu-item > a,
+.zc-mobile-nav-list > li > a.is-current,
+.zc-mobile-sub-row > a.is-current,
+.zc-mobile-nav-list > li > a[aria-current="page"] {
+    background: var(--zc-dark);
+    color: #FFFFFF;
+    box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.zc-mobile-nav-list > li.current-menu-item > a :is(i,svg):first-child,
+.zc-mobile-nav-list > li > a[aria-current="page"] :is(i,svg):first-child {
+    background: var(--color-accent);
+    color: var(--zc-dark);
+}
+
+.zc-mobile-nav-list > li.current-menu-ancestor > a,
+.zc-mobile-sub-row.current-menu-ancestor > a {
+    background: var(--color-accent-soft);
+    box-shadow: inset 3px 0 0 rgba(253, 208, 91, 0.75);
+}
+
+.zc-mobile-nav-list :is(a, button):focus-visible,
+.zc-dropdown-menu :is(a, button):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .zc-mobile-nav-list > li > a :is(i,svg):first-child,

@@ -208,19 +208,42 @@ class Assets {
             ZARINCODE_VERSION
         );
 
-        // 2. FontAwesome Pro 7 (Bundled from Ehsan-Np/afzoneha)
+        // 2. Font Awesome Free 7.0.0 (icons CC BY 4.0, fonts SIL OFL 1.1, code
+        //    MIT — redistributable with a public theme; the Pro build this theme
+        //    used to ship is a per-seat commercial licence and cannot be bundled).
         wp_enqueue_style(
             'zarincode-fontawesome',
             ZARINCODE_URI . '/assets/fontawesome/css/all.min.css',
             [],
-            '7.0.0'
+            \Zarincode\Theme\Core\Icons::VERSION
+        );
+
+        // 2b. Icon layer: family pinning, geometry and the size scale. Loaded
+        //     right after Font Awesome and before the theme stylesheet so a
+        //     component can size an icon with a token instead of a raw font-size.
+        wp_enqueue_style(
+            'zarincode-icons',
+            ZARINCODE_URI . '/assets/css/icons.css',
+            [ 'zarincode-fontawesome' ],
+            $this->asset_version( '/assets/css/icons.css' )
+        );
+
+        // 2c. Old Font Awesome name aliases. Content saved by an earlier version
+        //     (Elementor documents, header/footer, third-party widgets) still
+        //     uses FA5/6 names; this maps them to the code points the shipped
+        //     font has instead of rewriting the database.
+        wp_enqueue_style(
+            'zarincode-icon-aliases',
+            ZARINCODE_URI . '/assets/css/icon-aliases.css',
+            [ 'zarincode-icons' ],
+            $this->asset_version( '/assets/css/icon-aliases.css' )
         );
 
         // 3. Theme Main Stylesheet (Crextio Sunshine Yellow + Webinex Design System)
         wp_enqueue_style(
             'zarincode-main',
             ZARINCODE_URI . '/assets/css/zarincode-main.css',
-            [ 'zarincode-vazirmatn', 'zarincode-fontawesome' ],
+            [ 'zarincode-vazirmatn', 'zarincode-fontawesome', 'zarincode-icons', 'zarincode-icon-aliases' ],
             ZARINCODE_VERSION
         );
 

@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.13.1
+Stable tag: 4.14.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,12 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.14.0 =
+* Icons: `Icon_Compatibility` rewrites every 6.x/7.x icon name in a widget value back to the Font Awesome 5.15.3 vocabulary Elementor resolves against, and repairs icon names already stored in `_elementor_data` once (`repair_stored_icons()`). Elementor's inlined-SVG pass logs «Undefined array key "shield-halved"» for every 7.x name it cannot find in its own FA 5.15.3 JSON; the log is now silent while the rendered glyph is still Font Awesome 7.
+* Navigation: `Native_Design` marks the current and ancestor links at render time (`is-current`, `is-current-ancestor`, `aria-current="page"`), so headers and footers authored as Elementor documents show where the visitor is.
+* SEO: pages accept `_zc_seo_title` / `_zc_seo_description`; the shop archive resolves to the WooCommerce shop page for its metadata; an Elementor page's copy is read from `_elementor_data` when `post_content` is empty, so each page gets its own description instead of the site slogan.
+* Demo: `seed_seo_meta()` writes a Persian title and description for the 15 demo pages, `import_summary()` reports the real counts, and the import banner no longer claims fixed numbers.
 
 = 4.13.1 =
 * Ships with theme 4.13.1 (no veil above the footer). `Demo_Seeder::ensure_permalinks()` switches a fresh install from «Plain» to `/%postname%/` during the demo import so every demo URL resolves; an owner-chosen structure is kept. `HF_Builder` now stamps every document it generates with `_zc_hf_builder` and rebuilds it when the stamp is older than the current tree — but only while `_zc_hf_generated` is set and `_zc_hf_user_edited` is not, so an upgraded site receives the current design on the next `ensure()` and a footer the owner has edited in the panel is never rewritten.

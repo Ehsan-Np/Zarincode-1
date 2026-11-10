@@ -8,15 +8,41 @@ final class Icon_Compatibility {
     private static array $values = [];
     private static array $broken = [];
     private const PREFIXES = ['fa-solid'=>'fas','fa-regular'=>'far','fa-brands'=>'fab'];
+    /**
+     * Modern (6/7) name => Font Awesome 5.15.3 name.
+     *
+     * Elementor resolves an icon name against the Font Awesome 5.15.3 JSON it
+     * ships (assets/lib/font-awesome/json). A 6.x/7.x-only name is not in that
+     * file, so Elementor logs a PHP warning for it on every page render
+     * («Undefined array key "shield-halved"» in font-awesome.php) and the icon
+     * is dropped from its inlined-SVG pass. The value is therefore rewritten
+     * to the FA5 name here — the drawing is identical, because the theme ships
+     * assets/css/icon-aliases.css which maps each FA5 name to the code point of
+     * Font Awesome 7. Keeping the *stored* vocabulary at FA 5.15.3 is what makes
+     * the log silent; the *rendered* glyph is still Font Awesome 7.
+     */
     private const ALIASES = [
         'bag-shopping'=>'shopping-bag','bars-staggered'=>'bars','building-shield'=>'building',
+        'boxes-stacked'=>'boxes','cart-flatbed'=>'dolly','cart-shopping'=>'shopping-cart',
         'chart-simple'=>'chart-bar','circle-check'=>'check-circle','circle-xmark'=>'times-circle',
         'earth-europe'=>'globe-europe','file-zipper'=>'file-archive','file-lines'=>'file-alt',
         'money-bill-transfer'=>'exchange-alt','rotate-left'=>'undo','scale-balanced'=>'balance-scale',
         'shield-halved'=>'shield-alt','sparkles'=>'magic','user-pen'=>'user-edit',
         'arrow-up-right-from-square'=>'external-link-alt','magnifying-glass'=>'search',
-        'xmark'=>'times','house'=>'home','cart-shopping'=>'shopping-cart','gear'=>'cog',
-        'location-dot'=>'map-marker-alt','envelope-open-text'=>'envelope-open-text',
+        'xmark'=>'times','house'=>'home','gear'=>'cog','location-dot'=>'map-marker-alt',
+        'envelope-open-text'=>'envelope-open-text','wand-magic-sparkles'=>'magic',
+        'magnifying-glass-chart'=>'chart-line','pen-ruler'=>'pencil-ruler','house-laptop'=>'laptop-house',
+        'comment-sms'=>'comment-dots','face-smile'=>'smile','gauge-high'=>'tachometer-alt',
+        'mobile-screen-button'=>'mobile-alt','plug-circle-bolt'=>'plug','shield-heart'=>'shield-alt',
+        'shirt'=>'tshirt','sliders'=>'sliders-h','trash-can'=>'trash-alt','code-commit'=>'code-branch',
+        'arrow-up-from-bracket'=>'upload','arrows-rotate'=>'sync','share-nodes'=>'share-alt',
+        'hand-holding-dollar'=>'hand-holding-usd','map-location-dot'=>'map-marker-alt',
+        'circle-info'=>'info-circle','circle-question'=>'question-circle',
+        'circle-exclamation'=>'exclamation-circle','triangle-exclamation'=>'exclamation-triangle',
+        'circle-arrow-left'=>'arrow-circle-left','circle-arrow-right'=>'arrow-circle-right',
+        'right-from-bracket'=>'sign-out-alt','right-to-bracket'=>'sign-in-alt','circle-user'=>'user-circle',
+        'arrow-pointer'=>'mouse-pointer','thumbtack'=>'thumb-tack','file-shield'=>'file-alt',
+        'chart-line'=>'chart-line','arrow-trend-up'=>'chart-line','bolt'=>'bolt',
     ];
 
     private static function library(string $library): array {
@@ -98,6 +124,62 @@ final class Icon_Compatibility {
         $icon = self::value($icon);
         if ($icon['value'] === '') return '';
         ob_start(); \Elementor\Icons_Manager::render_icon($icon, $attributes); return ob_get_clean();
+    }
+
+    /**
+     * One-time repair of icon values already stored in Elementor documents.
+     *
+     * Documents saved by an older release (or by a widget default of an older
+     * release) can carry a 7.x icon name. Rendering still works — the theme
+     * aliases it — but Elementor's own SVG pass logs a warning for every such
+     * name. This rewrites the stored value to the FA 5.15.3 name once, so the
+     * log stays clean without touching a single layout setting.
+     *
+     * Idempotent and cheap: guarded by an option, scans only documents that
+     * have Elementor data, and writes only when something actually changed.
+     */
+    public static function repair_stored_icons(): void {
+        if ( get_option( 'zc_icon_names_repaired' ) === '1' || ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+        global $wpdb;
+        $ids = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key IN ( %s, %s )",
+                '_elementor_data',
+                '_elementor_page_settings'
+            )
+        );
+        $changed = 0;
+        foreach ( array_map( 'intval', (array) $ids ) as $id ) {
+            foreach ( array( '_elementor_data', '_elementor_page_settings' ) as $meta ) {
+                $raw = get_post_meta( $id, $meta, true );
+                if ( ! is_string( $raw ) || '' === $raw ) {
+                    continue;
+                }
+                $fixed = self::rewrite_names( $raw );
+                if ( $fixed !== $raw ) {
+                    update_post_meta( $id, $meta, wp_slash( $fixed ) );
+                    $changed++;
+                }
+            }
+        }
+        update_option( 'zc_icon_names_repaired', '1', false );
+        if ( $changed > 0 && class_exists( '\Elementor\Plugin' ) ) {
+            \Elementor\Plugin::instance()->files_manager->clear_cache();
+        }
+    }
+
+    /** Rewrites every `"value":"… fa-<modern>"` in a serialized document. */
+    private static function rewrite_names( string $json ): string {
+        return (string) preg_replace_callback(
+            '/((?:fas|far|fab|fa-solid|fa-regular|fa-brands)\s+fa-)([a-zA-Z0-9-]+)/',
+            static function ( array $m ): string {
+                $name = strtolower( $m[2] );
+                return $m[1] . ( self::ALIASES[ $name ] ?? $name );
+            },
+            $json
+        );
     }
 
     public static function notice(): void {

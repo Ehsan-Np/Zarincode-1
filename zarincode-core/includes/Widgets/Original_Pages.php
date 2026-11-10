@@ -91,7 +91,7 @@ class Original_Pages {
             <div class="zc-container">
                 <!-- Hero Header -->
                 <div class="zc-glass-panel" style="padding:2.75rem;margin-bottom:0.5rem;">
-                    <span class="zc-badge-pill">!HERE'S WHAT WE OFFER TO HELP GROW YOUR BUSINESS</span>
+                    <span class="zc-badge-pill">خدمات تخصصی استودیو زرین کد</span>
                     <h1 class="zc-section-title">آنچه در استودیو <span class="zc-highlight">زرین کد</span> برای رشد کسب‌وکار شما ارائه می‌دهیم!</h1>
                     <p style="font-size:1rem;color:var(--zc-text-secondary);line-height:1.95;max-width:960px;">
                         ما در آژانس طراحی سایت، مهندسی نرم‌افزار و سئو <strong>زرین کد (Zarincode.com)</strong> به مدیریت <strong>احسان نادری پناه (09024561001)</strong>، با ترکیب دانش برنامه‌نویسی سطح بالا، متد طراحی Crextio و الگوریتم‌های روز گوگل و شبکه‌های اجتماعی، ۶ دپارتمان تخصصی را برای موفقیت آنلاین شما فراهم کرده‌ایم:

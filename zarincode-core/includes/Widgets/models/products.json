@@ -1171,7 +1171,7 @@
                     "prod_ver_1_visible": "yes",
                     "product_badges_1_visible": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-plug-circle-bolt",
+                        "value": "fas fa-plug",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",
@@ -1253,7 +1253,7 @@
                     "prod_ver_1_visible": "yes",
                     "product_badges_1_visible": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-boxes-stacked",
+                        "value": "fas fa-boxes",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",
@@ -1337,7 +1337,7 @@
                     "prod_ver_1_visible": "yes",
                     "product_badges_1_visible": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-mobile-screen-button",
+                        "value": "fas fa-mobile-alt",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",
@@ -1583,7 +1583,7 @@
                     "prod_ver_1_visible": "yes",
                     "product_badges_1_visible": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-wand-magic-sparkles",
+                        "value": "fas fa-magic",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",

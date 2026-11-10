@@ -384,3 +384,140 @@
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* =====================================================================
+   Mobile drawer for headers that were built in Elementor
+   ---------------------------------------------------------------------
+   The Elementor header document ships the hamburger button
+   (`[data-zc-drawer-open="zc-mobile-drawer"]`) but, unlike the PHP header,
+   it has no drawer markup behind it — on a phone the button therefore did
+   nothing at all. The drawer is built here, from the navigation the header
+   already prints, so:
+     • it never duplicates content (the <ul class="zc-nav-pill"> is cloned),
+     • it inherits the `is-current` / `aria-current` state Native_Design puts
+       on the link that points at the page being viewed,
+     • it disappears the moment the theme prints its own drawer.
+   ===================================================================== */
+(() => {
+    'use strict';
+
+    const LABELS = { menu: 'منوی اصلی', close: 'بستن منو', more: 'زیرمنو' };
+
+    const build = () => {
+        const toggle = document.querySelector('[data-zc-drawer-open]');
+        if (!toggle) return null;
+        const id = toggle.getAttribute('data-zc-drawer-open') || 'zc-mobile-drawer';
+        if (document.getElementById(id)) return null;          // theme header already printed one
+        const source = document.querySelector('.zc-hf .zc-nav-pill, .zc-nav-pill');
+        if (!source) return null;
+
+        const backdrop = document.createElement('div');
+        backdrop.className = 'zc-mobile-drawer-backdrop';
+        backdrop.id = id;
+        backdrop.setAttribute('aria-hidden', 'true');
+
+        const drawer = document.createElement('nav');
+        drawer.className = 'zc-mobile-drawer zc-mobile-drawer--built';
+        drawer.setAttribute('role', 'dialog');
+        drawer.setAttribute('aria-modal', 'true');
+        drawer.setAttribute('aria-label', LABELS.menu);
+
+        const head = document.createElement('div');
+        head.className = 'zc-mobile-drawer-head';
+        const brand = document.querySelector('.zc-hf .zc-brand, .zc-brand');
+        head.appendChild(brand ? brand.cloneNode(true) : document.createElement('span'));
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.className = 'zc-icon-btn';
+        close.setAttribute('data-zc-drawer-close', '');
+        close.setAttribute('aria-label', LABELS.close);
+        close.innerHTML = '<i class="fa fa-solid fa-xmark" aria-hidden="true"></i>';
+        head.appendChild(close);
+
+        const list = document.createElement('ul');
+        list.className = 'zc-mobile-nav-list';
+        list.style.padding = '0';
+        list.style.margin = '1rem 0 0';
+
+        source.querySelectorAll(':scope > li').forEach((li) => {
+            const link = li.querySelector(':scope > a');
+            if (!link) return;
+            const row = document.createElement('li');
+            if (li.classList.contains('has-megamenu')) row.className = 'zc-mobile-has-sub is-open';
+            const a = link.cloneNode(true);
+            // The desktop caret belongs to the hover trigger, not to the row.
+            a.querySelectorAll('.zc-nav-caret').forEach((c) => c.remove());
+            row.appendChild(a);
+
+            const sub = li.querySelector(':scope > .zc-dropdown-menu, :scope > ul');
+            if (sub) {
+                const subList = document.createElement('ul');
+                subList.className = 'zc-mobile-sub';
+                subList.style.listStyle = 'none';
+                subList.style.padding = '0 .5rem .4rem';
+                sub.querySelectorAll('li > a').forEach((subLink) => {
+                    const sLi = document.createElement('li');
+                    sLi.className = 'zc-mobile-sub-row';
+                    sLi.appendChild(subLink.cloneNode(true));
+                    subList.appendChild(sLi);
+                });
+                row.appendChild(subList);
+            }
+            list.appendChild(row);
+        });
+
+        const foot = document.createElement('div');
+        foot.className = 'zc-mobile-drawer-foot';
+        const cta = document.querySelector('.zc-header-actions .zc-btn, .zc-header-actions a[class*="zc-btn"], .zc-header-actions .elementor-button');
+        if (cta) {
+            const c = cta.cloneNode(true);
+            c.style.marginTop = '1rem';
+            c.style.width = '100%';
+            foot.appendChild(c);
+        }
+
+        drawer.appendChild(head);
+        drawer.appendChild(list);
+        drawer.appendChild(foot);
+        backdrop.appendChild(drawer);
+        document.body.appendChild(backdrop);
+        return backdrop;
+    };
+
+    const open = (backdrop) => {
+        backdrop.classList.add('is-open');
+        backdrop.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = backdrop.querySelector('a, button');
+        if (first) first.focus({ preventScroll: true });
+    };
+
+    const close = (backdrop) => {
+        backdrop.classList.remove('is-open');
+        backdrop.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        const toggle = document.querySelector('[data-zc-drawer-open]');
+        if (toggle) toggle.focus({ preventScroll: true });
+    };
+
+    const init = () => {
+        const backdrop = build();
+        const toggle = document.querySelector('[data-zc-drawer-open]');
+        if (!backdrop || !toggle) return;
+        toggle.addEventListener('click', (event) => {
+            event.preventDefault();
+            open(backdrop);
+        });
+        backdrop.addEventListener('click', (event) => {
+            if (event.target === backdrop || event.target.closest('[data-zc-drawer-close]')) {
+                close(backdrop);
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && backdrop.classList.contains('is-open')) close(backdrop);
+        });
+    };
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
+})();

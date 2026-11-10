@@ -691,7 +691,7 @@
                     "_variant": "v2",
                     "_enabled": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-face-smile",
+                        "value": "fas fa-smile",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",

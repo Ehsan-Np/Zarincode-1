@@ -38,7 +38,7 @@ while ( have_posts() ) :
     $cat_badge    = get_post_meta( $post_id, '_zc_prod_cat_badge', true ) ?: 'محصول دیجیتال آماده';
     $sales_cnt    = $zc_wc_product ? number_format_i18n($zc_wc_product->get_total_sales()) : '—';
     $compat       = get_post_meta( $post_id, '_zc_prod_compat', true ) ?: 'پیش‌نیازها را در توضیحات محصول بررسی کنید';
-    $icon_class   = get_post_meta( $post_id, '_zc_prod_icon', true ) ?: 'fa-solid fa-Layer-group';
+    $icon_class   = get_post_meta( $post_id, '_zc_prod_icon', true ) ?: 'fa-solid fa-layer-group';
     $tags_str     = get_post_meta( $post_id, '_zc_prod_tags', true ) ?: '';
     $tags         = array_map( 'trim', explode( ',', $tags_str ) );
     $updated_date = get_post_meta( $post_id, '_zc_prod_updated', true ) ?: get_the_modified_date();

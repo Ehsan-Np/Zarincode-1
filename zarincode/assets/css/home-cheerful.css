@@ -42,7 +42,7 @@
 .zc-hp .hero-actions{display:flex;gap:13px;margin-top:26px;flex-wrap:wrap}
 .zc-hp .trust{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
 .zc-hp .tcard{background:#fff;border-radius:20px;box-shadow:var(--sh1);padding:13px 17px;display:flex;gap:11px;align-items:center;min-width:172px}
-.zc-hp .tcard .ti{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:20px}
+.zc-hp .tcard .ti{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:19px}
 .zc-hp .tc1 .ti{background:var(--mint)}
 .zc-hp .tc2 .ti{background:var(--gold3)}
 .zc-hp .tc3 .ti{background:var(--lav)}
@@ -60,7 +60,7 @@
 .zc-hp .code-card em{color:#7DD3FC;font-style:normal}
 .zc-hp .code-card s{color:#86EFAC;text-decoration:none}
 .zc-hp .floaty{position:absolute;border-radius:20px;background:#fff;box-shadow:var(--sh2);padding:12px 16px;font-weight:800;font-size:13.5px;display:flex;gap:10px;align-items:center;z-index:3}
-.zc-hp .floaty .fi{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:17px}
+.zc-hp .floaty .fi{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:16px}
 .zc-hp .fl1{top:8px;left:26px;transform:rotate(-5deg)}
 .zc-hp .fl1 .fi{background:var(--rose)}
 .zc-hp .fl2{bottom:96px;left:6px;transform:rotate(4deg)}
@@ -88,14 +88,14 @@
 @keyframes zcslide{.zc-hp from{transform:translateX(0)}
 .zc-hp to{transform:translateX(50%)}}
 @media (prefers-reduced-motion:reduce){.zc-hp .clients .ptrack{animation:none}}
-.zc-hp .ico-tile{width:62px;height:62px;border-radius:18px;background:#ffffffd9;box-shadow:0 8px 18px rgba(41,44,49,.12);display:grid;place-items:center;font-size:24px;color:var(--ink);top:14px;right:16px;left:auto;position:absolute}
+.zc-hp .ico-tile{width:62px;height:62px;border-radius:18px;background:#ffffffd9;box-shadow:0 8px 18px rgba(41,44,49,.12);display:grid;place-items:center;font-size:28px;color:var(--ink);top:14px;right:16px;left:auto;position:absolute}
 .zc-hp .scover .emo.ico{display:none}
 .zc-hp .schips{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
 /* v4.9.1: the glyph is a <span class="fa">, so `.schips span` used to paint a
    second pill *on top of the icon*. Only the text pills are pills now; the
    glyph gets its own optically-centred badge. */
 .zc-hp .schips > span:not(.fa){display:inline-flex;gap:7px;align-items:center;background:#F7F8FA;border:1px solid #292C3112;border-radius:999px;padding-block:5px;padding-inline:9px 13px;font-size:11.5px;font-weight:800;color:var(--ink2)}
-.zc-hp .schips > span > span.fa, .zc-hp .pchips > span > span.fa{display:inline-grid;place-items:center;align-content:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;margin:0;padding:0;border:0;border-radius:50%;background:#FFF1C9;color:var(--gold-deep);font-size:9px;line-height:1;text-align:center;inset-block-start:0}
+.zc-hp .schips > span > span.fa, .zc-hp .pchips > span > span.fa{display:inline-grid;place-items:center;align-content:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;margin:0;padding:0;border:0;border-radius:50%;background:#FFF1C9;color:var(--gold-deep);font-size:10px;line-height:1;text-align:center;inset-block-start:0}
 .zc-hp .kpi{position:absolute;left:14px;bottom:12px;background:var(--ink);color:var(--gold);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:900;z-index:3;box-shadow:0 8px 16px rgba(41,44,49,.25)}
 .zc-hp section{padding:54px 0}
 .zc-hp .sec-head{text-align:center;max-width:760px;margin:0 auto 34px}
@@ -200,7 +200,7 @@
 .zc-hp .step:nth-child(6n+4)::before{background:var(--sky2)}
 .zc-hp .step:nth-child(6n+5)::before{background:var(--lav2)}
 .zc-hp .step:nth-child(6n+6)::before{background:var(--rose2)}
-.zc-hp .step .sic{width:56px;height:56px;margin:12px auto 10px;border-radius:50%;background:var(--gold3);display:grid;place-items:center;font-size:24px}
+.zc-hp .step .sic{width:56px;height:56px;margin:12px auto 10px;border-radius:50%;background:var(--gold3);display:grid;place-items:center;font-size:25px}
 .zc-hp .step b{display:block;font-size:14.5px;font-weight:900;margin-bottom:6px}
 .zc-hp .step p{font-size:12.5px;color:var(--ink2);font-weight:500}
 .zc-hp .chips{display:flex;gap:9px;justify-content:center;margin:0 0 26px;flex-wrap:wrap}
@@ -273,6 +273,9 @@
 .zc-hp .sc1 .scover2{background:linear-gradient(150deg,#FFE9AE,#FDD05B)}
 .zc-hp .sc2 .scover2{background:linear-gradient(150deg,#FDEBD2,#F7C9A8)}
 .zc-hp .scover2 .g{position:absolute;inset:0;display:grid;place-items:center;font-size:60px;filter:drop-shadow(0 10px 16px rgba(41,44,49,.18))}
+/* The glyph is the *fallback* cover: when the post has a featured image the
+   image is the cover and the glyph has no business sitting behind it. */
+.zc-hp :is(.scover2,.pcover,.jcover,.fcover):has(> img) > .g{display:none}
 .zc-hp .scover2 .pill{position:absolute;bottom:12px;right:12px;background:#ffffffdd;border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:900}
 .zc-hp .sbody2{padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 .zc-hp .tags{display:flex;gap:7px;flex-wrap:wrap}
@@ -349,11 +352,9 @@
 .zc-hp .bmeta{flex-wrap:wrap;gap:8px}}
 
 /* --- home v4.6.1 fixes --- */
-.zc-hp .jcover .ico-tile{top:auto;bottom:12px;right:14px;width:52px;height:52px;border-radius:16px;font-size:19px}
+.zc-hp .jcover .ico-tile{top:auto;bottom:12px;right:14px;width:52px;height:52px;border-radius:16px;font-size:23px}
 .zc-hp .jcover .kpi{left:14px;bottom:12px}
-.zc-hp .pcover .ico-tile{width:52px;height:52px;border-radius:16px;font-size:19px}
-.zc-hp .bcard .em .fa,.zc-hp .step .sic .fa{font-size:22px}
-.zc-hp .tcard .ti .fa{font-size:17px}
+.zc-hp .pcover .ico-tile{width:52px;height:52px;border-radius:16px;font-size:23px}
 .zc-hp .tst .stars{letter-spacing:2px}
 
 /* --- v4.7.0: section tints as classes so Elementor style controls can override them --- */
@@ -386,11 +387,14 @@
   text-align:center;
 }
 .zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic,.ava,.ava2) > :is(.fa,i,svg,img),
+/* A glyph keeps its own advance width. This used to be `width:1em`, which
+   clipped every icon that is wider than it is tall (fa-comments, fa-server,
+   fa-arrow-trend-up) and parked narrow ones off-centre. */
 .zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic) > span {
   display:block;
   margin:0 auto;
   line-height:1;
-  width:1em;
+  width:auto;
   text-align:center;
 }
 .zc-hp :is(.ico-tile,.fi,.ti,.em,.sic,.g,.ic) > svg{height:1em;fill:currentColor}
@@ -574,7 +578,7 @@
 
 /* ---------- 9. Why / Steps / Partners / Promo: same hover language ---- */
 .zc-hp .bcard .em,
-.zc-hp .bento .bcard .em{width:56px;height:56px;border-radius:18px;background:#ffffffcf;box-shadow:0 8px 16px rgba(41,44,49,.1);margin:0 0 12px;font-size:24px}
+.zc-hp .bento .bcard .em{width:56px;height:56px;border-radius:18px;background:#ffffffcf;box-shadow:0 8px 16px rgba(41,44,49,.1);margin:0 0 12px;font-size:25px}
 .zc-hp .bcard:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(41,44,49,.16)}
 .zc-hp .bcard:hover .em{transform:rotate(-6deg) scale(1.06)}
 .zc-hp .bcard .em{transition:transform var(--zc-t),background-color var(--zc-t)}

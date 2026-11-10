@@ -76,3 +76,17 @@ details:not([open])>:not(summary){display:none}
 
 .zc-skip-link{position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:100000;background:#fff;color:#111;padding:12px 18px;border:2px solid #111;border-radius:8px;transform:translateY(-160%)}.zc-skip-link:focus{transform:none;outline:3px solid #111;outline-offset:3px}
 html[dir=ltr] body{direction:ltr;text-align:left}html[dir=ltr] :is(.zc-card-cover-title,.zc-breadcrumb-bar){text-align:start}
+
+/* Drawer built by zarincode-main.js for headers authored in Elementor.
+   The theme's own drawer uses space-between because it has a footer block;
+   the generated one is a plain list, so it starts at the top. */
+.zc-mobile-drawer--built{justify-content:flex-start;gap:0}
+.zc-mobile-drawer--built .zc-mobile-drawer-head{gap:12px}
+.zc-mobile-drawer--built .zc-mobile-nav-list{display:flex;flex-direction:column;gap:.35rem}
+.zc-mobile-drawer--built .zc-mobile-nav-list > li > a{display:flex;align-items:center;justify-content:space-between;min-height:46px;padding:.8rem 1rem;border-radius:.95rem;font-size:.92rem;font-weight:800;background:rgba(42,44,49,.04);color:var(--zc-text-main);text-decoration:none}
+.zc-mobile-drawer--built .zc-mobile-nav-list > li > a:hover{background:var(--color-accent-soft)}
+.zc-mobile-drawer--built .zc-mobile-nav-list > li > a.is-current,
+.zc-mobile-drawer--built .zc-mobile-nav-list > li > a[aria-current="page"]{background:var(--zc-dark);color:#fff;box-shadow:inset 3px 0 0 var(--color-accent)}
+.zc-mobile-drawer--built .zc-mobile-drawer-foot{margin-top:auto;padding-top:1rem;border-top:1px solid var(--zc-border-subtle)}
+@media (prefers-color-scheme:dark){.zc-mobile-drawer--built .zc-mobile-nav-list > li > a{background:rgba(255,255,255,.06)}}
+html.dark .zc-mobile-drawer--built .zc-mobile-nav-list > li > a{background:rgba(255,255,255,.06)}

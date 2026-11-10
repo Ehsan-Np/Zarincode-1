@@ -280,7 +280,7 @@
                     "_variant": "v7",
                     "_enabled": "yes",
                     "icon_1_icon": {
-                        "value": "fas fa-cart-shopping",
+                        "value": "fas fa-shopping-cart",
                         "library": "fa-solid"
                     },
                     "icon_1_visible": "yes",

@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.13.1
+Stable tag: 4.14.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,15 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.14.0 =
+* Icons: the shipped Font Awesome is now the **Free 7.0.0** build (icons CC BY 4.0, fonts SIL OFL 1.1, code MIT). The previous folder was the commercial-font *Pro* package, which cannot be redistributed inside a public theme, and it was ~7.5 MB of every glyph the family has; only the solid, regular and brand faces are kept (≈340 KB).
+* Icons: one contract for every glyph. `Zarincode\Theme\Core\Icons` is the only place that prints icon markup, `assets/css/icons.css` pins the Font Awesome family and the five size tokens, and `assets/css/icon-aliases.css` maps every Font Awesome 5/6 name that 7.x renamed to the code point the shipped font actually has. Homepage icons had been rendering as empty boxes because a `<span class="fa">` glyph was being given the Vazirmatn family by the Elementor typography layer; that rule now excludes `.fa` explicitly.
+* Icons: removed the `width:1em` clamp that squashed wide glyphs inside tiles, moved every hand-typed arrow (`←`) to a real Font Awesome icon, and fixed icon names written with the wrong case (`fa-Layer-group`, `fa-file-Lines`) which no font can resolve.
+* Navigation: hover, current-page (`is-current` + `aria-current="page"`, gold underline), current-branch (gold tint) and keyboard-focus states for the header pill, the mega-menu rows and the mobile drawer. The Elementor header document is a static tree, so WordPress never marked the current page on it; `Native_Design` now marks the link whose URL matches the request at render time.
+* Mobile: the Elementor header shipped a hamburger button with no drawer behind it — the button did nothing on a phone. The drawer is now built from the header navigation itself, keeps the current-page state, closes on Escape/backdrop click, and is skipped when the PHP header already prints one.
+* SEO: `<html lang>` is always `fa-IR` (it was `en-US` on installs without the Persian language pack, telling Google the Persian page was English); a front-page title is shortened at a word boundary instead of ending in «…»; pages can carry `_zc_seo_title` / `_zc_seo_description`, and the demo import writes one for each of the 15 demo pages instead of shipping the same 66-character slogan eleven times.
+* Demo: the import result banner reports the real counts (services, projects, products, posts, Elementor pages) in Persian digits instead of repeating fixed numbers. The services badge no longer ships as `!HERE'S WHAT WE OFFER…`.
 
 = 4.13.1 =
 * The dark band above the footer is gone. 4.9.0 painted a 9rem page-to-footer «veil» (a dark gradient strip) above the plate; on a light page it read as a black border on top of the footer. The veil is removed from both footers (the Elementor one and the coded fallback), together with the 9rem margin and the tablet/mobile variants: the footer now starts where the page ends and the plate itself is the whole design. The divider, the CTA card, the columns and the bottom bar are untouched.

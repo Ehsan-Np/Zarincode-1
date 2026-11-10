@@ -1,0 +1,102 @@
+/* =====================================================================
+   Icon layer — one contract for every glyph in the theme
+   ---------------------------------------------------------------------
+   Font Awesome Free 7.0.0 is shipped in assets/fontawesome. This file is
+   loaded right after it and does three things, in this order:
+
+   1. FAMILY — pins `Font Awesome 7 Free` / `7 Brands` (6.x and 5.x as
+      fallbacks) on every icon element, including the bare `.fa` base
+      class. Without this the Elementor typography layer — which forces
+      Vazirmatn with `!important` — wins on `.fa` and the glyph renders as
+      a tofu box. That is the 4.13.x bug this file closes.
+
+   2. GEOMETRY — no icon gets a forced width/height. Font Awesome glyphs
+      are not all 1em wide (fa-comments, fa-arrow-trend-up, …); pinning
+      width clipped them. Icons are inline boxes that keep their own
+      advance width on a 1 line-height, and no rule here touches
+      font-weight: the weight belongs to Font Awesome (.fa-solid = 900,
+      .fa-regular/.fa-brands = 400) and overriding it would swap a solid
+      glyph for a regular one that may not contain it.
+
+   3. SIZE SCALE — the handful of sizes the design actually needs, as
+      tokens. A component sets one token, never a raw font-size, so an
+      icon can never again be sized by accident (the billboard-sized
+      circles in the 4.13.x cards were an `.ar` badge inheriting a
+      heading's font-size).
+
+   Elementor's own icons (`.eicon`, star ratings) and uploaded SVGs are
+   left alone — they are not Font Awesome.
+   ===================================================================== */
+
+:root {
+    --zc-icon-btn: 1rem;          /* 16px — round header/icon buttons            */
+    --zc-icon-chip: 0.6875rem;    /* 11px — pills, badges, small meta rows       */
+    --zc-icon-tile: 1.375rem;     /* 22px — 44–48px tiles, list bullets          */
+    --zc-icon-feature: 1.625rem;  /* 26px — 56–64px feature tiles, step circles  */
+    --zc-icon-hero: 2rem;         /* 32px — one per viewport, the hero badge     */
+
+    --zc-icon-font: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+    --zc-icon-font-brands: "Font Awesome 7 Brands", "Font Awesome 6 Brands", "Font Awesome 5 Brands", sans-serif;
+}
+
+/* ── 1. Family ──────────────────────────────────────────────────────── */
+.fa,
+.fa-solid,
+.fa-regular,
+.fa-sharp,
+.fa-classic,
+.zc-ico,
+[class*="fa-"]:not(.fa-brands) {
+    font-family: var(--zc-icon-font);
+}
+
+.fa-brands,
+.fab,
+[class*="fa-brands"] {
+    font-family: var(--zc-icon-font-brands);
+}
+
+/* ── 2. Geometry ────────────────────────────────────────────────────── */
+.fa,
+.fa-solid,
+.fa-regular,
+.fa-brands,
+.fa-sharp,
+.zc-ico,
+[class*="fa-"] {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: -0.125em;
+    flex: 0 0 auto;
+}
+
+/* Inside a painted box (tile, circle, button) the box centres the glyph, so
+   the glyph must not carry its own baseline offset. */
+:is(.zc-icon-btn, .ico-tile, .sic, .ar, .em, .fi, .ti, .ic, .zc-dropdown-icon) > :is(.fa, .fa-solid, .fa-regular, .fa-brands) {
+    vertical-align: 0;
+    margin: 0;
+}
+
+/* ── 3. Size scale ──────────────────────────────────────────────────── */
+.zc-icon-btn > :is(.fa, .fa-solid, .fa-regular, .fa-brands),
+.zc-header-pill :is(.zc-dropdown-icon, .zc-brand-logo-box) > :is(.fa, .fa-solid, .fa-regular, .fa-brands) {
+    font-size: var(--zc-icon-btn);
+}
+
+.zc-hp :is(.hero-ico, .badge-ico) > :is(.fa, .fa-solid, .fa-regular, .fa-brands) {
+    font-size: var(--zc-icon-hero);
+}
+
+@media (max-width: 767px) {
+    :root {
+        --zc-icon-tile: 1.25rem;
+        --zc-icon-feature: 1.5rem;
+        --zc-icon-hero: 1.75rem;
+    }
+}

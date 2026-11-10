@@ -103,7 +103,7 @@
                 "title": "۲. امنیت تراکنش‌های بانکی و اطلاعات هویتی",
                 "description": "<p>تمامی پرداخت‌های آنلاین در وب‌سایت Zarincode.com از طریق درگاه‌های رسمی شبکه شاپرک و با پروتکل رمزنگاری امن SSL (256-bit) انجام می‌شود و هیچ‌گونه اطلاعات محرمانه کارت بانکی در سرورهای زرین کد ذخیره نمی‌گردد.</p>",
                 "icon": {
-                    "value": "fa-solid fa-shield-halved",
+                    "value": "fa-solid fa-shield-alt",
                     "library": "fa-solid"
                 },
                 "visible": "yes"
@@ -146,7 +146,7 @@
                 "title": "۳. نحوه ثبت درخواست و زمان واریز",
                 "description": "<p>جهت ثبت درخواست بازگشت وجه کافیست از طریق پنل کاربری یا تماس مستقیم با شماره <strong>09024561001</strong> درخواست خود را به همراه شماره شبا اعلام فرمایید. مبالغ تاییدشده ظرف حداکثر ۲۴ الی ۷۲ ساعت کاری از طریق حواله پایا/ساتنا به حساب بانکی کارفرما واریز می‌گردد.</p>",
                 "icon": {
-                    "value": "fa-solid fa-money-bill-transfer",
+                    "value": "fa-solid fa-exchange-alt",
                     "library": "fa-solid"
                 },
                 "visible": "yes"
@@ -196,7 +196,7 @@
                 "title": "1. Intellectual Property Ownership of Zarincode Products",
                 "description": "<p>All proprietary WordPress themes (including the <strong>Zarincode Elementor-Based Theme</strong>), WordPress plugins, custom Elementor widgets, UI kits, and ready-made software source codes published on <strong>Zarincode.com</strong> are original works authored by <strong>Ehsan NaderiPanah</strong>. Unauthorized redistribution, nulled/cracked distribution, scraping, reverse engineering, or resale without an official commercial license from Zarincode.com is strictly prohibited and subject to immediate DMCA takedown notices sent to hosting providers, Cloudflare, Google Search, and GitHub.</p>",
                 "icon": {
-                    "value": "fa-solid fa-shield-halved",
+                    "value": "fa-solid fa-shield-alt",
                     "library": "fa-solid"
                 },
                 "visible": "yes"
@@ -205,7 +205,7 @@
                 "title": "2. Filing a DMCA Infringement Notification",
                 "description": "<p>If you believe in good faith that any material, code snippet, graphic asset, or content hosted on or linked through <strong>Zarincode.com</strong> infringes your copyright, please send a written DMCA Takedown Notice containing all of the following statutory elements (pursuant to 17 U.S.C. § 512(c)(3)):</p>\n<ol>\n<li>A physical or electronic signature of the copyright owner or a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>\n<li>Identification of the copyrighted work claimed to have been infringed (or a representative list if multiple works are covered by a single notification).</li>\n<li>Identification of the material that is claimed to be infringing and exact URLs on <strong>Zarincode.com</strong> reasonably sufficient to permit us to locate the material.</li>\n<li>Your full legal name, mailing address, telephone number, and valid email address.</li>\n<li>A statement that you have a good-faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.</li>\n<li>A statement that the information in the notification is accurate, and <strong>under penalty of perjury</strong>, that you are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>\n</ol>",
                 "icon": {
-                    "value": "fa-solid fa-file-Lines",
+                    "value": "fa-solid fa-file-alt",
                     "library": "fa-solid"
                 },
                 "visible": "yes"

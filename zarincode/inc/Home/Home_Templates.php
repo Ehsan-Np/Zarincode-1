@@ -168,23 +168,15 @@ final class Home_Templates {
 	}
 
 	/**
-	 * Font Awesome solid glyphs used across the homepage (short name => code point).
-	 * Shared with the Elementor icon pickers via icon_choices().
+	 * Semantic icon keys the homepage models use.
+	 *
+	 * The names are translated to the Font Awesome build the theme ships by
+	 * \Zarincode\Theme\Core\Icons — the templates never print a code point or a
+	 * Font Awesome class of their own (that is exactly what produced the tofu
+	 * boxes in 4.13.x).
 	 */
 	public static function icon_map(): array {
-		return array(
-			'circle-check' => 'f058', 'star' => 'f005', 'shield-halved' => 'f3ed', 'bolt' => 'f0e7',
-			'chart-line' => 'f201', 'handshake' => 'f2b5', 'cart-shopping' => 'f07a', 'magnifying-glass' => 'f002',
-			'comments' => 'f086', 'display' => 'f108', 'gears' => 'f085', 'arrow-trend-up' => 'e098',
-			'pen-nib' => 'f5ad', 'hashtag' => 'f292', 'cubes' => 'f1b3', 'graduation-cap' => 'f19d',
-			'robot' => 'f544', 'building' => 'f1ad', 'palette' => 'f53f', 'hospital' => 'f0f8',
-			'newspaper' => 'f1ea', 'compass' => 'f14e', 'bullseye' => 'f140', 'layer-group' => 'f5fd',
-			'gift' => 'f06b', 'pen-ruler' => 'f5ae', 'screwdriver-wrench' => 'f7d9', 'rocket' => 'f135',
-			'wordpress' => 'f19a', 'envelope' => 'f0e0', 'cloud' => 'f0c2', 'building-columns' => 'f19c',
-			'globe' => 'f0ac', 'server' => 'f233', 'chart-simple' => 'f201', 'users' => 'f0c0',
-			'clock' => 'f017', 'file-lines' => 'f15c', 'phone' => 'f095', 'arrow-left' => 'f060',
-			'quote-right' => 'f10e', 'sparkles' => 'f890', 'user' => 'f007',
-		);
+		return \Zarincode\Theme\Core\Icons::semantic_map();
 	}
 
 	/** Persian labels for the icon picker, keyed by the same short names. */
@@ -215,14 +207,12 @@ final class Home_Templates {
 		return $choices;
 	}
 
-	/** Font Awesome solid glyph from a short name (display => f108). */
-	private static function ico( string $name ): string {
+	/** One icon element from a semantic key ("sparkles", "display", …). */
+	private static function ico( string $name, string $class = '' ): string {
 		if ( '' === $name ) {
 			return '';
 		}
-		$map  = self::icon_map();
-		$code = $map[ $name ] ?? 'f111';
-		return '<span class="fa" aria-hidden="true">&#x' . $code . ';</span>';
+		return \Zarincode\Theme\Core\Icons::render( $name, array( 'class' => $class ) );
 	}
 
 	/**
@@ -440,7 +430,7 @@ final class Home_Templates {
 			<h2 class="t"><?php echo wp_kses_post( $title_html ); ?></h2>
 			<?php if ( $desc !== '' ) : ?><p><?php echo self::e( $desc ); ?></p><?php endif; ?>
 		</div>
-		<?php if ( $more_text !== '' ) : ?><a class="link" href="<?php echo self::url( $more_url ); ?>"><?php echo self::e( $more_text ); ?> <span class="ar">←</span></a><?php endif; ?>
+		<?php if ( $more_text !== '' ) : ?><a class="link" href="<?php echo self::url( $more_url ); ?>"><?php echo self::e( $more_text ); ?> <span class="ar"><?php echo self::ico( 'arrow-left' ); ?></span></a><?php endif; ?>
 	</div>
 			<?php
 		endif;
@@ -479,7 +469,7 @@ final class Home_Templates {
 					<?php endif; ?>
 					<div class="sfoot">
 						<span class="pricetag"><?php echo self::e( $it['price'] ?? '' ); ?></span>
-						<a class="smore" href="<?php echo self::url_or( $it['link'] ?? '', '/services/' ); ?>"><?php echo self::e( $it['link_text'] ?? 'جزئیات' ); ?> <span class="ar">←</span></a>
+						<a class="smore" href="<?php echo self::url_or( $it['link'] ?? '', '/services/' ); ?>"><?php echo self::e( $it['link_text'] ?? 'جزئیات' ); ?> <span class="ar"><?php echo self::ico( 'arrow-left' ); ?></span></a>
 					</div>
 				</div>
 			</div>
@@ -763,7 +753,7 @@ final class Home_Templates {
 					<?php endif; ?>
 					<span><b><?php echo self::e( $t['name'] ?? '' ); ?></b><span><?php echo self::e( $t['role'] ?? '' ); ?></span></span>
 					<?php if ( '' !== $ava_link ) : ?>
-					<a class="tlink" href="<?php echo esc_url( self::url_or( $ava_link, '/' ) ); ?>" aria-label="<?php echo esc_attr( 'مشاهدهٔ ' . (string) ( $t['name'] ?? '' ) ); ?>">←</a>
+					<a class="tlink" href="<?php echo esc_url( self::url_or( $ava_link, '/' ) ); ?>" aria-label="<?php echo esc_attr( 'مشاهدهٔ ' . (string) ( $t['name'] ?? '' ) ); ?>"><?php echo self::ico( 'arrow-left' ); ?></a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -803,7 +793,7 @@ final class Home_Templates {
 				</div>
 				<div class="fbody">
 					<p><?php echo self::e( $feat['excerpt'] ?? '' ); ?></p>
-					<a class="continue" href="<?php echo self::url_or( $feat['link'] ?? '', '/blog/' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar">←</span></a>
+					<a class="continue" href="<?php echo self::url_or( $feat['link'] ?? '', '/blog/' ); ?>"><?php echo self::e( $a['read_more'] ?? '' ); ?> <span class="ar"><?php echo self::ico( 'arrow-left' ); ?></span></a>
 					<div class="bmeta">
 						<div class="who2"><span class="ava2"><?php echo self::ico( 'user' ); ?></span><span><b><?php echo self::e( $feat['author'] ?? '' ); ?></b><span><?php echo self::e( $feat['date'] ?? '' ); ?></span></span></div>
 						<span class="timepill"><?php echo self::ico( 'clock' ); ?><?php echo self::e( $feat['read'] ?? '' ); ?></span>

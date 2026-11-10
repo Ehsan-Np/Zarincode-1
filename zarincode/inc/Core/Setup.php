@@ -155,7 +155,14 @@ class Setup {
         } else {
             $output .= ' dir="rtl"';
         }
-        if ( strpos( $output, 'lang=' ) === false ) {
+        // Language: the site is Persian (standing order: Persian front end only).
+        // WordPress prints whatever `get_locale()` returns — on an install that
+        // has no fa_IR language pack that is `en-US`, which told Google the page
+        // was English while the whole page is Persian. The attribute is therefore
+        // always rewritten, not merely filled in when missing.
+        if ( strpos( $output, 'lang=' ) !== false ) {
+            $output = preg_replace( '/lang="[^"]*"/', 'lang="fa-IR"', $output );
+        } else {
             $output = 'lang="fa-IR" ' . $output;
         }
         return $output;

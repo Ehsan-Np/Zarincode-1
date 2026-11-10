@@ -42,6 +42,10 @@ class Elementor_Loader {
         // One-off upgrade: sites that imported the 4.6.0 demo keep empty widget
         // panels until their homepage widgets are seeded with real content.
         add_action( 'admin_init', [ $this, 'backfill_home_defaults' ], 20 );
+        // One-off upgrade: rewrite icon names stored by an older release to the
+        // Font Awesome 5.15.3 vocabulary Elementor resolves against, so its
+        // inlined-SVG pass stops logging «Undefined array key» warnings.
+        add_action( 'admin_init', [ Icon_Compatibility::class, 'repair_stored_icons' ], 21 );
     }
 
     /** Runs Home_Defaults::backfill_homepage() once per plugin version. */
