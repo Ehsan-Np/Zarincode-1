@@ -39,6 +39,21 @@ abstract class Abstract_Home_Widget extends Widget_Base {
 	/** Elementor panel category registered by Elementor_Loader::register_category(). */
 	public const CATEGORY = 'zarincode-home';
 
+	/**
+	 * Hidden from the panel since 4.16.0.
+	 *
+	 * Every one of these widgets renders a whole homepage section in a single
+	 * element (hero, services, pricing …). The homepage itself has been built
+	 * from native Elementor widgets since 4.15.0 — heading, text-editor, button,
+	 * image, icon-box, icon-list and dividers inside containers — precisely so
+	 * that each title, paragraph, card and button can be selected on its own.
+	 * They stay registered only so a document written by an older release keeps
+	 * rendering; nobody can create a new «one widget per section» block.
+	 */
+	public function show_in_panel(): bool {
+		return false;
+	}
+
 	/** Section heading selectors reused by the style controls. */
 	private const SEL_BADGE = '{{WRAPPER}} .zc-hp .sec-head .k, {{WRAPPER}} .zc-hp .head-row .k';
 	private const SEL_TITLE = '{{WRAPPER}} .zc-hp h2.t';

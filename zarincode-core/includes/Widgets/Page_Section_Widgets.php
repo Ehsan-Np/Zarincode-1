@@ -49,8 +49,14 @@ abstract class Widget_Page_Section_Scoped extends Widget_Page_Content_Section {
 		return $this->scope_icon();
 	}
 
+	/**
+	 * Hidden from the panel since 4.16.0: this widget renders an entire inner
+	 * page (about, contact, terms …) as one element. Those pages are composed
+	 * from native Elementor widgets since 4.15.0. Kept registered so documents
+	 * written by an older release still render.
+	 */
 	public function show_in_panel(): bool {
-		return true;
+		return false;
 	}
 
 	public function get_keywords(): array {
