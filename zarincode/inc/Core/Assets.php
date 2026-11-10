@@ -26,6 +26,11 @@ class Assets {
         add_action( 'wp_enqueue_scripts', [ $this, 'register_frontend_styles' ], 5 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_frontend_styles' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ], 20 );
+        // Elementor prints its document stylesheet at priority 20 too, and the
+        // plugin's styles land after the theme's. The composed-page design must
+        // be able to restyle stock widgets (a Heading's colour, a Button's
+        // padding) at equal specificity, so it is enqueued last on purpose.
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_page_design' ], 999 );
         add_action( 'wp_enqueue_scripts', [ $this, 'drop_core_block_styles_on_plain_pages' ], 99 );
         add_action( 'wp_head', [ $this, 'preload_critical_fonts' ], 1 );
         add_filter( 'style_loader_tag', [ $this, 'make_fontawesome_non_blocking' ], 10, 4 );
@@ -195,6 +200,26 @@ class Assets {
             ZARINCODE_URI . '/assets/css/home-cheerful.css',
             $deps,
             ZARINCODE_VERSION
+        );
+    }
+
+    /**
+     * Design layer for the Elementor-native demo pages (`.zc-eb-*`).
+     *
+     * Every demo page is a plain Container tree of stock Elementor widgets, so
+     * the look comes from this stylesheet instead of a custom renderer: it
+     * restyles a Heading, a Text Editor, a Button, an Icon Box and the
+     * container geometry. It is scoped to `zc-eb-*` classes only, so it can
+     * never reach a widget the owner dropped in himself, and it is enqueued at
+     * priority 999 so it is printed *after* Elementor's own document CSS —
+     * otherwise Elementor's equal-specificity rules would win.
+     */
+    public function enqueue_page_design(): void {
+        wp_enqueue_style(
+            'zarincode-eb',
+            ZARINCODE_URI . '/assets/css/eb.css',
+            array( 'zarincode-main' ),
+            $this->asset_version( '/assets/css/eb.css' )
         );
     }
 

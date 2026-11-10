@@ -359,95 +359,269 @@ class Demo_Seeder {
         return class_exists( '\Elementor\Widget_Base' );
     }
 
+    /* ------------------------------------------------------------------
+     * Demo media
+     *
+     * Every image a composed page shows is a real attachment in the media
+     * library, so the owner can replace it from the Elementor panel (click the
+     * image → choose another from the library) instead of editing code. The
+     * attachment id is cached in an option, so re-running the import never
+     * duplicates the file.
+     * ------------------------------------------------------------------ */
+
     /**
-     * One section of a demo page: a **Flexbox Container** holding the designed
-     * widget.
+     * Resolve a theme demo image to [id, url, alt].
      *
-     * Elementor's Sections/Columns are the legacy layout (they are still
-     * rendered, but they are not what the editor creates any more, they need
-     * four DOM nodes per widget, and they cannot be nested). Containers are the
-     * current primitive since 3.16, so every generated page is a flat list of
-     * Containers that the owner can drag, duplicate, nest and style — the same
-     * shape the footer uses.
-     *
-     * `content_width: full` + zero padding is the exact equivalent of the old
-     * `layout: full_width` + `gap: no` section, so the design does not move.
+     * @return array{id:int,url:string,alt:string}
      */
-    private static function make_elementor_section( string $widget_type, array $settings = [] ): array {
-        $settings=Service_Demo::settings($widget_type,$settings);
-        return [
-            'id'       => self::gen_id(),
-            'elType'   => 'container',
-            'isInner'  => false,
-            'settings' => [
-                'content_width'        => 'full',
-                'flex_direction'       => 'column',
-                'flex_justify_content' => 'flex-start',
-                'flex_align_items'     => 'stretch',
-                'flex_gap'             => [
-                    'column'   => '0',
-                    'row'      => '0',
-                    'unit'     => 'px',
-                    'isLinked' => true,
-                ],
-                'padding'              => [
-                    'unit'     => 'px',
-                    'top'      => '0',
-                    'right'    => '0',
-                    'bottom'   => '0',
-                    'left'     => '0',
-                    'isLinked' => true,
-                ],
-                '_title'               => self::section_title( $widget_type ),
-            ],
-            'elements' => [
-                [
-                    'id'         => self::gen_id(),
-                    'elType'     => 'widget',
-                    'widgetType' => $widget_type,
-                    // Empty settings must serialise as a JSON object ({}), not an
-                    // array ([]) — Elementor's editor reads settings as a map.
-                    'settings'   => $settings ? $settings : (object) array(),
-                ],
-            ],
-        ];
+    private static function media( string $file, string $alt ): array {
+        static $cache = array();
+        if ( isset( $cache[ $file ] ) ) {
+            return $cache[ $file ];
+        }
+
+        $path = get_template_directory() . '/assets/images/' . $file;
+        $raw  = get_template_directory_uri() . '/assets/images/' . $file;
+        $out  = array( 'id' => 0, 'url' => $raw, 'alt' => $alt );
+
+        if ( is_file( $path ) ) {
+            $option = 'zarincode_demo_media_' . md5( $file );
+            $id     = absint( get_option( $option ) );
+            if ( ! $id || 'attachment' !== get_post_type( $id ) ) {
+                $id = self::attach_image( $path, $alt );
+                if ( $id ) {
+                    update_option( $option, $id, false );
+                }
+            }
+            if ( $id ) {
+                $out['id']  = $id;
+                $out['url'] = (string) ( wp_get_attachment_image_url( $id, 'large' ) ?: $raw );
+            }
+        }
+
+        return $cache[ $file ] = $out;
+    }
+
+    /** Copy one theme image into the uploads folder and register it. */
+    private static function attach_image( string $path, string $alt ): int {
+        if ( ! is_readable( $path ) ) {
+            return 0;
+        }
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+
+        $uploads = wp_upload_dir();
+        if ( ! empty( $uploads['error'] ) ) {
+            return 0;
+        }
+        $type = wp_check_filetype( basename( $path ) );
+        if ( empty( $type['type'] ) ) {
+            return 0;
+        }
+
+        $dest = trailingslashit( $uploads['path'] ) . 'zc-' . basename( $path );
+        if ( ! @copy( $path, $dest ) ) {
+            return 0;
+        }
+
+        $id = wp_insert_attachment(
+            array(
+                'post_mime_type' => $type['type'],
+                'post_title'     => $alt,
+                'post_status'    => 'inherit',
+            ),
+            $dest
+        );
+        if ( ! $id || is_wp_error( $id ) ) {
+            return 0;
+        }
+        $meta = wp_generate_attachment_metadata( (int) $id, $dest );
+        if ( $meta ) {
+            wp_update_attachment_metadata( (int) $id, $meta );
+        }
+        update_post_meta( (int) $id, '_wp_attachment_image_alt', $alt );
+
+        return (int) $id;
+    }
+
+    /* ------------------------------------------------------------------
+     * Live site data for the composed pages
+     *
+     * The page builders only receive plain arrays; reading WordPress and
+     * WooCommerce happens here, once, so a page composition stays a pure
+     * function of its input.
+     * ------------------------------------------------------------------ */
+
+    /** Products of the shop as card data. */
+    private static function product_items( int $limit = 4 ): array {
+        $items = array();
+        if ( ! function_exists( 'wc_get_products' ) ) {
+            return $items;
+        }
+        $products = wc_get_products(
+            array(
+                'status'  => 'publish',
+                'limit'   => $limit,
+                'orderby' => 'popularity',
+            )
+        );
+        foreach ( (array) $products as $product ) {
+            $image_id = (int) $product->get_image_id();
+            $items[]  = array(
+                'title'    => $product->get_name(),
+                'excerpt'  => wp_trim_words( wp_strip_all_tags( (string) $product->get_short_description() ), 22, '…' ),
+                'price'    => trim( wp_strip_all_tags( (string) $product->get_price_html() ) ),
+                'url'      => get_permalink( $product->get_id() ),
+                'image_id' => $image_id,
+                'image'    => (string) ( $image_id ? wp_get_attachment_image_url( $image_id, 'medium_large' ) : '' ),
+            );
+        }
+        return $items;
+    }
+
+    /** Case studies (zc_project) as card data. */
+    private static function project_items( int $limit = 3 ): array {
+        $items = array();
+        foreach ( get_posts(
+            array(
+                'post_type'      => 'zc_project',
+                'post_status'    => 'publish',
+                'posts_per_page' => $limit,
+                'orderby'        => 'menu_order date',
+                'order'          => 'ASC',
+            )
+        ) as $project ) {
+            $thumb = (int) get_post_thumbnail_id( $project->ID );
+            $items[] = array(
+                'title'    => get_the_title( $project ),
+                'excerpt'  => wp_trim_words( wp_strip_all_tags( (string) $project->post_excerpt ), 24, '…' ),
+                'url'      => get_permalink( $project->ID ),
+                'image_id' => $thumb,
+                'image'    => (string) ( $thumb ? wp_get_attachment_image_url( $thumb, 'medium_large' ) : '' ),
+            );
+        }
+        return $items;
+    }
+
+    /** Latest articles as card data. */
+    private static function post_items( int $limit = 3, array $exclude = array() ): array {
+        $items = array();
+        foreach ( get_posts(
+            array(
+                'post_type'      => 'post',
+                'post_status'    => 'publish',
+                'posts_per_page' => $limit,
+                'post__not_in'   => array_map( 'intval', $exclude ),
+            )
+        ) as $post ) {
+            $thumb = (int) get_post_thumbnail_id( $post->ID );
+            $items[] = array(
+                'title'    => get_the_title( $post ),
+                'excerpt'  => wp_trim_words( wp_strip_all_tags( (string) $post->post_excerpt ), 24, '…' ),
+                'url'      => get_permalink( $post->ID ),
+                'image_id' => $thumb,
+                'image'    => (string) ( $thumb ? wp_get_attachment_image_url( $thumb, 'medium_large' ) : '' ),
+            );
+        }
+        return $items;
+    }
+
+    /** The six demo client marks (replaceable placeholders, clearly labelled). */
+    private static function client_items(): array {
+        $items = array();
+        for ( $i = 1; $i <= 6; $i++ ) {
+            $image   = self::media( 'demo-client-' . $i . '.png', 'لوگوی نمایشی مشتری — قابل جایگزینی با لوگوی رسمی' );
+            $items[] = array(
+                'id'   => $image['id'],
+                'url'  => $image['url'],
+                'alt'  => $image['alt'],
+            );
+        }
+        return $items;
+    }
+
+    /** Everything the homepage composition needs beyond its copy. */
+    private static function home_data(): array {
+        return array(
+            'hero_image' => self::media( 'ehsan-hero-executive.jpg', 'احسان نادری پناه، راهبر فنی استودیو زرین کد' ),
+            'products'   => self::product_items( 4 ),
+            'projects'   => self::project_items( 3 ),
+            'posts'      => self::post_items( 3 ),
+            'clients'    => self::client_items(),
+        );
     }
 
     /**
-     * Persian label for the container in the editor's Navigator.
+     * Megamenu panel: the six core services as native icon boxes.
      *
-     * The registered widget title is asked for first (every design widget
-     * already returns a Persian label from `get_title()`), so the Navigator
-     * reads «قوانین و مقررات» instead of «Page Terms». The static map is only
-     * a fallback for a site where the widget is not registered.
+     * Rendered inside the header template, so the owner edits the panel in
+     * Elementor like any other page: add a service, change an icon, reorder.
      */
-    private static function section_title( string $widget_type ): string {
-        if ( class_exists( 'Elementor\Plugin' ) ) {
-            $widget = \Elementor\Plugin::instance()->widgets_manager->get_widget_types( $widget_type );
-            if ( $widget && method_exists( $widget, 'get_title' ) ) {
-                $title = trim( wp_strip_all_tags( (string) $widget->get_title() ) );
-                if ( '' !== $title ) {
-                    return $title;
-                }
-            }
+    private static function megamenu_tree(): array {
+        if ( ! self::elementor_ready() ) {
+            return array();
         }
-        $titles = [
-            'zarincode_home_hero'         => 'قهرمان صفحه اصلی',
-            'zarincode_home_partners'     => 'برندها و کارفرمایان',
-            'zarincode_home_services'     => 'خدمات تخصصی',
-            'zarincode_home_products'     => 'محصولات فروشگاه',
-            'zarincode_home_portfolio'    => 'نمونه‌کارها',
-            'zarincode_home_why'          => 'چرا زرین کد',
-            'zarincode_home_steps'        => 'مراحل همکاری',
-            'zarincode_home_pricing'      => 'تعرفه‌ها',
-            'zarincode_home_testimonials' => 'نظرات مشتریان',
-            'zarincode_home_blog'         => 'مقالات',
-            'zarincode_home_promo'        => 'فراخوان پایانی',
-        ];
-        if ( isset( $titles[ $widget_type ] ) ) {
-            return $titles[ $widget_type ];
+        $composer = \Zarincode\Runtime260\Elementor\Page_Composer::class;
+        $copy     = \Zarincode\Runtime260\Demo\Page_Copy::class;
+        $services = (array) ( $copy::pages()['services']['sections'][0]['cards'] ?? array() );
+
+        $cards = array();
+        foreach ( $services as $service ) {
+            $cards[] = $composer::card(
+                array( $composer::icon_box( 'fa-' . (string) ( $service['icon'] ?? 'circle-check' ), (string) ( $service['title'] ?? '' ), (string) ( $service['text'] ?? '' ), '', 'h3', 'خدمت: ' . (string) ( $service['title'] ?? '' ) ) ),
+                'is-why',
+                'خدمت: ' . (string) ( $service['title'] ?? '' )
+            );
         }
-        return ucwords( str_replace( [ 'zarincode_', '_' ], [ '', ' ' ], $widget_type ) );
+
+        return array(
+            $composer::section(
+                array(
+                    $composer::head( 'MENU', 'خدمات تخصصی زرین کد', '', 'برای دیدن جزئیات هر خدمت، روی عنوان آن بزنید.' ),
+                    $composer::grid( $cards, array( 'css' => 'is-3', 'name' => 'شبکه خدمات' ) ),
+                    $composer::container(
+                        array(
+                            $composer::button( 'همهٔ خدمات', '/services/', 'is-ghost is-sm', 'دکمهٔ همهٔ خدمات', 'fa-arrow-left' ),
+                            $composer::button( 'درخواست مشاوره', '/contact-us/', 'is-gold is-sm', 'دکمهٔ مشاوره', 'fa-paper-plane' ),
+                        ),
+                        array( 'direction' => 'row', 'gap' => array( 'column' => 12, 'row' => 12 ), 'css' => 'zc-eb-actions', 'name' => 'دکمه‌های مگامنو' )
+                    ),
+                ),
+                array( 'css' => 'is-mega', 'name' => 'مگامنوی خدمات' )
+            ),
+        );
+    }
+
+    /** Consultation popup: a composed promo card, editable like any page. */
+    private static function popup_tree(): array {
+        if ( ! self::elementor_ready() ) {
+            return array();
+        }
+        $composer = \Zarincode\Runtime260\Elementor\Page_Composer::class;
+        $copy     = \Zarincode\Runtime260\Demo\Page_Copy::class;
+        $promo    = (array) ( $copy::home()['promo'] ?? array() );
+
+        return array(
+            $composer::section(
+                array(
+                    $composer::container(
+                        array(
+                            $composer::badge( (string) ( $promo['badge'] ?? 'قدم بعدی' ), 'is-light', 'برچسب پاپ‌آپ' ),
+                            $composer::heading( (string) ( $promo['title'] ?? '' ), 'h2', 'zc-eb-cta-title', 'عنوان پاپ‌آپ' ),
+                            $composer::text( (string) ( $promo['text'] ?? '' ), 'zc-eb-cta-text', 'متن پاپ‌آپ' ),
+                            $composer::container(
+                                array(
+                                    $composer::button( (string) ( $promo['primary_text'] ?? 'ارسال شرح پروژه' ), (string) ( $promo['primary_url'] ?? '/contact-us/' ), 'is-gold', 'دکمهٔ اصلی', 'fa-paper-plane' ),
+                                    $composer::button( 'تماس تلفنی', 'tel:09024561001', 'is-outline', 'دکمهٔ تماس', 'fa-phone' ),
+                                ),
+                                array( 'direction' => 'row', 'gap' => array( 'column' => 12, 'row' => 12 ), 'css' => 'zc-eb-actions', 'name' => 'دکمه‌های پاپ‌آپ' )
+                            ),
+                        ),
+                        array( 'direction' => 'column', 'gap' => array( 'column' => 16, 'row' => 14 ), 'css' => 'zc-eb-cta', 'name' => 'کارت مشاوره' )
+                    ),
+                ),
+                array( 'css' => 'is-cta', 'name' => 'پاپ‌آپ مشاوره' )
+            ),
+        );
     }
 
     public static function upsert_post_with_elementor( string $post_type, string $slug, string $title, array $elementor_tree, string $content, string $excerpt = '', array $meta = [] ): int {
@@ -482,6 +656,17 @@ class Demo_Seeder {
                 update_post_meta( $post_id, '_elementor_template_type', 'wp-' . $post_type );
                 update_post_meta( $post_id, '_elementor_version', defined( 'ELEMENTOR_VERSION' ) ? ELEMENTOR_VERSION : '4.3.2' );
                 update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $elementor_tree ) ) );
+                /*
+                 * Elementor caches both the rendered HTML of every element and
+                 * the generated CSS per document. Writing `_elementor_data`
+                 * directly (as an importer must) does not fire the document
+                 * save hooks that invalidate them, so a re-import would keep
+                 * serving the previous markup — the reason container classes
+                 * could silently disappear. Both caches are dropped here.
+                 */
+                delete_post_meta( $post_id, '_elementor_element_cache' );
+                delete_post_meta( $post_id, '_elementor_css' );
+                delete_post_meta( $post_id, '_elementor_page_assets' );
             }
             foreach ( $meta as $mk => $mv ) {
                 update_post_meta( $post_id, $mk, $mv );
@@ -493,15 +678,98 @@ class Demo_Seeder {
     }
 
     /**
+     * Point Elementor's global Kit at the brand.
+     *
+     * Elementor paints every stock widget from the Kit's system colours and
+     * typography, and it prints those rules as an inline stylesheet *after*
+     * the theme's CSS — so a theme rule can never recolour a Heading that the
+     * Kit already colours. The correct fix is therefore not more CSS but the
+     * Kit itself: seed it with the studio palette and typeface, and every
+     * widget a composed page uses (and every widget the owner drops in later)
+     * starts on-brand instead of Elementor's blue/grey defaults.
+     *
+     * Values are merged, never replaced: a colour the owner already changed is
+     * kept exactly like `seed_redux_options()` does for the theme options.
+     */
+    public static function seed_kit_design(): void {
+        $kit_id = (int) get_option( 'elementor_active_kit' );
+        if ( ! $kit_id || 'elementor_library' !== get_post_type( $kit_id ) ) {
+            return;
+        }
+
+        $settings = get_post_meta( $kit_id, '_elementor_page_settings', true );
+        $settings = is_array( $settings ) ? $settings : array();
+
+        /* Brand palette: ink type, gold accent. */
+        $wanted = array( 'primary' => '#2A2C31', 'secondary' => '#4B5563', 'text' => '#4B5563', 'accent' => '#FDD05B' );
+        $colors = isset( $settings['system_colors'] ) && is_array( $settings['system_colors'] ) ? $settings['system_colors'] : array();
+        $seen   = array();
+        foreach ( $colors as &$color ) {
+            $id = (string) ( $color['_id'] ?? '' );
+            $seen[ $id ] = true;
+            if ( isset( $wanted[ $id ] ) ) {
+                // Only fill the Elementor default; a customised kit keeps its own value.
+                $defaults = array( 'primary' => '#1F6B8F', 'secondary' => '#54595F', 'text' => '#5F6368', 'accent' => '#202227' );
+                $current  = strtoupper( (string) ( $color['color'] ?? '' ) );
+                if ( '' === $current || $current === strtoupper( $defaults[ $id ] ) ) {
+                    $color['color'] = $wanted[ $id ];
+                }
+            }
+        }
+        unset( $color );
+        foreach ( $wanted as $id => $value ) {
+            if ( ! isset( $seen[ $id ] ) ) {
+                $colors[] = array( '_id' => $id, 'title' => ucfirst( $id ), 'color' => $value );
+            }
+        }
+        $settings['system_colors'] = $colors;
+
+        /* Typography: the site ships Vazirmatn (variable) and nothing else. */
+        $typography = array(
+            'primary' => array( 'font_family' => 'Vazirmatn', 'font_weight' => '900', 'color' => '#2A2C31' ),
+            'secondary' => array( 'font_family' => 'Vazirmatn', 'font_weight' => '800', 'color' => '#2A2C31' ),
+            'text' => array( 'font_family' => 'Vazirmatn', 'font_weight' => '400', 'color' => '#4B5563' ),
+            'accent' => array( 'font_family' => 'Vazirmatn', 'font_weight' => '700', 'color' => '#8A6B10' ),
+        );
+        $system = isset( $settings['system_typography'] ) && is_array( $settings['system_typography'] ) ? $settings['system_typography'] : array();
+        $exists = array();
+        foreach ( $system as &$typo ) {
+            $id = (string) ( $typo['_id'] ?? '' );
+            $exists[ $id ] = true;
+            if ( isset( $typography[ $id ] ) && empty( $typo['typography_font_family'] ) ) {
+                $typo['typography_font_family'] = $typography[ $id ]['font_family'];
+                $typo['typography_typography']  = 'custom';
+            }
+        }
+        unset( $typo );
+        foreach ( $typography as $id => $value ) {
+            if ( ! isset( $exists[ $id ] ) ) {
+                $system[] = array(
+                    '_id'                    => $id,
+                    'title'                  => ucfirst( $id ),
+                    'typography_typography'  => 'custom',
+                    'typography_font_family' => $value['font_family'],
+                );
+            }
+        }
+        $settings['system_typography'] = $system;
+
+        update_post_meta( $kit_id, '_elementor_page_settings', $settings );
+        // The Kit's CSS is cached separately from any document's.
+        delete_post_meta( $kit_id, '_elementor_css' );
+        delete_post_meta( $kit_id, '_elementor_element_cache' );
+    }
+
+    /**
      * 1. SEED HEADER, FOOTER, MEGAMENU & POPUP ELEMENTOR TEMPLATES
      */
     public static function seed_header_footer_templates(): void {
         /*
-         * Header and footer are built from *native* Elementor widgets so the
-         * owner can edit every column, link, colour and spacing value in the
-         * editor (see Elementor\HF_Builder). The two extra templates
-         * (megamenu + consultation popup) stay on the theme widgets because
-         * they are dynamic lists, and those widgets are themselves editable.
+         * All four templates are plain Elementor documents built from native
+         * widgets: the header and footer by `Elementor\HF_Builder`, and the
+         * megamenu panel and consultation popup by `Elementor\Page_Composer`.
+         * Every link, label and icon is therefore an editable Elementor
+         * element, not a fixed list rendered by a custom widget.
          */
         if ( class_exists( \Zarincode\Runtime260\Elementor\HF_Builder::class ) ) {
             \Zarincode\Runtime260\Elementor\HF_Builder::ensure();
@@ -512,14 +780,14 @@ class Demo_Seeder {
                 'slug'  => 'zarincode-services-megamenu',
                 'title' => 'مگامنوی ۶ خدمت تخصصی و محصولات زرین کد',
                 'type'  => 'megamenu',
-                'tree'  => array( self::make_elementor_section( 'zarincode_services', array( 'count' => 6 ) ) ),
+                'tree'  => self::megamenu_tree(),
                 'sc'    => '[zarincode_widget type="services"]',
             ),
             array(
                 'slug'  => 'zarincode-consultation-popup',
                 'title' => 'پاپ‌آپ درخواست مشاوره رایگان و سفارش پروژه (09024561001)',
                 'type'  => 'popup',
-                'tree'  => array( self::make_elementor_section( 'zarincode_promo', array() ) ),
+                'tree'  => self::popup_tree(),
                 'sc'    => '[zarincode_widget type="promo"]',
             ),
         );
@@ -1179,141 +1447,161 @@ class Demo_Seeder {
     /**
      * 5. SEED ALL 13 ELEMENTOR PAGES (HOMEPAGE, SERVICES, PORTFOLIO, SHOP, ABOUT, CONTACT, BLOG + 6 LEGAL PAGES)
      */
+    /**
+     * 5. SEED EVERY PAGE AS A NATIVE ELEMENTOR DOCUMENT
+     *
+     * Each page below is written by `Elementor\Page_Composer`: plain Container
+     * trees whose leaves are stock Elementor widgets (Heading, Text Editor,
+     * Button, Image, Icon Box, Icon List, Divider). Nothing on a page is "one
+     * widget per section", so in the editor every title, paragraph, image,
+     * button and card appears in the Navigator and can be selected, moved,
+     * duplicated, restyled or deleted on its own.
+     *
+     * `post_content` still receives the same copy as plain HTML: if Elementor
+     * is ever deactivated the page keeps its text instead of turning blank.
+     */
     public static function seed_elementor_pages(): void {
-        // ---------------------------------------------------------------
-        // Homepage composition (v4.6.0) — "cheerful + formal" design.
-        // Built exclusively from Elementor widgets so every string and every
-        // repeater row is editable in the editor. Order follows the approved
-        // design reference: hero → partners → services → products → portfolio
-        // → why → steps → pricing → testimonials → magazine → final CTA.
-        // ---------------------------------------------------------------
-        $home_widgets = [
-            [ 'widget' => 'zarincode_home_hero',         'sc' => '[zarincode_widget type="home_hero"]' ],
-            [ 'widget' => 'zarincode_home_partners',     'sc' => '[zarincode_widget type="home_partners"]' ],
-            [ 'widget' => 'zarincode_home_services',     'sc' => '[zarincode_widget type="home_services"]' ],
-            [ 'widget' => 'zarincode_home_products',     'sc' => '[zarincode_widget type="home_products"]' ],
-            [ 'widget' => 'zarincode_home_portfolio',    'sc' => '[zarincode_widget type="home_portfolio"]' ],
-            [ 'widget' => 'zarincode_home_why',          'sc' => '[zarincode_widget type="home_why"]' ],
-            [ 'widget' => 'zarincode_home_steps',        'sc' => '[zarincode_widget type="home_steps"]' ],
-            [ 'widget' => 'zarincode_home_pricing',      'sc' => '[zarincode_widget type="home_pricing"]' ],
-            [ 'widget' => 'zarincode_home_testimonials', 'sc' => '[zarincode_widget type="home_testimonials"]' ],
-            [ 'widget' => 'zarincode_home_blog',         'sc' => '[zarincode_widget type="home_blog"]' ],
-            [ 'widget' => 'zarincode_home_promo',        'sc' => '[zarincode_widget type="home_promo"]' ],
-        ];
-
-        // Widget classes extend Elementor\Widget_Base: loading them without
-        // Elementor is a fatal error (it used to abort the whole demo import on
-        // sites where Elementor was missing/inactive). The pages are still
-        // created below — their content falls back to the widget shortcodes.
-        $elementor_ready = class_exists( '\Elementor\Widget_Base' );
-        if ( $elementor_ready ) {
-            require_once dirname(__DIR__).'/Widgets/Elementor_Widgets_Collection.php';
-        }
-        $home_tree       = [];
-        $home_shortcodes = [];
-        foreach ( $home_widgets as $hw ) {
-            // Seed the content defaults so the Elementor panel opens with real copy.
-            $widget_settings = class_exists( \Zarincode\Runtime260\Widgets\Home_Defaults::class )
-                ? \Zarincode\Runtime260\Widgets\Home_Defaults::settings( $hw['widget'] )
-                : array();
-            if ( $elementor_ready ) {
-                $home_tree[] = self::make_elementor_section( $hw['widget'], $widget_settings );
-            }
-            $home_shortcodes[] = $hw['sc'];
+        if ( ! self::elementor_ready() ) {
+            // Without Elementor there is no document to write; the shortcode
+            // fallback of the theme widgets keeps the pages readable.
+            self::seed_pages_without_elementor();
+            return;
         }
 
-        $home_id = self::upsert_post_with_elementor(
+        $composer = \Zarincode\Runtime260\Elementor\Page_Composer::class;
+        $copy     = \Zarincode\Runtime260\Demo\Page_Copy::class;
+
+        /* ── 1. Homepage ─────────────────────────────────────────────── */
+        $home_tree = $composer::home( $copy::home(), self::home_data() );
+        $home_id   = self::upsert_post_with_elementor(
             'page',
             'home',
             'صفحه اصلی - آژانس طراحی سایت، نرم‌افزار، سئو و فروشگاه محصولات آماده زرین کد',
             $home_tree,
-            implode( "\n", $home_shortcodes )
+            '[zarincode_widget type="home_hero"][zarincode_widget type="home_services"][zarincode_widget type="home_promo"]'
         );
-
         update_option( 'show_on_front', 'page' );
         update_option( 'page_on_front', $home_id );
 
-        self::seed_studio_pages();
+        /* ── 2. Marketing pages ──────────────────────────────────────── */
+        $titles = array(
+            'services'           => 'خدمات تخصصی زرین کد',
+            'projects-portfolio' => 'نمونه‌کارها و پروژه‌های موفق زرین کد',
+            'about-us'           => 'درباره آژانس زرین کد و احسان نادری پناه',
+            'contact-us'         => 'شرح پروژه و ارتباط با زرین کد',
+            /*
+             * «فروشگاه» نوشته نمی‌شود: مسیر /shop/ آرشیو ووکامرس است و
+             * قالب آرشیو آن را رندر می‌کند، پس یک سند المنتوری برایش هرگز
+             * دیده نمی‌شد و فقط یک برگهٔ خالی و گمراه‌کننده می‌ساخت.
+             */
+            'blog'               => 'وبلاگ و مقالات آموزشی زرین کد',
+        );
 
-        $inner_pages = [
-            'services'             => [ 'title' => 'خدمات تخصصی زرین کد',                       'key' => 'services-page' ],
-            'projects-portfolio'   => [ 'title' => 'نمونه‌کارها و پروژه‌های موفق زرین کد',       'key' => 'projects-page' ],
-            'about-us'             => [ 'title' => 'درباره آژانس زرین کد و احسان نادری پناه',    'key' => 'about-page' ],
-            'contact-us'           => [ 'title' => 'شرح پروژه و ارتباط با زرین کد',       'key' => 'contact-page' ],
-            'terms-and-conditions' => [ 'title' => 'قوانین و شرایط و مقررات حاکم بر کشور ایران', 'key' => 'terms' ],
-            'warranty-policy'      => [ 'title' => 'شرایط پشتیبانی و گارانتی',       'key' => 'warranty' ],
-            'privacy-policy'       => [ 'title' => 'سیاست حفظ حریم خصوصی کاربران',               'key' => 'privacy' ],
-            'refund-policy'        => [ 'title' => 'شرایط و ضوابط ضمانت بازگشت وجه',             'key' => 'refund' ],
-            'gdpr-compliance'      => [ 'title' => 'قوانین حفاظت از داده‌های عمومی (GDPR)',      'key' => 'gdpr' ],
-            'dmca-policy'          => [ 'title' => 'DMCA Copyright & Takedown Policy (English)', 'key' => 'dmca' ],
-        ];
-
-        foreach ( $inner_pages as $slug => $cfg ) {
-            $page_settings = array( 'section_key' => $cfg['key'] );
-            $legal_rows    = Service_Demo::legal_rows( $slug );
-            if ( $legal_rows ) {
-                // Feed the designed legal-document widget with the demo clauses
-                // so the page has a real structure (hero, TOC, numbered cards)
-                // instead of loose heading/text widgets.
-                $page_settings['n_legal_content_items_1'] = $legal_rows;
-                $nav_rows = Service_Demo::legal_nav( $slug );
-                if ( $nav_rows ) {
-                    $page_settings['n_legal_nav_items_1'] = $nav_rows;
-                }
-                $legal_data = Service_Demo::legal_data( $slug );
-                if ( ! empty( $legal_data['title'] ) ) {
-                    $page_settings['n_section_title_text_1'] = (string) $legal_data['title'];
-                    $page_settings['n_heading_text_1']      = (string) $legal_data['title'];
-                }
+        foreach ( $titles as $slug => $title ) {
+            $page = $copy::pages()[ $slug ] ?? array();
+            if ( ! $page ) {
+                continue;
             }
-            // Scoped widget per page model (item 10: the all-in-one widget put
-            // 2.4 MB of controls into every editor load).
-            $widget = 'zarincode_page_' . str_replace( '-', '_', (string) $cfg['key'] );
-            // Without Elementor the page body is the widget shortcode (§ below),
-            // so no (empty) builder data is written.
-            $tree   = self::elementor_ready() ? [ self::make_elementor_section( $widget, $page_settings ) ] : [];
-            $extras=['services'=>['service_spotlight','project_roadmap'],'projects-portfolio'=>['before_after'],'about-us'=>['team_experts','client_logos','testimonials']][$slug]??[];
-            foreach(self::elementor_ready() ? $extras : [] as $extra){
-                $extraSettings=[];
-                if($extra==='before_after')$extraSettings=['before_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-service-cover.jpg'],'after_image'=>['url'=>get_template_directory_uri().'/assets/images/demo-project-cover.jpg'],'caption'=>'نمونه نمایشی مقایسه؛ تصاویر پروژه واقعی را جایگزین کنید.'];
-                if($extra==='client_logos')$extraSettings=self::demo_clients();
-                $tree[]=self::make_elementor_section('zarincode_'.$extra,$extraSettings);
-            }
+            $page['nodes'] = self::page_nodes( $slug );
+            self::upsert_post_with_elementor( 'page', $slug, $title, $composer::inner( $page ), $copy::plain( $page ) );
+        }
 
-            // The page body is the designed document section (hero, table of
-            // contents, numbered clause cards, sidebar, CTA) — not a raw list of
-            // <h2>/<p>. It is also the fallback shown when Elementor is not
-            // rendering the page, so both paths look finished.
-            $sc = '[zarincode_widget type="page_section" section="' . esc_attr( $cfg['key'] ) . '"]';
-            $pid  = self::upsert_post_with_elementor( 'page', $slug, $cfg['title'], $tree, $sc );
+        /* ── 3. Legal documents ──────────────────────────────────────── */
+        $legal = array(
+            'terms-and-conditions' => array(
+                'title' => 'قوانین و شرایط و مقررات حاکم بر کشور ایران',
+                'lead'  => 'این سند چارچوب همکاری میان زرین کد و کارفرما را توضیح می‌دهد: دامنهٔ خدمات، تعهدات دو طرف، مالکیت خروجی، محرمانگی و مسیر حل اختلاف. متن نمایشی است و پیش از انتشار باید با مشاور حقوقی تطبیق داده شود.',
+            ),
+            'warranty-policy' => array(
+                'title' => 'شرایط پشتیبانی و گارانتی',
+                'lead'  => 'پشتیبانی فنی یک‌سالهٔ پروژه‌های زرین کد چه چیزهایی را پوشش می‌دهد، چه چیزهایی خارج از دامنهٔ آن است و مسیر گزارش خطا چگونه است.',
+            ),
+            'privacy-policy' => array(
+                'title' => 'سیاست حفظ حریم خصوصی کاربران',
+                'lead'  => 'چه داده‌ای از بازدیدکنندگان و مشتریان جمع می‌شود، برای چه هدفی استفاده می‌شود، چه مدت نگه داشته می‌شود و چگونه می‌توانید حذف یا اصلاح آن را درخواست کنید.',
+            ),
+            'refund-policy' => array(
+                'title' => 'شرایط و ضوابط ضمانت بازگشت وجه',
+                'lead'  => 'شرایط بازگشت وجه در پروژه‌های سفارشی و محصولات دیجیتال، بازهٔ زمانی درخواست و مواردی که امکان بازگشت وجود ندارد.',
+            ),
+            'gdpr-compliance' => array(
+                'title' => 'قوانین حفاظت از داده‌های عمومی (GDPR)',
+                'lead'  => 'تعهدهای ما در برابر کاربران ساکن اتحادیهٔ اروپا: مبنای قانونی پردازش، حقوق کاربر، انتقال داده و شیوهٔ گزارش رخداد.',
+            ),
+            'dmca-policy' => array(
+                'title' => 'DMCA Copyright & Takedown Policy (English)',
+                'lead'  => 'How Zarincode handles copyright complaints: what a valid notice contains, our response window, and how a counter-notice is reviewed.',
+            ),
+        );
+
+        foreach ( $legal as $slug => $meta ) {
+            $page = $copy::legal( $slug, $meta['title'], $meta['lead'] );
+            if ( empty( $page['clauses'] ) ) {
+                continue;
+            }
+            $pid = self::upsert_post_with_elementor( 'page', $slug, $meta['title'], $composer::inner( $page ), $copy::plain( $page ) );
             if ( 'privacy-policy' === $slug ) {
                 update_option( 'wp_page_for_privacy_policy', $pid );
             }
         }
 
-        // Shop Page
-        $shop_tree = [
-            self::make_elementor_section( 'zarincode_products', [ 'n_products_source'=>'query','n_products_count'=>8 ] ),
-            self::make_elementor_section( 'zarincode_promo', [] ),
-            self::make_elementor_section( 'zarincode_steps', [] ),
-        ];
-        self::upsert_post_with_elementor(
-            'page',
-            'shop',
-            'فروشگاه قالب وردپرس، افزونه و سورس‌کدهای آماده نرم‌افزار زرین کد',
-            $shop_tree,
-            '[zarincode_widget type="products"][zarincode_widget type="promo"][zarincode_widget type="steps"]'
-        );
+        /* ── 4. Studio pages (trust / pricing / SEO) ─────────────────── */
+        self::seed_studio_pages();
+    }
 
-        // Blog Page
-        $blog_tree = [ self::make_elementor_section( 'zarincode_blog', ['n_blog_source'=>'query','n_blog_count'=>8] ) ];
-        self::upsert_post_with_elementor(
-            'page',
-            'blog',
-            'وبلاگ و مقالات آموزشی زرین کد',
-            $blog_tree,
-            '[zarincode_widget type="blog"]'
-        );
+    /**
+     * Extra composed blocks that go between the hero and the text sections of
+     * a page (a grid of real projects, posts or products).
+     */
+    private static function page_nodes( string $slug ): array {
+        $composer = \Zarincode\Runtime260\Elementor\Page_Composer::class;
+        $copy     = \Zarincode\Runtime260\Demo\Page_Copy::class;
+
+        if ( 'projects-portfolio' === $slug ) {
+            $projects = self::project_items( 6 );
+            if ( ! $projects ) {
+                return array();
+            }
+            $portfolio = (array) ( $copy::home()['portfolio'] ?? array() );
+            return array(
+                $composer::section(
+                    array(
+                        $composer::head( '', 'پروژه‌هایی که ساختارشان را می‌بینید', '', 'هر کارت به صفحهٔ مطالعهٔ موردی همان پروژه می‌رود: مسئله، تصمیم فنی، خروجی.' ),
+                        $composer::grid( $composer::project_cards( $projects, 'خواندن مطالعهٔ موردی' ), array( 'name' => 'شبکه نمونه‌کارها' ) ),
+                    ),
+                    array( 'css' => 'is-projects', 'name' => 'نمونه‌کارها', 'anchor' => 'portfolio' )
+                ),
+            );
+        }
+
+        if ( 'blog' === $slug ) {
+            $posts = self::post_items( 9 );
+            if ( ! $posts ) {
+                return array();
+            }
+            return array(
+                $composer::section(
+                    array(
+                        $composer::head( 'MAGAZINE', 'تازه‌ترین مطالب مجله', '', 'هر مقاله از یک تجربهٔ اجرایی یا پرسش پرتکرار مشتریان نوشته شده است.' ),
+                        $composer::grid( $composer::post_cards( $posts, 'خواندن مقاله' ), array( 'name' => 'شبکه مقالات' ) ),
+                    ),
+                    array( 'css' => 'is-magazine', 'name' => 'مجله زرین کد' )
+                ),
+            );
+        }
+
+        return array();
+    }
+
+    /**
+     * Pages on a site where Elementor is not active: same copy, plain HTML,
+     * no builder data written (so nothing half-broken is stored).
+     */
+    private static function seed_pages_without_elementor(): void {
+        $copy = \Zarincode\Runtime260\Demo\Page_Copy::class;
+        foreach ( $copy::pages() as $slug => $page ) {
+            self::upsert_post_with_elementor( 'page', $slug, (string) $page['title'], array(), $copy::plain( $page ) );
+        }
     }
 
     /**
@@ -1552,40 +1840,36 @@ class Demo_Seeder {
         $clients=[];for($i=1;$i<=6;$i++)$clients[]=['name'=>'لوگوی مشتری شما — نمونه '.$i,'logo'=>['url'=>get_template_directory_uri().'/assets/images/demo-client-'.$i.'.png'],'alt'=>'لوگوی نمایشی قابل جایگزینی','service'=>'نمونه چیدمان همکاری','link'=>['url'=>home_url('/projects-portfolio/')]];
         return ['title'=>'نمونه چیدمان همکاری‌های شما','description'=>'لوگوها نمایشی‌اند؛ نام و نشان مشتریان واقعی خود را جایگزین کنید.','clients'=>$clients];
     }
-    private static function demo_technologies(int $limit=8):array {
-        $m=\Zarincode\Runtime260\Widgets\Native_Design::model('brands');$rows=$m['repeaters']['marquee_track_items_1']['default'];
-        foreach($rows as &$row){$slug='technology-'.sanitize_title($row['span_text_1']);$row['brand_link']=['url'=>home_url('/'.$slug.'/')];$row['brand_description']='معرفی تجربه، کاربردها و خدمات تخصصی زرین کد با این فناوری.';
-            $tree=[self::make_elementor_section('heading',['title'=>$row['span_text_1'],'header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>در این صفحه می‌توانید تجربه واقعی تیم در استفاده از '.esc_html($row['span_text_1']).'، خدمات مرتبط، نمونه‌کارها و پرسش‌های تخصصی را معرفی کنید. این متن نمایشی را با محتوای اختصاصی و مستند خود جایگزین کنید.</p>']),self::make_elementor_section('zarincode_service_spotlight',['title'=>'راهکار متناسب با پروژه شما'])];
-            self::upsert_post_with_elementor('page',$slug,$row['span_text_1'].' — تخصص زرین کد',$tree,'');
-        }unset($row);
-        return ['n_brands_marquee_track_items_1'=>array_slice($rows,0,$limit)];
-    }
-    /** Canonical panel settings of the pricing list widget («شکل قبلی»): the exact 41 keys of the real pricing page. */
-    private static function pricing_widget_settings(): array {
-        static $cache=null;
-        if($cache===null)$cache=(array)json_decode((string)file_get_contents(__DIR__.'/fixtures/pricing-widget-settings.json'),true);
-        return $cache;
-    }
     /**
-     * Exact body of the pricing page («شکل قبلی» جدول لیست قیمت): heading + list + plan cards + matrix.
-     * Shared verbatim by the pricing page (h1) and the homepage (h2) so both stay identical forever.
+     * Trust, pricing, SEO and technology pages.
+     *
+     * All four are composed documents; the pricing page simply inserts the
+     * same pricing block the homepage uses, so the two can never show
+     * different numbers.
      */
-    private static function pricing_body_sections(string $heading_tag): array {
-        // Single pricing composition: badge + heading + tabbed plan cards + comparison matrix.
-        // (A second plain heading and a duplicate static plan-card grid used to be stacked
-        // here, making the section read as a repeated block on the homepage and pricing page.)
-        $widget = self::pricing_widget_settings();
-        $widget['n_pricing_section_title_1_tag'] = $heading_tag;
-        return [
-            self::make_elementor_section('zarincode_pricing',$widget),
-            self::make_elementor_section('zarincode_service_matrix',[]),
-        ];
-    }
-    private static function seed_studio_pages():void {
-        self::upsert_post_with_elementor('page','trust-and-credentials','اعتبارنامه‌ها و شفافیت کسب‌وکار',[self::make_elementor_section('heading',['title'=>'اعتبار، با امکان استعلام','header_size'=>'h1']),self::make_elementor_section('text-editor',['editor'=>'<p>نشان‌های این بخش تنها پس از صدور برای دامنه شما و ثبت کد رسمی در ویجت اعتبارنامه‌ها نمایش داده می‌شوند. خالی بودن بخش به معنی دریافت مجوز نیست.</p>']),self::make_elementor_section('zarincode_trust_badges',[])],'');
-        self::upsert_post_with_elementor('page','pricing','تعرفه خدمات و انتخاب پلن',self::pricing_body_sections('h1'),'');
-        self::upsert_post_with_elementor('page','seo-performance','سئو و بهبود عملکرد',[self::make_elementor_section('heading',['title'=>'تخصص سئو؛ از تحلیل تا رشد پایدار','header_size'=>'h1']),self::make_elementor_section('zarincode_seo_audit',[])],'');
-        self::upsert_post_with_elementor('page','technologies','فناوری‌ها و تخصص تیم زرین کد',[self::make_elementor_section('zarincode_brands',self::demo_technologies())],'');
+    private static function seed_studio_pages(): void {
+        if ( ! self::elementor_ready() ) {
+            return;
+        }
+        $composer = \Zarincode\Runtime260\Elementor\Page_Composer::class;
+        $copy     = \Zarincode\Runtime260\Demo\Page_Copy::class;
+        $pages    = $copy::pages();
+
+        foreach ( array( 'trust-and-credentials', 'seo-performance', 'technologies' ) as $slug ) {
+            $page = $pages[ $slug ] ?? array();
+            if ( ! $page ) {
+                continue;
+            }
+            self::upsert_post_with_elementor( 'page', $slug, (string) $page['title'], $composer::inner( $page ), $copy::plain( $page ) );
+        }
+
+        $pricing = $pages['pricing'] ?? array();
+        if ( $pricing ) {
+            $pricing['nodes'] = array(
+                $composer::pricing( (array) ( $copy::home()['pricing'] ?? array() ), array( 'name' => 'تعرفهٔ خدمات' ) ),
+            );
+            self::upsert_post_with_elementor( 'page', 'pricing', 'تعرفه خدمات و انتخاب پلن', $composer::inner( $pricing ), $copy::plain( $pricing ) );
+        }
     }
 
     /** Only explicit demo import calls this; existing custom thumbnails are never replaced. */
@@ -1636,6 +1920,7 @@ class Demo_Seeder {
             }
         }
         self::seed_redux_options();
+        self::seed_kit_design();
         self::seed_header_footer_templates();
         self::seed_services_cpt();
         self::seed_projects_cpt();

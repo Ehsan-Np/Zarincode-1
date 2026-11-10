@@ -1,0 +1,812 @@
+/* =====================================================================
+   Elementor-native page design (zc-eb)
+   ---------------------------------------------------------------------
+   Pages are now plain Elementor Container trees in which every piece of
+   content is a native widget (Heading, Text Editor, Button, Image, Icon
+   Box, Icon List, Divider). Nothing on the page is one big custom widget.
+
+   That shifts one job here: the *look* has to come from CSS instead of
+   from a custom renderer's markup. This file styles those native widgets
+   — through the `zc-eb-*` classes the composer assigns — with the same
+   design language as the approved theme: cream paper, ink type, gold
+   accent, 18–24px radii, one soft shadow, Vazirmatn throughout.
+
+   Rules of the house, unchanged:
+   • every selector is scoped to `.zc-eb` (a page wrapper class) or to a
+     `zc-eb-*` class, so nothing here can reach a widget the customer
+     dropped in;
+   • no `!important` outside the Elementor-generated selectors that need
+     it (buttons/links carry Elementor's own specificity);
+   • no layout property on the header/footer hosts.
+   ===================================================================== */
+
+:root {
+    --eb-gold: #FDD05B;
+    --eb-gold-deep: #8A6B10;
+    --eb-gold-soft: #FFF1C9;
+    --eb-ink: #2A2C31;
+    --eb-ink-2: #4B5563;
+    --eb-ink-3: #6B7280;
+    --eb-paper: #FFFDF8;
+    --eb-paper-2: #F7F3E8;
+    --eb-line: rgba(41, 44, 49, 0.10);
+    --eb-radius: 22px;
+    --eb-radius-sm: 14px;
+    --eb-shadow: 0 10px 30px rgba(41, 44, 49, 0.07);
+    --eb-shadow-hover: 0 18px 40px rgba(41, 44, 49, 0.12);
+}
+
+/* ── Page shell ─────────────────────────────────────────────────────── */
+.zc-eb-sec.e-con {
+    position: relative;
+    padding-top: clamp(38px, 5vw, 76px);
+    padding-bottom: clamp(38px, 5vw, 76px);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.zc-eb-sec.e-con.is-tint {
+    background: linear-gradient(180deg, var(--eb-paper-2), var(--eb-paper));
+}
+
+.zc-eb-sec.e-con.is-strip,
+.zc-eb-sec.e-con.is-page-hero {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*
+ * The section's inner container is the page gutter. Physical margins are used
+ * on purpose: Elementor's container CSS resolves logical `margin-inline` to
+ * zero inside a column flex parent, which silently pinned every section to
+ * one side of the viewport on RTL sites.
+ */
+.zc-eb-sec > .zc-eb-wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+/* ── Section header ─────────────────────────────────────────────────── */
+.zc-eb-badge .elementor-widget-container p {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--eb-gold-soft);
+    border: 1px solid rgba(253, 208, 91, 0.55);
+    color: var(--eb-gold-deep);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.zc-eb-badge.is-light .elementor-widget-container p {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(253, 208, 91, 0.45);
+    color: var(--eb-gold);
+}
+
+.zc-eb-head .zc-eb-h .elementor-heading-title,
+.zc-eb-title .elementor-heading-title {
+    font-size: clamp(1.65rem, 2.6vw, 2.4rem);
+    font-weight: 900;
+    line-height: 1.45;
+    color: var(--eb-ink);
+    margin: 0;
+}
+
+.zc-eb-hl {
+    /* A highlighter stroke behind the lower half of the word. Sizing the
+       gradient instead of hard-coding a stop keeps it on the baseline at any
+       font size and line-height. */
+    white-space: nowrap;
+    background-image: linear-gradient(rgba(253, 208, 91, 0.9), rgba(253, 208, 91, 0.9));
+    background-repeat: no-repeat;
+    background-size: 100% 38%;
+    background-position: 0 92%;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.zc-eb-lead .elementor-widget-container p,
+.zc-eb-page-lead .elementor-widget-container p {
+    margin: 0;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 2.05;
+    color: var(--eb-ink-2);
+}
+
+/* ── Text, links, prose ─────────────────────────────────────────────── */
+.zc-eb-p .elementor-widget-container p {
+    margin: 0 0 0.8em;
+    line-height: 2;
+    color: var(--eb-ink-2);
+}
+
+.zc-eb-p .elementor-widget-container p:last-child {
+    margin-bottom: 0;
+}
+
+.zc-eb-prose .elementor-widget-container {
+    font-size: 0.98rem;
+    line-height: 2.1;
+    color: var(--eb-ink-2);
+}
+
+.zc-eb-prose a {
+    color: var(--eb-gold-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ── Buttons (native Elementor button widget) ───────────────────────── */
+.zc-eb-btn .elementor-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.zc-eb-btn .elementor-button:hover,
+.zc-eb-btn .elementor-button:focus-visible {
+    transform: translateY(-2px);
+}
+
+.zc-eb-btn .elementor-button-text {
+    order: 1;
+}
+
+.zc-eb-btn .elementor-button-icon {
+    order: 2;
+    font-size: 0.95em;
+}
+
+.zc-eb-btn.is-gold .elementor-button {
+    background: var(--eb-gold);
+    color: var(--eb-ink);
+    box-shadow: 0 10px 24px rgba(253, 208, 91, 0.45);
+}
+
+.zc-eb-btn.is-gold .elementor-button:hover {
+    background: #FFDA76;
+    box-shadow: 0 16px 32px rgba(253, 208, 91, 0.55);
+}
+
+.zc-eb-btn.is-ink .elementor-button {
+    background: var(--eb-ink);
+    color: #FFF;
+}
+
+.zc-eb-btn.is-ink .elementor-button:hover {
+    background: #171A1F;
+    box-shadow: 0 14px 30px rgba(42, 44, 49, 0.28);
+}
+
+.zc-eb-btn.is-outline .elementor-button {
+    background: transparent;
+    color: #FFF;
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+.zc-eb-btn.is-outline .elementor-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.zc-eb-btn.is-ghost .elementor-button {
+    background: #FFF;
+    color: var(--eb-ink);
+    border-color: var(--eb-line);
+    box-shadow: 0 6px 18px rgba(41, 44, 49, 0.06);
+}
+
+.zc-eb-btn.is-ghost .elementor-button:hover {
+    border-color: var(--eb-gold);
+    color: var(--eb-gold-deep);
+}
+
+.zc-eb-btn.is-sm .elementor-button {
+    padding: 0.62rem 1.15rem;
+    font-size: 0.82rem;
+}
+
+.zc-eb-actions {
+    align-items: center;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────── */
+.zc-eb-tile.e-con {
+    background: #FFF;
+    border: 1px solid var(--eb-line);
+    border-radius: var(--eb-radius);
+    padding: 26px;
+    box-shadow: var(--eb-shadow);
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.zc-eb-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--eb-shadow-hover);
+    border-color: rgba(253, 208, 91, 0.6);
+}
+
+.zc-eb-tile .elementor-widget-icon-box .elementor-icon-box-title {
+    margin: 0 0 8px;
+    font-size: 1.06rem;
+    font-weight: 900;
+    color: var(--eb-ink);
+}
+
+.zc-eb-tile .elementor-icon-box-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--eb-ink-2);
+}
+
+/* The icon tile above an icon box */
+.zc-eb-tile .elementor-icon-box-icon {
+    margin-bottom: 14px;
+}
+
+.zc-eb-tile .elementor-icon-box-icon .elementor-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: var(--eb-gold-soft);
+    color: var(--eb-ink);
+    font-size: 24px;
+    transition: background-color .24s ease, transform .24s ease;
+}
+
+.zc-eb-tile:hover .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-gold);
+    transform: rotate(-4deg);
+}
+
+.zc-eb-card-title .elementor-heading-title,
+.zc-eb-tile .zc-eb-card-title .elementor-heading-title {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 900;
+    line-height: 1.7;
+    color: var(--eb-ink);
+}
+
+.zc-eb-card-text .elementor-widget-container p {
+    margin: 0;
+    font-size: 0.87rem;
+    line-height: 1.95;
+    color: var(--eb-ink-2);
+}
+
+/* ── Icon lists ─────────────────────────────────────────────────────── */
+.zc-eb-list .elementor-icon-list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 0;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--eb-ink-2);
+}
+
+.zc-eb-list .elementor-icon-list-icon {
+    color: #22C55E;
+    font-size: 15px;
+}
+
+.zc-eb-list.is-badges .elementor-icon-list-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.zc-eb-list.is-badges .elementor-icon-list-item {
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: #FFF;
+    border: 1px solid var(--eb-line);
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--eb-ink);
+}
+
+.zc-eb-list.is-badges .elementor-icon-list-icon {
+    color: #1E9E52;
+    font-size: 13px;
+}
+
+.zc-eb-list.is-ticker .elementor-icon-list-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: var(--eb-gold);
+    border: 2px solid var(--eb-ink);
+}
+
+.zc-eb-list.is-ticker .elementor-icon-list-item {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--eb-ink);
+}
+
+.zc-eb-list.is-ticker .elementor-icon-list-icon {
+    color: var(--eb-ink);
+    font-size: 12px;
+}
+
+.zc-eb-list.is-meta .elementor-icon-list-icon {
+    color: var(--eb-gold-deep);
+    font-size: 13px;
+}
+
+.zc-eb-list.is-meta .elementor-icon-list-item {
+    font-size: 0.78rem;
+}
+
+.zc-eb-list.is-toc .elementor-icon-list-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+}
+
+.zc-eb-list.is-toc .elementor-icon-list-item {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #FFF;
+    border: 1px solid var(--eb-line);
+    font-weight: 700;
+}
+
+.zc-eb-list.is-toc .elementor-icon-list-icon {
+    color: var(--eb-gold-deep);
+}
+
+.zc-eb-list.is-toc a {
+    color: var(--eb-ink);
+}
+
+@media (max-width: 767px) {
+    .zc-eb-list.is-toc .elementor-icon-list-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+.zc-eb-list.is-links .elementor-icon-list-icon {
+    color: var(--eb-gold-deep);
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+.zc-eb-sec.e-con.is-hero {
+    padding-block: clamp(28px, 4vw, 56px) clamp(34px, 4.5vw, 64px);
+    background: radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.22), transparent 55%), radial-gradient(90% 80% at 0% 10%, rgba(167, 243, 208, 0.18), transparent 60%), var(--eb-paper);
+}
+
+.zc-eb-hero-title .elementor-heading-title {
+    margin: 0;
+    font-size: clamp(2rem, 3.6vw, 3.1rem);
+    font-weight: 900;
+    line-height: 1.5;
+    color: var(--eb-ink);
+}
+
+.zc-eb-pop {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 16px;
+    border-radius: 16px;
+    background: var(--eb-ink);
+    color: var(--eb-gold);
+    transform: rotate(-1deg);
+}
+
+.zc-eb-hero-lead .elementor-widget-container p {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 2.1;
+    color: var(--eb-ink-2);
+    max-width: 56ch;
+}
+
+.zc-eb-hero-art {
+    position: relative;
+}
+
+.zc-eb-img.is-hero img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 28px;
+    box-shadow: 0 24px 50px rgba(41, 44, 49, 0.18);
+}
+
+.zc-eb-tile.e-con.is-score {
+    padding: 16px 20px;
+    border-radius: 18px;
+    background: var(--eb-ink);
+    border-color: transparent;
+    box-shadow: 0 14px 30px rgba(42, 44, 49, 0.22);
+    align-self: flex-start;
+}
+
+.zc-eb-score-v .elementor-heading-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--eb-gold);
+}
+
+.zc-eb-score-l .elementor-widget-container p {
+    margin: 0;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Trust stats under the hero copy */
+.zc-eb-grid.is-stats {
+    margin-top: 6px;
+}
+
+.zc-eb-grid.is-stats .zc-eb-tile.is-stat {
+    flex: 1 1 0;
+    min-width: 120px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.zc-eb-stat-v .elementor-heading-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--eb-ink);
+}
+
+.zc-eb-stat-l .elementor-widget-container p {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--eb-ink-3);
+}
+
+/* ── Grids ──────────────────────────────────────────────────────────── */
+.zc-eb-grid {
+    width: 100%;
+}
+
+div.zc-eb-grid > div.zc-eb-tile {
+    flex: 1 1 calc(33.333% - 22px);
+    min-width: 240px;
+}
+
+div.zc-eb-grid.is-4 > div.zc-eb-tile {
+    flex: 1 1 calc(25% - 22px);
+    min-width: 200px;
+}
+
+div.zc-eb-grid.is-steps > div.zc-eb-tile {
+    flex: 1 1 calc(16.666% - 22px);
+    min-width: 160px;
+}
+
+div.zc-eb-grid.is-plans > div.zc-eb-tile {
+    flex: 1 1 calc(33.333% - 22px);
+    min-width: 260px;
+}
+
+div.zc-eb-grid.is-clients > div.zc-eb-tile {
+    flex: 1 1 calc(16.666% - 22px);
+    min-width: 130px;
+    padding: 18px;
+}
+
+div.zc-eb-grid > div.zc-eb-tile.is-client {
+    background: #FFF;
+    box-shadow: none;
+}
+
+.zc-eb-tile.is-client img {
+    width: 100%;
+    height: 46px;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter .2s ease, opacity .2s ease;
+}
+
+.zc-eb-tile.is-client:hover img {
+    filter: none;
+    opacity: 1;
+}
+
+/* ── Cards with media / prices / steps / quotes ─────────────────────── */
+.zc-eb-tile .zc-eb-img.is-cover img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--eb-radius-sm);
+}
+
+.zc-eb-price .elementor-heading-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--eb-gold-deep);
+}
+
+.zc-eb-no,
+.zc-eb-step-no {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--eb-ink-3);
+    letter-spacing: 0.08em;
+}
+
+.zc-eb-step-no .elementor-heading-title {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 900;
+    color: var(--eb-gold-deep);
+}
+
+.zc-eb-tile.is-step .zc-eb-card-title .elementor-heading-title {
+    font-size: 0.95rem;
+}
+
+.zc-eb-tile.is-plan .zc-eb-badge .elementor-widget-container p {
+    background: var(--eb-ink);
+    border-color: var(--eb-ink);
+    color: var(--eb-gold);
+}
+
+.zc-eb-tile.e-con.is-plan.is-popular {
+    border-color: var(--eb-gold);
+    box-shadow: 0 18px 40px rgba(253, 208, 91, 0.35);
+}
+
+/* Track group heading inside the pricing section */
+.zc-eb-track .elementor-heading-title {
+    margin: 26px 0 0;
+    font-size: 1.12rem;
+    font-weight: 900;
+    color: var(--eb-ink);
+}
+
+.zc-eb-track .elementor-heading-title::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-inline-end: 9px;
+    border-radius: 50%;
+    background: var(--eb-gold);
+    vertical-align: 2px;
+}
+
+.zc-eb-price-note {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--eb-ink-3);
+}
+
+.zc-eb-price-unit {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--eb-ink-3);
+}
+
+/* Step / service number («۰۱») */
+.zc-eb-no .elementor-heading-title,
+.zc-eb-step-no .elementor-heading-title {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--eb-gold-deep);
+}
+
+.zc-eb-quote .elementor-widget-container p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 2.05;
+    color: var(--eb-ink);
+    font-weight: 600;
+}
+
+.zc-eb-who .elementor-heading-title {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 900;
+    color: var(--eb-ink);
+}
+
+.zc-eb-role .elementor-widget-container p {
+    margin: 0;
+    font-size: 0.76rem;
+    color: var(--eb-ink-3);
+}
+
+/* ── Inner page hero + documents ────────────────────────────────────── */
+.zc-eb-sec.is-page-hero {
+    background: radial-gradient(110% 90% at 100% 0%, rgba(253, 208, 91, 0.28), transparent 60%), var(--eb-paper-2); padding-block: clamp(34px, 5vw, 64px) clamp(30px, 4vw, 54px);
+}
+
+.zc-eb-page-hero .zc-eb-page-title .elementor-heading-title {
+    margin: 0;
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.5;
+    color: var(--eb-ink);
+}
+
+.zc-eb-tile.is-clause,
+.zc-eb-clause.e-con {
+    background: #FFF;
+    border: 1px solid var(--eb-line);
+    border-radius: var(--eb-radius);
+    padding: 26px 28px;
+    box-shadow: var(--eb-shadow);
+}
+
+.zc-eb-clause-title .elementor-heading-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 900;
+    line-height: 1.6;
+    color: var(--eb-ink);
+}
+
+.zc-eb-clause-title .elementor-heading-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 1.05em;
+    margin-inline-end: 10px;
+    border-radius: 4px;
+    background: var(--eb-gold);
+    vertical-align: -0.12em;
+}
+
+/* ── Closing CTA ────────────────────────────────────────────────────── */
+.zc-eb-sec.e-con.is-cta {
+    padding-block: clamp(20px, 3vw, 40px) clamp(46px, 6vw, 84px);
+}
+
+.zc-eb-cta.e-con {
+    position: relative;
+    padding: clamp(28px, 4vw, 52px);
+    border-radius: 28px;
+    background: radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.20), transparent 55%), linear-gradient(160deg, #33363D, #22242A); box-shadow: 0 24px 60px rgba(34, 36, 42, 0.28); overflow: hidden;
+}
+
+.zc-eb-cta-title .elementor-heading-title {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 900;
+    line-height: 1.55;
+    color: #FFF;
+}
+
+.zc-eb-cta-text .elementor-widget-container p {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 0.98rem;
+    line-height: 2.05;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* ── Divider ────────────────────────────────────────────────────────── */
+.zc-eb-rule .elementor-divider-separator {
+    border-color: var(--eb-line);
+    border-top-width: 1px;
+}
+
+/* ── Container padding reset ────────────────────────────────────────────
+   Elementor's container base class paints `padding: 10px` on every `.e-con`
+   and is printed after the theme stylesheet, so pure layout containers (a
+   grid, a button row, a section header group) would quietly gain 10px on all
+   sides. Those are reset here; every painted box sets its own padding in a
+   rule qualified with `.e-con`, so it wins on its own.
+   ------------------------------------------------------------------- */
+.zc-eb-wrap.e-con,
+.zc-eb-head.e-con,
+.zc-eb-actions.e-con,
+.zc-eb-hero.e-con,
+.zc-eb-hero-copy.e-con,
+.zc-eb-hero-art.e-con,
+.zc-eb-page-hero.e-con,
+.zc-eb-grid.e-con,
+.zc-eb-cta-row.e-con {
+    padding: 0;
+}
+
+.zc-eb-wrap.e-con {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    div.zc-eb-grid.is-4 > div.zc-eb-tile,
+    div.zc-eb-grid.is-steps > div.zc-eb-tile {
+        flex: 1 1 calc(50% - 22px);
+    }
+}
+
+@media (max-width: 767px) {
+    .zc-eb-wrap.e-con {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .zc-eb-sec.e-con {
+        padding-top: 34px;
+        padding-bottom: 34px;
+    }
+
+    div.zc-eb-grid > div.zc-eb-tile,
+    div.zc-eb-grid.is-4 > div.zc-eb-tile,
+    div.zc-eb-grid.is-steps > div.zc-eb-tile,
+    div.zc-eb-grid.is-plans > div.zc-eb-tile {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .zc-eb-tile.e-con {
+        padding: 20px;
+    }
+
+    .zc-eb-hero-title .elementor-heading-title {
+        font-size: 1.8rem;
+    }
+
+    .zc-eb-actions {
+        flex-wrap: wrap;
+    }
+
+    .zc-eb-btn .elementor-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .zc-eb-cta.e-con {
+        padding: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zc-eb-tile,
+    .zc-eb-btn .elementor-button,
+    .zc-eb-tile .elementor-icon-box-icon .elementor-icon {
+        transition: none;
+    }
+
+    .zc-eb-tile:hover,
+    .zc-eb-btn .elementor-button:hover {
+        transform: none;
+    }
+}

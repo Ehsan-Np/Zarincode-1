@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.14.0
+Stable tag: 4.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,18 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.15.0 =
+* **صفحات سایت دیگر «یک ویجت برای هر بخش» نیستند.** درخت هر صفحه از ویجت‌های بومی المنتور ساخته می‌شود: Containerهای تودرتو + Heading، Text Editor، Button، Image، Icon Box، Icon List و Divider. صفحهٔ اصلی ۱۰۱ Container و ۲۰۲ ویجت بومی دارد؛ هر تیتر، پاراگراف، دکمه، تصویر و کارت در Navigator جداگانه دیده می‌شود و می‌توان آن را انتخاب، جابه‌جا، تکثیر، حذف یا استایل‌دهی کرد. مجموع اسناد صفحات: ۲۲۵ Heading، ۲۰۷ Text Editor، ۱۰۷ Button، ۶۱ Icon Box، ۴۱ Icon List، ۴۰ Image — و صفر ویجت ترکیبی.
+* `Elementor\Page_Composer`: سازندهٔ اسناد بومی (`widget()`, `container()`, `heading()`, `text()`, `button()`, `image()`, `icon_box()`, `icon_list()`, `badge()`, `divider()`, `section()`, `head()`, `grid()`, `card()`, `pricing()`, `home()`, `inner()`) به‌همراه `Demo\Page_Copy` که متن فارسی هر صفحه را از چیدمان جدا نگه می‌دارد.
+* همهٔ صفحات بازنویسی شدند: صفحهٔ اصلی (۱۲ بخش)، خدمات، نمونه‌کارها، درباره ما، تماس، تعرفه، اعتبارنامه‌ها، سئو، فناوری‌ها، مجله و ۶ سند حقوقی (هر بند یک عنوان + متن قابل ویرایش با فهرست پیوندی).
+* تصاویر دمو حالا پیوست واقعی کتابخانهٔ رسانه‌اند (نه وابسته به پوشهٔ قالب) تا از پنل المنتور قابل تعویض باشند؛ جایگزینی دوباره فایل را تکرار نمی‌کند.
+* `Demo_Seeder` پس از نوشتن `_elementor_data` کش المنتور را باطل می‌کند (`_elementor_element_cache`، `_elementor_css`، `_elementor_page_assets`). پیش‌تر یک ایمپورت دوباره HTML قدیمی را نشان می‌داد و کلاس‌های Container به‌ظاهر «گم» می‌شدند.
+* Kit المنتور با پالت برند هم‌تراز می‌شود: Primary `#2A2C31`، Accent `#FDD05B`، متن `#4B5563`، فونت Vazirmatn. رنگ‌هایی که مالک سایت تغییر داده باشد دست‌نخورده می‌ماند.
+* `assets/css/eb.css`: لایهٔ ظاهر صفحات بومی. آخرین استایل‌شیت صفحه است (اولویت ۹۹۹) و فقط به کلاس‌های `zc-eb-*` اعمال می‌شود، پس به ویجتی که کاربر خودش می‌گذارد کاری ندارد.
+* صفحهٔ `shop` دیگر سند المنتوری نمی‌گیرد: مسیر `/shop/` آرشیو ووکامرس است و قالب آرشیو رندر می‌شود؛ سند قبلی هرگز دیده نمی‌شد.
+* حذف کد مرده: `Demo_Seeder::make_elementor_section()`، `section_title()`، `demo_technologies()`، `pricing_body_sections()`، `Service_Demo::legal_rows()/legal_nav()` و فایل `fixtures/pricing-widget-settings.json`.
+* صادقانه: هدر سایت همچنان یک ویجت حالت‌دار (`zarincode_header`) است — کشوی موبایل، شمارش سبد، جست‌وجوی زنده و کلید حالت تیره در آن زنده‌اند؛ فوتر و تمام صفحات بومی‌اند.
 
 = 4.14.0 =
 * Icons: `Icon_Compatibility` rewrites every 6.x/7.x icon name in a widget value back to the Font Awesome 5.15.3 vocabulary Elementor resolves against, and repairs icon names already stored in `_elementor_data` once (`repair_stored_icons()`). Elementor's inlined-SVG pass logs «Undefined array key "shield-halved"» for every 7.x name it cannot find in its own FA 5.15.3 JSON; the log is now silent while the rendered glyph is still Font Awesome 7.
