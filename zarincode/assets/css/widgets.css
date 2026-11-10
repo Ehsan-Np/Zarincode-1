@@ -317,7 +317,7 @@ h2.widget-title:not(.zc-hf *){
 .woocommerce .widget_layered_nav_filters ul li a:not(.zc-hf *){ background: var(--zcw-gold-soft); border-radius: 999px; padding: .2rem .7rem; font-weight: 800; }.woocommerce .widget_rating_filter ul li a:not(.zc-hf *){ display: flex; align-items: center; gap: .4rem; }/* ===================================================================
    4. ELEMENTOR STOCK WIDGETS
    =================================================================== */
-.elementor-widget-heading .elementor-heading-title:not(.zc-hf *){ color: var(--zcw-ink); font-weight: 900; letter-spacing: -.2px; }.elementor-widget-text-editor:not(.zc-hf *){ color: var(--zcw-ink-2); font-size: .95rem; line-height: 2; }.elementor-widget-text-editor h2:not(.zc-hf *),
+.elementor-widget-heading .elementor-heading-title:not(.zc-hf *):not(.zc-eb *){ color: var(--zcw-ink); font-weight: 900; letter-spacing: -.2px; }.elementor-widget-text-editor:not(.zc-hf *){ color: var(--zcw-ink-2); font-size: .95rem; line-height: 2; }.elementor-widget-text-editor h2:not(.zc-hf *),
 .elementor-widget-text-editor h3:not(.zc-hf *){ color: var(--zcw-ink); font-weight: 900; }.elementor-widget-text-editor a:not(.zc-hf *){ color: var(--zcw-gold-deep); font-weight: 700; text-decoration: none; border-bottom: 1px dashed rgba(138, 107, 16, .35); }.elementor-widget-text-editor a:hover:not(.zc-hf *){ color: var(--zcw-ink); border-bottom-color: var(--zcw-ink); }.elementor-widget-text-editor ul:not(.zc-hf *),
 .elementor-widget-text-editor ol:not(.zc-hf *){ padding-inline-start: 1.2rem; }.elementor-widget-text-editor li:not(.zc-hf *){ margin-bottom: .4rem; }/* generic button (outside the header/footer scope too) */
 .elementor-widget-button .elementor-button:not(.zc-hf *){
@@ -396,14 +396,14 @@ body .elementor-widget-heading .elementor-heading-title:not(.zc-hf *){
     font-weight: 900;
     letter-spacing: -.02em;
     line-height: 1.5;
-}body .elementor-widget-heading .elementor-heading-title a:not(.zc-hf *){ color: inherit; text-decoration: none; }body .elementor-widget-heading .elementor-heading-title a:hover:not(.zc-hf *){ color: var(--zcw-gold-deep); }body .elementor-widget-text-editor:not(.zc-hf *),
-body .elementor-widget-text-editor p:not(.zc-hf *),
+}body .elementor-widget-heading .elementor-heading-title a:not(.zc-hf *){ color: inherit; text-decoration: none; }body .elementor-widget-heading .elementor-heading-title a:hover:not(.zc-hf *){ color: var(--zcw-gold-deep); }body .elementor-widget-text-editor:not(.zc-hf *):not(.zc-eb *),
+body .elementor-widget-text-editor p:not(.zc-hf *):not(.zc-eb *),
 body .elementor-widget-toogle .elementor-toggle-content:not(.zc-hf *){ color: var(--zcw-ink-2); }/* -- buttons --------------------------------------------------------- */
-body .elementor-widget-button .elementor-button:not(.zc-hf *),
-body .elementor-button.elementor-size-sm:not(.zc-hf *),
-body .elementor-button.elementor-size-md:not(.zc-hf *),
-body .elementor-button.elementor-size-lg:not(.zc-hf *),
-body .elementor-button.elementor-size-xl:not(.zc-hf *){
+body .elementor-widget-button .elementor-button:not(.zc-hf *):not(.zc-eb *),
+body .elementor-button.elementor-size-sm:not(.zc-hf *):not(.zc-eb *),
+body .elementor-button.elementor-size-md:not(.zc-hf *):not(.zc-eb *),
+body .elementor-button.elementor-size-lg:not(.zc-hf *):not(.zc-eb *),
+body .elementor-button.elementor-size-xl:not(.zc-hf *):not(.zc-eb *){
     background: linear-gradient(135deg, #FDD05B, #FCC22D);
     color: var(--zcw-ink);
     border: 0;

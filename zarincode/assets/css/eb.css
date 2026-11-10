@@ -652,7 +652,8 @@ div.zc-eb-grid > div.zc-eb-tile.is-client {
 
 /* ── Inner page hero + documents ────────────────────────────────────── */
 .zc-eb-sec.is-page-hero {
-    background: radial-gradient(110% 90% at 100% 0%, rgba(253, 208, 91, 0.28), transparent 60%), var(--eb-paper-2); padding-block: clamp(34px, 5vw, 64px) clamp(30px, 4vw, 54px);
+    background: radial-gradient(110% 90% at 100% 0%, rgba(253, 208, 91, 0.28), transparent 60%), var(--eb-paper-2);
+    padding-block: clamp(34px, 5vw, 64px) clamp(30px, 4vw, 54px);
 }
 
 .zc-eb-page-hero .zc-eb-page-title .elementor-heading-title {
@@ -700,7 +701,9 @@ div.zc-eb-grid > div.zc-eb-tile.is-client {
     position: relative;
     padding: clamp(28px, 4vw, 52px);
     border-radius: 28px;
-    background: radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.20), transparent 55%), linear-gradient(160deg, #33363D, #22242A); box-shadow: 0 24px 60px rgba(34, 36, 42, 0.28); overflow: hidden;
+    background: radial-gradient(120% 90% at 100% 0%, rgba(253, 208, 91, 0.20), transparent 55%), linear-gradient(160deg, #33363D, #22242A);
+    box-shadow: 0 24px 60px rgba(34, 36, 42, 0.28);
+    overflow: hidden;
 }
 
 .zc-eb-cta-title .elementor-heading-title {
@@ -747,6 +750,38 @@ div.zc-eb-grid > div.zc-eb-tile.is-client {
 .zc-eb-wrap.e-con {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+
+/* ── Text colour guard ──────────────────────────────────────────────────
+   Text colours are stated twice: as the widget's own Elementor setting
+   (so the owner sees them in the panel) and here with a `body` prefix, so a
+   later skin imported by a plugin cannot quietly repaint the copy. The
+   theme's own generic widget skin is scoped out of `.zc-eb` on purpose
+   (see the `:not(.zc-eb *)` guards in widgets.css).
+   ------------------------------------------------------------------- */
+body .zc-eb-cta-text .elementor-widget-container p,
+body .zc-eb-cta-text .elementor-widget-container li {
+    color: #E6E7E9;
+}
+
+body .zc-eb-hero-lead .elementor-widget-container p,
+body .zc-eb-lead .elementor-widget-container p,
+body .zc-eb-page-lead .elementor-widget-container p,
+body .zc-eb-p .elementor-widget-container p,
+body .zc-eb-prose .elementor-widget-container,
+body .zc-eb-prose .elementor-widget-container p,
+body .zc-eb-prose .elementor-widget-container li,
+body .zc-eb-card-text .elementor-widget-container p,
+body .zc-eb-stat-l .elementor-widget-container p,
+body .zc-eb-score-l .elementor-widget-container p,
+body .zc-eb-role .elementor-widget-container p,
+body .zc-eb-quote .elementor-widget-container p {
+    color: var(--eb-ink-2);
+}
+
+body .zc-eb-score-l .elementor-widget-container p {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────── */

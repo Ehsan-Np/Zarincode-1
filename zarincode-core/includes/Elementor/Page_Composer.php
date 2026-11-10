@@ -295,7 +295,13 @@ final class Page_Composer {
 	 * @param array $args     ['css' => '…', 'name' => '…', 'id' => '…']
 	 */
 	public static function section( array $children, array $args = array() ): array {
-		$css = 'zc-eb-sec ' . ( $args['css'] ?? '' );
+		/*
+		 * `zc-eb` marks the region as a composed page: every style in `eb.css`
+		 * is written against it, and the theme's generic widget skin excludes
+		 * it (`:not(.zc-eb *)` in widgets.css), so a composed page is styled by
+		 * exactly one layer instead of two fighting ones.
+		 */
+		$css = 'zc-eb zc-eb-sec ' . ( $args['css'] ?? '' );
 		$settings = array(
 			'content_width'  => 'full',
 			'flex_direction' => 'column',
