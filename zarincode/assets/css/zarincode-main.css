@@ -346,11 +346,18 @@ html.dark .progress-dashed {
     padding: 0.6rem 0;
 }
 
+/* The pill box: background, border, radius, shadow, padding and gap are
+   Elementor settings on the header document (v4.16.0), so they apply to that
+   container only when it is *not* an Elementor container (`:not(.e-con)`).
+   The legacy coded header, which prints a plain div, keeps the values below. */
 .zc-header-pill {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.65rem;
+}
+
+.zc-header-pill:not(.e-con) {
     padding: 0.55rem 0.85rem;
     background: var(--zc-surface);
     -webkit-backdrop-filter: blur(16px);
@@ -2003,7 +2010,7 @@ html.dark .zc-project-info-pills span {
         padding: 0.45rem 0;
     }
 
-    .zc-header-pill {
+    .zc-header-pill:not(.e-con) {
         padding: 0.45rem 0.65rem;
         gap: 0.4rem;
     }

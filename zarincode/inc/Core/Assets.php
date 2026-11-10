@@ -156,6 +156,12 @@ class Assets {
             array( 'zarincode-vazirmatn' ),
             $this->asset_version( '/assets/css/hf-footer.css' )
         );
+        wp_enqueue_style(
+            'zarincode-hf-header',
+            ZARINCODE_URI . '/assets/css/hf-header.css',
+            array( 'zarincode-vazirmatn' ),
+            $this->asset_version( '/assets/css/hf-header.css' )
+        );
     }
 
     /** Option «اعداد فارسی» → html.zc-fa-digits (ss01 of Vazirmatn). */
@@ -292,6 +298,16 @@ class Assets {
             ZARINCODE_URI . '/assets/css/hf-footer.css',
             array( 'zarincode-main' ),
             $this->asset_version( '/assets/css/hf-footer.css' )
+        );
+
+        // 5b. The Elementor header shell (v4.16.0): sticky band, glass blur,
+        //     list resets and the dark-mode mirror. Structure, spacing and
+        //     colour of the header itself are Elementor settings.
+        wp_enqueue_style(
+            'zarincode-hf-header',
+            ZARINCODE_URI . '/assets/css/hf-header.css',
+            array( 'zarincode-main' ),
+            $this->asset_version( '/assets/css/hf-header.css' )
         );
 
         // Product-page reference layout (hero row, KPI strip, tabs) is shared

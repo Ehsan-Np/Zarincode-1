@@ -471,6 +471,20 @@
         const cta = document.querySelector('.zc-header-actions .zc-btn, .zc-header-actions a[class*="zc-btn"], .zc-header-actions .elementor-button');
         if (cta) {
             const c = cta.cloneNode(true);
+            /*
+             * An Elementor button is painted by the CSS file generated for its
+             * document (`.elementor-element-<id> .elementor-button`), and that
+             * selector does not match a clone living in the drawer — the copy
+             * would arrive square and un-styled. Carry the few paint
+             * properties over from the live button instead of hard-coding a
+             * second design here.
+             */
+            const paint = getComputedStyle(cta);
+            ['border-radius', 'padding', 'font-size', 'font-weight', 'line-height', 'background-color', 'color', 'box-shadow', 'letter-spacing'].forEach((prop) => {
+                const value = paint.getPropertyValue(prop);
+                if (value) c.style.setProperty(prop, value);
+            });
+            c.removeAttribute('id');
             c.style.marginTop = '1rem';
             c.style.width = '100%';
             foot.appendChild(c);

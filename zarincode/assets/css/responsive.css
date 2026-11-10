@@ -14,7 +14,7 @@ details:not([open])>:not(summary){display:none}
 @media(max-width:1180px){.zc-header-pill,.zc-header-actions,.zc-brand{min-width:0}.zc-header-actions{flex-shrink:1}}
 @media(max-width:767px){
  :root{--zc-site-gutter:16px}
- .zc-header-pill{gap:6px;padding:8px}.zc-header-actions{gap:4px;flex-wrap:nowrap}.zc-brand{gap:6px;flex-shrink:1}.zc-brand-text{min-width:0}.zc-brand-sub{display:none}.zc-brand-name{font-size:13px}
+ .zc-header-pill:not(.e-con){gap:6px;padding:8px}.zc-header-actions{gap:4px;flex-wrap:nowrap}.zc-brand{gap:6px;flex-shrink:1}.zc-brand-text{min-width:0}.zc-brand-sub{display:none}.zc-brand-name{font-size:13px}
  .zc-header-actions .zc-icon-btn{width:40px;height:40px;flex-shrink:0}.zc-header-actions .zc-header-account{width:40px;min-width:40px;padding:0;justify-content:center}.zc-header-account>span{display:none}
  .zc-topbar-inner,.zc-topbar-items{min-width:0;flex-wrap:wrap}.zc-topbar-item{min-width:0;font-size:12px}
  .zc-single-product-grid{grid-template-columns:minmax(0,1fr)!important}

@@ -1,0 +1,133 @@
+/*!
+ * Zarincode — header shell for the Elementor header document (v4.16.0)
+ * ---------------------------------------------------------------------
+ * The header is a real Elementor document: background, border, radius,
+ * shadow, padding, gap, colours, typography and every link live in the panel.
+ * This file carries only the three things the panel has no control for:
+ *
+ *   1. sticky positioning of the whole band,
+ *   2. the frosted-glass blur behind the pill,
+ *   3. list resets for the navigation (bullets / indentation / link colour).
+ *
+ * Colours are NOT mirrored here, deliberately: the header keeps exactly the
+ * palette the owner set in the panel, so switching the site to dark mode can
+ * never leave light text on a light pill.
+ *
+ * Nothing here sets padding, widths or layout on the containers — those are
+ * Elementor settings, so the panel and the front end can never disagree.
+ * It loads after zarincode-main.css (dependency) and is scoped to
+ * .zc-hf-header so the legacy coded header is untouched.
+ */
+
+.zc-hf-header {
+    --zc-hdr-indicator: #FDD05B;
+}
+
+/* 1. The band stays under the pointer while the page scrolls. */
+.zc-hf-header .zc-header-bar {
+    position: sticky;
+    top: 0.65rem;
+    z-index: 100;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .zc-hf-header .zc-header-bar {
+        top: 0.35rem;
+    }
+}
+
+/* 2. Frosted glass: not expressible as an Elementor control. */
+.zc-hf-header .zc-header-pill {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+
+/* 3. The nav is a <ul> of links; the theme's list styles must not leak in.
+   The three parts of the pill keep their natural width: a wrapped menu row
+   (the browser default when a flex child is allowed to shrink) turns the
+   one-line pill into a two-line block and overlaps the brand. */
+.zc-hf-header :is(.zc-header-pill, .zc-header-actions) > .e-con-inner > * {
+    flex-shrink: 0;
+}
+
+/* The hamburger belongs to tablet and mobile: from 1181px up the full menu
+   is visible, so the button is hidden (the theme's compact rules turn it back
+   on below that width). */
+@media (min-width: 1181px) {
+    .zc-hf-header .zc-mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* The button shows its icon only — its label is the aria-label. */
+.zc-hf-header .zc-mobile-menu-toggle > :is(i, svg) {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* The action group sizes to its three buttons instead of filling the row. */
+.zc-hf-header .zc-header-actions {
+    width: auto;
+}
+
+.zc-hf-header .zc-header-actions > .e-con-inner {
+    flex-wrap: nowrap;
+}
+
+.zc-hf-header .zc-nav-pill {
+    list-style: none;
+    margin: 0;
+    flex-wrap: nowrap;
+}
+
+.zc-hf-header .zc-nav-pill > li {
+    margin: 0;
+}
+
+.zc-hf-header .zc-nav-pill > li > a {
+    text-decoration: none;
+}
+
+.zc-hf-header .zc-nav-text {
+    display: inline-block;
+}
+
+/* Icons stay glyph-sized whatever library Elementor renders (font or SVG). */
+.zc-hf-header .zc-nav-ico {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.zc-hf-header .zc-nav-ico > svg,
+.zc-hf-header .zc-brand-logo-box > svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+    fill: currentColor;
+}
+
+/* The «you are here» underline: geometry here, colour from the panel
+   (`current_indicator`, printed as --zc-hdr-indicator). */
+.zc-hf-header .zc-nav-pill > li > a.is-current::after,
+.zc-hf-header .zc-nav-pill > li > a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0.85rem;
+    bottom: 0.28rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--zc-hdr-indicator, #FDD05B);
+}
+
+.zc-hf-header .zc-brand,
+.zc-hf-header .zc-header-account {
+    text-decoration: none;
+}
+
+/* A CTA inside the header must never stretch the row. */
+.zc-hf-header .zc-header-actions > .elementor-widget-button {
+    width: auto;
+    flex: 0 0 auto;
+}

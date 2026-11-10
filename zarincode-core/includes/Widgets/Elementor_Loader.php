@@ -87,6 +87,18 @@ class Elementor_Loader {
         wp_register_style('zarincode-professional',$base.'professional.css',[],'4.1.0');
         wp_register_script('zarincode-professional',$base.'professional.js',['elementor-frontend'],'4.1.0',true);
         wp_register_style( 'zarincode-editable-widgets', $base . 'widgets.css', [], '4.1.0' );
+        // Header shell rules (sticky band, glass blur, list resets, dark-mode
+        // mirror) for the header widgets' get_style_depends(); registered here
+        // so Elementor can resolve the handle inside its own asset registry.
+        $zc_header_css = get_template_directory() . '/assets/css/hf-header.css';
+        if ( is_readable( $zc_header_css ) ) {
+            wp_register_style(
+                'zarincode-hf-header',
+                get_template_directory_uri() . '/assets/css/hf-header.css',
+                array( 'zarincode-main' ),
+                defined( 'ZARINCODE_VERSION' ) ? ZARINCODE_VERSION : (string) filemtime( $zc_header_css )
+            );
+        }
         wp_register_script( 'zarincode-editable-widgets', $base . 'widgets.js', ['elementor-frontend'], '4.1.0', true );
     }
 
@@ -117,6 +129,12 @@ class Elementor_Loader {
         require_once __DIR__ . '/Professional_Widgets.php';
         require_once __DIR__.'/Studio_Widgets.php';
         require_once __DIR__.'/Widget_Trust_Badges.php';
+        // Header, element by element (4.16.0): brand, nav, account, hamburger.
+        require_once __DIR__.'/Widget_Header_Brand.php';
+        require_once __DIR__.'/Widget_Header_Nav.php';
+        require_once __DIR__.'/Widget_Header_Account.php';
+        require_once __DIR__.'/Widget_Header_Drawer_Toggle.php';
+        require_once __DIR__.'/Widget_Header_Tools.php';
 
         $widget_classes = [
             Widget_Trust_Badges::class,
@@ -130,6 +148,13 @@ class Elementor_Loader {
             Widget_Team_Experts::class,
             Widget_Service_Matrix::class,
             Widget_Products_Slider::class,
+            Widget_Header_Brand::class,
+            Widget_Header_Nav::class,
+            Widget_Header_Account::class,
+            Widget_Header_Drawer_Toggle::class,
+            Widget_Header_Search::class,
+            Widget_Header_Cart::class,
+            Widget_Header_Theme_Toggle::class,
             Widget_Header_Crextio::class,
             Widget_Footer_Crextio::class,
             Widget_Hero_Crextio::class,

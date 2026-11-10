@@ -284,7 +284,15 @@ abstract class Abstract_Zarincode_Widget extends Widget_Base {
     }
 }
 
-class Widget_Header_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'header'; } }
+/**
+ * Legacy all-in-one header. Kept registered (hidden from the panel) so a
+ * document built by an older release still renders; 4.16.0 builds the header
+ * from native widgets — brand, nav, account, CTA and hamburger — instead.
+ */
+class Widget_Header_Crextio extends Abstract_Zarincode_Widget {
+    protected function kind(): string { return 'header'; }
+    public function show_in_panel(): bool { return false; }
+}
 class Widget_Footer_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'footer'; } }
 class Widget_Hero_Crextio extends Abstract_Zarincode_Widget { protected function kind(): string { return 'hero'; } public function show_in_panel(): bool { return false; } }
 class Widget_Brands_Marquee extends Abstract_Zarincode_Widget { protected function kind(): string { return 'brands'; } }

@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.15.0
+Stable tag: 4.16.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,17 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.16.0 =
+* **هدر سایت هم بومی المنتور شد؛ آخرین «یک ویجت برای کل هدر» حذف شد.** سند هدر حالا یک درخت المنتوری است: Container بیرونی (`zc-header-bar`، چسبان) ← Container نوار شیشه‌ای (`zc-header-pill` با پس‌زمینه، خط، گردی، سایه، فاصله و گپ به‌صورت تنظیم المنتور) ← ویجت برند، ویجت منوی اصلی، و Container دکمه‌ها (حساب کاربری، دکمهٔ مشاوره، همبرگر). در Navigator هر پنج عنصر جداگانه دیده می‌شوند و می‌توان انتخاب، جابه‌جا، تکثیر، حذف یا استایل‌دهی‌شان کرد.
+* چهار ویجت تازه برای هدر: `zarincode_header_brand` (نشانهٔ ZC، نام «زرین کد»، شعار «Zarincode»، پیوند، رنگ و اندازهٔ دایره)، `zarincode_header_nav` (تکرارگر ردیف‌ها)، `zarincode_header_account` (دکمهٔ حساب کاربری، سازگار با تنظیمات قالب) و `zarincode_header_drawer` (همبرگر با `data-zc-drawer-open`).
+* **حالت‌های ناوبری:** ردیف‌ها همان هفت پیوند مصوب را دارند و وضعیت «صفحهٔ جاری / شاخهٔ جاری / عادی» در زمان رندر با `Native_Design::current_state()` تعیین می‌شود، نه با کلاس دستی؛ رنگ هر حالت (عادی، هاور، صفحهٔ جاری، شاخهٔ جاری) و رنگ خط نشانگر، کنترل المنتوری دارد.
+* CTA هدر یک ویجت Button بومی المنتور است (متن، پیوند، رنگ، هاور، شعاع و فاصله در پنل)، و در موبایل مثل قبل مخفی می‌شود.
+* کشوی موبایل از همان فهرست هدر ساخته می‌شود: اسکریپت قالب `.zc-nav-pill`، `.zc-brand` و دکمهٔ داخل `.zc-header-actions` را کلون می‌کند، پس منوی موبایل هرگز از منوی دسکتاپ جدا نمی‌افتد و «صفحهٔ جاری» در آن هم درست است.
+* `assets/css/hf-header.css`: فقط چهار چیزی که پنل کنترلی برایشان ندارد — چسبان بودن نوار، بلور شیشه‌ای، ریست فهرست ناوبری و آینهٔ حالت تیره. هیچ قاعدهٔ چیدمان/فاصله‌ای روی `.zc-hf` نوشته نشده و رنگ‌های پنل همیشه برنده‌اند.
+* `HF_Builder::TREE_VERSION` به `4.16.0` رسید و هدر هم مثل فوتر در صورت «تولیدشده توسط افزونه و ویرایش‌نشده» درجا ارتقا می‌یابد (با نسخهٔ پشتیبان `_zc_hf_backup_data`). سندی که مالک در پنل ذخیره کرده باشد دست‌نخورده می‌ماند؛ برای بازسازی دستی همان دکمهٔ تأییدشدهٔ «بازسازی هدر/فوتر» هست.
+* `Widget_Header_Crextio` (هدر تک‌ویجتی) از پنل پنهان شد تا کسی دوباره بخش ترکیبی نسازد؛ برای سایت‌های قدیمی همچنان رندر می‌شود.
+* صادقانه: کشوی موبایل و حالت تیره همان رفتار قبلی را دارند و با اسکریپت قالب ساخته می‌شوند، نه با مارک‌آپ المنتوری؛ و برند/دکمه‌ها اگر مالک جابه‌جا کند، کشو همان چیزی را کلون می‌کند که در هدر می‌بیند.
 
 = 4.15.0 =
 * **صفحات سایت دیگر «یک ویجت برای هر بخش» نیستند.** درخت هر صفحه از ویجت‌های بومی المنتور ساخته می‌شود: Containerهای تودرتو + Heading، Text Editor، Button، Image، Icon Box، Icon List و Divider. صفحهٔ اصلی ۱۰۱ Container و ۲۰۲ ویجت بومی دارد؛ هر تیتر، پاراگراف، دکمه، تصویر و کارت در Navigator جداگانه دیده می‌شود و می‌توان آن را انتخاب، جابه‌جا، تکثیر، حذف یا استایل‌دهی کرد. مجموع اسناد صفحات: ۲۲۵ Heading، ۲۰۷ Text Editor، ۱۰۷ Button، ۶۱ Icon Box، ۴۱ Icon List، ۴۰ Image — و صفر ویجت ترکیبی.
