@@ -54,6 +54,10 @@ Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT cod
 * حذف کد مرده: `Demo_Seeder::make_elementor_section()`، `section_title()`، `demo_technologies()`، `pricing_body_sections()`، `Service_Demo::legal_rows()/legal_nav()` و فایل `fixtures/pricing-widget-settings.json`.
 * صادقانه: هدر سایت همچنان یک ویجت حالت‌دار (`zarincode_header`) است — کشوی موبایل، شمارش سبد، جست‌وجوی زنده و کلید حالت تیره در آن زنده‌اند؛ فوتر و تمام صفحات بومی‌اند.
 
+* ظاهر صفحات بومی در یک لایه جمع شد: بخش‌های هر صفحه کلاس `zc-eb` دارند و پوستهٔ عمومی ویجت‌ها (که متن را خاکستری و دکمه را طلایی می‌کرد) با `:not(.zc-eb *)` از این صفحات کنار گذاشته شد؛ رنگ متن هم هم به‌صورت تنظیم ویجت و هم در CSS با پیشوند `body` نوشته می‌شود تا لایه‌های بعدی آن را بازنویسی نکنند.
+* `Icon_Compatibility::resolve()`: برای سازندهٔ صفحه، آیکون هرگز خالی برنمی‌گردد؛ ابتدا کتابخانهٔ خواسته‌شده، سپس solid/brands/regular و در نهایت یک تیک. نام‌های فقط-FA6 مثل `display` هم به معادل FA5 نگاشت شدند. نتیجه: ۵۸ از ۵۸ کارت آیکون تصویر دارند و ۳۶۶ گره آیکون روی ۱۷ مسیر بدون یک مورد حل‌نشده است.
+* بخش‌های بومی با `e-no-lazyload` علامت می‌خورند؛ Elementor پس‌زمینهٔ Containerهای پایین‌تر از چهارمی را تا اجرای JS حذف می‌کند و همین کارت پایانی تیره را سفید می‌کرد.
+
 = 4.14.0 =
 * Icons: the shipped Font Awesome is now the **Free 7.0.0** build (icons CC BY 4.0, fonts SIL OFL 1.1, code MIT). The previous folder was the commercial-font *Pro* package, which cannot be redistributed inside a public theme, and it was ~7.5 MB of every glyph the family has; only the solid, regular and brand faces are kept (≈340 KB).
 * Icons: one contract for every glyph. `Zarincode\Theme\Core\Icons` is the only place that prints icon markup, `assets/css/icons.css` pins the Font Awesome family and the five size tokens, and `assets/css/icon-aliases.css` maps every Font Awesome 5/6 name that 7.x renamed to the code point the shipped font actually has. Homepage icons had been rendering as empty boxes because a `<span class="fa">` glyph was being given the Vazirmatn family by the Elementor typography layer; that rule now excludes `.fa` explicitly.

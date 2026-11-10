@@ -34,6 +34,10 @@ Do NOT reimport the demo when upgrading an existing site.
 * حذف کد مرده: `Demo_Seeder::make_elementor_section()`، `section_title()`، `demo_technologies()`، `pricing_body_sections()`، `Service_Demo::legal_rows()/legal_nav()` و فایل `fixtures/pricing-widget-settings.json`.
 * صادقانه: هدر سایت همچنان یک ویجت حالت‌دار (`zarincode_header`) است — کشوی موبایل، شمارش سبد، جست‌وجوی زنده و کلید حالت تیره در آن زنده‌اند؛ فوتر و تمام صفحات بومی‌اند.
 
+* ظاهر صفحات بومی در یک لایه جمع شد: بخش‌های هر صفحه کلاس `zc-eb` دارند و پوستهٔ عمومی ویجت‌ها (که متن را خاکستری و دکمه را طلایی می‌کرد) با `:not(.zc-eb *)` از این صفحات کنار گذاشته شد؛ رنگ متن هم هم به‌صورت تنظیم ویجت و هم در CSS با پیشوند `body` نوشته می‌شود تا لایه‌های بعدی آن را بازنویسی نکنند.
+* `Icon_Compatibility::resolve()`: برای سازندهٔ صفحه، آیکون هرگز خالی برنمی‌گردد؛ ابتدا کتابخانهٔ خواسته‌شده، سپس solid/brands/regular و در نهایت یک تیک. نام‌های فقط-FA6 مثل `display` هم به معادل FA5 نگاشت شدند. نتیجه: ۵۸ از ۵۸ کارت آیکون تصویر دارند و ۳۶۶ گره آیکون روی ۱۷ مسیر بدون یک مورد حل‌نشده است.
+* بخش‌های بومی با `e-no-lazyload` علامت می‌خورند؛ Elementor پس‌زمینهٔ Containerهای پایین‌تر از چهارمی را تا اجرای JS حذف می‌کند و همین کارت پایانی تیره را سفید می‌کرد.
+
 = 4.14.0 =
 * Icons: `Icon_Compatibility` rewrites every 6.x/7.x icon name in a widget value back to the Font Awesome 5.15.3 vocabulary Elementor resolves against, and repairs icon names already stored in `_elementor_data` once (`repair_stored_icons()`). Elementor's inlined-SVG pass logs «Undefined array key "shield-halved"» for every 7.x name it cannot find in its own FA 5.15.3 JSON; the log is now silent while the rendered glyph is still Font Awesome 7.
 * Navigation: `Native_Design` marks the current and ancestor links at render time (`is-current`, `is-current-ancestor`, `aria-current="page"`), so headers and footers authored as Elementor documents show where the visitor is.
