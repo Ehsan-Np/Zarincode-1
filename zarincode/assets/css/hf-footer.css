@@ -7,23 +7,25 @@
    border and shadow live in the element settings, so the owner edits them in
    the panel.
 
-   This file only carries the two things an Elementor control cannot express
-   and that the theme owns anyway:
+   This file only carries decor that an Elementor control cannot express:
 
-     1. The page-continuity veil above the plate — the 9rem band that fades
-        the page into the footer, so the footer reads as the bottom of the
-        page instead of a card dropped on it (4.9.0 behaviour).
-     2. The two soft accent glows inside the top edge of the plate, painted on
+     1. The two soft accent glows inside the top edge of the plate, painted on
         a decorative pseudo element (no layout, pointer-events none).
+     2. A typographic reset for the Text Editor paragraphs (see the note at the
+        bottom of the file).
+
+   There is deliberately NO veil / gradient band above the plate any more: the
+   owner asked for the footer to sit straight under the page instead of behind
+   a 9rem dark strip. The plate is the whole design.
 
    Nothing here sets size, spacing or colour on a widget.
    ===================================================================== */
 
-/* The landmark: full-bleed, no visual of its own. */
+/* The landmark: full-bleed, no visual of its own, no gap above it. */
 .zc-footer-host {
     position: relative;
     isolation: isolate;
-    margin-top: 9rem;
+    margin-block: 0;
     padding: 0;
     background: none;
     border: 0;
@@ -32,27 +34,7 @@
     max-width: none;
 }
 
-/* The veil: the page colour fades into the plate over 9rem. */
-.zc-footer-host::before {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    top: -9rem;
-    height: 9rem;
-    pointer-events: none;
-    z-index: 0;
-    background: var(--zc-footer-veil, linear-gradient(
-        180deg,
-        rgba(46, 49, 56, 0) 0%,
-        rgba(46, 49, 56, .05) 26%,
-        rgba(46, 49, 56, .20) 52%,
-        rgba(46, 49, 56, .52) 76%,
-        rgba(46, 49, 56, .84) 92%,
-        #2E3138 100%
-    ));
-}
-
-/* The plate keeps its Elementor stacking context; the veil stays behind. */
+/* Keep the plate's own stacking context explicit. */
 .zc-footer-host > * { position: relative; z-index: 1; }
 
 /* Decorative accent glows inside the top edge of the plate (4.9.0 look). */
@@ -70,15 +52,7 @@
 }
 .zc-footer-host .zc-ft-plate > * { position: relative; z-index: 1; }
 
-@media (max-width: 768px) {
-    .zc-footer-host { margin-top: 6rem; }
-    .zc-footer-host::before { top: -6rem; height: 6rem; }
-}
 
-@media (max-width: 480px) {
-    .zc-footer-host { margin-top: 4.5rem; }
-    .zc-footer-host::before { top: -4.5rem; height: 4.5rem; }
-}
 
 /*
  * Paragraph rhythm reset (footer only).

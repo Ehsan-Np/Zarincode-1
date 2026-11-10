@@ -40,6 +40,16 @@ final class HF_Builder {
 	private const BACKUP = '_zc_hf_backup_data';
 
 	/**
+	 * Version of the element tree this class generates.
+	 *
+	 * Stored on the document (`_zc_hf_builder`). When a site is updated from a
+	 * release that generated an older tree, `ensure()` rebuilds that document
+	 * **only** if the owner never edited it — so an upgrade always lands on the
+	 * current design, while a single edit made in the panel protects it forever.
+	 */
+	private const TREE_VERSION = '4.13.1';
+
+	/**
 	 * Create the header and footer documents when they do not exist yet.
 	 *
 	 * Existing documents are never rewritten — an owner's edit (made in the
@@ -118,7 +128,8 @@ final class HF_Builder {
 				// The owner's own document — and every header — is never touched,
 				// only repaired. (The approved header design ships as a single
 				// theme widget and stays exactly as it is.)
-				if ( $edited || 'footer' !== $type || ! self::is_legacy_tree( $data ) ) {
+				$stale = self::is_stale_tree( $id, $data );
+				if ( $edited || 'footer' !== $type || ( ! self::is_legacy_tree( $data ) && ! $stale ) ) {
 					self::mark_editable( $id, $type );
 					return $id;
 				}
@@ -153,6 +164,7 @@ final class HF_Builder {
 		self::mark_editable( $id, $type );
 
 		update_post_meta( $id, '_zc_hf_generated', '1' );
+		update_post_meta( $id, '_zc_hf_builder', self::TREE_VERSION );
 		update_post_meta( $id, '_elementor_data', wp_slash( wp_json_encode( $tree ) ) );
 
 		// Elementor caches the rendered CSS per post; a new tree needs a fresh one.
@@ -182,6 +194,23 @@ final class HF_Builder {
 			return false;
 		}
 		return (bool) preg_match( '/zarincode_(footer|header)\b|zarincode_widget[^\]]*type=\\"?(footer|header)/i', $raw );
+	}
+
+	/**
+	 * A tree this class generated in an *older* release.
+	 *
+	 * Only documents we own (`_zc_hf_generated`, no `_zc_hf_user_edited`) qualify,
+	 * so a footer the owner has touched in the panel is never rewritten. An empty
+	 * version means the document predates the marker — the 4.11–4.13 trees.
+	 */
+	private static function is_stale_tree( int $id, string $data ): bool {
+		if ( '' === trim( $data ) || '1' !== (string) get_post_meta( $id, '_zc_hf_generated', true ) ) {
+			return false;
+		}
+		if ( (int) get_post_meta( $id, '_zc_hf_user_edited', true ) ) {
+			return false;
+		}
+		return (string) get_post_meta( $id, '_zc_hf_builder', true ) !== self::TREE_VERSION;
 	}
 
 	private static function mark_editable( int $id, string $type ): void {

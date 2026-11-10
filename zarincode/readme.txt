@@ -3,7 +3,7 @@ Contributors: zarincode
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.13.0
+Stable tag: 4.13.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
@@ -41,6 +41,10 @@ Yes. Product sections then render the manual cards or stay hidden, and the rest 
 Zarincode bundles Font Awesome Free (CC BY 4.0 icons, SIL OFL 1.1 fonts, MIT code) and Vazirmatn (SIL OFL 1.1). Third-party notices are listed in the companion plugin.
 
 == Changelog ==
+
+= 4.13.1 =
+* The dark band above the footer is gone. 4.9.0 painted a 9rem page-to-footer «veil» (a dark gradient strip) above the plate; on a light page it read as a black border on top of the footer. The veil is removed from both footers (the Elementor one and the coded fallback), together with the 9rem margin and the tablet/mobile variants: the footer now starts where the page ends and the plate itself is the whole design. The divider, the CTA card, the columns and the bottom bar are untouched.
+* Footer design is unchanged in every other respect: same plate gradient and radius, same gold glows, same 1006px height at 1440, same 1798px stack at 390.
 
 = 4.13.0 =
 * Demo pages are generated as native Elementor **Containers** instead of legacy Sections/Columns. Each page is a flat list of Containers, one per designed section, each labelled in Persian in the Navigator («خدمات تخصصی», «تعرفه‌ها», …) and holding one design widget. `content_width: full` + zero padding reproduces the old full-width section exactly, so nothing moved: a full-page screenshot before/after the conversion is identical apart from the animated marquee. The importer also clears Elementor's CSS cache again (the call had been swallowed by an opening brace) and always switches WooCommerce's «coming soon» mode off — on a fresh install Woo creates that option *after* the import, so the guarded write left the whole site — Elementor's front page included — behind Woo's placeholder page.

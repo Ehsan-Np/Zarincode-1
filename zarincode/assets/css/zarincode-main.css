@@ -17,15 +17,6 @@
     --zc-bg-mid-a: #FFFDF7;
     --zc-bg-mid-b: #FFFBEE;
     --zc-footer-plate: #2E3138;
-    --zc-footer-veil: linear-gradient(
-        180deg,
-        rgba(46, 49, 56, 0) 0%,
-        rgba(46, 49, 56, 0.05) 26%,
-        rgba(46, 49, 56, 0.20) 52%,
-        rgba(46, 49, 56, 0.52) 76%,
-        rgba(46, 49, 56, 0.84) 92%,
-        #2E3138 100%
-    );
     --zc-surface: rgba(255, 255, 255, 0.78);
     --zc-surface-solid: #FFFFFF;
     --zc-surface-border: rgba(255, 255, 255, 0.92);
@@ -51,15 +42,6 @@ html.dark {
     --zc-bg-mid-a: #171A20;
     --zc-bg-mid-b: #1B1C21;
     --zc-footer-plate: #1A1C22;
-    --zc-footer-veil: linear-gradient(
-        180deg,
-        rgba(26, 28, 34, 0) 0%,
-        rgba(26, 28, 34, 0.10) 26%,
-        rgba(26, 28, 34, 0.35) 52%,
-        rgba(26, 28, 34, 0.68) 76%,
-        rgba(26, 28, 34, 0.92) 92%,
-        #1A1C22 100%
-    );
     --zc-surface: rgba(36, 38, 44, 0.78);
     --zc-surface-solid: #24262C;
     --zc-surface-border: rgba(255, 255, 255, 0.09);
@@ -1466,11 +1448,11 @@ html.dark .zc-project-info-pills span {
 
 /* ── Footer (Crextio Bento Dark Footer) ── */
 .zc-footer {
-    /* v4.9.0 — the footer is the bottom of the page, not a card dropped on it:
-       the blend band above the plate is part of this box, the plate reaches the
-       last pixel of the page and there is no hairline cutting the transition. */
+    /* 4.13.1 — the footer starts where the page ends: no 9rem blend band above
+       the plate and no dark strip under the last section (owner request). The
+       plate is the whole design and reaches the last pixel of the page. */
     margin-top: 0;
-    padding: 9rem 0 0;
+    padding: 0;
 }
 
 .zc-footer-bento {
@@ -2136,17 +2118,6 @@ body.zc-has-home .zc-footer,
 .zc-footer {
     position: relative;
     isolation: isolate;
-}
-
-.zc-footer::before {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
-    height: 9rem;
-    pointer-events: none;
-    z-index: 0;
-    background: var(--zc-footer-veil);
 }
 
 .zc-footer-bento {

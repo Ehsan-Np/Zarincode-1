@@ -4,7 +4,7 @@ Tags: elementor, agency, woocommerce, rtl
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 4.13.0
+Stable tag: 4.13.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Update the theme to the same release. Regenerate Elementor CSS and clear caches.
 Do NOT reimport the demo when upgrading an existing site.
 
 == Changelog ==
+
+= 4.13.1 =
+* Ships with theme 4.13.1 (no veil above the footer). `HF_Builder` now stamps every document it generates with `_zc_hf_builder` and rebuilds it when the stamp is older than the current tree — but only while `_zc_hf_generated` is set and `_zc_hf_user_edited` is not, so an upgraded site receives the current design on the next `ensure()` and a footer the owner has edited in the panel is never rewritten.
 
 = 4.13.0 =
 * Demo importer writes Flexbox Containers, not Sections: `Demo_Seeder::make_elementor_section()` emits `elType: container` with `content_width: full`, explicit zero padding and a Persian `_title` taken from the widget's own `get_title()`. The dead `Service_Demo::section()` helper (still building sections) is gone, and `seed_all()` clears Elementor's CSS cache again, and the demo import writes `woocommerce_coming_soon = no` unconditionally — the option is created by WooCommerce after the import on a fresh install, so the old guarded write left the site showing Woo's coming-soon page.
