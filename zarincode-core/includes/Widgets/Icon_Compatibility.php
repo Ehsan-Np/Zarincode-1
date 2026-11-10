@@ -43,6 +43,8 @@ final class Icon_Compatibility {
         'right-from-bracket'=>'sign-out-alt','right-to-bracket'=>'sign-in-alt','circle-user'=>'user-circle',
         'arrow-pointer'=>'mouse-pointer','thumbtack'=>'thumb-tack','file-shield'=>'file-alt',
         'chart-line'=>'chart-line','arrow-trend-up'=>'chart-line','bolt'=>'bolt',
+        'display'=>'desktop','tablet-screen-button'=>'tablet-alt','tv'=>'tv',
+        'square-poll-vertical'=>'poll','rectangle-ad'=>'ad','pen-to-square'=>'pen-square',
     ];
 
     private static function library(string $library): array {
@@ -98,6 +100,32 @@ final class Icon_Compatibility {
             }
         }
         return self::$values[$cacheKey] = $empty;
+    }
+
+    /**
+     * A guaranteed-usable icon value.
+     *
+     * `value()` is strict on purpose — it reports «this name does not exist»
+     * so a caller can notice. A page builder cannot: an empty value means an
+     * empty icon tile on the front end. `resolve()` therefore tries every
+     * Font Awesome library (a brand icon such as `wordpress` is not in the
+     * solid set) and finally falls back to a check mark, so a composed page
+     * always shows *something* and never a blank square.
+     */
+    public static function resolve( string $name, string $library = 'fa-solid', string $fallback = 'circle-check' ): array {
+        $name = strtolower( trim( $name ) );
+        $name = preg_replace( '/^fa-(solid|regular|brands)\s+/', '', $name );
+        $name = preg_replace( '/^(fas|far|fab)\s+/', '', $name );
+
+        foreach ( array_unique( array( $library, 'fa-solid', 'fa-brands', 'fa-regular' ) ) as $candidate ) {
+            $value = self::value( array( 'value' => self::PREFIXES[ $candidate ] . ' ' . ( strpos( $name, 'fa-' ) === 0 ? $name : 'fa-' . $name ), 'library' => $candidate ) );
+            if ( '' !== ( $value['value'] ?? '' ) ) {
+                return $value;
+            }
+        }
+
+        $default = self::value( array( 'value' => 'fas fa-' . ltrim( $fallback, '-' ), 'library' => 'fa-solid' ) );
+        return '' !== ( $default['value'] ?? '' ) ? $default : array( 'value' => '', 'library' => '' );
     }
 
     public static function control(array $control): array {

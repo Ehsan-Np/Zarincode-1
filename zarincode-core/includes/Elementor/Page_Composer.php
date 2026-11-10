@@ -52,7 +52,7 @@ final class Page_Composer {
 	 * 7.x drawing through `assets/css/icon-aliases.css`.
 	 */
 	public static function icon( string $name, string $library = 'fa-solid' ): array {
-		return \Zarincode\Runtime260\Widgets\Icon_Compatibility::value( array( 'value' => 'fas ' . $name, 'library' => $library ) );
+		return \Zarincode\Runtime260\Widgets\Icon_Compatibility::resolve( $name, $library );
 	}
 
 	/* ---------------------------------------------------------------------
@@ -301,7 +301,15 @@ final class Page_Composer {
 		 * it (`:not(.zc-eb *)` in widgets.css), so a composed page is styled by
 		 * exactly one layer instead of two fighting ones.
 		 */
-		$css = 'zc-eb zc-eb-sec ' . ( $args['css'] ?? '' );
+		/*
+		 * `e-no-lazyload` opts the section out of Elementor's background
+		 * lazyload: that feature strips the background of every container below
+		 * the fourth one until its JS marks it as loaded, which erases the
+		 * composed sections' tinted/hero backgrounds for a moment (and for good
+		 * if the script never runs). The sections carry their background in CSS,
+		 * so there is nothing to lazy-load.
+		 */
+		$css = 'zc-eb zc-eb-sec e-no-lazyload ' . ( $args['css'] ?? '' );
 		$settings = array(
 			'content_width'  => 'full',
 			'flex_direction' => 'column',
@@ -738,7 +746,7 @@ final class Page_Composer {
 							array( 'direction' => 'row', 'gap' => array( 'column' => 12, 'row' => 12 ), 'width' => 100, 'css' => 'zc-eb-actions', 'name' => 'دکمه‌های پایانی' )
 						),
 					),
-					array( 'direction' => 'column', 'gap' => array( 'column' => 22, 'row' => 18 ), 'css' => 'zc-eb-cta', 'name' => 'کارت پایانی' )
+					array( 'direction' => 'column', 'gap' => array( 'column' => 22, 'row' => 18 ), 'css' => 'zc-eb-cta e-no-lazyload', 'name' => 'کارت پایانی' )
 				),
 			),
 			array( 'css' => 'is-cta', 'name' => 'فراخوان پایانی' )
@@ -957,7 +965,7 @@ final class Page_Composer {
 								array( 'direction' => 'row', 'gap' => array( 'column' => 12, 'row' => 12 ), 'css' => 'zc-eb-actions', 'name' => 'دکمه پایانی' )
 							),
 						),
-						array( 'direction' => 'column', 'gap' => array( 'column' => 20, 'row' => 16 ), 'css' => 'zc-eb-cta', 'name' => 'کارت پایانی' )
+						array( 'direction' => 'column', 'gap' => array( 'column' => 20, 'row' => 16 ), 'css' => 'zc-eb-cta e-no-lazyload', 'name' => 'کارت پایانی' )
 					),
 				),
 				array( 'css' => 'is-cta', 'name' => 'فراخوان پایانی' )
