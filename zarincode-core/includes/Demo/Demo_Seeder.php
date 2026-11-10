@@ -301,6 +301,23 @@ class Demo_Seeder {
         <?php
     }
 
+    /**
+     * Pretty permalinks, but only when the site has none.
+     *
+     * Every menu, footer link and internal button in the demo points at a path
+     * (`/services/`, `/terms-and-conditions/`, `/shop/`). On WordPress's default
+     * «Plain» setting those addresses 404 and the imported site looks broken —
+     * a complete demo import therefore switches the setting on when it is still
+     * empty, and never touches a structure the owner has already chosen.
+     */
+    public static function ensure_permalinks(): void {
+        if ( '' !== (string) get_option( 'permalink_structure' ) ) {
+            return;
+        }
+        update_option( 'permalink_structure', '/%postname%/' );
+        update_option( 'rewrite_rules', '' );
+    }
+
     private static function gen_id(): string {
         return substr( md5( uniqid( (string) mt_rand(), true ) ), 0, 7 );
     }
@@ -1511,6 +1528,7 @@ class Demo_Seeder {
         if ( class_exists( 'Elementor\Plugin' ) ) {
             \Elementor\Plugin::instance()->files_manager->clear_cache();
         }
+        self::ensure_permalinks();
         flush_rewrite_rules( false );
     }
 

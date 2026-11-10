@@ -23,7 +23,7 @@ Do NOT reimport the demo when upgrading an existing site.
 == Changelog ==
 
 = 4.13.1 =
-* Ships with theme 4.13.1 (no veil above the footer). `HF_Builder` now stamps every document it generates with `_zc_hf_builder` and rebuilds it when the stamp is older than the current tree — but only while `_zc_hf_generated` is set and `_zc_hf_user_edited` is not, so an upgraded site receives the current design on the next `ensure()` and a footer the owner has edited in the panel is never rewritten.
+* Ships with theme 4.13.1 (no veil above the footer). `Demo_Seeder::ensure_permalinks()` switches a fresh install from «Plain» to `/%postname%/` during the demo import so every demo URL resolves; an owner-chosen structure is kept. `HF_Builder` now stamps every document it generates with `_zc_hf_builder` and rebuilds it when the stamp is older than the current tree — but only while `_zc_hf_generated` is set and `_zc_hf_user_edited` is not, so an upgraded site receives the current design on the next `ensure()` and a footer the owner has edited in the panel is never rewritten.
 
 = 4.13.0 =
 * Demo importer writes Flexbox Containers, not Sections: `Demo_Seeder::make_elementor_section()` emits `elType: container` with `content_width: full`, explicit zero padding and a Persian `_title` taken from the widget's own `get_title()`. The dead `Service_Demo::section()` helper (still building sections) is gone, and `seed_all()` clears Elementor's CSS cache again, and the demo import writes `woocommerce_coming_soon = no` unconditionally — the option is created by WooCommerce after the import on a fresh install, so the old guarded write left the site showing Woo's coming-soon page.
