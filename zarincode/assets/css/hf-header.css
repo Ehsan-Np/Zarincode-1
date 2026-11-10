@@ -23,6 +23,18 @@
     --zc-hdr-indicator: #FDD05B;
 }
 
+/* ── The shell ─────────────────────────────────────────────────────────
+   The header must measure exactly like the page content and the footer box:
+   1200px wide, 20px gutters, 1160px of visible content. Elementor's own
+   boxed width (the Kit's 1140px) is overridden here for the header only. */
+.zc-hf-header .zc-header-bar > .e-con-inner {
+    width: 100%;
+    max-width: var(--zc-shell, 1200px);
+    padding-left: var(--zc-gutter, 20px);
+    padding-right: var(--zc-gutter, 20px);
+    box-sizing: border-box;
+}
+
 /* 1. The band stays under the pointer while the page scrolls. */
 .zc-hf-header .zc-header-bar {
     position: sticky;

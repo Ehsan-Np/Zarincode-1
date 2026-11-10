@@ -70,3 +70,41 @@
 .zc-footer-host .elementor-widget-text-editor p + p {
     margin-block-start: .6em;
 }
+
+/* ── The footer is a box, in the same column as everything else ────────
+   4.16.0: the plate is no longer a full-bleed band. It is capped at the
+   shared shell (1200px / 1160px inner, the same numbers the header pill and
+   every page section use), floats above the page edge with a 28px gap, and
+   keeps all four corners rounded. */
+.zc-hf-footer .zc-ft-plate.e-con {
+    max-width: min(
+        calc(var(--zc-shell, 1200px) - (2 * var(--zc-gutter, 20px))),
+        calc(100% - (2 * var(--zc-gutter, 20px)))
+    );
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 28px;
+    border-radius: 32px;
+    border-bottom-width: 1px;
+}
+
+@media (max-width: 767px) {
+    .zc-hf-footer .zc-ft-plate.e-con {
+        margin-bottom: 16px;
+        border-radius: 24px;
+    }
+}
+
+/* ── 4.16.1 — the four footer columns start on one line ────────────────
+   The brand column is the tallest one (monogram, tagline, paragraph, four
+   contact rows and the social chips). With the default `stretch` the short
+   columns were pushed down by their own vertical centring, so «خدمات» and
+   «قوانین» began 120px below «اعتبارنامه‌ها» and the plate carried a large
+   empty band under them. Top-aligned columns fix both. */
+.zc-hf-footer .zc-ft-grid > .e-con-inner {
+    align-items: flex-start;
+}
+
+.zc-hf-footer .zc-ft-grid > .e-con-inner > .e-con {
+    justify-content: flex-start;
+}

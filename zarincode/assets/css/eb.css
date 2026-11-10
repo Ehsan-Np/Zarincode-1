@@ -36,6 +36,19 @@
     --eb-shadow-hover: 0 18px 40px rgba(41, 44, 49, 0.12);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   ONE SHELL — header, page content and footer share the same column
+   ---------------------------------------------------------------------
+   The header pill, every page section and the footer box are measured from
+   the same two numbers: a 1200px shell with a 20px gutter, i.e. 1160px of
+   visible content at every width. Nothing in the theme may widen one of
+   them alone, which is why the value lives in a single custom property.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root {
+    --zc-shell: 1200px;
+    --zc-gutter: 20px;
+}
+
 /* ── Page shell ─────────────────────────────────────────────────────── */
 .zc-eb-sec.e-con {
     position: relative;
@@ -63,11 +76,11 @@
  */
 .zc-eb-sec > .zc-eb-wrap {
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--zc-shell, 1200px);
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: var(--zc-gutter, 20px);
+    padding-right: var(--zc-gutter, 20px);
     box-sizing: border-box;
 }
 
@@ -844,4 +857,285 @@ body .zc-eb-score-l .elementor-widget-container p {
     .zc-eb-btn .elementor-button:hover {
         transform: none;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COLOUR LAYER (4.16.1) — the homepage is colourful again
+   ---------------------------------------------------------------------
+   The approved look was a cream paper with an ink voice and a gold accent.
+   When the homepage moved to native widgets (4.15.0) only the gold survived,
+   so the page read as one long beige strip. This layer puts the colour back
+   without touching a single piece of content or a single Elementor setting:
+
+     • every section gets its own soft band (cream → mint → sky → peach →
+       rose → lilac) so the scroll has rhythm;
+     • icon tiles, step numbers and card edges cycle through five accent
+       hues, so a grid is never one flat colour;
+     • the hero gets two decorative glows and a warmer wash;
+     • cards keep a white face, so text contrast never drops.
+
+   Everything is scoped to `.zc-eb-*` classes — a widget the owner drops in
+   himself is untouched. No `!important`, no selector outside that scope.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.zc-eb {
+    --eb-mint: #6FD3A8;
+    --eb-mint-soft: #E4F8EF;
+    --eb-sky: #7FB6F5;
+    --eb-sky-soft: #E6F1FE;
+    --eb-rose: #FF9FB0;
+    --eb-rose-soft: #FFECF0;
+    --eb-lilac: #A99BF0;
+    --eb-lilac-soft: #EEEAFD;
+    --eb-peach: #FFC38F;
+    --eb-peach-soft: #FFF0E3;
+}
+
+/* ── 1. Section bands ─────────────────────────────────────────────────── */
+
+/* A hairline between two bands keeps the transitions crisp instead of muddy. */
+.zc-eb-sec.e-con {
+    border-top: 1px solid rgba(41, 44, 49, 0.05);
+}
+
+.zc-eb-sec.e-con.is-hero {
+    border-top: 0;
+    background:
+        radial-gradient(75% 70% at 100% 0%, rgba(253, 208, 91, 0.34), transparent 62%),
+        radial-gradient(65% 65% at 0% 8%, rgba(127, 182, 245, 0.20), transparent 60%),
+        radial-gradient(50% 50% at 60% 100%, rgba(111, 211, 168, 0.16), transparent 65%),
+        linear-gradient(180deg, #FFFCF3, #FFFDF8 70%);
+}
+
+.zc-eb-sec.e-con.is-services {
+    background:
+        radial-gradient(60% 60% at 0% 0%, rgba(253, 208, 91, 0.16), transparent 60%),
+        linear-gradient(180deg, #FFFDF6, #FFFAEC 60%, #FFFDF8);
+}
+
+.zc-eb-sec.e-con.is-products,
+.zc-eb-sec.e-con.is-why {
+    background:
+        radial-gradient(70% 70% at 100% 0%, rgba(111, 211, 168, 0.14), transparent 60%),
+        linear-gradient(180deg, #F4FBF7, #FBFEFC 70%, #FFFDF8);
+}
+
+.zc-eb-sec.e-con.is-projects,
+.zc-eb-sec.e-con.is-magazine {
+    background:
+        radial-gradient(70% 70% at 0% 0%, rgba(127, 182, 245, 0.18), transparent 62%),
+        linear-gradient(180deg, #F4F9FF, #FBFDFF 70%, #FFFDF8);
+}
+
+.zc-eb-sec.e-con.is-steps {
+    background:
+        radial-gradient(70% 70% at 100% 0%, rgba(255, 195, 143, 0.22), transparent 62%),
+        linear-gradient(180deg, #FFF9F2, #FFFDF8 75%);
+}
+
+.zc-eb-sec.e-con.is-quotes {
+    background:
+        radial-gradient(70% 70% at 0% 0%, rgba(255, 159, 176, 0.16), transparent 62%),
+        linear-gradient(180deg, #FFF8FA, #FFFDF8 75%);
+}
+
+/* ── 2. Colourful icon tiles ──────────────────────────────────────────── */
+
+.zc-eb-tile .elementor-icon-box-icon .elementor-icon {
+    border-radius: 20px;
+    box-shadow: 0 10px 22px rgba(41, 44, 49, 0.08);
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 1) .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-gold-soft);
+    color: #7A5B00;
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 2) .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-mint-soft);
+    color: #0F6B4B;
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 3) .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-sky-soft);
+    color: #1B4F91;
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 4) .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-rose-soft);
+    color: #9C2438;
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 5) .elementor-icon-box-icon .elementor-icon {
+    background: var(--eb-lilac-soft);
+    color: #453290;
+}
+
+/* Hover: the same hue, one step deeper. */
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 1):hover .elementor-icon-box-icon .elementor-icon { background: var(--eb-gold); color: var(--eb-ink); }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 2):hover .elementor-icon-box-icon .elementor-icon { background: var(--eb-mint); color: #04392A; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 3):hover .elementor-icon-box-icon .elementor-icon { background: var(--eb-sky); color: #0B2A50; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 4):hover .elementor-icon-box-icon .elementor-icon { background: var(--eb-rose); color: #4C0F1B; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 5):hover .elementor-icon-box-icon .elementor-icon { background: var(--eb-lilac); color: #241457; }
+
+/* ── 3. Card edges and numbers take the same hue ──────────────────────── */
+
+.zc-eb-tile.e-con {
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 14px 34px rgba(41, 44, 49, 0.08);
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 1).e-con { box-shadow: 0 14px 34px rgba(253, 208, 91, 0.20); }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 2).e-con { box-shadow: 0 14px 34px rgba(111, 211, 168, 0.20); }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 3).e-con { box-shadow: 0 14px 34px rgba(127, 182, 245, 0.20); }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 4).e-con { box-shadow: 0 14px 34px rgba(255, 159, 176, 0.20); }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 5).e-con { box-shadow: 0 14px 34px rgba(169, 155, 240, 0.20); }
+
+/* The «01 / 02 / 03» numbers on the service cards.
+   The `.zc-eb` prefix is required: Elementor's generated per-widget rule
+   (`.elementor-<id> .elementor-element-<id> .elementor-heading-title`) is
+   three classes deep and would otherwise paint the digits ink-on-ink. */
+.zc-eb .zc-eb-no .elementor-heading-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--eb-ink);
+    color: var(--eb-gold);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+}
+
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 2) .zc-eb-no .elementor-heading-title { background: #0F6B4B; color: #C9F5E1; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 3) .zc-eb-no .elementor-heading-title { background: #1B4F91; color: #D7E8FF; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 4) .zc-eb-no .elementor-heading-title { background: #9C2438; color: #FFDDE3; }
+div.zc-eb-grid > div.zc-eb-tile:nth-child(5n + 5) .zc-eb-no .elementor-heading-title { background: #453290; color: #E5DEFF; }
+
+/* Step numbers: big, tinted, impossible to miss. */
+.zc-eb .zc-eb-step-no .elementor-heading-title {
+    margin: 0 0 6px;
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(253, 208, 91, 0.95);
+    -webkit-text-stroke: 1px rgba(42, 44, 49, 0.18);
+}
+
+div.zc-eb-grid.is-steps > div.zc-eb-tile:nth-child(4n + 2) .zc-eb-step-no .elementor-heading-title { color: rgba(111, 211, 168, 0.95); }
+div.zc-eb-grid.is-steps > div.zc-eb-tile:nth-child(4n + 3) .zc-eb-step-no .elementor-heading-title { color: rgba(127, 182, 245, 0.95); }
+div.zc-eb-grid.is-steps > div.zc-eb-tile:nth-child(4n + 4) .zc-eb-step-no .elementor-heading-title { color: rgba(169, 155, 240, 0.95); }
+
+/* ── 4. Section badges cycle too ──────────────────────────────────────── */
+
+.zc-eb-sec.is-products .zc-eb-badge .elementor-widget-container p,
+.zc-eb-sec.is-why .zc-eb-badge .elementor-widget-container p {
+    background: var(--eb-mint-soft);
+    border-color: rgba(111, 211, 168, 0.55);
+    color: #0F6B4B;
+}
+
+.zc-eb-sec.is-projects .zc-eb-badge .elementor-widget-container p,
+.zc-eb-sec.is-magazine .zc-eb-badge .elementor-widget-container p {
+    background: var(--eb-sky-soft);
+    border-color: rgba(127, 182, 245, 0.55);
+    color: #1B4F91;
+}
+
+.zc-eb-sec.is-steps .zc-eb-badge .elementor-widget-container p {
+    background: var(--eb-peach-soft);
+    border-color: rgba(255, 195, 143, 0.6);
+    color: #8A4B10;
+}
+
+.zc-eb-sec.is-quotes .zc-eb-badge .elementor-widget-container p {
+    background: var(--eb-rose-soft);
+    border-color: rgba(255, 159, 176, 0.55);
+    color: #9C2438;
+}
+
+/* ── 5. Quotes: a coloured mark instead of a plain card ───────────────── */
+
+.zc-eb-quote .elementor-widget-container p {
+    position: relative;
+    padding-top: 6px;
+}
+
+.zc-eb-tile.is-quote.e-con::before {
+    content: "”";
+    position: absolute;
+    top: 6px;
+    inset-inline-end: 18px;
+    font-size: 3.4rem;
+    line-height: 1;
+    color: rgba(253, 208, 91, 0.55);
+    pointer-events: none;
+}
+
+.zc-eb-tile.is-quote.e-con {
+    position: relative;
+    background: linear-gradient(180deg, #FFFFFF, #FFF9F1);
+    border-color: rgba(253, 208, 91, 0.35);
+}
+
+/* ── 6. Hero decorations ──────────────────────────────────────────────── */
+
+.zc-eb-sec.e-con.is-hero {
+    overflow: hidden;
+}
+
+.zc-eb-sec.e-con.is-hero > .zc-eb-wrap > .zc-eb-hero {
+    position: relative;
+    z-index: 1;
+}
+
+.zc-eb-sec.e-con.is-hero::before,
+.zc-eb-sec.e-con.is-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.zc-eb-sec.e-con.is-hero::before {
+    width: 380px;
+    height: 380px;
+    top: -160px;
+    inset-inline-start: -120px;
+    background: radial-gradient(circle at 30% 30%, rgba(253, 208, 91, 0.55), rgba(253, 208, 91, 0));
+}
+
+.zc-eb-sec.e-con.is-hero::after {
+    width: 300px;
+    height: 300px;
+    bottom: -140px;
+    inset-inline-end: 8%;
+    background: radial-gradient(circle at 50% 50%, rgba(127, 182, 245, 0.45), rgba(127, 182, 245, 0));
+}
+
+/* The portrait card gets a coloured frame instead of a plain shadow. */
+.zc-eb-img.is-hero img {
+    border: 6px solid #FFFFFF;
+    box-shadow: 0 26px 60px rgba(42, 44, 49, 0.20), 0 0 0 1px rgba(253, 208, 91, 0.45);
+}
+
+/* ── 7. Closing CTA: gold-lit ink card ────────────────────────────────── */
+
+.zc-eb-cta.e-con {
+    background:
+        radial-gradient(80% 90% at 100% 0%, rgba(253, 208, 91, 0.22), transparent 60%),
+        linear-gradient(140deg, #2E3138, #1F2126);
+    border: 1px solid rgba(253, 208, 91, 0.28);
+    border-radius: 30px;
+    box-shadow: 0 24px 60px rgba(42, 44, 49, 0.28);
+}
+
+.zc-eb-sec.e-con.is-cta {
+    background: linear-gradient(180deg, #FFFDF8, #FFF6E3);
 }

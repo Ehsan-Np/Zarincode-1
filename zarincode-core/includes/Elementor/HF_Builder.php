@@ -47,7 +47,7 @@ final class HF_Builder {
 	 * **only** if the owner never edited it — so an upgrade always lands on the
 	 * current design, while a single edit made in the panel protects it forever.
 	 */
-	private const TREE_VERSION = '4.16.0';
+	private const TREE_VERSION = '4.16.1';
 
 	/**
 	 * Create the header and footer documents when they do not exist yet.
@@ -599,6 +599,16 @@ final class HF_Builder {
 					? \Zarincode\Runtime260\Widgets\Widget_Header_Nav::default_items()
 					: array(),
 				'aria_label'  => 'منوی اصلی',
+				// Six buttons sit next to the menu now (account, search, dark,
+				// cart, CTA, hamburger). The menu tightens a little so the row
+				// stays inside the pill at 1281–1920px; at <=1280px the theme's
+				// compact rule moves it into the drawer.
+				'link_padding'              => array( 'unit' => 'px', 'top' => '6', 'right' => '8', 'bottom' => '6', 'left' => '8', 'isLinked' => false ),
+				'item_gap'                  => array( 'unit' => 'px', 'size' => 1 ),
+				'track_padding'             => array( 'unit' => 'px', 'top' => '4', 'right' => '4', 'bottom' => '4', 'left' => '4', 'isLinked' => true ),
+				'link_typography_typography' => 'custom',
+				'link_typography_font_size'  => array( 'unit' => 'px', 'size' => 12, 'sizes' => array() ),
+				'link_typography_font_weight' => '800',
 			),
 			'منوی اصلی'
 		);
@@ -629,9 +639,49 @@ final class HF_Builder {
 			'zc-header-cta-btn'
 		);
 		$cta['settings']['typography_typography'] = 'custom';
-		$cta['settings']['typography_font_size']  = array( 'unit' => 'px', 'size' => 13, 'sizes' => array() );
+		$cta['settings']['typography_font_size']  = array( 'unit' => 'px', 'size' => 12.5, 'sizes' => array() );
 		$cta['settings']['typography_font_weight'] = '800';
-		$cta['settings']['padding'] = array( 'unit' => 'px', 'top' => '10', 'right' => '18', 'bottom' => '10', 'left' => '18', 'isLinked' => false );
+		$cta['settings']['padding'] = array( 'unit' => 'px', 'top' => '8', 'right' => '12', 'bottom' => '8', 'left' => '12', 'isLinked' => false );
+
+		$search = self::widget(
+			'zarincode_header_search',
+			array(
+				'icon'             => array( 'value' => 'fa-solid fa-magnifying-glass', 'library' => 'fa-solid' ),
+				'label'            => 'جستجوی سریع خدمات و محصولات',
+				'circle_size'      => array( 'unit' => 'px', 'size' => 34 ),
+				'icon_size'        => array( 'unit' => 'px', 'size' => 14 ),
+				'icon_color'       => '#2A2C31',
+				'background_color' => '#FFFFFF',
+			),
+			'جستجو'
+		);
+
+		$theme = self::widget(
+			'zarincode_header_theme',
+			array(
+				'icon'             => array( 'value' => 'fa-solid fa-moon', 'library' => 'fa-solid' ),
+				'label'            => 'تغییر حالت روشن یا تیره',
+				'circle_size'      => array( 'unit' => 'px', 'size' => 34 ),
+				'icon_size'        => array( 'unit' => 'px', 'size' => 14 ),
+				'icon_color'       => '#2A2C31',
+				'background_color' => '#FFFFFF',
+			),
+			'کلید حالت تیره'
+		);
+
+		$cart = self::widget(
+			'zarincode_header_cart',
+			array(
+				'icon'             => array( 'value' => 'fa-solid fa-bag-shopping', 'library' => 'fa-solid' ),
+				'label'            => 'سبد خرید محصولات آماده',
+				'show_count'       => 'yes',
+				'circle_size'      => array( 'unit' => 'px', 'size' => 34 ),
+				'icon_size'        => array( 'unit' => 'px', 'size' => 14 ),
+				'icon_color'       => '#2A2C31',
+				'background_color' => '#FFFFFF',
+			),
+			'سبد خرید'
+		);
 
 		$toggle = self::widget(
 			'zarincode_header_drawer',
@@ -646,11 +696,11 @@ final class HF_Builder {
 		);
 
 		$actions = self::container(
-			array( $account, $cta, $toggle ),
+			array( $account, $search, $theme, $cart, $cta, $toggle ),
 			array(
 				'title'  => 'دکمه‌های هدر',
 				'css'    => 'zc-header-actions',
-				'gap'    => array( 'column' => '8', 'row' => '8' ),
+				'gap'    => array( 'column' => '6', 'row' => '6' ),
 				'align'  => 'center',
 				'nowrap' => true,
 			),
@@ -662,7 +712,7 @@ final class HF_Builder {
 			array(
 				'title'    => 'نوار شیشه‌ای هدر',
 				'css'      => 'zc-header-pill',
-				'gap'      => array( 'column' => '10', 'row' => '10' ),
+				'gap'      => array( 'column' => '8', 'row' => '8' ),
 				'justify'  => 'space-between',
 				'align'    => 'center',
 				'nowrap'   => true,
@@ -1131,13 +1181,15 @@ final class HF_Builder {
 				'title'         => 'فوتر زرین کد',
 				'direction'     => 'column',
 				'gap'           => array( 'column' => '40', 'row' => '40' ),
-				'padding'       => array( 'top' => '48', 'right' => '64', 'bottom' => '56', 'left' => '64' ),
+				'padding'       => array( 'top' => '44', 'right' => '44', 'bottom' => '44', 'left' => '44' ),
 				'padding_t'     => array( 'top' => '40', 'right' => '32', 'bottom' => '32', 'left' => '32' ),
 				'padding_m'     => array( 'top' => '32', 'right' => '20', 'bottom' => '24', 'left' => '20' ),
 				'gradient'      => array( '#2E3138', '#22242A', '180' ),
 				'border'        => 'rgba(253,208,91,0.16)',
-				'border_side'   => 'no-bottom',
-				'radius'        => array( 'top' => '32', 'right' => '32', 'bottom' => '0', 'left' => '0' ),
+				// A box, not a full-bleed band: all four corners are rounded
+				// and hf-footer.css caps it at the same shell width as the
+				// header pill and the page content (1200px / 1160px inner).
+				'radius'        => array( 'top' => '32', 'right' => '32', 'bottom' => '32', 'left' => '32' ),
 				'shadow'        => array( 'horizontal' => 0, 'vertical' => 24, 'blur' => 60, 'spread' => 0, 'color' => 'rgba(42,44,49,0.13)' ),
 				'content_width' => 'full',
 			)
